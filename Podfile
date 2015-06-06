@@ -1,0 +1,13 @@
+platform :ios, '8.0'
+
+pod 'Reachability'
+pod 'AFNetworking'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'CSStickyHeaderFlowLayout'
+pod 'CRToast'
+pod 'Onboard'
+pod 'MZFormSheetController'
+pod 'ViewDeck', '~> 2.2.11'
+pod 'pop'
+pod 'JKExpandTableView'

@@ -1,0 +1,82 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Bolts (1.1.5):
+    - Bolts/AppLinks (= 1.1.5)
+    - Bolts/Tasks (= 1.1.5)
+  - Bolts/AppLinks (1.1.5):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.1.5)
+  - CRToast (0.0.7)
+  - CSStickyHeaderFlowLayout (0.2.5)
+  - FBSDKCoreKit (4.2.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.2.0)
+    - FBSDKCoreKit/no-arc (= 4.2.0)
+  - FBSDKCoreKit/arc (4.2.0):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.2.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.2.0):
+    - FBSDKCoreKit
+  - JKExpandTableView (0.0.1)
+  - MZAppearance (1.1.5)
+  - MZFormSheetController (3.0.3):
+    - MZAppearance
+    - MZFormSheetController/Core (= 3.0.3)
+  - MZFormSheetController/Core (3.0.3):
+    - MZAppearance
+  - Onboard (2.1.2)
+  - pop (1.0.7)
+  - Reachability (3.2)
+  - ViewDeck (2.2.11)
+
+DEPENDENCIES:
+  - AFNetworking
+  - CRToast
+  - CSStickyHeaderFlowLayout
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - JKExpandTableView
+  - MZFormSheetController
+  - Onboard
+  - pop
+  - Reachability
+  - ViewDeck (~> 2.2.11)
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  CRToast: 99a28f4387def43b439ad88f957ce31357ff7373
+  CSStickyHeaderFlowLayout: 75e439a59c23f609091d9a784c7b5db7de583f1f
+  FBSDKCoreKit: 84b3616a361801f190e43a9909caead7bb6087c7
+  FBSDKLoginKit: 57e37106af12c9e264e473dcb75d7decdbb07fe4
+  JKExpandTableView: 14834b11d68da066e30b50344fb204e55daee618
+  MZAppearance: 6e9dc64e42074c0a19812a327f590746c3283bab
+  MZFormSheetController: 36771856696eeef2eaec9b18c75791d3c95cb661
+  Onboard: 827b9d7f256b10d2901783a99e968dffce63c3da
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  ViewDeck: ce795f929d00d1e0fd63f61d79cc92a9ea050ec9
+
+COCOAPODS: 0.36.3
