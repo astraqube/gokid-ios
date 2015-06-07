@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5DBA8D1F6221A4F3A066AD39"
+               BlueprintIdentifier = "AC6209159EC26DEC76F89156"
                BuildableName = "libPods-JKExpandTableView.a"
                BlueprintName = "Pods-JKExpandTableView"
                ReferencedContainer = "container:Pods.xcodeproj">

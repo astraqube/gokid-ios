@@ -14,16 +14,14 @@ class VolunteerCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var poolTypeLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
+    var checkButtonHandler: ((VolunteerCell, UIButton)->(Void))?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkButton.layer.cornerRadius = checkButton.w/2.0
+        checkButton.setRounded()
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    @IBAction func checkButtonClick(sender: UIButton) {
+        checkButtonHandler?(self, sender)
     }
-
 }

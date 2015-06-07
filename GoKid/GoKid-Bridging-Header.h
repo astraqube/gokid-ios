@@ -6,4 +6,8 @@
 #import <IIViewDeckController.h>
 #import <POP.h>
 #import <JKExpandTableView.h>
+#import <AFNetworking.h>
 #import "DateTimePicker.h"
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>

@@ -32,6 +32,18 @@
 		1D3F65251B208A9600CCF6A1 /* InviteParentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */; };
 		1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */; };
 		1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */; };
+		1D891F0F1B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F081B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift */; };
+		1D891F101B23FDD8006FD961 /* SwiftAddressBookGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F091B23FDD8006FD961 /* SwiftAddressBookGroup.swift */; };
+		1D891F111B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F0A1B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift */; };
+		1D891F121B23FDD8006FD961 /* SwiftAddressBookPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F0B1B23FDD8006FD961 /* SwiftAddressBookPerson.swift */; };
+		1D891F131B23FDD8006FD961 /* SwiftAddressBookRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F0C1B23FDD8006FD961 /* SwiftAddressBookRecord.swift */; };
+		1D891F141B23FDD8006FD961 /* SwiftAddressBookSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F0D1B23FDD8006FD961 /* SwiftAddressBookSource.swift */; };
+		1D891F151B23FDD8006FD961 /* SwiftAddressBookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F0E1B23FDD8006FD961 /* SwiftAddressBookWrapper.swift */; };
+		1D891F171B23FFA0006FD961 /* ContactPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */; };
+		1D891F191B240051006FD961 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F181B240051006FD961 /* ContactCell.swift */; };
+		1D891F211B242B89006FD961 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F201B242B89006FD961 /* SwiftyJSON.swift */; };
+		1D891F231B244536006FD961 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F221B244536006FD961 /* DataManager.swift */; };
+		1D891F251B24635A006FD961 /* ContactNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F241B246359006FD961 /* ContactNameCell.swift */; };
 		1D975A381B1F40D500CD4D89 /* InviteInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */; };
 		1D975A3A1B1F40E500CD4D89 /* InviteConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */; };
 		1D975A3C1B1F7C4E00CD4D89 /* TimeAndDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */; };
@@ -49,7 +61,8 @@
 		1DFBBE9C1B1C78DC00630440 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */; };
 		1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */; };
 		1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */; };
-		B008927565000EA4462CD63D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC93EC43A050A3CF62F63B8 /* libPods.a */; };
+		4190E4EEFE18859503C87647 /* Pods_GoKid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B793B8DA72FCB512C3DCC0 /* Pods_GoKid.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		ECE57027C4889A619FFDC703 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF40D0E37CF42771C6294E4C /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +106,19 @@
 		1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteParentsVC.swift; path = ViewControllers/InviteParentsVC.swift; sourceTree = "<group>"; };
 		1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarpoolSucceedVC.swift; path = ViewControllers/CarpoolSucceedVC.swift; sourceTree = "<group>"; };
 		1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseVC.swift; path = ViewControllers/BaseVC.swift; sourceTree = "<group>"; };
+		1D891F081B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookDataStructures.swift; sourceTree = "<group>"; };
+		1D891F091B23FDD8006FD961 /* SwiftAddressBookGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookGroup.swift; sourceTree = "<group>"; };
+		1D891F0A1B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookHelperMethods.swift; sourceTree = "<group>"; };
+		1D891F0B1B23FDD8006FD961 /* SwiftAddressBookPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookPerson.swift; sourceTree = "<group>"; };
+		1D891F0C1B23FDD8006FD961 /* SwiftAddressBookRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookRecord.swift; sourceTree = "<group>"; };
+		1D891F0D1B23FDD8006FD961 /* SwiftAddressBookSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookSource.swift; sourceTree = "<group>"; };
+		1D891F0E1B23FDD8006FD961 /* SwiftAddressBookWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookWrapper.swift; sourceTree = "<group>"; };
+		1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerVC.swift; sourceTree = "<group>"; };
+		1D891F181B240051006FD961 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		1D891F1F1B242B89006FD961 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
+		1D891F201B242B89006FD961 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		1D891F221B244536006FD961 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		1D891F241B246359006FD961 /* ContactNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactNameCell.swift; sourceTree = "<group>"; };
 		1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteInfoVC.swift; path = ViewControllers/InviteInfoVC.swift; sourceTree = "<group>"; };
 		1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteConfirmVC.swift; path = ViewControllers/InviteConfirmVC.swift; sourceTree = "<group>"; };
 		1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeAndDateVC.swift; path = ViewControllers/TimeAndDateVC.swift; sourceTree = "<group>"; };
@@ -111,9 +137,10 @@
 		1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpVC.swift; path = ViewControllers/SignUpVC.swift; sourceTree = "<group>"; };
 		1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamAccountVC.swift; path = ViewControllers/TeamAccountVC.swift; sourceTree = "<group>"; };
 		1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAccountCell.swift; sourceTree = "<group>"; };
-		7AC93EC43A050A3CF62F63B8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CC9E48A48DAB1946EA9A2A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DD2545F713FEF193EB6D553D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EF40D0E37CF42771C6294E4C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7B793B8DA72FCB512C3DCC0 /* Pods_GoKid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoKid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +148,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B008927565000EA4462CD63D /* libPods.a in Frameworks */,
+				4190E4EEFE18859503C87647 /* Pods_GoKid.framework in Frameworks */,
+				ECE57027C4889A619FFDC703 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +229,9 @@
 		1D1FD6841B1C000000287FA0 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				1D891F1F1B242B89006FD961 /* SwiftyJSON.h */,
+				1D891F201B242B89006FD961 /* SwiftyJSON.swift */,
+				1D891F071B23FDCD006FD961 /* SwiftAddressBook */,
 				1D1FD6861B1C001E00287FA0 /* HelperFunction.swift */,
 				1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */,
 				1D975A4A1B1FACB400CD4D89 /* DateTimePicker.h */,
@@ -222,6 +253,7 @@
 				1D3F65211B207E3500CCF6A1 /* Sign in/up */,
 				1DA789451B23C42700B391E8 /* OnboardVC.swift */,
 				1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */,
+				1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */,
 				1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */,
 				1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */,
 				1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */,
@@ -235,6 +267,7 @@
 			children = (
 				1DA789431B23962200B391E8 /* ColorManager.swift */,
 				1D1FD6971B1C11C100287FA0 /* UserManager.swift */,
+				1D891F221B244536006FD961 /* DataManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -288,6 +321,7 @@
 		1D3F65281B237ED900CCF6A1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1D891F1A1B240068006FD961 /* Contact */,
 				1DA789421B238BF600B391E8 /* Recent Address */,
 				1D3F652A1B237F2100CCF6A1 /* TeamAccount */,
 				1D3F65291B237EF600CCF6A1 /* Volunteer */,
@@ -324,6 +358,29 @@
 			name = Architecture;
 			sourceTree = "<group>";
 		};
+		1D891F071B23FDCD006FD961 /* SwiftAddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				1D891F081B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift */,
+				1D891F091B23FDD8006FD961 /* SwiftAddressBookGroup.swift */,
+				1D891F0A1B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift */,
+				1D891F0B1B23FDD8006FD961 /* SwiftAddressBookPerson.swift */,
+				1D891F0C1B23FDD8006FD961 /* SwiftAddressBookRecord.swift */,
+				1D891F0D1B23FDD8006FD961 /* SwiftAddressBookSource.swift */,
+				1D891F0E1B23FDD8006FD961 /* SwiftAddressBookWrapper.swift */,
+			);
+			name = SwiftAddressBook;
+			sourceTree = "<group>";
+		};
+		1D891F1A1B240068006FD961 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				1D891F181B240051006FD961 /* ContactCell.swift */,
+				1D891F241B246359006FD961 /* ContactNameCell.swift */,
+			);
+			name = Contact;
+			sourceTree = "<group>";
+		};
 		1D975A361B1F40B800CD4D89 /* Invitation */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,7 +412,8 @@
 		68926BFAEF467AB3FED52BD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7AC93EC43A050A3CF62F63B8 /* libPods.a */,
+				F7B793B8DA72FCB512C3DCC0 /* Pods_GoKid.framework */,
+				EF40D0E37CF42771C6294E4C /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -505,6 +563,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */,
+				1D891F101B23FDD8006FD961 /* SwiftAddressBookGroup.swift in Sources */,
 				1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */,
 				1D3F65231B207FBA00CCF6A1 /* VolunteerModel.swift in Sources */,
 				1D3F65161B2005EC00CCF6A1 /* LocationInputVC.swift in Sources */,
@@ -513,6 +572,7 @@
 				1D3F651F1B207D6B00CCF6A1 /* VolunteerTimeCell.swift in Sources */,
 				1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */,
 				1D975A431B1F94B500CD4D89 /* TDTextCell.swift in Sources */,
+				1D891F141B23FDD8006FD961 /* SwiftAddressBookSource.swift in Sources */,
 				1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */,
 				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
 				1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */,
@@ -523,22 +583,32 @@
 				1D10D7AA1B1C38FE007CDB66 /* BasicInfoVC.swift in Sources */,
 				1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */,
 				1D1FD6881B1C001E00287FA0 /* HelperFunction.swift in Sources */,
+				1D891F251B24635A006FD961 /* ContactNameCell.swift in Sources */,
+				1D891F171B23FFA0006FD961 /* ContactPickerVC.swift in Sources */,
+				1D891F111B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift in Sources */,
 				1D1FD6651B1BFC4A00287FA0 /* AppDelegate.swift in Sources */,
 				1D3F65251B208A9600CCF6A1 /* InviteParentsVC.swift in Sources */,
 				1D975A3A1B1F40E500CD4D89 /* InviteConfirmVC.swift in Sources */,
 				1D3F65181B2073D700CCF6A1 /* RecentAddressCell.swift in Sources */,
+				1D891F211B242B89006FD961 /* SwiftyJSON.swift in Sources */,
 				1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */,
 				1D3F651C1B207D3200CCF6A1 /* VolunteerCell.swift in Sources */,
 				1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */,
 				1D1FD6931B1C04D100287FA0 /* MainStackVC.swift in Sources */,
 				1D975A451B1F9EB800CD4D89 /* TDSwitchCell.swift in Sources */,
+				1D891F121B23FDD8006FD961 /* SwiftAddressBookPerson.swift in Sources */,
+				1D891F0F1B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift in Sources */,
 				1D3F65141B2005D500CCF6A1 /* LocationVC.swift in Sources */,
 				1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */,
 				1DA789441B23962200B391E8 /* ColorManager.swift in Sources */,
+				1D891F191B240051006FD961 /* ContactCell.swift in Sources */,
 				1D1FD6981B1C11C100287FA0 /* UserManager.swift in Sources */,
 				1DFBBE9C1B1C78DC00630440 /* SignUpVC.swift in Sources */,
 				1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */,
+				1D891F151B23FDD8006FD961 /* SwiftAddressBookWrapper.swift in Sources */,
 				1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */,
+				1D891F131B23FDD8006FD961 /* SwiftAddressBookRecord.swift in Sources */,
+				1D891F231B244536006FD961 /* DataManager.swift in Sources */,
 				1D1FD6911B1C048600287FA0 /* MenuVC.swift in Sources */,
 				1D975A3E1B1F7FF700CD4D89 /* FrequencyPickerVC.swift in Sources */,
 				1D975A3C1B1F7C4E00CD4D89 /* TimeAndDateVC.swift in Sources */,

@@ -112,6 +112,16 @@ extension UITableView {
     }
 }
 
+extension NSObject {
+    func postNotification(name: String) {
+        NSNotificationCenter.defaultCenter().postNotificationName(name, object: nil)
+    }
+    
+    func registerForNotification(name: String, action: Selector) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: action, name: name, object: nil)
+    }
+}
+
 
 
 @IBDesignable

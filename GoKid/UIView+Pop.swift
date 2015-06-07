@@ -69,6 +69,11 @@ extension UIView {
             return self.frame.size.height
         }
     }
+    
+    func setRounded() {
+        self.layer.cornerRadius = self.w/2.0
+        self.clipsToBounds = true
+    }
 }
 
 extension CALayer {

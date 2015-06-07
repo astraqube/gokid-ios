@@ -20,12 +20,14 @@ class VolunteerModel: NSObject {
     var titleString: String
     var poolTypeString: String
     var cellType: VOCellType
+    var taken: Bool
     
     init(title: String, time: String, poolType: String, cellType: VOCellType) {
         self.poolTypeString = poolType
         self.titleString = title
         self.timeString = time
         self.cellType = cellType
+        self.taken = false
         super.init()
     }
 }

@@ -25,7 +25,7 @@ class MenuVC: BaseVC {
     }
     
     override func viewWillAppear(animated: Bool) {
-        nameLabel.setTitle(userManager.userName, forState: .Normal)
+        nameLabel.setTitle(userManager.userFirstName, forState: .Normal)
         teamLabel.text = userManager.userTeamName
     }
     
@@ -77,18 +77,5 @@ class MenuVC: BaseVC {
         viewDeckController.toggleLeftView()
         var vc = vcWithID("BasicInfoVC")
         navVC?.pushViewController(vc, animated: true)
-    }
-    
-    func animatShowSignupVC() {
-        var signupVC = vcWithID("SignUpVC")
-        signupVC.view.alpha = 0.0
-        
-        // view controller operations
-        mainStack?.addChildViewController(signupVC)
-        mainStack?.view.addSubview(signupVC.view)
-        signupVC.didMoveToParentViewController(self)
-        
-        // animation
-        signupVC.view.alphaAnimation(1.0, duration: 0.7, completion: nil)
     }
 }

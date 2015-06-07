@@ -17,10 +17,12 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     @IBOutlet weak var emailTextField: PaddingTextField!
     @IBOutlet weak var passwordTextField: PaddingTextField!
     var backgroundView = UIView()
+    var signinButtonHandler: ((Void)->(Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
+        setupGuestureRecognizer()
     }
     
     func setupSubviews() {
@@ -31,10 +33,14 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         view.addSubview(backgroundView)
         view.sendSubviewToBack(backgroundView)
         
+        profileImageView.setRounded()
         profileImageView.backgroundColor = UIColor.grayColor()
-        profileImageView.layer.cornerRadius = profileImageView.w/2.0
         profileImageView.userInteractionEnabled = false
-        profileImageView.clipsToBounds = true
+    }
+    
+    func setupGuestureRecognizer() {
+        var tapGR = UITapGestureRecognizer(target: self, action: "backgroundTapped:")
+        backgroundView.addGestureRecognizer(tapGR)
     }
     
     // MARK: IBAction Method
@@ -48,17 +54,40 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     }
     
     @IBAction func doneButtonClick(sender: AnyObject) {
-        view.alphaAnimation(0.0, duration: 0.5) { (anim, finished) in
+        
+        var signupForm = SignupForm()
+        signupForm.role = "kid"
+        signupForm.email = emailTextField.text
+        signupForm.firstName = firstNameTextField.text
+        signupForm.lastName = lastNameTextField.text
+        signupForm.password = passwordTextField.text
+        signupForm.passwordConfirm = passwordTextField.text
+        
+        dataManager.signup(signupForm) { (success, errorStr) in
+            if success {
+                self.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
+                    self.willMoveToParentViewController(nil)
+                    self.view.removeFromSuperview()
+                    self.removeFromParentViewController()
+                }
+            } else {
+                var str = "An Network error occured"
+                if errorStr != nil { str = errorStr! }
+                self.showAlert("Failed to Signup", messege: str, cancleTitle: "OK")
+            }
+        }        
+    }
+    
+    @IBAction func signinButtonClick(sender: AnyObject) {
+        signinButtonHandler?()
+    }
+    
+    func backgroundTapped(gr: UITapGestureRecognizer) {
+        self.view.alphaAnimation(0.0, duration: 0.5) { (anim, finished) in
             self.willMoveToParentViewController(nil)
             self.view.removeFromSuperview()
             self.removeFromParentViewController()
         }
-        userManager.userProfileImage = profileImageView.image
-        userManager.userFirstName = firstNameTextField.text
-        userManager.userLastName = lastNameTextField.text
-        userManager.userEmail = emailTextField.text
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("SignupFinished", object: nil)
     }
     
     // MARK: UIImagePickerControllerDelegate

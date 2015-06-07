@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VolunteerVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     var tableData = [VolunteerModel]()
@@ -53,6 +53,9 @@ class VolunteerVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.navigationItem.leftBarButtonItem = leftButton
     }
     
+    // MARK: IBAction Method
+    // --------------------------------------------------------------------------------------------
+    
     func locationButtonClick() {
         navigationController?.popViewControllerAnimated(true)
     }
@@ -62,7 +65,17 @@ class VolunteerVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    // MARK: IBAction Method
+    func checkButtonClickHandler(cell: VolunteerCell, button: UIButton) {
+        if let row = tableView.indexPathForCell(cell)?.row {
+            if userManager.userLoggedIn == false {
+                animatShowSignupVC()
+            } else {
+                showActionSheet(cell)
+            }
+        }
+    }
+    
+    // MARK: TableView DataSource Method
     // --------------------------------------------------------------------------------------------
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -84,6 +97,7 @@ class VolunteerVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             cell.timeLabel.text = model.timeString
             cell.poolTypeLabel.text = model.poolTypeString
             cell.driverTitleLabel.text = model.titleString
+            cell.checkButtonHandler = checkButtonClickHandler
             return cell
         } else if model.cellType == .Date {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
@@ -102,4 +116,74 @@ class VolunteerVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         else if model.cellType == .Date { return 40.0}
         else { return 50.0 }
     }
+    
+    // MARK: Signin Signup
+    // --------------------------------------------------------------------------------------------
+    
+    var signupVC: SignUpVC!
+    func animatShowSignupVC() {
+        signupVC = vcWithID("SignUpVC") as! SignUpVC
+        signupVC.view.alpha = 0.0
+        
+        // view controller operations
+        navigationController?.addChildViewController(signupVC)
+        navigationController?.view.addSubview(signupVC.view)
+        signupVC.didMoveToParentViewController(navigationController)
+        signupVC.signinButtonHandler = signupToSignin
+        
+        // animation
+        signupVC.view.alphaAnimation(1.0, duration: 0.5, completion: nil)
+    }
+    
+    func signupToSignin() {
+        signupVC.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
+            
+            self.signupVC.willMoveToParentViewController(nil)
+            self.signupVC.view.removeFromSuperview()
+            self.signupVC.removeFromParentViewController()
+            
+            withDelay(0.2) {
+                var vc = vcWithID("SignInVC") as! SignInVC
+                vc.signinSuccessHandler = self.signinSuccessHandler
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    
+    func signinSuccessHandler() {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    // MARK: Action Sheet
+    // --------------------------------------------------------------------------------------------
+    
+    func showActionSheet(cell: VolunteerCell) {
+        let button1 = UIAlertAction(title: "Volunteer", style: .Default) { (alert) in
+            cell.checkButton.imageView?.image = userManager.userProfileImage
+        }
+        let button2 = UIAlertAction(title: "Volunteer Every Sunday", style: .Default) { (alert) in
+        }
+        let button3 = UIAlertAction(title: "Volunteer All Drop-off", style: .Default) { (alert) in
+        }
+        let button4 = UIAlertAction(title: "Volunteer Every Day", style: .Default) { (alert) in
+        }
+        let button5 = UIAlertAction(title: "Assign team member", style: .Default) { (alert) in
+        }
+        let button6 = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in
+        }
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        alert.addAction(button1)
+        alert.addAction(button2)
+        alert.addAction(button3)
+        alert.addAction(button4)
+        alert.addAction(button5)
+        alert.addAction(button6)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 }
+
+
+
+
+
+

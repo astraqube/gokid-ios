@@ -20,7 +20,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     // --------------------------------------------------------------------------------------------
     
     @IBAction func chooseFromContactListButtonClick(sender: AnyObject) {
-        showPeoplePickerNavigationController()
+        showContactPicker()
     }
     
     @IBAction func InviteViaEmailButtomClick(sender: AnyObject) {
@@ -35,29 +35,9 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     // MARK: Choose From Contact
     // --------------------------------------------------------------------------------------------
     
-    func showPeoplePickerNavigationController() {
-        let picker = ABPeoplePickerNavigationController()
-        picker.peoplePickerDelegate = self
-        presentViewController(picker, animated: true, completion: nil)
-    }
-    
-    func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController!, didSelectPerson person: ABRecordRef!) {
-        let phoneNumbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
-        if (ABMultiValueGetCount(phoneNumbers) > 0) {
-            let number = ABMultiValueCopyValueAtIndex(phoneNumbers, 0).takeRetainedValue() as! String
-            // phoneNumbertextField.text = number
-        } else {
-            println("No Phone number")
-        }
-    }
-    
-    func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController!, shouldContinueAfterSelectingPerson person: ABRecordRef!) -> Bool {
-        peoplePicker.dismissViewControllerAnimated(true, completion: nil)
-        return false;
-    }
-    
-    func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController!) {
-        peoplePicker.dismissViewControllerAnimated(true, completion: nil)
+    func showContactPicker() {
+        var vc = vcWithID("ContactPickerVC")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: Send Mail

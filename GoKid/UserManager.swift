@@ -27,9 +27,12 @@ class UserManager: NSObject {
     var userName = "Unknown"
     var userFirstName = "Unknown"
     var userLastName = "Unknown"
+    var userRole = "Unknown"
     var userTeamName = "Unknown Team"
     var userEmail = "Unknown"
     var userProfileImage: UIImage?
+    
+    var token = ""
     
     var userHomeAdress: String?
     var recentAddressTitles = [String]()
@@ -45,6 +48,15 @@ class UserManager: NSObject {
         recentAddress.append("95014 Cupertinuo CA United States")
         recentAddressTitles.append("GreenWhich School")
         recentAddress.append("88 Rivington Street, GreenWich, Conneticuit 12014")
+    }
+    
+    func setWithJsonReponse(json: JSON) {
+        var user = json["user"]
+        userFirstName = user["first_name"].stringValue
+        userLastName = user["last_name"].stringValue
+        userRole = user["role"].stringValue
+        userEmail = user["email"].stringValue
+        token = user["token"].stringValue
     }
 }
 

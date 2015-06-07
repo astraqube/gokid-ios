@@ -10,6 +10,7 @@ import UIKit
 
 class BaseVC: UIViewController {
     
+    var dataManager = DataManager.sharedInstance
     var userManager = UserManager.sharedInstance
     var colorManager = ColorManager.sharedInstance
 
@@ -36,4 +37,17 @@ extension UIViewController {
         var leftButton = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)
         navigationItem.leftBarButtonItem = leftButton;
     }
+    
+    
+    // MARK: Alert View
+    // --------------------------------------------------------------------------------------------
+    
+    func showAlert(title: String, messege: String, cancleTitle: String) {
+        var alertView = UIAlertView(title: title, message: messege, delegate: self, cancelButtonTitle: cancleTitle)
+        alertView.show()
+    }
 }
+
+
+
+

@@ -11,6 +11,8 @@ import UIKit
 class SignInVC: BaseVC {
     
     @IBOutlet weak var emailTextField: PaddingTextField!
+    @IBOutlet weak var passwordTextField: PaddingTextField!
+    var signinSuccessHandler: (()->())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +34,18 @@ class SignInVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     func SubmitButtonClicked() {
-        userManager.userName = emailTextField.text
-        var calendarVC = vcWithID("CalendarVC")
-        navigationController?.pushViewController(calendarVC, animated: true)
+        
+        var email = emailTextField.text
+        var passw = passwordTextField.text
+        
+        dataManager.signin(email, password: passw) { (success, errorStr) -> () in
+            if success {
+                self.signinSuccessHandler?()
+            } else {
+                var str = "An Network error occured"
+                if errorStr != nil { str = errorStr! }
+                self.showAlert("Sign In Failed", messege: str, cancleTitle: "OK")
+            }
+        }
     }
 }

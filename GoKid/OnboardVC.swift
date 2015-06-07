@@ -37,8 +37,14 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func signInButtonClicked(button: UIButton) {
-        var signInVC = vcWithID("SignInVC")
+        var signInVC = vcWithID("SignInVC") as! SignInVC
+        signInVC.signinSuccessHandler = signinSuccess
         navigationController?.pushViewController(signInVC, animated: true)
+    }
+    
+    func signinSuccess() {
+        var calendarVC = vcWithID("CalendarVC")
+        self.navigationController?.pushViewController(calendarVC, animated: true)
     }
     
     func getStartedButtonClick(button: UIButton) {
