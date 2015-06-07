@@ -15,15 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
-        
         var size = self.window!.frame.size
         var um = UserManager.sharedInstance
         um.windowH = size.height
         um.windowW = size.width
         um.userProfileImage = UIImage(named: "emma")
-        
         return true
     }
 

@@ -15,6 +15,7 @@ class TeamAccountVC: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        collectionView?.delegate = self
     }
     
     func setupNavBar() {
@@ -30,7 +31,7 @@ class TeamAccountVC: UICollectionViewController {
     }
 
     
-    // MARK: CollectionView Delegate
+    // MARK: CollectionView DataSource
     // --------------------------------------------------------------------------------------------
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -44,36 +45,12 @@ class TeamAccountVC: UICollectionViewController {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? TeamAccountCell
         return cell!
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
+    // MARK: UICollectionViewDelegate
+    // --------------------------------------------------------------------------------------------
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        var vc = vcWithID("MemberProfileVC")
+        navigationController?.pushViewController(vc, animated: true)
     }
-    */
-
 }

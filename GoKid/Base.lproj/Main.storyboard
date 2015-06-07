@@ -1616,7 +1616,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Carpool title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0v9-Ds-uL7" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Carpool title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0v9-Ds-uL7" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="274" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1630,7 +1630,7 @@
                                     <action selector="carpoolTitleChanged:" destination="I42-6S-flZ" eventType="editingChanged" id="wWQ-1t-Phd"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kids name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbv-1r-NwG" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kids name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbv-1r-NwG" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="332" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1677,7 +1677,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jnK-C6-H2X">
-                            <size key="itemSize" width="169" height="229"/>
+                            <size key="itemSize" width="169" height="207"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
@@ -1687,18 +1687,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="169" height="229"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="169" height="207"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HyC-W1-9fe">
-                                            <rect key="frame" x="28" y="22" width="112" height="109"/>
+                                            <rect key="frame" x="28" y="18" width="112" height="109"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="112" id="8E3-rQ-GC6"/>
                                                 <constraint firstAttribute="height" constant="109" id="K4X-9m-aQT"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKC-fe-csd">
-                                            <rect key="frame" x="70" y="157" width="29" height="21"/>
+                                            <rect key="frame" x="70" y="141" width="29" height="21"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1706,7 +1706,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mommy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwk-3T-3j9">
-                                            <rect key="frame" x="53" y="194" width="63" height="21"/>
+                                            <rect key="frame" x="53" y="167" width="63" height="21"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1718,12 +1718,12 @@
                                 </view>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="HKC-fe-csd" firstAttribute="top" secondItem="HyC-W1-9fe" secondAttribute="bottom" constant="26" id="5mk-KS-GWa"/>
+                                    <constraint firstItem="HKC-fe-csd" firstAttribute="top" secondItem="HyC-W1-9fe" secondAttribute="bottom" constant="14" id="5mk-KS-GWa"/>
                                     <constraint firstAttribute="centerX" secondItem="Vwk-3T-3j9" secondAttribute="centerX" id="9nk-zE-N5c"/>
-                                    <constraint firstItem="HyC-W1-9fe" firstAttribute="top" secondItem="RkY-3L-Nir" secondAttribute="topMargin" constant="14" id="R2v-OF-kgI"/>
+                                    <constraint firstItem="HyC-W1-9fe" firstAttribute="top" secondItem="RkY-3L-Nir" secondAttribute="topMargin" constant="10" id="R2v-OF-kgI"/>
                                     <constraint firstAttribute="centerX" secondItem="HyC-W1-9fe" secondAttribute="centerX" constant="0.5" id="WHk-zi-bxC"/>
                                     <constraint firstAttribute="centerX" secondItem="HKC-fe-csd" secondAttribute="centerX" id="amw-dV-qEc"/>
-                                    <constraint firstItem="Vwk-3T-3j9" firstAttribute="top" secondItem="HKC-fe-csd" secondAttribute="bottom" constant="16" id="aqw-S1-kyV"/>
+                                    <constraint firstItem="Vwk-3T-3j9" firstAttribute="top" secondItem="HKC-fe-csd" secondAttribute="bottom" constant="5" id="aqw-S1-kyV"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="nameLabel" destination="HKC-fe-csd" id="PaN-ir-h1Q"/>

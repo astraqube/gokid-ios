@@ -42,6 +42,7 @@
 		1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A481B1FA72500CD4D89 /* TDEmptyCell.swift */; };
 		1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */; };
 		1DA789441B23962200B391E8 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789431B23962200B391E8 /* ColorManager.swift */; };
+		1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789451B23C42700B391E8 /* OnboardVC.swift */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
 		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
 		1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE991B1C6E1400630440 /* PhoneVerifyVC.swift */; };
@@ -103,6 +104,7 @@
 		1D975A4A1B1FACB400CD4D89 /* DateTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimePicker.h; sourceTree = "<group>"; };
 		1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimePicker.m; sourceTree = "<group>"; };
 		1DA789431B23962200B391E8 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		1DA789451B23C42700B391E8 /* OnboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardVC.swift; sourceTree = "<group>"; };
 		1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberProfileVC.swift; path = ViewControllers/MemberProfileVC.swift; sourceTree = "<group>"; };
 		1DFBBE971B1C6DF500630440 /* Phone#VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Phone#VC.swift"; path = "ViewControllers/Phone#VC.swift"; sourceTree = "<group>"; };
 		1DFBBE991B1C6E1400630440 /* PhoneVerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneVerifyVC.swift; path = ViewControllers/PhoneVerifyVC.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				1D3F651D1B207D4300CCF6A1 /* Volunteer */,
 				1D3F65201B207E2000CCF6A1 /* Phone Number */,
 				1D3F65211B207E3500CCF6A1 /* Sign in/up */,
+				1DA789451B23C42700B391E8 /* OnboardVC.swift */,
 				1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */,
 				1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */,
 				1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */,
@@ -511,6 +514,7 @@
 				1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */,
 				1D975A431B1F94B500CD4D89 /* TDTextCell.swift in Sources */,
 				1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */,
+				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
 				1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */,
 				1D3F651A1B2079E400CCF6A1 /* VolunteerVC.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,

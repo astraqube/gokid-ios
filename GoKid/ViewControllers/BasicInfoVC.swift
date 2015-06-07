@@ -20,6 +20,7 @@ class BasicInfoVC: BaseVC {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

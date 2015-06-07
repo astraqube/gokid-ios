@@ -15,6 +15,7 @@ class Phone_VC: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
     }
     
     func setupNavBar() {

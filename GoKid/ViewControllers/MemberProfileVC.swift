@@ -22,6 +22,19 @@ class MemberProfileVC: UITableViewController {
         var um = UserManager.sharedInstance
         profileImageView.image = um.userProfileImage
         nameLabel.text = um.userName
+        setupNavBar()
+    }
+    
+    func setupNavBar() {
+        setNavBarTitle("Your profile")
+        setNavBarRightButtonTitle("Save", action: "saveButtonClick")
+    }
+    
+    // MARK: IBAction Method
+    // --------------------------------------------------------------------------------------------
+    
+    func saveButtonClick() {
+        navigationController?.popViewControllerAnimated(true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
