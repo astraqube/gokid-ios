@@ -45,9 +45,9 @@ class UserManager: NSObject {
     
     func initForRecentAddress() {
         recentAddressTitles.append("Apple")
-        recentAddress.append("95014 Cupertinuo CA United States")
+        recentAddress.append("1 Infinite Loop, Cupertino, CA 95014")
         recentAddressTitles.append("GreenWhich School")
-        recentAddress.append("88 Rivington Street, GreenWich, Conneticuit 12014")
+        recentAddress.append("88 Rivington Street, Greenwich, CT 12014")
     }
     
     func setWithJsonReponse(json: JSON) {

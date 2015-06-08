@@ -94,7 +94,11 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
         thirdPage.viewWillAppearBlock = {
             var font = UIFont.systemFontOfSize(17, weight: 20)
             
-            var startedButtonRect = CGRectMake(50, 400, 280, 40)
+            var X_Co = self.view.frame.size.width/2-280/2
+            var Y_Co = self.view.frame.size.height
+
+            
+            var startedButtonRect = CGRectMake(X_Co, Y_Co-175, 280, 40)
             var startedButton = UIButton(frame: startedButtonRect)
             startedButton.backgroundColor = self.colorManager.darkGrayColor
             startedButton.titleLabel?.font = font
@@ -103,7 +107,7 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
             startedButton.addTarget(self, action: "getStartedButtonClick:", forControlEvents: .TouchUpInside)
             thirdPage.view.addSubview(startedButton)
             
-            var carpoolButtonRect = CGRectMake(50, 450, 280, 40)
+            var carpoolButtonRect = CGRectMake(X_Co, Y_Co-125, 280, 40)
             var carpoolButton = UIButton(frame: carpoolButtonRect)
             carpoolButton.backgroundColor = self.colorManager.darkGrayColor
             carpoolButton.titleLabel?.font = font
@@ -111,6 +115,7 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
             carpoolButton.setTitle("Already invited to a carpool?", forState: .Normal)
             carpoolButton.addTarget(self, action: "alreadyCarpoolButtonClicked:", forControlEvents: .TouchUpInside)
             thirdPage.view.addSubview(carpoolButton)
+
         }
         return [firstPage, secondPage, thirdPage]
     }
@@ -145,7 +150,7 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
         
         var s = onboardingVC.pageControl.frame.size
         var o = onboardingVC.pageControl.frame.origin
-        var pageControlRect = CGRectMake(o.x, o.y-100, s.width, s.height)
+        var pageControlRect = CGRectMake(o.x, o.y-50, s.width, s.height)
         onboardingVC.pageControl.frame = pageControlRect
         onboardingVC.pageControl.pageIndicatorTintColor = colorManager.darkGrayColor
         onboardingVC.pageControl.currentPageIndicatorTintColor = dark

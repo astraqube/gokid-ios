@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1461,12 +1461,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email or user name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hEp-XZ-Hm6" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="51" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="51" width="320" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="2fL-Ta-0US"/>
+                                    <constraint firstAttribute="height" constant="47" id="2fL-Ta-0US"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="inset">
@@ -1474,13 +1474,19 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Forgot your password?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRX-I7-AeT">
+                                <rect key="frame" x="7" y="174" width="178" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uCz-6T-6hJ" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="119" width="320" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="vfo-zg-CGN"/>
+                                    <constraint firstAttribute="height" constant="47" id="vfo-zg-CGN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="inset">
@@ -1488,23 +1494,17 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRX-I7-AeT">
-                                <rect key="frame" x="8" y="148" width="178" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hEp-XZ-Hm6" firstAttribute="top" secondItem="U06-3y-iHr" secondAttribute="bottom" constant="31" id="K1s-zV-wOf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hEp-XZ-Hm6" secondAttribute="trailing" constant="-16" id="NC2-yd-ZDV"/>
                             <constraint firstItem="hEp-XZ-Hm6" firstAttribute="leading" secondItem="6mk-hC-Ab2" secondAttribute="leadingMargin" constant="-16" id="SIa-PV-oG0"/>
-                            <constraint firstItem="uCz-6T-6hJ" firstAttribute="top" secondItem="hEp-XZ-Hm6" secondAttribute="bottom" constant="3" id="iod-qA-kZ8"/>
+                            <constraint firstItem="uCz-6T-6hJ" firstAttribute="top" secondItem="hEp-XZ-Hm6" secondAttribute="bottom" constant="21" id="iod-qA-kZ8"/>
                             <constraint firstItem="tRX-I7-AeT" firstAttribute="leading" secondItem="6mk-hC-Ab2" secondAttribute="leadingMargin" constant="-8" id="wCX-V6-Se7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uCz-6T-6hJ" secondAttribute="trailing" constant="-16" id="xaD-uk-k8o"/>
                             <constraint firstItem="uCz-6T-6hJ" firstAttribute="leading" secondItem="6mk-hC-Ab2" secondAttribute="leadingMargin" constant="-16" id="xja-IY-sg2"/>
-                            <constraint firstItem="tRX-I7-AeT" firstAttribute="top" secondItem="uCz-6T-6hJ" secondAttribute="bottom" constant="14" id="xlB-oG-52w"/>
+                            <constraint firstItem="tRX-I7-AeT" firstAttribute="top" secondItem="uCz-6T-6hJ" secondAttribute="bottom" constant="8" id="xlB-oG-52w"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1623,7 +1623,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Carpool title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0v9-Ds-uL7" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Carpool title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0v9-Ds-uL7" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="274" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1637,7 +1637,7 @@
                                     <action selector="carpoolTitleChanged:" destination="I42-6S-flZ" eventType="editingChanged" id="wWQ-1t-Phd"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kids name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbv-1r-NwG" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kids name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbv-1r-NwG" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="332" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1747,7 +1747,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61Z-qo-sq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-934" y="321"/>
+            <point key="canvasLocation" x="-970" y="327"/>
         </scene>
         <!--Contact PickerVC-->
         <scene sceneID="WNW-Zr-CgS">

@@ -14,8 +14,8 @@ static NSString * const kDefaultOnboardingFont = @"Helvetica-Light";
 #define DEFAULT_TEXT_COLOR [UIColor whiteColor];
 
 static CGFloat const kContentWidthMultiplier = 0.9;
-static CGFloat const kDefaultImageViewSize = 100;
-static CGFloat const kDefaultTopPadding = 60;
+static CGFloat const kDefaultImageViewSize = 50;
+static CGFloat const kDefaultTopPadding = 10;
 static CGFloat const kDefaultUnderIconPadding = 30;
 static CGFloat const kDefaultUnderTitlePadding = 30;
 static CGFloat const kDefaultBottomPadding = 0;

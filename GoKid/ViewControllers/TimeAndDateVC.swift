@@ -39,7 +39,7 @@ class TimeAndDateVC: UITableViewController {
     func setTableData() {
         var c1 = TDCellModel(title: "",                value: "",            switchValue: true,  type: .Empty,    action: .None)
         var c2 = TDCellModel(title: "Date",            value: "Choose date", switchValue: true,  type: .Text,     action: .ChooseDate)
-        var c3 = TDCellModel(title: "Repete",          value: "",            switchValue: false, type: .Switcher, action: .None)
+        var c3 = TDCellModel(title: "Repeat",          value: "",            switchValue: false, type: .Switcher, action: .None)
         var c4 = TDCellModel(title: "",                value: "",            switchValue: true,  type: .Empty,    action: .None)
         var c5 = TDCellModel(title: eventStart,        value: "Choose time", switchValue: true,  type: .Text,     action: .ChooseTime)
         var c6 = TDCellModel(title: eventEnd,       value: "Choose time", switchValue: true,  type: .Text,     action: .ChooseTime)
@@ -53,7 +53,7 @@ class TimeAndDateVC: UITableViewController {
         var c2 = TDCellModel(title: "Start Date",      value: "Choose date", switchValue: true,  type: .Text,     action: .ChooseDate)
         var c3 = TDCellModel(title: "End Date",        value: "Choose date", switchValue: true,  type: .Text,     action: .ChooseDate)
         var c4 = TDCellModel(title: "Frequency",       value: ">",           switchValue: true,  type: .Text,     action: .None)
-        var c5 = TDCellModel(title: "Repete",          value: "",            switchValue: true,  type: .Switcher, action: .None)
+        var c5 = TDCellModel(title: "Repeat",          value: "",            switchValue: true,  type: .Switcher, action: .None)
         var c6 = TDCellModel(title: "",                value: "",            switchValue: true,  type: .Empty,    action: .None)
         var c7 = TDCellModel(title: eventStart,        value: "Choose time", switchValue: true,  type: .Text,     action: .ChooseTime)
         var c8 = TDCellModel(title: eventEnd,          value: "Choose time", switchValue: true,  type: .Text,     action: .ChooseTime)
@@ -122,7 +122,7 @@ class TimeAndDateVC: UITableViewController {
             let cell = tableView.cellWithID("TDSwitchCell", indexPath) as! TDSwitchCell
             cell.titleLabel.text = model.titleString
             cell.switcher.setOn(model.switchValue, animated: true)
-            if model.titleString == "Repete" {
+            if model.titleString == "Repeat" {
                 cell.switcherAction = repeteSwitcherSwitched
             }
             if model.titleString == "One-way carpool" {
