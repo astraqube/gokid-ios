@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1367,6 +1367,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="wDr-XN-uDg" id="dNS-N1-VHb"/>
+                        <outlet property="fbloginButton" destination="rha-iE-vLR" id="w67-ix-gaH"/>
                         <outlet property="firstNameTextField" destination="jRt-nB-WW8" id="f74-IX-VoO"/>
                         <outlet property="lastNameTextField" destination="2Zf-l8-vtt" id="PdH-OM-BBX"/>
                         <outlet property="passwordTextField" destination="wdn-6B-mzs" id="iH8-p7-5UI"/>
@@ -1737,6 +1738,31 @@
                                     <outlet property="profileImageView" destination="HyC-W1-9fe" id="4hu-cN-gCB"/>
                                     <outlet property="roleLabel" destination="Vwk-3T-3j9" id="uw4-H1-C69"/>
                                 </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddTeamMemberCell" id="dGM-ju-YdZ" customClass="AddTeamMemberCell" customModule="GoKid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="169" height="207"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add other drivers in you carpool team" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bm-7n-Tb6">
+                                            <rect key="frame" x="11" y="87" width="146" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="70" id="Hry-6a-J5I"/>
+                                                <constraint firstAttribute="width" constant="146" id="aUH-fh-gBS"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="5bm-7n-Tb6" firstAttribute="top" secondItem="dGM-ju-YdZ" secondAttribute="topMargin" constant="79" id="mzV-aN-5AN"/>
+                                    <constraint firstAttribute="centerX" secondItem="5bm-7n-Tb6" secondAttribute="centerX" constant="0.5" id="qSB-hu-3Xs"/>
+                                </constraints>
                             </collectionViewCell>
                         </cells>
                         <connections>

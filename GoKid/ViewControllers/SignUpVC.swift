@@ -9,19 +9,22 @@
 import UIKit
 import MobileCoreServices
 
-class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var lastNameTextField: PaddingTextField!
     @IBOutlet weak var firstNameTextField: PaddingTextField!
     @IBOutlet weak var emailTextField: PaddingTextField!
     @IBOutlet weak var passwordTextField: PaddingTextField!
+    @IBOutlet weak var fbloginButton: FBSDKLoginButton!
+    
     var backgroundView = UIView()
     var signinButtonHandler: ((Void)->(Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
+        setupLoginButton()
         setupGuestureRecognizer()
     }
     
@@ -83,12 +86,51 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     }
     
     func backgroundTapped(gr: UITapGestureRecognizer) {
+        animateRemoveFromParentViewController()
+    }
+    
+    func animateRemoveFromParentViewController() {
         self.view.alphaAnimation(0.0, duration: 0.5) { (anim, finished) in
             self.willMoveToParentViewController(nil)
             self.view.removeFromSuperview()
             self.removeFromParentViewController()
         }
     }
+    
+    // MARK: Facebook Login
+    // --------------------------------------------------------------------------------------------
+    func setupLoginButton() {
+        self.fbloginButton.readPermissions = ["public_profile", "email", "user_friends"];
+        self.fbloginButton.delegate = self
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        if error != nil {
+            println(error)
+        } else if (result.isCancelled) {
+            // Handle cancellations
+        } else {
+            if result.grantedPermissions.contains("email") {
+                println("success")
+                dataManager.fbSignin() { (success, errorStr) in
+                    if success {
+                        self.animateRemoveFromParentViewController()
+                    } else {
+                        var str = "A Network error occur"
+                        if errorStr != nil { str = errorStr! }
+                        self.showAlert("Falied to user FB Signup", messege:str , cancleTitle: "OK")
+                    }
+                }
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        
+    }
+    
+    
+    
     
     // MARK: UIImagePickerControllerDelegate
     // --------------------------------------------------------------------------------------------

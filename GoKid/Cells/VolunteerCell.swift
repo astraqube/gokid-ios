@@ -18,6 +18,7 @@ class VolunteerCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        checkButton.backgroundColor = UIColor.lightGrayColor()
         checkButton.setRounded()
     }
     

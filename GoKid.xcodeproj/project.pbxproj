@@ -44,6 +44,8 @@
 		1D891F211B242B89006FD961 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F201B242B89006FD961 /* SwiftyJSON.swift */; };
 		1D891F231B244536006FD961 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F221B244536006FD961 /* DataManager.swift */; };
 		1D891F251B24635A006FD961 /* ContactNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F241B246359006FD961 /* ContactNameCell.swift */; };
+		1D891F271B2734C2006FD961 /* TeamMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F261B2734C2006FD961 /* TeamMemberModel.swift */; };
+		1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F281B273535006FD961 /* AddTeamMemberCell.swift */; };
 		1D975A381B1F40D500CD4D89 /* InviteInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */; };
 		1D975A3A1B1F40E500CD4D89 /* InviteConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */; };
 		1D975A3C1B1F7C4E00CD4D89 /* TimeAndDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */; };
@@ -118,6 +120,8 @@
 		1D891F201B242B89006FD961 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		1D891F221B244536006FD961 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		1D891F241B246359006FD961 /* ContactNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactNameCell.swift; sourceTree = "<group>"; };
+		1D891F261B2734C2006FD961 /* TeamMemberModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMemberModel.swift; sourceTree = "<group>"; };
+		1D891F281B273535006FD961 /* AddTeamMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeamMemberCell.swift; sourceTree = "<group>"; };
 		1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteInfoVC.swift; path = ViewControllers/InviteInfoVC.swift; sourceTree = "<group>"; };
 		1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteConfirmVC.swift; path = ViewControllers/InviteConfirmVC.swift; sourceTree = "<group>"; };
 		1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeAndDateVC.swift; path = ViewControllers/TimeAndDateVC.swift; sourceTree = "<group>"; };
@@ -340,7 +344,9 @@
 		1D3F652A1B237F2100CCF6A1 /* TeamAccount */ = {
 			isa = PBXGroup;
 			children = (
+				1D891F261B2734C2006FD961 /* TeamMemberModel.swift */,
 				1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */,
+				1D891F281B273535006FD961 /* AddTeamMemberCell.swift */,
 			);
 			name = TeamAccount;
 			sourceTree = "<group>";
@@ -560,6 +566,7 @@
 			files = (
 				1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */,
 				1D891F101B23FDD8006FD961 /* SwiftAddressBookGroup.swift in Sources */,
+				1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */,
 				1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */,
 				1D3F65231B207FBA00CCF6A1 /* VolunteerModel.swift in Sources */,
 				1D3F65161B2005EC00CCF6A1 /* LocationInputVC.swift in Sources */,
@@ -603,6 +610,7 @@
 				1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */,
 				1D891F151B23FDD8006FD961 /* SwiftAddressBookWrapper.swift in Sources */,
 				1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */,
+				1D891F271B2734C2006FD961 /* TeamMemberModel.swift in Sources */,
 				1D891F131B23FDD8006FD961 /* SwiftAddressBookRecord.swift in Sources */,
 				1D891F231B244536006FD961 /* DataManager.swift in Sources */,
 				1D1FD6911B1C048600287FA0 /* MenuVC.swift in Sources */,

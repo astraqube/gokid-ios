@@ -14,11 +14,15 @@ class TimeAndDateVC: UITableViewController {
     var dateTimePicker: DateTimePicker!
     var dateFormatter = NSDateFormatter()
     
-    var currentBindModel: TDCellModel?
     var currentBindLabel: UILabel?
     var oneCarpoolModle: TDCellModel!
     var goOnly = false
     var returnOnly = false
+    
+    var currentBindModel: TDCellModel?
+    var dateModel: TDCellModel?
+    var startTimeModel: TDCellModel?
+    var endTimeModel: TDCellModel?
     
     let eventStart = "Event Start"
     let eventEnd = "Event End"
@@ -45,6 +49,9 @@ class TimeAndDateVC: UITableViewController {
         var c6 = TDCellModel(title: eventEnd,       value: "Choose time", switchValue: true,  type: .Text,     action: .ChooseTime)
         var c7 = TDCellModel(title: "One-way carpool", value: "",            switchValue: false, type: .Switcher, action: .None)
         oneCarpoolModle = c7
+        dateModel = c2
+        startTimeModel = c5
+        endTimeModel = c6
         tableData = [c1, c2, c3, c4, c5, c6, c7]
     }
     
@@ -67,6 +74,11 @@ class TimeAndDateVC: UITableViewController {
     }
     
     func nextButtonClick() {
+        var um = UserManager.sharedInstance
+        um.currentChoosenDate = dateModel?.valueString
+        um.currentChoosenEndTime = endTimeModel?.valueString
+        um.currentChossenStartTime = startTimeModel?.valueString
+        
         var vc = vcWithID("LocationVC")
         navigationController?.pushViewController(vc, animated: true)
     }

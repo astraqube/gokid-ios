@@ -27,22 +27,37 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupTableData() {
+        var date = "April 24, Fri"
+        var startTime = "12.00 pm"
+        var endTime = "1.00 pm"
+        
+        if let str = userManager.currentChoosenDate {
+            date = str
+        }
+        if let str = userManager.currentChoosenEndTime {
+            endTime = str
+        }
+        if let str = userManager.currentChossenStartTime {
+            startTime = str
+        }
+        
         var str = "Volunteer as Driver"
         var c0 = VolunteerModel(title: "", time: "", poolType: "", cellType: .Empty)
         var c1 = VolunteerModel(title: "", time: "April 24, Fri", poolType: "", cellType: .Date)
         var c2 = VolunteerModel(title: str, time: "12.00 pm", poolType: "Drop-off", cellType: .Normal)
         var c3 = VolunteerModel(title: str, time: "1.00 pm", poolType: "Pick-up", cellType: .Normal)
+        tableData = [c0, c1, c2, c3]
         
-        var c4 = VolunteerModel(title: "", time: "", poolType: "", cellType: .Empty)
-        var c5 = VolunteerModel(title: "", time: "April 26, Sat", poolType: "", cellType: .Date)
-        var c6 = VolunteerModel(title: str, time: "12.00 pm", poolType: "Drop-off", cellType: .Normal)
-        var c7 = VolunteerModel(title: str, time: "1.00 pm", poolType: "Pick-up", cellType: .Normal)
-        
-        var c8 = VolunteerModel(title: "", time: "", poolType: "", cellType: .Empty)
-        var c9 = VolunteerModel(title: "", time: "May 1, Fri", poolType: "", cellType: .Date)
-        var c10 = VolunteerModel(title: str, time: "12.00 pm", poolType: "Drop-off", cellType: .Normal)
-        var c11 = VolunteerModel(title: str, time: "1.00 pm", poolType: "Pick-up", cellType: .Normal)
-        tableData = [c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11]
+//        var c4 = VolunteerModel(title: "", time: "", poolType: "", cellType: .Empty)
+//        var c5 = VolunteerModel(title: "", time: "April 26, Sat", poolType: "", cellType: .Date)
+//        var c6 = VolunteerModel(title: str, time: "12.00 pm", poolType: "Drop-off", cellType: .Normal)
+//        var c7 = VolunteerModel(title: str, time: "1.00 pm", poolType: "Pick-up", cellType: .Normal)
+//        
+//        var c8 = VolunteerModel(title: "", time: "", poolType: "", cellType: .Empty)
+//        var c9 = VolunteerModel(title: "", time: "May 1, Fri", poolType: "", cellType: .Date)
+//        var c10 = VolunteerModel(title: str, time: "12.00 pm", poolType: "Drop-off", cellType: .Normal)
+//        var c11 = VolunteerModel(title: str, time: "1.00 pm", poolType: "Pick-up", cellType: .Normal)
+//        tableData = [c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11]
     }
     
     func setupNavigationBar() {
@@ -158,14 +173,45 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     // --------------------------------------------------------------------------------------------
     
     func showActionSheet(cell: VolunteerCell) {
+        var row = self.tableView.indexPathForCell(cell)!.row
+        var model = self.tableData[row]
+        if model.taken {
+            showTakenActionSheet(cell, model: model)
+        } else{
+            showUntakenActionSheet(cell, model: model)
+        }
+    }
+    
+    func showTakenActionSheet(cell: VolunteerCell, model: VolunteerModel) {
+        let button1 = UIAlertAction(title: "Unvolunteer", style: .Default) { (alert) in
+            cell.checkButton.backgroundColor = UIColor.lightGrayColor()
+            model.taken = !model.taken
+        }
+        let button2 = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in
+            
+        }
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        alert.addAction(button1)
+        alert.addAction(button2)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func showUntakenActionSheet(cell: VolunteerCell, model: VolunteerModel) {
         let button1 = UIAlertAction(title: "Volunteer", style: .Default) { (alert) in
-            cell.checkButton.imageView?.image = userManager.userProfileImage
+            cell.checkButton.backgroundColor = UIColor.greenColor()
+            model.taken = !model.taken
         }
         let button2 = UIAlertAction(title: "Volunteer Every Sunday", style: .Default) { (alert) in
+            cell.checkButton.backgroundColor = UIColor.greenColor()
+            model.taken = !model.taken
         }
         let button3 = UIAlertAction(title: "Volunteer All Drop-off", style: .Default) { (alert) in
+            cell.checkButton.backgroundColor = UIColor.greenColor()
+            model.taken = !model.taken
         }
         let button4 = UIAlertAction(title: "Volunteer Every Day", style: .Default) { (alert) in
+            cell.checkButton.backgroundColor = UIColor.greenColor()
+            model.taken = !model.taken
         }
         let button5 = UIAlertAction(title: "Assign team member", style: .Default) { (alert) in
         }

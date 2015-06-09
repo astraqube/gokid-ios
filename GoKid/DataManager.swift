@@ -75,11 +75,49 @@ class DataManager: NSObject {
         }
     }
     
-    func fbSignin() {
+    func fbSignin(comp: completion) {
+        var fbtoken = FBSDKAccessToken.currentAccessToken().tokenString
+        if fbtoken == nil {
+            comp(false, "Cannot find FBToken")
+            return
+        }
         
+        var url = baseURL + "/api/sessions"
+        var map = ["fb_token": fbtoken]
+        
+        var manager = AFHTTPRequestOperationManager()
+        manager.POST(url, parameters: map, success: { (op, obj) in
+            println("fbSignin user success")
+            println(obj)
+            self.userManager.setWithJsonReponse(JSON(obj))
+            self.userManager.userLoggedIn = true
+            self.userManager.setGoKidUseFBLogIn(true)
+            onMainThread() {
+                self.postNotification("SignupFinished")
+                comp(true, nil)
+            }
+        }) { (op, error) in
+            println("fbSignin user failed")
+            var str = NSString(data: op.responseData, encoding: NSUTF8StringEncoding) as? String
+            println(str)
+            comp(false, str)
+        }
     }
     
-    func fbSignup() {
-        
+    func fbSignup(fbtoken: String, comp: completion) {
+        var url = baseURL + "/api/users"
+        var map = ["fb_token": fbtoken]
+        var manager = AFHTTPRequestOperationManager()
+        manager.POST(url, parameters: map, success: { (op, obj) in
+            println("fbSignup user success")
+            self.userManager.setWithJsonReponse(JSON(obj))
+            self.userManager.setGoKidUseFBLogIn(true)
+            onMainThread() { self.postNotification("SignupFinished") }
+            comp(true, nil)
+        }) { (op, error) in
+            var str = NSString(data: op.responseData, encoding: NSUTF8StringEncoding) as? String
+            println(str)
+            comp(false, str)
+        }
     }
 }

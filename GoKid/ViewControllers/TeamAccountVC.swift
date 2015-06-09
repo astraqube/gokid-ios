@@ -8,19 +8,25 @@
 
 import UIKit
 
-let reuseIdentifier = "TeamAccountCell"
-
 class TeamAccountVC: UICollectionViewController {
+    
+    var collectionViewData = [TeamMemberModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        collectionView?.delegate = self
+        setupCollectionView()
     }
     
     func setupNavBar() {
         setNavBarTitle("Your Team")
         setNavBarLeftButtonTitle("Menu", action: "menuButtonClick")
+    }
+    
+    func setupCollectionView() {
+        var um = UserManager.sharedInstance
+        collectionViewData = um.teamMembers
+        collectionView?.reloadData()
     }
     
     // MARK: IBAction Method
@@ -39,11 +45,17 @@ class TeamAccountVC: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        // last cell is add member
+        return collectionViewData.count + 1
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? TeamAccountCell
+        if indexPath.row == collectionViewData.count {
+            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("AddTeamMemberCell", forIndexPath: indexPath) as? AddTeamMemberCell
+            return cell!
+        }
+        
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("TeamAccountCell", forIndexPath: indexPath) as? TeamAccountCell
         return cell!
     }
     
@@ -51,7 +63,13 @@ class TeamAccountVC: UICollectionViewController {
     // --------------------------------------------------------------------------------------------
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == collectionViewData.count {
+            var vc = vcWithID("MemberProfileVC")
+            presentViewController(vc, animated: true, completion: nil)
+            return
+        }
         var vc = vcWithID("MemberProfileVC")
         navigationController?.pushViewController(vc, animated: true)
+        //presentViewController(vc, animated: true, completion: nil)
     }
 }

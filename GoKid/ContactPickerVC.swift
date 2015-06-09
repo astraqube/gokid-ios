@@ -139,6 +139,9 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         tableData = names
         tableSelected = selections
         tableView.reloadData()
+        withDelay(0.5) {
+            self.tableView.reloadData()
+        }
     }
     
     func fullNameFromPerson(person: SwiftAddressBookPerson) -> String {

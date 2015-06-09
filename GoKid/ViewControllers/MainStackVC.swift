@@ -10,9 +10,22 @@ import UIKit
 
 class MainStackVC: IIViewDeckController {
     
+    var rootVC: UIViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCenterAndLeftViewControllers()
+        
+        var um = UserManager.sharedInstance
+        if um.useFBLogIn {
+            DataManager.sharedInstance.fbSignin() { (success, errorStr) in
+                if success { self.rootVC = vcWithID("CalendarVC") }
+                else { self.rootVC = OnboardVC() }
+                self.setCenterAndLeftViewControllers()
+            }
+        } else {
+            rootVC = OnboardVC()
+            setCenterAndLeftViewControllers()
+        }
     }
     
     func setCenterAndLeftViewControllers() {
@@ -25,9 +38,7 @@ class MainStackVC: IIViewDeckController {
         centerVC.navigationBar.tintColor = UIColor.whiteColor()
         centerVC.navigationBar.backgroundColor = UIColor.blackColor()
         centerVC.navigationBarHidden = true
-        
-        var onboardVC = OnboardVC()
-        centerVC.pushViewController(onboardVC, animated: false)
+        centerVC.pushViewController(rootVC!, animated: false)
         
         self.centerController = centerVC
         self.leftSize = 100

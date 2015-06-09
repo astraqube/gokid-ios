@@ -41,15 +41,15 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>FacebookAppID</key>
-	<string></string>
+	<string>454999084656306</string>
 	<key>FacebookDisplayName</key>
-	<string></string>
+	<string>gokid-dev</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string></string>
+				<string>fb454999084656306</string>
 			</array>
 		</dict>
 	</array>
