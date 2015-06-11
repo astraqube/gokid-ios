@@ -66,6 +66,7 @@ class DataManager: NSObject {
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("Create user success")
             self.userManager.setWithJsonReponse(JSON(obj))
+            self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, nil)
         }) { (op, error) in
@@ -91,7 +92,7 @@ class DataManager: NSObject {
             println(obj)
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.userLoggedIn = true
-            self.userManager.setGoKidUseFBLogIn(true)
+            self.userManager.useFBLogIn = true
             onMainThread() {
                 self.postNotification("SignupFinished")
                 comp(true, nil)
@@ -111,7 +112,8 @@ class DataManager: NSObject {
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("fbSignup user success")
             self.userManager.setWithJsonReponse(JSON(obj))
-            self.userManager.setGoKidUseFBLogIn(true)
+            self.userManager.useFBLogIn = true
+            self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, nil)
         }) { (op, error) in

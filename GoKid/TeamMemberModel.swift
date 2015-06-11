@@ -8,6 +8,15 @@
 
 import UIKit
 
+enum TeamCellType {
+  case AddUser, AddMember, EditMember, EditUser, None
+}
+
 class TeamMemberModel: NSObject {
-    
+  
+  var firstName: String = ""
+  var lastName: String = ""
+  var role: String = ""
+  var phoneNUmber: String = ""
+  var cellType: TeamCellType = .None
 }

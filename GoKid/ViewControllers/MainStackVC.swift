@@ -9,41 +9,44 @@
 import UIKit
 
 class MainStackVC: IIViewDeckController {
+  
+  var rootVC: UIViewController?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    var rootVC: UIViewController?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        var um = UserManager.sharedInstance
-        if um.useFBLogIn {
-            DataManager.sharedInstance.fbSignin() { (success, errorStr) in
-                if success { self.rootVC = vcWithID("CalendarVC") }
-                else { self.rootVC = OnboardVC() }
-                self.setCenterAndLeftViewControllers()
-            }
-        } else {
-            rootVC = OnboardVC()
-            setCenterAndLeftViewControllers()
+    var um = UserManager.sharedInstance
+    if um.useFBLogIn {
+      DataManager.sharedInstance.fbSignin() { (success, errorStr) in
+        if success { self.rootVC = vcWithID("CalendarVC") }
+        else {
+          println(errorStr)
+          self.rootVC = OnboardVC()
         }
+        self.setCenterAndLeftViewControllers()
+      }
+    } else {
+      rootVC = OnboardVC()
+      setCenterAndLeftViewControllers()
     }
+  }
+  
+  func setCenterAndLeftViewControllers() {
+    var meneVC = vcWithID("MenuVC") as! MenuVC
+    meneVC.mainStack = self
     
-    func setCenterAndLeftViewControllers() {
-        var meneVC = vcWithID("MenuVC") as! MenuVC
-        meneVC.mainStack = self
-        
-        var centerVC = UINavigationController()
-        centerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        centerVC.navigationBar.barTintColor = UIColor.blackColor()
-        centerVC.navigationBar.tintColor = UIColor.whiteColor()
-        centerVC.navigationBar.backgroundColor = UIColor.blackColor()
-        centerVC.navigationBarHidden = true
-        centerVC.pushViewController(rootVC!, animated: false)
-        
-        self.centerController = centerVC
-        self.leftSize = 100
-        self.leftController = meneVC
-    }
+    var centerVC = UINavigationController()
+    centerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+    centerVC.navigationBar.barTintColor = UIColor.blackColor()
+    centerVC.navigationBar.tintColor = UIColor.whiteColor()
+    centerVC.navigationBar.backgroundColor = UIColor.blackColor()
+    centerVC.navigationBarHidden = true
+    centerVC.pushViewController(rootVC!, animated: false)
+    
+    self.centerController = centerVC
+    self.leftSize = 100
+    self.leftController = meneVC
+  }
 }
 
 

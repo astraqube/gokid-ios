@@ -112,6 +112,12 @@ extension UITableView {
     }
 }
 
+extension UICollectionView {
+  func cellWithID(id: String, _ indexPath: NSIndexPath) -> UICollectionViewCell {
+    return self.dequeueReusableCellWithReuseIdentifier(id, forIndexPath: indexPath) as! UICollectionViewCell
+  }
+}
+
 extension NSObject {
     func postNotification(name: String) {
         NSNotificationCenter.defaultCenter().postNotificationName(name, object: nil)

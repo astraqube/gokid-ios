@@ -46,6 +46,7 @@
 		1D891F251B24635A006FD961 /* ContactNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F241B246359006FD961 /* ContactNameCell.swift */; };
 		1D891F271B2734C2006FD961 /* TeamMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F261B2734C2006FD961 /* TeamMemberModel.swift */; };
 		1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F281B273535006FD961 /* AddTeamMemberCell.swift */; };
+		1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F2A1B273C2E006FD961 /* AddTeamMemberVC.swift */; };
 		1D975A381B1F40D500CD4D89 /* InviteInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */; };
 		1D975A3A1B1F40E500CD4D89 /* InviteConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */; };
 		1D975A3C1B1F7C4E00CD4D89 /* TimeAndDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */; };
@@ -122,6 +123,7 @@
 		1D891F241B246359006FD961 /* ContactNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactNameCell.swift; sourceTree = "<group>"; };
 		1D891F261B2734C2006FD961 /* TeamMemberModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMemberModel.swift; sourceTree = "<group>"; };
 		1D891F281B273535006FD961 /* AddTeamMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeamMemberCell.swift; sourceTree = "<group>"; };
+		1D891F2A1B273C2E006FD961 /* AddTeamMemberVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeamMemberVC.swift; sourceTree = "<group>"; };
 		1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteInfoVC.swift; path = ViewControllers/InviteInfoVC.swift; sourceTree = "<group>"; };
 		1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteConfirmVC.swift; path = ViewControllers/InviteConfirmVC.swift; sourceTree = "<group>"; };
 		1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeAndDateVC.swift; path = ViewControllers/TimeAndDateVC.swift; sourceTree = "<group>"; };
@@ -252,13 +254,12 @@
 				1D3F651D1B207D4300CCF6A1 /* Volunteer */,
 				1D3F65201B207E2000CCF6A1 /* Phone Number */,
 				1D3F65211B207E3500CCF6A1 /* Sign in/up */,
+				1D808FCE1B2934F900D295BE /* Team Account */,
 				1DA789451B23C42700B391E8 /* OnboardVC.swift */,
-				1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */,
 				1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */,
 				1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */,
 				1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */,
 				1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */,
-				1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -359,6 +360,16 @@
 				1D1FD6901B1C048600287FA0 /* MenuVC.swift */,
 			);
 			name = Architecture;
+			sourceTree = "<group>";
+		};
+		1D808FCE1B2934F900D295BE /* Team Account */ = {
+			isa = PBXGroup;
+			children = (
+				1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */,
+				1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */,
+				1D891F2A1B273C2E006FD961 /* AddTeamMemberVC.swift */,
+			);
+			name = "Team Account";
 			sourceTree = "<group>";
 		};
 		1D891F071B23FDCD006FD961 /* SwiftAddressBook */ = {
@@ -475,11 +486,13 @@
 		1D1FD6571B1BFC4A00287FA0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = GoKid;
 				TargetAttributes = {
 					1D1FD65E1B1BFC4A00287FA0 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = CM6PMSRH33;
 					};
 					1D1FD6731B1BFC4A00287FA0 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -580,6 +593,7 @@
 				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
 				1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */,
 				1D3F651A1B2079E400CCF6A1 /* VolunteerVC.swift in Sources */,
+				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,
 				1D1FD6671B1BFC4A00287FA0 /* ViewController.swift in Sources */,
 				1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */,
@@ -744,6 +758,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = GoKid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -759,6 +774,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = GoKid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
