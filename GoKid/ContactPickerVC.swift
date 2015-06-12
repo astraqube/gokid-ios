@@ -199,9 +199,6 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 }
             }
         }
-        //phoneNumbers.append("2178197351")
-        phoneNumbers.append("7778290302")
-        println(phoneNumbers)
         return phoneNumbers
     }
     
