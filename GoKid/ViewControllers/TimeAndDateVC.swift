@@ -122,11 +122,13 @@ class TimeAndDateVC: UITableViewController {
             if model.titleString == eventStart {
                 if returnOnly == true {
                     cell.backgroundColor = ColorManager.sharedInstance.lightGrayColor
+                    cell.valueLabel.text = ""
                 }
             }
             if model.titleString == eventEnd {
                 if goOnly == true {
                     cell.backgroundColor = ColorManager.sharedInstance.lightGrayColor
+                    cell.valueLabel.text = ""
                 }
             }
             return cell

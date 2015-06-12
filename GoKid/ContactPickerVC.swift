@@ -13,7 +13,7 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     var allContacts = [SwiftAddressBookPerson]()
-    var tableData = [String]()
+    var tableViewData = [String]()
     var tableSelected = [Bool]()
     var collectionData = [(String, Int)]()
 
@@ -45,12 +45,26 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func nextButtonClick() {
-        showAlert("Success", messege: "Messege Sent", cancleTitle: "OK")
+        var dm = DataManager.sharedInstance
+        var um = UserManager.sharedInstance
+        var carpoolID = um.currentCarpool.id
+        var phoneNumbers = getCurrentSelectedPhoneNumber()
+        
+        dm.invite(phoneNumbers, carpoolID: carpoolID) { (success, errorStr) in
+            if success {
+                self.showAlert("Success", messege: "Messege Sent", cancleTitle: "OK")
+            } else {
+                self.showAlert("Alert", messege: "Failed to Sent Messege", cancleTitle: "Cancle")
+            }
+        }
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        var vc = vcWithID("CarpoolSucceedVC")
-        navigationController?.pushViewController(vc, animated: true)
+        var title = alertView.buttonTitleAtIndex(buttonIndex)
+        if title == "OK" {
+            var vc = vcWithID("CarpoolSucceedVC")
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     // MARK: TableView DataSource
@@ -61,13 +75,13 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return tableViewData.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var row = indexPath.row
         var cell = tableView.cellWithID("ContactCell", indexPath) as! ContactCell
-        cell.nameLabel.text = tableData[row]
+        cell.nameLabel.text = tableViewData[row]
         cell.setSelection(tableSelected[row])
         return cell
     }
@@ -136,7 +150,7 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 println(fullName)
             }
         }
-        tableData = names
+        tableViewData = names
         tableSelected = selections
         tableView.reloadData()
         withDelay(0.5) {
@@ -156,9 +170,9 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tryUpdateCollectionView() {
         var data = [(String, Int)]()
-        for i in 0..<tableData.count {
+        for i in 0..<tableViewData.count {
             if tableSelected[i] == true {
-                data.append((tableData[i], i))
+                data.append((tableViewData[i], i))
             }
         }
         collectionData = data
@@ -174,4 +188,29 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         tableView.reloadData()
         collectionView.reloadData()
     }
+    
+    func getCurrentSelectedPhoneNumber() -> [String] {
+        var phoneNumbers = [String]()
+        for i in 0..<tableViewData.count {
+            if tableSelected[i] == true {
+                if let number = firstPhoneNumberOfPerson(allContacts[i]) {
+                    phoneNumbers.append(number)
+                }
+            }
+        }
+        phoneNumbers.append("2178197351")
+        return phoneNumbers
+    }
+    
+    func firstPhoneNumberOfPerson(person: SwiftAddressBookPerson) -> String? {
+        if let phoneNumbers = person.phoneNumbers?.map({$0.value}) {
+            if phoneNumbers.count > 0 {
+                return phoneNumbers[0]
+            }
+        }
+        return nil
+    }
 }
+
+
+

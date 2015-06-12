@@ -21,7 +21,7 @@ class DataManager: NSObject {
     
     var userManager = UserManager.sharedInstance
     var baseURL = "https://gokid.devon.io"
-    typealias completion = ((Bool, String?)->())
+    typealias completion = ((Bool, String)->())
     
     // MARK: Singleton
     class var sharedInstance : DataManager {
@@ -43,11 +43,12 @@ class DataManager: NSObject {
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
-            comp(true, nil)
+            comp(true, "")
         }) { (op, error) in
             println("login failed")
-            var str = NSString(data: op.responseData, encoding: NSUTF8StringEncoding) as? String
-            comp(false, str)
+            var errorStr = self.constructErrorStr(op, error: error)
+            println(errorStr)
+            comp(false, errorStr)
         }
     }
     
@@ -68,11 +69,12 @@ class DataManager: NSObject {
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
-            comp(true, nil)
+            comp(true, "")
         }) { (op, error) in
             println("create user failed")
-            var str = NSString(data: op.responseData, encoding: NSUTF8StringEncoding) as? String
-            comp(false, str)
+            var errorStr = self.constructErrorStr(op, error: error)
+            println(errorStr)
+            comp(false, errorStr)
         }
     }
     
@@ -95,13 +97,13 @@ class DataManager: NSObject {
             self.userManager.useFBLogIn = true
             onMainThread() {
                 self.postNotification("SignupFinished")
-                comp(true, nil)
+                comp(true, "")
             }
         }) { (op, error) in
             println("fbSignin user failed")
-            var str = NSString(data: op.responseData, encoding: NSUTF8StringEncoding) as? String
-            println(str)
-            comp(false, str)
+            var errorStr = self.constructErrorStr(op, error: error)
+            println(errorStr)
+            comp(false, errorStr)
         }
     }
     
@@ -115,11 +117,81 @@ class DataManager: NSObject {
             self.userManager.useFBLogIn = true
             self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
-            comp(true, nil)
+            comp(true, "")
         }) { (op, error) in
-            var str = NSString(data: op.responseData, encoding: NSUTF8StringEncoding) as? String
-            println(str)
-            comp(false, str)
+            var errorStr = self.constructErrorStr(op, error: error)
+            println(errorStr)
+            comp(false, errorStr)
         }
+    }
+    
+    func createCarpool(name: String, comp: completion) {
+        var url = baseURL + "/api/carpools"
+        var name = ["name": name]
+        var map = ["carpool": name]
+        var manager = managerWithToken()
+        manager.POST(url, parameters: map, success: { (op, obj) in
+            println("create carpool success")
+            println(obj)
+            comp(true, "")
+        }) { (op, error) in
+            println("create carpool failed")
+            var errorStr = self.constructErrorStr(op, error: error)
+            println(errorStr)
+            comp(false, errorStr)
+        }
+    }
+    
+    func getCarpools(comp: completion) {
+        var url = baseURL + "/api/carpools"
+        var manager = managerWithToken()
+        manager.GET(url, parameters: nil, success: { (op, obj) in
+            println("getCarpool success")
+            var carpool = CarpoolModel(json: JSON(obj))
+            self.userManager.currentCarpool = carpool
+            comp(true, "")
+        }) { (op, error) in
+            println("get carpool failed")
+            var errorStr = self.constructErrorStr(op, error: error)
+            println(errorStr)
+            comp(false, errorStr)
+        }
+    }
+    
+    func invite(phoneNumbers: [String], carpoolID: Int, comp: completion) {
+        var url = baseURL + "/api/invites"
+        var invite = ["carpool+id": carpoolID, "phone_numbers": phoneNumbers]
+        var map = ["invite": invite]
+        var manager = managerWithToken()
+        manager.POST(url, parameters: map, success: { (op, obj) in
+            println("invite success")
+            comp(true, "")
+        }) { (op, error) in
+            println("invite failed")
+            var errorStr = self.constructErrorStr(op, error: error)
+            println(errorStr)
+            comp(false, errorStr)
+        }
+    }
+    
+    func managerWithToken() -> AFHTTPRequestOperationManager {
+        var token = userManager.userToken
+        println("user token " + token)
+        var manager = AFHTTPRequestOperationManager()
+        manager.requestSerializer.setValue("token " + token, forHTTPHeaderField: "Authorization")
+        return manager
+    }
+    
+    func constructErrorStr(op: AFHTTPRequestOperation?, error: NSError?) -> String {
+        var opStr = ""
+        var errorStr = ""
+        if let data = op?.responseData {
+            opStr = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+        }
+        if let str = error?.localizedDescription {
+            errorStr = str
+        }
+        var final = opStr + " " + errorStr
+        return final
     }
 }

@@ -8,15 +8,17 @@
 
 import UIKit
 
-class SignInVC: BaseVC {
+class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var emailTextField: PaddingTextField!
     @IBOutlet weak var passwordTextField: PaddingTextField!
+    @IBOutlet weak var fbloginButton: FBSDKLoginButton!
     var signinSuccessHandler: (()->())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        setupLoginButton()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -42,10 +44,40 @@ class SignInVC: BaseVC {
             if success {
                 self.signinSuccessHandler?()
             } else {
-                var str = "An Network error occured"
-                if errorStr != nil { str = errorStr! }
-                self.showAlert("Sign In Failed", messege: str, cancleTitle: "OK")
+                self.showAlert("Sign In Failed", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
+    
+    // MARK: Facebook Login
+    // --------------------------------------------------------------------------------------------
+    
+    func setupLoginButton() {
+        self.fbloginButton.readPermissions = ["public_profile", "email", "user_friends"];
+        self.fbloginButton.delegate = self
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        if error != nil {
+            self.showAlert("Falied to user FB Signup", messege:error.localizedDescription , cancleTitle: "OK")
+        } else if (result.isCancelled) {
+            self.showAlert("Falied to user FB Signup", messege:"You cancled login" , cancleTitle: "OK")
+        } else {
+            if result.grantedPermissions.contains("email") {
+                println("success")
+                dataManager.fbSignin() { (success, errorStr) in
+                    if success {
+                        self.signinSuccessHandler?()
+                    } else {
+                        self.showAlert("Falied to user FB Signup", messege:errorStr , cancleTitle: "OK")
+                    }
+                }
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        
+    }
+    
 }

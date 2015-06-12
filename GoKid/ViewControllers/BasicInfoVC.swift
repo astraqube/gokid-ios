@@ -59,8 +59,15 @@ class BasicInfoVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     func nextButtonClick() {
-        var vc = vcWithID("TimeAndDateVC")
-        navigationController?.pushViewController(vc, animated: true)
+        var name = carpoolTitleTextField.text!
+        dataManager.createCarpool(name) { (success, errorStr) in
+            if success {
+                var vc = vcWithID("TimeAndDateVC")
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.showAlert("Alert", messege: "Cannot create Carpool", cancleTitle: "OK")
+            }
+        }
     }
     
     func doLaterButtonClick() {

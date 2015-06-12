@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -24,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // for facebook login
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FBSDKLoginButton.self
+        
+        Fabric.with([Crashlytics()])
         
         return true
     }

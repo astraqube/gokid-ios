@@ -74,9 +74,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
                     self.removeFromParentViewController()
                 }
             } else {
-                var str = "An Network error occured"
-                if errorStr != nil { str = errorStr! }
-                self.showAlert("Failed to Signup", messege: str, cancleTitle: "OK")
+                self.showAlert("Failed to Signup", messege: errorStr, cancleTitle: "OK")
             }
         }        
     }
@@ -106,9 +104,9 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if error != nil {
-            println(error)
+            self.showAlert("Falied to user FB Signup", messege:error.localizedDescription , cancleTitle: "OK")
         } else if (result.isCancelled) {
-            // Handle cancellations
+            self.showAlert("Falied to user FB Signup", messege:"You cancled login" , cancleTitle: "OK")
         } else {
             if result.grantedPermissions.contains("email") {
                 println("success")
@@ -116,9 +114,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
                     if success {
                         self.animateRemoveFromParentViewController()
                     } else {
-                        var str = "A Network error occur"
-                        if errorStr != nil { str = errorStr! }
-                        self.showAlert("Falied to user FB Signup", messege:str , cancleTitle: "OK")
+                        self.showAlert("Falied to user FB Signup", messege:errorStr , cancleTitle: "OK")
                     }
                 }
             }
@@ -128,9 +124,6 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         
     }
-    
-    
-    
     
     // MARK: UIImagePickerControllerDelegate
     // --------------------------------------------------------------------------------------------

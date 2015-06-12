@@ -11,6 +11,12 @@ import MobileCoreServices
 
 class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    
+    @IBOutlet weak var passWordTextField: PaddingTextField!
+    @IBOutlet weak var phoneNumberTextField: PaddingTextField!
+    @IBOutlet weak var emailTextField: PaddingTextField!
+    @IBOutlet weak var firstNameTextField: PaddingTextField!
+    @IBOutlet weak var lastNameTextfield: PaddingTextField!
     @IBOutlet weak var profileImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -39,8 +45,11 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
     }
     
     func nextButtonClick() {
-        var vc = vcWithID("InviteConfirmVC")
-        navigationController?.pushViewController(vc, animated: true)
+        if let signupForm = getSignupForm() {
+            createUser(signupForm)
+        } else {
+            showAlert("Alert", messege: "Please Fill in all Blank", cancleTitle: "OK")
+        }
     }
     
     @IBAction func chooseImageButtonClick(sender: AnyObject) {
@@ -83,5 +92,49 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
+    }
+    
+    
+    
+    // MARK: Network Flow
+    // --------------------------------------------------------------------------------------------
+    
+    func createUser(signupForm: SignupForm) {
+        dataManager.signup(signupForm) { (success, errorStr) in
+            if success {
+                self.fetchInvite()
+            } else {
+                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+    
+    func fetchInvite() {
+        dataManager.getCarpools() { (success, errorStr) in
+            if success {
+                var vc = vcWithID("InviteConfirmVC")
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.showAlert("Alert", messege: "You are not invited by any user", cancleTitle: "OK")
+            }
+        }
+    }
+    
+    
+    func getSignupForm() -> SignupForm? {
+        if let password = passWordTextField.text,
+            firstName = firstNameTextField.text,
+            lastName = lastNameTextfield.text,
+            email = emailTextField.text {
+                var signupForm = SignupForm()
+                signupForm.passwordConfirm = password
+                signupForm.password = password
+                signupForm.firstName = firstName
+                signupForm.lastName = lastName
+                signupForm.email = email
+                signupForm.role = "kid"
+                return signupForm
+        }
+        return nil
     }
 }

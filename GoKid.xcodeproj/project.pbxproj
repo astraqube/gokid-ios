@@ -32,6 +32,8 @@
 		1D3F65251B208A9600CCF6A1 /* InviteParentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */; };
 		1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */; };
 		1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */; };
+		1D533D1D1B29533600F848B8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D533D1B1B29533600F848B8 /* Fabric.framework */; };
+		1D533D1E1B29533600F848B8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D533D1C1B29533600F848B8 /* Crashlytics.framework */; };
 		1D891F0F1B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F081B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift */; };
 		1D891F101B23FDD8006FD961 /* SwiftAddressBookGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F091B23FDD8006FD961 /* SwiftAddressBookGroup.swift */; };
 		1D891F111B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F0A1B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift */; };
@@ -58,6 +60,7 @@
 		1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */; };
 		1DA789441B23962200B391E8 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789431B23962200B391E8 /* ColorManager.swift */; };
 		1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789451B23C42700B391E8 /* OnboardVC.swift */; };
+		1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
 		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
 		1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE991B1C6E1400630440 /* PhoneVerifyVC.swift */; };
@@ -108,6 +111,8 @@
 		1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteParentsVC.swift; path = ViewControllers/InviteParentsVC.swift; sourceTree = "<group>"; };
 		1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarpoolSucceedVC.swift; path = ViewControllers/CarpoolSucceedVC.swift; sourceTree = "<group>"; };
 		1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseVC.swift; path = ViewControllers/BaseVC.swift; sourceTree = "<group>"; };
+		1D533D1B1B29533600F848B8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		1D533D1C1B29533600F848B8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		1D891F081B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookDataStructures.swift; sourceTree = "<group>"; };
 		1D891F091B23FDD8006FD961 /* SwiftAddressBookGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookGroup.swift; sourceTree = "<group>"; };
 		1D891F0A1B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookHelperMethods.swift; sourceTree = "<group>"; };
@@ -136,6 +141,7 @@
 		1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimePicker.m; sourceTree = "<group>"; };
 		1DA789431B23962200B391E8 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		1DA789451B23C42700B391E8 /* OnboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardVC.swift; sourceTree = "<group>"; };
+		1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolModel.swift; sourceTree = "<group>"; };
 		1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberProfileVC.swift; path = ViewControllers/MemberProfileVC.swift; sourceTree = "<group>"; };
 		1DFBBE971B1C6DF500630440 /* Phone#VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Phone#VC.swift"; path = "ViewControllers/Phone#VC.swift"; sourceTree = "<group>"; };
 		1DFBBE991B1C6E1400630440 /* PhoneVerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneVerifyVC.swift; path = ViewControllers/PhoneVerifyVC.swift; sourceTree = "<group>"; };
@@ -153,6 +159,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECE57027C4889A619FFDC703 /* libPods.a in Frameworks */,
+				1D533D1E1B29533600F848B8 /* Crashlytics.framework in Frameworks */,
+				1D533D1D1B29533600F848B8 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +177,8 @@
 		1D1FD6561B1BFC4A00287FA0 = {
 			isa = PBXGroup;
 			children = (
+				1D533D1B1B29533600F848B8 /* Fabric.framework */,
+				1D533D1C1B29533600F848B8 /* Crashlytics.framework */,
 				1D1FD6611B1BFC4A00287FA0 /* GoKid */,
 				1D1FD6841B1C000000287FA0 /* lib */,
 				1D1FD6771B1BFC4A00287FA0 /* GoKidTests */,
@@ -191,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				1D1FD6961B1C11A900287FA0 /* Managers */,
+				1DD1BAA61B2AA31A00D1BBA3 /* Model */,
 				1D3F65281B237ED900CCF6A1 /* Cells */,
 				1D1FD68B1B1C00BB00287FA0 /* ViewControllers */,
 				1D1FD6641B1BFC4A00287FA0 /* AppDelegate.swift */,
@@ -280,7 +291,6 @@
 				1D975A481B1FA72500CD4D89 /* TDEmptyCell.swift */,
 				1D975A421B1F94B500CD4D89 /* TDTextCell.swift */,
 				1D975A441B1F9EB800CD4D89 /* TDSwitchCell.swift */,
-				1D975A461B1FA09100CD4D89 /* TDCellModel.swift */,
 			);
 			name = TimeAndDate;
 			sourceTree = "<group>";
@@ -337,7 +347,6 @@
 			children = (
 				1D3F651B1B207D3200CCF6A1 /* VolunteerCell.swift */,
 				1D3F651E1B207D6B00CCF6A1 /* VolunteerTimeCell.swift */,
-				1D3F65221B207FBA00CCF6A1 /* VolunteerModel.swift */,
 			);
 			name = Volunteer;
 			sourceTree = "<group>";
@@ -345,7 +354,6 @@
 		1D3F652A1B237F2100CCF6A1 /* TeamAccount */ = {
 			isa = PBXGroup;
 			children = (
-				1D891F261B2734C2006FD961 /* TeamMemberModel.swift */,
 				1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */,
 				1D891F281B273535006FD961 /* AddTeamMemberCell.swift */,
 			);
@@ -423,6 +431,17 @@
 			name = "Recent Address";
 			sourceTree = "<group>";
 		};
+		1DD1BAA61B2AA31A00D1BBA3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */,
+				1D891F261B2734C2006FD961 /* TeamMemberModel.swift */,
+				1D3F65221B207FBA00CCF6A1 /* VolunteerModel.swift */,
+				1D975A461B1FA09100CD4D89 /* TDCellModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		68926BFAEF467AB3FED52BD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +471,7 @@
 				1D1FD65C1B1BFC4A00287FA0 /* Frameworks */,
 				1D1FD65D1B1BFC4A00287FA0 /* Resources */,
 				09818E3E01C63C9CBB504CD2 /* Copy Pods Resources */,
+				1D533D1A1B2951BF00F848B8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -555,6 +575,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1D533D1A1B2951BF00F848B8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
+		};
 		CD65D8EC25723919ABB980C6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -587,6 +620,7 @@
 				1D1FD6951B1C103500287FA0 /* UIView+Pop.swift in Sources */,
 				1D3F651F1B207D6B00CCF6A1 /* VolunteerTimeCell.swift in Sources */,
 				1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */,
+				1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */,
 				1D975A431B1F94B500CD4D89 /* TDTextCell.swift in Sources */,
 				1D891F141B23FDD8006FD961 /* SwiftAddressBookSource.swift in Sources */,
 				1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */,
@@ -759,6 +793,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GoKid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -775,6 +813,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GoKid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
