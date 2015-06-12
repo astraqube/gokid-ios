@@ -1786,7 +1786,7 @@
                                     <action selector="carpoolTitleChanged:" destination="I42-6S-flZ" eventType="editingChanged" id="wWQ-1t-Phd"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kids name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbv-1r-NwG" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kid's name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbv-1r-NwG" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="332" width="320" height="50"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
