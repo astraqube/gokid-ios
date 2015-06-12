@@ -128,6 +128,18 @@ extension NSObject {
     }
 }
 
+extension String {
+    func replace(a: String, _ b: String) -> String {
+        var option = NSStringCompareOptions.LiteralSearch
+        return self.stringByReplacingOccurrencesOfString(a, withString: b, options:option , range: nil)
+    }
+    
+    func delete(a: String) -> String {
+        var option = NSStringCompareOptions.LiteralSearch
+        return self.stringByReplacingOccurrencesOfString(a, withString: "", options:option , range: nil)
+    }
+}
+
 
 
 @IBDesignable

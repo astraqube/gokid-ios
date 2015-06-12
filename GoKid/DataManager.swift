@@ -131,6 +131,8 @@ class DataManager: NSObject {
         var map = ["carpool": name]
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
+            var carpool = CarpoolModel(json: JSON(obj))
+            self.userManager.currentCarpool = carpool
             println("create carpool success")
             println(obj)
             comp(true, "")
@@ -160,8 +162,9 @@ class DataManager: NSObject {
     
     func invite(phoneNumbers: [String], carpoolID: Int, comp: completion) {
         var url = baseURL + "/api/invites"
-        var invite = ["carpool+id": carpoolID, "phone_numbers": phoneNumbers]
+        var invite = ["carpool_id": String(carpoolID), "phone_numbers": phoneNumbers]
         var map = ["invite": invite]
+        println(map)
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("invite success")

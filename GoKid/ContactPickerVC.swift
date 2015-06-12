@@ -194,11 +194,14 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         for i in 0..<tableViewData.count {
             if tableSelected[i] == true {
                 if let number = firstPhoneNumberOfPerson(allContacts[i]) {
-                    phoneNumbers.append(number)
+                    var final = number.delete(" ").delete("(").delete(")").delete("-")
+                    phoneNumbers.append(final)
                 }
             }
         }
-        phoneNumbers.append("2178197351")
+        //phoneNumbers.append("2178197351")
+        phoneNumbers.append("7778290302")
+        println(phoneNumbers)
         return phoneNumbers
     }
     

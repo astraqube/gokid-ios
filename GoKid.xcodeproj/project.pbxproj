@@ -267,7 +267,6 @@
 				1D3F65211B207E3500CCF6A1 /* Sign in/up */,
 				1D808FCE1B2934F900D295BE /* Team Account */,
 				1DA789451B23C42700B391E8 /* OnboardVC.swift */,
-				1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */,
 				1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */,
 				1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */,
 				1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */,
@@ -409,6 +408,7 @@
 				1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */,
 				1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */,
 				1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */,
+				1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */,
 				1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */,
 			);
 			name = Invitation;
