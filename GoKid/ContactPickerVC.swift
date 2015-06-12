@@ -163,7 +163,7 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         var lastName = ""
         println("\(firstName)  \(lastName)")
         if person.firstName != nil { firstName = person.firstName! }
-        if person.lastName != nil { firstName = person.lastName! }
+        if person.lastName != nil { lastName = person.lastName! }
         var fullName = firstName + " " + lastName
         return fullName
     }
