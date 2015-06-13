@@ -89,9 +89,11 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     
     func animateRemoveFromParentViewController() {
         self.view.alphaAnimation(0.0, duration: 0.5) { (anim, finished) in
-            self.willMoveToParentViewController(nil)
-            self.view.removeFromSuperview()
-            self.removeFromParentViewController()
+            onMainThread() {
+                //self.willMoveToParentViewController(nil)
+                self.view.removeFromSuperview()
+                //self.removeFromParentViewController()
+            }
         }
     }
     

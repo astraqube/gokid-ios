@@ -63,7 +63,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func setupNavigationBar() {
         self.title = "Volunteer"
         var leftButton = UIBarButtonItem(title: "Location", style: .Plain, target: self, action: "locationButtonClick")
-        var rightButton = UIBarButtonItem(title: "next", style: .Plain, target: self, action: "nextButtonClick")
+        var rightButton = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextButtonClick")
         self.navigationItem.rightBarButtonItem = rightButton
         self.navigationItem.leftBarButtonItem = leftButton
     }
@@ -144,9 +144,9 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         signupVC.view.alpha = 0.0
         
         // view controller operations
-        navigationController?.addChildViewController(signupVC)
+        // navigationController?.addChildViewController(signupVC)
         navigationController?.view.addSubview(signupVC.view)
-        signupVC.didMoveToParentViewController(navigationController)
+        // signupVC.didMoveToParentViewController(navigationController)
         signupVC.signinButtonHandler = signupToSignin
         
         // animation
