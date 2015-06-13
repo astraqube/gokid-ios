@@ -9,6 +9,8 @@
 import UIKit
 
 class CarpoolModel: NSObject {
+    
+    var kidName = ""
     var name = ""
     var id = 0
     

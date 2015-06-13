@@ -84,9 +84,9 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func generateOnboardContents() -> [OnboardingContentViewController] {
-        var firstPage = OnboardingContentViewController(title: "Easy and Safe", body: "Making carpooling easier and more efficient. Live tracking and mapping shows where your kids are, where they are going , and when they will be home", image: UIImage(named: "blue"), buttonText: "") {
+        var firstPage = OnboardingContentViewController(title: "Easy and Safe", body: "Making carpooling easier and more efficient. Live tracking and mapping shows where your kids are, where they are going, and when they will be home", image: UIImage(named: "blue"), buttonText: "") {
         }
-        var secondPage = OnboardingContentViewController(title: "Save Gas and Cash", body: "Carpooling saves time, and money. The more you carpool, the more save.", image: UIImage(named: "blue"), buttonText: "") {
+        var secondPage = OnboardingContentViewController(title: "Save Gas and Cash", body: "Carpooling saves time and money. The more you carpool, the more save.", image: UIImage(named: "blue"), buttonText: "") {
         }
         var thirdPage = OnboardingContentViewController(title: "Save Mother Earth", body: "Carpooling is a great way to work with your community to reduce emissions and teach kids about being green. Together we can do this better.", image: UIImage(named: "blue"), buttonText: "") {
         }

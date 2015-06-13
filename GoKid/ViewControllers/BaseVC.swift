@@ -13,9 +13,32 @@ class BaseVC: UIViewController {
     var dataManager = DataManager.sharedInstance
     var userManager = UserManager.sharedInstance
     var colorManager = ColorManager.sharedInstance
+    
+    var keyBoardMoveUp : CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerForKeyBoardNotification()
+    }
+    
+    // MARK: Move View up when keyboard shows
+    // --------------------------------------------------------------------------------------------
+    
+    func registerForKeyBoardNotification() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y -= keyBoardMoveUp
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y += keyBoardMoveUp
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
 }
 

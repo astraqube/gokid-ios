@@ -76,8 +76,11 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func nextButtonClick() {
-        var vc = vcWithID("InviteParentsVC")
-        navigationController?.pushViewController(vc, animated: true)
+        if userManager.userLoggedIn {
+            createCarpool()
+        } else {
+            animatShowSignupVC()
+        }
     }
     
     func checkButtonClickHandler(cell: VolunteerCell, button: UIButton) {
@@ -167,6 +170,21 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func signinSuccessHandler() {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    // MARK: Create Carpool
+    // --------------------------------------------------------------------------------------------
+    
+    func createCarpool() {
+        var name = userManager.currentCarpoolName
+        dataManager.createCarpool(name) { (success, errorStr) in
+            if success {
+                var vc = vcWithID("InviteParentsVC")
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.showAlert("Alert", messege: "Cannot create Carpool", cancleTitle: "OK")
+            }
+        }
     }
     
     // MARK: Action Sheet

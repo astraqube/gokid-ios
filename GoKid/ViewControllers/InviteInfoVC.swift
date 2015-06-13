@@ -21,8 +21,10 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerForKeyBoardNotification()
         setupNavigationBar()
+        
+        // move view up when keyboard shows
+        self.keyBoardMoveUp = 95
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,28 +75,6 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
             picker.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-    
-    // MARK: Move View up when keyboard shows
-    // --------------------------------------------------------------------------------------------
-    
-    func registerForKeyBoardNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-    }
-    
-    func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 95
-    }
-    
-    func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 95
-    }
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.view.endEditing(true)
-    }
-    
-    
     
     // MARK: Network Flow
     // --------------------------------------------------------------------------------------------

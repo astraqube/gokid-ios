@@ -15,7 +15,15 @@ class MainStackVC: IIViewDeckController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // if user logged in direct go to CalendarVC
         var um = UserManager.sharedInstance
+        if um.userLoggedIn {
+            self.rootVC = vcWithID("CalendarVC")
+            self.setCenterAndLeftViewControllers()
+            return
+        }
+        
+        // otherwise check fblogin or Onoard
         if um.useFBLogIn {
             DataManager.sharedInstance.fbSignin() { (success, errorStr) in
                 if success { self.rootVC = vcWithID("CalendarVC") }

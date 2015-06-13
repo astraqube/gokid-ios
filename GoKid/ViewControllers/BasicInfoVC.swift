@@ -16,10 +16,7 @@ class BasicInfoVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        
-        //Looks for single or multiple taps.
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
-        view.addGestureRecognizer(tap)
+        setupKeyBoardMoveup()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -28,16 +25,22 @@ class BasicInfoVC: BaseVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.endEditing(true)
+    }
+    
     func setupNavigationBar() {
         setNavBarTitle("Basic Info")
         setNavBarLeftButtonTitle("Do this later", action: "doLaterButtonClick")
         disableRightBarItem()
     }
     
-    //Calls this function when the tap is recognized.
-    func DismissKeyboard(){
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
+    func setupKeyBoardMoveup() {
+        // iphone 5
+        if userManager.windowH < 580 {
+            self.keyBoardMoveUp = 82
+        }
     }
     
     // MARK: Disable and Active Nav Right Button
@@ -59,15 +62,11 @@ class BasicInfoVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     func nextButtonClick() {
-        var name = carpoolTitleTextField.text!
-        dataManager.createCarpool(name) { (success, errorStr) in
-            if success {
-                var vc = vcWithID("TimeAndDateVC")
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                self.showAlert("Alert", messege: "Cannot create Carpool", cancleTitle: "OK")
-            }
-        }
+        userManager.currentCarpoolName = carpoolTitleTextField.text!
+        userManager.currentCarpoolKidName = kidsNameTextField.text!
+        
+        var vc = vcWithID("TimeAndDateVC")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func doLaterButtonClick() {

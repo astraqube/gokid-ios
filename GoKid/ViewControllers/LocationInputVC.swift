@@ -129,10 +129,6 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
         navigationController?.popViewControllerAnimated(true)
         boundTextLabel?.text = locationInputTextField.text
     }
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.view.endEditing(true)
-    }
 }
 
 

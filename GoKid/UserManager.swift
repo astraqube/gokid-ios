@@ -21,11 +21,6 @@ class UserManager: NSObject {
     var windowH: CGFloat = 0
     var windowW: CGFloat = 0
     
-    var over18: Bool = false
-    var useFBLogIn = false
-    var userLoggedIn = false
-    var userFirstTimeLogin = false
-    
     var userName = "Unknown"
     var userFirstName = "Unknown"
     var userLastName = "Unknown"
@@ -35,11 +30,12 @@ class UserManager: NSObject {
     var userPhoneNumber = "Unknown"
     var userProfileImage: UIImage?
     
+    var currentCarpoolName: String = ""
+    var currentCarpoolKidName: String = ""
     var currentChoosenDate: String?
     var currentChossenStartTime: String?
     var currentChoosenEndTime: String?
     
-    var userToken = ""
     
     var userHomeAdress: String?
     var recentAddressTitles = [String]()
@@ -55,7 +51,6 @@ class UserManager: NSObject {
         super.init()
         initForRecentAddress()
         initForTeamMembers()
-        getValueFromUserDefaults()
     }
     
     func initForRecentAddress() {
@@ -82,26 +77,44 @@ class UserManager: NSObject {
     // MARK: User Defaults
     // --------------------------------------------------------------------------------------------
     
-    func getValueFromUserDefaults() {
-        if let v = ud.valueForKey("useFBLogIn") as? Bool {
-            useFBLogIn = v
-        }
-        if let v = ud.valueForKey("userFirstTimeLogin") as? Bool {
-            userFirstTimeLogin = v
-        }
-        if let v = ud.valueForKey("userLoggedIn") as? Bool {
-            userLoggedIn = v
-        }
-        if let v = ud.valueForKey("userToken") as? String {
-            userToken = v
+    var over18: Bool {
+        set { ud.setValue(newValue, forKey: "over18") }
+        get {
+            if let v = ud.valueForKey("over18") as? Bool { return v }
+            else { return false }
         }
     }
     
-    func saveToUserDefault() {
-        ud.setValue(useFBLogIn, forKey: "useFBLogIn")
-        ud.setValue(userLoggedIn, forKey: "userLoggedIn")
-        ud.setValue(userFirstTimeLogin, forKey: "userFirstTimeLogin")
-        ud.setValue(userToken, forKey: "userToken")
+    var useFBLogIn: Bool {
+        set { ud.setValue(newValue, forKey: "useFBLogIn") }
+        get {
+            if let v = ud.valueForKey("useFBLogIn") as? Bool { return v }
+            else { return false }
+        }
+    }
+    
+    var userLoggedIn: Bool {
+        set { ud.setValue(newValue, forKey: "userLoggedIn") }
+        get {
+            if let v = ud.valueForKey("userLoggedIn") as? Bool { return v }
+            else { return false }
+        }
+    }
+    
+    var userFirstTimeLogin: Bool {
+        set { ud.setValue(newValue, forKey: "userFirstTimeLogin") }
+        get {
+            if let v = ud.valueForKey("userFirstTimeLogin") as? Bool { return v }
+            else { return false }
+        }
+    }
+    
+    var userToken: String {
+        set { ud.setValue(newValue, forKey: "userToken") }
+        get {
+            if let v = ud.valueForKey("userToken") as? String { return v }
+            else { return "" }
+        }
     }
 }
 

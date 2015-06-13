@@ -1516,7 +1516,7 @@
                                     <constraint firstAttribute="width" constant="325" id="rhk-Qy-HEx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                         <real key="value" value="12"/>
@@ -2075,7 +2075,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjd-ga-A8I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="845" y="996"/>
+            <point key="canvasLocation" x="769" y="1012"/>
         </scene>
         <!--Add Team MemberVC-->
         <scene sceneID="MsV-Ug-F6V">

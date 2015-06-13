@@ -16,11 +16,11 @@ enum VOCellType {
 
 class VolunteerModel: NSObject {
     
-    var timeString: String
-    var titleString: String
-    var poolTypeString: String
-    var cellType: VOCellType
-    var taken: Bool
+    var timeString = ""
+    var titleString = ""
+    var poolTypeString = ""
+    var cellType: VOCellType = .Empty
+    var taken = false
     
     init(title: String, time: String, poolType: String, cellType: VOCellType) {
         self.poolTypeString = poolType

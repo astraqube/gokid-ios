@@ -138,11 +138,4 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
             picker.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-    
-    // MARK: Dismiss keyboard when touch
-    // --------------------------------------------------------------------------------------------
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.view.endEditing(true)
-    }
 }
