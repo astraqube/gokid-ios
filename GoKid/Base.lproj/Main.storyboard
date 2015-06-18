@@ -2094,21 +2094,32 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QSC-6L-gcp" id="sY6-RJ-TOp">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0FS-8n-Tfz">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tJh-Xi-gpA">
                                                     <rect key="frame" x="125" y="8" width="70" height="70"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="70" id="0EZ-7l-Q3F"/>
-                                                        <constraint firstAttribute="height" constant="70" id="Nm2-T3-QnI"/>
-                                                    </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eE7-I0-oeD">
+                                                    <rect key="frame" x="125" y="8" width="70" height="70"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="1J1-TL-921"/>
+                                                        <constraint firstAttribute="height" constant="70" id="4wC-nM-WiJ"/>
+                                                    </constraints>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="profileImageButtonClick:" destination="YbE-UU-ldV" eventType="touchUpInside" id="Xa4-Mu-E8j"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="centerX" secondItem="0FS-8n-Tfz" secondAttribute="centerX" id="FBM-PM-kNJ"/>
-                                                <constraint firstAttribute="centerY" secondItem="0FS-8n-Tfz" secondAttribute="centerY" constant="-0.5" id="NDj-6h-hJO"/>
+                                                <constraint firstAttribute="centerY" secondItem="eE7-I0-oeD" secondAttribute="centerY" constant="-0.5" id="1UD-2O-je7"/>
+                                                <constraint firstAttribute="centerX" secondItem="eE7-I0-oeD" secondAttribute="centerX" id="AZf-Dp-ZJK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -2574,12 +2585,14 @@
                         <outlet property="firstNameTextField" destination="Lwq-pE-JUe" id="efR-7q-tqk"/>
                         <outlet property="lastNameTextField" destination="U1T-9p-K19" id="xHn-EY-epg"/>
                         <outlet property="phoneNumberTextField" destination="fXl-SW-51r" id="3yG-wn-kB6"/>
+                        <outlet property="profileImageButton" destination="eE7-I0-oeD" id="OMJ-3Z-TK1"/>
+                        <outlet property="profileImageView" destination="tJh-Xi-gpA" id="jn8-Yw-BZo"/>
                         <outlet property="roleButton" destination="xtQ-Tn-9aU" id="QBm-4w-xXH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ySq-s0-JRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1037" y="996"/>
+            <point key="canvasLocation" x="1110" y="1012"/>
         </scene>
         <!--Member ProfileVC-->
         <scene sceneID="uhm-ng-mwg">
@@ -2598,23 +2611,34 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DTN-KS-qT4" id="BL5-bW-GM1">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oiy-fQ-vIt">
-                                                    <rect key="frame" x="17" y="8" width="70" height="70"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                </imageView>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PYf-RL-wlo">
-                                                    <rect key="frame" x="106" y="8" width="192" height="30"/>
+                                                    <rect key="frame" x="106" y="8" width="200" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gqp-5X-05Q">
-                                                    <rect key="frame" x="106" y="46" width="192" height="30"/>
+                                                    <rect key="frame" x="106" y="46" width="200" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VYm-vb-w9g">
+                                                    <rect key="frame" x="17" y="8" width="70" height="70"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJ6-fs-r9J">
+                                                    <rect key="frame" x="17" y="8" width="70" height="70"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="imageProfileButtonClick:" destination="K1c-cv-l4f" eventType="touchUpInside" id="dY4-Xl-jxi"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2998,16 +3022,19 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="emailTextField" destination="kMY-3b-iu6" id="Cby-HG-Ncw"/>
                         <outlet property="firstNameTextField" destination="PYf-RL-wlo" id="i6A-aV-pJl"/>
                         <outlet property="lastNameTextField" destination="gqp-5X-05Q" id="ylM-CK-SLf"/>
+                        <outlet property="passwordTextField" destination="K1Q-OV-xd2" id="39b-ps-ULq"/>
                         <outlet property="phoneNumberLabel" destination="587-fr-3g4" id="lQ2-hk-Nbg"/>
-                        <outlet property="profileImageView" destination="oiy-fQ-vIt" id="LWp-Pd-YwR"/>
+                        <outlet property="profileImageButton" destination="mJ6-fs-r9J" id="rak-0J-pbh"/>
+                        <outlet property="profileImageView" destination="VYm-vb-w9g" id="2v8-5g-kwG"/>
                         <outlet property="roleButton" destination="NJZ-qL-7e0" id="fNX-tg-UvH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zvj-96-wNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1377" y="996"/>
+            <point key="canvasLocation" x="1451" y="1006"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bBv-zK-833">

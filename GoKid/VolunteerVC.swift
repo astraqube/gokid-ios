@@ -156,9 +156,9 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func signupToSignin() {
         signupVC.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
             
-            self.signupVC.willMoveToParentViewController(nil)
+            // self.signupVC.willMoveToParentViewController(nil)
             self.signupVC.view.removeFromSuperview()
-            self.signupVC.removeFromParentViewController()
+            // self.signupVC.removeFromParentViewController()
             
             withDelay(0.2) {
                 var vc = vcWithID("SignInVC") as! SignInVC
@@ -182,7 +182,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
                 var vc = vcWithID("InviteParentsVC")
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                self.showAlert("Alert", messege: "Cannot create Carpool", cancleTitle: "OK")
+                self.showAlert("Alert", messege: "Cannot create Carpool " + errorStr, cancleTitle: "OK")
             }
         }
     }

@@ -154,6 +154,7 @@ class PaddingTextField: UITextField {
     }
 }
 
+typealias LoadingView = SVProgressHUD
 
 
 

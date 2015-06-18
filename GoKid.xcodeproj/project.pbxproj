@@ -60,6 +60,8 @@
 		1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */; };
 		1DA789441B23962200B391E8 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789431B23962200B391E8 /* ColorManager.swift */; };
 		1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789451B23C42700B391E8 /* OnboardVC.swift */; };
+		1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */; };
+		1DC765C41B32754800D9D306 /* DataManager + Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC765C31B32754800D9D306 /* DataManager + Team.swift */; };
 		1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
 		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
@@ -141,6 +143,8 @@
 		1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimePicker.m; sourceTree = "<group>"; };
 		1DA789431B23962200B391E8 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		1DA789451B23C42700B391E8 /* OnboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardVC.swift; sourceTree = "<group>"; };
+		1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Sign.swift"; sourceTree = "<group>"; };
+		1DC765C31B32754800D9D306 /* DataManager + Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Team.swift"; sourceTree = "<group>"; };
 		1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolModel.swift; sourceTree = "<group>"; };
 		1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberProfileVC.swift; path = ViewControllers/MemberProfileVC.swift; sourceTree = "<group>"; };
 		1DFBBE971B1C6DF500630440 /* Phone#VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Phone#VC.swift"; path = "ViewControllers/Phone#VC.swift"; sourceTree = "<group>"; };
@@ -243,13 +247,11 @@
 		1D1FD6841B1C000000287FA0 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				1D891F1F1B242B89006FD961 /* SwiftyJSON.h */,
-				1D891F201B242B89006FD961 /* SwiftyJSON.swift */,
+				1DC765C61B3278DE00D9D306 /* DateTimePicker */,
+				1DC765C51B3278D100D9D306 /* JSON */,
 				1D891F071B23FDCD006FD961 /* SwiftAddressBook */,
 				1D1FD6861B1C001E00287FA0 /* HelperFunction.swift */,
 				1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */,
-				1D975A4A1B1FACB400CD4D89 /* DateTimePicker.h */,
-				1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */,
 			);
 			name = lib;
 			path = GoKid;
@@ -277,9 +279,11 @@
 		1D1FD6961B1C11A900287FA0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */,
+				1DC765C31B32754800D9D306 /* DataManager + Team.swift */,
+				1D891F221B244536006FD961 /* DataManager.swift */,
 				1DA789431B23962200B391E8 /* ColorManager.swift */,
 				1D1FD6971B1C11C100287FA0 /* UserManager.swift */,
-				1D891F221B244536006FD961 /* DataManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -429,6 +433,24 @@
 				1D3F65171B2073D700CCF6A1 /* RecentAddressCell.swift */,
 			);
 			name = "Recent Address";
+			sourceTree = "<group>";
+		};
+		1DC765C51B3278D100D9D306 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				1D891F1F1B242B89006FD961 /* SwiftyJSON.h */,
+				1D891F201B242B89006FD961 /* SwiftyJSON.swift */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		1DC765C61B3278DE00D9D306 /* DateTimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				1D975A4A1B1FACB400CD4D89 /* DateTimePicker.h */,
+				1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */,
+			);
+			name = DateTimePicker;
 			sourceTree = "<group>";
 		};
 		1DD1BAA61B2AA31A00D1BBA3 /* Model */ = {
@@ -612,6 +634,7 @@
 			files = (
 				1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */,
 				1D891F101B23FDD8006FD961 /* SwiftAddressBookGroup.swift in Sources */,
+				1DC765C41B32754800D9D306 /* DataManager + Team.swift in Sources */,
 				1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */,
 				1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */,
 				1D3F65231B207FBA00CCF6A1 /* VolunteerModel.swift in Sources */,
@@ -630,6 +653,7 @@
 				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,
 				1D1FD6671B1BFC4A00287FA0 /* ViewController.swift in Sources */,
+				1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */,
 				1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */,
 				1D10D7AA1B1C38FE007CDB66 /* BasicInfoVC.swift in Sources */,
 				1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */,
@@ -801,6 +825,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a24dd821-5d32-4646-ac14-175f9c1f40f9";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoKid/GoKid-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -821,6 +846,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a24dd821-5d32-4646-ac14-175f9c1f40f9";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoKid/GoKid-Bridging-Header.h";
 			};
 			name = Release;

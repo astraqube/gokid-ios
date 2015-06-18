@@ -39,8 +39,9 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
         
         var email = emailTextField.text
         var passw = passwordTextField.text
-        
+        LoadingView.showWithMaskType(.Black)
         dataManager.signin(email, password: passw) { (success, errorStr) -> () in
+            LoadingView.dismiss()
             if success {
                 self.signinSuccessHandler?()
             } else {

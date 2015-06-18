@@ -22,14 +22,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         um.windowH = size.height
         um.windowW = size.width
         
+        // register notification
+        var settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        
         // for facebook login
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FBSDKLoginButton.self
         
+        // for fabric
         Fabric.with([Crashlytics()])
+        
+        UserManager.sharedInstance.userLoggedIn = false
         
         return true
     }
+    
+    // MARK: Notification Method
+    // --------------------------------------------------------------------------------------------
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        println("didRegisterUserNotificationSettings")
+        println(notificationSettings)
+        application.registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println("fail to register remote notification")
+        println(error)
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        println("success register for remote notification")
+        println(deviceToken)
+    }
+    
+    // MARK: Facebook Deep Link
+    // --------------------------------------------------------------------------------------------
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         // for facebook login

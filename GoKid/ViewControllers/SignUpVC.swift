@@ -69,9 +69,9 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         dataManager.signup(signupForm) { (success, errorStr) in
             if success {
                 self.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
-                    self.willMoveToParentViewController(nil)
+                    // self.willMoveToParentViewController(nil)
                     self.view.removeFromSuperview()
-                    self.removeFromParentViewController()
+                    // self.removeFromParentViewController()
                 }
             } else {
                 self.showAlert("Failed to Signup", messege: errorStr, cancleTitle: "OK")
