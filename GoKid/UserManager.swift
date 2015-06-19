@@ -68,6 +68,12 @@ class UserManager: NSObject {
         info.email = user["email"].stringValue
         info.role = user["role"].stringValue
         info.cellType = .EditUser
+        if let teamID = json["teams"]["id"].int {
+            info.teamID = teamID
+        }
+        if let imageURL = user["avatar"]["thumb_url"].string {
+            info.thumURL = imageURL
+        }
         if let passWord = user["generated_password"].string {
             info.passWord = passWord
         }
@@ -83,14 +89,21 @@ class UserManager: NSObject {
     // --------------------------------------------------------------------------------------------
     
     func saveUserInfo() {
+        var avatar = ["thumb_url": info.thumURL]
+        var teams = ["teams": info.teamID]
         var userInfo = [
             "first_name": info.firstName,
             "last_name": info.lastName,
             "email": info.email,
             "role": info.role,
-            "password" : info.passWord
+            "password" : info.passWord,
+            "avatar": avatar,
+            "token": userToken
         ]
-        var map = ["user": userInfo]
+        var map = [
+            "user": userInfo,
+            "teams": teams
+        ]
         if let data = JSON(map).rawData(options: .PrettyPrinted, error: nil) {
             var path = documentPath + "user_info"
             data.writeToFile(path, atomically: true)
@@ -140,7 +153,9 @@ class UserManager: NSObject {
     }
     
     var userToken: String {
-        set { ud.setValue(newValue, forKey: "userToken") }
+        set {
+            ud.setValue(newValue, forKey: "userToken")
+        }
         get {
             if let v = ud.valueForKey("userToken") as? String { return v }
             else { return "" }

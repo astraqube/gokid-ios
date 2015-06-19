@@ -20,6 +20,7 @@ struct SignupForm {
 class DataManager: NSObject {
     
     var userManager = UserManager.sharedInstance
+    var imageManager = ImageManager.sharedInstance
     var baseURL = "https://gokid.devon.io"
     typealias completion = ((Bool, String)->())
     

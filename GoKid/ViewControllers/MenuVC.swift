@@ -25,12 +25,7 @@ class MenuVC: BaseVC {
     }
     
     override func viewWillAppear(animated: Bool) {
-        nameLabel.setTitle(userManager.info.firstName, forState: .Normal)
-        teamLabel.text = userManager.userTeamName
-        
-        if userManager.info.firstName == "" {
-            nameLabel.setTitle("Unknown", forState: .Normal)
-        }
+        refreshUI()
     }
     
     func registerForNotification() {
@@ -44,6 +39,15 @@ class MenuVC: BaseVC {
         self.view.backgroundColor = UIColor.blackColor()
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2.0
         self.profileImageView.clipsToBounds = true
+    }
+    
+    func refreshUI() {
+        nameLabel.setTitle(userManager.info.firstName, forState: .Normal)
+        teamLabel.text = userManager.userTeamName
+        if userManager.info.firstName == "" {
+            nameLabel.setTitle("Unknown", forState: .Normal)
+        }
+        ImageManager.sharedInstance.setImageToView(profileImageView, urlStr: userManager.info.thumURL)
     }
     
     // MARK: IBAction Method

@@ -12,6 +12,7 @@ class TeamAccountVC: UICollectionViewController {
     
     var collectionViewData = [TeamMemberModel]()
     var um = UserManager.sharedInstance
+    var im = ImageManager.sharedInstance
     
     
     override func viewDidLoad() {
@@ -79,11 +80,13 @@ class TeamAccountVC: UICollectionViewController {
             var cell = collectionView.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
             cell.roleLabel.text = model.role
             cell.nameLabel.text = model.firstName
+            im.setImageToView(cell.profileImageView, urlStr: model.thumURL)
             return cell
         } else if model.cellType == .EditUser {
             var cell = collectionView.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
             cell.roleLabel.text = "You"
             cell.nameLabel.text = model.firstName
+            im.setImageToView(cell.profileImageView, urlStr: model.thumURL)
             return cell
         } else {
             println("Unknow Cell Type")

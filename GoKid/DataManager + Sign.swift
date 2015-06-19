@@ -149,7 +149,11 @@ extension DataManager {
         op.responseSerializer = AFJSONResponseSerializer()
         op.setCompletionBlockWithSuccess({ (op, obj) in
             println("succeess to upload image")
-            println(obj)
+            var json = JSON(obj)
+            self.userManager.info.thumURL = json["avatar"]["thumb_url"].stringValue
+            self.userManager.saveUserInfo()
+            self.imageManager.removeDiskCacheForURL(self.userManager.info.thumURL)
+            comp(true, "")
         }, failure: { (op, error) in
             var errorStr = self.constructErrorStr(op, error: error)
             println(errorStr)

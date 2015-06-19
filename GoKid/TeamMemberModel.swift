@@ -21,5 +21,6 @@ class TeamMemberModel: NSObject {
     var passWord: String = ""
     var email: String = ""
     var role: String = ""
-    
+    var thumURL: String = ""
+    var teamID: Int = 0
 }

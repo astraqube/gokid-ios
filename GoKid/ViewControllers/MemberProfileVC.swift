@@ -65,8 +65,7 @@ class MemberProfileVC: UITableViewController, FBSDKLoginButtonDelegate, UIImageP
         self.emailTextField.text = model.email
         self.roleButton.setTitle(model.role, forState: .Normal)
         self.passwordTextField.text = model.passWord
-        
-        
+        ImageManager.sharedInstance.setImageToView(profileImageView, urlStr: model.thumURL)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -209,7 +208,6 @@ class MemberProfileVC: UITableViewController, FBSDKLoginButtonDelegate, UIImageP
     func updateUser(signupForm: SignupForm) {
         LoadingView.showWithMaskType(.Black)
         dataManager.updateUser(signupForm) { (success, errorStr) in
-            LoadingView.dismiss()
             if success {
                 self.handleUpdateOrCreateUserSuccess()
             } else {

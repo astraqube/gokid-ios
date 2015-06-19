@@ -118,6 +118,8 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
         handleDoneButtonClick()
     }
     
+    func getTeamModel() -> TeamMemberModel
+    
     func handleDoneButtonClick() {
         if let firstName = firstNameTextField.text,
             lastName = lastNameTextField.text,
