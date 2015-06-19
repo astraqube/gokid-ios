@@ -45,7 +45,7 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
     func refreshUIIfNeeded() {
         self.firstNameTextField.text = model.firstName
         self.lastNameTextField.text = model.lastName
-        self.phoneNumberTextField.text = model.phoneNUmber
+        self.phoneNumberTextField.text = model.phoneNumber
         self.roleButton.setTitle(model.role, forState: .Normal)
         
         if sourceCellType == .AddUser {
