@@ -17,7 +17,7 @@ class TeamAccountVC: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        prepareAndLoadCollectionView()
+        prepareAndLoadTeamMemberCollectionView()
     }
     
     func setupNavBar() {
@@ -25,22 +25,15 @@ class TeamAccountVC: UICollectionViewController {
         setNavBarLeftButtonTitle("Menu", action: "menuButtonClick")
     }
     
-    func prepareAndLoadCollectionView() {
+    func prepareAndLoadTeamMemberCollectionView() {
         collectionViewData = [TeamMemberModel]()
         if um.userLoggedIn {
-            var userData = TeamMemberModel()
-            userData.cellType = .EditUser
-            userData.phoneNUmber = um.userPhoneNumber
-            userData.role = "You"
-            userData.firstName = um.userFirstName
-            userData.lastName = um.userLastName
-            collectionViewData.append(userData)
-            
+            collectionViewData.append(um.info)
             addTeamMembersInfo()
             
-            var addMember = TeamMemberModel()
-            addMember.cellType = .AddMember
-            collectionViewData.append(addMember)
+            var addMemberCell = TeamMemberModel()
+            addMemberCell.cellType = .AddMember
+            collectionViewData.append(addMemberCell)
         } else {
             var addUser = TeamMemberModel()
             addUser.cellType = .AddUser
@@ -82,9 +75,14 @@ class TeamAccountVC: UICollectionViewController {
             var cell = collectionView.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
             cell.contentLabel.text = "Create your profile"
             return cell
-        } else if model.cellType == .EditMember || model.cellType == .EditUser {
+        } else if model.cellType == .EditMember {
             var cell = collectionView.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
             cell.roleLabel.text = model.role
+            cell.nameLabel.text = model.firstName
+            return cell
+        } else if model.cellType == .EditUser {
+            var cell = collectionView.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
+            cell.roleLabel.text = "You"
             cell.nameLabel.text = model.firstName
             return cell
         } else {
@@ -98,7 +96,8 @@ class TeamAccountVC: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var model = collectionViewData[indexPath.row]
-        if model.cellType == .AddMember || model.cellType == .EditMember || model.cellType == .AddUser {
+        
+        if model.cellType == .AddMember || model.cellType == .EditMember {
             var vc = vcWithID("AddTeamMemberVC") as! AddTeamMemberVC
             vc.sourceCellType = model.cellType
             vc.sourceCellIndex = indexPath.row
@@ -106,8 +105,12 @@ class TeamAccountVC: UICollectionViewController {
             vc.doneButtonHandler = addMemberDone
             vc.removeButtonHandler = removeMember
             navigationController?.pushViewController(vc, animated: true)
-        } else if model.cellType == .EditUser {
-            var vc = vcWithID("MemberProfileVC")
+        } else if model.cellType == .AddUser || model.cellType == .EditUser {
+            var vc = vcWithID("MemberProfileVC") as! MemberProfileVC
+            vc.sourceCellType = model.cellType
+            vc.sourceCellIndex = indexPath.row
+            vc.model = model
+            vc.doneButtonHandler = memberProfileEditDone
             navigationController?.pushViewController(vc, animated: true)
         } else {
             println("Unknow Cell Type")
@@ -119,17 +122,26 @@ class TeamAccountVC: UICollectionViewController {
     
     func addMemberDone(vc: AddTeamMemberVC) {
         var model = modelFromAddTeamMemberVC(vc)
-        if vc.sourceCellType == .AddUser {
-            model.cellType = .EditUser
-            var addMember = TeamMemberModel()
-            addMember.cellType = .AddMember
-            collectionViewData = [model, addMember]
-        } else if vc.sourceCellType == .AddMember {
+        if vc.sourceCellType == .AddMember {
             model.cellType = .EditMember
             collectionViewData.insert(model, atIndex: collectionViewData.count-1)
         } else if vc.sourceCellType == .EditMember {
             var row = vc.sourceCellIndex
             model.cellType = .EditMember
+            collectionViewData[row] = model
+        }
+        collectionView?.reloadData()
+    }
+    
+    func memberProfileEditDone(vc: MemberProfileVC) {
+        var model = UserManager.sharedInstance.info
+        if vc.sourceCellType == .AddUser {
+            model.cellType = .EditUser
+            var addMember = TeamMemberModel()
+            addMember.cellType = .AddMember
+            collectionViewData = [model, addMember]
+        } else if vc.sourceCellType == .EditUser {
+            var row = vc.sourceCellIndex
             collectionViewData[row] = model
         }
         collectionView?.reloadData()
@@ -146,7 +158,7 @@ class TeamAccountVC: UICollectionViewController {
         model.firstName = vc.firstNameTextField.text!
         model.lastName = vc.lastNameTextField.text!
         model.role = vc.roleButton.titleLabel!.text!
-        model.phoneNUmber = vc.phoneNumberTextField.text!
+        model.phoneNumber = vc.phoneNumberTextField.text!
         return model
     }
     

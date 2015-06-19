@@ -94,7 +94,9 @@ extension DataManager {
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.useFBLogIn = true
             self.userManager.userLoggedIn = true
-            onMainThread() { self.postNotification("SignupFinished") }
+            onMainThread() {
+                self.postNotification("SignupFinished")
+            }
             comp(true, "")
             }) { (op, error) in
                 var errorStr = self.constructErrorStr(op, error: error)
@@ -103,18 +105,63 @@ extension DataManager {
         }
     }
     
-    func upLoadImage(image: UIImage, comp: completion) {
-        var url = baseURL + "/api/users"
-        var map = ["fb_token": ""]
-        var manager = AFHTTPRequestOperationManager()
-        manager.POST(url, parameters: map, success: { (op, obj) in
-            println("fbSignup user success")
+    
+    func updateUser(signupForm:SignupForm, comp: completion) {
+        var url = baseURL + "/api/me"
+        var arr = [
+            "role": signupForm.role,
+            "email": signupForm.email,
+            "password": signupForm.password,
+            "last_name": signupForm.lastName,
+            "first_name": signupForm.firstName,
+        ]
+        var map = ["user": arr]
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: map, success: { (op, obj) in
+            println("update user success")
+            self.userManager.setWithJsonReponse(JSON(obj))
+            self.userManager.userLoggedIn = true
+            onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
-            }) { (op, error) in
-                var errorStr = self.constructErrorStr(op, error: error)
-                println(errorStr)
-                comp(false, errorStr)
+        }) { (op, error) in
+            println("update user failed")
+            var errorStr = self.constructErrorStr(op, error: error)
+            println(errorStr)
+            comp(false, errorStr)
         }
     }
+    
+    func upLoadImage(image: UIImage, comp: completion) {
+        
+        var urlStr = baseURL + "/api/me/upload"
+        var url = NSURL(string: urlStr)!
+        var imageData = UIImageJPEGRepresentation(image, 1.0)
+        var token = userManager.userToken
+        
+        var request = NSMutableURLRequest(URL: url)
+        request.addValue("image/jpeg", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("token " + token, forHTTPHeaderField: "Authorization")
+        request.HTTPMethod = "POST"
+        request.HTTPBody = imageData
 
+        var op = AFHTTPRequestOperation(request: request)
+        op.responseSerializer = AFJSONResponseSerializer()
+        op.setCompletionBlockWithSuccess({ (op, obj) in
+            println("succeess to upload image")
+            println(obj)
+        }, failure: { (op, error) in
+            var errorStr = self.constructErrorStr(op, error: error)
+            println(errorStr)
+            comp(false, errorStr)
+        })
+        NSOperationQueue.mainQueue().addOperation(op)
+    }
 }
+
+
+
+
+
+
+

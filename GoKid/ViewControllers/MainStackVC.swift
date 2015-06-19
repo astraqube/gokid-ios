@@ -15,6 +15,11 @@ class MainStackVC: IIViewDeckController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var image = UIImage(named: "minion")!
+        DataManager.sharedInstance.upLoadImage(image) { (success, errorStr) in
+            
+        }
+        
         // if user logged in direct go to CalendarVC
         var um = UserManager.sharedInstance
         if um.userLoggedIn {

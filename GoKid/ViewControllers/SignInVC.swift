@@ -66,7 +66,9 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
         } else {
             if result.grantedPermissions.contains("email") {
                 println("success")
+                LoadingView.showWithMaskType(.Black)
                 dataManager.fbSignin() { (success, errorStr) in
+                    LoadingView.dismiss()
                     if success {
                         self.signinSuccessHandler?()
                     } else {

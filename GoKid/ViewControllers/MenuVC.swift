@@ -25,13 +25,17 @@ class MenuVC: BaseVC {
     }
     
     override func viewWillAppear(animated: Bool) {
-        nameLabel.setTitle(userManager.userFirstName, forState: .Normal)
+        nameLabel.setTitle(userManager.info.firstName, forState: .Normal)
         teamLabel.text = userManager.userTeamName
+        
+        if userManager.info.firstName == "" {
+            nameLabel.setTitle("Unknown", forState: .Normal)
+        }
     }
     
     func registerForNotification() {
         NSNotificationCenter.defaultCenter().addObserverForName("SignupFinished", object: nil, queue: nil) { (noti) in
-            self.nameLabel.setTitle(self.userManager.userFirstName, forState: .Normal)
+            self.nameLabel.setTitle(self.userManager.info.firstName, forState: .Normal)
             self.profileImageView.image = self.userManager.userProfileImage
         }
     }
@@ -46,22 +50,18 @@ class MenuVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     @IBAction func nameButtonClicked(sender: AnyObject) {
-        if userManager.userName == "Unknown" {
-            viewDeckController.toggleLeftView()
-            if !(navVC?.topViewController is TeamAccountVC) {
-                var vc = vcWithID("TeamAccountVC")
-                navVC?.setViewControllers([vc], animated: true)
-            }
+        viewDeckController.toggleLeftView()
+        if !(navVC?.topViewController is TeamAccountVC) {
+            var vc = vcWithID("TeamAccountVC")
+            navVC?.setViewControllers([vc], animated: true)
         }
     }
     
     @IBAction func accountSettingClicked(sender: AnyObject) {
-        if userManager.userName == "Unknown" {
-            viewDeckController.toggleLeftView()
-            if !(navVC?.topViewController is TeamAccountVC) {
-                var vc = vcWithID("TeamAccountVC")
-                navVC?.setViewControllers([vc], animated: true)
-            }
+        viewDeckController.toggleLeftView()
+        if !(navVC?.topViewController is TeamAccountVC) {
+            var vc = vcWithID("TeamAccountVC")
+            navVC?.setViewControllers([vc], animated: true)
         }
     }
     

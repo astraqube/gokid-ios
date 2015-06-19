@@ -32,9 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // for fabric
         Fabric.with([Crashlytics()])
-        
-        UserManager.sharedInstance.userLoggedIn = false
-        
+                
         return true
     }
     

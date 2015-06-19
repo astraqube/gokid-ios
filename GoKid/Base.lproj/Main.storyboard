@@ -2087,7 +2087,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection headerTitle=" " id="Kis-Bv-485">
+                            <tableViewSection id="Kis-Bv-485">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="86" id="QSC-6L-gcp">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -2592,7 +2592,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ySq-s0-JRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1110" y="1012"/>
+            <point key="canvasLocation" x="2678" y="1700"/>
         </scene>
         <!--Member ProfileVC-->
         <scene sceneID="uhm-ng-mwg">
@@ -2604,8 +2604,26 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection headerTitle=" " id="nkm-5T-oO1">
+                            <tableViewSection id="nkm-5T-oO1">
                                 <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="GWq-3V-3cp">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GWq-3V-3cp" id="HFF-UD-ibZ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbZ-IP-R41" customClass="FBSDKLoginButton">
+                                                    <rect key="frame" x="8" y="11" width="304" height="47"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="86" id="DTN-KS-qT4">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DTN-KS-qT4" id="BL5-bW-GM1">
@@ -2704,10 +2722,11 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJZ-qL-7e0">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJZ-qL-7e0">
                                                     <rect key="frame" x="137" y="7" width="167" height="30"/>
                                                     <animations/>
                                                     <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -2758,7 +2777,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="32q-89-kRl">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NZG-O2-7EN">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NZG-O2-7EN">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NZG-O2-7EN" id="DwO-vA-4Zt">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -2789,7 +2808,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="lbf-o2-uyl">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="lbf-o2-uyl">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lbf-o2-uyl" id="f7B-vQ-vrg">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -2824,7 +2843,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="z49-fX-3kx">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="SkQ-JC-omX">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="SkQ-JC-omX">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SkQ-JC-omX" id="ad1-Wr-RS8">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -2855,7 +2874,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4bf-Lm-9Kw">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4bf-Lm-9Kw">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4bf-Lm-9Kw" id="myd-sa-DjG">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -2886,7 +2905,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="5l4-GT-ndw">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="5l4-GT-ndw">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5l4-GT-ndw" id="q3P-Qf-Tem">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -2921,7 +2940,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="kbh-Qs-tRc">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zlV-6j-jx7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zlV-6j-jx7">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zlV-6j-jx7" id="dJB-2D-vL5">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -2952,7 +2971,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="kkF-9M-Shg">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="kkF-9M-Shg">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kkF-9M-Shg" id="Fvz-4Z-dMk">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -2987,16 +3006,16 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="VHz-Hn-CYI">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="iwr-vp-jY6">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="75" id="iwr-vp-jY6">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iwr-vp-jY6" id="kVp-2p-hvm">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvY-xM-UNx">
-                                                    <rect key="frame" x="93" y="13" width="135" height="33"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvY-xM-UNx" customClass="FBSDKLoginButton">
+                                                    <rect key="frame" x="21" y="13" width="278" height="50"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <state key="normal" title="Remove Member">
+                                                    <state key="normal">
                                                         <color key="titleColor" red="0.56078431370000004" green="0.58039215690000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -3006,10 +3025,6 @@
                                                 </button>
                                             </subviews>
                                             <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="pvY-xM-UNx" secondAttribute="centerY" id="tM5-k0-95r"/>
-                                                <constraint firstAttribute="centerX" secondItem="pvY-xM-UNx" secondAttribute="centerX" id="whL-uT-Sdn"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
@@ -3023,6 +3038,8 @@
                     </tableView>
                     <connections>
                         <outlet property="emailTextField" destination="kMY-3b-iu6" id="Cby-HG-Ncw"/>
+                        <outlet property="fbloginButton" destination="CbZ-IP-R41" id="4fL-BR-8ff"/>
+                        <outlet property="fblogoutButton" destination="pvY-xM-UNx" id="hc2-Uu-Kdy"/>
                         <outlet property="firstNameTextField" destination="PYf-RL-wlo" id="i6A-aV-pJl"/>
                         <outlet property="lastNameTextField" destination="gqp-5X-05Q" id="ylM-CK-SLf"/>
                         <outlet property="passwordTextField" destination="K1Q-OV-xd2" id="39b-ps-ULq"/>
@@ -3030,11 +3047,12 @@
                         <outlet property="profileImageButton" destination="mJ6-fs-r9J" id="rak-0J-pbh"/>
                         <outlet property="profileImageView" destination="VYm-vb-w9g" id="2v8-5g-kwG"/>
                         <outlet property="roleButton" destination="NJZ-qL-7e0" id="fNX-tg-UvH"/>
+                        <outlet property="tableView" destination="KjH-Dp-11F" id="UzR-ZK-r5S"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zvj-96-wNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1451" y="1006"/>
+            <point key="canvasLocation" x="2237" y="1700"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bBv-zK-833">

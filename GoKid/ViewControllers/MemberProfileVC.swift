@@ -8,12 +8,13 @@
 
 import UIKit
 
-class MemberProfileVC: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemberProfileVC: UITableViewController, FBSDKLoginButtonDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
+    @IBOutlet weak var fblogoutButton: FBSDKLoginButton!
+    @IBOutlet weak var fbloginButton: FBSDKLoginButton!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
-    
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var phoneNumberLabel: UILabel!
@@ -21,11 +22,19 @@ class MemberProfileVC: UITableViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var doneButtonHandler: ((MemberProfileVC)->())?
+    var sourceCellType: TeamCellType = .None
+    var sourceCellIndex: Int = 0
     var model = TeamMemberModel()
+    
+    var dataManager = DataManager.sharedInstance
+    var pickedNewImage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        setupTableView()
+        setupLoginButton()
         refreshUIIfNeeded()
     }
     
@@ -39,11 +48,43 @@ class MemberProfileVC: UITableViewController, UIImagePickerControllerDelegate, U
         setNavBarRightButtonTitle("Save", action: "saveButtonClick")
     }
     
+    func setupLoginButton() {
+        fbloginButton.readPermissions = ["public_profile", "email", "user_friends"];
+        fbloginButton.delegate = self
+        fblogoutButton.delegate = self
+    }
+    
+    func setupTableView() {
+        tableView.delegate = self
+    }
+    
     func refreshUIIfNeeded() {
         self.firstNameTextField.text = model.firstName
         self.lastNameTextField.text = model.lastName
-        self.phoneNumberLabel.text = model.phoneNUmber
+        self.phoneNumberLabel.text = model.phoneNumber
+        self.emailTextField.text = model.email
         self.roleButton.setTitle(model.role, forState: .Normal)
+        self.passwordTextField.text = model.passWord
+        
+        
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var um = UserManager.sharedInstance
+        var section = indexPath.section
+        var row = indexPath.row
+        // optionally show FBLoginButton
+        if section == 0 && row == 0 {
+            if um.userLoggedIn { return 0 }
+            else { return 70 }
+        }
+        if section == 0 && row == 1 { return 86.0 }
+        // optionally show logout
+        if section == 4 {
+            if um.userLoggedIn { return 75 }
+            else { return 0 }
+        }
+        return 44.0
     }
     
     
@@ -55,6 +96,7 @@ class MemberProfileVC: UITableViewController, UIImagePickerControllerDelegate, U
             if mediaType == String(kUTTypeImage) {
                 if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
                     profileImageView.image = image
+                    pickedNewImage = true
                 }
             }
             picker.dismissViewControllerAnimated(true, completion: nil)
@@ -102,7 +144,13 @@ class MemberProfileVC: UITableViewController, UIImagePickerControllerDelegate, U
     }
     
     func saveButtonClick() {
-        navigationController?.popViewControllerAnimated(true)
+        var um = UserManager.sharedInstance
+        if let signupForm = getSignupForm() {
+            if um.userLoggedIn { updateUser(signupForm) }
+            else { createUser(signupForm) }
+        } else {
+            showAlert("Alert", messege: "Please Fill in all Blank", cancleTitle: "OK")
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -110,5 +158,126 @@ class MemberProfileVC: UITableViewController, UIImagePickerControllerDelegate, U
             var des = segue.destinationViewController as! Phone_VC
             des.memberProfileVC = self
         }
+    }
+    
+    // MARK: Facebook Login
+    // --------------------------------------------------------------------------------------------
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        if error != nil {
+            self.showAlert("Falied to user FB Signup", messege:error.localizedDescription , cancleTitle: "OK")
+        } else if (result.isCancelled) {
+            self.showAlert("Falied to user FB Signup", messege:"You cancled login" , cancleTitle: "OK")
+        } else {
+            if result.grantedPermissions.contains("email") {
+                println("success")
+                LoadingView.showWithMaskType(.Black)
+                dataManager.fbSignin(handleLoginResult)
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        var um = UserManager.sharedInstance
+        um.userLoggedIn = false
+        um.userToken = ""
+        um.useFBLogIn = false
+        um.userFirstTimeLogin = true
+        um.info = TeamMemberModel()
+        um.saveUserInfo()
+        
+        var vc = OnboardVC()
+        navigationController?.setViewControllers([vc], animated: true)
+    }
+    
+    func handleLoginResult(success: Bool, errorStr: String) {
+        LoadingView.dismiss()
+        onMainThread() {
+            if success {
+                self.doneButtonHandler?(self)
+                self.navigationController?.popViewControllerAnimated(true)
+            } else {
+                self.showAlert("Falied to use FB Signup", messege:errorStr , cancleTitle: "OK")
+            }
+        }
+    }
+
+    
+    // MARK: Helper Method
+    // --------------------------------------------------------------------------------------------
+    
+    func updateUser(signupForm: SignupForm) {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.updateUser(signupForm) { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                self.handleUpdateOrCreateUserSuccess()
+            } else {
+                self.showAlert("Falied to use FB Signup", messege:errorStr , cancleTitle: "OK")
+            }
+        }
+    }
+    
+    func createUser(signupForm: SignupForm) {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.signup(signupForm) { (success, errorStr) in
+            if success {
+                self.handleUpdateOrCreateUserSuccess()
+            } else {
+                onMainThread() {
+                    LoadingView.dismiss()
+                    self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+                }
+            }
+        }
+    }
+    
+    func handleUpdateOrCreateUserSuccess() {
+        if self.pickedNewImage {
+            self.uploadUserProfileImage()
+        } else {
+            onMainThread() {
+                LoadingView.dismiss()
+                self.doneButtonHandler?(self)
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+    }
+    
+    func uploadUserProfileImage() {
+        if let image = profileImageView.image {
+            dataManager.upLoadImage(image, comp: handleUploadImageResult)
+        }
+    }
+    
+    func handleUploadImageResult(success: Bool, errorStr: String) {
+        onMainThread() {
+            LoadingView.dismiss()
+            if success {
+                self.doneButtonHandler?(self)
+                self.navigationController?.popViewControllerAnimated(true)
+            } else {
+                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+    
+    func getSignupForm() -> SignupForm? {
+        if let password = passwordTextField.text,
+            firstName = firstNameTextField.text,
+            lastName = lastNameTextField.text,
+            email = emailTextField.text,
+            role = roleButton.titleLabel?.text?.lowercaseString
+        {
+                var signupForm = SignupForm()
+                signupForm.passwordConfirm = password
+                signupForm.password = password
+                signupForm.firstName = firstName
+                signupForm.lastName = lastName
+                signupForm.email = email
+                signupForm.role = role
+                return signupForm
+        }
+        return nil
     }
 }
