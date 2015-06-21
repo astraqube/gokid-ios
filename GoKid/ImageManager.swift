@@ -129,14 +129,9 @@ class ImageManager: NSObject {
     }
     
     func setImageWithTransformer(urlStr: String, imageView: UIImageView, transformer: ImageTransformer?) {
-       
+        
         // update imageView:URL map
         latestWantedURL[imageView] = urlStr
-        
-        // let WebImageView decided animated show or not
-        if let webImgV = imageView as? WebImageView {
-            webImgV.startLoadingTime = NSDate().timeIntervalSince1970
-        }
         
         // *******************************
         // try to find mem cached image
@@ -166,7 +161,7 @@ class ImageManager: NSObject {
         if result { return }
         
         // *******************************
-        // Download image from web
+        // Download image from sever
         // *******************************
         // println("prepare to download \(urlStr)")
         downloadImageByURLStr(urlStr) { (img: UIImage?) in
@@ -231,7 +226,7 @@ class ImageManager: NSObject {
                 println("Invalid image url \(urlStr)")
                 return
             }
-        }.resume()
+            }.resume()
     }
     
     func diskCacheImageWithURLStr(img: UIImage, _ urlStr: String) {
@@ -242,6 +237,18 @@ class ImageManager: NSObject {
             var data = UIImagePNGRepresentation(img)
             data.writeToFile(path, atomically: true)
             self.diskCached[id] = id
+        }
+    }
+    
+    func removeDiskCacheForURL(urlStr: String) {
+        if urlStr == "" { return }
+        var fileManager = NSFileManager.defaultManager()
+        var id = self.imgIDForURL(urlStr)
+        var path = self.imageDirPath + id
+        diskCached[id] = nil
+        memCached[urlStr] = nil
+        if fileManager.fileExistsAtPath(path) {
+            fileManager.removeItemAtPath(path, error: nil)
         }
     }
     
@@ -281,3 +288,4 @@ class ImageManager: NSObject {
         return imageDirPath + id
     }
 }
+

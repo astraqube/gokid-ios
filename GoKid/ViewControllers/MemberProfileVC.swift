@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemberProfileVC: UITableViewController, FBSDKLoginButtonDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var fblogoutButton: FBSDKLoginButton!
@@ -26,8 +26,6 @@ class MemberProfileVC: UITableViewController, FBSDKLoginButtonDelegate, UIImageP
     var sourceCellType: TeamCellType = .None
     var sourceCellIndex: Int = 0
     var model = TeamMemberModel()
-    
-    var dataManager = DataManager.sharedInstance
     var pickedNewImage = false
     
     override func viewDidLoad() {

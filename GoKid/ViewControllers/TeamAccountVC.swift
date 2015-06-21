@@ -8,13 +8,9 @@
 
 import UIKit
 
-class TeamAccountVC: UICollectionViewController {
+class TeamAccountVC: BaseCVC {
     
     var dataSource = [TeamMemberModel]()
-    var im = ImageManager.sharedInstance
-    var um = UserManager.sharedInstance
-    var dm = DataManager.sharedInstance
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

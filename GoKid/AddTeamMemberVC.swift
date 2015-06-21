@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -18,7 +18,6 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     
-    var dataManager = DataManager.sharedInstance
     var sourceCellType: TeamCellType = .None
     var sourceCellIndex: Int = 0
     var model = TeamMemberModel()

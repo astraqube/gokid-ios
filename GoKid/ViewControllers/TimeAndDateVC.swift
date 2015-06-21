@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimeAndDateVC: UITableViewController {
+class TimeAndDateVC: BaseTVC {
     
     var tableData = [TDCellModel]()
     var dateTimePicker: DateTimePicker!
