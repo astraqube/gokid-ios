@@ -140,6 +140,14 @@ extension String {
     }
 }
 
+extension Array {
+    mutating func appendArr(arr: Array<T>) {
+        for element in arr {
+            self.append(element)
+        }
+    }
+}
+
 
 
 @IBDesignable

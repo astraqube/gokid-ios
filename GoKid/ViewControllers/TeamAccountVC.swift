@@ -10,9 +10,10 @@ import UIKit
 
 class TeamAccountVC: UICollectionViewController {
     
-    var collectionViewData = [TeamMemberModel]()
-    var um = UserManager.sharedInstance
+    var dataSource = [TeamMemberModel]()
     var im = ImageManager.sharedInstance
+    var um = UserManager.sharedInstance
+    var dm = DataManager.sharedInstance
     
     
     override func viewDidLoad() {
@@ -27,24 +28,42 @@ class TeamAccountVC: UICollectionViewController {
     }
     
     func prepareAndLoadTeamMemberCollectionView() {
-        collectionViewData = [TeamMemberModel]()
+        dataSource = [TeamMemberModel]()
         if um.userLoggedIn {
-            collectionViewData.append(um.info)
-            addTeamMembersInfo()
-            
-            var addMemberCell = TeamMemberModel()
-            addMemberCell.cellType = .AddMember
-            collectionViewData.append(addMemberCell)
+            dataSource.append(um.info)
+            addTeamMembersInfoAndLoadCollectionView()
         } else {
             var addUser = TeamMemberModel()
             addUser.cellType = .AddUser
-            collectionViewData.append(addUser)
+            dataSource.append(addUser)
+            collectionView?.reloadData()
         }
-        collectionView?.reloadData()
     }
     
-    func addTeamMembersInfo() {
-        
+    func addTeamMembersInfoAndLoadCollectionView() {
+        LoadingView.showWithMaskType(.Black)
+        dm.getTeamMembersOfTeam { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                self.dataSource.appendArr(self.um.teamMembers)
+                self.appendAddMemberCell()
+                self.reloadCollectionViewOnMainThread()
+            } else {
+                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+    
+    func reloadCollectionViewOnMainThread() {
+        onMainThread() {
+            self.collectionView?.reloadData()
+        }
+    }
+    
+    func appendAddMemberCell() {
+        var addMemberCell = TeamMemberModel()
+        addMemberCell.cellType = .AddMember
+        dataSource.append(addMemberCell)
     }
     
     // MARK: IBAction Method
@@ -63,11 +82,11 @@ class TeamAccountVC: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionViewData.count
+        return dataSource.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var model = collectionViewData[indexPath.row]
+        var model = dataSource[indexPath.row]
         if model.cellType == .AddMember {
             var cell = collectionView.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
             cell.contentLabel.text = "Add other drivers in you carpool team"
@@ -98,7 +117,7 @@ class TeamAccountVC: UICollectionViewController {
     // --------------------------------------------------------------------------------------------
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var model = collectionViewData[indexPath.row]
+        var model = dataSource[indexPath.row]
         
         if model.cellType == .AddMember || model.cellType == .EditMember {
             var vc = vcWithID("AddTeamMemberVC") as! AddTeamMemberVC
@@ -127,11 +146,11 @@ class TeamAccountVC: UICollectionViewController {
         var model = modelFromAddTeamMemberVC(vc)
         if vc.sourceCellType == .AddMember {
             model.cellType = .EditMember
-            collectionViewData.insert(model, atIndex: collectionViewData.count-1)
+            dataSource.insert(model, atIndex: dataSource.count-1)
         } else if vc.sourceCellType == .EditMember {
             var row = vc.sourceCellIndex
             model.cellType = .EditMember
-            collectionViewData[row] = model
+            dataSource[row] = model
         }
         collectionView?.reloadData()
     }
@@ -139,29 +158,32 @@ class TeamAccountVC: UICollectionViewController {
     func memberProfileEditDone(vc: MemberProfileVC) {
         var model = UserManager.sharedInstance.info
         if vc.sourceCellType == .AddUser {
-            model.cellType = .EditUser
-            var addMember = TeamMemberModel()
-            addMember.cellType = .AddMember
-            collectionViewData = [model, addMember]
+            prepareAndLoadTeamMemberCollectionView()
         } else if vc.sourceCellType == .EditUser {
             var row = vc.sourceCellIndex
-            collectionViewData[row] = model
+            dataSource[row] = model
         }
         collectionView?.reloadData()
     }
     
     func removeMember(vc: AddTeamMemberVC) {
         var row = vc.sourceCellIndex
-        collectionViewData.removeAtIndex(row)
+        var model = dataSource[row]
+        dm.deleteTeamMember(model.id) { (success, errorStr) in
+            if !success {
+                self.showAlert("Failed to delete member", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+        dataSource.removeAtIndex(row)
         collectionView?.reloadData()
     }
     
     func modelFromAddTeamMemberVC(vc :AddTeamMemberVC) -> TeamMemberModel {
         var model = TeamMemberModel()
-        model.firstName = vc.firstNameTextField.text!
-        model.lastName = vc.lastNameTextField.text!
-        model.role = vc.roleButton.titleLabel!.text!
         model.phoneNumber = vc.phoneNumberTextField.text!
+        model.firstName = vc.firstNameTextField.text!
+        model.role = vc.roleButton.titleLabel!.text!
+        model.lastName = vc.lastNameTextField.text!
         return model
     }
     

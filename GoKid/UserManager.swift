@@ -21,23 +21,20 @@ class UserManager: NSObject {
     var windowH: CGFloat = 0
     var windowW: CGFloat = 0
     
-    var userTeamName = "Unknown Team"
     var userProfileImage: UIImage?
     var info = TeamMemberModel()
+    var teamMembers = [TeamMemberModel]()
     
     var currentCarpoolName: String = ""
     var currentCarpoolKidName: String = ""
     var currentChoosenDate: String?
     var currentChossenStartTime: String?
     var currentChoosenEndTime: String?
-    
+    var currentCarpool = CarpoolModel()
     
     var userHomeAdress: String?
     var recentAddressTitles = [String]()
     var recentAddress = [String]()
-    
-    var teamMembers = [TeamMemberModel]()
-    var currentCarpool = CarpoolModel()
     
     let documentPath = NSHomeDirectory() + "/Documents/"
     var ud = NSUserDefaults.standardUserDefaults()
@@ -68,7 +65,8 @@ class UserManager: NSObject {
         info.email = user["email"].stringValue
         info.role = user["role"].stringValue
         info.cellType = .EditUser
-        if let teamID = json["teams"]["id"].int {
+        
+        if let teamID = json["teams"][0]["id"].int {
             info.teamID = teamID
         }
         if let imageURL = user["avatar"]["thumb_url"].string {
@@ -89,16 +87,20 @@ class UserManager: NSObject {
     // --------------------------------------------------------------------------------------------
     
     func saveUserInfo() {
-        var avatar = ["thumb_url": info.thumURL]
-        var teams = ["teams": info.teamID]
+        var avatar = [
+            "thumb_url": info.thumURL
+        ]
+        var teams = [
+            ["id": info.teamID]
+        ]
         var userInfo = [
             "first_name": info.firstName,
+            "password" : info.passWord,
             "last_name": info.lastName,
             "email": info.email,
+            "token": userToken,
             "role": info.role,
-            "password" : info.passWord,
-            "avatar": avatar,
-            "token": userToken
+            "avatar": avatar
         ]
         var map = [
             "user": userInfo,

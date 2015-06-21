@@ -101,6 +101,7 @@ class DataManager: NSObject {
             errorStr = str
         }
         var final = opStr + " " + errorStr
+        println(final)
         return final
     }
 }

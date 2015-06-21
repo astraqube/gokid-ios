@@ -17,6 +17,8 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
     @IBOutlet weak var buttomButton: UIButton!
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
+    
+    var dataManager = DataManager.sharedInstance
 
     
     var sourceCellType: TeamCellType = .None
@@ -75,6 +77,13 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
         }
     }
     
+    // MARK: UITableView Delegate
+    // --------------------------------------------------------------------------------------------
+    
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+    
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
@@ -87,25 +96,16 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
     }
     
     @IBAction func roleButtonClick(sender: AnyObject) {
-        let button1 = UIAlertAction(title: "Mommy", style: .Default) { (alert) in
-            self.roleButton.setTitle("Mommy", forState: .Normal)
-        }
-        let button2 = UIAlertAction(title: "Daddy", style: .Default) { (alert) in
-            self.roleButton.setTitle("Daddy", forState: .Normal)
-        }
-        let button3 = UIAlertAction(title: "Child", style: .Default) { (alert) in
-            self.roleButton.setTitle("Child", forState: .Normal)
-        }
-        let button4 = UIAlertAction(title: "Sitter", style: .Default) { (alert) in
-            self.roleButton.setTitle("Sitter", forState: .Normal)
-        }
-        let button5 = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        alert.addAction(button1)
-        alert.addAction(button2)
-        alert.addAction(button3)
-        alert.addAction(button4)
-        alert.addAction(button5)
+        var titles = ["Mommy", "Daddy", "Kid", "Sitter"]
+        for title in titles {
+            let button = UIAlertAction(title: title, style: .Default) { (alert) in
+                self.roleButton.setTitle(title, forState: .Normal)
+            }
+            alert.addAction(button)
+        }
+        let cancleButton = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in }
+        alert.addAction(cancleButton)
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -118,17 +118,47 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
         handleDoneButtonClick()
     }
     
-    func getTeamModel() -> TeamMemberModel
-    
-    func handleDoneButtonClick() {
+    func getTeamModel() -> TeamMemberModel? {
         if let firstName = firstNameTextField.text,
             lastName = lastNameTextField.text,
             role = roleButton.titleLabel?.text,
             phoneNumber = phoneNumberTextField.text {
-                doneButtonHandler?(self)
-                navigationController?.popViewControllerAnimated(true)
+                var model = TeamMemberModel()
+                model.firstName = firstName
+                model.lastName = lastName
+                model.role = role
+                model.phoneNumber = phoneNumber
+                return model
+        } else {
+            return nil
+        }
+    }
+    
+    func handleDoneButtonClick() {
+        if let model = getTeamModel() {
+            LoadingView.showWithMaskType(.Black)
+            if sourceCellType == .AddMember {
+                dataManager.addTeamMember(model, comp: handleEditOrAddSuccess)
+            } else if sourceCellType == .EditMember {
+                dataManager.updateTeamMember(model, comp: handleEditOrAddSuccess)
+            }
         } else {
             showAlert("Alert", messege: "Please Fill in all the blank field", cancleTitle: "OK")
+        }
+    }
+    
+    // MARK: Upload changes
+    // --------------------------------------------------------------------------------------------
+    
+    func handleEditOrAddSuccess(success: Bool, errorStr: String) {
+        onMainThread() {
+            LoadingView.dismiss()
+            if success {
+                self.doneButtonHandler?(self)
+                self.navigationController?.popViewControllerAnimated(true)
+            } else {
+                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+            }
         }
     }
     
