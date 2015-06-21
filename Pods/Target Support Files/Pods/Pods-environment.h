@@ -66,18 +66,6 @@
 #define COCOAPODS_VERSION_MINOR_Bolts_Tasks 1
 #define COCOAPODS_VERSION_PATCH_Bolts_Tasks 5
 
-// CRToast
-#define COCOAPODS_POD_AVAILABLE_CRToast
-#define COCOAPODS_VERSION_MAJOR_CRToast 0
-#define COCOAPODS_VERSION_MINOR_CRToast 0
-#define COCOAPODS_VERSION_PATCH_CRToast 7
-
-// CSStickyHeaderFlowLayout
-#define COCOAPODS_POD_AVAILABLE_CSStickyHeaderFlowLayout
-#define COCOAPODS_VERSION_MAJOR_CSStickyHeaderFlowLayout 0
-#define COCOAPODS_VERSION_MINOR_CSStickyHeaderFlowLayout 2
-#define COCOAPODS_VERSION_PATCH_CSStickyHeaderFlowLayout 5
-
 // FBSDKCoreKit
 #define COCOAPODS_POD_AVAILABLE_FBSDKCoreKit
 #define COCOAPODS_VERSION_MAJOR_FBSDKCoreKit 4
@@ -107,24 +95,6 @@
 #define COCOAPODS_VERSION_MAJOR_JKExpandTableView 0
 #define COCOAPODS_VERSION_MINOR_JKExpandTableView 0
 #define COCOAPODS_VERSION_PATCH_JKExpandTableView 1
-
-// MZAppearance
-#define COCOAPODS_POD_AVAILABLE_MZAppearance
-#define COCOAPODS_VERSION_MAJOR_MZAppearance 1
-#define COCOAPODS_VERSION_MINOR_MZAppearance 1
-#define COCOAPODS_VERSION_PATCH_MZAppearance 5
-
-// MZFormSheetController
-#define COCOAPODS_POD_AVAILABLE_MZFormSheetController
-#define COCOAPODS_VERSION_MAJOR_MZFormSheetController 3
-#define COCOAPODS_VERSION_MINOR_MZFormSheetController 0
-#define COCOAPODS_VERSION_PATCH_MZFormSheetController 3
-
-// MZFormSheetController/Core
-#define COCOAPODS_POD_AVAILABLE_MZFormSheetController_Core
-#define COCOAPODS_VERSION_MAJOR_MZFormSheetController_Core 3
-#define COCOAPODS_VERSION_MINOR_MZFormSheetController_Core 0
-#define COCOAPODS_VERSION_PATCH_MZFormSheetController_Core 3
 
 // Onboard
 #define COCOAPODS_POD_AVAILABLE_Onboard
