@@ -27,45 +27,6 @@ class TeamAccountVC: UICollectionViewController {
         setNavBarLeftButtonTitle("Menu", action: "menuButtonClick")
     }
     
-    func prepareAndLoadTeamMemberCollectionView() {
-        dataSource = [TeamMemberModel]()
-        if um.userLoggedIn {
-            dataSource.append(um.info)
-            addTeamMembersInfoAndLoadCollectionView()
-        } else {
-            var addUser = TeamMemberModel()
-            addUser.cellType = .AddUser
-            dataSource.append(addUser)
-            collectionView?.reloadData()
-        }
-    }
-    
-    func addTeamMembersInfoAndLoadCollectionView() {
-        LoadingView.showWithMaskType(.Black)
-        dm.getTeamMembersOfTeam { (success, errorStr) in
-            LoadingView.dismiss()
-            if success {
-                self.dataSource.appendArr(self.um.teamMembers)
-                self.appendAddMemberCell()
-                self.reloadCollectionViewOnMainThread()
-            } else {
-                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
-            }
-        }
-    }
-    
-    func reloadCollectionViewOnMainThread() {
-        onMainThread() {
-            self.collectionView?.reloadData()
-        }
-    }
-    
-    func appendAddMemberCell() {
-        var addMemberCell = TeamMemberModel()
-        addMemberCell.cellType = .AddMember
-        dataSource.append(addMemberCell)
-    }
-    
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
@@ -86,23 +47,24 @@ class TeamAccountVC: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        var cv = collectionView
         var model = dataSource[indexPath.row]
         if model.cellType == .AddMember {
-            var cell = collectionView.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
+            var cell = cv.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
             cell.contentLabel.text = "Add other drivers in you carpool team"
             return cell
         } else if model.cellType == .AddUser {
-            var cell = collectionView.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
+            var cell = cv.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
             cell.contentLabel.text = "Create your profile"
             return cell
         } else if model.cellType == .EditMember {
-            var cell = collectionView.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
+            var cell = cv.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
             cell.roleLabel.text = model.role
             cell.nameLabel.text = model.firstName
             im.setImageToView(cell.profileImageView, urlStr: model.thumURL)
             return cell
         } else if model.cellType == .EditUser {
-            var cell = collectionView.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
+            var cell = cv.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
             cell.roleLabel.text = "You"
             cell.nameLabel.text = model.firstName
             im.setImageToView(cell.profileImageView, urlStr: model.thumURL)
@@ -118,20 +80,19 @@ class TeamAccountVC: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var model = dataSource[indexPath.row]
-        
         if model.cellType == .AddMember || model.cellType == .EditMember {
             var vc = vcWithID("AddTeamMemberVC") as! AddTeamMemberVC
-            vc.sourceCellType = model.cellType
-            vc.sourceCellIndex = indexPath.row
             vc.model = model
+            vc.sourceCellIndex = indexPath.row
+            vc.sourceCellType = model.cellType
             vc.doneButtonHandler = addMemberDone
             vc.removeButtonHandler = removeMember
             navigationController?.pushViewController(vc, animated: true)
         } else if model.cellType == .AddUser || model.cellType == .EditUser {
             var vc = vcWithID("MemberProfileVC") as! MemberProfileVC
+            vc.model = model
             vc.sourceCellType = model.cellType
             vc.sourceCellIndex = indexPath.row
-            vc.model = model
             vc.doneButtonHandler = memberProfileEditDone
             navigationController?.pushViewController(vc, animated: true)
         } else {
@@ -186,6 +147,51 @@ class TeamAccountVC: UICollectionViewController {
         model.lastName = vc.lastNameTextField.text!
         return model
     }
+    
+    // MARK: Data Layer Method
+    // --------------------------------------------------------------------------------------------
+    
+    func prepareAndLoadTeamMemberCollectionView() {
+        dataSource = [TeamMemberModel]()
+        if um.userLoggedIn {
+            dataSource.append(um.info)
+            addTeamMembersInfoAndLoadCollectionView()
+        } else {
+            var addUser = TeamMemberModel()
+            addUser.cellType = .AddUser
+            dataSource.append(addUser)
+            collectionView?.reloadData()
+        }
+    }
+    
+    func addTeamMembersInfoAndLoadCollectionView() {
+        LoadingView.showWithMaskType(.Black)
+        dm.getTeamMembersOfTeam { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                self.dataSource.appendArr(self.um.teamMembers)
+                self.appendAddMemberCell()
+                self.reloadCollectionViewOnMainThread()
+            } else {
+                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+    
+    func reloadCollectionViewOnMainThread() {
+        onMainThread() {
+            self.collectionView?.reloadData()
+        }
+    }
+    
+    func appendAddMemberCell() {
+        var addMemberCell = TeamMemberModel()
+        addMemberCell.cellType = .AddMember
+        dataSource.append(addMemberCell)
+    }
+    
+    // MARK: End Editing
+    // --------------------------------------------------------------------------------------------
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         view.endEditing(true)

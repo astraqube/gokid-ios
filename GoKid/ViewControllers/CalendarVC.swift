@@ -11,6 +11,8 @@ import UIKit
 class CalendarVC: BaseVC {
 
     @IBOutlet weak var borderImageView: UIImageView!
+    @IBOutlet weak var tableView: UIImageView!
+    var dataSource = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,4 +49,9 @@ class CalendarVC: BaseVC {
     func menuButtonClick() {
         self.navigationController?.viewDeckController.toggleLeftViewAnimated(true)
     }
+    
+    // MARK: TableView DataSource and Delegate
+    // --------------------------------------------------------------------------------------------
+    
+    
 }

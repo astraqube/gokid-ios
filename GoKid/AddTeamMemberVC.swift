@@ -19,13 +19,10 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
     @IBOutlet weak var profileImageView: UIImageView!
     
     var dataManager = DataManager.sharedInstance
-
-    
     var sourceCellType: TeamCellType = .None
     var sourceCellIndex: Int = 0
     var model = TeamMemberModel()
     
-    var teamAccountVC: TeamAccountVC?
     var doneButtonHandler: ((AddTeamMemberVC)->())?
     var removeButtonHandler: ((AddTeamMemberVC)->())?
     
@@ -109,29 +106,12 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    
     @IBAction func buttomButtonClick(sender: AnyObject) {
         if sourceCellType == .EditMember {
             showDeleteMemberAlertView()
             return
         }
         handleDoneButtonClick()
-    }
-    
-    func getTeamModel() -> TeamMemberModel? {
-        if let firstName = firstNameTextField.text,
-            lastName = lastNameTextField.text,
-            role = roleButton.titleLabel?.text,
-            phoneNumber = phoneNumberTextField.text {
-                var model = TeamMemberModel()
-                model.firstName = firstName
-                model.lastName = lastName
-                model.role = role
-                model.phoneNumber = phoneNumber
-                return model
-        } else {
-            return nil
-        }
     }
     
     func handleDoneButtonClick() {
@@ -159,6 +139,22 @@ class AddTeamMemberVC: UITableViewController, UIAlertViewDelegate, UIImagePicker
             } else {
                 self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
             }
+        }
+    }
+    
+    func getTeamModel() -> TeamMemberModel? {
+        if let firstName = firstNameTextField.text,
+            lastName = lastNameTextField.text,
+            role = roleButton.titleLabel?.text,
+            phoneNumber = phoneNumberTextField.text {
+                var model = TeamMemberModel()
+                model.firstName = firstName
+                model.lastName = lastName
+                model.role = role
+                model.phoneNumber = phoneNumber
+                return model
+        } else {
+            return nil
         }
     }
     
