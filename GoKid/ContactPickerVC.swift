@@ -16,6 +16,13 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     var tableViewData = [String]()
     var tableSelected = [Bool]()
     var collectionData = [(String, Int)]()
+    
+    struct Person {
+        var fullName: String
+        var selected: Bool
+        var phoneNum: String
+    }
+    var tableDataSource = [Person]()
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -76,18 +76,20 @@ class TeamAccountVC: BaseCVC {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var model = dataSource[indexPath.row]
-        if model.cellType == .AddMember || model.cellType == .EditMember {
+        var cellType = model.cellType
+        if cellType == .AddMember || cellType == .EditMember {
             var vc = vcWithID("AddTeamMemberVC") as! AddTeamMemberVC
-            vc.model = model
+            if model.cellType == .AddMember { vc.model = TeamMemberModel() }
+            else { vc.model = model }
             vc.sourceCellIndex = indexPath.row
-            vc.sourceCellType = model.cellType
+            vc.sourceCellType = cellType
             vc.doneButtonHandler = addMemberDone
             vc.removeButtonHandler = removeMember
             navigationController?.pushViewController(vc, animated: true)
-        } else if model.cellType == .AddUser || model.cellType == .EditUser {
+        } else if cellType == .AddUser || cellType == .EditUser {
             var vc = vcWithID("MemberProfileVC") as! MemberProfileVC
             vc.model = model
-            vc.sourceCellType = model.cellType
+            vc.sourceCellType = cellType
             vc.sourceCellIndex = indexPath.row
             vc.doneButtonHandler = memberProfileEditDone
             navigationController?.pushViewController(vc, animated: true)
@@ -100,7 +102,7 @@ class TeamAccountVC: BaseCVC {
     // --------------------------------------------------------------------------------------------
     
     func addMemberDone(vc: AddTeamMemberVC) {
-        var model = modelFromAddTeamMemberVC(vc)
+        var model = vc.model
         if vc.sourceCellType == .AddMember {
             model.cellType = .EditMember
             dataSource.insert(model, atIndex: dataSource.count-1)
@@ -126,22 +128,13 @@ class TeamAccountVC: BaseCVC {
     func removeMember(vc: AddTeamMemberVC) {
         var row = vc.sourceCellIndex
         var model = dataSource[row]
-        dm.deleteTeamMember(model.id) { (success, errorStr) in
+        dm.deleteTeamMember(model.permissionID) { (success, errorStr) in
             if !success {
                 self.showAlert("Failed to delete member", messege: errorStr, cancleTitle: "OK")
             }
         }
         dataSource.removeAtIndex(row)
         collectionView?.reloadData()
-    }
-    
-    func modelFromAddTeamMemberVC(vc :AddTeamMemberVC) -> TeamMemberModel {
-        var model = TeamMemberModel()
-        model.phoneNumber = vc.phoneNumberTextField.text!
-        model.firstName = vc.firstNameTextField.text!
-        model.role = vc.roleButton.titleLabel!.text!
-        model.lastName = vc.lastNameTextField.text!
-        return model
     }
     
     // MARK: Data Layer Method

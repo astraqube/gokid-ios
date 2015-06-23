@@ -25,6 +25,8 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     var doneButtonHandler: ((AddTeamMemberVC)->())?
     var removeButtonHandler: ((AddTeamMemberVC)->())?
     
+    var selectedImage : UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -67,6 +69,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
             if mediaType == String(kUTTypeImage) {
                 if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
                     profileImageView.image = image
+                    selectedImage = image
                 }
             }
             picker.dismissViewControllerAnimated(true, completion: nil)
@@ -129,14 +132,39 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     // MARK: Upload changes
     // --------------------------------------------------------------------------------------------
     
-    func handleEditOrAddSuccess(success: Bool, errorStr: String) {
-        onMainThread() {
+    func handleEditOrAddSuccess(success: Bool, errorStr: String, newModel: TeamMemberModel?) {
+        if success {
+            if let newUser = newModel {
+                self.model = newUser
+                checkNeedsToUploadImage()
+            } else {
+                LoadingView.dismiss()
+                self.showAlert("Alert", messege: "Success to create user but got no result back from sever", cancleTitle: "OK")
+            }
+        } else {
             LoadingView.dismiss()
+            self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+        }
+    }
+    
+    func checkNeedsToUploadImage() {
+        if let image = selectedImage {
+            dataManager.upLoadTeamMemberImage(image, model: model, comp: handleUploadImage)
+        } else {
+            LoadingView.dismiss()
+            self.doneButtonHandler?(self)
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
+    func handleUploadImage(success: Bool, errorStr: String) {
+        LoadingView.dismiss()
+        onMainThread() {
             if success {
                 self.doneButtonHandler?(self)
                 self.navigationController?.popViewControllerAnimated(true)
             } else {
-                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+                self.showAlert("Fail to upload Image", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
@@ -146,7 +174,6 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
             lastName = lastNameTextField.text,
             role = roleButton.titleLabel?.text,
             phoneNumber = phoneNumberTextField.text {
-                var model = TeamMemberModel()
                 model.firstName = firstName
                 model.lastName = lastName
                 model.role = role

@@ -25,6 +25,9 @@ class UserManager: NSObject {
     var info = TeamMemberModel()
     var teamMembers = [TeamMemberModel]()
     
+    
+    var updatedMember = TeamMemberModel()
+    
     var currentCarpoolName: String = ""
     var currentCarpoolKidName: String = ""
     var currentChoosenDate: String?

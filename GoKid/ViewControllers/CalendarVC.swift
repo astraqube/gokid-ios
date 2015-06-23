@@ -34,7 +34,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        dataSource = dataManager.fackCalendarData()
+        dataSource = dataManager.fakeCalendarData()
         tableView.reloadData()
     }
     
@@ -59,8 +59,6 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var model = dataSource[indexPath.row]
-        println(indexPath.row)
-        println(model.cellType)
         switch model.cellType {
         case .Notification:
             return configNotificationCell(indexPath, model)
@@ -71,11 +69,13 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         case .Normal:
             return configCalendarCell(indexPath, model)
         default:
-            
             println("Unknown cell")
             return UITableViewCell()
         }
     }
+    
+    // MARK: Construct TableView Cells
+    // --------------------------------------------------------------------------------------------
     
     func configNotificationCell(ip: NSIndexPath, _ model: CalendarModel) -> CalendarNotificationCell {
         var cell = tableView.cellWithID("CalendarNotificationCell", ip) as! CalendarNotificationCell
