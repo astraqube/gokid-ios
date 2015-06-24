@@ -29,11 +29,6 @@ extension DataManager {
         }
     }
     
-    func addTeamMemberProfileImage(model: TeamMemberModel, comp: UserCompletion) {
-        // POST /api/users/:user_id/upload
-        
-    }
-    
     func upLoadTeamMemberImage(image: UIImage, model: TeamMemberModel, comp: completion) {
         
         var urlStr = baseURL + "/api/users/" + String(model.userID) + "/upload"

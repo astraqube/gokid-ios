@@ -34,6 +34,7 @@
 		1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */; };
 		1D533D1D1B29533600F848B8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D533D1B1B29533600F848B8 /* Fabric.framework */; };
 		1D533D1E1B29533600F848B8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D533D1C1B29533600F848B8 /* Crashlytics.framework */; };
+		1D7D8DF31B3A76D8002D29A5 /* DataManager + Carpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D8DF21B3A76D8002D29A5 /* DataManager + Carpool.swift */; };
 		1D891F0F1B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F081B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift */; };
 		1D891F101B23FDD8006FD961 /* SwiftAddressBookGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F091B23FDD8006FD961 /* SwiftAddressBookGroup.swift */; };
 		1D891F111B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F0A1B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift */; };
@@ -125,6 +126,7 @@
 		1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseVC.swift; path = ViewControllers/BaseVC.swift; sourceTree = "<group>"; };
 		1D533D1B1B29533600F848B8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		1D533D1C1B29533600F848B8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		1D7D8DF21B3A76D8002D29A5 /* DataManager + Carpool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Carpool.swift"; sourceTree = "<group>"; };
 		1D891F081B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookDataStructures.swift; sourceTree = "<group>"; };
 		1D891F091B23FDD8006FD961 /* SwiftAddressBookGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookGroup.swift; sourceTree = "<group>"; };
 		1D891F0A1B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAddressBookHelperMethods.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				1D8F78FF1B36A47A00C78CAF /* ImageManager.swift */,
+				1D7D8DF21B3A76D8002D29A5 /* DataManager + Carpool.swift */,
 				1D8F79011B36A64D00C78CAF /* DataManager + Fack.swift */,
 				1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */,
 				1DC765C31B32754800D9D306 /* DataManager + Team.swift */,
@@ -735,6 +738,7 @@
 				1DFBBE9C1B1C78DC00630440 /* SignUpVC.swift in Sources */,
 				1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */,
 				1D891F151B23FDD8006FD961 /* SwiftAddressBookWrapper.swift in Sources */,
+				1D7D8DF31B3A76D8002D29A5 /* DataManager + Carpool.swift in Sources */,
 				1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */,
 				1D891F271B2734C2006FD961 /* TeamMemberModel.swift in Sources */,
 				1D8F78FE1B36A18300C78CAF /* CalendarModel.swift in Sources */,

@@ -8,21 +8,27 @@
 
 import UIKit
 
+class Person {
+    var firstName: String
+    var fullName: String
+    var selected: Bool
+    var phoneNum: String
+    
+    init(firstName: String, fullName: String, selected: Bool, phoneNum: String) {
+        self.fullName = fullName
+        self.firstName = firstName
+        self.selected = selected
+        self.phoneNum = phoneNum
+    }
+}
+
 class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
-    var allContacts = [SwiftAddressBookPerson]()
-    var tableViewData = [String]()
-    var tableSelected = [Bool]()
-    var collectionData = [(String, Int)]()
-    
-    struct Person {
-        var fullName: String
-        var selected: Bool
-        var phoneNum: String
-    }
+
     var tableDataSource = [Person]()
+    var collectionDataSource = [Person]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +60,7 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     func nextButtonClick() {
         var dm = DataManager.sharedInstance
         var um = UserManager.sharedInstance
-        var carpoolID = um.currentCarpool.id
+        var carpoolID = um.currentCarpoolModel.id
         var phoneNumbers = getCurrentSelectedPhoneNumber()
         
         dm.invite(phoneNumbers, carpoolID: carpoolID) { (success, errorStr) in
@@ -82,24 +88,23 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableViewData.count
+        return tableDataSource.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var row = indexPath.row
         var cell = tableView.cellWithID("ContactCell", indexPath) as! ContactCell
-        cell.nameLabel.text = tableViewData[row]
-        cell.setSelection(tableSelected[row])
+        var person = tableDataSource[indexPath.row]
+        cell.nameLabel.text = person.fullName
+        cell.setSelection(person.selected)
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var row = indexPath.row
-        var a = tableSelected[row]
-        tableSelected[row] = !a
+        var person = tableDataSource[indexPath.row]
+        person.selected = !person.selected
         
         var cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
-        cell.setSelection(tableSelected[row])
+        cell.setSelection(person.selected)
         tryUpdateCollectionView()
     }
     
@@ -111,22 +116,22 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionData.count
+        return collectionDataSource.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var row = indexPath.row
+        var person = collectionDataSource[indexPath.row]
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactNameCell", forIndexPath: indexPath) as? ContactNameCell
-        cell?.nameLabel.text = collectionData[row].0
+        cell?.nameLabel.text = person.firstName
         cell?.cancleButtonHandler = cancleButtonClick
         return cell!
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        var str = NSString(string: collectionData[indexPath.row].0)
+        var person = collectionDataSource[indexPath.row]
         var font = UIFont.boldSystemFontOfSize(17)
         var attributes = [NSFontAttributeName : font]
-        var width = NSAttributedString(string: str as String, attributes: attributes).size().width
+        var width = NSAttributedString(string: person.firstName, attributes: attributes).size().width
         return CGSizeMake(width+50, 50)
     }
     
@@ -145,27 +150,64 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func fetchDataUpdateTableView() {
-        var names = [String]()
-        var selections = [Bool]()
+        var data = [Person]()
         if let people = swiftAddressBook?.allPeople {
-            allContacts = people
-            for person in people {
-                // var phoneNumbers = person.phoneNumbers?.map( {$0.value})
-                var fullName = fullNameFromPerson(person)
-                names.append(fullName)
-                selections.append(false)
-                println(fullName)
+            for addressBookPerson in people {
+                var fullName = getFullNameOfPerson(addressBookPerson)
+                var firstName = getFirstNameOfPerson(addressBookPerson)
+                var phoneNumber = getProccessedPhoneNumOfPerson(addressBookPerson)
+                
+                var person = Person(firstName: firstName, fullName: fullName, selected: false, phoneNum: phoneNumber)
+                data.append(person)
             }
         }
-        tableViewData = names
-        tableSelected = selections
+        tableDataSource = data
         tableView.reloadData()
         withDelay(0.5) {
             self.tableView.reloadData()
         }
     }
     
-    func fullNameFromPerson(person: SwiftAddressBookPerson) -> String {
+    func tryUpdateCollectionView() {
+        var data = [Person]()
+        for person in tableDataSource {
+            if person.selected {
+                data.append(person)
+            }
+        }
+        collectionDataSource = data
+        collectionView.reloadData()
+    }
+    
+    func cancleButtonClick(cell :ContactNameCell) {
+        var row = collectionView.indexPathForCell(cell)!.row
+        var person = collectionDataSource[row]
+        
+        person.selected = false
+        tableView.reloadData()
+        
+        collectionDataSource.removeAtIndex(row)
+        collectionView.reloadData()
+    }
+    
+    func getCurrentSelectedPhoneNumber() -> [String] {
+        var phoneNumbers = [String]()
+        for person in tableDataSource {
+            if person.selected {
+                phoneNumbers.append(person.phoneNum)
+            }
+        }
+        return phoneNumbers
+    }
+    
+    func getFirstNameOfPerson(person: SwiftAddressBookPerson) -> String {
+        if let name = person.firstName {
+            return name
+        }
+        return "null"
+    }
+    
+    func getFullNameOfPerson(person: SwiftAddressBookPerson) -> String {
         var firstName = ""
         var lastName = ""
         println("\(firstName)  \(lastName)")
@@ -175,41 +217,15 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         return fullName
     }
     
-    func tryUpdateCollectionView() {
-        var data = [(String, Int)]()
-        for i in 0..<tableViewData.count {
-            if tableSelected[i] == true {
-                data.append((tableViewData[i], i))
-            }
+    func getProccessedPhoneNumOfPerson(person: SwiftAddressBookPerson) -> String {
+        if let number = getFirstRawPhoneNumberOfPerson(person) {
+            var final = number.delete(" ").delete("(").delete(")").delete("-")
+            return final
         }
-        collectionData = data
-        collectionView.reloadData()
+        return ""
     }
     
-    func cancleButtonClick(cell :ContactNameCell) {
-        var i = collectionView.indexPathForCell(cell)!.row
-        var data = collectionData[i]
-        var index = data.1
-        collectionData.removeAtIndex(i)
-        tableSelected[index] = !tableSelected[index]
-        tableView.reloadData()
-        collectionView.reloadData()
-    }
-    
-    func getCurrentSelectedPhoneNumber() -> [String] {
-        var phoneNumbers = [String]()
-        for i in 0..<tableViewData.count {
-            if tableSelected[i] == true {
-                if let number = firstPhoneNumberOfPerson(allContacts[i]) {
-                    var final = number.delete(" ").delete("(").delete(")").delete("-")
-                    phoneNumbers.append(final)
-                }
-            }
-        }
-        return phoneNumbers
-    }
-    
-    func firstPhoneNumberOfPerson(person: SwiftAddressBookPerson) -> String? {
+    func getFirstRawPhoneNumberOfPerson(person: SwiftAddressBookPerson) -> String? {
         if let phoneNumbers = person.phoneNumbers?.map({$0.value}) {
             if phoneNumbers.count > 0 {
                 return phoneNumbers[0]

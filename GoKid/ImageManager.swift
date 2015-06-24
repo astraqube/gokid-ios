@@ -121,7 +121,7 @@ class ImageManager: NSObject {
     
     // MARK: Interface for this class
     func setImageToView(imageView: UIImageView, urlStr: String) {
-        setImageWithTransformer(urlStr, imageView: imageView, transformer: standerTransformer)
+        setImageWithTransformer(urlStr, imageView: imageView, transformer: nil)
     }
     
     func setImageToViewWithCrop(imageView: UIImageView, urlStr: String) {
@@ -285,6 +285,7 @@ class ImageManager: NSObject {
     }
     
     func filePathForImgID(id: String) -> String {
+        println(imageDirPath + id)
         return imageDirPath + id
     }
 }

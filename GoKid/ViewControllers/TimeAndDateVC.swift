@@ -32,12 +32,21 @@ class TimeAndDateVC: BaseTVC {
         self.setUpNavigationBar()
         self.setTableData()
         self.setupDateTimePicker()
+        self.clenUserCurrentCarPoolData()
     }
     
     func setUpNavigationBar() {
         setNavBarTitle("Time and Date")
         setNavBarLeftButtonTitle("Back", action: "backButtonClick")
         setNavBarRightButtonTitle("Next", action: "nextButtonClick")
+    }
+    
+    func clenUserCurrentCarPoolData() {
+        var model = userManager.currentCarpoolModel
+        model.startDate = nil
+        model.endDate = nil
+        model.pickUpTime = nil
+        model.dropOffTime = nil
     }
     
     func setTableData() {
@@ -74,13 +83,12 @@ class TimeAndDateVC: BaseTVC {
     }
     
     func nextButtonClick() {
-        var um = UserManager.sharedInstance
-        um.currentChoosenDate = dateModel?.valueString
-        um.currentChoosenEndTime = endTimeModel?.valueString
-        um.currentChossenStartTime = startTimeModel?.valueString
-        
-        var vc = vcWithID("LocationVC")
-        navigationController?.pushViewController(vc, animated: true)
+        if userManager.currentCarpoolModel.isValid() {
+            var vc = vcWithID("LocationVC")
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            showAlert("Alert", messege: "Please fill in all fields", cancleTitle: "OK")
+        }
     }
     
     
@@ -91,6 +99,7 @@ class TimeAndDateVC: BaseTVC {
         var str = dateFormatter.stringFromDate(dateTimePicker.picker.date)
         currentBindLabel?.text = str
         currentBindModel?.valueString = str
+        updateCurrentUserCarpoolModel(currentBindModel!, date: dateTimePicker.picker.date)
         dismissDateTimePicker()
     }
     
@@ -223,7 +232,7 @@ class TimeAndDateVC: BaseTVC {
     
     func showDateTimePickerWithMode(action: TDCellAction) {
         var mode: UIDatePickerMode = .Date
-        if action == .ChooseDate { mode = .Date; dateFormatter.dateFormat = "MMMM d, YYYY" }
+        if action == .ChooseDate { mode = .Date; dateFormatter.dateFormat = "EEEE MMMM d, YYYY" }
         if action == .ChooseTime { mode = .Time; dateFormatter.dateFormat = "hh:mm a" }
         dateTimePicker.setMode(mode)
         
@@ -231,6 +240,24 @@ class TimeAndDateVC: BaseTVC {
             dateTimePicker.alpha = 0.0
             self.view.addSubview(dateTimePicker)
             dateTimePicker.alphaAnimation(1.0, duration: 0.4, completion: nil)
+        }
+    }
+    
+    func updateCurrentUserCarpoolModel(cellModel: TDCellModel, date: NSDate ) {
+        var cellTitle = cellModel.titleString
+        var carpoolModel = userManager.currentCarpoolModel
+        if cellTitle == eventStart { // pickup
+            carpoolModel.pickUpTime = date
+        } else if cellTitle == eventEnd { // drop off
+            carpoolModel.dropOffTime = date
+        } else if cellTitle == "End date" {
+            carpoolModel.endDate = date
+        } else if cellTitle == "Start date" {
+            carpoolModel.startDate = date
+        } else if cellTitle == "Date" {
+            carpoolModel.startDate = date
+            carpoolModel.endDate = date
+            carpoolModel.occurence = [0]
         }
     }
     

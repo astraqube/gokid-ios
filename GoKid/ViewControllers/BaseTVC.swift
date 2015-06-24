@@ -13,6 +13,7 @@ class BaseTVC: UITableViewController {
     var dataManager = DataManager.sharedInstance
     var userManager = UserManager.sharedInstance
     var colorManager = ColorManager.sharedInstance
+    var imageManager = ImageManager.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()

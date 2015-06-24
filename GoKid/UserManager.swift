@@ -33,7 +33,7 @@ class UserManager: NSObject {
     var currentChoosenDate: String?
     var currentChossenStartTime: String?
     var currentChoosenEndTime: String?
-    var currentCarpool = CarpoolModel()
+    var currentCarpoolModel = CarpoolModel()
     
     var userHomeAdress: String?
     var recentAddressTitles = [String]()

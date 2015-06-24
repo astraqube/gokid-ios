@@ -148,6 +148,15 @@ extension Array {
     }
 }
 
+extension NSDate {
+    func iso8601String() -> String {
+        var df = NSDateFormatter()
+        var enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        df.locale = enUSPosixLocale
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        return df.stringFromDate(NSDate())
+    }
+}
 
 
 @IBDesignable

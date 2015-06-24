@@ -47,6 +47,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
         self.lastNameTextField.text = model.lastName
         self.phoneNumberTextField.text = model.phoneNumber
         self.roleButton.setTitle(model.role, forState: .Normal)
+        self.imageManager.setImageToView(profileImageView, urlStr: model.thumURL)
         
         if sourceCellType == .AddUser {
             setNavBarTitle("Add your Profile")
