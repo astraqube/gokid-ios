@@ -17,6 +17,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         setupNavBar()
         setupTableView()
+        fetchDataAndReloadTableView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -34,8 +35,32 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        dataSource = dataManager.fakeCalendarData()
-        tableView.reloadData()
+    }
+    
+    func fetchDataAndReloadTableView() {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.getAllUserCarpools { (success, errorStr) -> () in
+            LoadingView.dismiss()
+            if success {
+                self.generateTableDataAndReload()
+            } else {
+                self.showAlert("Fail to update carpools", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+    
+    func generateTableDataAndReload() {
+        dataSource = userManager.clendarEvents
+        addCreateCarpoolCellToDataSource()
+        onMainThread() {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func addCreateCarpoolCellToDataSource() {
+        var c = CalendarModel()
+        c.cellType = .Add
+        dataSource.append(c)
     }
     
     // MARK: IBAction Method
@@ -86,7 +111,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func configCalendarCell(ip: NSIndexPath, _ model: CalendarModel) -> CalendarCell {
         var cell = tableView.cellWithID("CalendarCell", ip) as! CalendarCell
         cell.nameLabel.text = model.poolname
-        cell.timeLabel.text = model.pooltime
+        cell.timeLabel.text = model.pooltimeStr
         cell.typeLabel.text = model.poolType
         cell.driverLabel.text = model.poolDriver
         return cell
@@ -94,7 +119,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func configCalendarDateCell(ip: NSIndexPath, _ model: CalendarModel) -> CalendarDateCell {
         var cell = tableView.cellWithID("CalendarDateCell", ip) as! CalendarDateCell
-        cell.dateLabel.text = model.date
+        cell.dateLabel.text = model.poolDateStr
         return cell
     }
     
@@ -123,6 +148,8 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if indexPath.row == dataSource.count-1 {
+            createButtonClicked()
+        }
     }
 }

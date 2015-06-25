@@ -161,6 +161,7 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 data.append(person)
             }
         }
+        data.sort({ $0.firstName < $1.firstName })
         tableDataSource = data
         tableView.reloadData()
         withDelay(0.5) {

@@ -37,6 +37,7 @@ PODS:
     - FBSDKCoreKit/arc
   - FBSDKLoginKit (4.2.0):
     - FBSDKCoreKit
+  - GoogleMaps (1.10.1)
   - JKExpandTableView (0.0.1)
   - Onboard (2.1.2)
   - pop (1.0.7)
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - AFNetworking
   - FBSDKCoreKit
   - FBSDKLoginKit
+  - GoogleMaps
   - JKExpandTableView
   - Onboard
   - pop
@@ -60,6 +62,7 @@ SPEC CHECKSUMS:
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
   FBSDKCoreKit: 84b3616a361801f190e43a9909caead7bb6087c7
   FBSDKLoginKit: 57e37106af12c9e264e473dcb75d7decdbb07fe4
+  GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
   JKExpandTableView: 14834b11d68da066e30b50344fb204e55daee618
   Onboard: 827b9d7f256b10d2901783a99e968dffce63c3da
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
@@ -67,4 +70,4 @@ SPEC CHECKSUMS:
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   ViewDeck: ce795f929d00d1e0fd63f61d79cc92a9ea050ec9
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.37.2

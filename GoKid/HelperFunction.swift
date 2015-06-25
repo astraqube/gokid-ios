@@ -153,8 +153,21 @@ extension NSDate {
         var df = NSDateFormatter()
         var enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
         df.locale = enUSPosixLocale
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        return df.stringFromDate(NSDate())
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZZZZZ"
+        println(df.stringFromDate(self))
+        return df.stringFromDate(self)
+    }
+    
+    class func dateFromIso8601String(str: String) -> NSDate? {
+        var df = NSDateFormatter()
+        var enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZZZZZ"
+        df.locale = enUSPosixLocale
+        if let date = df.dateFromString(str) {
+            return date
+        } else {
+            return nil
+        }
     }
 }
 

@@ -20,6 +20,10 @@ class CarpoolModel: NSObject {
     var name = ""
     var id = 0
     
+    override init() {
+        super.init()
+    }
+    
     init(json: JSON) {
         name = json["carpool"]["name"].stringValue
         id = json["carpool"]["id"].intValue
@@ -33,9 +37,5 @@ class CarpoolModel: NSObject {
         } else {
             return false
         }
-    }
-    
-    override init() {
-        super.init()
     }
 }

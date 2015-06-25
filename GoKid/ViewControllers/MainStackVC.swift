@@ -14,7 +14,7 @@ class MainStackVC: IIViewDeckController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         // if user logged in direct go to CalendarVC
         var um = UserManager.sharedInstance
         if um.userLoggedIn {
@@ -43,7 +43,7 @@ class MainStackVC: IIViewDeckController {
         var meneVC = vcWithID("MenuVC") as! MenuVC
         meneVC.mainStack = self
         
-        var centerVC = UINavigationController()
+        var centerVC = ZGNavigationBarTitleViewController()
         centerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         centerVC.navigationBar.barTintColor = UIColor.blackColor()
         centerVC.navigationBar.tintColor = UIColor.whiteColor()

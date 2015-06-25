@@ -10,17 +10,26 @@ import UIKit
 
 class TeamAccountVC: BaseCVC {
     
+    typealias ZGNavVC = ZGNavigationBarTitleViewController
     var dataSource = [TeamMemberModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        registerNotification()
         prepareAndLoadTeamMemberCollectionView()
     }
     
     func setupNavBar() {
-        setNavBarTitle("Your Team")
+        var nav = navigationController as! ZGNavVC
+        nav.addTitleViewToViewController(self)
+        self.title = "Your Team"
+        self.subtitle = "Home Address"
         setNavBarLeftButtonTitle("Menu", action: "menuButtonClick")
+    }
+    
+    func registerNotification() {
+        registerForNotification("NavigationBarSubtitleTapped", action: "navBarTapped")
     }
     
     // MARK: IBAction Method
@@ -30,6 +39,23 @@ class TeamAccountVC: BaseCVC {
         viewDeckController.toggleLeftView()
     }
     
+    func navBarTapped() {
+        var vc = vcWithID("PlacePickerVC") as! PlacePickerVC
+        vc.teamVC = self
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    func setHomeAddress(address1: String, address2: String) {
+        LoadingView.showWithMaskType(.Black)
+        dm.updateTeamAddress(address1, address2: address2) { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                onMainThread() { self.subtitle = address1 }
+            } else {
+                self.showAlert("Fail to update home address", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
     
     // MARK: CollectionView DataSource
     // --------------------------------------------------------------------------------------------

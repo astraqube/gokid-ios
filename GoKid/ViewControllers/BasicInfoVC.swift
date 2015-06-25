@@ -35,6 +35,10 @@ class BasicInfoVC: BaseVC {
         setNavBarLeftButtonTitle("Do this later", action: "doLaterButtonClick")
         disableRightBarItem()
     }
+  
+    func clenUserCurrentCarPoolData() {
+        userManager.currentCarpoolModel = CarpoolModel()
+    }
     
     func setupKeyBoardMoveup() {
         // iphone 5
@@ -64,7 +68,7 @@ class BasicInfoVC: BaseVC {
     func nextButtonClick() {
         userManager.currentCarpoolName = carpoolTitleTextField.text!
         userManager.currentCarpoolKidName = kidsNameTextField.text!
-        
+        userManager.currentCarpoolModel.name = carpoolTitleTextField.text!
         var vc = vcWithID("TimeAndDateVC")
         self.navigationController?.pushViewController(vc, animated: true)
     }

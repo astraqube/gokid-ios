@@ -90,6 +90,12 @@
 #define COCOAPODS_VERSION_MINOR_FBSDKLoginKit 2
 #define COCOAPODS_VERSION_PATCH_FBSDKLoginKit 0
 
+// GoogleMaps
+#define COCOAPODS_POD_AVAILABLE_GoogleMaps
+#define COCOAPODS_VERSION_MAJOR_GoogleMaps 1
+#define COCOAPODS_VERSION_MINOR_GoogleMaps 10
+#define COCOAPODS_VERSION_PATCH_GoogleMaps 1
+
 // JKExpandTableView
 #define COCOAPODS_POD_AVAILABLE_JKExpandTableView
 #define COCOAPODS_VERSION_MAJOR_JKExpandTableView 0

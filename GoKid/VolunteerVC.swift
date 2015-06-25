@@ -149,17 +149,17 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     // --------------------------------------------------------------------------------------------
     
     func createCarpool() {
-        var name = userManager.currentCarpoolName
-//        dataManager.createCarpool(name) { (success, errorStr) in
-//            if success {
-//                var vc = vcWithID("InviteParentsVC")
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            } else {
-//                self.showAlert("Alert", messege: "Cannot create Carpool " + errorStr, cancleTitle: "OK")
-//            }
-//        }
+      var model = userManager.currentCarpoolModel
+      dataManager.createCarpool(model) { (success, errorStr) in
+        if success {
+          var vc = vcWithID("InviteParentsVC")
+          self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+          self.showAlert("Alert", messege: "Cannot create Carpool " + errorStr, cancleTitle: "OK")
+        }
+      }
     }
-    
+  
     // MARK: Action Sheet
     // --------------------------------------------------------------------------------------------
     

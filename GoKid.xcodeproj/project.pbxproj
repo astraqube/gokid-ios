@@ -74,6 +74,10 @@
 		1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */; };
 		1DC765C41B32754800D9D306 /* DataManager + Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC765C31B32754800D9D306 /* DataManager + Team.swift */; };
 		1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */; };
+		1DD6A4D41B3BA565006A97ED /* PlacePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4D31B3BA565006A97ED /* PlacePickerVC.swift */; };
+		1DD6A4D61B3BA916006A97ED /* PlaceResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4D51B3BA916006A97ED /* PlaceResultCell.swift */; };
+		1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4D91B3BD32B006A97ED /* ZGNavigationTitleView.m */; };
+		1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
 		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
 		1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE991B1C6E1400630440 /* PhoneVerifyVC.swift */; };
@@ -168,6 +172,12 @@
 		1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Sign.swift"; sourceTree = "<group>"; };
 		1DC765C31B32754800D9D306 /* DataManager + Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Team.swift"; sourceTree = "<group>"; };
 		1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolModel.swift; sourceTree = "<group>"; };
+		1DD6A4D31B3BA565006A97ED /* PlacePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacePickerVC.swift; path = ViewControllers/PlacePickerVC.swift; sourceTree = "<group>"; };
+		1DD6A4D51B3BA916006A97ED /* PlaceResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceResultCell.swift; path = Cells/PlaceResultCell.swift; sourceTree = "<group>"; };
+		1DD6A4D81B3BD32B006A97ED /* ZGNavigationTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGNavigationTitleView.h; sourceTree = "<group>"; };
+		1DD6A4D91B3BD32B006A97ED /* ZGNavigationTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGNavigationTitleView.m; sourceTree = "<group>"; };
+		1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGNavigationBarTitleViewController.m; sourceTree = "<group>"; };
+		1DD6A4DB1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGNavigationBarTitleViewController.h; sourceTree = "<group>"; };
 		1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberProfileVC.swift; path = ViewControllers/MemberProfileVC.swift; sourceTree = "<group>"; };
 		1DFBBE971B1C6DF500630440 /* Phone#VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Phone#VC.swift"; path = "ViewControllers/Phone#VC.swift"; sourceTree = "<group>"; };
 		1DFBBE991B1C6E1400630440 /* PhoneVerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneVerifyVC.swift; path = ViewControllers/PhoneVerifyVC.swift; sourceTree = "<group>"; };
@@ -269,6 +279,7 @@
 		1D1FD6841B1C000000287FA0 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				1DD6A4D71B3BD321006A97ED /* ZGNavigation */,
 				1DC765C61B3278DE00D9D306 /* DateTimePicker */,
 				1DC765C51B3278D100D9D306 /* JSON */,
 				1D891F071B23FDCD006FD961 /* SwiftAddressBook */,
@@ -282,6 +293,8 @@
 		1D1FD68B1B1C00BB00287FA0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1DD6A4D31B3BA565006A97ED /* PlacePickerVC.swift */,
+				1DD6A4D51B3BA916006A97ED /* PlaceResultCell.swift */,
 				1D3F652B1B237F4400CCF6A1 /* Architecture */,
 				1D975A3F1B1F930600CD4D89 /* TimeDatePicker */,
 				1D975A361B1F40B800CD4D89 /* Invitation */,
@@ -513,6 +526,17 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		1DD6A4D71B3BD321006A97ED /* ZGNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				1DD6A4D81B3BD32B006A97ED /* ZGNavigationTitleView.h */,
+				1DD6A4D91B3BD32B006A97ED /* ZGNavigationTitleView.m */,
+				1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */,
+				1DD6A4DB1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.h */,
+			);
+			name = ZGNavigation;
+			sourceTree = "<group>";
+		};
 		68926BFAEF467AB3FED52BD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,7 +681,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
+			shellScript = "# ./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
 		};
 		CD65D8EC25723919ABB980C6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -687,7 +711,9 @@
 				1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */,
 				1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */,
 				1D8F78FB1B36A07F00C78CAF /* CalendarDateCell.swift in Sources */,
+				1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */,
 				1D8F78FA1B36A07F00C78CAF /* CalendarAddCell.swift in Sources */,
+				1DD6A4D61B3BA916006A97ED /* PlaceResultCell.swift in Sources */,
 				1D3F65231B207FBA00CCF6A1 /* VolunteerModel.swift in Sources */,
 				1D3F65161B2005EC00CCF6A1 /* LocationInputVC.swift in Sources */,
 				1D8F79021B36A64D00C78CAF /* DataManager + Fack.swift in Sources */,
@@ -735,10 +761,12 @@
 				1D891F191B240051006FD961 /* ContactCell.swift in Sources */,
 				1D8F79001B36A47A00C78CAF /* ImageManager.swift in Sources */,
 				1D1FD6981B1C11C100287FA0 /* UserManager.swift in Sources */,
+				1DD6A4D41B3BA565006A97ED /* PlacePickerVC.swift in Sources */,
 				1DFBBE9C1B1C78DC00630440 /* SignUpVC.swift in Sources */,
 				1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */,
 				1D891F151B23FDD8006FD961 /* SwiftAddressBookWrapper.swift in Sources */,
 				1D7D8DF31B3A76D8002D29A5 /* DataManager + Carpool.swift in Sources */,
+				1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */,
 				1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */,
 				1D891F271B2734C2006FD961 /* TeamMemberModel.swift in Sources */,
 				1D8F78FE1B36A18300C78CAF /* CalendarModel.swift in Sources */,

@@ -12,6 +12,7 @@ import CoreLocation
 class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var locationInputTextField: PaddingTextField!
+    @IBOutlet weak var locationInputButton: UIButton!
     @IBOutlet weak var recentTableView: UITableView!
     
     var locationManager = CLLocationManager()
@@ -61,6 +62,12 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+    }
+    
+    @IBAction func locationInputButtonClick(sender: AnyObject) {
+        var vc = vcWithID("PlacePickerVC") as! PlacePickerVC
+        vc.locationVC = self
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     @IBAction func textfieldEditing(sender: UITextField) {
@@ -124,10 +131,22 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         if buttonIndex == 0 {
-            userManager.userHomeAdress = locationInputTextField.text
+            var address = locationInputTextField.text
+            LoadingView.showWithMaskType(.Black)
+            dataManager.updateTeamAddress(address, address2: "") { (success, errorStr) in
+                LoadingView.dismiss()
+                if success {
+                    self.userManager.userHomeAdress = address
+                } else {
+                    self.showAlert("Fail to update address", messege: errorStr, cancleTitle: "OK")
+                }
+                self.navigationController?.popViewControllerAnimated(true)
+                self.boundTextLabel?.text = self.locationInputTextField.text
+            }
+        } else {
+            navigationController?.popViewControllerAnimated(true)
+            boundTextLabel?.text = locationInputTextField.text
         }
-        navigationController?.popViewControllerAnimated(true)
-        boundTextLabel?.text = locationInputTextField.text
     }
 }
 

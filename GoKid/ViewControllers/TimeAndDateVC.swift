@@ -257,10 +257,16 @@ class TimeAndDateVC: BaseTVC {
         } else if cellTitle == "Date" {
             carpoolModel.startDate = date
             carpoolModel.endDate = date
-            carpoolModel.occurence = [0]
+            carpoolModel.occurence = occurenceOfDate(date)
         }
     }
     
+    func occurenceOfDate(date: NSDate) -> [Int] {
+        var component = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
+        var day = component.weekday
+        return [day]
+    }
+  
     func dismissDateTimePicker() {
         dateTimePicker.alphaAnimation(0.0, duration: 0.3) { (anim, finished) in
             self.dateTimePicker.removeFromSuperview()

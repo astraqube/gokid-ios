@@ -31,7 +31,16 @@ class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
     
     func nextButtonClick() {
         var vc = vcWithID("CalendarVC")
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.setViewControllers([vc], animated: true)
+    }
+    
+    @IBAction func viewCalendarButtonClick(sender: AnyObject) {
+        nextButtonClick()
+    }
+    
+    @IBAction func addTeamMemberButtonClick(sender: AnyObject) {
+        var vc = vcWithID("TeamAccountVC")
+        navigationController?.setViewControllers([vc], animated: true)
     }
     
     // MARK: Register Notification For App

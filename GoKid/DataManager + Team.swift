@@ -14,16 +14,36 @@ extension DataManager {
     func getTeamMembersOfTeam(comp: completion) {
         var teamID = String(userManager.info.teamID)
         var url = baseURL + "/api/teams/\(teamID)/permissions"
-        println(url)
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getTeamMembersOfTeam success")
             var json = JSON(obj)
+            println(json)
             var members =  TeamMemberModel.arrayOfMembers(json["permissions"])
             self.userManager.teamMembers = members
             comp(true, "")
         }) { (op, error) in
             println("getTeamMembersOfTeam failed")
+            var errorStr = self.constructErrorStr(op, error: error)
+            comp(false, errorStr)
+        }
+    }
+    
+    func updateTeamAddress(address1: String, address2: String, comp: completion) {
+        var teamID = String(userManager.info.teamID)
+        var url = baseURL + "/api/teams/\(teamID)"
+        var map = [
+            "team": [
+                "address": address1,
+                "address2": address2
+            ]
+        ]
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: map, success: { (op, obj) in
+            println("updateTeamAddress success")
+            comp(true, "")
+        }) { (op, error) in
+            println("updateTeamAddress failed")
             var errorStr = self.constructErrorStr(op, error: error)
             comp(false, errorStr)
         }

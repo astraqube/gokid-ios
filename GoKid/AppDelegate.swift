@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
         application.registerUserNotificationSettings(settings)
         
+        // for google places api
+        GMSServices.provideAPIKey("AIzaSyBMXf4Qv9_SYYX3PEW0zF0M2oBBjxqq6kw")
+        
         // for facebook login
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FBSDKLoginButton.self

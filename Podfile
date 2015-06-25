@@ -9,6 +9,7 @@ pod 'ViewDeck', '~> 2.2.11'
 pod 'pop'
 pod 'JKExpandTableView'
 pod 'SVProgressHUD'
+pod 'GoogleMaps'
 
 # pod 'CSStickyHeaderFlowLayout'
 # pod 'CRToast'
