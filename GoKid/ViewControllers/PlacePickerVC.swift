@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlacePickerVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -93,8 +93,12 @@ class PlacePickerVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var prediction = dataSource[indexPath.row]
         var description = descriptionFromPrediction(prediction)
+        var fullAddress = description.title + ", " + description.subtitle
+ 
+        userManager.recentAddressTitles.append(description.title)
+        userManager.recentAddress.append(description.subtitle)
         teamVC?.setHomeAddress(description.title, address2: description.subtitle)
-        locationVC?.locationInputTextField.text = description.title + ", " + description.subtitle
+        locationVC?.locationInputTextField.text = fullAddress
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

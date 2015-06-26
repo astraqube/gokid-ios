@@ -50,11 +50,27 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func generateTableDataAndReload() {
-        dataSource = userManager.clendarEvents
+        processRawCalendarEvents()
         addCreateCarpoolCellToDataSource()
         onMainThread() {
             self.tableView.reloadData()
         }
+    }
+    
+    func processRawCalendarEvents() {
+        var data = [CalendarModel]()
+        var lastDateStr = ""
+        for event in userManager.calendarEvents {
+            if event.poolDateStr != lastDateStr {
+                var dateCell = CalendarModel()
+                dateCell.cellType = .Time
+                dateCell.poolDateStr = event.poolDateStr
+                data.append(dateCell)
+                lastDateStr = event.poolDateStr
+            }
+            data.append(event)
+        }
+        dataSource = data
     }
     
     func addCreateCarpoolCellToDataSource() {
@@ -139,9 +155,9 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         case .Time:
             return 39.0
         case .Add:
-            return 224.0
+            return 130.0
         case .Normal:
-            return 63.0
+            return 80.0
         default:
             return 50.0
         }

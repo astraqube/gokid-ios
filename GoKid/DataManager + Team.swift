@@ -87,10 +87,11 @@ extension DataManager {
             "permission": [
                 "first_name": model.firstName,
                 "last_name": model.lastName,
-                "email": "aadsdsdss@ddd.com" + model.lastName, // will change we backend is ready.......
+                "phone_number": model.phoneNumber,
                 "role": model.role.lowercaseString
             ]
         ]
+        println(map)
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("addTeamMember success")

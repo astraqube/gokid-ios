@@ -55,8 +55,9 @@ class CalendarModel: NSObject {
         
         if let date = poolDate {
             var df = NSDateFormatter()
-            df.dateFormat = "EEEE MMMM d, YYYY"
-            pooltimeStr = df.stringFromDate(date)
+            df.dateFormat = "EE MMMM d, YYYY"
+            poolDateStr = df.stringFromDate(date)
+            println(poolDateStr)
             df.dateFormat = "hh:mma"
             pooltimeStr = df.stringFromDate(date).lowercaseString
         }

@@ -279,9 +279,10 @@ class ImageManager: NSObject {
     }
     
     func imgIDForURL(urlStr: String) -> String {
-        var arr = urlStr.componentsSeparatedByString("/")
-        var id  = arr.last
-        return id!
+        //var arr = urlStr.componentsSeparatedByString("/")
+        //var id  = arr.last
+        //return id!
+        return String(urlStr.hash)
     }
     
     func filePathForImgID(id: String) -> String {

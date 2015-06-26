@@ -85,9 +85,15 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
                 var pm = pms.last!
                 // println(pm.subThoroughfare)
                 // println(pm.thoroughfare)
-                var str = NSString(format: "%@ %@ %@ %@", pm.postalCode, pm.locality, pm.administrativeArea, pm.country) as String
-                self.locationInputTextField.text = str
-                self.boundTextLabel?.text = str
+                var full = NSString(format: "%@ %@ %@ %@", pm.postalCode, pm.locality, pm.administrativeArea, pm.country) as String
+                var add1 = NSString(format: "%@", pm.name) as String
+                var add2 = self.add2FromPlaceMark(pm)
+                println(full)
+                println(add1)
+                println(add2)
+                self.userManager.recentAddress.append(full)
+                self.locationInputTextField.text = full
+                self.boundTextLabel?.text = full
                 self.locationManager.stopUpdatingLocation()
                 
             } else {
@@ -95,6 +101,22 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
             }
         }
     }
+    
+    // MARK: Location String Convertion Method
+    // --------------------------------------------------------------------------------------------
+    
+    func add2FromPlaceMark(pm: CLPlacemark) -> String {
+        var add2 = ""
+        if let s = pm.thoroughfare { add2 += " " + s }
+        if let s = pm.locality { add2 += " " + s }
+        if let s = pm.administrativeArea { add2 += " " + s }
+        if let s = pm.postalCode { add2 += " " + s }
+        if let s = pm.country { add2 += " " + s }
+        return add2
+    }
+    
+    
+    
     
     // MARK: TableView DataSource and Delegate
     // --------------------------------------------------------------------------------------------

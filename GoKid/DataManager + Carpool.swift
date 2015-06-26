@@ -49,7 +49,7 @@ extension DataManager {
             var json = JSON(obj)["occurrences"]
             println(json)
             var events = CalendarModel.arrayOfEventsFromOccurrences(json)
-            self.userManager.clendarEvents = events
+            self.userManager.calendarEvents = events
             comp(true, "")
         }) { (op, error) in
             println("getAllUserCarpools failed")

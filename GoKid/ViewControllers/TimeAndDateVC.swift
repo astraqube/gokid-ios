@@ -232,7 +232,7 @@ class TimeAndDateVC: BaseTVC {
     
     func showDateTimePickerWithMode(action: TDCellAction) {
         var mode: UIDatePickerMode = .Date
-        if action == .ChooseDate { mode = .Date; dateFormatter.dateFormat = "EEEE MMMM d, YYYY" }
+        if action == .ChooseDate { mode = .DateAndTime; dateFormatter.dateFormat = "EE MMMM d, YYYY" }
         if action == .ChooseTime { mode = .Time; dateFormatter.dateFormat = "hh:mm a" }
         dateTimePicker.setMode(mode)
         

@@ -11,6 +11,7 @@ import UIKit
 class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
+    @IBOutlet weak var emailLogoutButton: UIButton!
     @IBOutlet weak var fblogoutButton: FBSDKLoginButton!
     @IBOutlet weak var fbloginButton: FBSDKLoginButton!
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -33,6 +34,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
         setupNavBar()
         setupTableView()
         setupLoginButton()
+        setUpLogoutButton()
         refreshUIIfNeeded()
     }
     
@@ -49,7 +51,15 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     func setupLoginButton() {
         fbloginButton.readPermissions = ["public_profile", "email", "user_friends"];
         fbloginButton.delegate = self
+    }
+    
+    func setUpLogoutButton() {
         fblogoutButton.delegate = self
+        if userManager.useFBLogIn {
+            emailLogoutButton.removeFromSuperview()
+        } else {
+            fblogoutButton.removeFromSuperview()
+        }
     }
     
     func setupTableView() {
@@ -104,9 +114,10 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    @IBAction func removeButtonClick(sender: AnyObject) {
-        
+    @IBAction func emailLogoutButtonClick(sender: AnyObject) {
+        logout()
     }
+    
     
     @IBAction func imageProfileButtonClick(sender: AnyObject) {
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
@@ -175,6 +186,10 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        logout()
+    }
+    
+    func logout() {
         var um = UserManager.sharedInstance
         um.userLoggedIn = false
         um.userToken = ""

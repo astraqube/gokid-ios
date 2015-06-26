@@ -24,7 +24,7 @@ class UserManager: NSObject {
     var userProfileImage: UIImage?
     var info = TeamMemberModel()
     var teamMembers = [TeamMemberModel]()
-    var clendarEvents = [CalendarModel]()
+    var calendarEvents = [CalendarModel]()
     
     
     var updatedMember = TeamMemberModel()
