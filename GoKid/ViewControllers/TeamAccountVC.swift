@@ -10,7 +10,6 @@ import UIKit
 
 class TeamAccountVC: BaseCVC {
     
-    typealias ZGNavVC = ZGNavigationBarTitleViewController
     var dataSource = [TeamMemberModel]()
     
     override func viewDidLoad() {

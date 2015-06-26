@@ -30,6 +30,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        setRemoveButtonState()
         refreshUIIfNeeded()
     }
     
@@ -40,6 +41,13 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     
     func setupNavBar() {
         setNavBarRightButtonTitle("Done", action: "handleDoneButtonClick")
+    }
+    
+    func setRemoveButtonState() {
+        if model.role != "sitter" {
+            buttomButton.backgroundColor = UIColor.grayColor()
+            buttomButton.superview?.backgroundColor = UIColor.grayColor()
+        }
     }
     
     func refreshUIIfNeeded() {
@@ -111,7 +119,11 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     
     @IBAction func buttomButtonClick(sender: AnyObject) {
         if sourceCellType == .EditMember {
-            showDeleteMemberAlertView()
+            if model.role == "sitter" {
+                showDeleteMemberAlertView()
+            } else {
+                self.showAlert("Can not delete", messege: "You can only delete a member whose role is sitter", cancleTitle: "OK")
+            }
             return
         }
         handleDoneButtonClick()

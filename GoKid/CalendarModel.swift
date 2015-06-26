@@ -15,6 +15,8 @@ enum CalendarCellType {
 class CalendarModel: NSObject {
 
     var poolDriver = ""
+    var poolDriverImageUrl = ""
+    
     var poolType = ""
     var poolname = ""
     var poolDate: NSDate?
@@ -23,6 +25,9 @@ class CalendarModel: NSObject {
     var pooltimeStr = ""
     var poolDateStr = ""
     var notification = ""
+   
+    var occrencID = 0
+    var carpoolID = 0
     
     override init() {
         super.init()
@@ -34,6 +39,10 @@ class CalendarModel: NSObject {
         poolname = occurence["carpool"]["name"].stringValue
         poolType = occurence["kind"].stringValue
         cellType = .Normal
+        carpoolID = occurence["carpool"]["id"].intValue
+        occrencID = occurence["id"].intValue
+        poolDriver = occurence["volunteer"]["first_name"].stringValue
+        poolDriverImageUrl = occurence["volunteer"]["avatar"]["thumb_url"].stringValue
         generateOtherField()
     }
     
@@ -51,15 +60,13 @@ class CalendarModel: NSObject {
         else if poolType == "dropoff" { poolType = "DROP OFF" }
         else { poolType = "Unknown type" }
         
-        poolDriver = "No Driver yet"
+        if poolDriver == "" {
+            poolDriver = "No Driver yet"
+        }
         
         if let date = poolDate {
-            var df = NSDateFormatter()
-            df.dateFormat = "EE MMMM d, YYYY"
-            poolDateStr = df.stringFromDate(date)
-            println(poolDateStr)
-            df.dateFormat = "hh:mma"
-            pooltimeStr = df.stringFromDate(date).lowercaseString
+            poolDateStr = date.dateString()
+            pooltimeStr = date.timeString()
         }
     }
     

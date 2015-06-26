@@ -78,6 +78,7 @@
 		1DD6A4D61B3BA916006A97ED /* PlaceResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4D51B3BA916006A97ED /* PlaceResultCell.swift */; };
 		1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4D91B3BD32B006A97ED /* ZGNavigationTitleView.m */; };
 		1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */; };
+		1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
 		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
 		1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE991B1C6E1400630440 /* PhoneVerifyVC.swift */; };
@@ -178,6 +179,7 @@
 		1DD6A4D91B3BD32B006A97ED /* ZGNavigationTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGNavigationTitleView.m; sourceTree = "<group>"; };
 		1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGNavigationBarTitleViewController.m; sourceTree = "<group>"; };
 		1DD6A4DB1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGNavigationBarTitleViewController.h; sourceTree = "<group>"; };
+		1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataMnager + Verification.swift"; sourceTree = "<group>"; };
 		1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberProfileVC.swift; path = ViewControllers/MemberProfileVC.swift; sourceTree = "<group>"; };
 		1DFBBE971B1C6DF500630440 /* Phone#VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Phone#VC.swift"; path = "ViewControllers/Phone#VC.swift"; sourceTree = "<group>"; };
 		1DFBBE991B1C6E1400630440 /* PhoneVerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneVerifyVC.swift; path = ViewControllers/PhoneVerifyVC.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				1D8F79011B36A64D00C78CAF /* DataManager + Fack.swift */,
 				1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */,
 				1DC765C31B32754800D9D306 /* DataManager + Team.swift */,
+				1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */,
 				1D891F221B244536006FD961 /* DataManager.swift */,
 				1DA789431B23962200B391E8 /* ColorManager.swift */,
 				1D1FD6971B1C11C100287FA0 /* UserManager.swift */,
@@ -744,6 +747,7 @@
 				1D3F65251B208A9600CCF6A1 /* InviteParentsVC.swift in Sources */,
 				1D975A3A1B1F40E500CD4D89 /* InviteConfirmVC.swift in Sources */,
 				1D3F65181B2073D700CCF6A1 /* RecentAddressCell.swift in Sources */,
+				1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */,
 				1D891F211B242B89006FD961 /* SwiftyJSON.swift in Sources */,
 				1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */,
 				1D3F651C1B207D3200CCF6A1 /* VolunteerCell.swift in Sources */,

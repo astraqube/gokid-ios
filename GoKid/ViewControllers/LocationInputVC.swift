@@ -28,6 +28,7 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        recentTableView.reloadData()
     }
     
     func setupTableView() {
@@ -83,15 +84,12 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
             if error == nil && placemarks.count > 0 {
                 var pms = placemarks as! [CLPlacemark]
                 var pm = pms.last!
-                // println(pm.subThoroughfare)
-                // println(pm.thoroughfare)
-                var full = NSString(format: "%@ %@ %@ %@", pm.postalCode, pm.locality, pm.administrativeArea, pm.country) as String
                 var add1 = NSString(format: "%@", pm.name) as String
                 var add2 = self.add2FromPlaceMark(pm)
-                println(full)
-                println(add1)
-                println(add2)
-                self.userManager.recentAddress.append(full)
+                var full = add1 + add2
+                self.userManager.recentAddressTitles.insert(add1, atIndex: 0)
+                self.userManager.recentAddress.insert(add2, atIndex: 0)
+                self.userManager.saveUserInfo()
                 self.locationInputTextField.text = full
                 self.boundTextLabel?.text = full
                 self.locationManager.stopUpdatingLocation()
@@ -107,11 +105,16 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     
     func add2FromPlaceMark(pm: CLPlacemark) -> String {
         var add2 = ""
-        if let s = pm.thoroughfare { add2 += " " + s }
-        if let s = pm.locality { add2 += " " + s }
+        if let s = pm.thoroughfare       { add2 += " " + s }
+        if let s = pm.locality           { add2 += " " + s }
         if let s = pm.administrativeArea { add2 += " " + s }
-        if let s = pm.postalCode { add2 += " " + s }
-        if let s = pm.country { add2 += " " + s }
+        if let s = pm.postalCode         { add2 += " " + s }
+        if let s = pm.country            { add2 += " " + s }
+        if  count(add2) > 0 {
+            if Array(add2)[0] == " " {
+                add2.removeAtIndex(add2.startIndex)
+            }
+        }
         return add2
     }
     
@@ -139,7 +142,8 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var cell = tableView.cellForRowAtIndexPath(indexPath) as! RecentAddressCell
-        locationInputTextField.text = cell.addressLabel.text
+        var row = indexPath.row
+        locationInputTextField.text = userManager.recentAddressTitles[row] + " " + userManager.recentAddress[row]
     }
     
     

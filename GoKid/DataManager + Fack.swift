@@ -40,18 +40,31 @@ extension DataManager {
     
     func fakeVolunteerData() -> [VolunteerModel] {
         var date = "April 24, Fri"
-        var startTime = "12.00 pm"
-        var endTime = "1.00 pm"
+        var pickupTime = "12.00 pm"
+        var dropoffTime = "1.00 pm"
         
-        if let str = userManager.currentChoosenDate { date = str }
-        if let str = userManager.currentChoosenEndTime { endTime = str }
-        if let str = userManager.currentChossenStartTime { startTime = str }
+        var model = userManager.currentCarpoolModel
+        if let str = model.startDate?.dateString() { date = str }
+        if let str = model.pickUpTime?.timeString() { pickupTime = str }
+        if let str = model.dropOffTime?.timeString() { dropoffTime = str }
         
         var str = "Volunteer as Driver"
         var c0 = VolunteerModel(title: "", time: "", poolType: "", cellType: .Empty)
-        var c1 = VolunteerModel(title: "", time: "April 24, Fri", poolType: "", cellType: .Date)
-        var c2 = VolunteerModel(title: str, time: "12.00 pm", poolType: "Drop-off", cellType: .Normal)
-        var c3 = VolunteerModel(title: str, time: "1.00 pm", poolType: "Pick-up", cellType: .Normal)
+        var c1 = VolunteerModel(title: "", time: date, poolType: "", cellType: .Date)
+        var c2 = VolunteerModel(title: str, time: dropoffTime, poolType: "Drop-off", cellType: .Normal)
+        var c3 = VolunteerModel(title: str, time: pickupTime, poolType: "Pick-up", cellType: .Normal)
+        
+        if userManager.volunteerEvents.count >= 2 {
+            var v0 = userManager.volunteerEvents[0]
+            var v1 = userManager.volunteerEvents[1]
+            
+            c3.carpoolID = v0.carpoolID
+            c3.occrenceID = v0.occrencID
+            
+            c2.carpoolID = v1.carpoolID
+            c2.occrenceID = v1.occrencID
+        }
+        
         return [c0, c1, c2, c3]
     }
 }

@@ -25,6 +25,7 @@ class UserManager: NSObject {
     var info = TeamMemberModel()
     var teamMembers = [TeamMemberModel]()
     var calendarEvents = [CalendarModel]()
+    var volunteerEvents = [CalendarModel]()
     
     
     var updatedMember = TeamMemberModel()
@@ -51,10 +52,7 @@ class UserManager: NSObject {
     }
     
     func initForRecentAddress() {
-        recentAddressTitles.append("Apple")
-        recentAddress.append("1 Infinite Loop, Cupertino, CA 95014")
-        recentAddressTitles.append("GreenWhich School")
-        recentAddress.append("88 Rivington Street, Greenwich, CT 12014")
+        
     }
     
     func initForTeamMembers() {
@@ -70,6 +68,12 @@ class UserManager: NSObject {
         info.role = user["role"].stringValue
         info.cellType = .EditUser
         
+        if let arr = user["recentAddress"].arrayObject as? [String] {
+            recentAddress = arr
+        }
+        if let arr = user["recentAddressTitle"].arrayObject as? [String] {
+            recentAddressTitles = arr
+        }
         if let teamID = json["teams"][0]["id"].int {
             info.teamID = teamID
         }
@@ -91,6 +95,7 @@ class UserManager: NSObject {
     // --------------------------------------------------------------------------------------------
     
     func saveUserInfo() {
+        controlRecentAddressSize()
         var avatar = [
             "thumb_url": info.thumURL
         ]
@@ -104,7 +109,9 @@ class UserManager: NSObject {
             "email": info.email,
             "token": userToken,
             "role": info.role,
-            "avatar": avatar
+            "avatar": avatar,
+            "recentAddress": recentAddress,
+            "recentAddressTitle": recentAddressTitles
         ]
         var map = [
             "user": userInfo,
@@ -123,6 +130,23 @@ class UserManager: NSObject {
         if let data = NSData(contentsOfFile: path) {
             var json = JSON(data: data)
             setWithJsonReponse(json)
+        }
+    }
+    
+    func controlRecentAddressSize() {
+        if recentAddress.count > 15 {
+            var data = [String]()
+            for i in 0..<8 {
+                data.append(recentAddress[i])
+            }
+            recentAddress = data
+        }
+        if recentAddressTitles.count > 15 {
+            var data = [String]()
+            for i in 0..<8 {
+                data.append(recentAddressTitles[i])
+            }
+            recentAddressTitles = data
         }
     }
     

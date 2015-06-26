@@ -1890,10 +1890,14 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a3d-o3-qlA">
+                                                    <rect key="frame" x="14" y="12" width="55" height="55"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-h2-9Km">
                                                     <rect key="frame" x="14" y="12" width="55" height="55"/>
                                                     <animations/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1914,6 +1918,7 @@
                                             <outlet property="driverLabel" destination="OiG-Ad-vZE" id="eFp-4l-puf"/>
                                             <outlet property="nameLabel" destination="lhf-Be-ZET" id="fsF-0G-mh8"/>
                                             <outlet property="profileButton" destination="lPH-h2-9Km" id="Yub-Su-oQU"/>
+                                            <outlet property="profileImageView" destination="a3d-o3-qlA" id="qhn-ZW-Znf"/>
                                             <outlet property="timeLabel" destination="WFG-E9-9Iv" id="dMX-6K-FSH"/>
                                             <outlet property="typeLabel" destination="NIN-B4-Y1C" id="LHc-YQ-kaA"/>
                                         </connections>
@@ -2781,14 +2786,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="yd4-PM-eqE">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="Kc9-FD-4Ld">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="Kc9-FD-4Ld">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kc9-FD-4Ld" id="O9L-YY-lca">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOK-bC-lNU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                                     <animations/>
+                                                    <color key="backgroundColor" red="0.1015625753" green="0.41947852600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <state key="normal" title="Done">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -2801,14 +2807,14 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="BOK-bC-lNU" secondAttribute="trailing" constant="-8" id="883-Vw-F1j"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="BOK-bC-lNU" secondAttribute="bottom" constant="-8" id="96s-R1-elU"/>
-                                                <constraint firstItem="BOK-bC-lNU" firstAttribute="leading" secondItem="O9L-YY-lca" secondAttribute="leadingMargin" constant="-8" id="I1e-mq-oqn"/>
-                                                <constraint firstItem="BOK-bC-lNU" firstAttribute="top" secondItem="O9L-YY-lca" secondAttribute="topMargin" constant="-8" id="mwO-kp-KXd"/>
+                                                <constraint firstItem="BOK-bC-lNU" firstAttribute="top" secondItem="O9L-YY-lca" secondAttribute="topMargin" constant="-8" id="4Q1-eD-SEQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="BOK-bC-lNU" secondAttribute="trailing" constant="-8" id="D9g-ED-YFy"/>
+                                                <constraint firstItem="BOK-bC-lNU" firstAttribute="leading" secondItem="O9L-YY-lca" secondAttribute="leadingMargin" constant="-8" id="F2z-9y-sfK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="BOK-bC-lNU" secondAttribute="bottom" constant="-8.5" id="pAF-BP-cyO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.0" green="0.5450980392" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.1015625753" green="0.41947852600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -2976,7 +2982,7 @@
                                                     <rect key="frame" x="136" y="7" width="169" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <animations/>

@@ -24,8 +24,8 @@ class TimeAndDateVC: BaseTVC {
     var startTimeModel: TDCellModel?
     var endTimeModel: TDCellModel?
     
-    let eventStart = "Event Start"
-    let eventEnd = "Event End"
+    let eventStart = "Start Time"
+    let eventEnd = "End Time"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,10 @@ class TimeAndDateVC: BaseTVC {
     }
     
     func setUpNavigationBar() {
-        setNavBarTitle("Time and Date")
+        var nav = navigationController as! ZGNavVC
+        nav.addTitleViewToViewController(self)
+        self.title = "Date & Time"
+        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
         setNavBarLeftButtonTitle("Back", action: "backButtonClick")
         setNavBarRightButtonTitle("Next", action: "nextButtonClick")
     }
@@ -50,30 +53,30 @@ class TimeAndDateVC: BaseTVC {
     }
     
     func setTableData() {
-        var c1 = TDCellModel(title: "",                value: "",            switchValue: true,  type: .Empty,    action: .None)
-        var c2 = TDCellModel(title: "Date",            value: "Choose date", switchValue: true,  type: .Text,     action: .ChooseDate)
-        var c3 = TDCellModel(title: "Repeat",          value: "",            switchValue: false, type: .Switcher, action: .None)
-        var c4 = TDCellModel(title: "",                value: "",            switchValue: true,  type: .Empty,    action: .None)
-        var c5 = TDCellModel(title: eventStart,        value: "Choose time", switchValue: true,  type: .Text,     action: .ChooseTime)
-        var c6 = TDCellModel(title: eventEnd,       value: "Choose time", switchValue: true,  type: .Text,     action: .ChooseTime)
-        var c7 = TDCellModel(title: "One-way carpool", value: "",            switchValue: false, type: .Switcher, action: .None)
+        var c1 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
+        var c2 = TDCellModel(title: "Start date",      value: "Select", switchValue: true,  type: .Text,     action: .ChooseDate)
+        var c3 = TDCellModel(title: "Repeat",          value: "",       switchValue: false, type: .Switcher, action: .None)
+        var c4 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
+        var c5 = TDCellModel(title: eventStart,        value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
+        var c6 = TDCellModel(title: eventEnd,          value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
+        var c7 = TDCellModel(title: "One-way carpool", value: "",       switchValue: false, type: .Switcher, action: .None)
         oneCarpoolModle = c7
         dateModel = c2
         startTimeModel = c5
         endTimeModel = c6
-        tableData = [c1, c2, c3, c4, c5, c6, c7]
+        tableData = [c1, c2, c4, c5, c6]
     }
     
     func setRepetedTableData() {
-        var c1 = TDCellModel(title: "",                value: "",            switchValue: true,  type: .Empty,    action: .None)
-        var c2 = TDCellModel(title: "Start Date",      value: "Choose date", switchValue: true,  type: .Text,     action: .ChooseDate)
-        var c3 = TDCellModel(title: "End Date",        value: "Choose date", switchValue: true,  type: .Text,     action: .ChooseDate)
-        var c4 = TDCellModel(title: "Frequency",       value: ">",           switchValue: true,  type: .Text,     action: .None)
-        var c5 = TDCellModel(title: "Repeat",          value: "",            switchValue: true,  type: .Switcher, action: .None)
-        var c6 = TDCellModel(title: "",                value: "",            switchValue: true,  type: .Empty,    action: .None)
-        var c7 = TDCellModel(title: eventStart,        value: "Choose time", switchValue: true,  type: .Text,     action: .ChooseTime)
-        var c8 = TDCellModel(title: eventEnd,          value: "Choose time", switchValue: true,  type: .Text,     action: .ChooseTime)
-        var c9 = TDCellModel(title: "One-way carpool", value: "",            switchValue: false, type: .Switcher, action: .None)
+        var c1 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
+        var c2 = TDCellModel(title: "Start Date ",     value: "Select", switchValue: true,  type: .Text,     action: .ChooseDate)
+        var c3 = TDCellModel(title: "End Date ",       value: "Select", switchValue: true,  type: .Text,     action: .ChooseDate)
+        var c4 = TDCellModel(title: "Frequency",       value: ">",      switchValue: true,  type: .Text,     action: .None)
+        var c5 = TDCellModel(title: "Repeat",          value: "",       switchValue: true,  type: .Switcher, action: .None)
+        var c6 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
+        var c7 = TDCellModel(title: eventStart,        value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
+        var c8 = TDCellModel(title: eventEnd,          value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
+        var c9 = TDCellModel(title: "One-way carpool", value: "",       switchValue: false, type: .Switcher, action: .None)
         oneCarpoolModle = c9
         tableData = [c1, c2, c3, c4, c5, c6, c7, c8, c9]
     }
@@ -84,13 +87,41 @@ class TimeAndDateVC: BaseTVC {
     
     func nextButtonClick() {
         if userManager.currentCarpoolModel.isValid() {
-            var vc = vcWithID("LocationVC")
-            navigationController?.pushViewController(vc, animated: true)
+            if userManager.userLoggedIn {
+                LoadingView.showWithMaskType(.Black)
+                dataManager.createCarpool(userManager.currentCarpoolModel, comp: handleCreateCarpoolSuccess)
+            } else {
+                moveToLocationVC()
+            }
         } else {
             showAlert("Alert", messege: "Please fill in all fields", cancleTitle: "OK")
         }
     }
     
+    func handleCreateCarpoolSuccess(success: Bool, errorStr: String) {
+        if success {
+            dataManager.occurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
+        } else {
+            LoadingView.dismiss()
+            self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
+        }
+    }
+    
+    func handleGetVolunteerList(success: Bool, errorStr: String) {
+        LoadingView.dismiss()
+        if success {
+            moveToLocationVC()
+        } else {
+            self.showAlert("Fail to fetch vlounteer list", messege: errorStr, cancleTitle: "OK")
+        }
+    }
+    
+    func moveToLocationVC() {
+        onMainThread() {
+            var vc = vcWithID("LocationVC")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
@@ -250,11 +281,11 @@ class TimeAndDateVC: BaseTVC {
             carpoolModel.pickUpTime = date
         } else if cellTitle == eventEnd { // drop off
             carpoolModel.dropOffTime = date
-        } else if cellTitle == "End date" {
+        } else if cellTitle == "End date " {
             carpoolModel.endDate = date
-        } else if cellTitle == "Start date" {
+        } else if cellTitle == "Start date " {
             carpoolModel.startDate = date
-        } else if cellTitle == "Date" {
+        } else if cellTitle == "Start date" {
             carpoolModel.startDate = date
             carpoolModel.endDate = date
             carpoolModel.occurence = occurenceOfDate(date)

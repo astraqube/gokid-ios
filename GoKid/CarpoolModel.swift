@@ -25,6 +25,7 @@ class CarpoolModel: NSObject {
     }
     
     init(json: JSON) {
+        println(json)
         name = json["carpool"]["name"].stringValue
         id = json["carpool"]["id"].intValue
         super.init()

@@ -17,7 +17,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         setupNavigationBar()
         setupTableView()
-        tableView.reloadData()
+        registerForNotification("SignupFinished", action: "fetchDataAfterLogin")
     }
     
     func setupTableView() {
@@ -44,7 +44,8 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func nextButtonClick() {
         if userManager.userLoggedIn {
-            createCarpool()
+            var vc = vcWithID("InviteParentsVC")
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
             animatShowSignupVC()
         }
@@ -128,7 +129,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func signupToSignin() {
         signupVC.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
-            
             // self.signupVC.willMoveToParentViewController(nil)
             self.signupVC.view.removeFromSuperview()
             // self.signupVC.removeFromParentViewController()
@@ -143,6 +143,30 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func signinSuccessHandler() {
         navigationController?.popViewControllerAnimated(true)
+        fetchDataAfterLogin()
+    }
+    
+    func fetchDataAfterLogin() {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.createCarpool(userManager.currentCarpoolModel, comp: handleCreateCarpoolSuccess)
+    }
+    
+    func handleCreateCarpoolSuccess(success: Bool, errorStr: String) {
+        if success {
+            dataManager.occurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
+        } else {
+            LoadingView.dismiss()
+            self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
+        }
+    }
+    
+    func handleGetVolunteerList(success: Bool, errorStr: String) {
+        LoadingView.dismiss()
+        if success {
+            setupTableView()
+        } else {
+            self.showAlert("Fail to fetch vlounteer list", messege: errorStr, cancleTitle: "OK")
+        }
     }
     
     // MARK: Create Carpool
@@ -175,8 +199,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func showTakenActionSheet(cell: VolunteerCell, model: VolunteerModel) {
         let button1 = UIAlertAction(title: "Unvolunteer", style: .Default) { (alert) in
-            cell.checkButton.backgroundColor = UIColor.lightGrayColor()
-            model.taken = !model.taken
+            self.unRegisterVolunteerForCell(cell, model: model)
         }
         let button2 = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in
             
@@ -189,20 +212,16 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func showUntakenActionSheet(cell: VolunteerCell, model: VolunteerModel) {
         let button1 = UIAlertAction(title: "Volunteer", style: .Default) { (alert) in
-            cell.checkButton.backgroundColor = UIColor.greenColor()
-            model.taken = !model.taken
+            self.registerVolunteerForCell(cell, model: model)
         }
         let button2 = UIAlertAction(title: "Volunteer Every Sunday", style: .Default) { (alert) in
-            cell.checkButton.backgroundColor = UIColor.greenColor()
-            model.taken = !model.taken
+            self.registerVolunteerForCell(cell, model: model)
         }
         let button3 = UIAlertAction(title: "Volunteer All Drop-off", style: .Default) { (alert) in
-            cell.checkButton.backgroundColor = UIColor.greenColor()
-            model.taken = !model.taken
+            self.registerVolunteerForCell(cell, model: model)
         }
         let button4 = UIAlertAction(title: "Volunteer Every Day", style: .Default) { (alert) in
-            cell.checkButton.backgroundColor = UIColor.greenColor()
-            model.taken = !model.taken
+            self.registerVolunteerForCell(cell, model: model)
         }
         let button5 = UIAlertAction(title: "Assign team member", style: .Default) { (alert) in
         }
@@ -216,6 +235,35 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         alert.addAction(button5)
         alert.addAction(button6)
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func unRegisterVolunteerForCell(cell: VolunteerCell, model: VolunteerModel) {
+        LoadingView.showWithMaskType(.Black)
+        self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occrenceID) { (success, errStr) in
+            LoadingView.dismiss()
+            onMainThread() {
+                if success {
+                    cell.checkButton.backgroundColor = UIColor.lightGrayColor()
+                    model.taken = !model.taken
+                } else {
+                    self.showAlert("Fail to unvolunteer", messege: errStr, cancleTitle: "OK")
+                }
+            }
+        }
+    }
+    
+    func registerVolunteerForCell(cell: VolunteerCell, model: VolunteerModel) {
+        LoadingView.showWithMaskType(.Black)
+        self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occrenceID) { (success, errStr) in
+            LoadingView.dismiss()
+            onMainThread() {
+            if success {
+                cell.checkButton.backgroundColor = UIColor.greenColor()
+                model.taken = !model.taken
+            } else {
+                self.showAlert("Fail to volunteer", messege: errStr, cancleTitle: "OK")
+            }}
+        }
     }
 }
 

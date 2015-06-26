@@ -169,6 +169,18 @@ extension NSDate {
             return nil
         }
     }
+    
+    func dateString() -> String {
+        var df = NSDateFormatter()
+        df.dateFormat = "EE MMMM d, YYYY"
+        return df.stringFromDate(self)
+    }
+    
+    func timeString() -> String {
+        var df = NSDateFormatter()
+        df.dateFormat = "hh:mma"
+        return df.stringFromDate(self).lowercaseString
+    }
 }
 
 
@@ -185,6 +197,7 @@ class PaddingTextField: UITextField {
 }
 
 typealias LoadingView = SVProgressHUD
+typealias ZGNavVC = ZGNavigationBarTitleViewController
 
 
 

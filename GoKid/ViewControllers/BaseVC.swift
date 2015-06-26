@@ -13,6 +13,7 @@ class BaseVC: UIViewController {
     var dataManager = DataManager.sharedInstance
     var userManager = UserManager.sharedInstance
     var colorManager = ColorManager.sharedInstance
+    var imageManager = ImageManager.sharedInstance
     
     var keyBoardMoveUp : CGFloat = 0
 

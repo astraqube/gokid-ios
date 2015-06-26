@@ -32,6 +32,7 @@ class Phone_VC: BaseVC {
     }
     
     func nextButtonClick() {
+        
         var phoneVerifyVC = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
         phoneVerifyVC.memberProfileVC = memberProfileVC
         phoneVerifyVC.phoneNumberString = phoneNumberTextField.text

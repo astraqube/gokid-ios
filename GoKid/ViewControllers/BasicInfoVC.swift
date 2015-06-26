@@ -17,6 +17,7 @@ class BasicInfoVC: BaseVC {
         super.viewDidLoad()
         setupNavigationBar()
         setupKeyBoardMoveup()
+        clenUserCurrentCarPoolData()
     }
     
     override func viewWillAppear(animated: Bool) {

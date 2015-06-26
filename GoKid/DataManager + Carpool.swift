@@ -25,18 +25,18 @@ extension DataManager {
                 "schedule": schedule
             ]
         ]
+        println("try create carpool")
         println(map)
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             var carpool = CarpoolModel(json: JSON(obj))
-            self.userManager.currentCarpoolModel = carpool
+            self.userManager.currentCarpoolModel.id = carpool.id
             println("create carpool success")
             println(obj)
             comp(true, "")
             }) { (op, error) in
                 println("create carpool failed")
                 var errorStr = self.constructErrorStr(op, error: error)
-                println(errorStr)
                 comp(false, errorStr)
         }
     }
@@ -54,7 +54,6 @@ extension DataManager {
         }) { (op, error) in
             println("getAllUserCarpools failed")
             var errorStr = self.constructErrorStr(op, error: error)
-            println(errorStr)
             comp(false, errorStr)
         }
     }
@@ -67,10 +66,54 @@ extension DataManager {
             var carpool = CarpoolModel(json: JSON(obj))
             self.userManager.currentCarpoolModel = carpool
             comp(true, "")
+        }) { (op, error) in
+            println("get carpool failed")
+            var errorStr = self.constructErrorStr(op, error: error)
+            comp(false, errorStr)
+        }
+    }
+    
+    func registerForOccurence(carpoolID: Int, occurID: Int, comp: completion) {
+        var url = baseURL + "/api/carpools/\(carpoolID)/occurrences/\(occurID)/claim"
+        var manager = managerWithToken()
+        manager.POST(url, parameters: nil, success: { (op, obj) in
+            println("registerForOccurence success")
+            println(obj)
+            comp(true, "")
             }) { (op, error) in
-                println("get carpool failed")
+                println("registerForOccurence failed")
                 var errorStr = self.constructErrorStr(op, error: error)
-                println(errorStr)
+                comp(false, errorStr)
+        }
+    }
+    
+    func unregisterForOccurence(carpoolID: Int, occurID: Int, comp: completion) {
+        var url = baseURL + "/api/carpools/\(carpoolID)/occurrences/\(occurID)/claim"
+        var manager = managerWithToken()
+        manager.DELETE(url, parameters: nil, success: { (op, obj) in
+            println("registerForOccurence success")
+            println(obj)
+            comp(true, "")
+            }) { (op, error) in
+                println("registerForOccurence failed")
+                var errorStr = self.constructErrorStr(op, error: error)
+                comp(false, errorStr)
+        }
+    }
+    
+    func occurenceOfCarpool(carpoolID: Int, comp: completion) {
+        var url = baseURL + "/api/carpools/\(carpoolID)/occurrences"
+        var manager = managerWithToken()
+        manager.GET(url, parameters: nil, success: { (op, obj) in
+            println("occurenceOfCarpool success")
+            var json = JSON(obj)["occurrences"]
+            println(json)
+            var events = CalendarModel.arrayOfEventsFromOccurrences(json)
+            self.userManager.volunteerEvents = events
+            comp(true, "")
+        }) { (op, error) in
+                println("occurenceOfCarpool failed")
+                var errorStr = self.constructErrorStr(op, error: error)
                 comp(false, errorStr)
         }
     }

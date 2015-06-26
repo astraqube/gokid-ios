@@ -17,7 +17,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         setupNavBar()
         setupTableView()
-        fetchDataAndReloadTableView()
+        setupTableViewContent()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -35,6 +35,15 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func setupTableViewContent() {
+        if userManager.userLoggedIn {
+            fetchDataAndReloadTableView()
+        } else {
+            addCreateCarpoolCellToDataSource()
+            tableView.reloadData()
+        }
     }
     
     func fetchDataAndReloadTableView() {
@@ -130,6 +139,8 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         cell.timeLabel.text = model.pooltimeStr
         cell.typeLabel.text = model.poolType
         cell.driverLabel.text = model.poolDriver
+        cell.profileImageView.image = nil
+        imageManager.setImageToView(cell.profileImageView, urlStr: model.poolDriverImageUrl)
         return cell
     }
     

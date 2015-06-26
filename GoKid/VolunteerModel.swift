@@ -21,6 +21,8 @@ class VolunteerModel: NSObject {
     var poolTypeString = ""
     var cellType: VOCellType = .Empty
     var taken = false
+    var occrenceID = 0
+    var carpoolID = 0
     
     init(title: String, time: String, poolType: String, cellType: VOCellType) {
         self.poolTypeString = poolType
