@@ -140,6 +140,7 @@ extension String {
     }
     
     mutating func captialName() -> String {
+        if count(self) < 1 { return "" }
         var index = self.startIndex
         self.replaceRange(index...index, with: String(self[index]).capitalizedString)
         return self
