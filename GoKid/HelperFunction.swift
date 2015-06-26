@@ -145,7 +145,6 @@ extension String {
         self.replaceRange(index...index, with: String(self[index]).capitalizedString)
         return self
     }
-
 }
 
 extension Array {

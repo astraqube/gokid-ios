@@ -277,9 +277,9 @@ class TimeAndDateVC: BaseTVC {
     func updateCurrentUserCarpoolModel(cellModel: TDCellModel, date: NSDate ) {
         var cellTitle = cellModel.titleString
         var carpoolModel = userManager.currentCarpoolModel
-        if cellTitle == eventStart { // pickup
+        if cellTitle == eventEnd { // pickup
             carpoolModel.pickUpTime = date
-        } else if cellTitle == eventEnd { // drop off
+        } else if cellTitle == eventStart { // drop off
             carpoolModel.dropOffTime = date
         } else if cellTitle == "End date " {
             carpoolModel.endDate = date
