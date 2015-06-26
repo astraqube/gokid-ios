@@ -45,8 +45,8 @@ extension DataManager {
         
         var model = userManager.currentCarpoolModel
         if let str = model.startDate?.dateString() { date = str }
-        if let str = model.pickUpTime?.timeString() { dropoffTime = str }
-        if let str = model.dropOffTime?.timeString() { pickupTime = str }
+        if let str = model.pickUpTime?.timeString() { pickupTime = str }
+        if let str = model.dropOffTime?.timeString() { dropoffTime = str }
         
         var str = "Volunteer as Driver"
         var c0 = VolunteerModel(title: "", time: "", poolType: "", cellType: .Empty)
