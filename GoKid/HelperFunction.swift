@@ -138,6 +138,13 @@ extension String {
         var option = NSStringCompareOptions.LiteralSearch
         return self.stringByReplacingOccurrencesOfString(a, withString: "", options:option , range: nil)
     }
+    
+    mutating func captialName() -> String {
+        var index = self.startIndex
+        self.replaceRange(index...index, with: String(self[index]).capitalizedString)
+        return self
+    }
+
 }
 
 extension Array {

@@ -38,7 +38,7 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     
     func setupNavigationBar() {
         setNavBarTitle("Location")
-        setNavBarLeftButtonTitle("Cancle", action: "cancleButtonClick")
+        setNavBarLeftButtonTitle("Cancel", action: "cancleButtonClick")
         setNavBarRightButtonTitle("Done", action: "doneButtonClick")
     }
     
@@ -50,7 +50,7 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     }
     
     func doneButtonClick() {
-        if userManager.userHomeAdress == nil && locationInputTextField.text != "" {
+        if userManager.userLoggedIn && userManager.userHomeAdress == nil && locationInputTextField.text != "" {
             showHomeAdreeAlertView()
         } else {
             navigationController?.popViewControllerAnimated(true)

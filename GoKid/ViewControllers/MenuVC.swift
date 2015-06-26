@@ -42,8 +42,8 @@ class MenuVC: BaseVC {
     }
     
     func refreshUI() {
-        nameLabel.setTitle(userManager.info.firstName, forState: .Normal)
-        teamLabel.text = "Team " + userManager.info.lastName
+        nameLabel.setTitle(userManager.info.firstName.captialName(), forState: .Normal)
+        teamLabel.text = "Team " + userManager.info.lastName.captialName()
         if userManager.info.firstName == "" {
             nameLabel.setTitle("Unknown", forState: .Normal)
         }

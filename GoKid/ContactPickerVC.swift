@@ -67,7 +67,7 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             if success {
                 self.showAlert("Success", messege: "Messege Sent", cancleTitle: "OK")
             } else {
-                self.showAlert("Alert", messege: "Failed to Sent Messege", cancleTitle: "Cancle")
+                self.showAlert("Alert", messege: "Failed to Sent Messege", cancleTitle: "Cancel")
             }
         }
     }

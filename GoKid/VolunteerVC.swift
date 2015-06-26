@@ -201,7 +201,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         let button1 = UIAlertAction(title: "Unvolunteer", style: .Default) { (alert) in
             self.unRegisterVolunteerForCell(cell, model: model)
         }
-        let button2 = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in
+        let button2 = UIAlertAction(title: "Cancel", style: .Cancel) { (alert) in
             
         }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
@@ -214,9 +214,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         let button1 = UIAlertAction(title: "Volunteer", style: .Default) { (alert) in
             self.registerVolunteerForCell(cell, model: model)
         }
-        let button2 = UIAlertAction(title: "Volunteer Every Sunday", style: .Default) { (alert) in
-            self.registerVolunteerForCell(cell, model: model)
-        }
         let button3 = UIAlertAction(title: "Volunteer All Drop-off", style: .Default) { (alert) in
             self.registerVolunteerForCell(cell, model: model)
         }
@@ -225,11 +222,10 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
         let button5 = UIAlertAction(title: "Assign team member", style: .Default) { (alert) in
         }
-        let button6 = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in
+        let button6 = UIAlertAction(title: "Cancel", style: .Cancel) { (alert) in
         }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         alert.addAction(button1)
-        alert.addAction(button2)
         alert.addAction(button3)
         alert.addAction(button4)
         alert.addAction(button5)

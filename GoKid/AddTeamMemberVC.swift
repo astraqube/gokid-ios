@@ -112,7 +112,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
             }
             alert.addAction(button)
         }
-        let cancleButton = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in }
+        let cancleButton = UIAlertAction(title: "Cancel", style: .Cancel) { (alert) in }
         alert.addAction(cancleButton)
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -201,7 +201,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     // --------------------------------------------------------------------------------------------
     
     func showDeleteMemberAlertView() {
-        var alertView = UIAlertView(title: "Alert", message: "Do you want to delete this member?", delegate: self, cancelButtonTitle: "Cancle", otherButtonTitles: "Confirm")
+        var alertView = UIAlertView(title: "Alert", message: "Do you want to delete this member?", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Confirm")
         alertView.show()
     }
     

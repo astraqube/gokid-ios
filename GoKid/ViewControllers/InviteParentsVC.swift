@@ -12,8 +12,15 @@ import AddressBookUI
 
 class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
 
+    @IBOutlet weak var carpoolNameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshUI()
+    }
+    
+    func refreshUI() {
+        carpoolNameLabel.text = userManager.currentCarpoolModel.name
     }
     
     // MARK: IBAction Method
