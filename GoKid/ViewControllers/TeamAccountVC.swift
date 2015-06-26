@@ -39,9 +39,11 @@ class TeamAccountVC: BaseCVC {
     }
     
     func navBarTapped() {
-        var vc = vcWithID("PlacePickerVC") as! PlacePickerVC
-        vc.teamVC = self
-        self.presentViewController(vc, animated: true, completion: nil)
+        if um.userLoggedIn {
+            var vc = vcWithID("PlacePickerVC") as! PlacePickerVC
+            vc.teamVC = self
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
     }
     
     func setHomeAddress(address1: String, address2: String) {

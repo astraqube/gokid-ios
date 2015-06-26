@@ -146,6 +146,9 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
         locationInputTextField.text = userManager.recentAddressTitles[row] + " " + userManager.recentAddress[row]
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 65.0
+    }
     
     // MARK: Alert View
     // --------------------------------------------------------------------------------------------
