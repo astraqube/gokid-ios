@@ -15,9 +15,8 @@ class TeamAccountCell: UICollectionViewCell {
     @IBOutlet weak var roleLabel: UILabel!
     
     override func awakeFromNib() {
-        self.profileImageView.backgroundColor = UIColor.grayColor()
-        self.profileImageView.layer.cornerRadius = profileImageView.w/2.0
-        self.profileImageView.clipsToBounds = true
+        profileImageView.backgroundColor = UIColor.grayColor()
+        profileImageView.setRounded()
     }
 
 }

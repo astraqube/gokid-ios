@@ -11,6 +11,7 @@ import UIKit
 class AddTeamMemberCell: UICollectionViewCell {
     
   @IBOutlet weak var contentLabel: UILabel!
+    
     override func awakeFromNib() {
         layer.borderColor = UIColor.whiteColor().CGColor
         layer.borderWidth = 5.0

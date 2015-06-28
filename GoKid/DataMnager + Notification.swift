@@ -10,6 +10,9 @@ import UIKit
 
 extension DataManager {
     
+    // MARK: Network request for notifications
+    // --------------------------------------------------------------------------------------------
+    
     func updateNotificationToken(token: String, comp: completion) {
         
     }

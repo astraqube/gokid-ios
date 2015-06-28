@@ -6,6 +6,15 @@
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
 
+struct SignupForm {
+    var passwordConfirm = ""
+    var password = ""
+    var firstName = ""
+    var lastName = ""
+    var email = ""
+    var role = ""
+}
+
 extension DataManager {
     
     func signin(email: String, password: String, comp: completion) {
@@ -16,13 +25,13 @@ extension DataManager {
         ]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("Login success")
+            println("signin success")
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
         }) { (op, error) in
-            println("login failed")
+            println("signin failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
@@ -40,13 +49,13 @@ extension DataManager {
         var map = ["user": arr]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("Create user success")
+            println("signup success")
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
         }) { (op, error) in
-            println("create user failed")
+            println("signup failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }

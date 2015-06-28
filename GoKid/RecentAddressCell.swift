@@ -10,15 +10,7 @@ import UIKit
 
 class RecentAddressCell: UITableViewCell {
 
-    
     @IBOutlet weak var addressTitleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 }

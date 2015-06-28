@@ -8,9 +8,7 @@
 
 
 extension DataManager {
-    
-    typealias UserCompletion = ((Bool, String, TeamMemberModel?)->())
-    
+        
     func getTeamMembersOfTeam(comp: completion) {
         var teamID = String(userManager.info.teamID)
         var url = baseURL + "/api/teams/\(teamID)/permissions"

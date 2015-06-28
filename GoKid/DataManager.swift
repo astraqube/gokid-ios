@@ -8,21 +8,14 @@
 
 import UIKit
 
-struct SignupForm {
-    var passwordConfirm = ""
-    var password = ""
-    var firstName = ""
-    var lastName = ""
-    var email = ""
-    var role = ""
-}
-
 class DataManager: NSObject {
     
+    var baseURL = "https://gokid.devon.io"
     var userManager = UserManager.sharedInstance
     var imageManager = ImageManager.sharedInstance
-    var baseURL = "https://gokid.devon.io"
     typealias completion = ((Bool, String)->())
+    typealias UserCompletion = ((Bool, String, TeamMemberModel?)->())
+    
     
     // MARK: Singleton
     class var sharedInstance : DataManager {

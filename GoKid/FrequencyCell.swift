@@ -11,8 +11,5 @@ import UIKit
 class FrequencyCell: UITableViewCell {
 
     @IBOutlet weak var timeLabel: UILabel!
-  
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+
 }

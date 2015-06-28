@@ -36,11 +36,11 @@ class CalendarModel: NSObject {
     init(occurence: JSON) {
         super.init()
         poolDate = parseDate(occurence, key: "occurs_at")
-        poolname = occurence["carpool"]["name"].stringValue
-        poolType = occurence["kind"].stringValue
         cellType = .Normal
-        carpoolID = occurence["carpool"]["id"].intValue
         occrencID = occurence["id"].intValue
+        poolType = occurence["kind"].stringValue
+        carpoolID = occurence["carpool"]["id"].intValue
+        poolname = occurence["carpool"]["name"].stringValue
         poolDriver = occurence["volunteer"]["first_name"].stringValue
         poolDriverImageUrl = occurence["volunteer"]["avatar"]["thumb_url"].stringValue
         generateOtherField()

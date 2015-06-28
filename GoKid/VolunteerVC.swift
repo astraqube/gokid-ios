@@ -28,11 +28,9 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupNavigationBar() {
-        self.title = "Volunteer"
-        var leftButton = UIBarButtonItem(title: "Location", style: .Plain, target: self, action: "locationButtonClick")
-        var rightButton = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextButtonClick")
-        self.navigationItem.rightBarButtonItem = rightButton
-        self.navigationItem.leftBarButtonItem = leftButton
+        setNavBarTitle("Volunteer")
+        setNavBarLeftButtonTitle("Location", action: "locationButtonClick")
+        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
     }
     
     // MARK: IBAction Method
@@ -69,7 +67,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println(tableData.count)
         return tableData.count
     }
     
@@ -118,9 +115,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         signupVC.view.alpha = 0.0
         
         // view controller operations
-        // navigationController?.addChildViewController(signupVC)
         navigationController?.view.addSubview(signupVC.view)
-        // signupVC.didMoveToParentViewController(navigationController)
         signupVC.signinButtonHandler = signupToSignin
         
         // animation
@@ -129,10 +124,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func signupToSignin() {
         signupVC.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
-            // self.signupVC.willMoveToParentViewController(nil)
             self.signupVC.view.removeFromSuperview()
-            // self.signupVC.removeFromParentViewController()
-            
             withDelay(0.2) {
                 var vc = vcWithID("SignInVC") as! SignInVC
                 vc.signinSuccessHandler = self.signinSuccessHandler
