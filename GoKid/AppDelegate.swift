@@ -55,7 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         println("success register for remote notification")
-        println(deviceToken)
+        var str = NSMutableString()
+        var ptr = UnsafePointer<CChar>(deviceToken.bytes)
+        for var i = 0; i < 32; i++ {
+            str.appendFormat("%02.2hhX", ptr[i])
+        }
+        println("Device token: \(str)")
     }
     
     // MARK: Facebook Deep Link
