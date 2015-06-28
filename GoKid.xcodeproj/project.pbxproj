@@ -295,8 +295,6 @@
 		1D1FD68B1B1C00BB00287FA0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1DD6A4D31B3BA565006A97ED /* PlacePickerVC.swift */,
-				1DD6A4D51B3BA916006A97ED /* PlaceResultCell.swift */,
 				1D3F652B1B237F4400CCF6A1 /* Architecture */,
 				1D975A3F1B1F930600CD4D89 /* TimeDatePicker */,
 				1D975A361B1F40B800CD4D89 /* Invitation */,
@@ -306,9 +304,7 @@
 				1D3F65211B207E3500CCF6A1 /* Sign in/up */,
 				1D808FCE1B2934F900D295BE /* Team Account */,
 				1D8F78F11B36991B00C78CAF /* Calendar */,
-				1DA789451B23C42700B391E8 /* OnboardVC.swift */,
-				1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */,
-				1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */,
+				1D5866891B3FCF6800F141F8 /* Onboard */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -342,6 +338,7 @@
 		1D3F65121B2005B200CCF6A1 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				1DD6A4D31B3BA565006A97ED /* PlacePickerVC.swift */,
 				1D3F65131B2005D500CCF6A1 /* LocationVC.swift */,
 				1D3F65151B2005EC00CCF6A1 /* LocationInputVC.swift */,
 			);
@@ -383,6 +380,7 @@
 				1D3F652A1B237F2100CCF6A1 /* TeamAccount */,
 				1D3F65291B237EF600CCF6A1 /* Volunteer */,
 				1D3F65111B20059300CCF6A1 /* TimeAndDate */,
+				1D5866881B3FCF3A00F141F8 /* Google Place */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -408,13 +406,39 @@
 		1D3F652B1B237F4400CCF6A1 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				1D8F78EF1B36733F00C78CAF /* BaseCVC.swift */,
-				1D8F78ED1B3672D300C78CAF /* BaseTVC.swift */,
-				1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */,
+				1D58668A1B3FCFFE00F141F8 /* Base ViewController */,
 				1D1FD6921B1C04D100287FA0 /* MainStackVC.swift */,
 				1D1FD6901B1C048600287FA0 /* MenuVC.swift */,
 			);
 			name = Architecture;
+			sourceTree = "<group>";
+		};
+		1D5866881B3FCF3A00F141F8 /* Google Place */ = {
+			isa = PBXGroup;
+			children = (
+				1DD6A4D51B3BA916006A97ED /* PlaceResultCell.swift */,
+			);
+			name = "Google Place";
+			sourceTree = "<group>";
+		};
+		1D5866891B3FCF6800F141F8 /* Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				1DA789451B23C42700B391E8 /* OnboardVC.swift */,
+				1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */,
+				1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */,
+			);
+			name = Onboard;
+			sourceTree = "<group>";
+		};
+		1D58668A1B3FCFFE00F141F8 /* Base ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D8F78EF1B36733F00C78CAF /* BaseCVC.swift */,
+				1D8F78ED1B3672D300C78CAF /* BaseTVC.swift */,
+				1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */,
+			);
+			name = "Base ViewController";
 			sourceTree = "<group>";
 		};
 		1D808FCE1B2934F900D295BE /* Team Account */ = {
@@ -684,7 +708,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# ./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
+			shellScript = "./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
 		};
 		CD65D8EC25723919ABB980C6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
