@@ -47,10 +47,8 @@ class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func registerForPushNotification() {
-        var type = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound;
-        var setting = UIUserNotificationSettings(forTypes: type, categories: nil);
+        var setting = UIUserNotificationSettings(forTypes: .Badge | .Alert | .Sound, categories: nil);
         UIApplication.sharedApplication().registerUserNotificationSettings(setting);
-        UIApplication.sharedApplication().registerForRemoteNotifications();
     }
     
     // MARK: Alert View
