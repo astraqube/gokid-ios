@@ -25,19 +25,15 @@ extension DataManager {
                 "schedule": schedule
             ]
         ]
-        println("try create carpool")
-        println(map)
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             var carpool = CarpoolModel(json: JSON(obj))
             self.userManager.currentCarpoolModel.id = carpool.id
             println("create carpool success")
-            println(obj)
             comp(true, "")
-            }) { (op, error) in
-                println("create carpool failed")
-                var errorStr = self.constructErrorStr(op, error: error)
-                comp(false, errorStr)
+        }) { (op, error) in
+            println("create carpool failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -47,14 +43,12 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getAllUserCarpools success")
             var json = JSON(obj)["occurrences"]
-            println(json)
             var events = CalendarModel.arrayOfEventsFromOccurrences(json)
             self.userManager.calendarEvents = events
             comp(true, "")
         }) { (op, error) in
             println("getAllUserCarpools failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -68,8 +62,7 @@ extension DataManager {
             comp(true, "")
         }) { (op, error) in
             println("get carpool failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -80,10 +73,9 @@ extension DataManager {
             println("registerForOccurence success")
             println(obj)
             comp(true, "")
-            }) { (op, error) in
-                println("registerForOccurence failed")
-                var errorStr = self.constructErrorStr(op, error: error)
-                comp(false, errorStr)
+        }) { (op, error) in
+            println("registerForOccurence failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -94,10 +86,9 @@ extension DataManager {
             println("registerForOccurence success")
             println(obj)
             comp(true, "")
-            }) { (op, error) in
-                println("registerForOccurence failed")
-                var errorStr = self.constructErrorStr(op, error: error)
-                comp(false, errorStr)
+        }) { (op, error) in
+            println("registerForOccurence failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -112,9 +103,8 @@ extension DataManager {
             self.userManager.volunteerEvents = events
             comp(true, "")
         }) { (op, error) in
-                println("occurenceOfCarpool failed")
-                var errorStr = self.constructErrorStr(op, error: error)
-                comp(false, errorStr)
+            println("occurenceOfCarpool failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
 }

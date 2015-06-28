@@ -43,9 +43,7 @@ class DataManager: NSObject {
             comp(true, "")
         }) { (op, error) in
             println("invite failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            println(errorStr)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -56,17 +54,28 @@ class DataManager: NSObject {
         return manager
     }
     
-    func constructErrorStr(op: AFHTTPRequestOperation?, error: NSError?) -> String {
-        var opStr = ""
-        var errorStr = ""
+    func handleRequestError(op: AFHTTPRequestOperation?, error: NSError?, comp: completion) {
+        var errorStr = constructErrorString(op, error: error)
+        println(errorStr)
+        comp(false, errorStr)
+    }
+    
+    func handleUserResuestError(op: AFHTTPRequestOperation?, error: NSError?, comp: UserCompletion) {
+        var errorStr = constructErrorString(op, error: error)
+        println(errorStr)
+        comp(false, errorStr, nil)
+    }
+    
+    func constructErrorString(op: AFHTTPRequestOperation?, error: NSError?) -> String {
+        var opErrorStr = ""
+        var nsErrorStr = ""
         if let data = op?.responseData {
-            opStr = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+            opErrorStr = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
         }
         if let str = error?.localizedDescription {
-            errorStr = str
+            nsErrorStr = str
         }
-        var final = opStr + " " + errorStr
-        println(final)
-        return final
+        var errorStr = opErrorStr + " " + nsErrorStr
+        return errorStr
     }
 }

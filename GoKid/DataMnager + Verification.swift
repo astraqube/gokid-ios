@@ -17,14 +17,12 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getTeamMembersOfTeam success")
             var json = JSON(obj)
-            println(json)
             var members =  TeamMemberModel.arrayOfMembers(json["permissions"])
             self.userManager.teamMembers = members
             comp(true, "")
         }) { (op, error) in
             println("getTeamMembersOfTeam failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
 }

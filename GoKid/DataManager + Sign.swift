@@ -21,11 +21,9 @@ extension DataManager {
             self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
-            }) { (op, error) in
-                println("login failed")
-                var errorStr = self.constructErrorStr(op, error: error)
-                println(errorStr)
-                comp(false, errorStr)
+        }) { (op, error) in
+            println("login failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -47,11 +45,9 @@ extension DataManager {
             self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
-            }) { (op, error) in
-                println("create user failed")
-                var errorStr = self.constructErrorStr(op, error: error)
-                println(errorStr)
-                comp(false, errorStr)
+        }) { (op, error) in
+            println("create user failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -77,11 +73,9 @@ extension DataManager {
                 self.postNotification("SignupFinished")
                 comp(true, "")
             }
-            }) { (op, error) in
-                println("fbSignin user failed")
-                var errorStr = self.constructErrorStr(op, error: error)
-                println(errorStr)
-                comp(false, errorStr)
+        }) { (op, error) in
+            println("fbSignin user failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -98,10 +92,9 @@ extension DataManager {
                 self.postNotification("SignupFinished")
             }
             comp(true, "")
-            }) { (op, error) in
-                var errorStr = self.constructErrorStr(op, error: error)
-                println(errorStr)
-                comp(false, errorStr)
+        }) { (op, error) in
+            println("fbSignup user fail")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -125,9 +118,7 @@ extension DataManager {
             comp(true, "")
         }) { (op, error) in
             println("update user failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            println(errorStr)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -155,9 +146,7 @@ extension DataManager {
             self.imageManager.removeDiskCacheForURL(self.userManager.info.thumURL)
             comp(true, "")
         }, failure: { (op, error) in
-            var errorStr = self.constructErrorStr(op, error: error)
-            println(errorStr)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         })
         NSOperationQueue.mainQueue().addOperation(op)
     }

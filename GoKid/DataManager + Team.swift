@@ -24,8 +24,7 @@ extension DataManager {
             comp(true, "")
         }) { (op, error) in
             println("getTeamMembersOfTeam failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -44,8 +43,7 @@ extension DataManager {
             comp(true, "")
         }) { (op, error) in
             println("updateTeamAddress failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -73,8 +71,7 @@ extension DataManager {
             comp(true, "")
         }, failure: { (op, error) in
             println("fail to upload team member image")
-            var errorStr = self.constructErrorStr(op, error: error)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         })
         NSOperationQueue.mainQueue().addOperation(op)
     }
@@ -100,8 +97,7 @@ extension DataManager {
             comp(true, "", newModel)
         }) { (op, error) in
             println("addTeamMember failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            comp(false, errorStr, nil)
+            self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
     
@@ -115,8 +111,7 @@ extension DataManager {
             comp(true, "")
         }) { (op, error) in
             println("deleteTeamMember failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            comp(false, errorStr)
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
@@ -136,8 +131,7 @@ extension DataManager {
             comp(true, "", model)
         }) { (op, error) in
             println("updateTeamMember failed")
-            var errorStr = self.constructErrorStr(op, error: error)
-            comp(false, errorStr, nil)
+            self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 }
