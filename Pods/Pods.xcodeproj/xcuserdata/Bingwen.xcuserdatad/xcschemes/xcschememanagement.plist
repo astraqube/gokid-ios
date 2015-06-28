@@ -24,17 +24,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-JKExpandTableView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Onboard.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-Reachability.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-STCollapseTableView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,57 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>35E06E878D02BC1B358F812D</key>
+		<key>02FE926713ABB86DC848338B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4D2115070A1C5CFCD3DFA1EA</key>
+		<key>23A636D102A149E0690B0E87</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>577389709D448E2C8D592B26</key>
+		<key>453081002EB052B7E57B8BA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>600A2C557CC7C9945FED60E4</key>
+		<key>5AF0B440989E854A24EDACBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7DD167C5F4884833277AC15C</key>
+		<key>6915668F20C8406DFC186D5A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8187CD2543AE5BCEFEC4E41A</key>
+		<key>A2EDB044C402517DEB232E60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8AE6E3976D1B55EF50505D2B</key>
+		<key>A83E3763526DC57033064D5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8CA9B4C6EAE6D1E5C937EEE4</key>
+		<key>D20834BD081A300EC88ED7E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BEB09DE7D2B76610B63FA53F</key>
+		<key>DAD2F442D32DCDDFFA0C3DB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7BA5C09B518C9CA9EB279D7</key>
+		<key>E187465822D218BFD2EB5B94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EF0C4CE08562F95AB707DAB1</key>
+		<key>FEA35EF446310B63913B4672</key>
 		<dict>
 			<key>primary</key>
 			<true/>

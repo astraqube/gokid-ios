@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:FrequencyCell.swift">
+   </FileRef>
+   <FileRef
+      location = "group:DataManager + Notification.swift">
+   </FileRef>
+   <FileRef
       location = "group:GoKid.xcodeproj">
    </FileRef>
    <FileRef

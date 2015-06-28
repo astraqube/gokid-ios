@@ -10,7 +10,7 @@ import UIKit
 
 class TimeAndDateVC: BaseTVC {
     
-    var tableData = [TDCellModel]()
+    var dataSource = [TDCellModel]()
     var dateTimePicker: DateTimePicker!
     var dateFormatter = NSDateFormatter()
     
@@ -64,7 +64,7 @@ class TimeAndDateVC: BaseTVC {
         dateModel = c2
         startTimeModel = c5
         endTimeModel = c6
-        tableData = [c1, c2, c4, c5, c6]
+        dataSource = [c1, c2, c3, c4, c5, c6, c7]
     }
     
     func setRepetedTableData() {
@@ -78,7 +78,7 @@ class TimeAndDateVC: BaseTVC {
         var c8 = TDCellModel(title: eventEnd,          value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
         var c9 = TDCellModel(title: "One-way carpool", value: "",       switchValue: false, type: .Switcher, action: .None)
         oneCarpoolModle = c9
-        tableData = [c1, c2, c3, c4, c5, c6, c7, c8, c9]
+        dataSource = [c1, c2, c3, c4, c5, c6, c7, c8, c9]
     }
     
     func backButtonClick() {
@@ -146,11 +146,11 @@ class TimeAndDateVC: BaseTVC {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return dataSource.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var model = tableData[indexPath.row]
+        var model = dataSource[indexPath.row]
         if model.type == .Empty {
             let cell = tableView.cellWithID("TDEmptyCell", indexPath) as! TDEmptyCell
             return cell
@@ -225,7 +225,7 @@ class TimeAndDateVC: BaseTVC {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var model = tableData[indexPath.row]
+        var model = dataSource[indexPath.row]
         if model.type == .Empty { return 20.0 }
         else if model.type == .Text { return 60.0 }
         else if model.type == .Switcher { return 60.0}
@@ -241,7 +241,7 @@ class TimeAndDateVC: BaseTVC {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var model = tableData[indexPath.row]
+        var model = dataSource[indexPath.row]
         
         if model.titleString == "Frequency" {
             frequencyCellClicked()

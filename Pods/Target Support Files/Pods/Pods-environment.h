@@ -96,12 +96,6 @@
 #define COCOAPODS_VERSION_MINOR_GoogleMaps 10
 #define COCOAPODS_VERSION_PATCH_GoogleMaps 1
 
-// JKExpandTableView
-#define COCOAPODS_POD_AVAILABLE_JKExpandTableView
-#define COCOAPODS_VERSION_MAJOR_JKExpandTableView 0
-#define COCOAPODS_VERSION_MINOR_JKExpandTableView 0
-#define COCOAPODS_VERSION_PATCH_JKExpandTableView 1
-
 // Onboard
 #define COCOAPODS_POD_AVAILABLE_Onboard
 #define COCOAPODS_VERSION_MAJOR_Onboard 2
@@ -113,6 +107,12 @@
 #define COCOAPODS_VERSION_MAJOR_Reachability 3
 #define COCOAPODS_VERSION_MINOR_Reachability 2
 #define COCOAPODS_VERSION_PATCH_Reachability 0
+
+// STCollapseTableView
+#define COCOAPODS_POD_AVAILABLE_STCollapseTableView
+#define COCOAPODS_VERSION_MAJOR_STCollapseTableView 0
+#define COCOAPODS_VERSION_MINOR_STCollapseTableView 1
+#define COCOAPODS_VERSION_PATCH_STCollapseTableView 1
 
 // SVProgressHUD
 #define COCOAPODS_POD_AVAILABLE_SVProgressHUD

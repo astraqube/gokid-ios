@@ -7,7 +7,7 @@ pod 'FBSDKLoginKit'
 pod 'Onboard'
 pod 'ViewDeck', '~> 2.2.11'
 pod 'pop'
-pod 'JKExpandTableView'
+pod 'STCollapseTableView'
 pod 'SVProgressHUD'
 pod 'GoogleMaps'
 

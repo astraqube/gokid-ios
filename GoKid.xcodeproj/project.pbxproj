@@ -11,6 +11,7 @@
 		1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A51B1C2C33007CDB66 /* SignInVC.swift */; };
 		1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */; };
 		1D10D7AA1B1C38FE007CDB66 /* BasicInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */; };
+		1D19D5231B3FF569007A716A /* FrequencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D19D5221B3FF569007A716A /* FrequencyCell.swift */; };
 		1D1FD6651B1BFC4A00287FA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6641B1BFC4A00287FA0 /* AppDelegate.swift */; };
 		1D1FD6671B1BFC4A00287FA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6661B1BFC4A00287FA0 /* ViewController.swift */; };
 		1D1FD66A1B1BFC4A00287FA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1FD6681B1BFC4A00287FA0 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		1D1FD6931B1C04D100287FA0 /* MainStackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6921B1C04D100287FA0 /* MainStackVC.swift */; };
 		1D1FD6951B1C103500287FA0 /* UIView+Pop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */; };
 		1D1FD6981B1C11C100287FA0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6971B1C11C100287FA0 /* UserManager.swift */; };
+		1D3554591B3FD14200044A3F /* NotiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3554581B3FD14200044A3F /* NotiManager.swift */; };
 		1D3F65141B2005D500CCF6A1 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65131B2005D500CCF6A1 /* LocationVC.swift */; };
 		1D3F65161B2005EC00CCF6A1 /* LocationInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65151B2005EC00CCF6A1 /* LocationInputVC.swift */; };
 		1D3F65181B2073D700CCF6A1 /* RecentAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65171B2073D700CCF6A1 /* RecentAddressCell.swift */; };
@@ -103,6 +105,7 @@
 		1D10D7A51B1C2C33007CDB66 /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInVC.swift; path = ViewControllers/SignInVC.swift; sourceTree = "<group>"; };
 		1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarVC.swift; path = ViewControllers/CalendarVC.swift; sourceTree = "<group>"; };
 		1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicInfoVC.swift; path = ViewControllers/BasicInfoVC.swift; sourceTree = "<group>"; };
+		1D19D5221B3FF569007A716A /* FrequencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyCell.swift; sourceTree = "<group>"; };
 		1D1FD65F1B1BFC4A00287FA0 /* GoKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D1FD6631B1BFC4A00287FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D1FD6641B1BFC4A00287FA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +122,7 @@
 		1D1FD6921B1C04D100287FA0 /* MainStackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainStackVC.swift; path = ViewControllers/MainStackVC.swift; sourceTree = "<group>"; };
 		1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Pop.swift"; sourceTree = "<group>"; };
 		1D1FD6971B1C11C100287FA0 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		1D3554581B3FD14200044A3F /* NotiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiManager.swift; sourceTree = "<group>"; };
 		1D3F65131B2005D500CCF6A1 /* LocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationVC.swift; path = ViewControllers/LocationVC.swift; sourceTree = "<group>"; };
 		1D3F65151B2005EC00CCF6A1 /* LocationInputVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationInputVC.swift; path = ViewControllers/LocationInputVC.swift; sourceTree = "<group>"; };
 		1D3F65171B2073D700CCF6A1 /* RecentAddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentAddressCell.swift; sourceTree = "<group>"; };
@@ -212,6 +216,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D19D5241B3FF576007A716A /* Frequency */ = {
+			isa = PBXGroup;
+			children = (
+				1D19D5221B3FF569007A716A /* FrequencyCell.swift */,
+			);
+			name = Frequency;
+			sourceTree = "<group>";
+		};
 		1D1FD6561B1BFC4A00287FA0 = {
 			isa = PBXGroup;
 			children = (
@@ -312,12 +324,13 @@
 		1D1FD6961B1C11A900287FA0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				1D8F78FF1B36A47A00C78CAF /* ImageManager.swift */,
 				1D7D8DF21B3A76D8002D29A5 /* DataManager + Carpool.swift */,
 				1D8F79011B36A64D00C78CAF /* DataManager + Fack.swift */,
 				1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */,
 				1DC765C31B32754800D9D306 /* DataManager + Team.swift */,
 				1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */,
+				1D3554581B3FD14200044A3F /* NotiManager.swift */,
+				1D8F78FF1B36A47A00C78CAF /* ImageManager.swift */,
 				1D891F221B244536006FD961 /* DataManager.swift */,
 				1DA789431B23962200B391E8 /* ColorManager.swift */,
 				1D1FD6971B1C11C100287FA0 /* UserManager.swift */,
@@ -381,6 +394,7 @@
 				1D3F65291B237EF600CCF6A1 /* Volunteer */,
 				1D3F65111B20059300CCF6A1 /* TimeAndDate */,
 				1D5866881B3FCF3A00F141F8 /* Google Place */,
+				1D19D5241B3FF576007A716A /* Frequency */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -746,6 +760,7 @@
 				1D8F79021B36A64D00C78CAF /* DataManager + Fack.swift in Sources */,
 				1D975A381B1F40D500CD4D89 /* InviteInfoVC.swift in Sources */,
 				1D1FD6951B1C103500287FA0 /* UIView+Pop.swift in Sources */,
+				1D19D5231B3FF569007A716A /* FrequencyCell.swift in Sources */,
 				1D3F651F1B207D6B00CCF6A1 /* VolunteerTimeCell.swift in Sources */,
 				1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */,
 				1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */,
@@ -754,6 +769,7 @@
 				1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */,
 				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
 				1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */,
+				1D3554591B3FD14200044A3F /* NotiManager.swift in Sources */,
 				1D3F651A1B2079E400CCF6A1 /* VolunteerVC.swift in Sources */,
 				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,

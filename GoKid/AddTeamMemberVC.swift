@@ -119,7 +119,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     
     @IBAction func buttomButtonClick(sender: AnyObject) {
         if sourceCellType == .EditMember {
-            if model.role == "sitter" {
+            if model.role.lowercaseString == "sitter" {
                 showDeleteMemberAlertView()
             } else {
                 self.showAlert("Can not delete", messege: "You can only delete a member whose role is sitter", cancleTitle: "OK")
