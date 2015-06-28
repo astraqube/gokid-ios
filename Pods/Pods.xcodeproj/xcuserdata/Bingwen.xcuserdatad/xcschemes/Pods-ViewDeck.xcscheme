@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DAD2F442D32DCDDFFA0C3DB6"
+               BlueprintIdentifier = "2C70F67DD1E3BE8EB50484A5"
                BuildableName = "libPods-ViewDeck.a"
                BlueprintName = "Pods-ViewDeck"
                ReferencedContainer = "container:Pods.xcodeproj">

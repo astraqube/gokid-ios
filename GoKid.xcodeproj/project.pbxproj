@@ -24,6 +24,7 @@
 		1D1FD6951B1C103500287FA0 /* UIView+Pop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */; };
 		1D1FD6981B1C11C100287FA0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6971B1C11C100287FA0 /* UserManager.swift */; };
 		1D3554591B3FD14200044A3F /* NotiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3554581B3FD14200044A3F /* NotiManager.swift */; };
+		1D39AAB01B3FFD7C00215D6E /* FrequencyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D39AAAF1B3FFD7C00215D6E /* FrequencyHeader.swift */; };
 		1D3F65141B2005D500CCF6A1 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65131B2005D500CCF6A1 /* LocationVC.swift */; };
 		1D3F65161B2005EC00CCF6A1 /* LocationInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65151B2005EC00CCF6A1 /* LocationInputVC.swift */; };
 		1D3F65181B2073D700CCF6A1 /* RecentAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65171B2073D700CCF6A1 /* RecentAddressCell.swift */; };
@@ -123,6 +124,7 @@
 		1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Pop.swift"; sourceTree = "<group>"; };
 		1D1FD6971B1C11C100287FA0 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		1D3554581B3FD14200044A3F /* NotiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiManager.swift; sourceTree = "<group>"; };
+		1D39AAAF1B3FFD7C00215D6E /* FrequencyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrequencyHeader.swift; path = Cells/FrequencyHeader.swift; sourceTree = "<group>"; };
 		1D3F65131B2005D500CCF6A1 /* LocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationVC.swift; path = ViewControllers/LocationVC.swift; sourceTree = "<group>"; };
 		1D3F65151B2005EC00CCF6A1 /* LocationInputVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationInputVC.swift; path = ViewControllers/LocationInputVC.swift; sourceTree = "<group>"; };
 		1D3F65171B2073D700CCF6A1 /* RecentAddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentAddressCell.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				1D19D5221B3FF569007A716A /* FrequencyCell.swift */,
+				1D39AAAF1B3FFD7C00215D6E /* FrequencyHeader.swift */,
 			);
 			name = Frequency;
 			sourceTree = "<group>";
@@ -722,7 +725,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
+			shellScript = "#./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
 		};
 		CD65D8EC25723919ABB980C6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -782,6 +785,7 @@
 				1D1FD6881B1C001E00287FA0 /* HelperFunction.swift in Sources */,
 				1D891F251B24635A006FD961 /* ContactNameCell.swift in Sources */,
 				1D891F171B23FFA0006FD961 /* ContactPickerVC.swift in Sources */,
+				1D39AAB01B3FFD7C00215D6E /* FrequencyHeader.swift in Sources */,
 				1D891F111B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift in Sources */,
 				1D1FD6651B1BFC4A00287FA0 /* AppDelegate.swift in Sources */,
 				1D3F65251B208A9600CCF6A1 /* InviteParentsVC.swift in Sources */,

@@ -8,6 +8,7 @@ pod 'Onboard'
 pod 'ViewDeck', '~> 2.2.11'
 pod 'pop'
 pod 'STCollapseTableView'
+pod 'PureLayout'
 pod 'SVProgressHUD'
 pod 'GoogleMaps'
 
