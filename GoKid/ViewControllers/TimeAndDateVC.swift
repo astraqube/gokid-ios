@@ -30,7 +30,7 @@ class TimeAndDateVC: BaseTVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpNavigationBar()
-        self.setTableData()
+        self.dataManager.fakeTimeAndDateTableViewData(self)
         self.setupDateTimePicker()
         self.clenUserCurrentCarPoolData()
     }
@@ -50,35 +50,6 @@ class TimeAndDateVC: BaseTVC {
         model.endDate = nil
         model.pickUpTime = nil
         model.dropOffTime = nil
-    }
-    
-    func setTableData() {
-        var c1 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
-        var c2 = TDCellModel(title: "Start date",      value: "Select", switchValue: true,  type: .Text,     action: .ChooseDate)
-        var c3 = TDCellModel(title: "Repeat",          value: "",       switchValue: false, type: .Switcher, action: .None)
-        var c4 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
-        var c5 = TDCellModel(title: eventStart,        value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
-        var c6 = TDCellModel(title: eventEnd,          value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
-        var c7 = TDCellModel(title: "One-way carpool", value: "",       switchValue: false, type: .Switcher, action: .None)
-        oneCarpoolModle = c7
-        dateModel = c2
-        startTimeModel = c5
-        endTimeModel = c6
-        dataSource = [c1, c2, c3, c4, c5, c6, c7]
-    }
-    
-    func setRepetedTableData() {
-        var c1 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
-        var c2 = TDCellModel(title: "Start Date ",     value: "Select", switchValue: true,  type: .Text,     action: .ChooseDate)
-        var c3 = TDCellModel(title: "End Date ",       value: "Select", switchValue: true,  type: .Text,     action: .ChooseDate)
-        var c4 = TDCellModel(title: "Frequency",       value: ">",      switchValue: true,  type: .Text,     action: .None)
-        var c5 = TDCellModel(title: "Repeat",          value: "",       switchValue: true,  type: .Switcher, action: .None)
-        var c6 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
-        var c7 = TDCellModel(title: eventStart,        value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
-        var c8 = TDCellModel(title: eventEnd,          value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
-        var c9 = TDCellModel(title: "One-way carpool", value: "",       switchValue: false, type: .Switcher, action: .None)
-        oneCarpoolModle = c9
-        dataSource = [c1, c2, c3, c4, c5, c6, c7, c8, c9]
     }
     
     func backButtonClick() {
@@ -220,8 +191,14 @@ class TimeAndDateVC: BaseTVC {
     }
     
     func repeteSwitcherSwitched(_switch_: UISwitch) {
-        if _switch_.on == true { setRepetedTableData(); tableView.reloadData() }
-        else { setTableData(); tableView.reloadData() }
+        if _switch_.on == true {
+            dataManager.fakeTimeAndDateRepetedTableViewData(self)
+            tableView.reloadData()
+        }
+        else {
+            dataManager.fakeTimeAndDateTableViewData(self)
+            tableView.reloadData()
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -92,7 +92,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func createButtonClicked() {
-        var vc = vcWithID("BasicInfoVC")
+        var vc = vcWithID("ContactPickerVC")
         navigationController?.pushViewController(vc, animated: true)
     }
     

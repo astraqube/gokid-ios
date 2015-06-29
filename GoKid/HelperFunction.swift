@@ -139,6 +139,14 @@ extension String {
         return self.stringByReplacingOccurrencesOfString(a, withString: "", options:option , range: nil)
     }
     
+    func firstCharacter() ->String {
+        if count(self) > 0 {
+            return String(self[self.startIndex])
+        } else {
+            return ""
+        }
+    }
+    
     mutating func captialName() -> String {
         if count(self) < 1 { return "" }
         var index = self.startIndex
@@ -187,6 +195,49 @@ extension NSDate {
         var df = NSDateFormatter()
         df.dateFormat = "hh:mma"
         return df.stringFromDate(self).lowercaseString
+    }
+}
+
+extension SwiftAddressBookPerson {
+ 
+    func firstNameStr() -> String {
+        if let name = self.firstName {
+            return name
+        }
+        return "null"
+    }
+    
+    func fullName() -> String {
+        var firstName = ""
+        var lastName = ""
+        if self.firstName != nil { firstName = self.firstName! }
+        if self.lastName != nil { lastName = self.lastName! }
+        var fullName = firstName + " " + lastName
+        return fullName
+    }
+    
+    func proccessedPhoneNum() -> String {
+        if let number = self.__RawPhoneNumbe() {
+            var final = number.delete(" ").delete("(").delete(")").delete("-")
+            return final
+        }
+        return ""
+    }
+    
+    func rawPhoneNumber() ->String {
+        if let number = self.__RawPhoneNumbe() {
+            return number
+        }
+        return "No number found for this person"
+    }
+    
+    func __RawPhoneNumbe() -> String? {
+        if let phoneNumbers = self.phoneNumbers?.map({$0.value}) {
+            if phoneNumbers.count > 0 {
+                return phoneNumbers[0]
+            }
+        }
+        return nil
     }
 }
 

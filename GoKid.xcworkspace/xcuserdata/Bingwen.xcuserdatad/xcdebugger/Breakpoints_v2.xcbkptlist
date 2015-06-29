@@ -9,22 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoKid/ViewControllers/TimeAndDateVC.swift"
-            timestampString = "457005692.39222"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
-            landmarkName = "updateCurrentUserCarpoolModel(_:date:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GoKid/DataManager + Carpool.swift"
             timestampString = "457227419.082516"
             startingColumnNumber = "9223372036854775807"
@@ -128,22 +112,6 @@
             startingLineNumber = "33"
             endingLineNumber = "33"
             landmarkName = "createCarpool(_:comp:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoKid/DataManager + Fake.swift"
-            timestampString = "457227419.082516"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "fakeVolunteerData()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

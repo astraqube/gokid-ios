@@ -16,7 +16,6 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getTeamMembersOfTeam success")
             var json = JSON(obj)
-            println(json)
             var members =  TeamMemberModel.arrayOfMembers(json["permissions"])
             self.userManager.teamMembers = members
             comp(true, "")
@@ -86,11 +85,9 @@ extension DataManager {
                 "role": model.role.lowercaseString
             ]
         ]
-        println(map)
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("addTeamMember success")
-            println(obj)
             var newModel = TeamMemberModel(json: JSON(obj)["permission"])
             comp(true, "", newModel)
         }) { (op, error) in
@@ -102,7 +99,6 @@ extension DataManager {
     func deleteTeamMember(id: Int, comp: completion) {
         var teamID = String(userManager.info.teamID)
         var url = baseURL + "/api/teams/\(teamID)/permissions/\(id)"
-        println(url)
         var manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
             println("deleteTeamMember success")

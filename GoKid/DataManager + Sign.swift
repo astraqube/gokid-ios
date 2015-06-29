@@ -74,7 +74,6 @@ extension DataManager {
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("fbSignin user success")
             println(FBSDKAccessToken.currentAccessToken().tokenString)
-            println(obj)
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.userLoggedIn = true
             self.userManager.useFBLogIn = true

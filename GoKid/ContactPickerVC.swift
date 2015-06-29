@@ -13,12 +13,14 @@ class Person {
     var fullName: String
     var selected: Bool
     var phoneNum: String
+    var rawPhoneNum: String
     
-    init(firstName: String, fullName: String, selected: Bool, phoneNum: String) {
+    init(firstName: String, fullName: String, selected: Bool, phoneNum: String, rawPhoneNum: String) {
         self.fullName = fullName
         self.firstName = firstName
         self.selected = selected
         self.phoneNum = phoneNum
+        self.rawPhoneNum = rawPhoneNum
     }
 }
 
@@ -27,7 +29,7 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
 
-    var tableDataSource = [Person]()
+    var tableDataSource = [[Person]]()
     var collectionDataSource = [Person]()
 
     override func viewDidLoad() {
@@ -84,28 +86,43 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     // --------------------------------------------------------------------------------------------
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return tableDataSource.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableDataSource.count
+        return tableDataSource[section].count
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var people = tableDataSource[section]
+        if people.count > 0 {
+            var person = people[0]
+            return person.firstName.firstCharacter()
+        } else {
+            return ""
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.cellWithID("ContactCell", indexPath) as! ContactCell
-        var person = tableDataSource[indexPath.row]
+        var person = tableDataSource[indexPath.section][indexPath.row]
         cell.nameLabel.text = person.fullName
+        cell.phoneNumLabel.text = person.rawPhoneNum
         cell.setSelection(person.selected)
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var person = tableDataSource[indexPath.row]
+        var person = tableDataSource[indexPath.section][indexPath.row]
         person.selected = !person.selected
         
         var cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
         cell.setSelection(person.selected)
         tryUpdateCollectionView()
+    }
+    
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
+        return ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     }
     
     // MARK: UICollectionView DataSource
@@ -153,16 +170,31 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         var data = [Person]()
         if let people = swiftAddressBook?.allPeople {
             for addressBookPerson in people {
-                var fullName = getFullNameOfPerson(addressBookPerson)
-                var firstName = getFirstNameOfPerson(addressBookPerson)
-                var phoneNumber = getProccessedPhoneNumOfPerson(addressBookPerson)
-                
-                var person = Person(firstName: firstName, fullName: fullName, selected: false, phoneNum: phoneNumber)
+                var fullName = addressBookPerson.fullName()
+                var firstName = addressBookPerson.firstNameStr()
+                var phoneNum = addressBookPerson.proccessedPhoneNum()
+                var rawNum = addressBookPerson.rawPhoneNumber()
+                var person = Person(firstName: firstName, fullName: fullName, selected: false, phoneNum: phoneNum, rawPhoneNum: rawNum)
                 data.append(person)
             }
         }
         data.sort({ $0.firstName < $1.firstName })
-        tableDataSource = data
+        constructTableDataAndUpdate(data)
+    }
+    
+    func constructTableDataAndUpdate(data: [Person]) {
+        tableDataSource = [[Person]]()
+        var sections = [Person]()
+        var last = data[0].firstName.firstCharacter()
+        for person in data {
+            if person.firstName.firstCharacter() != last {
+                tableDataSource.append(sections)
+                sections = [Person]()
+            }
+            sections.append(person)
+        }
+        tableDataSource.append(sections)
+        
         tableView.reloadData()
         withDelay(0.5) {
             self.tableView.reloadData()
@@ -171,9 +203,11 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tryUpdateCollectionView() {
         var data = [Person]()
-        for person in tableDataSource {
-            if person.selected {
-                data.append(person)
+        for section in tableDataSource {
+            for person in section {
+                if person.selected {
+                    data.append(person)
+                }
             }
         }
         collectionDataSource = data
@@ -193,46 +227,14 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func getCurrentSelectedPhoneNumber() -> [String] {
         var phoneNumbers = [String]()
-        for person in tableDataSource {
-            if person.selected {
-                phoneNumbers.append(person.phoneNum)
+        for section in tableDataSource {
+            for person in section {
+                if person.selected {
+                    phoneNumbers.append(person.phoneNum)
+                }
             }
         }
         return phoneNumbers
-    }
-    
-    func getFirstNameOfPerson(person: SwiftAddressBookPerson) -> String {
-        if let name = person.firstName {
-            return name
-        }
-        return "null"
-    }
-    
-    func getFullNameOfPerson(person: SwiftAddressBookPerson) -> String {
-        var firstName = ""
-        var lastName = ""
-        println("\(firstName)  \(lastName)")
-        if person.firstName != nil { firstName = person.firstName! }
-        if person.lastName != nil { lastName = person.lastName! }
-        var fullName = firstName + " " + lastName
-        return fullName
-    }
-    
-    func getProccessedPhoneNumOfPerson(person: SwiftAddressBookPerson) -> String {
-        if let number = getFirstRawPhoneNumberOfPerson(person) {
-            var final = number.delete(" ").delete("(").delete(")").delete("-")
-            return final
-        }
-        return ""
-    }
-    
-    func getFirstRawPhoneNumberOfPerson(person: SwiftAddressBookPerson) -> String? {
-        if let phoneNumbers = person.phoneNumbers?.map({$0.value}) {
-            if phoneNumbers.count > 0 {
-                return phoneNumbers[0]
-            }
-        }
-        return nil
     }
 }
 
