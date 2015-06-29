@@ -1377,8 +1377,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Just making sure, we sent a verification code to 718 201 2094. It'll arrive momentarily." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cg-D4-BP5">
-                                <rect key="frame" x="34" y="79" width="253" height="61"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just making sure, we sent a verification code to ##########. It'll arrive momentarily." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cg-D4-BP5">
+                                <rect key="frame" x="34" y="79" width="253" height="54"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1399,6 +1399,10 @@
                             <constraint firstItem="UgX-vK-7gQ" firstAttribute="top" secondItem="zCr-LW-37u" secondAttribute="bottom" constant="21" id="nUm-j7-OfW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="codeTextField" destination="HQS-lk-5gb" id="CvM-rT-JO6"/>
+                        <outlet property="infoTextLabel" destination="5cg-D4-BP5" id="oGY-Qr-8FU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVJ-Y0-5ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3090,8 +3094,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Unset" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="587-fr-3g4">
-                                                    <rect key="frame" x="128" y="12" width="151" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unset" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="587-fr-3g4">
+                                                    <rect key="frame" x="136" y="12" width="143" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3105,6 +3109,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="587-fr-3g4" secondAttribute="bottom" constant="2" id="NaG-q4-At7"/>
                                                 <constraint firstItem="0C5-ia-VTu" firstAttribute="top" secondItem="S4b-lw-XX6" secondAttribute="topMargin" constant="2" id="RBt-6f-GIy"/>
                                                 <constraint firstItem="587-fr-3g4" firstAttribute="top" secondItem="S4b-lw-XX6" secondAttribute="topMargin" constant="4" id="VRZ-uF-CaH"/>
+                                                <constraint firstItem="587-fr-3g4" firstAttribute="leading" secondItem="0C5-ia-VTu" secondAttribute="trailing" constant="16" id="h2b-hr-8Mb"/>
                                                 <constraint firstItem="587-fr-3g4" firstAttribute="trailing" secondItem="S4b-lw-XX6" secondAttribute="trailingMargin" id="kVl-Gq-Y4P"/>
                                             </constraints>
                                         </tableViewCellContentView>

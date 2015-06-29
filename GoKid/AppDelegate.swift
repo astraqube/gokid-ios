@@ -60,7 +60,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for var i = 0; i < 32; i++ {
             str.appendFormat("%02.2hhX", ptr[i])
         }
-        println("Device token: \(str)")
+        
+        var dm = DataManager.sharedInstance
+        dm.updateNotificationToken(String(str)) { (success, errorStr) in
+            if !success {
+                // do nothing here for now
+            }
+        }
     }
     
     // MARK: Facebook Deep Link

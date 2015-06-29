@@ -224,6 +224,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
             if success {
                 self.handleUpdateOrCreateUserSuccess()
             } else {
+                LoadingView.dismiss()
                 self.showAlert("Falied to use FB Signup", messege:errorStr , cancleTitle: "OK")
             }
         }

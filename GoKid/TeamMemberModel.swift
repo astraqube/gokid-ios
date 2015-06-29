@@ -43,10 +43,12 @@ class TeamMemberModel: NSObject {
     
     
     class func arrayOfMembers(json: JSON) -> [TeamMemberModel] {
-        println(json)
         var arr = [TeamMemberModel]()
         for (index: String, subJson: JSON) in json {
-            if index == "0" { continue } // ommit owner itself
+            if index == "0" { // user info
+                var um = UserManager.sharedInstance
+                um.updateUserWithTeamMembersInfo(subJson["user"])
+            }
             var member = TeamMemberModel(json: subJson)
             member.cellType = .EditMember
             arr.append(member)

@@ -110,7 +110,7 @@ extension DataManager {
     func updateUser(signupForm:SignupForm, comp: completion) {
         var url = baseURL + "/api/me"
         var arr = [
-            "role": signupForm.role,
+            "role": signupForm.role.lowercaseString,
             "email": signupForm.email,
             "password": signupForm.password,
             "last_name": signupForm.lastName,

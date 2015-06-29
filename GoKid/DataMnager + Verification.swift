@@ -10,19 +10,38 @@ import UIKit
 
 extension DataManager {
     
-    func requestingVerificationCode(phoneNum: String, comp: completion) {
-        var teamID = String(userManager.info.teamID)
-        var url = baseURL + "/api/teams/\(teamID)/permissions"
-        
+    func requestVerificationCode(phoneNum: String, comp: completion) {
+        var url = baseURL + "/api/me/challenge"
+        var map = [
+            "challenge" : [
+                "phone_number": phoneNum
+            ]
+        ]
         var manager = managerWithToken()
-        manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getTeamMembersOfTeam success")
-            var json = JSON(obj)
-            var members =  TeamMemberModel.arrayOfMembers(json["permissions"])
-            self.userManager.teamMembers = members
+        manager.POST(url, parameters: map, success: { (op, obj) in
+            println("requestingVerificationCode success")
+            println(obj)
             comp(true, "")
         }) { (op, error) in
-            println("getTeamMembersOfTeam failed")
+            println("requestingVerificationCode failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+    
+    func VerifyCode(code: String, comp: completion) {
+        var url = baseURL + "/api/me/verify"
+        var map = [
+            "verification": [
+                "code": code
+            ]
+        ]
+        var manager = managerWithToken()
+        manager.POST(url, parameters: map, success: { (op, obj) in
+            println("VerifyCode success")
+            println(obj)
+            comp(true, "")
+        }) { (op, error) in
+            println("VerifyCode failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }

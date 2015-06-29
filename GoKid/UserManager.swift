@@ -46,17 +46,23 @@ class UserManager: NSObject {
     
     override init() {
         super.init()
-        initForRecentAddress()
         initForTeamMembers()
         loadUserInfo()
     }
     
-    func initForRecentAddress() {
-        
-    }
-    
     func initForTeamMembers() {
         teamMembers = [TeamMemberModel()]
+    }
+    
+    // use the info get from all team members
+    func updateUserWithTeamMembersInfo(json: JSON) {
+        info.phoneNumber = json["phone_number"].stringValue
+        info.firstName = json["first_name"].stringValue
+        info.lastName = json["last_name"].stringValue
+        info.email = json["email"].stringValue
+        info.role = json["role"].stringValue
+        info.thumURL = json["avatar"]["thumb_url"].stringValue
+        saveUserInfo()
     }
     
     func setWithJsonReponse(json: JSON) {
@@ -66,6 +72,7 @@ class UserManager: NSObject {
         info.lastName = user["last_name"].stringValue
         info.email = user["email"].stringValue
         info.role = user["role"].stringValue
+        info.phoneNumber = user["phone_number"].stringValue
         info.cellType = .EditUser
         
         if let arr = user["recentAddress"].arrayObject as? [String] {
@@ -111,7 +118,8 @@ class UserManager: NSObject {
             "role": info.role,
             "avatar": avatar,
             "recentAddress": recentAddress,
-            "recentAddressTitle": recentAddressTitles
+            "recentAddressTitle": recentAddressTitles,
+            "phone_number": info.phoneNumber
         ]
         var map = [
             "user": userInfo,

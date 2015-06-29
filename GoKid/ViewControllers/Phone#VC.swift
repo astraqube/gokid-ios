@@ -32,7 +32,26 @@ class Phone_VC: BaseVC {
     }
     
     func nextButtonClick() {
-        
+        if phoneNumberTextField.text != "" {
+            requestVerificationCode(phoneNumberTextField.text)
+        } else {
+            showAlert("Action Required", messege: "Please fill you phone number to proceed", cancleTitle: "OK")
+        }
+    }
+    
+    func requestVerificationCode(phoneNum: String) {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.requestVerificationCode(phoneNum) { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                self.procceedToNextVC()
+            } else {
+                self.showAlert("Fail to Request Verification", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+    
+    func procceedToNextVC() {
         var phoneVerifyVC = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
         phoneVerifyVC.memberProfileVC = memberProfileVC
         phoneVerifyVC.phoneNumberString = phoneNumberTextField.text
