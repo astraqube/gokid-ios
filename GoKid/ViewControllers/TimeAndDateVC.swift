@@ -8,10 +8,11 @@
 
 import UIKit
 
-class TimeAndDateVC: BaseTVC {
+class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
     
     var dataSource = [TDCellModel]()
-    var dateTimePicker: DateTimePicker!
+    var timePicker: DateTimePicker!
+    var datePicker: THDatePickerViewController!
     var dateFormatter = NSDateFormatter()
     
     var currentBindLabel: UILabel?
@@ -94,22 +95,7 @@ class TimeAndDateVC: BaseTVC {
         }
     }
     
-    // MARK: IBAction Method
-    // --------------------------------------------------------------------------------------------
-    
-    func doneButtonClick() {
-        var str = dateFormatter.stringFromDate(dateTimePicker.picker.date)
-        currentBindLabel?.text = str
-        currentBindModel?.valueString = str
-        updateCurrentUserCarpoolModel(currentBindModel!, date: dateTimePicker.picker.date)
-        dismissDateTimePicker()
-    }
-    
-    func cancleButtonClick() {
-        dismissDateTimePicker()
-    }
-    
-    // MARK: TableView DataSource and Delegate
+    // MARK: TableView DataSource
     // --------------------------------------------------------------------------------------------
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -160,6 +146,31 @@ class TimeAndDateVC: BaseTVC {
         }
     }
     
+    // MARK: TableView Delegate
+    // --------------------------------------------------------------------------------------------
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var model = dataSource[indexPath.row]
+        if model.type == .Empty { return 20.0 }
+        else if model.type == .Text { return 60.0 }
+        else if model.type == .Switcher { return 60.0}
+        else { return 50.0 }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var model = dataSource[indexPath.row]
+        if model.titleString == "Frequency" {
+            frequencyCellClicked()
+            return
+        }
+        if model.action == .ChooseDate || model.action == .ChooseTime {
+            var cell = tableView.cellForRowAtIndexPath(indexPath) as! TDTextCell
+            showDateTimePickerWithMode(model.action)
+            currentBindModel = model
+            currentBindLabel = cell.valueLabel
+        }
+    }
+    
     func oneWayCarpoolSwitched(_switch_: UISwitch) {
         oneCarpoolModle.switchValue = !oneCarpoolModle.switchValue
         // if the switch is on, let it turn off and do noting
@@ -201,54 +212,14 @@ class TimeAndDateVC: BaseTVC {
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var model = dataSource[indexPath.row]
-        if model.type == .Empty { return 20.0 }
-        else if model.type == .Text { return 60.0 }
-        else if model.type == .Switcher { return 60.0}
-        else { return 50.0 }
-    }
-    
-    func setupDateTimePicker() {
-        var h: CGFloat = 280
-        dateTimePicker = DateTimePicker(frame: CGRectMake(0, view.h-h, view.w, h))
-        dateTimePicker.backgroundColor = UIColor.whiteColor()
-        dateTimePicker.addTargetForDoneButton(self, action: "doneButtonClick")
-        dateTimePicker.addTargetForCancelButton(self, action: "cancleButtonClick")
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var model = dataSource[indexPath.row]
-        
-        if model.titleString == "Frequency" {
-            frequencyCellClicked()
-            return
-        }
-        
-        if model.action == .ChooseDate || model.action == .ChooseTime {
-            var cell = tableView.cellForRowAtIndexPath(indexPath) as! TDTextCell
-            showDateTimePickerWithMode(model.action)
-            currentBindModel = model
-            currentBindLabel = cell.valueLabel
-        }
-    }
-    
     func frequencyCellClicked() {
         var vc = vcWithID("FrequencyPickerVC")
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func showDateTimePickerWithMode(action: TDCellAction) {
-        var mode: UIDatePickerMode = .Date
-        if action == .ChooseDate { mode = .DateAndTime; dateFormatter.dateFormat = "EE MMMM d, YYYY" }
-        if action == .ChooseTime { mode = .Time; dateFormatter.dateFormat = "hh:mm a" }
-        dateTimePicker.setMode(mode)
-        
-        if dateTimePicker.superview == nil {
-            dateTimePicker.alpha = 0.0
-            self.view.addSubview(dateTimePicker)
-            dateTimePicker.alphaAnimation(1.0, duration: 0.4, completion: nil)
-        }
+        if action == .ChooseDate { showDatePicker() }
+        if action == .ChooseTime { showTimePicker() }
     }
     
     func updateCurrentUserCarpoolModel(cellModel: TDCellModel, date: NSDate ) {
@@ -276,8 +247,8 @@ class TimeAndDateVC: BaseTVC {
     }
   
     func dismissDateTimePicker() {
-        dateTimePicker.alphaAnimation(0.0, duration: 0.3) { (anim, finished) in
-            self.dateTimePicker.removeFromSuperview()
+        timePicker.alphaAnimation(0.0, duration: 0.3) { (anim, finished) in
+            self.timePicker.removeFromSuperview()
         }
     }
     

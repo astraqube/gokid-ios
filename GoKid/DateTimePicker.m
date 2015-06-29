@@ -66,6 +66,9 @@
 
 - (void) setMode: (UIDatePickerMode) mode {
     self.picker.datePickerMode = mode;
+    if (mode == UIDatePickerModeDateAndTime) {
+        
+    }
 }
 
 - (void) donePressed {

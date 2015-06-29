@@ -24,6 +24,7 @@
 		1D1FD6951B1C103500287FA0 /* UIView+Pop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */; };
 		1D1FD6981B1C11C100287FA0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6971B1C11C100287FA0 /* UserManager.swift */; };
 		1D3554591B3FD14200044A3F /* DataMnager + Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3554581B3FD14200044A3F /* DataMnager + Notification.swift */; };
+		1D368F161B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D368F151B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift */; };
 		1D39AAB01B3FFD7C00215D6E /* FrequencyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D39AAAF1B3FFD7C00215D6E /* FrequencyHeader.swift */; };
 		1D39AAB31B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D39AAB21B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift */; };
 		1D3F65141B2005D500CCF6A1 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65131B2005D500CCF6A1 /* LocationVC.swift */; };
@@ -125,6 +126,7 @@
 		1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Pop.swift"; sourceTree = "<group>"; };
 		1D1FD6971B1C11C100287FA0 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		1D3554581B3FD14200044A3F /* DataMnager + Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataMnager + Notification.swift"; sourceTree = "<group>"; };
+		1D368F151B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeAndDateVC + Picker.swift"; sourceTree = "<group>"; };
 		1D39AAAF1B3FFD7C00215D6E /* FrequencyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrequencyHeader.swift; path = Cells/FrequencyHeader.swift; sourceTree = "<group>"; };
 		1D39AAB21B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "VolunteerVC + ActionSheet.swift"; path = "ViewControllers/VolunteerVC + ActionSheet.swift"; sourceTree = "<group>"; };
 		1D3F65131B2005D500CCF6A1 /* LocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationVC.swift; path = ViewControllers/LocationVC.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 			children = (
 				1D975A3D1B1F7FF700CD4D89 /* FrequencyPickerVC.swift */,
 				1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */,
+				1D368F151B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift */,
 			);
 			name = TimeDatePicker;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */,
 				1D3554591B3FD14200044A3F /* DataMnager + Notification.swift in Sources */,
 				1D3F651A1B2079E400CCF6A1 /* VolunteerVC.swift in Sources */,
+				1D368F161B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift in Sources */,
 				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,
 				1D8F78FC1B36A07F00C78CAF /* CalendarCell.swift in Sources */,

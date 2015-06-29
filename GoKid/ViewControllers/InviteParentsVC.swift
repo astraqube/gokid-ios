@@ -55,7 +55,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         if MFMailComposeViewController.canSendMail() {
             self.presentViewController(mailComposeViewController, animated: true, completion: nil)
         } else {
-            self.showSendMailErrorAlert()
+            self.showCannotSendMailErrorAlert()
         }
     }
     
@@ -68,12 +68,22 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         return mailComposerVC
     }
     
-    func showSendMailErrorAlert() {
+    func showCannotSendMailErrorAlert() {
         let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
         sendMailErrorAlert.show()
     }
     
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        switch result.value {
+        case MFMailComposeResultSent.value:
+            self.showAlert("Success", messege: "Your invitation email was sent", cancleTitle: "OK")
+        case MFMailComposeResultSaved.value:
+            self.showAlert("Saved", messege: "Your invitation email was saved", cancleTitle: "OK")
+        case MFMailComposeResultFailed.value:
+            self.showAlert("Error", messege: "Cannot sent email, please check your network connection", cancleTitle: "OK")
+        default:
+            break
+        }
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }

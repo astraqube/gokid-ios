@@ -65,11 +65,13 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         var carpoolID = um.currentCarpoolModel.id
         var phoneNumbers = getCurrentSelectedPhoneNumber()
         
+        LoadingView.showWithMaskType(.Black)
         dm.invite(phoneNumbers, carpoolID: carpoolID) { (success, errorStr) in
+            LoadingView.dismiss()
             if success {
                 self.showAlert("Success", messege: "Messege Sent", cancleTitle: "OK")
             } else {
-                self.showAlert("Alert", messege: "Failed to Sent Messege", cancleTitle: "Cancel")
+                self.showAlert("Fail to sent messege", messege: errorStr, cancleTitle: "Cancel")
             }
         }
     }

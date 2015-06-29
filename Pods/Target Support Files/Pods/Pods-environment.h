@@ -96,6 +96,12 @@
 #define COCOAPODS_VERSION_MINOR_GoogleMaps 10
 #define COCOAPODS_VERSION_PATCH_GoogleMaps 1
 
+// KNSemiModalViewController
+#define COCOAPODS_POD_AVAILABLE_KNSemiModalViewController
+#define COCOAPODS_VERSION_MAJOR_KNSemiModalViewController 0
+#define COCOAPODS_VERSION_MINOR_KNSemiModalViewController 3
+#define COCOAPODS_VERSION_PATCH_KNSemiModalViewController 0
+
 // Onboard
 #define COCOAPODS_POD_AVAILABLE_Onboard
 #define COCOAPODS_VERSION_MAJOR_Onboard 2
@@ -125,6 +131,12 @@
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 3
+
+// THCalendarDatePicker
+#define COCOAPODS_POD_AVAILABLE_THCalendarDatePicker
+#define COCOAPODS_VERSION_MAJOR_THCalendarDatePicker 1
+#define COCOAPODS_VERSION_MINOR_THCalendarDatePicker 1
+#define COCOAPODS_VERSION_PATCH_THCalendarDatePicker 1
 
 // ViewDeck
 #define COCOAPODS_POD_AVAILABLE_ViewDeck

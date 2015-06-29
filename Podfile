@@ -1,16 +1,20 @@
 platform :ios, '8.0'
 
-pod 'Reachability'
-pod 'AFNetworking'
+
+pod 'GoogleMaps'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
-pod 'Onboard'
-pod 'ViewDeck', '~> 2.2.11'
 pod 'pop'
-pod 'STCollapseTableView'
 pod 'PureLayout'
+pod 'AFNetworking'
+pod 'Reachability'
 pod 'SVProgressHUD'
-pod 'GoogleMaps'
+
+pod 'Onboard'
+pod 'STCollapseTableView'
+pod 'ViewDeck', '~> 2.2.11'
+pod 'KNSemiModalViewController'
+pod 'THCalendarDatePicker', '~> 1.1.1'
 
 # pod 'CSStickyHeaderFlowLayout'
 # pod 'CRToast'

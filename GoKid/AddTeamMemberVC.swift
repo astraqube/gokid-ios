@@ -31,6 +31,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
         super.viewDidLoad()
         setupNavBar()
         setRemoveButtonState()
+        setupSubViews()
         refreshUIIfNeeded()
     }
     
@@ -48,6 +49,10 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
             buttomButton.backgroundColor = UIColor.grayColor()
             buttomButton.superview?.backgroundColor = UIColor.grayColor()
         }
+    }
+    
+    func setupSubViews() {
+        profileImageView.setRounded()
     }
     
     func refreshUIIfNeeded() {
@@ -87,6 +92,27 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     
     // MARK: UITableView Delegate
     // --------------------------------------------------------------------------------------------
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var row = indexPath.row
+        var section = indexPath.section
+        
+        if model.role.lowercaseString == "kid" {
+            if section == 1 { return 0.0 }
+            if section == 3 && row == 1 { return 0.0 }
+        }
+        if section == 0 && row == 0 { return 86.0 }
+        if section == 4 { return 60.0 }
+        return 44.0
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if model.role.lowercaseString == "kid" {
+            if section == 1 { return 0.0 }
+        }
+        if section == 0 { return 0.0 }
+        return 25.0
+    }
     
     override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         self.view.endEditing(true)

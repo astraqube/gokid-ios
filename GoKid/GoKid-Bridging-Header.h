@@ -11,6 +11,7 @@
 #import "ZGNavigationBarTitleViewController.h"
 #import "STCollapseTableView.h"
 #import "PureLayout.h"
+#import "THDatePickerViewController.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
