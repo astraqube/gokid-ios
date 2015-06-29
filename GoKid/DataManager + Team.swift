@@ -19,6 +19,8 @@ extension DataManager {
             println(json)
             var members =  TeamMemberModel.arrayOfMembers(json["permissions"])
             self.userManager.teamMembers = members
+            self.userManager.userHomeAdress = json["teams"][0]["address"].stringValue
+            println(json["teams"][0]["address"].stringValue)
             comp(true, "")
         }) { (op, error) in
             println("getTeamMembersOfTeam failed")

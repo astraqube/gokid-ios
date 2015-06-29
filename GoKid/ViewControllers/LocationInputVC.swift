@@ -50,7 +50,7 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     }
     
     func doneButtonClick() {
-        if userManager.userLoggedIn && userManager.userHomeAdress == nil && locationInputTextField.text != "" {
+        if userManager.userLoggedIn && userManager.userHomeAdress == "" && locationInputTextField.text != "" {
             showHomeAdreeAlertView()
         } else {
             navigationController?.popViewControllerAnimated(true)

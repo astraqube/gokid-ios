@@ -37,7 +37,7 @@ class UserManager: NSObject {
     var currentChoosenEndTime: String?
     var currentCarpoolModel = CarpoolModel()
     
-    var userHomeAdress: String?
+    var userHomeAdress = ""
     var recentAddressTitles = [String]()
     var recentAddress = [String]()
     

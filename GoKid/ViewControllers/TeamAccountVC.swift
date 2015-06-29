@@ -22,9 +22,17 @@ class TeamAccountVC: BaseCVC {
     func setupNavBar() {
         var nav = navigationController as! ZGNavVC
         nav.addTitleViewToViewController(self)
-        self.title = "Your Team"
-        self.subtitle = "Home Address"
         setNavBarLeftButtonTitle("Menu", action: "menuButtonClick")
+        self.title = "Your Team"
+        refreshHomeAddress()
+    }
+    
+    func refreshHomeAddress() {
+        if um.userHomeAdress != "" {
+            self.subtitle = um.userHomeAdress
+        } else {
+            self.subtitle = "Home Address"
+        }
     }
     
     func registerNotification() {
@@ -188,6 +196,7 @@ class TeamAccountVC: BaseCVC {
                 self.dataSource.appendArr(self.um.teamMembers)
                 self.appendAddMemberCell()
                 self.reloadCollectionViewOnMainThread()
+                self.refreshHomeAddress()
             } else {
                 self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
             }
