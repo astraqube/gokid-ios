@@ -65,4 +65,46 @@ extension DataManager {
         vc.oneCarpoolModle = c9
         vc.dataSource = [c1, c2, c3, c4, c5, c6, c7, c8, c9]
     }
+    
+    func sbViewControllerList() -> [String:[String:Bool]] {
+        var carpool = [
+            "CarpoolSucceedVC": true,
+            "ContactPickerVC": true,
+            "InviteParentsVC": true,
+            "VolunteerVC": true,
+            "LocationInputVC": true,
+            "LocationVC": true,
+            "FrequencyPickerVC": true,
+            "TimeAndDateVC": true,
+            "BasicInfoVC": true,
+        ]
+        var main = [
+            "InviteConfirmVC": true,
+            "PhoneVerifyVC": true,
+            "Phone_VC": true,
+            "PlacePickerVC": true,
+            "KidAboutYouVC": true,
+            "CalendarVC": true,
+            "MenuVC": true,
+            "MainStackVC": true
+        ]
+        var teamAccount = [
+            "AddTeamMemberVC": true,
+            "MemberProfileVC": true,
+            "TeamAccountVC": true
+        ]
+        
+        var login = [
+            "InviteInfoVC": true,
+            "SignUpVC": true,
+            "SignInVC": true
+        ]
+        var map = [
+            "Carpool" : carpool,
+            "Main" : main,
+            "TeamAccount": teamAccount,
+            "Login": login
+        ]
+        return map
+    }
 }

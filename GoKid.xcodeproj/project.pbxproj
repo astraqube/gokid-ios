@@ -11,6 +11,9 @@
 		1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A51B1C2C33007CDB66 /* SignInVC.swift */; };
 		1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */; };
 		1D10D7AA1B1C38FE007CDB66 /* BasicInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */; };
+		1D1228DC1B424AA1001CA6A4 /* Carpool.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1228DB1B424AA1001CA6A4 /* Carpool.storyboard */; };
+		1D1228DE1B424AC6001CA6A4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1228DD1B424AC6001CA6A4 /* Login.storyboard */; };
+		1D1228E01B424AD9001CA6A4 /* TeamAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1228DF1B424AD9001CA6A4 /* TeamAccount.storyboard */; };
 		1D19D5231B3FF569007A716A /* FrequencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D19D5221B3FF569007A716A /* FrequencyCell.swift */; };
 		1D1FD6651B1BFC4A00287FA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6641B1BFC4A00287FA0 /* AppDelegate.swift */; };
 		1D1FD66A1B1BFC4A00287FA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1FD6681B1BFC4A00287FA0 /* Main.storyboard */; };
@@ -107,6 +110,9 @@
 		1D10D7A51B1C2C33007CDB66 /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInVC.swift; path = ViewControllers/SignInVC.swift; sourceTree = "<group>"; };
 		1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarVC.swift; path = ViewControllers/CalendarVC.swift; sourceTree = "<group>"; };
 		1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicInfoVC.swift; path = ViewControllers/BasicInfoVC.swift; sourceTree = "<group>"; };
+		1D1228DB1B424AA1001CA6A4 /* Carpool.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Carpool.storyboard; path = ViewControllers/Carpool.storyboard; sourceTree = "<group>"; };
+		1D1228DD1B424AC6001CA6A4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		1D1228DF1B424AD9001CA6A4 /* TeamAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeamAccount.storyboard; sourceTree = "<group>"; };
 		1D19D5221B3FF569007A716A /* FrequencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyCell.swift; sourceTree = "<group>"; };
 		1D1FD65F1B1BFC4A00287FA0 /* GoKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D1FD6631B1BFC4A00287FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -220,6 +226,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D1228DA1B424A6D001CA6A4 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				1D1228DB1B424AA1001CA6A4 /* Carpool.storyboard */,
+				1D1228DF1B424AD9001CA6A4 /* TeamAccount.storyboard */,
+				1D1FD6681B1BFC4A00287FA0 /* Main.storyboard */,
+				1D1228DD1B424AC6001CA6A4 /* Login.storyboard */,
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		1D19D5241B3FF576007A716A /* Frequency */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,8 +276,8 @@
 				1DD1BAA61B2AA31A00D1BBA3 /* Model */,
 				1D3F65281B237ED900CCF6A1 /* Cells */,
 				1D1FD68B1B1C00BB00287FA0 /* ViewControllers */,
+				1D1228DA1B424A6D001CA6A4 /* New Group */,
 				1D1FD6641B1BFC4A00287FA0 /* AppDelegate.swift */,
-				1D1FD6681B1BFC4A00287FA0 /* Main.storyboard */,
 				1D1FD66B1B1BFC4A00287FA0 /* Images.xcassets */,
 				1D1FD66D1B1BFC4A00287FA0 /* LaunchScreen.xib */,
 				1D1FD68C1B1C012700287FA0 /* GoKid-Bridging-Header.h */,
@@ -694,7 +711,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D1FD66A1B1BFC4A00287FA0 /* Main.storyboard in Resources */,
+				1D1228E01B424AD9001CA6A4 /* TeamAccount.storyboard in Resources */,
+				1D1228DC1B424AA1001CA6A4 /* Carpool.storyboard in Resources */,
 				1D1FD66F1B1BFC4A00287FA0 /* LaunchScreen.xib in Resources */,
+				1D1228DE1B424AC6001CA6A4 /* Login.storyboard in Resources */,
 				1D1FD66C1B1BFC4A00287FA0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -59,8 +59,20 @@ func nib(name: String) -> UINib {
 }
 
 func vcWithID(ID: String) -> UIViewController {
-    var sb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-    return sb.instantiateViewControllerWithIdentifier(ID) as! UIViewController
+    var map = DataManager.sharedInstance.sbViewControllerList()
+    for (k, v) in map {
+        if v[ID] != nil {
+            return vcWithID(ID, k)
+        }
+    }
+    assertionFailure("View Controller doesn't exsit")
+    return UIViewController()
+}
+
+func vcWithID(ID: String, StoryBoard: String) -> UIViewController {
+    var sb = UIStoryboard(name: StoryBoard, bundle: NSBundle.mainBundle())
+    var vc = sb.instantiateViewControllerWithIdentifier(ID) as! UIViewController
+    return vc
 }
 
 extension CGPoint {
