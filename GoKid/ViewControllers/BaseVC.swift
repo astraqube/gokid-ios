@@ -67,8 +67,10 @@ extension UIViewController {
     // --------------------------------------------------------------------------------------------
     
     func showAlert(title: String, messege: String, cancleTitle: String) {
-        var alertView = UIAlertView(title: title, message: messege, delegate: self, cancelButtonTitle: cancleTitle)
-        alertView.show()
+        onMainThread() {
+            var alertView = UIAlertView(title: title, message: messege, delegate: self, cancelButtonTitle: cancleTitle)
+            alertView.show()
+        }
     }
 }
 

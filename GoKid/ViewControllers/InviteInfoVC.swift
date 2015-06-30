@@ -92,7 +92,9 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
     func fetchInvite() {
         dataManager.getCarpools() { (success, errorStr) in
             if success {
-                var vc = vcWithID("InviteConfirmVC")
+                var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
+                vc.fromCarpoolInvite = true
+                vc.phoneNumberString = self.phoneNumberTextField.text
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 self.showAlert("Alert", messege: "You are not invited by any user", cancleTitle: "OK")

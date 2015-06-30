@@ -32,4 +32,17 @@ class InviteConfirmVC: BaseVC {
     func laterButtonClick() {
         navigationController?.popViewControllerAnimated(true)
     }
+    
+    @IBAction func acceptButtonClick(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func declineButtonClick(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func viewInviteeListButtonClick(sender: AnyObject) {
+        
+    }
+    
 }

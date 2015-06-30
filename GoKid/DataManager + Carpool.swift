@@ -57,6 +57,7 @@ extension DataManager {
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getCarpool success")
+            println(obj)
             var carpool = CarpoolModel(json: JSON(obj))
             self.userManager.currentCarpoolModel = carpool
             comp(true, "")

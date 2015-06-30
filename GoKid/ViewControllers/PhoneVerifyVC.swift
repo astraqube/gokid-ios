@@ -14,6 +14,7 @@ class PhoneVerifyVC: BaseVC {
     @IBOutlet weak var codeTextField: PaddingTextField!
     var memberProfileVC: MemberProfileVC?
     var phoneNumberString: String!
+    var fromCarpoolInvite = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class PhoneVerifyVC: BaseVC {
     func setupNavBar() {
         setNavBarTitle("Phone Verify")
         setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        setNavBarRightButtonTitle("Done", action: "doneButtonClick")
+        setNavBarRightButtonTitle("Next", action: "doneButtonClick")
     }
     
     func setupTextField() {
@@ -61,9 +62,24 @@ class PhoneVerifyVC: BaseVC {
     }
     
     func handleVerificationSuccess() {
+        onMainThread() {
+            if self.fromCarpoolInvite {
+                self.verificatoinSuccessFromCarpoolInvite()
+            } else {
+                self.verificationFromMemberProfile()
+            }
+        }
+    }
+    
+    func verificatoinSuccessFromCarpoolInvite() {
+        var vc = vcWithID("InviteConfirmVC")
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func verificationFromMemberProfile() {
         if let vc = memberProfileVC {
             vc.phoneNumberLabel.text = phoneNumberString
-            self.navigationController?.popToViewController(vc, animated: true)
+            navigationController?.popToViewController(vc, animated: true)
         }
     }
 }

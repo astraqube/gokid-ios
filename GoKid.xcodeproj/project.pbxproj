@@ -14,6 +14,7 @@
 		1D1228DC1B424AA1001CA6A4 /* Carpool.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1228DB1B424AA1001CA6A4 /* Carpool.storyboard */; };
 		1D1228DE1B424AC6001CA6A4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1228DD1B424AC6001CA6A4 /* Login.storyboard */; };
 		1D1228E01B424AD9001CA6A4 /* TeamAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1228DF1B424AD9001CA6A4 /* TeamAccount.storyboard */; };
+		1D1228E21B42635D001CA6A4 /* DataMnager + Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1228E11B42635D001CA6A4 /* DataMnager + Invitation.swift */; };
 		1D19D5231B3FF569007A716A /* FrequencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D19D5221B3FF569007A716A /* FrequencyCell.swift */; };
 		1D1FD6651B1BFC4A00287FA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6641B1BFC4A00287FA0 /* AppDelegate.swift */; };
 		1D1FD66A1B1BFC4A00287FA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1FD6681B1BFC4A00287FA0 /* Main.storyboard */; };
@@ -113,6 +114,7 @@
 		1D1228DB1B424AA1001CA6A4 /* Carpool.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Carpool.storyboard; path = ViewControllers/Carpool.storyboard; sourceTree = "<group>"; };
 		1D1228DD1B424AC6001CA6A4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		1D1228DF1B424AD9001CA6A4 /* TeamAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeamAccount.storyboard; sourceTree = "<group>"; };
+		1D1228E11B42635D001CA6A4 /* DataMnager + Invitation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataMnager + Invitation.swift"; sourceTree = "<group>"; };
 		1D19D5221B3FF569007A716A /* FrequencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyCell.swift; sourceTree = "<group>"; };
 		1D1FD65F1B1BFC4A00287FA0 /* GoKid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoKid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D1FD6631B1BFC4A00287FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				1D8F79011B36A64D00C78CAF /* DataManager + Fake.swift */,
 				1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */,
 				1DC765C31B32754800D9D306 /* DataManager + Team.swift */,
+				1D1228E11B42635D001CA6A4 /* DataMnager + Invitation.swift */,
 				1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */,
 				1D3554581B3FD14200044A3F /* DataMnager + Notification.swift */,
 				1D891F221B244536006FD961 /* DataManager.swift */,
@@ -809,6 +812,7 @@
 				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,
 				1D8F78FC1B36A07F00C78CAF /* CalendarCell.swift in Sources */,
+				1D1228E21B42635D001CA6A4 /* DataMnager + Invitation.swift in Sources */,
 				1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */,
 				1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */,
 				1D10D7AA1B1C38FE007CDB66 /* BasicInfoVC.swift in Sources */,
