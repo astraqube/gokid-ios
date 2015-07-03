@@ -50,19 +50,78 @@ class LocationVC: BaseVC {
     }
     
     func nextButtonClick() {
-        var vc = vcWithID("VolunteerVC")
-        navigationController?.pushViewController(vc, animated: true)
+        if userManager.currentCarpoolModel.isValidForLocation() {
+            startCarpoolCreation()
+        } else {
+            showAlert("Alert", messege: "Please fill in all locations", cancleTitle: "OK")
+        }
     }
     
     @IBAction func startLocationButtonClick(sender: AnyObject) {
         var vc = vcWithID("LocationInputVC") as! LocationInputVC
-        vc.boundTextLabel = startLocationLabel
+        vc.donePickingWithAddress = donePickingStartLocationWithAddress
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func destinationLocationButtonClick(sender: AnyObject) {
         var vc = vcWithID("LocationInputVC") as! LocationInputVC
-        vc.boundTextLabel = destinationLocationLabel
+        vc.donePickingWithAddress = donePickingEndLocationWithAddress
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func donePickingStartLocationWithAddress(address: String) {
+        self.startLocationLabel.text = address
+        userManager.currentCarpoolModel.startLocation = address
+    }
+    
+    func donePickingEndLocationWithAddress(address: String) {
+        self.destinationLocationLabel.text = address
+        userManager.currentCarpoolModel.endLocation = address
+    }
+    
+    // MARK: NetWork Carpool Creation
+    // --------------------------------------------------------------------------------------------
+    
+    func startCarpoolCreation() {
+        LoadingView.showWithMaskType(.Black)
+        if userManager.userLoggedIn {
+            dataManager.createCarpool(userManager.currentCarpoolModel, comp: handleCreateCarpool)
+        } else {
+            dataManager.getFakeVolunteerList(userManager.currentCarpoolModel, comp: handleGetFakeVolunteerList)
+        }
+    }
+    
+    func handleCreateCarpool(success: Bool, errorStr: String) {
+        if success {
+            dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
+        } else {
+            LoadingView.dismiss()
+            self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
+        }
+    }
+    
+    func handleGetVolunteerList(success: Bool, errorStr: String) {
+        LoadingView.dismiss()
+        if success {
+            moveToVolunteerVC()
+        } else {
+            self.showAlert("Fail to fetch vlounteer list", messege: errorStr, cancleTitle: "OK")
+        }
+    }
+    
+    func handleGetFakeVolunteerList(success: Bool, errorStr: String) {
+        LoadingView.dismiss()
+        if success {
+            moveToVolunteerVC()
+        } else {
+            self.showAlert("Fail to fecth unregistered volunteer list", messege: errorStr, cancleTitle: "OK")
+        }
+    }
+    
+    func moveToVolunteerVC() {
+        onMainThread() {
+            var vc = vcWithID("VolunteerVC")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

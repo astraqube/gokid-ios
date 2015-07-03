@@ -14,6 +14,7 @@ enum CalendarCellType {
 
 class CalendarModel: NSObject {
 
+    var taken = false
     var poolDriver = ""
     var poolDriverImageUrl = ""
     

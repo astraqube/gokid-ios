@@ -52,46 +52,20 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
         model.pickUpTime = nil
         model.dropOffTime = nil
     }
+  
+    // MARK: IBAction Method
+    // --------------------------------------------------------------------------------------------
     
     func backButtonClick() {
         navigationController?.popViewControllerAnimated(true)
     }
     
     func nextButtonClick() {
-        if userManager.currentCarpoolModel.isValid() {
-            if userManager.userLoggedIn {
-                LoadingView.showWithMaskType(.Black)
-                dataManager.createCarpool(userManager.currentCarpoolModel, comp: handleCreateCarpoolSuccess)
-            } else {
-                moveToLocationVC()
-            }
-        } else {
-            showAlert("Alert", messege: "Please fill in all fields", cancleTitle: "OK")
-        }
-    }
-    
-    func handleCreateCarpoolSuccess(success: Bool, errorStr: String) {
-        if success {
-            dataManager.occurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
-        } else {
-            LoadingView.dismiss()
-            self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
-        }
-    }
-    
-    func handleGetVolunteerList(success: Bool, errorStr: String) {
-        LoadingView.dismiss()
-        if success {
-            moveToLocationVC()
-        } else {
-            self.showAlert("Fail to fetch vlounteer list", messege: errorStr, cancleTitle: "OK")
-        }
-    }
-    
-    func moveToLocationVC() {
-        onMainThread() {
+        if userManager.currentCarpoolModel.isValidForTime() {
             var vc = vcWithID("LocationVC")
             self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            showAlert("Alert", messege: "Please fill in all fields", cancleTitle: "OK")
         }
     }
     

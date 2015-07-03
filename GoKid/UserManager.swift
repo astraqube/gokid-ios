@@ -26,6 +26,7 @@ class UserManager: NSObject {
     var teamMembers = [TeamMemberModel]()
     var calendarEvents = [CalendarModel]()
     var volunteerEvents = [CalendarModel]()
+    var fakeVolunteerEvents = [CalendarModel]()
     
     
     var updatedMember = TeamMemberModel()

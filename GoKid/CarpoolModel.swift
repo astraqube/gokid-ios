@@ -16,6 +16,9 @@ class CarpoolModel: NSObject {
     var pickUpTime: NSDate?
     var dropOffTime: NSDate?
     
+    var startLocation: String?
+    var endLocation: String?
+    
     var kidName = ""
     var name = ""
     var id = 0
@@ -31,12 +34,19 @@ class CarpoolModel: NSObject {
         super.init()
     }
     
-    func isValid() -> Bool {
+    func isValidForTime() -> Bool {
         if occurence != nil && endDate != nil && startDate != nil &&
         pickUpTime != nil && dropOffTime != nil {
             return true
         } else {
             return false
         }
+    }
+    
+    func isValidForLocation() -> Bool {
+        if startLocation != nil && endLocation != nil {
+            return true
+        }
+        return false
     }
 }

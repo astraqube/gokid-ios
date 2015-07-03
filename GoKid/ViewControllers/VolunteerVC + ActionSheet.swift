@@ -21,7 +21,7 @@ extension VolunteerVC {
         }
     }
     
-    func showTakenActionSheet(cell: VolunteerCell, model: VolunteerModel) {
+    func showTakenActionSheet(cell: VolunteerCell, model: CalendarModel) {
         let button1 = UIAlertAction(title: "Unvolunteer", style: .Default) { (alert) in
             self.unRegisterVolunteerForCell(cell, model: model)
         }
@@ -34,7 +34,7 @@ extension VolunteerVC {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func showUntakenActionSheet(cell: VolunteerCell, model: VolunteerModel) {
+    func showUntakenActionSheet(cell: VolunteerCell, model: CalendarModel) {
         let button1 = UIAlertAction(title: "Volunteer", style: .Default) { (alert) in
             self.registerVolunteerForCell(cell, model: model)
         }
@@ -57,9 +57,9 @@ extension VolunteerVC {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func unRegisterVolunteerForCell(cell: VolunteerCell, model: VolunteerModel) {
+    func unRegisterVolunteerForCell(cell: VolunteerCell, model: CalendarModel) {
         LoadingView.showWithMaskType(.Black)
-        self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occrenceID) { (success, errStr) in
+        self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occrencID) { (success, errStr) in
             LoadingView.dismiss()
             onMainThread() {
                 if success {
@@ -72,9 +72,9 @@ extension VolunteerVC {
         }
     }
     
-    func registerVolunteerForCell(cell: VolunteerCell, model: VolunteerModel) {
+    func registerVolunteerForCell(cell: VolunteerCell, model: CalendarModel) {
         LoadingView.showWithMaskType(.Black)
-        self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occrenceID) { (success, errStr) in
+        self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occrencID) { (success, errStr) in
             LoadingView.dismiss()
             onMainThread() {
                 if success {

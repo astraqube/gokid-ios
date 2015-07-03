@@ -11,7 +11,7 @@ import UIKit
 class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var tableData = [VolunteerModel]()
+    var tableData = [CalendarModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableData = dataManager.fakeVolunteerData()
-        tableView.reloadData()
+        tryLoadTableData()
     }
     
     func setupNavigationBar() {
@@ -72,19 +71,19 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var model = tableData[indexPath.row]
-        if model.cellType == .Empty {
+        if model.cellType == .None {
             let cell = tableView.cellWithID("TDEmptyCell", indexPath) as! TDEmptyCell
             return cell
         } else if model.cellType == .Normal {
             let cell = tableView.cellWithID("VolunteerCell", indexPath) as! VolunteerCell
-            cell.timeLabel.text = model.timeString
-            cell.poolTypeLabel.text = model.poolTypeString
-            cell.driverTitleLabel.text = model.titleString
+            cell.timeLabel.text = model.pooltimeStr
+            cell.poolTypeLabel.text = model.poolType
+            cell.driverTitleLabel.text = model.poolname
             cell.checkButtonHandler = checkButtonClickHandler
             return cell
-        } else if model.cellType == .Date {
+        } else if model.cellType == .Time {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
-            cell.timeLabel.text = model.timeString
+            cell.timeLabel.text = model.poolDateStr
             return cell
         } else {
             println("unknown tableview cell type")
@@ -95,11 +94,11 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     var model = tableData[indexPath.row]
         switch model.cellType {
-        case .Empty:
+        case .None:
             return 20.0
         case .Normal:
             return 70.0
-        case .Date:
+        case .Time:
             return 40.0
         default:
             return 50.0
@@ -145,7 +144,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func handleCreateCarpoolSuccess(success: Bool, errorStr: String) {
         if success {
-            dataManager.occurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
+            dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
         } else {
             LoadingView.dismiss()
             self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
@@ -161,7 +160,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    // MARK: Create Carpool
+    // MARK: NetWork Create Carpool
     // --------------------------------------------------------------------------------------------
     
     func createCarpool() {
@@ -174,6 +173,15 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
           self.showAlert("Alert", messege: "Cannot create Carpool " + errorStr, cancleTitle: "OK")
         }
       }
+    }
+    
+    func tryLoadTableData() {
+        if userManager.userLoggedIn {
+            tableData = userManager.volunteerEvents
+        } else {
+            tableData = userManager.fakeVolunteerEvents
+        }
+        tableView.reloadData()
     }
 }
 

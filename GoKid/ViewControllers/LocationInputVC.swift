@@ -15,8 +15,8 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     @IBOutlet weak var locationInputButton: UIButton!
     @IBOutlet weak var recentTableView: UITableView!
     
+    var donePickingWithAddress: ((String)->())?
     var locationManager = CLLocationManager()
-    var boundTextLabel: UILabel?
     var TableCellID = "RecentAddressCell"
     
     override func viewDidLoad() {
@@ -54,7 +54,7 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
             showHomeAdreeAlertView()
         } else {
             navigationController?.popViewControllerAnimated(true)
-            boundTextLabel?.text = locationInputTextField.text
+            donePickingWithAddress?(locationInputTextField.text)
         }
     }
     
@@ -72,7 +72,7 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     }
     
     @IBAction func textfieldEditing(sender: UITextField) {
-        boundTextLabel?.text = sender.text
+        
     }
     
     // MARK: CLLocationManagerDelegate
@@ -91,7 +91,7 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
                 self.userManager.recentAddress.insert(add2, atIndex: 0)
                 self.userManager.saveUserInfo()
                 self.locationInputTextField.text = full
-                self.boundTextLabel?.text = full
+                self.donePickingWithAddress?(full)
                 self.locationManager.stopUpdatingLocation()
                 
             } else {
@@ -117,9 +117,6 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
         }
         return add2
     }
-    
-    
-    
     
     // MARK: TableView DataSource and Delegate
     // --------------------------------------------------------------------------------------------
@@ -170,11 +167,11 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
                     self.showAlert("Fail to update address", messege: errorStr, cancleTitle: "OK")
                 }
                 self.navigationController?.popViewControllerAnimated(true)
-                self.boundTextLabel?.text = self.locationInputTextField.text
+                self.donePickingWithAddress?(self.locationInputTextField.text)
             }
         } else {
             navigationController?.popViewControllerAnimated(true)
-            boundTextLabel?.text = locationInputTextField.text
+            self.donePickingWithAddress?(self.locationInputTextField.text)
         }
     }
 }
