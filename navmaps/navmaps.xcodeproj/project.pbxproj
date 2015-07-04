@@ -12,6 +12,7 @@
 		791BAD651B4712EF008DC186 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791BAD5C1B4712EF008DC186 /* LaunchScreen.xib */; };
 		791BAD661B4712EF008DC186 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 791BAD5E1B4712EF008DC186 /* Images.xcassets */; };
 		791BAD6A1B47143C008DC186 /* NavMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791BAD691B47143C008DC186 /* NavMap.storyboard */; };
+		7929641E1B48881700BE3250 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929641D1B48881700BE3250 /* MapKit.framework */; };
 		799792FC1B472B0200463FA7 /* DetailMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FB1B472B0200463FA7 /* DetailMapVC.swift */; };
 		799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */; };
 /* End PBXBuildFile section */
@@ -36,8 +37,10 @@
 		791BAD5E1B4712EF008DC186 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		791BAD5F1B4712EF008DC186 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		791BAD691B47143C008DC186 /* NavMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NavMap.storyboard; sourceTree = "<group>"; };
+		7929641D1B48881700BE3250 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		799792FB1B472B0200463FA7 /* DetailMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapVC.swift; sourceTree = "<group>"; };
 		799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrivingModeVC.swift; sourceTree = "<group>"; };
+		799793391B48865800463FA7 /* navmaps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = navmaps.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7929641E1B48881700BE3250 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +87,7 @@
 				791BAD601B4712EF008DC186 /* Data */,
 				791BAD611B4712EF008DC186 /* View Controllers */,
 				791BAD631B4712EF008DC186 /* Views */,
+				7929641D1B48881700BE3250 /* MapKit.framework */,
 			);
 			path = navmaps;
 			sourceTree = "<group>";
@@ -107,6 +112,7 @@
 		791BAD5A1B4712EF008DC186 /* App and Resources */ = {
 			isa = PBXGroup;
 			children = (
+				799793391B48865800463FA7 /* navmaps.entitlements */,
 				791BAD5B1B4712EF008DC186 /* AppDelegate.swift */,
 				791BAD5C1B4712EF008DC186 /* LaunchScreen.xib */,
 				791BAD691B47143C008DC186 /* NavMap.storyboard */,
@@ -188,6 +194,12 @@
 				TargetAttributes = {
 					791BAD331B471236008DC186 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = F5R7MTM787;
+						SystemCapabilities = {
+							com.apple.WAC = {
+								enabled = 0;
+							};
+						};
 					};
 					791BAD481B471236008DC186 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -362,9 +374,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "navmaps/App and Resources/navmaps.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/navmaps/App and Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -372,9 +388,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "navmaps/App and Resources/navmaps.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/navmaps/App and Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -382,6 +402,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = "navmaps/App and Resources/navmaps.entitlements";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -401,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = "navmaps/App and Resources/navmaps.entitlements";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
