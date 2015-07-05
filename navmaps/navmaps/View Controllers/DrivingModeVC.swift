@@ -17,5 +17,8 @@ class DrivingModeVC: UIViewController {
     @IBAction func exitPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
-
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
 }

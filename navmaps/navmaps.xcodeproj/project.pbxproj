@@ -16,6 +16,9 @@
 		792964321B489BEB00BE3250 /* Fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7929642F1B489BEB00BE3250 /* Fontawesome.ttf */; };
 		792964331B489BEB00BE3250 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 792964301B489BEB00BE3250 /* Raleway-Bold.ttf */; };
 		792964341B489BEB00BE3250 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 792964311B489BEB00BE3250 /* Raleway-Regular.ttf */; };
+		792964361B48CF6C00BE3250 /* MapUserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792964351B48CF6C00BE3250 /* MapUserImageView.swift */; };
+		7929643A1B48D14200BE3250 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792964391B48D14200BE3250 /* BorderedView.swift */; };
+		7929643C1B48D7E200BE3250 /* BorderedBarishButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7929643B1B48D7E200BE3250 /* BorderedBarishButton.swift */; };
 		799792FC1B472B0200463FA7 /* DetailMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FB1B472B0200463FA7 /* DetailMapVC.swift */; };
 		799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +48,9 @@
 		7929642F1B489BEB00BE3250 /* Fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontawesome.ttf; sourceTree = "<group>"; };
 		792964301B489BEB00BE3250 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		792964311B489BEB00BE3250 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		792964351B48CF6C00BE3250 /* MapUserImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUserImageView.swift; sourceTree = "<group>"; };
+		792964391B48D14200BE3250 /* BorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
+		7929643B1B48D7E200BE3250 /* BorderedBarishButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedBarishButton.swift; sourceTree = "<group>"; };
 		799792FB1B472B0200463FA7 /* DetailMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapVC.swift; sourceTree = "<group>"; };
 		799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrivingModeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,11 +96,11 @@
 			isa = PBXGroup;
 			children = (
 				792964251B4899A200BE3250 /* Resources */,
-				7929641F1B4899A200BE3250 /* App */,
 				791BAD601B4712EF008DC186 /* Data */,
 				791BAD611B4712EF008DC186 /* View Controllers */,
 				791BAD631B4712EF008DC186 /* Views */,
 				7929641D1B48881700BE3250 /* MapKit.framework */,
+				7929641F1B4899A200BE3250 /* App */,
 			);
 			path = navmaps;
 			sourceTree = "<group>";
@@ -135,6 +141,9 @@
 		791BAD631B4712EF008DC186 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				792964351B48CF6C00BE3250 /* MapUserImageView.swift */,
+				792964391B48D14200BE3250 /* BorderedView.swift */,
+				7929643B1B48D7E200BE3250 /* BorderedBarishButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,9 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792964361B48CF6C00BE3250 /* MapUserImageView.swift in Sources */,
+				7929643A1B48D14200BE3250 /* BorderedView.swift in Sources */,
 				792964281B4899A200BE3250 /* AppDelegate.swift in Sources */,
 				799792FC1B472B0200463FA7 /* DetailMapVC.swift in Sources */,
 				799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */,
+				7929643C1B48D7E200BE3250 /* BorderedBarishButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +418,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/navmaps/App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -420,6 +433,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/navmaps/App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
