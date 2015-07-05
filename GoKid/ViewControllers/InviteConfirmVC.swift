@@ -9,7 +9,6 @@
 import UIKit
 
 class InviteConfirmVC: BaseVC {
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +33,27 @@ class InviteConfirmVC: BaseVC {
     }
     
     @IBAction func acceptButtonClick(sender: AnyObject) {
-        
+        LoadingView.showWithMaskType(.Black)
+        dataManager.acceptInvite { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                
+            } else {
+                
+            }
+        }
     }
     
     @IBAction func declineButtonClick(sender: AnyObject) {
-        
+        LoadingView.showWithMaskType(.Black)
+        dataManager.declineInvite { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                
+            } else {
+                
+            }
+        }
     }
     
     @IBAction func viewInviteeListButtonClick(sender: AnyObject) {

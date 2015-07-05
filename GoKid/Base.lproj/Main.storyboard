@@ -396,6 +396,125 @@
             </objects>
             <point key="canvasLocation" x="299" y="2452"/>
         </scene>
+        <!--Invite RelationshipVC-->
+        <scene sceneID="i5j-Jd-QQr">
+            <objects>
+                <viewController id="pV6-ka-V7I" customClass="InviteRelationshipVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fsc-xC-aDC"/>
+                        <viewControllerLayoutGuide type="bottom" id="oPD-Wi-AWR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mbb-QY-WQ2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How are you and XXX Connected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOC-yX-Oui">
+                                <rect key="frame" x="32" y="67" width="256" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="ikb-kI-tcc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mf5-QN-5bc">
+                                <rect key="frame" x="0.0" y="155" width="320" height="40"/>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="I0t-fp-Ebn"/>
+                                </constraints>
+                                <state key="normal" title="     My Kid's Friends">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="kidsFriendClick:" destination="pV6-ka-V7I" eventType="touchUpInside" id="AUS-YV-rJH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="md4-Va-zts">
+                                <rect key="frame" x="0.0" y="195" width="320" height="40"/>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="IPj-VN-P6c"/>
+                                </constraints>
+                                <state key="normal" title="     Mommy">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mommyClick:" destination="pV6-ka-V7I" eventType="touchUpInside" id="0fC-ge-YcY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpZ-BE-sp1">
+                                <rect key="frame" x="0.0" y="235" width="320" height="40"/>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="RPI-ya-bcC"/>
+                                </constraints>
+                                <state key="normal" title="     Daddy">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="daddyClick:" destination="pV6-ka-V7I" eventType="touchUpInside" id="c4a-9r-2aj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLQ-0y-QLZ">
+                                <rect key="frame" x="0.0" y="275" width="320" height="40"/>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="UQ3-nV-ufI"/>
+                                </constraints>
+                                <state key="normal" title="     Sitter">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sitterClick:" destination="pV6-ka-V7I" eventType="touchUpInside" id="a42-dZ-CoL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f17-Wb-R7A">
+                                <rect key="frame" x="0.0" y="314" width="320" height="40"/>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0Eq-ba-aTS"/>
+                                </constraints>
+                                <state key="normal" title="     Other">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="otherClick:" destination="pV6-ka-V7I" eventType="touchUpInside" id="m96-nR-XVC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mf5-QN-5bc" firstAttribute="leading" secondItem="mbb-QY-WQ2" secondAttribute="leadingMargin" constant="-16" id="35c-ap-mel"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MpZ-BE-sp1" secondAttribute="trailing" constant="-16" id="5CI-gR-K0i"/>
+                            <constraint firstItem="f17-Wb-R7A" firstAttribute="top" secondItem="cLQ-0y-QLZ" secondAttribute="bottom" constant="-1" id="5Iv-hZ-bMN"/>
+                            <constraint firstItem="lOC-yX-Oui" firstAttribute="top" secondItem="fsc-xC-aDC" secondAttribute="bottom" constant="47" id="6QO-lK-xuj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cLQ-0y-QLZ" secondAttribute="trailing" constant="-16" id="86p-j7-58s"/>
+                            <constraint firstItem="cLQ-0y-QLZ" firstAttribute="top" secondItem="MpZ-BE-sp1" secondAttribute="bottom" id="BMW-Ov-FQy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f17-Wb-R7A" secondAttribute="trailing" constant="-16" id="GfI-4r-ZCi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="md4-Va-zts" secondAttribute="trailing" constant="-16" id="J0G-fc-6Mo"/>
+                            <constraint firstItem="cLQ-0y-QLZ" firstAttribute="leading" secondItem="mbb-QY-WQ2" secondAttribute="leadingMargin" constant="-16" id="RZA-AQ-x0P"/>
+                            <constraint firstItem="lOC-yX-Oui" firstAttribute="leading" secondItem="mbb-QY-WQ2" secondAttribute="leadingMargin" constant="16" id="U4L-wJ-sVQ"/>
+                            <constraint firstItem="MpZ-BE-sp1" firstAttribute="top" secondItem="md4-Va-zts" secondAttribute="bottom" id="VZ9-gw-W31"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lOC-yX-Oui" secondAttribute="trailing" constant="16" id="Y5c-c9-V96"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mf5-QN-5bc" secondAttribute="trailing" constant="-16" id="aCs-tP-W4w"/>
+                            <constraint firstItem="mf5-QN-5bc" firstAttribute="top" secondItem="lOC-yX-Oui" secondAttribute="bottom" constant="29" id="je2-Da-AMf"/>
+                            <constraint firstItem="md4-Va-zts" firstAttribute="leading" secondItem="mbb-QY-WQ2" secondAttribute="leadingMargin" constant="-16" id="jnf-fl-Rh8"/>
+                            <constraint firstItem="md4-Va-zts" firstAttribute="top" secondItem="mf5-QN-5bc" secondAttribute="bottom" id="kaD-Pi-NFD"/>
+                            <constraint firstItem="MpZ-BE-sp1" firstAttribute="leading" secondItem="mbb-QY-WQ2" secondAttribute="leadingMargin" constant="-16" id="o6L-uo-zaK"/>
+                            <constraint firstItem="f17-Wb-R7A" firstAttribute="leading" secondItem="mbb-QY-WQ2" secondAttribute="leadingMargin" constant="-16" id="x7C-lC-Rrz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="69b-ts-Q55" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="680" y="2452"/>
+        </scene>
         <!--Phone VerifyVC-->
         <scene sceneID="2W5-T6-uA2">
             <objects>

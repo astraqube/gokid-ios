@@ -86,6 +86,7 @@
 		1DD6A4D61B3BA916006A97ED /* PlaceResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4D51B3BA916006A97ED /* PlaceResultCell.swift */; };
 		1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4D91B3BD32B006A97ED /* ZGNavigationTitleView.m */; };
 		1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */; };
+		1DEFF16B1B4937EA0094B54E /* InviteRelationshipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */; };
 		1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
 		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
@@ -195,6 +196,7 @@
 		1DD6A4D91B3BD32B006A97ED /* ZGNavigationTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGNavigationTitleView.m; sourceTree = "<group>"; };
 		1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGNavigationBarTitleViewController.m; sourceTree = "<group>"; };
 		1DD6A4DB1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGNavigationBarTitleViewController.h; sourceTree = "<group>"; };
+		1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteRelationshipVC.swift; path = ViewControllers/InviteRelationshipVC.swift; sourceTree = "<group>"; };
 		1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataMnager + Verification.swift"; sourceTree = "<group>"; };
 		1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberProfileVC.swift; path = ViewControllers/MemberProfileVC.swift; sourceTree = "<group>"; };
 		1DFBBE971B1C6DF500630440 /* Phone#VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Phone#VC.swift"; path = "ViewControllers/Phone#VC.swift"; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 			children = (
 				1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */,
 				1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */,
+				1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */,
 				1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */,
 				1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */,
 				1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */,
@@ -791,6 +794,7 @@
 				1D8F78FB1B36A07F00C78CAF /* CalendarDateCell.swift in Sources */,
 				1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */,
 				1D8F78FA1B36A07F00C78CAF /* CalendarAddCell.swift in Sources */,
+				1DEFF16B1B4937EA0094B54E /* InviteRelationshipVC.swift in Sources */,
 				1DD6A4D61B3BA916006A97ED /* PlaceResultCell.swift in Sources */,
 				1D3F65231B207FBA00CCF6A1 /* VolunteerModel.swift in Sources */,
 				1D3F65161B2005EC00CCF6A1 /* LocationInputVC.swift in Sources */,

@@ -86,7 +86,8 @@ extension DataManager {
             "KidAboutYouVC": true,
             "CalendarVC": true,
             "MenuVC": true,
-            "MainStackVC": true
+            "MainStackVC": true,
+            "InviteRelationshipVC": true
         ]
         var teamAccount = [
             "AddTeamMemberVC": true,
