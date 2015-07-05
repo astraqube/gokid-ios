@@ -8,10 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		791BAD501B471236008DC186 /* navmapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BAD4F1B471236008DC186 /* navmapsTests.swift */; };
-		791BAD641B4712EF008DC186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BAD5B1B4712EF008DC186 /* AppDelegate.swift */; };
-		791BAD651B4712EF008DC186 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791BAD5C1B4712EF008DC186 /* LaunchScreen.xib */; };
-		791BAD661B4712EF008DC186 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 791BAD5E1B4712EF008DC186 /* Images.xcassets */; };
-		791BAD6A1B47143C008DC186 /* NavMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791BAD691B47143C008DC186 /* NavMap.storyboard */; };
+		7929641E1B48881700BE3250 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929641D1B48881700BE3250 /* MapKit.framework */; };
+		792964281B4899A200BE3250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792964201B4899A200BE3250 /* AppDelegate.swift */; };
+		792964291B4899A200BE3250 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792964211B4899A200BE3250 /* LaunchScreen.xib */; };
+		7929642C1B4899A200BE3250 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 792964261B4899A200BE3250 /* Images.xcassets */; };
+		7929642D1B4899A200BE3250 /* NavMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 792964271B4899A200BE3250 /* NavMap.storyboard */; };
+		792964321B489BEB00BE3250 /* Fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7929642F1B489BEB00BE3250 /* Fontawesome.ttf */; };
+		792964331B489BEB00BE3250 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 792964301B489BEB00BE3250 /* Raleway-Bold.ttf */; };
+		792964341B489BEB00BE3250 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 792964311B489BEB00BE3250 /* Raleway-Regular.ttf */; };
+		792964361B48CF6C00BE3250 /* MapUserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792964351B48CF6C00BE3250 /* MapUserImageView.swift */; };
+		7929643A1B48D14200BE3250 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792964391B48D14200BE3250 /* BorderedView.swift */; };
+		7929643C1B48D7E200BE3250 /* BorderedBarishButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7929643B1B48D7E200BE3250 /* BorderedBarishButton.swift */; };
 		799792FC1B472B0200463FA7 /* DetailMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FB1B472B0200463FA7 /* DetailMapVC.swift */; };
 		799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */; };
 /* End PBXBuildFile section */
@@ -31,11 +38,19 @@
 		791BAD491B471236008DC186 /* navmapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = navmapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		791BAD4E1B471236008DC186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		791BAD4F1B471236008DC186 /* navmapsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navmapsTests.swift; sourceTree = "<group>"; };
-		791BAD5B1B4712EF008DC186 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		791BAD5D1B4712EF008DC186 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		791BAD5E1B4712EF008DC186 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		791BAD5F1B4712EF008DC186 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		791BAD691B47143C008DC186 /* NavMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NavMap.storyboard; sourceTree = "<group>"; };
+		7929641D1B48881700BE3250 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		792964201B4899A200BE3250 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		792964221B4899A200BE3250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		792964231B4899A200BE3250 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		792964241B4899A200BE3250 /* navmaps.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = navmaps.entitlements; sourceTree = "<group>"; };
+		792964261B4899A200BE3250 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		792964271B4899A200BE3250 /* NavMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NavMap.storyboard; sourceTree = "<group>"; };
+		7929642F1B489BEB00BE3250 /* Fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontawesome.ttf; sourceTree = "<group>"; };
+		792964301B489BEB00BE3250 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		792964311B489BEB00BE3250 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		792964351B48CF6C00BE3250 /* MapUserImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUserImageView.swift; sourceTree = "<group>"; };
+		792964391B48D14200BE3250 /* BorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
+		7929643B1B48D7E200BE3250 /* BorderedBarishButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedBarishButton.swift; sourceTree = "<group>"; };
 		799792FB1B472B0200463FA7 /* DetailMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapVC.swift; sourceTree = "<group>"; };
 		799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrivingModeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -45,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7929641E1B48881700BE3250 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +95,12 @@
 		791BAD361B471236008DC186 /* navmaps */ = {
 			isa = PBXGroup;
 			children = (
-				791BAD5A1B4712EF008DC186 /* App and Resources */,
+				792964251B4899A200BE3250 /* Resources */,
 				791BAD601B4712EF008DC186 /* Data */,
 				791BAD611B4712EF008DC186 /* View Controllers */,
 				791BAD631B4712EF008DC186 /* Views */,
+				7929641D1B48881700BE3250 /* MapKit.framework */,
+				7929641F1B4899A200BE3250 /* App */,
 			);
 			path = navmaps;
 			sourceTree = "<group>";
@@ -104,18 +122,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		791BAD5A1B4712EF008DC186 /* App and Resources */ = {
-			isa = PBXGroup;
-			children = (
-				791BAD5B1B4712EF008DC186 /* AppDelegate.swift */,
-				791BAD5C1B4712EF008DC186 /* LaunchScreen.xib */,
-				791BAD691B47143C008DC186 /* NavMap.storyboard */,
-				791BAD5E1B4712EF008DC186 /* Images.xcassets */,
-				791BAD5F1B4712EF008DC186 /* Info.plist */,
-			);
-			path = "App and Resources";
-			sourceTree = "<group>";
-		};
 		791BAD601B4712EF008DC186 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,8 +141,42 @@
 		791BAD631B4712EF008DC186 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				792964351B48CF6C00BE3250 /* MapUserImageView.swift */,
+				792964391B48D14200BE3250 /* BorderedView.swift */,
+				7929643B1B48D7E200BE3250 /* BorderedBarishButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		7929641F1B4899A200BE3250 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				792964201B4899A200BE3250 /* AppDelegate.swift */,
+				792964211B4899A200BE3250 /* LaunchScreen.xib */,
+				792964231B4899A200BE3250 /* Info.plist */,
+				792964241B4899A200BE3250 /* navmaps.entitlements */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		792964251B4899A200BE3250 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7929642E1B489BEB00BE3250 /* Fonts */,
+				792964261B4899A200BE3250 /* Images.xcassets */,
+				792964271B4899A200BE3250 /* NavMap.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7929642E1B489BEB00BE3250 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7929642F1B489BEB00BE3250 /* Fontawesome.ttf */,
+				792964301B489BEB00BE3250 /* Raleway-Bold.ttf */,
+				792964311B489BEB00BE3250 /* Raleway-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +228,12 @@
 				TargetAttributes = {
 					791BAD331B471236008DC186 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = F5R7MTM787;
+						SystemCapabilities = {
+							com.apple.WAC = {
+								enabled = 0;
+							};
+						};
 					};
 					791BAD481B471236008DC186 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -219,9 +265,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				791BAD6A1B47143C008DC186 /* NavMap.storyboard in Resources */,
-				791BAD651B4712EF008DC186 /* LaunchScreen.xib in Resources */,
-				791BAD661B4712EF008DC186 /* Images.xcassets in Resources */,
+				7929642D1B4899A200BE3250 /* NavMap.storyboard in Resources */,
+				792964341B489BEB00BE3250 /* Raleway-Regular.ttf in Resources */,
+				7929642C1B4899A200BE3250 /* Images.xcassets in Resources */,
+				792964291B4899A200BE3250 /* LaunchScreen.xib in Resources */,
+				792964331B489BEB00BE3250 /* Raleway-Bold.ttf in Resources */,
+				792964321B489BEB00BE3250 /* Fontawesome.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,9 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792964361B48CF6C00BE3250 /* MapUserImageView.swift in Sources */,
+				7929643A1B48D14200BE3250 /* BorderedView.swift in Sources */,
+				792964281B4899A200BE3250 /* AppDelegate.swift in Sources */,
 				799792FC1B472B0200463FA7 /* DetailMapVC.swift in Sources */,
-				791BAD641B4712EF008DC186 /* AppDelegate.swift in Sources */,
 				799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */,
+				7929643C1B48D7E200BE3250 /* BorderedBarishButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,10 +316,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		791BAD5C1B4712EF008DC186 /* LaunchScreen.xib */ = {
+		792964211B4899A200BE3250 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				791BAD5D1B4712EF008DC186 /* Base */,
+				792964221B4899A200BE3250 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -362,9 +414,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "$(SRCROOT)/navmaps/App and Resources/Info.plist";
+				CODE_SIGN_ENTITLEMENTS = navmaps/App/navmaps.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/navmaps/App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -372,9 +429,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "$(SRCROOT)/navmaps/App and Resources/Info.plist";
+				CODE_SIGN_ENTITLEMENTS = navmaps/App/navmaps.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/navmaps/App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -382,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = navmaps/App/navmaps.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -401,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = navmaps/App/navmaps.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
