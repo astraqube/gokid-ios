@@ -9,10 +9,12 @@
 struct SignupForm {
     var passwordConfirm = ""
     var password = ""
+    var phoneNum = ""
     var firstName = ""
     var lastName = ""
     var email = ""
     var role = ""
+    var image : UIImage?
 }
 
 extension DataManager {

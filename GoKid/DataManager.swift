@@ -25,21 +25,6 @@ class DataManager: NSObject {
         return Static.instance
     }
     
-    func invite(phoneNumbers: [String], carpoolID: Int, comp: completion) {
-        var url = baseURL + "/api/invites"
-        var invite = ["carpool_id": String(carpoolID), "phone_numbers": phoneNumbers]
-        var map = ["invite": invite]
-        println(map)
-        var manager = managerWithToken()
-        manager.POST(url, parameters: map, success: { (op, obj) in
-            println("invite success")
-            comp(true, "")
-        }) { (op, error) in
-            println("invite failed")
-            self.handleRequestError(op, error: error, comp: comp)
-        }
-    }
-    
     func managerWithToken() -> AFHTTPRequestOperationManager {
         var token = userManager.userToken
         var manager = AFHTTPRequestOperationManager()

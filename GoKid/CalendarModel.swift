@@ -79,4 +79,11 @@ class CalendarModel: NSObject {
         }
         return nil
     }
+    
+    func poolTimeStringWithSpace() -> String {
+        var str = String(pooltimeStr)
+        str = str.replace("am", " am")
+        str = str.replace("pm", " pm")
+        return str
+    }
 }

@@ -32,7 +32,6 @@ class BasicInfoVC: BaseVC {
     }
     
     func setupNavigationBar() {
-        setNavBarTitle("Basic Info")
         setNavBarLeftButtonTitle("Do this later", action: "doLaterButtonClick")
         disableRightBarItem()
     }

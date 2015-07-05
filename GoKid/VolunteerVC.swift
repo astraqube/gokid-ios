@@ -11,7 +11,7 @@ import UIKit
 class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var tableData = [CalendarModel]()
+    var dataSource = [CalendarModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,10 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupNavigationBar() {
-        setNavBarTitle("Volunteer")
+        var nav = navigationController as! ZGNavVC
+        nav.addTitleViewToViewController(self)
+        self.title = "Volunteer"
+        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
         setNavBarLeftButtonTitle("Location", action: "locationButtonClick")
         setNavBarRightButtonTitle("Next", action: "nextButtonClick")
     }
@@ -66,24 +69,26 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return dataSource.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var model = tableData[indexPath.row]
+        var model = dataSource[indexPath.row]
         if model.cellType == .None {
             let cell = tableView.cellWithID("TDEmptyCell", indexPath) as! TDEmptyCell
             return cell
         } else if model.cellType == .Normal {
             let cell = tableView.cellWithID("VolunteerCell", indexPath) as! VolunteerCell
-            cell.timeLabel.text = model.pooltimeStr
+            cell.timeLabel.text = model.poolTimeStringWithSpace()
             cell.poolTypeLabel.text = model.poolType
-            cell.driverTitleLabel.text = model.poolname
             cell.checkButtonHandler = checkButtonClickHandler
+            if model.poolDriver == "No Driver yet" { cell.driverTitleLabel.text = "Volunteer to Drive" }
+            else { cell.driverTitleLabel.text = model.poolDriver }
             return cell
         } else if model.cellType == .Time {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
             cell.timeLabel.text = model.poolDateStr
+            cell.locationLabel.text = userManager.currentCarpoolModel.startLocation
             return cell
         } else {
             println("unknown tableview cell type")
@@ -92,14 +97,14 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    var model = tableData[indexPath.row]
+    var model = dataSource[indexPath.row]
         switch model.cellType {
         case .None:
             return 20.0
         case .Normal:
             return 70.0
         case .Time:
-            return 40.0
+            return 60.0
         default:
             return 50.0
         }
@@ -177,11 +182,27 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tryLoadTableData() {
         if userManager.userLoggedIn {
-            tableData = userManager.volunteerEvents
+            dataSource = processRawCalendarEvents(userManager.volunteerEvents)
         } else {
-            tableData = userManager.fakeVolunteerEvents
+            dataSource = processRawCalendarEvents(userManager.fakeVolunteerEvents)
         }
         tableView.reloadData()
+    }
+    
+    func processRawCalendarEvents(events: [CalendarModel]) -> [CalendarModel] {
+        var data = [CalendarModel]()
+        var lastDateStr = ""
+        for event in events {
+            if event.poolDateStr != lastDateStr {
+                var dateCell = CalendarModel()
+                dateCell.cellType = .Time
+                dateCell.poolDateStr = event.poolDateStr
+                data.append(dateCell)
+                lastDateStr = event.poolDateStr
+            }
+            data.append(event)
+        }
+        return data
     }
 }
 

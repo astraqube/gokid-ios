@@ -27,7 +27,10 @@ class LocationVC: BaseVC {
     }
     
     func setUpNavigationBar() {
-        setNavBarTitle("Location")
+        var nav = navigationController as! ZGNavVC
+        nav.addTitleViewToViewController(self)
+        self.title = "Location"
+        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
         setNavBarLeftButtonTitle("Back", action: "backButtonClick")
         setNavBarRightButtonTitle("Next", action: "nextButtonClick")
     }
