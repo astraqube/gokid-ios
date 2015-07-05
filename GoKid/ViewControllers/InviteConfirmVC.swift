@@ -33,15 +33,16 @@ class InviteConfirmVC: BaseVC {
     }
     
     @IBAction func acceptButtonClick(sender: AnyObject) {
-        LoadingView.showWithMaskType(.Black)
-        dataManager.acceptInvite { (success, errorStr) in
-            LoadingView.dismiss()
-            if success {
-                
-            } else {
-                
-            }
-        }
+        moveToInviteRelationVC()
+//        LoadingView.showWithMaskType(.Black)
+//        dataManager.acceptInvite { (success, errorStr) in
+//            LoadingView.dismiss()
+//            if success {
+//                
+//            } else {
+//                
+//            }
+//        }
     }
     
     @IBAction func declineButtonClick(sender: AnyObject) {
@@ -60,4 +61,10 @@ class InviteConfirmVC: BaseVC {
         
     }
     
+    func moveToInviteRelationVC() {
+        onMainThread() {
+            var vc = vcWithID("InviteRelationshipVC")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
