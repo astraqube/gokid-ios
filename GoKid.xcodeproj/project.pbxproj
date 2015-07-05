@@ -230,7 +230,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D1228DA1B424A6D001CA6A4 /* New Group */ = {
+		1D1228DA1B424A6D001CA6A4 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
 				1D1228DB1B424AA1001CA6A4 /* Carpool.storyboard */,
@@ -238,7 +238,7 @@
 				1D1FD6681B1BFC4A00287FA0 /* Main.storyboard */,
 				1D1228DD1B424AC6001CA6A4 /* Login.storyboard */,
 			);
-			name = "New Group";
+			name = StoryBoards;
 			sourceTree = "<group>";
 		};
 		1D19D5241B3FF576007A716A /* Frequency */ = {
@@ -280,7 +280,7 @@
 				1DD1BAA61B2AA31A00D1BBA3 /* Model */,
 				1D3F65281B237ED900CCF6A1 /* Cells */,
 				1D1FD68B1B1C00BB00287FA0 /* ViewControllers */,
-				1D1228DA1B424A6D001CA6A4 /* New Group */,
+				1D1228DA1B424A6D001CA6A4 /* StoryBoards */,
 				1D1FD6641B1BFC4A00287FA0 /* AppDelegate.swift */,
 				1D1FD66B1B1BFC4A00287FA0 /* Images.xcassets */,
 				1D1FD66D1B1BFC4A00287FA0 /* LaunchScreen.xib */,
