@@ -11,6 +11,7 @@ import UIKit
 class MainStackVC: IIViewDeckController {
     
     var rootVC: UIViewController?
+    var colorManager = ColorManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class MainStackVC: IIViewDeckController {
         
         var centerVC = ZGNavigationBarTitleViewController()
         centerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        centerVC.navigationBar.barTintColor = UIColor.blackColor()
+        centerVC.navigationBar.barTintColor =  colorManager.appGreen
         centerVC.navigationBar.tintColor = UIColor.whiteColor()
         centerVC.navigationBar.backgroundColor = UIColor.blackColor()
         centerVC.navigationBarHidden = true

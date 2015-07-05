@@ -21,4 +21,5 @@ class ColorManager: NSObject {
     let lightGrayColor = rgb(230,230,230)
     let darkGrayColor = rgb(167,167,167)
     let disableColor = rgb(100, 100, 100)
+    let appGreen = rgb(103, 193, 139)
 }

@@ -9,7 +9,7 @@
 extension DataManager {
     
     func verifyCarPoolInvitation(phoneNum: String, comp: completion) {
-        var url = baseURL + "/api/invite/verify"
+        var url = baseURL + "/api/invites/verify"
         var map = ["phone_number": phoneNum]
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
