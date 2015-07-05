@@ -23,12 +23,13 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        setStatusBarColorDark()
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func setupNavBar() {
         setNavBarTitle("Sign In")
+        // setNavBarTitleAndButtonColor(colorManager.appNavTextButtonColor)
         setNavBarRightButtonTitle("Submit", action: "SubmitButtonClicked")
     }
     

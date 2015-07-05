@@ -12,4 +12,5 @@ class VolunteerTimeCell: UITableViewCell {
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+
 }

@@ -20,7 +20,7 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+        setStatusBarColorDark()
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     

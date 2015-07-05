@@ -15,6 +15,8 @@ class MainStackVC: IIViewDeckController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setStatusBarColorDark()
       
         // if user logged in direct go to CalendarVC
         var um = UserManager.sharedInstance
@@ -45,9 +47,9 @@ class MainStackVC: IIViewDeckController {
         meneVC.mainStack = self
         
         var centerVC = ZGNavigationBarTitleViewController()
-        centerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        centerVC.navigationBar.barTintColor =  colorManager.appGreen
-        centerVC.navigationBar.tintColor = UIColor.whiteColor()
+        centerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : colorManager.appNavTextButtonColor]
+        centerVC.navigationBar.barTintColor =  colorManager.appLightGreen
+        centerVC.navigationBar.tintColor = colorManager.appNavTextButtonColor
         centerVC.navigationBar.backgroundColor = UIColor.blackColor()
         centerVC.navigationBarHidden = true
         centerVC.pushViewController(rootVC!, animated: false)

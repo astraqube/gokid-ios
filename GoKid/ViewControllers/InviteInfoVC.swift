@@ -29,7 +29,7 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        setStatusBarColorLight()
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

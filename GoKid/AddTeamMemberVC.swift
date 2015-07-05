@@ -37,7 +37,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        setStatusBarColorLight()
     }
     
     func setupNavBar() {
@@ -122,7 +122,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     // --------------------------------------------------------------------------------------------
     
     @IBAction func profileImageButtonClick(sender: AnyObject) {
-        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+        setStatusBarColorDark()
         var picker = UIImagePickerController()
         picker.sourceType = .PhotoLibrary
         picker.delegate = self

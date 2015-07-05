@@ -108,13 +108,15 @@
     // Drawing code
     if (self.navigationBarSubtitle.length) {
         
+        UIColor *titleColor = [UIColor colorWithRed:85/255.0 green:120/255.0 blue:117/255.0 alpha:1.0];
+        
         [titleAttributes setValue:[UIFont boldSystemFontOfSize:17]      forKey:NSFontAttributeName];
         [titleAttributes setValue:paragraphStyle                        forKey:NSParagraphStyleAttributeName];
-        [titleAttributes setValue:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+        [titleAttributes setValue:titleColor forKey:NSForegroundColorAttributeName];
         
         [subtitleAttributes setValue:[UIFont boldSystemFontOfSize:13]   forKey:NSFontAttributeName];
         [subtitleAttributes setValue:paragraphStyle                     forKey:NSParagraphStyleAttributeName];
-        [subtitleAttributes setValue:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+        [subtitleAttributes setValue:titleColor forKey:NSForegroundColorAttributeName];
         
         CGRect titleRect = rect;
         titleRect.origin.y = 4;
