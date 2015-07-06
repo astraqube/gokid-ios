@@ -276,7 +276,7 @@
                   moduleName = "GoKid"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bingwen/Desktop/gokid-ios/GoKid/DataMnager%20+%20Invitation.swift"
-                  timestampString = "457878648.687683"
+                  timestampString = "457878948.9614"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "75"
@@ -291,7 +291,7 @@
                   moduleName = "GoKid"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bingwen/Desktop/gokid-ios/GoKid/DataMnager%20+%20Invitation.swift"
-                  timestampString = "457878648.687835"
+                  timestampString = "457878948.961511"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -346,6 +346,22 @@
             startingLineNumber = "112"
             endingLineNumber = "112"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoKid/ViewControllers/MemberProfileVC.swift"
+            timestampString = "457878935.759906"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
+            landmarkName = "handleUpdateOrCreateUserSuccess()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
