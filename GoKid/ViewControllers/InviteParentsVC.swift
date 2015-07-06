@@ -16,7 +16,15 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNacBar()
         refreshUI()
+    }
+    
+    func setupNacBar() {
+        var nav = navigationController as! ZGNavVC
+        nav.addTitleViewToViewController(self)
+        self.title = "Invite Parents"
+        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
     }
     
     func refreshUI() {

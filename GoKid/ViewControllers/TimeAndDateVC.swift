@@ -41,6 +41,8 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
         nav.addTitleViewToViewController(self)
         self.title = "Date & Time"
         self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        setStatusBarColorDark()
+        setNavBarColor(colorManager.appLightGreen)
         setNavBarLeftButtonTitle("Back", action: "backButtonClick")
         setNavBarRightButtonTitle("Next", action: "nextButtonClick")
     }
@@ -89,7 +91,6 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
             let cell = tableView.cellWithID("TDTextCell", indexPath) as! TDTextCell
             cell.titleLabel.text = model.titleString
             cell.valueLabel.text = model.valueString
-            cell.backgroundColor = UIColor.whiteColor()
             if model.titleString == eventStart {
                 if returnOnly == true {
                     cell.backgroundColor = ColorManager.sharedInstance.lightGrayColor

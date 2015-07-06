@@ -40,7 +40,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        setStatusBarColorLight()
     }
     
     func setupNavBar() {
@@ -120,7 +120,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     
     
     @IBAction func imageProfileButtonClick(sender: AnyObject) {
-        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+        setStatusBarColorDark()
         var picker = UIImagePickerController()
         picker.sourceType = .PhotoLibrary
         picker.delegate = self

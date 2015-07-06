@@ -22,7 +22,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        setStatusBarColorLight()
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -100,7 +100,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         self.navigationController?.viewDeckController.toggleLeftViewAnimated(true)
     }
     
-    // MARK: TableView DataSource and Delegate
+    // MARK: TableView DataSource
     // --------------------------------------------------------------------------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

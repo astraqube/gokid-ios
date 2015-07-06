@@ -22,7 +22,8 @@ class BasicInfoVC: BaseVC {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        setStatusBarColorDark()
+        setNavBarColor(colorManager.appGreen)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -32,7 +33,6 @@ class BasicInfoVC: BaseVC {
     }
     
     func setupNavigationBar() {
-        setNavBarTitle("Basic Info")
         setNavBarLeftButtonTitle("Do this later", action: "doLaterButtonClick")
         disableRightBarItem()
     }

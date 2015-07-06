@@ -13,7 +13,8 @@ class PhoneVerifyVC: BaseVC {
     @IBOutlet weak var infoTextLabel: UILabel!
     @IBOutlet weak var codeTextField: PaddingTextField!
     var memberProfileVC: MemberProfileVC?
-    var phoneNumberString: String!
+    var signupForm: SignupForm?
+    var phoneNumberString = ""
     var fromCarpoolInvite = false
 
     override func viewDidLoad() {
@@ -48,38 +49,58 @@ class PhoneVerifyVC: BaseVC {
         }
     }
     
+    // MARK: Network Flow
+    // --------------------------------------------------------------------------------------------
+    
     func verifyCode(code: String) {
+        if fromCarpoolInvite {
+            inviteVerifyCode(code)
+        } else {
+            memberPhoneVerify(code)
+        }
+    }
+    
+    func memberPhoneVerify(code: String) {
         LoadingView.showWithMaskType(.Black)
-        dataManager.VerifyCode(code) {(success, errorStr) in
+        dataManager.memberPhoneVerification(code) {(success, errorStr) in
             if success {
                 LoadingView.showSuccessWithStatus("Success")
-                self.handleVerificationSuccess()
+                self.handleMemberPhoneVerificationSuccess()
             } else {
                 LoadingView.dismiss()
-                self.showAlert("Fail", messege: "Verification Code Wrong", cancleTitle: "OK")
+                self.showAlert("Fail to verify code", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
     
-    func handleVerificationSuccess() {
+    func handleMemberPhoneVerificationSuccess() {
         onMainThread() {
-            if self.fromCarpoolInvite {
-                self.verificatoinSuccessFromCarpoolInvite()
-            } else {
-                self.verificationFromMemberProfile()
+            if let vc = self.memberProfileVC {
+                vc.phoneNumberLabel.text = self.phoneNumberString
+                self.navigationController?.popToViewController(vc, animated: true)
             }
         }
     }
     
-    func verificatoinSuccessFromCarpoolInvite() {
-        var vc = vcWithID("InviteConfirmVC")
-        navigationController?.pushViewController(vc, animated: true)
+    // MARK: Carpool Invitation Nextwork flow
+    // --------------------------------------------------------------------------------------------
+   
+    func inviteVerifyCode(code: String) {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.inviteSignupUser(phoneNumberString, code: code, form: signupForm!) { (success, errStr) in
+            LoadingView.dismiss()
+            if success {
+                self.handleVerificatoinSuccessFromCarpoolInvite()
+            } else {
+                self.showAlert("Fail to verify code", messege: errStr, cancleTitle: "OK")
+            }
+        }
     }
     
-    func verificationFromMemberProfile() {
-        if let vc = memberProfileVC {
-            vc.phoneNumberLabel.text = phoneNumberString
-            navigationController?.popToViewController(vc, animated: true)
+    func handleVerificatoinSuccessFromCarpoolInvite() {
+        onMainThread() {
+            var vc = vcWithID("InviteConfirmVC")
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

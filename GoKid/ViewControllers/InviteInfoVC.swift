@@ -25,11 +25,13 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
         
         // move view up when keyboard shows
         self.keyBoardMoveUp = 95
+        // round profile image view
+        profileImageView.setRounded()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        setStatusBarColorDark()
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -48,7 +50,7 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
     
     func nextButtonClick() {
         if let signupForm = getSignupForm() {
-            createUser(signupForm)
+            proceedToNextVC(signupForm)
         } else {
             showAlert("Alert", messege: "Please Fill in all Blank", cancleTitle: "OK")
         }
@@ -79,44 +81,72 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
     // MARK: Network Flow
     // --------------------------------------------------------------------------------------------
     
-    func createUser(signupForm: SignupForm) {
-        dataManager.signup(signupForm) { (success, errorStr) in
+    func proceedToNextVC(form: SignupForm) {
+        userManager.unregisteredUserInfo = form
+        LoadingView.showWithMaskType(.Black)
+        dataManager.verifyCarPoolInvitation(form.phoneNum) { (success, errorStr) in
+            LoadingView.dismiss()
             if success {
-                self.fetchInvite()
+                self.moveToPhoneVerifyVC(form)
             } else {
-                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+                self.showAlert("Your Phone Number Doesn't Match", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
     
-    func fetchInvite() {
-        dataManager.getCarpools() { (success, errorStr) in
-            if success {
-                var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
-                vc.fromCarpoolInvite = true
-                vc.phoneNumberString = self.phoneNumberTextField.text
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                self.showAlert("Alert", messege: "You are not invited by any user", cancleTitle: "OK")
-            }
+    func moveToPhoneVerifyVC(form: SignupForm) {
+        onMainThread() {
+            var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
+            vc.fromCarpoolInvite = true
+            vc.phoneNumberString = self.phoneNumberTextField.text
+            vc.signupForm = form
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
     
     func getSignupForm() -> SignupForm? {
         if let password = passWordTextField.text,
+            phoneNum = phoneNumberTextField.text,
             firstName = firstNameTextField.text,
             lastName = lastNameTextfield.text,
-            email = emailTextField.text {
-                var signupForm = SignupForm()
-                signupForm.passwordConfirm = password
-                signupForm.password = password
-                signupForm.firstName = firstName
-                signupForm.lastName = lastName
-                signupForm.email = email
-                signupForm.role = "kid"
-                return signupForm
+            email = emailTextField.text
+        {
+            var signupForm = SignupForm()
+            signupForm.passwordConfirm = password
+            signupForm.password = password
+            signupForm.firstName = firstName
+            signupForm.lastName = lastName
+            signupForm.email = email
+            signupForm.phoneNum = phoneNum
+            // This is temp, this depend on whether backend needs a role
+            signupForm.role = "kid"
+            signupForm.image = profileImageView.image
+            return signupForm
         }
         return nil
     }
+    
+    //    func createUser(signupForm: SignupForm) {
+    //        dataManager.signup(signupForm) { (success, errorStr) in
+    //            if success {
+    //                self.fetchInvite()
+    //            } else {
+    //                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
+    //            }
+    //        }
+    //    }
+    //
+    
+    //    func fetchInvite() {
+    //        dataManager.getCarpools() { (success, errorStr) in
+    //            if success {
+    //                var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
+    //                vc.fromCarpoolInvite = true
+    //                vc.phoneNumberString = self.phoneNumberTextField.text
+    //                self.navigationController?.pushViewController(vc, animated: true)
+    //            } else {
+    //                self.showAlert("Alert", messege: "You are not invited by any user", cancleTitle: "OK")
+    //            }
+    //        }
+    //    }
 }

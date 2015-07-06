@@ -86,6 +86,11 @@
 		1DD6A4D61B3BA916006A97ED /* PlaceResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4D51B3BA916006A97ED /* PlaceResultCell.swift */; };
 		1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4D91B3BD32B006A97ED /* ZGNavigationTitleView.m */; };
 		1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */; };
+		1DEFF16B1B4937EA0094B54E /* InviteRelationshipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */; };
+		1DEFF16D1B49E3160094B54E /* YourKidVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16C1B49E3160094B54E /* YourKidVC.swift */; };
+		1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */; };
+		1DEFF1711B49EE4B0094B54E /* InviteeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */; };
+		1DEFF1741B4A1A760094B54E /* InviteTimeConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */; };
 		1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
 		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
@@ -195,6 +200,11 @@
 		1DD6A4D91B3BD32B006A97ED /* ZGNavigationTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGNavigationTitleView.m; sourceTree = "<group>"; };
 		1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGNavigationBarTitleViewController.m; sourceTree = "<group>"; };
 		1DD6A4DB1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGNavigationBarTitleViewController.h; sourceTree = "<group>"; };
+		1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteRelationshipVC.swift; path = ViewControllers/InviteRelationshipVC.swift; sourceTree = "<group>"; };
+		1DEFF16C1B49E3160094B54E /* YourKidVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourKidVC.swift; sourceTree = "<group>"; };
+		1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteeListVC.swift; sourceTree = "<group>"; };
+		1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteeCell.swift; path = Cells/InviteeCell.swift; sourceTree = "<group>"; };
+		1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteTimeConfirmVC.swift; path = ViewControllers/InviteTimeConfirmVC.swift; sourceTree = "<group>"; };
 		1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataMnager + Verification.swift"; sourceTree = "<group>"; };
 		1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberProfileVC.swift; path = ViewControllers/MemberProfileVC.swift; sourceTree = "<group>"; };
 		1DFBBE971B1C6DF500630440 /* Phone#VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Phone#VC.swift"; path = "ViewControllers/Phone#VC.swift"; sourceTree = "<group>"; };
@@ -228,7 +238,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D1228DA1B424A6D001CA6A4 /* New Group */ = {
+		1D1228DA1B424A6D001CA6A4 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
 				1D1228DB1B424AA1001CA6A4 /* Carpool.storyboard */,
@@ -236,7 +246,7 @@
 				1D1FD6681B1BFC4A00287FA0 /* Main.storyboard */,
 				1D1228DD1B424AC6001CA6A4 /* Login.storyboard */,
 			);
-			name = "New Group";
+			name = StoryBoards;
 			sourceTree = "<group>";
 		};
 		1D19D5241B3FF576007A716A /* Frequency */ = {
@@ -278,7 +288,7 @@
 				1DD1BAA61B2AA31A00D1BBA3 /* Model */,
 				1D3F65281B237ED900CCF6A1 /* Cells */,
 				1D1FD68B1B1C00BB00287FA0 /* ViewControllers */,
-				1D1228DA1B424A6D001CA6A4 /* New Group */,
+				1D1228DA1B424A6D001CA6A4 /* StoryBoards */,
 				1D1FD6641B1BFC4A00287FA0 /* AppDelegate.swift */,
 				1D1FD66B1B1BFC4A00287FA0 /* Images.xcassets */,
 				1D1FD66D1B1BFC4A00287FA0 /* LaunchScreen.xib */,
@@ -428,6 +438,7 @@
 				1D3F65111B20059300CCF6A1 /* TimeAndDate */,
 				1D5866881B3FCF3A00F141F8 /* Google Place */,
 				1D19D5241B3FF576007A716A /* Frequency */,
+				1DEFF1721B49EE6C0094B54E /* Invitation */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -546,6 +557,10 @@
 			children = (
 				1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */,
 				1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */,
+				1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */,
+				1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */,
+				1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */,
+				1DEFF16C1B49E3160094B54E /* YourKidVC.swift */,
 				1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */,
 				1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */,
 				1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */,
@@ -610,6 +625,14 @@
 				1DD6A4DB1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.h */,
 			);
 			name = ZGNavigation;
+			sourceTree = "<group>";
+		};
+		1DEFF1721B49EE6C0094B54E /* Invitation */ = {
+			isa = PBXGroup;
+			children = (
+				1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */,
+			);
+			name = Invitation;
 			sourceTree = "<group>";
 		};
 		68926BFAEF467AB3FED52BD2 /* Frameworks */ = {
@@ -790,7 +813,9 @@
 				1D39AAB31B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift in Sources */,
 				1D8F78FB1B36A07F00C78CAF /* CalendarDateCell.swift in Sources */,
 				1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */,
+				1DEFF1711B49EE4B0094B54E /* InviteeCell.swift in Sources */,
 				1D8F78FA1B36A07F00C78CAF /* CalendarAddCell.swift in Sources */,
+				1DEFF16B1B4937EA0094B54E /* InviteRelationshipVC.swift in Sources */,
 				1DD6A4D61B3BA916006A97ED /* PlaceResultCell.swift in Sources */,
 				1D3F65231B207FBA00CCF6A1 /* VolunteerModel.swift in Sources */,
 				1D3F65161B2005EC00CCF6A1 /* LocationInputVC.swift in Sources */,
@@ -804,6 +829,7 @@
 				1D975A431B1F94B500CD4D89 /* TDTextCell.swift in Sources */,
 				1D891F141B23FDD8006FD961 /* SwiftAddressBookSource.swift in Sources */,
 				1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */,
+				1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */,
 				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
 				1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */,
 				1D3554591B3FD14200044A3F /* DataMnager + Notification.swift in Sources */,
@@ -811,6 +837,7 @@
 				1D368F161B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift in Sources */,
 				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,
+				1DEFF16D1B49E3160094B54E /* YourKidVC.swift in Sources */,
 				1D8F78FC1B36A07F00C78CAF /* CalendarCell.swift in Sources */,
 				1D1228E21B42635D001CA6A4 /* DataMnager + Invitation.swift in Sources */,
 				1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */,
@@ -831,6 +858,7 @@
 				1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */,
 				1D3F651C1B207D3200CCF6A1 /* VolunteerCell.swift in Sources */,
 				1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */,
+				1DEFF1741B4A1A760094B54E /* InviteTimeConfirmVC.swift in Sources */,
 				1D1FD6931B1C04D100287FA0 /* MainStackVC.swift in Sources */,
 				1D8F78EE1B3672D300C78CAF /* BaseTVC.swift in Sources */,
 				1D975A451B1F9EB800CD4D89 /* TDSwitchCell.swift in Sources */,

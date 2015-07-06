@@ -45,6 +45,13 @@ class UserManager: NSObject {
     let documentPath = NSHomeDirectory() + "/Documents/"
     var ud = NSUserDefaults.standardUserDefaults()
     
+    // this is for invite info VC, where take all the info,
+    // but just check for his phone num and use this info to
+    // register later
+    var unregisteredUserInfo: SignupForm?
+    // this is used for accept or decline the invitation
+    var inviteID = 0
+    
     override init() {
         super.init()
         initForTeamMembers()

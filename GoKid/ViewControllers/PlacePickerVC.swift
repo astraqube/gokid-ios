@@ -23,12 +23,12 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+        setStatusBarColorDark()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        setStatusBarColorLight()
     }
     
     func setupTableView() {

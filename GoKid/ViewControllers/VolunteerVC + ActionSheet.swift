@@ -13,7 +13,7 @@ extension VolunteerVC {
     
     func showActionSheet(cell: VolunteerCell) {
         var row = self.tableView.indexPathForCell(cell)!.row
-        var model = self.tableData[row]
+        var model = self.dataSource[row]
         if model.taken {
             showTakenActionSheet(cell, model: model)
         } else{

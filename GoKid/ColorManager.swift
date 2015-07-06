@@ -21,4 +21,8 @@ class ColorManager: NSObject {
     let lightGrayColor = rgb(230,230,230)
     let darkGrayColor = rgb(167,167,167)
     let disableColor = rgb(100, 100, 100)
+    let appGreen = rgb(103, 193, 139)
+    let appLightGreen = rgb(237, 249, 237)
+    let appNavTextButtonColor = rgb(81, 118, 115)
+    let cellBgColor = rgb(251, 253, 247)
 }

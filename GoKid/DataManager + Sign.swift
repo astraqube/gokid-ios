@@ -9,10 +9,12 @@
 struct SignupForm {
     var passwordConfirm = ""
     var password = ""
+    var phoneNum = ""
     var firstName = ""
     var lastName = ""
     var email = ""
     var role = ""
+    var image : UIImage?
 }
 
 extension DataManager {
@@ -106,30 +108,6 @@ extension DataManager {
         }
     }
     
-    
-    func updateUser(signupForm:SignupForm, comp: completion) {
-        var url = baseURL + "/api/me"
-        var arr = [
-            "role": signupForm.role.lowercaseString,
-            "email": signupForm.email,
-            "password": signupForm.password,
-            "last_name": signupForm.lastName,
-            "first_name": signupForm.firstName,
-        ]
-        var map = ["user": arr]
-        var manager = managerWithToken()
-        manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("update user success")
-            self.userManager.setWithJsonReponse(JSON(obj))
-            self.userManager.userLoggedIn = true
-            onMainThread() { self.postNotification("SignupFinished") }
-            comp(true, "")
-        }) { (op, error) in
-            println("update user failed")
-            self.handleRequestError(op, error: error, comp: comp)
-        }
-    }
-    
     func upLoadImage(image: UIImage, comp: completion) {
         
         var urlStr = baseURL + "/api/me/upload"
@@ -157,6 +135,48 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         })
         NSOperationQueue.mainQueue().addOperation(op)
+    }
+    
+    func updateUser(signupForm:SignupForm, comp: completion) {
+        var url = baseURL + "/api/me"
+        var arr = [
+            "role": signupForm.role.lowercaseString,
+            "email": signupForm.email,
+            "password": signupForm.password,
+            "last_name": signupForm.lastName,
+            "first_name": signupForm.firstName,
+        ]
+        var map = ["user": arr]
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: map, success: { (op, obj) in
+            println("update user success")
+            self.userManager.setWithJsonReponse(JSON(obj))
+            self.userManager.userLoggedIn = true
+            onMainThread() { self.postNotification("SignupFinished") }
+            comp(true, "")
+        }) { (op, error) in
+            println("update user failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+    
+    func updateUserRole(role: String, comp: completion) {
+        var url = baseURL + "/api/me"
+        var arr = [
+            "role": role.lowercaseString
+        ]
+        var map = ["user": arr]
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: map, success: { (op, obj) in
+            println("updateUserRole success")
+            self.userManager.setWithJsonReponse(JSON(obj))
+            self.userManager.userLoggedIn = true
+            onMainThread() { self.postNotification("SignupFinished") }
+            comp(true, "")
+        }) { (op, error) in
+            println("updateUserRole failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
     }
 }
 

@@ -27,7 +27,10 @@ class LocationVC: BaseVC {
     }
     
     func setUpNavigationBar() {
-        setNavBarTitle("Location")
+        var nav = navigationController as! ZGNavVC
+        nav.addTitleViewToViewController(self)
+        self.title = "Location"
+        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
         setNavBarLeftButtonTitle("Back", action: "backButtonClick")
         setNavBarRightButtonTitle("Next", action: "nextButtonClick")
     }
@@ -87,34 +90,16 @@ class LocationVC: BaseVC {
         if userManager.userLoggedIn {
             dataManager.createCarpool(userManager.currentCarpoolModel, comp: handleCreateCarpool)
         } else {
-            dataManager.getFakeVolunteerList(userManager.currentCarpoolModel, comp: handleGetFakeVolunteerList)
+            moveToVolunteerVC()
         }
     }
     
     func handleCreateCarpool(success: Bool, errorStr: String) {
+        LoadingView.dismiss()
         if success {
-            dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
+            moveToVolunteerVC()
         } else {
-            LoadingView.dismiss()
             self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
-        }
-    }
-    
-    func handleGetVolunteerList(success: Bool, errorStr: String) {
-        LoadingView.dismiss()
-        if success {
-            moveToVolunteerVC()
-        } else {
-            self.showAlert("Fail to fetch vlounteer list", messege: errorStr, cancleTitle: "OK")
-        }
-    }
-    
-    func handleGetFakeVolunteerList(success: Bool, errorStr: String) {
-        LoadingView.dismiss()
-        if success {
-            moveToVolunteerVC()
-        } else {
-            self.showAlert("Fail to fecth unregistered volunteer list", messege: errorStr, cancleTitle: "OK")
         }
     }
     

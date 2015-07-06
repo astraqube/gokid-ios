@@ -52,6 +52,14 @@ extension UIViewController {
         self.title = title
     }
     
+    func setNavBarColor(color: UIColor) {
+        self.navigationController?.navigationBar.barTintColor = color
+    }
+    
+    func setNavBarTitleAndButtonColor(color: UIColor) {
+        self.navigationController?.navigationBar.tintColor = color
+    }
+    
     func setNavBarRightButtonTitle(title: String, action: Selector) {
         var rightButton = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)
         navigationItem.rightBarButtonItem = rightButton;
@@ -62,6 +70,16 @@ extension UIViewController {
         navigationItem.leftBarButtonItem = leftButton;
     }
     
+    // MARK: NavigationBar setup
+    // --------------------------------------------------------------------------------------------
+    
+    func setStatusBarColorLight() {
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+    }
+    
+    func setStatusBarColorDark() {
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+    }
     
     // MARK: Alert View
     // --------------------------------------------------------------------------------------------

@@ -10,6 +10,7 @@ import UIKit
 
 class FrequencyCell: UITableViewCell {
 
+    @IBOutlet weak var checkImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
 
 }
