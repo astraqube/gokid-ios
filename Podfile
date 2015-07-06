@@ -1,6 +1,6 @@
 platform :ios, '8.0'
 
-
+# pod 'Onboard'
 pod 'GoogleMaps'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
@@ -10,7 +10,6 @@ pod 'AFNetworking'
 pod 'Reachability'
 pod 'SVProgressHUD'
 
-pod 'Onboard'
 pod 'STCollapseTableView'
 pod 'ViewDeck', '~> 2.2.11'
 pod 'KNSemiModalViewController'

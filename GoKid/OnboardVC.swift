@@ -10,8 +10,10 @@ import UIKit
 
 class OnboardVC: UIViewController, UIAlertViewDelegate {
     
+    typealias OVC = OnboardingContentViewController
     var colorManager = ColorManager.sharedInstance
     var contentVC: OnboardingViewController?
+    var lastOnBoardVC : LastOnboardVC!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +49,11 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
         self.navigationController?.pushViewController(calendarVC, animated: true)
     }
     
-    func getStartedButtonClick(button: UIButton) {
+    func goNowButtonHandler() {
         showAlertView()
     }
     
-    func alreadyCarpoolButtonClicked(button: UIButton) {
+    func joinNowButtonHandler() {
         var invitedInfoVC = vcWithID("InviteInfoVC")
         navigationController?.pushViewController(invitedInfoVC, animated: true)
     }
@@ -84,56 +86,33 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func generateOnboardContents() -> [OnboardingContentViewController] {
-        var firstPage = OnboardingContentViewController(title: "Easy and Safe", body: "Making carpooling easier and more efficient. Live tracking and mapping shows where your kids are, where they are going, and when they will be home", image: UIImage(named: "blue"), buttonText: "") {
-        }
-        var secondPage = OnboardingContentViewController(title: "Save Gas and Cash", body: "Carpooling saves time and money. The more you carpool, the more save.", image: UIImage(named: "blue"), buttonText: "") {
-        }
-        var thirdPage = OnboardingContentViewController(title: "Save Mother Earth", body: "Carpooling is a great way to work with your community to reduce emissions and teach kids about being green. Together we can do this better.", image: UIImage(named: "blue"), buttonText: "") {
-        }
+        var page1 = OVC(title:"", body:"", image:UIImage(named: "OnBoarding_1"), buttonText: "") { }
+        var page2 = OVC(title:"", body:"", image:UIImage(named: "OnBoarding_2"), buttonText: "") { }
+        var page3 = OVC(title:"", body:"", image:UIImage(named: "OnBoarding_3"), buttonText: "") { }
+        var page4 = OVC(title:"", body:"", image:UIImage(named: ""),             buttonText: "") { }
         
-        thirdPage.viewWillAppearBlock = {
-            var font = UIFont.systemFontOfSize(17, weight: 20)
-            
-            var X_Co = self.view.frame.size.width/2-280/2
-            var Y_Co = self.view.frame.size.height
-
-            
-            var startedButtonRect = CGRectMake(X_Co, Y_Co-175, 280, 40)
-            var startedButton = UIButton(frame: startedButtonRect)
-            startedButton.backgroundColor = self.colorManager.darkGrayColor
-            startedButton.titleLabel?.font = font
-            startedButton.setTitle("Let's get started", forState: .Normal)
-            startedButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            startedButton.addTarget(self, action: "getStartedButtonClick:", forControlEvents: .TouchUpInside)
-            thirdPage.view.addSubview(startedButton)
-            
-            var carpoolButtonRect = CGRectMake(X_Co, Y_Co-125, 280, 40)
-            var carpoolButton = UIButton(frame: carpoolButtonRect)
-            carpoolButton.backgroundColor = self.colorManager.darkGrayColor
-            carpoolButton.titleLabel?.font = font
-            carpoolButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            carpoolButton.setTitle("Already invited to a carpool?", forState: .Normal)
-            carpoolButton.addTarget(self, action: "alreadyCarpoolButtonClicked:", forControlEvents: .TouchUpInside)
-            thirdPage.view.addSubview(carpoolButton)
-
-        }
-        return [firstPage, secondPage, thirdPage]
+        page1.topPadding = 0
+        page2.topPadding = 0
+        page3.topPadding = 0
+        page4.topPadding = 0
+        
+        lastOnBoardVC = vcWithID("LastOnboardVC") as! LastOnboardVC
+        lastOnBoardVC.goNowButtonHandler = goNowButtonHandler
+        lastOnBoardVC.joinNowButtonHandler = joinNowButtonHandler
+        page4.view.addSubview(lastOnBoardVC.view)
+        
+        return [page1, page2, page3, page4]
     }
     
     
     func generateOnboardVC() -> OnboardingViewController {
         var dark = UIColor.blackColor()
-        var bgImage = UIImage(named: "gray-bg")
         var contents = generateOnboardContents()
         
-        var onboardingVC = OnboardingViewController(backgroundImage: bgImage, contents: contents)
-        onboardingVC.shouldFadeTransitions = true
-        onboardingVC.fadePageControlOnLastPage = true
-        onboardingVC.bodyTextColor = dark
-        onboardingVC.titleTextColor = dark
-        onboardingVC.titleFontSize = 29
-        onboardingVC.bodyFontSize = 21
-        onboardingVC.shouldMaskBackground = false
+        var onboardingVC = OnboardingViewController(backgroundImage: nil, contents: contents)
+        onboardingVC.view.backgroundColor = UIColor.whiteColor()
+        onboardingVC.shouldFadeTransitions = false
+        onboardingVC.fadePageControlOnLastPage = false
                 
         var h: CGFloat = 50.0
         var um = UserManager.sharedInstance
@@ -142,11 +121,18 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
         var rect = CGRectMake(0, vh-h, vw, h)
         
         var signinButton = UIButton(frame: rect)
-        signinButton.backgroundColor = colorManager.darkGrayColor
-        signinButton.titleLabel?.textColor = UIColor.blackColor()
-        signinButton.setTitle("Already have an account? Sign in", forState: .Normal)
+        signinButton.backgroundColor = UIColor.clearColor()
+        signinButton.setTitleColor(colorManager.appDarkGreen, forState: .Normal)
+        signinButton.titleLabel?.font = UIFont.systemFontOfSize(14)
+        signinButton.setTitle("   Sign in   ", forState: .Normal)
         signinButton.addTarget(self, action: "signInButtonClicked:", forControlEvents: .TouchUpInside)
+        signinButton.layer.borderColor = colorManager.appDarkGreen.CGColor
+        signinButton.layer.borderWidth = 2.0
+        signinButton.layer.cornerRadius = 3.0
         onboardingVC.view.addSubview(signinButton)
+        signinButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 20)
+        signinButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
+
         
         var s = onboardingVC.pageControl.frame.size
         var o = onboardingVC.pageControl.frame.origin

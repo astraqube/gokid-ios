@@ -102,12 +102,6 @@
 #define COCOAPODS_VERSION_MINOR_KNSemiModalViewController 3
 #define COCOAPODS_VERSION_PATCH_KNSemiModalViewController 0
 
-// Onboard
-#define COCOAPODS_POD_AVAILABLE_Onboard
-#define COCOAPODS_VERSION_MAJOR_Onboard 2
-#define COCOAPODS_VERSION_MINOR_Onboard 1
-#define COCOAPODS_VERSION_PATCH_Onboard 2
-
 // PureLayout
 #define COCOAPODS_POD_AVAILABLE_PureLayout
 #define COCOAPODS_VERSION_MAJOR_PureLayout 2

@@ -51,6 +51,9 @@ class UserManager: NSObject {
     var unregisteredUserInfo: SignupForm?
     // this is used for accept or decline the invitation
     var inviteID = 0
+    // this is for invitation flow
+    var inviterName = ""
+    var inviteKidName = ""
     
     override init() {
         super.init()

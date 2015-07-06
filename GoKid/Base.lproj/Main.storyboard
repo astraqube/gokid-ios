@@ -412,7 +412,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Liz invited you to &quot;XXX Carpool!&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oa9-rN-mdS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xNamex invited you to &quot;xPoolNamex Carpool!&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oa9-rN-mdS">
                                 <rect key="frame" x="24" y="59" width="273" height="65"/>
                                 <animations/>
                                 <constraints>
@@ -511,6 +511,11 @@
                             <constraint firstItem="Oa9-rN-mdS" firstAttribute="top" secondItem="4i3-3n-xLA" secondAttribute="bottom" constant="39" id="mNg-Wh-i7A"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="inviteLabel" destination="Oa9-rN-mdS" id="elv-qQ-nDQ"/>
+                        <outlet property="kidNameLabel" destination="17J-wI-ibf" id="dNG-qF-fgP"/>
+                        <outlet property="locationLabel" destination="bxT-6j-fa2" id="fsN-Ge-804"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFo-kR-wah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -630,6 +635,9 @@
                             <constraint firstItem="f17-Wb-R7A" firstAttribute="leading" secondItem="mbb-QY-WQ2" secondAttribute="leadingMargin" constant="-16" id="x7C-lC-Rrz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="connectionLabel" destination="lOC-yX-Oui" id="2ov-Eh-2Xq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="69b-ts-Q55" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -648,19 +656,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Join" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-Bk-6YE">
-                                <rect key="frame" x="123" y="81" width="75" height="21"/>
+                                <rect key="frame" x="123" y="81" width="74.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carpool Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdP-ks-dpf">
-                                <rect key="frame" x="104" y="110" width="112" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Carpool Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdP-ks-dpf">
+                                <rect key="frame" x="104" y="109" width="111.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="at XXX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnH-FG-EPG">
-                                <rect key="frame" x="135" y="138" width="51" height="21"/>
+                                <rect key="frame" x="135" y="138" width="51" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -679,8 +687,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="With XXXXXXX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGm-n3-O4s">
-                                <rect key="frame" x="104" y="194" width="113" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="With XXX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGm-n3-O4s">
+                                <rect key="frame" x="125" y="193" width="71" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -689,7 +697,7 @@
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Tbf-aa-f5G" firstAttribute="top" secondItem="gGm-n3-O4s" secondAttribute="bottom" constant="68" id="03J-A8-bz6"/>
-                            <constraint firstAttribute="centerX" secondItem="gGm-n3-O4s" secondAttribute="centerX" constant="-0.5" id="0rT-jY-DSq"/>
+                            <constraint firstAttribute="centerX" secondItem="gGm-n3-O4s" secondAttribute="centerX" id="0rT-jY-DSq"/>
                             <constraint firstItem="Tbf-aa-f5G" firstAttribute="leading" secondItem="rKe-jh-3Se" secondAttribute="leadingMargin" constant="-16" id="1k3-sO-jxC"/>
                             <constraint firstItem="dAe-Bk-6YE" firstAttribute="top" secondItem="WYM-5e-mr9" secondAttribute="bottom" constant="61" id="BgR-XT-hdY"/>
                             <constraint firstItem="EdP-ks-dpf" firstAttribute="top" secondItem="dAe-Bk-6YE" secondAttribute="bottom" constant="8" id="RhU-d7-ivs"/>
@@ -702,7 +710,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="carpoolNameLabel" destination="EdP-ks-dpf" id="Nss-8Y-Us5"/>
+                        <outlet property="kidNameLabel" destination="gGm-n3-O4s" id="KIx-a4-Aop"/>
                         <outlet property="kidsNameTextField" destination="Tbf-aa-f5G" id="9za-uS-a9O"/>
+                        <outlet property="locationLabel" destination="EnH-FG-EPG" id="FYi-MF-xQh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2F-Ca-eyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -822,7 +833,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just making sure, we sent a verification code to ##########. It'll arrive momentarily." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cg-D4-BP5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just making sure, we sent a verification code to ###. It'll arrive momentarily." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cg-D4-BP5">
                                 <rect key="frame" x="34" y="79" width="253" height="54"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>

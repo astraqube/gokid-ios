@@ -91,6 +91,10 @@
 		1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */; };
 		1DEFF1711B49EE4B0094B54E /* InviteeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */; };
 		1DEFF1741B4A1A760094B54E /* InviteTimeConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */; };
+		1DEFF1801B4A87D70094B54E /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */; };
+		1DEFF1811B4A87D70094B54E /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF17F1B4A87D70094B54E /* OnboardingViewController.m */; };
+		1DEFF1831B4A8ACB0094B54E /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEFF1821B4A8ACB0094B54E /* Onboard.storyboard */; };
+		1DEFF1851B4A8B620094B54E /* LastOnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1841B4A8B620094B54E /* LastOnboardVC.swift */; };
 		1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
 		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
@@ -217,6 +221,12 @@
 		1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteeListVC.swift; sourceTree = "<group>"; };
 		1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteeCell.swift; path = Cells/InviteeCell.swift; sourceTree = "<group>"; };
 		1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteTimeConfirmVC.swift; path = ViewControllers/InviteTimeConfirmVC.swift; sourceTree = "<group>"; };
+		1DEFF17C1B4A87D70094B54E /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingContentViewController.h; sourceTree = "<group>"; };
+		1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingContentViewController.m; sourceTree = "<group>"; };
+		1DEFF17E1B4A87D70094B54E /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
+		1DEFF17F1B4A87D70094B54E /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
+		1DEFF1821B4A8ACB0094B54E /* Onboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
+		1DEFF1841B4A8B620094B54E /* LastOnboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastOnboardVC.swift; sourceTree = "<group>"; };
 		1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataMnager + Verification.swift"; sourceTree = "<group>"; };
 		1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberProfileVC.swift; path = ViewControllers/MemberProfileVC.swift; sourceTree = "<group>"; };
 		1DFBBE971B1C6DF500630440 /* Phone#VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Phone#VC.swift"; path = "ViewControllers/Phone#VC.swift"; sourceTree = "<group>"; };
@@ -267,6 +277,7 @@
 		1D1228DA1B424A6D001CA6A4 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
+				1DEFF1821B4A8ACB0094B54E /* Onboard.storyboard */,
 				796E69B01B4A6E5600DF8D43 /* NavMap.storyboard */,
 				1D1228DB1B424AA1001CA6A4 /* Carpool.storyboard */,
 				1D1228DF1B424AD9001CA6A4 /* TeamAccount.storyboard */,
@@ -358,6 +369,7 @@
 				1DC765C51B3278D100D9D306 /* JSON */,
 				1D891F071B23FDCD006FD961 /* SwiftAddressBook */,
 				1D39AAB11B40C08000215D6E /* Helper Functions */,
+				1DEFF1751B4A845C0094B54E /* OnBoard */,
 			);
 			name = lib;
 			path = GoKid;
@@ -509,6 +521,7 @@
 		1D5866891B3FCF6800F141F8 /* Onboard */ = {
 			isa = PBXGroup;
 			children = (
+				1DEFF1841B4A8B620094B54E /* LastOnboardVC.swift */,
 				1DA789451B23C42700B391E8 /* OnboardVC.swift */,
 				1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */,
 				1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */,
@@ -660,6 +673,17 @@
 				1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */,
 			);
 			name = Invitation;
+			sourceTree = "<group>";
+		};
+		1DEFF1751B4A845C0094B54E /* OnBoard */ = {
+			isa = PBXGroup;
+			children = (
+				1DEFF17C1B4A87D70094B54E /* OnboardingContentViewController.h */,
+				1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */,
+				1DEFF17E1B4A87D70094B54E /* OnboardingViewController.h */,
+				1DEFF17F1B4A87D70094B54E /* OnboardingViewController.m */,
+			);
+			name = OnBoard;
 			sourceTree = "<group>";
 		};
 		68926BFAEF467AB3FED52BD2 /* Frameworks */ = {
@@ -821,6 +845,7 @@
 				1D1228E01B424AD9001CA6A4 /* TeamAccount.storyboard in Resources */,
 				1D1228DC1B424AA1001CA6A4 /* Carpool.storyboard in Resources */,
 				1D1FD66F1B1BFC4A00287FA0 /* LaunchScreen.xib in Resources */,
+				1DEFF1831B4A8ACB0094B54E /* Onboard.storyboard in Resources */,
 				796E69A01B4A6E0C00DF8D43 /* Raleway-Regular.ttf in Resources */,
 				1D1228DE1B424AC6001CA6A4 /* Login.storyboard in Resources */,
 				796E699E1B4A6E0C00DF8D43 /* Fontawesome.ttf in Resources */,
@@ -892,6 +917,7 @@
 				1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */,
 				1D891F101B23FDD8006FD961 /* SwiftAddressBookGroup.swift in Sources */,
 				1DC765C41B32754800D9D306 /* DataManager + Team.swift in Sources */,
+				1DEFF1811B4A87D70094B54E /* OnboardingViewController.m in Sources */,
 				1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */,
 				1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */,
 				1D39AAB31B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift in Sources */,
@@ -946,6 +972,7 @@
 				796E69BC1B4A6E5600DF8D43 /* Navigation.swift in Sources */,
 				1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */,
 				1D3F651C1B207D3200CCF6A1 /* VolunteerCell.swift in Sources */,
+				1DEFF1851B4A8B620094B54E /* LastOnboardVC.swift in Sources */,
 				1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */,
 				1DEFF1741B4A1A760094B54E /* InviteTimeConfirmVC.swift in Sources */,
 				1D1FD6931B1C04D100287FA0 /* MainStackVC.swift in Sources */,
@@ -966,6 +993,7 @@
 				1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */,
 				1D891F151B23FDD8006FD961 /* SwiftAddressBookWrapper.swift in Sources */,
 				1D7D8DF31B3A76D8002D29A5 /* DataManager + Carpool.swift in Sources */,
+				1DEFF1801B4A87D70094B54E /* OnboardingContentViewController.m in Sources */,
 				796E69C21B4A6E5600DF8D43 /* DetailMapVC.swift in Sources */,
 				1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */,
 				1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */,

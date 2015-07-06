@@ -23,7 +23,7 @@ class FrequencyModel {
 class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STCollapseTableViewDelegate {
     
     @IBOutlet weak var tableView: STCollapseTableView!
-    var dataSource = [[String]]()
+    var dataSource = [[FrequencyModel]]()
     var headerViews = [FrequencyHeader]()
     
     override func viewDidLoad() {
@@ -56,9 +56,9 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
             var thursday = FrequencyModel("Thursday", 4, false)
             var friday = FrequencyModel("Friday", 5, false)
             var saturday = FrequencyModel("Saturday", 6, false)
-            var sunday = FrequencyModel("Sunday", 7, false)
+            var sunday = FrequencyModel("Sunday", 0, false)
             
-            var data = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+            var data = [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
             dataSource.append(data)
         }
         
@@ -78,7 +78,8 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
     }
     
     func nextButtonClick() {
-        println("next button click")
+        navigationController?.popViewControllerAnimated(true)
+        userManager.currentCarpoolModel.occurence = getOccurence()
     }
     
     // MARK: TableView DataSource
@@ -94,7 +95,7 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.cellWithID("FrequencyCell", indexPath) as! FrequencyCell
-        cell.timeLabel.text = dataSource[indexPath.section][indexPath.row]
+        cell.timeLabel.text = dataSource[indexPath.section][indexPath.row].name
         return cell
     }
     
@@ -107,10 +108,26 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        var model = dataSource[indexPath.section][indexPath.row]
+        var cell = tableView.cellForRowAtIndexPath(indexPath) as! FrequencyCell
+        model.selected = !model.selected
+        cell.setChecked(model.selected)
     }
     
     func headerViewClicked(index: Int) {
-        println(index)
+        
+    }
+    
+    // MARK: TableView DataSource
+    // --------------------------------------------------------------------------------------------
+    
+    func getOccurence() -> [Int] {
+        var occ = [Int]()
+        for section in dataSource {
+            for item in section {
+                occ.append(item.num)
+            }
+        }
+        return occ
     }
 }

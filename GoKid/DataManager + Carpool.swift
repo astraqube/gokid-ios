@@ -17,7 +17,9 @@ extension DataManager {
             "pickup_at": model.pickUpTime!.iso8601String(),
             "date_starts_at": model.startDate!.iso8601String(),
             "date_ends_at": model.endDate!.iso8601String(),
-            "days_occuring": model.occurence!
+            "days_occuring": model.occurence!,
+            //"origin": model.startLocation!,
+            //"destination": model.endLocation!
         ]
         var map = [
             "carpool": [
@@ -137,7 +139,7 @@ extension DataManager {
     }
     
     func addKidsNameToCarpool(carpoolID: Int, name: String, comp: completion) {
-        var url = baseURL + "/api/carpools/" + String(carpoolID) + "/kids"
+        var url = baseURL + "/api/carpools/" + String(carpoolID) + "/riders"
         var map = [
             "first_name": name
         ]
