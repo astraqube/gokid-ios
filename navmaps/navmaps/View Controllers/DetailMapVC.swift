@@ -7,29 +7,64 @@
 //
 
 import UIKit
+import MapKit
 
-class DetailMapVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+class DetailMapVC: UIViewController, MKMapViewDelegate {
+    @IBOutlet weak var mapView: MKMapView!
+    @IBInspectable var polylineColor : UIColor?
+    
+    /// We automatically fit UserLocation and MapPins once
+    var didFitMapOnce = false
+    
+    var navigation : Navigation!
+    var pickupDropoffRoute : MKRoute? {
+        willSet {
+            self.mapView.removeOverlay(self.pickupDropoffRoute?.polyline)
+        }
+        didSet {
+            self.mapView.addOverlay(self.pickupDropoffRoute?.polyline)
+        }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.mapView.addAnnotation(self.navigation.dropoff)
+        self.mapView.addAnnotation(self.navigation.pickup)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        navigation.calculatePickupToDropoffRouteWithCallback { (response: MKDirectionsResponse!, error: NSError!) -> Void in
+            self.pickupDropoffRoute = response.routes.first as? MKRoute
+        }
     }
-    */
-
+    
+    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+        if !didFitMapOnce {
+            var annotations = [mapView.userLocation, self.navigation.pickup]
+            mapView.showAnnotations(annotations, animated: true)
+            didFitMapOnce = true
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if annotation.isKindOfClass(MKUserLocation) {
+            return nil
+        }
+        
+        var reuseID = "annotation"
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
+        if (annotationView == nil) {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+        }
+        annotationView.image = UIImage(named: "pin")
+        return annotationView
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if overlay as? MKPolyline == pickupDropoffRoute!.polyline {
+            var lineRenderer = MKPolylineRenderer(polyline: pickupDropoffRoute!.polyline)
+            lineRenderer.strokeColor = polylineColor
+            lineRenderer.lineWidth = 5;
+            return lineRenderer
+        }
+        return nil
+    }
 }
