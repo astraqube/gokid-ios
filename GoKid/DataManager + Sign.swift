@@ -171,7 +171,6 @@ extension DataManager {
             println("updateUserRole success")
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.userLoggedIn = true
-            onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
         }) { (op, error) in
             println("updateUserRole failed")
