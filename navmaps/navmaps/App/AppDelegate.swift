@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        var nav = window!.rootViewController as! UINavigationController
+        var vc = nav.topViewController as! DetailMapVC
+        vc.navigation = Navigation(pickup: Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1833), name: "Menlo", thumbnailImage: UIImage(named: "test_userImage")), dropoff: Stop(coordinate: CLLocationCoordinate2DMake(37.783333, -122.416667), name: "San Francisco Soccer Club", thumbnailImage: nil));
         return true
     }
 
