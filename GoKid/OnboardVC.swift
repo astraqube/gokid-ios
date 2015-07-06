@@ -133,7 +133,6 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
         signinButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 20)
         signinButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
 
-        
         var s = onboardingVC.pageControl.frame.size
         var o = onboardingVC.pageControl.frame.origin
         var pageControlRect = CGRectMake(o.x, o.y-50, s.width, s.height)

@@ -28,7 +28,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     }
     
     func refreshUI() {
-        carpoolNameLabel.text = userManager.currentCarpoolModel.name
+        carpoolNameLabel.text = "\"" + userManager.currentCarpoolModel.name + "\""
     }
     
     // MARK: IBAction Method
