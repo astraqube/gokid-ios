@@ -37,11 +37,11 @@ typealias LocationCallback = ((error: NSError, location : CLLocation))
 /// The 🚏 data type used by Navigation. hasStopped is used internally to determine whether the stop, *a pickup or a dropoff*, has occured– `hasStopped` is therefore false by default.
 class Stop : NSObject, MKAnnotation {
     var coordinate : CLLocationCoordinate2D
-    var name : String
+    var name : NSString
     var thumbnailImage : UIImage?
     var hasStopped : Bool = false
     
-    init(coordinate: CLLocationCoordinate2D, name: String, thumbnailImage: UIImage?) {
+    init(coordinate: CLLocationCoordinate2D, name: NSString, thumbnailImage: UIImage?) {
         self.coordinate = coordinate
         self.name = name
         self.thumbnailImage = thumbnailImage

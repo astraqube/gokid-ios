@@ -54,7 +54,7 @@ class DetailMapVC: UIViewController, MKMapViewDelegate {
         if (annotationView == nil) {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
         }
-        annotationView.image = UIImage(named: "pin")
+        annotationView.image = imageForStopAnnotation(annotation as! Stop)
         return annotationView
     }
     
@@ -66,5 +66,46 @@ class DetailMapVC: UIViewController, MKMapViewDelegate {
             return lineRenderer
         }
         return nil
+    }
+    
+    func imageForStopAnnotation(stop: Stop) -> UIImage {
+        var renderPinView = UIImageView(frame: CGRectMake(0, 0, 48, 55))
+        //align image top and add 50% height
+        renderPinView.image = UIImage(named: "pin")!
+        renderPinView.contentMode = UIViewContentMode.ScaleAspectFill
+        
+        if stop.thumbnailImage != nil {
+            var iconImageView = MapUserImageView(frame: CGRectMake(0, 0, 38, 38))
+            iconImageView.cornerRadius = 19
+            iconImageView.image = stop.thumbnailImage
+            renderPinView.addSubview(iconImageView)
+            iconImageView.center = renderPinView.center
+            iconImageView.center.y -= 4
+        } else {
+            var abbreviation : String?
+            if stop.name.length >= 2 {
+                abbreviation = stop.name.substringToIndex(2)
+            }else{
+                abbreviation = stop.name.substringToIndex(stop.name.length)
+            }
+            var words = stop.name.componentsSeparatedByString(" ")
+            if words.count > 1 {
+                abbreviation = words[0].substringToIndex(1) + words[1].substringToIndex(1)
+            }
+            
+            var iconLabel = UILabel(frame: CGRectMake(0, 0, 38, 38))
+            iconLabel.text = abbreviation
+            iconLabel.textAlignment = .Center
+            iconLabel.textColor = UIColor.whiteColor()
+            renderPinView.addSubview(iconLabel)
+            iconLabel.center = renderPinView.center
+            iconLabel.center.y -= 4
+        }
+
+        UIGraphicsBeginImageContextWithOptions(renderPinView.frame.size, false, 0.0)
+        renderPinView.layer.renderInContext(UIGraphicsGetCurrentContext())
+        var thumbnail = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return thumbnail
     }
 }
