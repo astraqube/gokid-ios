@@ -2,8 +2,23 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Raleway-Bold.ttf">
+            <string>Raleway-Bold</string>
+        </mutableArray>
+        <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Main StackVC-->
         <scene sceneID="ufC-wZ-h7g">
@@ -36,108 +51,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emma" translatesAutoresizingMaskIntoConstraints="NO" id="hqB-qN-e9a">
-                                <rect key="frame" x="16" y="28" width="60" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emma" translatesAutoresizingMaskIntoConstraints="NO" id="hqB-qN-e9a" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
+                                <rect key="frame" x="50" y="90" width="94" height="94"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="NcD-PE-Ecj"/>
-                                    <constraint firstAttribute="width" constant="60" id="tix-sN-zG7"/>
+                                    <constraint firstAttribute="height" constant="94" id="075-Ze-V2b"/>
+                                    <constraint firstAttribute="width" secondItem="hqB-qN-e9a" secondAttribute="height" multiplier="1:1" id="9cv-Fx-Euc"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="47"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Taylor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUg-nF-rle">
-                                <rect key="frame" x="100" y="28" width="204" height="21"/>
+                                <rect key="frame" x="161" y="115" width="93" height="19"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Ht7-Rh-Utt"/>
-                                    <constraint firstAttribute="width" constant="204" id="s3E-9G-7gD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="16"/>
+                                <color key="textColor" red="0.90588235294117647" green="0.96470588235294119" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSw-Oe-WbQ">
-                                <rect key="frame" x="16" y="115" width="76" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSw-Oe-WbQ">
+                                <rect key="frame" x="85" y="259" width="84" height="36"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="76" id="jCf-OK-oyF"/>
-                                    <constraint firstAttribute="height" constant="34" id="xTf-r4-fl7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Calendar">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="0.34509803921568627" green="0.70196078431372544" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="calendarButtonClick:" destination="2Rn-72-GPK" eventType="touchUpInside" id="Czf-jj-0HM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBx-hG-xJ2">
-                                <rect key="frame" x="16" y="157" width="127" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-nd-2AV">
+                                <rect key="frame" x="85" y="362" width="91" height="36"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="127" id="iEa-zm-mUk"/>
-                                    <constraint firstAttribute="height" constant="34" id="zHs-T0-i8x"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="All Carpool List">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-nd-2AV">
-                                <rect key="frame" x="16" y="199" width="83" height="34"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="83" id="HNe-Tv-tlz"/>
-                                    <constraint firstAttribute="height" constant="34" id="bgj-gk-BtS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="My Drives">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="0.34509803921568627" green="0.70196078431372544" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="myDrivesClicked:" destination="2Rn-72-GPK" eventType="touchUpInside" id="vgl-85-TdX"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Od-jI-Hwr">
-                                <rect key="frame" x="16" y="241" width="143" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Od-jI-Hwr">
+                                <rect key="frame" x="85" y="413" width="158" height="36"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="84d-IJ-12G"/>
-                                    <constraint firstAttribute="width" constant="143" id="PJI-S1-iaE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Account Settings">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="0.34509803921568627" green="0.70196078431372544" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="accountSettingClicked:" destination="2Rn-72-GPK" eventType="touchUpInside" id="VlL-rD-eEU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzo-jx-lkv">
-                                <rect key="frame" x="0.0" y="526" width="252" height="42"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="2cP-f1-rYq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Create a Carpool">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="createCarpoolButtonClick:" destination="2Rn-72-GPK" eventType="touchUpInside" id="Odw-gA-69J"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhk-HD-WmE">
-                                <rect key="frame" x="100" y="47" width="204" height="48"/>
+                                <rect key="frame" x="161" y="120" width="59" height="65"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="2ya-mD-Rlw"/>
-                                    <constraint firstAttribute="width" constant="204" id="9BT-7P-Sob"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="45"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Liz">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -147,34 +134,148 @@
                                     <action selector="nameButtonClicked:" destination="2Rn-72-GPK" eventType="touchUpInside" id="dGe-KZ-cSw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGx-Wa-PEa">
+                                <rect key="frame" x="34" y="263" width="29" height="28"/>
+                                <state key="normal" image="cal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="calSelected"/>
+                                <connections>
+                                    <action selector="calendarButtonClick:" destination="2Rn-72-GPK" eventType="touchUpInside" id="cV0-us-MTx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WD-Wm-RBT">
+                                <rect key="frame" x="34" y="316" width="29" height="26"/>
+                                <state key="normal" image="list">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="listSelected"/>
+                                <connections>
+                                    <action selector="listButtonClicked:" destination="2Rn-72-GPK" eventType="touchUpInside" id="uAN-8H-VrF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8k-VI-rmQ">
+                                <rect key="frame" x="32" y="366" width="33" height="28"/>
+                                <state key="normal" image="car">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="carSelected"/>
+                                <connections>
+                                    <action selector="myDrivesClicked:" destination="2Rn-72-GPK" eventType="touchUpInside" id="PQp-Xg-hoo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Yv-vl-wMF">
+                                <rect key="frame" x="35" y="418" width="27" height="27"/>
+                                <state key="normal" image="gear">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="gearSelected"/>
+                                <connections>
+                                    <action selector="accountSettingClicked:" destination="2Rn-72-GPK" eventType="touchUpInside" id="ZQC-Zp-f4J"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUm-R2-z7E">
+                                <rect key="frame" x="0.0" y="459" width="275" height="109"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Guj-3M-nFL" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
+                                        <rect key="frame" x="22" y="33" width="231" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="V7J-26-Yag"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
+                                        <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Create a new carpool" image="plus">
+                                            <color key="titleColor" red="0.31764705879999999" green="0.83529411760000005" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" red="0.20085005683214749" green="0.53717447916666661" blue="0.38826655430970503" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.31764705879999999" green="0.83529411760000005" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="createCarpoolButtonClick:" destination="2Rn-72-GPK" eventType="touchUpInside" id="UTf-BV-5dN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="275" id="16v-fc-uEm"/>
+                                    <constraint firstAttribute="trailing" secondItem="Guj-3M-nFL" secondAttribute="trailing" constant="22" id="JFj-FE-kQA"/>
+                                    <constraint firstItem="Guj-3M-nFL" firstAttribute="leading" secondItem="TUm-R2-z7E" secondAttribute="leading" constant="22" id="KNg-kK-qZu"/>
+                                    <constraint firstAttribute="centerY" secondItem="Guj-3M-nFL" secondAttribute="centerY" constant="0.5" id="lw8-Ub-6C1"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBx-hG-xJ2">
+                                <rect key="frame" x="85" y="311" width="140" height="36"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="All Carpool List">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="0.34509803921568627" green="0.70196078431372544" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="listButtonClicked:" destination="2Rn-72-GPK" eventType="touchUpInside" id="fjb-q2-0ZO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.13725490196078433" green="0.20392156862745098" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="WUg-nF-rle" firstAttribute="top" secondItem="dhC-Vd-xpU" secondAttribute="bottom" constant="8" id="75m-ED-oyK"/>
-                            <constraint firstItem="jhk-HD-WmE" firstAttribute="leading" secondItem="hqB-qN-e9a" secondAttribute="trailing" constant="24" id="8wI-TF-PBL"/>
-                            <constraint firstItem="zzo-jx-lkv" firstAttribute="leading" secondItem="Sep-SB-agn" secondAttribute="leadingMargin" constant="-16" id="Gvj-ir-Wcj"/>
-                            <constraint firstItem="VSw-Oe-WbQ" firstAttribute="leading" secondItem="Sep-SB-agn" secondAttribute="leadingMargin" id="HNl-Oe-KgP"/>
-                            <constraint firstItem="cKB-nd-2AV" firstAttribute="top" secondItem="QBx-hG-xJ2" secondAttribute="bottom" constant="8" id="IoI-bj-uQ1"/>
-                            <constraint firstItem="hqB-qN-e9a" firstAttribute="top" secondItem="dhC-Vd-xpU" secondAttribute="bottom" constant="8" id="KAy-aI-6Je"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zzo-jx-lkv" secondAttribute="trailing" constant="52" id="Ldy-cU-JcS"/>
-                            <constraint firstItem="WUg-nF-rle" firstAttribute="leading" secondItem="hqB-qN-e9a" secondAttribute="trailing" constant="24" id="M6V-Xh-UfA"/>
-                            <constraint firstItem="QBx-hG-xJ2" firstAttribute="top" secondItem="VSw-Oe-WbQ" secondAttribute="bottom" constant="8" id="PKd-Tx-Sg8"/>
-                            <constraint firstItem="VSw-Oe-WbQ" firstAttribute="top" secondItem="hqB-qN-e9a" secondAttribute="bottom" constant="27" id="RNK-1S-kgU"/>
-                            <constraint firstItem="8Od-jI-Hwr" firstAttribute="top" secondItem="cKB-nd-2AV" secondAttribute="bottom" constant="8" id="VIS-qF-dAU"/>
-                            <constraint firstItem="QDh-WR-C1Y" firstAttribute="top" secondItem="zzo-jx-lkv" secondAttribute="bottom" id="cvf-Jo-TAB"/>
-                            <constraint firstItem="QDh-WR-C1Y" firstAttribute="top" secondItem="zzo-jx-lkv" secondAttribute="bottom" id="fkq-7Q-80T"/>
-                            <constraint firstItem="QBx-hG-xJ2" firstAttribute="leading" secondItem="Sep-SB-agn" secondAttribute="leadingMargin" id="hL0-kq-TiY"/>
-                            <constraint firstItem="hqB-qN-e9a" firstAttribute="leading" secondItem="Sep-SB-agn" secondAttribute="leadingMargin" id="hhu-Zu-Nta"/>
-                            <constraint firstItem="QDh-WR-C1Y" firstAttribute="top" secondItem="zzo-jx-lkv" secondAttribute="bottom" id="k8K-Vj-asJ"/>
-                            <constraint firstItem="cKB-nd-2AV" firstAttribute="leading" secondItem="Sep-SB-agn" secondAttribute="leadingMargin" id="oK4-Ma-YtP"/>
-                            <constraint firstItem="8Od-jI-Hwr" firstAttribute="leading" secondItem="Sep-SB-agn" secondAttribute="leadingMargin" id="rni-c0-FdR"/>
-                            <constraint firstItem="jhk-HD-WmE" firstAttribute="top" secondItem="WUg-nF-rle" secondAttribute="bottom" constant="-2" id="tQB-Ti-Tnx"/>
+                            <constraint firstItem="2Yv-vl-wMF" firstAttribute="centerX" secondItem="a8k-VI-rmQ" secondAttribute="centerX" id="2db-E2-rfG"/>
+                            <constraint firstItem="KGx-Wa-PEa" firstAttribute="centerY" secondItem="VSw-Oe-WbQ" secondAttribute="centerY" id="2ic-IK-fMO"/>
+                            <constraint firstItem="cKB-nd-2AV" firstAttribute="top" secondItem="QBx-hG-xJ2" secondAttribute="bottom" constant="15" id="3P0-9H-YeN"/>
+                            <constraint firstItem="cKB-nd-2AV" firstAttribute="top" secondItem="a8k-VI-rmQ" secondAttribute="top" constant="-4" id="6xE-kI-0CJ"/>
+                            <constraint firstItem="cKB-nd-2AV" firstAttribute="leading" secondItem="QBx-hG-xJ2" secondAttribute="leading" id="Cia-HX-p0K"/>
+                            <constraint firstItem="TUm-R2-z7E" firstAttribute="top" secondItem="8Od-jI-Hwr" secondAttribute="bottom" constant="10" id="Hfh-Yv-nx4"/>
+                            <constraint firstItem="TUm-R2-z7E" firstAttribute="leading" secondItem="Sep-SB-agn" secondAttribute="leading" id="IMZ-YO-cmY"/>
+                            <constraint firstItem="VSw-Oe-WbQ" firstAttribute="leading" secondItem="QBx-hG-xJ2" secondAttribute="leading" id="KW1-PE-Wbf"/>
+                            <constraint firstItem="hqB-qN-e9a" firstAttribute="leading" secondItem="Sep-SB-agn" secondAttribute="leading" constant="50" id="Lkc-3J-X7Z"/>
+                            <constraint firstItem="VSw-Oe-WbQ" firstAttribute="leading" secondItem="KGx-Wa-PEa" secondAttribute="trailing" constant="22" id="O57-cU-5fp"/>
+                            <constraint firstItem="0WD-Wm-RBT" firstAttribute="centerX" secondItem="KGx-Wa-PEa" secondAttribute="centerX" id="OkA-0p-KSg"/>
+                            <constraint firstItem="jhk-HD-WmE" firstAttribute="leading" secondItem="hqB-qN-e9a" secondAttribute="trailing" constant="17" id="QWf-Bi-OnL"/>
+                            <constraint firstItem="QBx-hG-xJ2" firstAttribute="top" secondItem="VSw-Oe-WbQ" secondAttribute="bottom" constant="16" id="RuD-aT-mHA"/>
+                            <constraint firstItem="0WD-Wm-RBT" firstAttribute="centerY" secondItem="QBx-hG-xJ2" secondAttribute="centerY" id="SDE-9V-5ce"/>
+                            <constraint firstItem="8Od-jI-Hwr" firstAttribute="top" secondItem="cKB-nd-2AV" secondAttribute="bottom" constant="15" id="TQS-64-zxe"/>
+                            <constraint firstItem="jhk-HD-WmE" firstAttribute="leading" secondItem="WUg-nF-rle" secondAttribute="leading" id="TYj-EP-WXd"/>
+                            <constraint firstItem="TUm-R2-z7E" firstAttribute="width" secondItem="Sep-SB-agn" secondAttribute="width" multiplier="0.75" priority="999" id="XhN-8Q-d6p"/>
+                            <constraint firstItem="VSw-Oe-WbQ" firstAttribute="leading" secondItem="Sep-SB-agn" secondAttribute="leading" constant="85" id="bPk-yN-wSU"/>
+                            <constraint firstItem="8Od-jI-Hwr" firstAttribute="centerY" secondItem="2Yv-vl-wMF" secondAttribute="centerY" id="dHK-O0-bsJ"/>
+                            <constraint firstAttribute="bottom" secondItem="TUm-R2-z7E" secondAttribute="bottom" id="dL2-Pt-USq"/>
+                            <constraint firstItem="8Od-jI-Hwr" firstAttribute="leading" secondItem="cKB-nd-2AV" secondAttribute="leading" id="lyr-En-QGa"/>
+                            <constraint firstItem="jhk-HD-WmE" firstAttribute="top" secondItem="WUg-nF-rle" secondAttribute="bottom" constant="-14" id="mYb-9j-tRK"/>
+                            <constraint firstItem="cKB-nd-2AV" firstAttribute="centerY" secondItem="a8k-VI-rmQ" secondAttribute="centerY" id="nYl-Z7-zug"/>
+                            <constraint firstItem="hqB-qN-e9a" firstAttribute="centerY" secondItem="jhk-HD-WmE" secondAttribute="centerY" constant="-15" id="ntu-pV-eLQ"/>
+                            <constraint firstItem="hqB-qN-e9a" firstAttribute="top" secondItem="Sep-SB-agn" secondAttribute="top" constant="90" id="qi7-0T-Zkx"/>
+                            <constraint firstItem="VSw-Oe-WbQ" firstAttribute="top" secondItem="hqB-qN-e9a" secondAttribute="bottom" constant="75" id="vAK-PB-afE"/>
+                            <constraint firstItem="0WD-Wm-RBT" firstAttribute="centerX" secondItem="a8k-VI-rmQ" secondAttribute="centerX" id="xyT-tu-lZW"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="calendarButton" destination="VSw-Oe-WbQ" id="DSs-qc-8nG"/>
+                        <outlet property="calendarIconButton" destination="KGx-Wa-PEa" id="UEh-In-AI9"/>
+                        <outlet property="listButton" destination="QBx-hG-xJ2" id="DI0-uZ-L1o"/>
+                        <outlet property="listIconButton" destination="0WD-Wm-RBT" id="VYQ-ES-DWn"/>
+                        <outlet property="myDrivesButton" destination="cKB-nd-2AV" id="LXt-DN-Pod"/>
+                        <outlet property="myDrivesIconButton" destination="a8k-VI-rmQ" id="txW-rR-LQC"/>
                         <outlet property="nameLabel" destination="jhk-HD-WmE" id="O7o-3N-DlU"/>
                         <outlet property="profileImageView" destination="hqB-qN-e9a" id="c70-hX-mpW"/>
+                        <outlet property="settingsButton" destination="8Od-jI-Hwr" id="nul-LT-Xms"/>
+                        <outlet property="settingsIconButton" destination="2Yv-vl-wMF" id="wVK-t5-Dw8"/>
                         <outlet property="teamLabel" destination="WUg-nF-rle" id="PYA-ZY-6sg"/>
                     </connections>
                 </viewController>
@@ -1100,7 +1201,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cal" width="29" height="28"/>
+        <image name="calSelected" width="28" height="28"/>
+        <image name="car" width="33" height="20"/>
+        <image name="carSelected" width="33" height="20"/>
         <image name="emma" width="220" height="233"/>
+        <image name="gear" width="27" height="27"/>
+        <image name="gearSelected" width="27" height="27"/>
+        <image name="list" width="29" height="26"/>
+        <image name="listSelected" width="29" height="25"/>
+        <image name="plus" width="14" height="14"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

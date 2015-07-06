@@ -14,6 +14,19 @@ class MenuVC: BaseVC {
     @IBOutlet weak var nameLabel: UIButton!
     @IBOutlet weak var teamLabel: UILabel!
     
+    @IBOutlet weak var calendarIconButton: UIButton!
+    @IBOutlet weak var calendarButton: UIButton!
+    @IBOutlet weak var listIconButton: UIButton!
+    @IBOutlet weak var listButton: UIButton!
+    @IBOutlet weak var myDrivesIconButton: UIButton!
+    @IBOutlet weak var myDrivesButton: UIButton!
+    @IBOutlet weak var settingsIconButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    
+    lazy var allButtons : [UIButton] = {
+        return [self.calendarIconButton,self.calendarButton,self.listIconButton,self.listButton,self.myDrivesIconButton,self.myDrivesButton,self.settingsIconButton,self.settingsButton]
+    }()
+    
     var mainStack: UIViewController?
     var navVC: UINavigationController?
     
@@ -22,6 +35,10 @@ class MenuVC: BaseVC {
         registerForNotification()
         setupSubViews()
         navVC = viewDeckController.centerController as? UINavigationController
+        
+        if (navVC?.topViewController is CalendarVC) {
+            selectButtons(allButtons, select: [calendarIconButton, calendarButton])   
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -36,7 +53,6 @@ class MenuVC: BaseVC {
     }
     
     func setupSubViews() {
-        self.view.backgroundColor = UIColor.blackColor()
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2.0
         self.profileImageView.clipsToBounds = true
     }
@@ -50,18 +66,18 @@ class MenuVC: BaseVC {
         ImageManager.sharedInstance.setImageToView(profileImageView, urlStr: userManager.info.thumURL)
     }
     
-    // MARK: IBAction Method
-    // --------------------------------------------------------------------------------------------
-    
-    @IBAction func nameButtonClicked(sender: AnyObject) {
-        viewDeckController.toggleLeftView()
-        if !(navVC?.topViewController is TeamAccountVC) {
-            var vc = vcWithID("TeamAccountVC")
-            navVC?.setViewControllers([vc], animated: true)
+    func selectButtons(allButtons : [UIButton], select : [UIButton]) {
+        for button in allButtons {
+            button.selected = false
+        }
+        for button in select {
+            button.selected = true
         }
     }
     
-    @IBAction func accountSettingClicked(sender: AnyObject) {
+    // MARK: IBAction Method
+    // --------------------------------------------------------------------------------------------
+    @IBAction func nameButtonClicked(sender: AnyObject) {
         viewDeckController.toggleLeftView()
         if !(navVC?.topViewController is TeamAccountVC) {
             var vc = vcWithID("TeamAccountVC")
@@ -75,6 +91,26 @@ class MenuVC: BaseVC {
             var vc = vcWithID("CalendarVC")
             navVC?.setViewControllers([vc], animated: true)
         }
+        selectButtons(allButtons, select: [calendarIconButton, calendarButton])
+    }
+    
+    @IBAction func listButtonClicked(sender: AnyObject) {
+        viewDeckController.toggleLeftView()
+        selectButtons(allButtons, select: [listIconButton, listButton])
+    }
+
+    @IBAction func myDrivesClicked(sender: AnyObject) {
+        viewDeckController.toggleLeftView()
+        selectButtons(allButtons, select: [myDrivesIconButton, myDrivesButton])
+    }
+    
+    @IBAction func accountSettingClicked(sender: AnyObject) {
+        viewDeckController.toggleLeftView()
+        if !(navVC?.topViewController is TeamAccountVC) {
+            var vc = vcWithID("TeamAccountVC")
+            navVC?.setViewControllers([vc], animated: true)
+        }
+        selectButtons(allButtons, select: [settingsIconButton, settingsButton])
     }
     
     @IBAction func createCarpoolButtonClick(sender: AnyObject) {
