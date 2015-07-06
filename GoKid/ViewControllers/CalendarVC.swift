@@ -11,6 +11,9 @@ import UIKit
 class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    /// Default 78, set to zero to hide header alert view
+    @IBOutlet weak var alertViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var headerAlertLabel: UILabel!
     var dataSource = [CalendarModel]()
     
     override func viewDidLoad() {
@@ -23,7 +26,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBarColorLight()
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func setupNavBar() {

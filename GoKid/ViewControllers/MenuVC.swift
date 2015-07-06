@@ -42,6 +42,7 @@ class MenuVC: BaseVC {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         refreshUI()
     }
     
