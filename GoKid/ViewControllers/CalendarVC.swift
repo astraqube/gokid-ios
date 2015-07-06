@@ -93,7 +93,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func createButtonClicked() {
         //var vc = vcWithID("BasicInfoVC")
-        var vc = vcWithID("InviteRelationshipVC")
+        var vc = vcWithID("InviteConfirmVC")
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -101,7 +101,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         self.navigationController?.viewDeckController.toggleLeftViewAnimated(true)
     }
     
-    // MARK: TableView DataSource and Delegate
+    // MARK: TableView DataSource
     // --------------------------------------------------------------------------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

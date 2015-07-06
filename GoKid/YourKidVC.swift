@@ -12,5 +12,24 @@ class YourKidVC: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
+    }
+    
+    func setupNavBar() {
+        setNavBarTitle("Your Kid")
+        setNavBarLeftButtonTitle("Back", action: "backButtonClick")
+        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
+    }
+    
+    // MARK: IBAction Method
+    // --------------------------------------------------------------------------------------------
+    
+    func backButtonClick() {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func nextButtonClick() {
+        var vc = vcWithID("")
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

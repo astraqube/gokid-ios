@@ -25,11 +25,13 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
         
         // move view up when keyboard shows
         self.keyBoardMoveUp = 95
+        // round profile image view
+        profileImageView.setRounded()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBarColorLight()
+        setStatusBarColorDark()
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

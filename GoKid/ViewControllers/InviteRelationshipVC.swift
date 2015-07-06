@@ -15,7 +15,8 @@ class InviteRelationshipVC: BaseVC {
     }
     
     @IBAction func kidsFriendClick(sender: AnyObject) {
-        
+        var vc = vcWithID("YourKidVC")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func mommyClick(sender: AnyObject) {
