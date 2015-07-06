@@ -10,8 +10,15 @@ import UIKit
 
 class InviteRelationshipVC: BaseVC {
 
+    @IBOutlet weak var connectionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        connectionLabel.text = connectionLabel.text?.replace("XXX", userManager.inviteKidName)
     }
     
     @IBAction func kidsFriendClick(sender: AnyObject) {

@@ -31,7 +31,7 @@ class PhoneVerifyVC: BaseVC {
     
     func setupTextField() {
         var str = infoTextLabel.text
-        infoTextLabel.text = str?.replace("#########", phoneNumberString)
+        infoTextLabel.text = str?.replace("###", phoneNumberString)
     }
     
     // MARK: IBAction Method

@@ -44,6 +44,8 @@ extension DataManager {
             self.userManager.currentCarpoolModel = CarpoolModel(json: json)
             self.userManager.inviteID = json["invite"]["id"].intValue
             self.userManager.setWithJsonReponse(json)
+            self.userManager.inviterName = json["inviter"]["first_name"].stringValue
+            self.userManager.inviteKidName = json["riders"][0].stringValue
             self.userManager.userLoggedIn = true
             comp(true, "")
         }) { (op, error) in

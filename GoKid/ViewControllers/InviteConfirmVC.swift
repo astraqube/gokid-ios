@@ -10,6 +10,10 @@ import UIKit
 
 class InviteConfirmVC: BaseVC {
     
+    @IBOutlet weak var inviteLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var kidNameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -18,6 +22,9 @@ class InviteConfirmVC: BaseVC {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        inviteLabel.text = inviteLabel.text?.replace("xPoolNamex", userManager.currentCarpoolModel.name)
+        inviteLabel.text = inviteLabel.text?.replace("xNamex", userManager.inviterName)
+        kidNameLabel.text = kidNameLabel.text?.replace("xxx", userManager.inviteKidName)
     }
     
     func setupNavBar() {

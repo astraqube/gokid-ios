@@ -11,6 +11,9 @@ import UIKit
 class YourKidVC: BaseVC {
 
     @IBOutlet weak var kidsNameTextField: PaddingTextField!
+    @IBOutlet weak var carpoolNameLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var kidNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,12 @@ class YourKidVC: BaseVC {
         setNavBarTitle("Your Kid")
         setNavBarLeftButtonTitle("Back", action: "backButtonClick")
         setNavBarRightButtonTitle("Next", action: "nextButtonClick")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        carpoolNameLabel.text = carpoolNameLabel.text?.replace("XXX", userManager.currentCarpoolModel.name)
+        kidNameLabel.text = kidNameLabel.text?.replace("XXX", userManager.inviteKidName)
     }
     
     // MARK: IBAction Method
