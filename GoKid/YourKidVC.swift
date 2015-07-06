@@ -37,7 +37,9 @@ class YourKidVC: BaseVC {
         }
         
         var carpoolID = userManager.currentCarpoolModel.id
-        dataManager.addKidsNameToCarpool(carpoolID, name: "") { (success, errStr) in
+        LoadingView.showWithMaskType(.Black)
+        dataManager.addKidsNameToCarpool(carpoolID, name: kidsNameTextField.text) { (success, errStr) in
+            LoadingView.dismiss()
             if success {
                 self.moveToVolunteerVC()
             } else {

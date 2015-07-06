@@ -137,13 +137,12 @@ extension DataManager {
     }
     
     func addKidsNameToCarpool(carpoolID: Int, name: String, comp: completion) {
-        var url = baseURL + "/api/carpools/kids"
+        var url = baseURL + "/api/carpools/" + String(carpoolID) + "/kids"
         var map = [
-            "carpool_id": carpoolID,
-            "kids_name": name
+            "first_name": name
         ]
         var manager = managerWithToken()
-        manager.POST(url, parameters:map , success: { (op, obj) in
+        manager.POST(url, parameters:map, success: { (op, obj) in
             println("addKidsNameToCarpool success")
             comp(true, "")
         }) { (op, error) in
