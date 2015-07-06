@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D6ED077B0393319975B5F5B2"
+               BlueprintIdentifier = "9C7F21D77D7AAA0BDCE532E4"
                BuildableName = "libPods-STCollapseTableView.a"
                BlueprintName = "Pods-STCollapseTableView"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -137,7 +137,7 @@ extension DataManager {
     }
     
     func addKidsNameToCarpool(carpoolID: Int, name: String, comp: completion) {
-        var url = baseURL + "/api/carpools/" + String(carpoolID) + "/kids"
+        var url = baseURL + "/api/carpools/" + String(carpoolID) + "/riders"
         var map = [
             "first_name": name
         ]

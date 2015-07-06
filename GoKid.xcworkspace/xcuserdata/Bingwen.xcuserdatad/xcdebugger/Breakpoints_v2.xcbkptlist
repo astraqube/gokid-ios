@@ -259,22 +259,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoKid/DataManager.swift"
-            timestampString = "457857960.721531"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "managerWithToken()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GoKid/DataMnager + Invitation.swift"
             timestampString = "457857999.848559"
             startingColumnNumber = "9223372036854775807"
@@ -292,7 +276,7 @@
                   moduleName = "GoKid"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bingwen/Desktop/gokid-ios/GoKid/DataMnager%20+%20Invitation.swift"
-                  timestampString = "457858170.154081"
+                  timestampString = "457869559.752776"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "73"
@@ -307,7 +291,7 @@
                   moduleName = "GoKid"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bingwen/Desktop/gokid-ios/GoKid/DataMnager%20+%20Invitation.swift"
-                  timestampString = "457858170.154201"
+                  timestampString = "457869559.752888"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
@@ -330,6 +314,38 @@
             startingLineNumber = "48"
             endingLineNumber = "48"
             landmarkName = "inviteSignupUser(_:code:form:comp:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Onboard/Objective-C/Onboard/OnboardingContentViewController.m"
+            timestampString = "457865006.911174"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-generateView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Onboard/Objective-C/Onboard/OnboardingViewController.m"
+            timestampString = "457868218.426256"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-generateView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

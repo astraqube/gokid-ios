@@ -91,6 +91,8 @@
 		1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */; };
 		1DEFF1711B49EE4B0094B54E /* InviteeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */; };
 		1DEFF1741B4A1A760094B54E /* InviteTimeConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */; };
+		1DEFF1801B4A87D70094B54E /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */; };
+		1DEFF1811B4A87D70094B54E /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF17F1B4A87D70094B54E /* OnboardingViewController.m */; };
 		1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
 		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
@@ -217,6 +219,10 @@
 		1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteeListVC.swift; sourceTree = "<group>"; };
 		1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteeCell.swift; path = Cells/InviteeCell.swift; sourceTree = "<group>"; };
 		1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteTimeConfirmVC.swift; path = ViewControllers/InviteTimeConfirmVC.swift; sourceTree = "<group>"; };
+		1DEFF17C1B4A87D70094B54E /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingContentViewController.h; sourceTree = "<group>"; };
+		1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingContentViewController.m; sourceTree = "<group>"; };
+		1DEFF17E1B4A87D70094B54E /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
+		1DEFF17F1B4A87D70094B54E /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataMnager + Verification.swift"; sourceTree = "<group>"; };
 		1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberProfileVC.swift; path = ViewControllers/MemberProfileVC.swift; sourceTree = "<group>"; };
 		1DFBBE971B1C6DF500630440 /* Phone#VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Phone#VC.swift"; path = "ViewControllers/Phone#VC.swift"; sourceTree = "<group>"; };
@@ -358,6 +364,7 @@
 				1DC765C51B3278D100D9D306 /* JSON */,
 				1D891F071B23FDCD006FD961 /* SwiftAddressBook */,
 				1D39AAB11B40C08000215D6E /* Helper Functions */,
+				1DEFF1751B4A845C0094B54E /* OnBoard */,
 			);
 			name = lib;
 			path = GoKid;
@@ -662,6 +669,17 @@
 			name = Invitation;
 			sourceTree = "<group>";
 		};
+		1DEFF1751B4A845C0094B54E /* OnBoard */ = {
+			isa = PBXGroup;
+			children = (
+				1DEFF17C1B4A87D70094B54E /* OnboardingContentViewController.h */,
+				1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */,
+				1DEFF17E1B4A87D70094B54E /* OnboardingViewController.h */,
+				1DEFF17F1B4A87D70094B54E /* OnboardingViewController.m */,
+			);
+			name = OnBoard;
+			sourceTree = "<group>";
+		};
 		68926BFAEF467AB3FED52BD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,6 +910,7 @@
 				1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */,
 				1D891F101B23FDD8006FD961 /* SwiftAddressBookGroup.swift in Sources */,
 				1DC765C41B32754800D9D306 /* DataManager + Team.swift in Sources */,
+				1DEFF1811B4A87D70094B54E /* OnboardingViewController.m in Sources */,
 				1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */,
 				1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */,
 				1D39AAB31B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift in Sources */,
@@ -966,6 +985,7 @@
 				1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */,
 				1D891F151B23FDD8006FD961 /* SwiftAddressBookWrapper.swift in Sources */,
 				1D7D8DF31B3A76D8002D29A5 /* DataManager + Carpool.swift in Sources */,
+				1DEFF1801B4A87D70094B54E /* OnboardingContentViewController.m in Sources */,
 				796E69C21B4A6E5600DF8D43 /* DetailMapVC.swift in Sources */,
 				1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */,
 				1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */,
