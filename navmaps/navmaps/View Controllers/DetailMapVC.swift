@@ -69,18 +69,20 @@ class DetailMapVC: UIViewController, MKMapViewDelegate {
     }
     
     func imageForStopAnnotation(stop: Stop) -> UIImage {
-        var renderPinView = UIImageView(frame: CGRectMake(0, 0, 48, 55))
-        //align image top and add 50% height
-        renderPinView.image = UIImage(named: "pin")!
-        renderPinView.contentMode = UIViewContentMode.ScaleAspectFill
+        var pinImageView = UIImageView(frame: CGRectMake(0, 0, 48, 55))
+        pinImageView.image = UIImage(named: "pin")!
+        pinImageView.contentMode = UIViewContentMode.ScaleAspectFill
+
+        var renderView = UIView(frame: CGRectMake(0, 0, 62, 79))
+        renderView.addSubview(pinImageView)
         
         if stop.thumbnailImage != nil {
             var iconImageView = MapUserImageView(frame: CGRectMake(0, 0, 38, 38))
             iconImageView.cornerRadius = 19
             iconImageView.image = stop.thumbnailImage
-            renderPinView.addSubview(iconImageView)
-            iconImageView.center = renderPinView.center
-            iconImageView.center.y -= 4
+            pinImageView.addSubview(iconImageView)
+            iconImageView.center = pinImageView.center
+            iconImageView.center.y -= 3
         } else {
             var abbreviation : String?
             if stop.name.length >= 2 {
@@ -97,13 +99,13 @@ class DetailMapVC: UIViewController, MKMapViewDelegate {
             iconLabel.text = abbreviation
             iconLabel.textAlignment = .Center
             iconLabel.textColor = UIColor.whiteColor()
-            renderPinView.addSubview(iconLabel)
-            iconLabel.center = renderPinView.center
-            iconLabel.center.y -= 4
+            pinImageView.addSubview(iconLabel)
+            iconLabel.center = pinImageView.center
+            iconLabel.center.y -= 3
         }
 
-        UIGraphicsBeginImageContextWithOptions(renderPinView.frame.size, false, 0.0)
-        renderPinView.layer.renderInContext(UIGraphicsGetCurrentContext())
+        UIGraphicsBeginImageContextWithOptions(renderView.frame.size, false, 0.0)
+        renderView.layer.renderInContext(UIGraphicsGetCurrentContext())
         var thumbnail = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return thumbnail
