@@ -8,6 +8,7 @@
 
 #import "OnboardingContentViewController.h"
 #import "OnboardingViewController.h"
+#import <PureLayout.h>
 
 static NSString * const kDefaultOnboardingFont = @"Helvetica-Light";
 
@@ -178,8 +179,10 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // create the image view with the appropriate image, size, and center in on screen
     _imageView = [[UIImageView alloc] initWithImage:_image];
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
     [_imageView setFrame:CGRectMake(horizontalCenter - (self.iconWidth / 2), self.topPadding, self.iconWidth, self.iconHeight)];
     [self.view addSubview:_imageView];
+    [_imageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
     // create and configure the main text label sitting underneath the icon with the provided padding
     _mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_imageView.frame) + self.underIconPadding, contentWidth, 0)];
