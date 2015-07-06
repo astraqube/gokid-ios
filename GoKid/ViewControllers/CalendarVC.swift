@@ -18,7 +18,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
+        // setupNavBar()
         setupTableView()
         setupTableViewContent()
     }
@@ -94,12 +94,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func createButtonClicked() {
+    @IBAction func createButtonClicked(sender: UIButton) {
         var vc = vcWithID("BasicInfoVC")
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func menuButtonClick() {
+    @IBAction func menuButtonClick(sender: UIButton) {
         self.navigationController?.viewDeckController.toggleLeftViewAnimated(true)
     }
     
@@ -141,7 +141,6 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.text = model.poolname
         cell.timeLabel.text = model.pooltimeStr
         cell.typeLabel.text = model.poolType
-        cell.driverLabel.text = model.poolDriver
         cell.profileImageView.image = nil
         imageManager.setImageToView(cell.profileImageView, urlStr: model.poolDriverImageUrl)
         return cell
@@ -171,7 +170,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         case .Add:
             return 130.0
         case .Normal:
-            return 80.0
+            return 134.0
         default:
             return 50.0
         }
@@ -179,7 +178,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == dataSource.count-1 {
-            createButtonClicked()
+            self.createButtonClicked(UIButton())
         }
     }
 }

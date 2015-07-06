@@ -15,7 +15,7 @@ class CalendarCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var driverLabel: UILabel!
+    // @IBOutlet weak var driverLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
     override func awakeFromNib() {
