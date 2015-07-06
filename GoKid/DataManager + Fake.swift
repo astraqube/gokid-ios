@@ -102,11 +102,15 @@ extension DataManager {
             "SignUpVC": true,
             "SignInVC": true
         ]
+        var onboard = [
+            "LastOnboardVC": true
+        ]        
         var map = [
             "Carpool" : carpool,
             "Main" : main,
             "TeamAccount": teamAccount,
-            "Login": login
+            "Login": login,
+            "Onboard": onboard
         ]
         return map
     }

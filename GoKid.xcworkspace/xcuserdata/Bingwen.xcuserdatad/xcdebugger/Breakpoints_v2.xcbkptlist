@@ -276,7 +276,7 @@
                   moduleName = "GoKid"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bingwen/Desktop/gokid-ios/GoKid/DataMnager%20+%20Invitation.swift"
-                  timestampString = "457869559.752776"
+                  timestampString = "457872691.599839"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "73"
@@ -291,7 +291,7 @@
                   moduleName = "GoKid"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bingwen/Desktop/gokid-ios/GoKid/DataMnager%20+%20Invitation.swift"
-                  timestampString = "457869559.752888"
+                  timestampString = "457872691.599961"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
@@ -314,22 +314,6 @@
             startingLineNumber = "48"
             endingLineNumber = "48"
             landmarkName = "inviteSignupUser(_:code:form:comp:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/Onboard/Objective-C/Onboard/OnboardingContentViewController.m"
-            timestampString = "457865006.911174"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "-generateView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
