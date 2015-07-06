@@ -8,6 +8,18 @@
 
 import UIKit
 
+class FrequencyModel {
+    var name = ""
+    var num = 0
+    var selected = false
+    
+    init(_ name: String, _ num: Int, _ selected: Bool) {
+        self.name = name
+        self.num = num
+        self.selected = selected
+    }
+}
+
 class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STCollapseTableViewDelegate {
     
     @IBOutlet weak var tableView: STCollapseTableView!
@@ -35,13 +47,18 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
     }
     
     func setupTableViewData() {
-        var sections = 10
+        var sections = 1
         
         for i in 0..<sections {
-            var data = [String]()
-            for j in 0...4 {
-                data.append("Cell " + String(j))
-            }
+            var monday = FrequencyModel("Monday", 1, false)
+            var tuesday = FrequencyModel("Tuesday", 2, false)
+            var wednesday = FrequencyModel("Wednesday", 3, false)
+            var thursday = FrequencyModel("Thursday", 4, false)
+            var friday = FrequencyModel("Friday", 5, false)
+            var saturday = FrequencyModel("Saturday", 6, false)
+            var sunday = FrequencyModel("Sunday", 7, false)
+            
+            var data = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
             dataSource.append(data)
         }
         
@@ -90,7 +107,7 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println(indexPath)
+        
     }
     
     func headerViewClicked(index: Int) {

@@ -135,4 +135,20 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
+    
+    func addKidsNameToCarpool(carpoolID: Int, name: String, comp: completion) {
+        var url = baseURL + "/api/carpools/kids"
+        var map = [
+            "carpool_id": carpoolID,
+            "kids_name": name
+        ]
+        var manager = managerWithToken()
+        manager.POST(url, parameters:map , success: { (op, obj) in
+            println("addKidsNameToCarpool success")
+            comp(true, "")
+        }) { (op, error) in
+            println("addKidsNameToCarpool failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
 }

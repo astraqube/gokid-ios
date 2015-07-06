@@ -14,8 +14,6 @@ extension DataManager {
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("verifyCarPoolInvitation success")
-            var json = JSON(obj)
-            println(json)
             comp(true, "")
         }) { (op, error) in
             println("verifyCarPoolInvitation failed")
@@ -24,18 +22,29 @@ extension DataManager {
     }
     
     func inviteSignupUser(phoneNum: String, code: String, form: SignupForm, comp: completion) {
-        var url = baseURL + "/api/invite/verify"
+        var url = baseURL + "/api/invites/signup"
+        var user = [
+            "email": form.email,
+            "password": form.password,
+            "password_confirmation": form.password,
+            "phone_number": form.phoneNum,
+            "last_name": form.lastName,
+            "first_name": form.firstName,
+        ]
         var map = [
             "phone_number": phoneNum,
-            "code": code,
-            "user": "ass"
+            "verification_code": code,
+            "user": user
         ]
         var manager = managerWithToken()
-        manager.POST(url, parameters: nil, success: { (op, obj) in
+        manager.POST(url, parameters: map, success: { (op, obj) in
             println("inviteSignupUser success")
             var json = JSON(obj)
             println(json)
-            
+            self.userManager.currentCarpoolModel = CarpoolModel(json: json)
+            self.userManager.inviteID = json["invite"]["id"].intValue
+            self.userManager.setWithJsonReponse(json)
+            self.userManager.userLoggedIn = true
             comp(true, "")
         }) { (op, error) in
             println("inviteSignupUser failed")
@@ -58,11 +67,10 @@ extension DataManager {
         }
     }
     
-    func acceptInvite(comp: completion) {
-        var url = baseURL + "/api/invite/accept"
-        var map = ["invite_id", ""]
+    func acceptInvite(inviteID: Int, comp: completion) {
+        var url = baseURL + "/api/invites/" + String(inviteID) + "/accept"
         var manager = managerWithToken()
-        manager.POST(url, parameters: map, success: { (op, obj) in
+        manager.POST(url, parameters: nil, success: { (op, obj) in
             println("acceptInvite success")
             var json = JSON(obj)
             comp(true, "")
@@ -72,11 +80,10 @@ extension DataManager {
         }
     }
     
-    func declineInvite(comp: completion) {
-        var url = baseURL + "/api/invite/reject"
-        var map = ["invite_id", ""]
+    func declineInvite(inviteID: Int, comp: completion) {
+        var url = baseURL + "/api/invites/" + String(inviteID) + "/reject"
         var manager = managerWithToken()
-        manager.POST(url, parameters: map, success: { (op, obj) in
+        manager.POST(url, parameters: nil, success: { (op, obj) in
             println("declineInvite success")
             var json = JSON(obj)
             comp(true, "")

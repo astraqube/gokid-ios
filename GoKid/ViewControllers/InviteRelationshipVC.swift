@@ -15,8 +15,7 @@ class InviteRelationshipVC: BaseVC {
     }
     
     @IBAction func kidsFriendClick(sender: AnyObject) {
-        var vc = vcWithID("YourKidVC")
-        navigationController?.pushViewController(vc, animated: true)
+        moveToYourKidVC()
     }
     
     @IBAction func mommyClick(sender: AnyObject) {
@@ -28,15 +27,22 @@ class InviteRelationshipVC: BaseVC {
     }
     
     @IBAction func sitterClick(sender: AnyObject) {
-        
+        setRoleAndMoveToVolunteerVC("sitter")
     }
     
     @IBAction func otherClick(sender: AnyObject) {
-        
+        moveToYourKidVC()
+    }
+    
+    func moveToYourKidVC() {
+        var vc = vcWithID("YourKidVC")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func setRoleAndMoveToVolunteerVC(role: String) {
+        LoadingView.showWithMaskType(.Black)
         dataManager.updateUserRole(role) { (success, errStr) in
+            LoadingView.dismiss()
             if success {
                 onMainThread() {
                     var vc = vcWithID("VolunteerVC")

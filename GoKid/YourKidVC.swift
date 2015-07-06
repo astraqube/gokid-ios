@@ -10,6 +10,8 @@ import UIKit
 
 class YourKidVC: BaseVC {
 
+    @IBOutlet weak var kidsNameTextField: PaddingTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -29,7 +31,25 @@ class YourKidVC: BaseVC {
     }
     
     func nextButtonClick() {
-        var vc = vcWithID("")
-        navigationController?.pushViewController(vc, animated: true)
+        if kidsNameTextField.text == "" {
+            showAlert("Alert", messege: "Please fiil yout kid's name", cancleTitle: "OK")
+            return
+        }
+        
+        var carpoolID = userManager.currentCarpoolModel.id
+        dataManager.addKidsNameToCarpool(carpoolID, name: "") { (success, errStr) in
+            if success {
+                self.moveToVolunteerVC()
+            } else {
+                self.showAlert("Fail to add kids name", messege: errStr, cancleTitle: "OK")
+            }
+        }
+    }
+    
+    func moveToVolunteerVC() {
+        onMainThread() {
+            var vc = vcWithID("VolunteerVC")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

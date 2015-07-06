@@ -149,19 +149,10 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func handleCreateCarpoolSuccess(success: Bool, errorStr: String) {
         if success {
-            dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
+            tryLoadTableData()
         } else {
             LoadingView.dismiss()
             self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
-        }
-    }
-    
-    func handleGetVolunteerList(success: Bool, errorStr: String) {
-        LoadingView.dismiss()
-        if success {
-            setupTableView()
-        } else {
-            self.showAlert("Fail to fetch vlounteer list", messege: errorStr, cancleTitle: "OK")
         }
     }
     
@@ -180,13 +171,38 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
       }
     }
     
+    
+    
     func tryLoadTableData() {
         if userManager.userLoggedIn {
-            dataSource = processRawCalendarEvents(userManager.volunteerEvents)
+            dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
         } else {
-            dataSource = processRawCalendarEvents(userManager.fakeVolunteerEvents)
+            if userManager.currentCarpoolModel.isValidForTime() {
+                dataManager.getFakeVolunteerList(userManager.currentCarpoolModel, comp: handleGetFakeVolunteerList)
+            } else {
+                self.showAlert("currentCarpoolModel not valid", messege: "currentCarpoolModel not valid for time", cancleTitle: "OK")
+            }
         }
-        tableView.reloadData()
+    }
+    
+    func handleGetVolunteerList(success: Bool, errorStr: String) {
+        LoadingView.dismiss()
+        if success {
+            dataSource = processRawCalendarEvents(userManager.volunteerEvents)
+            reloadWithDataSourceOnMainThread()
+        } else {
+            self.showAlert("Fail to fetch vlounteer list", messege: errorStr, cancleTitle: "OK")
+        }
+    }
+    
+    func handleGetFakeVolunteerList(success: Bool, errorStr: String) {
+        LoadingView.dismiss()
+        if success {
+            dataSource = processRawCalendarEvents(userManager.fakeVolunteerEvents)
+            reloadWithDataSourceOnMainThread()
+        } else {
+            self.showAlert("Fail to fecth unregistered volunteer list", messege: errorStr, cancleTitle: "OK")
+        }
     }
     
     func processRawCalendarEvents(events: [CalendarModel]) -> [CalendarModel] {
@@ -203,6 +219,12 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             data.append(event)
         }
         return data
+    }
+    
+    func reloadWithDataSourceOnMainThread() {
+        onMainThread() {
+            self.tableView.reloadData()
+        }
     }
 }
 

@@ -87,18 +87,19 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
         dataManager.verifyCarPoolInvitation(form.phoneNum) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
-                self.moveToPhoneVerifyVC()
+                self.moveToPhoneVerifyVC(form)
             } else {
                 self.showAlert("Your Phone Number Doesn't Match", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
     
-    func moveToPhoneVerifyVC() {
+    func moveToPhoneVerifyVC(form: SignupForm) {
         onMainThread() {
             var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
             vc.fromCarpoolInvite = true
             vc.phoneNumberString = self.phoneNumberTextField.text
+            vc.signupForm = form
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

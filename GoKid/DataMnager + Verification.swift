@@ -28,7 +28,7 @@ extension DataManager {
         }
     }
     
-    func VerifyCode(code: String, comp: completion) {
+    func memberPhoneVerification(code: String, comp: completion) {
         var url = baseURL + "/api/me/verify"
         var map = [
             "verification": [

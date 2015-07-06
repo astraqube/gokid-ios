@@ -33,26 +33,25 @@ class InviteConfirmVC: BaseVC {
     }
     
     @IBAction func acceptButtonClick(sender: AnyObject) {
-        moveToInviteRelationVC()
-//        LoadingView.showWithMaskType(.Black)
-//        dataManager.acceptInvite { (success, errorStr) in
-//            LoadingView.dismiss()
-//            if success {
-//                
-//            } else {
-//                
-//            }
-//        }
+        LoadingView.showWithMaskType(.Black)
+        dataManager.acceptInvite(userManager.inviteID) { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                self.moveToInviteRelationVC()
+            } else {
+                self.showAlert("Fail to accept carpool", messege: errorStr, cancleTitle: "OK")
+            }
+        }
     }
     
     @IBAction func declineButtonClick(sender: AnyObject) {
         LoadingView.showWithMaskType(.Black)
-        dataManager.declineInvite { (success, errorStr) in
+        dataManager.declineInvite(userManager.inviteID) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
-                
+                self.moveToTeamAccountVC()
             } else {
-                
+                self.showAlert("Fail to accept carpool", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
@@ -66,6 +65,15 @@ class InviteConfirmVC: BaseVC {
         onMainThread() {
             var vc = vcWithID("InviteRelationshipVC")
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func moveToTeamAccountVC() {
+        onMainThread() {
+            var calenderVC = vcWithID("CalenderVC")
+            var teamAccountVC = vcWithID("TeamAccountVC")
+            var vcs = [calenderVC, teamAccountVC]
+            self.navigationController?.setViewControllers(vcs, animated: true)
         }
     }
 }
