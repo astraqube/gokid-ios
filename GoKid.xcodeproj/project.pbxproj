@@ -98,6 +98,18 @@
 		1DFBBE9C1B1C78DC00630440 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */; };
 		1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */; };
 		1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */; };
+		796E699E1B4A6E0C00DF8D43 /* Fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */; };
+		796E699F1B4A6E0C00DF8D43 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */; };
+		796E69A01B4A6E0C00DF8D43 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */; };
+		796E69BC1B4A6E5600DF8D43 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E69A91B4A6E5600DF8D43 /* Navigation.swift */; };
+		796E69C11B4A6E5600DF8D43 /* NavMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796E69B01B4A6E5600DF8D43 /* NavMap.storyboard */; };
+		796E69C21B4A6E5600DF8D43 /* DetailMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E69B21B4A6E5600DF8D43 /* DetailMapVC.swift */; };
+		796E69C31B4A6E5600DF8D43 /* DrivingModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E69B31B4A6E5600DF8D43 /* DrivingModeVC.swift */; };
+		796E69C41B4A6E5600DF8D43 /* BorderedBarishButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E69B51B4A6E5600DF8D43 /* BorderedBarishButton.swift */; };
+		796E69C51B4A6E5600DF8D43 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E69B61B4A6E5600DF8D43 /* BorderedView.swift */; };
+		796E69C61B4A6E5600DF8D43 /* MapUserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E69B71B4A6E5600DF8D43 /* MapUserImageView.swift */; };
+		796E69C81B4A6F0B00DF8D43 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 796E69C71B4A6F0B00DF8D43 /* MapKit.framework */; };
+		796E69CA1B4A6F1200DF8D43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 796E69C91B4A6F1200DF8D43 /* CoreLocation.framework */; };
 		ECE57027C4889A619FFDC703 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF40D0E37CF42771C6294E4C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -212,6 +224,18 @@
 		1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpVC.swift; path = ViewControllers/SignUpVC.swift; sourceTree = "<group>"; };
 		1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamAccountVC.swift; path = ViewControllers/TeamAccountVC.swift; sourceTree = "<group>"; };
 		1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAccountCell.swift; sourceTree = "<group>"; };
+		796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontawesome.ttf; sourceTree = "<group>"; };
+		796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		796E69A91B4A6E5600DF8D43 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		796E69B01B4A6E5600DF8D43 /* NavMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NavMap.storyboard; path = ../navmaps/navmaps/Resources/NavMap.storyboard; sourceTree = "<group>"; };
+		796E69B21B4A6E5600DF8D43 /* DetailMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapVC.swift; sourceTree = "<group>"; };
+		796E69B31B4A6E5600DF8D43 /* DrivingModeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrivingModeVC.swift; sourceTree = "<group>"; };
+		796E69B51B4A6E5600DF8D43 /* BorderedBarishButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedBarishButton.swift; sourceTree = "<group>"; };
+		796E69B61B4A6E5600DF8D43 /* BorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
+		796E69B71B4A6E5600DF8D43 /* MapUserImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUserImageView.swift; sourceTree = "<group>"; };
+		796E69C71B4A6F0B00DF8D43 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		796E69C91B4A6F1200DF8D43 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		93CC9E48A48DAB1946EA9A2A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DD2545F713FEF193EB6D553D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EF40D0E37CF42771C6294E4C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +246,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				796E69CA1B4A6F1200DF8D43 /* CoreLocation.framework in Frameworks */,
+				796E69C81B4A6F0B00DF8D43 /* MapKit.framework in Frameworks */,
 				ECE57027C4889A619FFDC703 /* libPods.a in Frameworks */,
 				1D533D1E1B29533600F848B8 /* Crashlytics.framework in Frameworks */,
 				1D533D1D1B29533600F848B8 /* Fabric.framework in Frameworks */,
@@ -241,6 +267,7 @@
 		1D1228DA1B424A6D001CA6A4 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
+				796E69B01B4A6E5600DF8D43 /* NavMap.storyboard */,
 				1D1228DB1B424AA1001CA6A4 /* Carpool.storyboard */,
 				1D1228DF1B424AD9001CA6A4 /* TeamAccount.storyboard */,
 				1D1FD6681B1BFC4A00287FA0 /* Main.storyboard */,
@@ -261,8 +288,6 @@
 		1D1FD6561B1BFC4A00287FA0 = {
 			isa = PBXGroup;
 			children = (
-				1D533D1B1B29533600F848B8 /* Fabric.framework */,
-				1D533D1C1B29533600F848B8 /* Crashlytics.framework */,
 				1D1FD6611B1BFC4A00287FA0 /* GoKid */,
 				1D1FD6841B1C000000287FA0 /* lib */,
 				1D1FD6771B1BFC4A00287FA0 /* GoKidTests */,
@@ -284,6 +309,7 @@
 		1D1FD6611B1BFC4A00287FA0 /* GoKid */ = {
 			isa = PBXGroup;
 			children = (
+				796E69A11B4A6E5600DF8D43 /* navmaps */,
 				1D1FD6961B1C11A900287FA0 /* Managers */,
 				1DD1BAA61B2AA31A00D1BBA3 /* Model */,
 				1D3F65281B237ED900CCF6A1 /* Cells */,
@@ -301,6 +327,7 @@
 		1D1FD6621B1BFC4A00287FA0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				796E699A1B4A6E0C00DF8D43 /* Fonts */,
 				1D1FD6631B1BFC4A00287FA0 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -638,9 +665,62 @@
 		68926BFAEF467AB3FED52BD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1D533D1B1B29533600F848B8 /* Fabric.framework */,
+				1D533D1C1B29533600F848B8 /* Crashlytics.framework */,
+				796E69C91B4A6F1200DF8D43 /* CoreLocation.framework */,
+				796E69C71B4A6F0B00DF8D43 /* MapKit.framework */,
 				EF40D0E37CF42771C6294E4C /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		796E699A1B4A6E0C00DF8D43 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */,
+				796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */,
+				796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */,
+			);
+			name = Fonts;
+			path = navmaps/navmaps/Resources/Fonts;
+			sourceTree = SOURCE_ROOT;
+		};
+		796E69A11B4A6E5600DF8D43 /* navmaps */ = {
+			isa = PBXGroup;
+			children = (
+				796E69A81B4A6E5600DF8D43 /* Data */,
+				796E69B11B4A6E5600DF8D43 /* View Controllers */,
+				796E69B41B4A6E5600DF8D43 /* Views */,
+			);
+			name = navmaps;
+			path = navmaps/navmaps;
+			sourceTree = SOURCE_ROOT;
+		};
+		796E69A81B4A6E5600DF8D43 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				796E69A91B4A6E5600DF8D43 /* Navigation.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		796E69B11B4A6E5600DF8D43 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				796E69B21B4A6E5600DF8D43 /* DetailMapVC.swift */,
+				796E69B31B4A6E5600DF8D43 /* DrivingModeVC.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		796E69B41B4A6E5600DF8D43 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				796E69B51B4A6E5600DF8D43 /* BorderedBarishButton.swift */,
+				796E69B61B4A6E5600DF8D43 /* BorderedView.swift */,
+				796E69B71B4A6E5600DF8D43 /* MapUserImageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		7AEEB50549261E7F302E3174 /* Pods */ = {
@@ -736,12 +816,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				796E69C11B4A6E5600DF8D43 /* NavMap.storyboard in Resources */,
 				1D1FD66A1B1BFC4A00287FA0 /* Main.storyboard in Resources */,
 				1D1228E01B424AD9001CA6A4 /* TeamAccount.storyboard in Resources */,
 				1D1228DC1B424AA1001CA6A4 /* Carpool.storyboard in Resources */,
 				1D1FD66F1B1BFC4A00287FA0 /* LaunchScreen.xib in Resources */,
+				796E69A01B4A6E0C00DF8D43 /* Raleway-Regular.ttf in Resources */,
 				1D1228DE1B424AC6001CA6A4 /* Login.storyboard in Resources */,
+				796E699E1B4A6E0C00DF8D43 /* Fontawesome.ttf in Resources */,
 				1D1FD66C1B1BFC4A00287FA0 /* Images.xcassets in Resources */,
+				796E699F1B4A6E0C00DF8D43 /* Raleway-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,8 +908,10 @@
 				1D1FD6951B1C103500287FA0 /* UIView+Pop.swift in Sources */,
 				1D19D5231B3FF569007A716A /* FrequencyCell.swift in Sources */,
 				1D3F651F1B207D6B00CCF6A1 /* VolunteerTimeCell.swift in Sources */,
+				796E69C41B4A6E5600DF8D43 /* BorderedBarishButton.swift in Sources */,
 				1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */,
 				1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */,
+				796E69C51B4A6E5600DF8D43 /* BorderedView.swift in Sources */,
 				1D975A431B1F94B500CD4D89 /* TDTextCell.swift in Sources */,
 				1D891F141B23FDD8006FD961 /* SwiftAddressBookSource.swift in Sources */,
 				1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */,
@@ -838,11 +924,13 @@
 				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,
 				1DEFF16D1B49E3160094B54E /* YourKidVC.swift in Sources */,
+				796E69C61B4A6E5600DF8D43 /* MapUserImageView.swift in Sources */,
 				1D8F78FC1B36A07F00C78CAF /* CalendarCell.swift in Sources */,
 				1D1228E21B42635D001CA6A4 /* DataMnager + Invitation.swift in Sources */,
 				1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */,
 				1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */,
 				1D10D7AA1B1C38FE007CDB66 /* BasicInfoVC.swift in Sources */,
+				796E69C31B4A6E5600DF8D43 /* DrivingModeVC.swift in Sources */,
 				1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */,
 				1D1FD6881B1C001E00287FA0 /* HelperFunction.swift in Sources */,
 				1D891F251B24635A006FD961 /* ContactNameCell.swift in Sources */,
@@ -855,6 +943,7 @@
 				1D3F65181B2073D700CCF6A1 /* RecentAddressCell.swift in Sources */,
 				1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */,
 				1D891F211B242B89006FD961 /* SwiftyJSON.swift in Sources */,
+				796E69BC1B4A6E5600DF8D43 /* Navigation.swift in Sources */,
 				1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */,
 				1D3F651C1B207D3200CCF6A1 /* VolunteerCell.swift in Sources */,
 				1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */,
@@ -877,6 +966,7 @@
 				1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */,
 				1D891F151B23FDD8006FD961 /* SwiftAddressBookWrapper.swift in Sources */,
 				1D7D8DF31B3A76D8002D29A5 /* DataManager + Carpool.swift in Sources */,
+				796E69C21B4A6E5600DF8D43 /* DetailMapVC.swift in Sources */,
 				1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */,
 				1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */,
 				1D891F271B2734C2006FD961 /* TeamMemberModel.swift in Sources */,
