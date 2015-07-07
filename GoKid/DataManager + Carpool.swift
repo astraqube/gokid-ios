@@ -129,8 +129,8 @@ extension DataManager {
             println("getFakeVolunteerList success")
             var json = JSON(obj)
             println(json)
-            //var events = CalendarModel.arrayOfEventsFromOccurrences(json)
-            //self.userManager.volunteerEvents = events
+            var events = CalendarModel.arrayOfFakeVolunteerEventsFromOccurrences(json)
+            self.userManager.fakeVolunteerEvents = events
             comp(true, "")
         }) { (op, error) in
             println("getFakeVolunteerList failed")

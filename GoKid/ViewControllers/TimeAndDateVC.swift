@@ -212,12 +212,14 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
             carpoolModel.startDate = date
             carpoolModel.endDate = date
             carpoolModel.occurence = occurenceOfDate(date)
+            println(carpoolModel.occurence)
+            println(date)
         }
     }
     
     func occurenceOfDate(date: NSDate) -> [Int] {
         var component = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
-        var day = component.weekday
+        var day = component.weekday - 1
         return [day]
     }
   

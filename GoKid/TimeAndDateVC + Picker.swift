@@ -70,7 +70,7 @@ extension TimeAndDateVC {
         var str = dateFormatter.stringFromDate(datePicker.date)
         currentBindLabel?.text = str
         currentBindModel?.valueString = str
-        updateCurrentUserCarpoolModel(currentBindModel!, date: timePicker.picker.date)
+        updateCurrentUserCarpoolModel(currentBindModel!, date: datePicker.date)
         self.dismissSemiModalView()
     }
     

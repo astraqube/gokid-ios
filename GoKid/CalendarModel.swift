@@ -56,6 +56,25 @@ class CalendarModel: NSObject {
         return arr
     }
     
+    init(fakeList: JSON) {
+        super.init()
+        cellType = .Normal
+        poolDate = parseDate(fakeList, key: "occurs_at")
+        poolType = fakeList["kind"].stringValue
+        generateOtherField()
+    }
+    
+    
+    class func arrayOfFakeVolunteerEventsFromOccurrences(json: JSON) -> [CalendarModel] {
+        var arr = [CalendarModel]()
+        for (index: String, subJson: JSON) in json {
+            var carpool = CalendarModel(fakeList: subJson)
+            arr.append(carpool)
+        }
+        return arr
+    }
+
+    
     func generateOtherField() {
         if poolType == "pickup" { poolType = "PICK UP" }
         else if poolType == "dropoff" { poolType = "DROP OFF" }

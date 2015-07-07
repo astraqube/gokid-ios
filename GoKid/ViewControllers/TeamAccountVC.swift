@@ -20,6 +20,7 @@ class TeamAccountVC: BaseCVC {
     }
     
     func setupNavBar() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
         var nav = navigationController as! ZGNavVC
         nav.addTitleViewToViewController(self)
         setNavBarLeftButtonTitle("Menu", action: "menuButtonClick")

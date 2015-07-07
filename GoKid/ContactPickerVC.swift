@@ -69,7 +69,7 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         dm.invite(phoneNumbers, carpoolID: carpoolID) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
-                self.showAlert("Success", messege: "Messege Sent", cancleTitle: "OK")
+                self.showAlert("Success", messege: "Message Sent", cancleTitle: "OK")
             } else {
                 self.showAlert("Fail to sent messege", messege: errorStr, cancleTitle: "Cancel")
             }
