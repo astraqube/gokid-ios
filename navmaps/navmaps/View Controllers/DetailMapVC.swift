@@ -28,17 +28,32 @@ class DetailMapVC: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.addAnnotation(self.navigation.dropoff)
-        self.mapView.addAnnotation(self.navigation.pickup)
+        self.mapView.addAnnotations(navigation.pickups + navigation.dropoffs)
 
-        navigation.calculatePickupToDropoffRouteWithCallback { (response: MKDirectionsResponse!, error: NSError!) -> Void in
-            self.pickupDropoffRoute = response.routes.first as? MKRoute
+        navigation.calculatePickupToDropoffRoutePiecesWithUpdateCallback { (updatedArray: [MKDirectionsResponse?], error: NSError?) -> (Void) in
+            if error != nil {
+                UIAlertView(title: "Problem showing route", message: "You will still be able to navigate", delegate: nil, cancelButtonTitle: "Okay").show()
+            }
+            self.updateVisibleRoutes()
+        }
+    }
+    
+    func updateVisibleRoutes() {
+        let overlaysSet = (self.mapView.overlays != nil) ?  NSSet(array: self.mapView.overlays) : NSSet()
+        for response in navigation.stopStepResponses {
+            if response != nil {
+                var route : MKRoute? = response!.routes.first as? MKRoute
+                var poly : MKPolyline? = route?.polyline
+                if poly != nil && overlaysSet.containsObject(poly!) == false {
+                    mapView.addOverlay(poly)
+                }
+            }
         }
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         if !didFitMapOnce {
-            var annotations = [mapView.userLocation, self.navigation.pickup]
+            var annotations = ([mapView.userLocation] as [MKAnnotation])+(navigation.pickups + navigation.dropoffs as [MKAnnotation])
             mapView.showAnnotations(annotations, animated: true)
             didFitMapOnce = true
         }
@@ -59,8 +74,8 @@ class DetailMapVC: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-        if overlay as? MKPolyline == pickupDropoffRoute!.polyline {
-            var lineRenderer = MKPolylineRenderer(polyline: pickupDropoffRoute!.polyline)
+        if let polyline = overlay as? MKPolyline {
+            var lineRenderer = MKPolylineRenderer(polyline: polyline)
             lineRenderer.strokeColor = polylineColor
             lineRenderer.lineWidth = 5;
             return lineRenderer

@@ -6,3 +6,7 @@ To integrate navMaps
 5) add the NSLocationWhenInUseUsageDescription key to your info.plist, with value "GoKid uses your location for navigation"
 ![Requesting location permission gif](http://i.imgur.com/lTThTzk.gif)
 6) Copy navMaps' info plist key/value pair for UIAppFonts to your info.plist
+
+Changelog
+July 8
+Now have multiple pickup, multiple dropoff support with intelligent routing

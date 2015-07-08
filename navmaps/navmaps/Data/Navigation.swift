@@ -11,24 +11,18 @@ import MapKit
 import CoreLocation
 
 /**
- A callback to be called on each periodic ETAUpdate. Call `startUpdatingETAWithCallback` first.
-
  :param: error an error called if Navigation can not update the ETA. After an error there will be no subsequent invocation of this callback.
  :param: minutes minutes until destination reached
 */
 typealias ETACallback = ((error: NSError, minutes: Double) -> (Void))
 
 /**
-A callback to be called on in "navigation mode" with each periodic DirectionUpdate. Call `startUpdatingDirectionsWithCallback` first.
-
 :param: error an error called if Navigation can not update the next direction. After an error there will be no subsequent invocation of this callback.
 :param: nextDirection a localized String with the next direction the user should take
 */
 typealias DirectionCallback = ((error: NSError, nextDirection : NSString))
 
 /**
-A callback to be called on each periodic LocationUpdate. Call `startUpdatingLocationWithCallback` first.
-
 :param: error an error called if Navigation can not update the ETA. After an error there will be no subsequent invocation of this callback.
 :param: location the current location of the user
 */
@@ -40,49 +34,102 @@ class Stop : NSObject, MKAnnotation {
     var name : NSString
     var thumbnailImage : UIImage?
     var hasStopped : Bool = false
+    var stopID : NSString
     
-    init(coordinate: CLLocationCoordinate2D, name: NSString, thumbnailImage: UIImage?) {
+    init(coordinate: CLLocationCoordinate2D, name: NSString, stopID : NSString, thumbnailImage: UIImage?) {
         self.coordinate = coordinate
         self.name = name
+        self.stopID = stopID
         self.thumbnailImage = thumbnailImage
     }
 }
 
+/**
+This class takes pickups and dropoffs, sorts them, then manages routing from stop to stop.
+*/
 class Navigation : NSObject, CLLocationManagerDelegate {
+    ///A callback to be called on each periodic ETAUpdate. Call `startUpdatingETAWithCallback` first.
     var onETAUpdate : ETACallback?
+    ///A callback to be called on in "navigation mode" with each periodic DirectionUpdate. Use `startUpdatingDirectionsWithCallback`.
     var onDirectionUpdate : DirectionCallback?
+    ///A callback to be called on each periodic LocationUpdate. Use `startUpdatingLocationWithCallback`.
     var onLocationUpdate : LocationCallback?
+    ///A callback to be called after locationToCurrentStopDirection completes. Use `calculateCurrentToPickupRouteWithCallback`.
+    var onCurrentToPickupRouteDetermined : MKDirectionsHandler?
+    var pickups : [Stop]! = [] {
+        didSet { sortStops(&self.pickups!, beginningAt: self.pickups.first) }
+    }
+    var dropoffs : [Stop]! = []{
+        didSet {
+            if self.dropoffs.count == 0 { return }
+            var lastStop = self.dropoffs.removeLast()
+            sortStops(&self.dropoffs!, beginningAt: self.pickups.last)
+            self.dropoffs.append(lastStop)
+        }
+    }
 
-    var pickup : Stop!
-    var dropoff : Stop!
+    func sortStops(inout stops: [Stop], beginningAt : Stop?) {
+        let firstCoord = beginningAt?.coordinate
+        let firstLocation = CLLocation(latitude: firstCoord!.latitude, longitude: firstCoord!.longitude)
+        stops.sort({ (stopA, stopB) -> Bool in
+            let distanceA = firstLocation.distanceFromLocation(CLLocation(latitude: stopA.coordinate.latitude, longitude: stopA.coordinate.longitude))
+            let distanceB = firstLocation.distanceFromLocation(CLLocation(latitude: stopB.coordinate.latitude, longitude: stopB.coordinate.longitude))
+            return distanceA < distanceB
+        })
+    }
     
+    /// The next pickup where `pickup.hasStopped == false`, otherwise, the next dropoff where `dropoff.hasStopped == false`, otherwise nil.
+    var currentStop : Stop? {
+        get {
+            for stop in pickups + dropoffs {
+                if stop.hasStopped == false{
+                    return stop
+                }
+            }
+            return nil
+        }
+    }
+
     var locationManager : CLLocationManager!
-    var pickupToDropoffResponse : MKDirectionsResponse!
-    var currentToPickupResponse : MKDirectionsResponse!
+    var pickupToDropoffResponse : MKDirectionsResponse?
+    var currentToPickupResponse : MKDirectionsResponse?
+
+    /**
+    Contains all the responses for each step of route, from first pickup to last dropoff.
+    Count is `count(pickups + dropoffs) - 1`
+    `calculatePickupToDropoffRoutePiecesWithUpdateCallback` initializes with all nils, then populates.
+    */
+    var stopStepResponses : [MKDirectionsResponse?]!
     
-    lazy var pickupToDropoffDirections : MKDirections = {
-        var request = MKDirectionsRequest()
-        request.setSource(MKMapItem(placemark: MKPlacemark(coordinate: self.pickup.coordinate, addressDictionary: nil)))
-        request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: self.dropoff.coordinate, addressDictionary: nil)))
-        return MKDirections(request: request)
+    lazy var pickupToDropoffDirections : MKDirections? = {
+        return self.stopToStopDirections( self.pickups.first , second: self.dropoffs.first )
     }()
     
-    lazy var currentToPickupDirections : MKDirections = {
+    /**
+    :param: pickups a list of pickups to be made. After set, this list will be sorted by ascending distance from `pickups.first`
+    :param: dropoffs a list of dropoffs to be made AFTER `pickups.hasStopped == true`. After set, this list will be sorted ascending distance from `pickups.last`, with `dropoffs.last` last.
+    */
+    func setup(pickups : [Stop], dropoffs : [Stop]) {
+        self.pickups = pickups
+        self.dropoffs = dropoffs
+    }
+
+    func stopToStopDirections(first: Stop? , second: Stop?) -> MKDirections? {
+        if first == nil || second == nil {
+            return nil
+        }
+        var request = MKDirectionsRequest()
+        request.setSource(MKMapItem(placemark: MKPlacemark(coordinate: first!.coordinate, addressDictionary: nil)))
+        request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: second!.coordinate, addressDictionary: nil)))
+        return MKDirections(request: request)
+    }
+    
+    lazy var locationToCurrentStopDirections : MKDirections = {
         var request = MKDirectionsRequest()
         request.setSource(MKMapItem.mapItemForCurrentLocation())
-        request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: self.dropoff.coordinate, addressDictionary: nil)))
+        request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: self.currentStop!.coordinate, addressDictionary: nil)))
         return MKDirections(request: request)
     }()
-    
-    init(pickup : Stop, dropoff : Stop) {
-        super.init()
-        self.pickup = pickup
-        self.dropoff = dropoff
-        
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-    }
     
     func startUpdatingETAWithCallback(callback : ETACallback) {
         onETAUpdate = callback
@@ -95,27 +142,54 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     func startUpdatingLocationWithCallback(callback : LocationCallback) {
         onLocationUpdate = callback
     }
+
+    /**
+    Initializes `stopStepResponses` with all nils, then populates. Calls callback while populating.
+    */
+    func calculatePickupToDropoffRoutePiecesWithUpdateCallback(callback: ((updatedArray: [MKDirectionsResponse?], error: NSError?) -> (Void))){
+        let allStops = pickups + dropoffs
+        stopStepResponses = [MKDirectionsResponse?](count: Int(allStops.count-1), repeatedValue: nil)
+        for (index, stop) in enumerate(allStops){
+            if (index + 1 < allStops.count){
+                var nextStop = allStops[index+1]
+                stopToStopDirections(stop, second: nextStop)?.calculateDirectionsWithCompletionHandler { (response: MKDirectionsResponse!, error: NSError!) -> Void in
+                    self.stopStepResponses[index] = response
+                    if error != nil {
+                        println("error in calculateRoutePieces: " + error.description)
+                    }
+                    callback(updatedArray: self.stopStepResponses!, error: error)
+                }
+            }
+        }
+    }
     
     func calculatePickupToDropoffRouteWithCallback(callback: MKDirectionsHandler!) {
         if pickupToDropoffResponse != nil {
             return callback(pickupToDropoffResponse, nil)
         }
-        pickupToDropoffDirections.calculateDirectionsWithCompletionHandler(callback)
+        pickupToDropoffDirections?.calculateDirectionsWithCompletionHandler(callback)
     }
 
     func calculateCurrentToPickupRouteWithCallback(callback: MKDirectionsHandler!) {
+        onCurrentToPickupRouteDetermined = callback
         if currentToPickupResponse != nil {
             return callback(currentToPickupResponse, nil)
         }
-        currentToPickupDirections.calculateDirectionsWithCompletionHandler(callback)
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+        }
+        locationManager.requestWhenInUseAuthorization()
     }
 
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status.rawValue < CLAuthorizationStatus.AuthorizedAlways.rawValue {
             return
         }
-        calculateCurrentToPickupRouteWithCallback { (response: MKDirectionsResponse!, error: NSError!) -> Void in
+        
+        locationToCurrentStopDirections.calculateDirectionsWithCompletionHandler({ (response: MKDirectionsResponse!, error: NSError!) -> Void in
             self.currentToPickupResponse = response
-        }
+            self.onCurrentToPickupRouteDetermined!(response, error);
+        })
     }
 }
