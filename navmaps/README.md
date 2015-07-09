@@ -9,9 +9,12 @@ To integrate navMaps
 
 Changelog
 July 9
+Added send messaage stub
+Now say dropoff for dropoffs
+some defensive programming for optionals
 Added tap on header to show different navigation perspectives
 fixed a bug where an annotation would turn into a pin
-todo: messages button from map, turn by turn, the TRAY
+todo: messages button from map, turn by turn, the TRAY, integration including ETA updates
 July 8
 Now have navigation mode, allowing toggling pickups and getting apple maps directions
 Now have multiple pickup, multiple dropoff support with intelligent routing

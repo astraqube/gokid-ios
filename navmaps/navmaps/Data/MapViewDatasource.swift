@@ -123,9 +123,9 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
             annotations = [mapView.userLocation]
             mapView.userTrackingMode = MKUserTrackingMode.Follow
         case .UserStop:
-            annotations = [navigation.currentStop!, mapView.userLocation]
+            annotations = [ navigation.currentStop != nil ? navigation.currentStop! : navigation.dropoffs.last!, mapView.userLocation]
         case .NextStop:
-            annotations = [navigation.currentStop!] as [MKAnnotation]!
+            annotations = [navigation.currentStop != nil ? navigation.currentStop! : navigation.dropoffs.last!] as [MKAnnotation]!
         }
         mapView.showAnnotations(annotations, animated: true)
     }

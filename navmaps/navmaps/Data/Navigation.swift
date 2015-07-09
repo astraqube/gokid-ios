@@ -140,6 +140,7 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     var locationToCurrentStopDirections : MKDirections? {
         get {
             if _locationToCurrentStopDirections == nil {
+                if self.currentStop == nil { return nil }
                 var request = MKDirectionsRequest()
                 request.setSource(MKMapItem.mapItemForCurrentLocation())
                 request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: self.currentStop!.coordinate, addressDictionary: nil)))
@@ -217,7 +218,7 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         if locationToCurrentStopDirections?.calculating == true {
             return
         }
-        locationToCurrentStopDirections!.calculateDirectionsWithCompletionHandler({ (response: MKDirectionsResponse!, error: NSError!) -> Void in
+        locationToCurrentStopDirections?.calculateDirectionsWithCompletionHandler({ (response: MKDirectionsResponse!, error: NSError!) -> Void in
             self.locationToCurrentStopResponse = response
             self.onLocationToCurrentStopRouteDetermined!(response, error);
         })
