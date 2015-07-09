@@ -14,16 +14,30 @@ enum MapViewDataSourceType : Int {
     case Driving
 }
 
+enum MapTrackMode : Int {
+    case Everything
+    case UserStop
+    case NextStop
+    case User
+}
+
 typealias AnnotationSelectHandler = ((selectedAnnotationView: MKAnnotationView) -> (Void))
 
 class MapViewDatasource: NSObject, MKMapViewDelegate {
     var type : MapViewDataSourceType
     var navigation : Navigation
-    
+   
     @IBInspectable var polylineColor : UIColor? = UIColor(red: 42.0/255.0, green: 170.0/255.0, blue: 87.0/255.0, alpha: 1);
     weak var mapView: MKMapView!
     /// We automatically fit UserLocation and MapPins once, when we first display
     var didFitMapOnce = false
+    lazy var mapTrackMode : MapTrackMode = {
+        if self.type == .Driving {
+            return MapTrackMode.UserStop
+        }else {
+            return MapTrackMode.Everything
+        }
+    }()
     var locationToCurrentStopRoute : MKRoute? {
         willSet { mapView.removeOverlay(self.locationToCurrentStopRoute?.polyline) }
         didSet { mapView.addOverlay(self.locationToCurrentStopRoute?.polyline) }
@@ -86,28 +100,52 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         onAnnotationSelect?(selectedAnnotationView: view)
     }
     
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-        if !didFitMapOnce {
-            var annotations = ([mapView.userLocation] as [MKAnnotation])
-            if type == .Driving {
-                annotations.append(navigation.pickups.first!)
-            }else {
-                annotations.extend(navigation.pickups + navigation.dropoffs as [MKAnnotation])
-            }
-            mapView.showAnnotations(annotations, animated: true)
-            didFitMapOnce = true
+    func toggleTrackMode() {
+        didFitMapOnce = false
+        if let newTrack = MapTrackMode(rawValue: mapTrackMode.rawValue + 1) {
+            mapTrackMode = newTrack
+        }else{
+            mapTrackMode = MapTrackMode(rawValue: 0)!
         }
+        updateMapTrack()
+    }
+
+    func updateMapTrack() {
+        mapView.userTrackingMode = MKUserTrackingMode.None
+        var annotations = [MKAnnotation]()
+        switch mapTrackMode {
+        case .Everything:
+            annotations = navigation.pickups + navigation.dropoffs
+            if mapView.userLocation != nil{
+                annotations.append(mapView.userLocation)
+            }
+        case .User:
+            annotations = [mapView.userLocation]
+            mapView.userTrackingMode = MKUserTrackingMode.Follow
+        case .UserStop:
+            annotations = [navigation.currentStop!, mapView.userLocation]
+        case .NextStop:
+            annotations = [navigation.currentStop!] as [MKAnnotation]!
+        }
+        mapView.showAnnotations(annotations, animated: true)
+    }
+    
+    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+        if didFitMapOnce {
+            return
+        }
+        updateMapTrack()
+        didFitMapOnce = true
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if annotation.isKindOfClass(MKUserLocation) {
             return nil
         }
-        
         var reuseID = "annotation"
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
         if (annotationView == nil) {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
         }
         annotationView.image = imageForStopAnnotation(annotation as! Stop)
         return annotationView
@@ -128,7 +166,7 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         pinImageView.image = UIImage(named: "pin")!
         pinImageView.contentMode = UIViewContentMode.ScaleAspectFill
         
-        var renderView = UIView(frame: CGRectMake(0, 0, 62, 79))
+        var renderView = UIView(frame: CGRectMake(0, 0, 48, 110))
         renderView.addSubview(pinImageView)
         
         if stop.thumbnailImage != nil {

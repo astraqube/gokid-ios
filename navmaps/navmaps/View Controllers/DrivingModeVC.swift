@@ -29,7 +29,7 @@ class DrivingModeVC: UIViewController {
                     self.navigation.updateForStopped()
                     self.mapDataSource.updateRoutes()
                 }))
-                stopActionSheet.addAction(UIAlertAction(title: "Open in Maps", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction!) -> Void in
+                stopActionSheet.addAction(UIAlertAction(title: "Navigate in Maps", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction!) -> Void in
                     var mapItem = MKMapItem(placemark: MKPlacemark(coordinate: stop.coordinate, addressDictionary: nil))
                     mapItem.name = stop.name as String
                     MKMapItem.openMapsWithItems([mapItem], launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsMapCenterKey : NSValue(MKCoordinate: self.mapView.region.center), MKLaunchOptionsMapSpanKey : NSValue(MKCoordinateSpan: self.mapView.region.span)])
@@ -40,6 +40,10 @@ class DrivingModeVC: UIViewController {
         }
     }
 
+    @IBAction func changeTrackModeRecognized(sender: UIGestureRecognizer) {
+            mapDataSource.toggleTrackMode()
+    }
+    
     @IBAction func exitPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }

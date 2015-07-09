@@ -8,6 +8,10 @@ To integrate navMaps
 6) Copy navMaps' info plist key/value pair for UIAppFonts to your info.plist
 
 Changelog
+July 9
+Added tap on header to show different navigation perspectives
+fixed a bug where an annotation would turn into a pin
+todo: messages button from map, turn by turn, the TRAY
 July 8
 Now have navigation mode, allowing toggling pickups and getting apple maps directions
 Now have multiple pickup, multiple dropoff support with intelligent routing
