@@ -114,6 +114,7 @@
 		796E69C61B4A6E5600DF8D43 /* MapUserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E69B71B4A6E5600DF8D43 /* MapUserImageView.swift */; };
 		796E69C81B4A6F0B00DF8D43 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 796E69C71B4A6F0B00DF8D43 /* MapKit.framework */; };
 		796E69CA1B4A6F1200DF8D43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 796E69C91B4A6F1200DF8D43 /* CoreLocation.framework */; };
+		79C229D91B4EF6FD0051F148 /* MapViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C229D81B4EF6FD0051F148 /* MapViewDatasource.swift */; };
 		ECE57027C4889A619FFDC703 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF40D0E37CF42771C6294E4C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +247,7 @@
 		796E69B71B4A6E5600DF8D43 /* MapUserImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUserImageView.swift; sourceTree = "<group>"; };
 		796E69C71B4A6F0B00DF8D43 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		796E69C91B4A6F1200DF8D43 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		79C229D81B4EF6FD0051F148 /* MapViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDatasource.swift; sourceTree = "<group>"; };
 		93CC9E48A48DAB1946EA9A2A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DD2545F713FEF193EB6D553D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EF40D0E37CF42771C6294E4C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -723,6 +725,7 @@
 		796E69A81B4A6E5600DF8D43 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				79C229D81B4EF6FD0051F148 /* MapViewDatasource.swift */,
 				796E69A91B4A6E5600DF8D43 /* Navigation.swift */,
 			);
 			path = Data;
@@ -948,6 +951,7 @@
 				1D3F651A1B2079E400CCF6A1 /* VolunteerVC.swift in Sources */,
 				1D368F161B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift in Sources */,
 				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
+				79C229D91B4EF6FD0051F148 /* MapViewDatasource.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,
 				1DEFF16D1B49E3160094B54E /* YourKidVC.swift in Sources */,
 				796E69C61B4A6E5600DF8D43 /* MapUserImageView.swift in Sources */,
@@ -1140,7 +1144,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = GoKid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1162,7 +1166,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = GoKid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1bf19722-eae8-4dd4-a066-25e9a144b56f";
