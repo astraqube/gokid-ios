@@ -121,9 +121,6 @@
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAd-9y-yff">
                                 <rect key="frame" x="0.0" y="76" width="600" height="410"/>
-                                <connections>
-                                    <outlet property="delegate" destination="NC8-s1-hOT" id="uT3-KG-o79"/>
-                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzH-Aq-xRB" userLabel="bottomNav">
                                 <rect key="frame" x="0.0" y="486" width="600" height="114"/>
@@ -347,11 +344,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ha4-2g-QJB"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="polylineColor">
-                            <color key="value" red="0.16470588235294117" green="0.66666666666666663" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="mapView" destination="eAd-9y-yff" id="BcG-ml-TLi"/>
                     </connections>
@@ -440,6 +432,9 @@ toward West St.</string>
                             <constraint firstItem="0yb-rQ-OeF" firstAttribute="leading" secondItem="Rea-2T-LV7" secondAttribute="leading" id="oR4-G9-jOz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="Pdy-RL-n1v" id="Nq9-HB-Mif"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dAS-Y9-f8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

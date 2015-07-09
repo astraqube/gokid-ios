@@ -55,7 +55,7 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     ///A callback to be called on each periodic LocationUpdate. Use `startUpdatingLocationWithCallback`.
     var onLocationUpdate : LocationCallback?
     ///A callback to be called after locationToCurrentStopDirection completes. Use `calculateCurrentToPickupRouteWithCallback`.
-    var onCurrentToPickupRouteDetermined : MKDirectionsHandler?
+    var onLocationToCurrentStopRouteDetermined : MKDirectionsHandler?
     var pickups : [Stop]! = [] {
         didSet { sortStops(&self.pickups!, beginningAt: self.pickups.first) }
     }
@@ -92,14 +92,14 @@ class Navigation : NSObject, CLLocationManagerDelegate {
 
     var locationManager : CLLocationManager!
     var pickupToDropoffResponse : MKDirectionsResponse?
-    var currentToPickupResponse : MKDirectionsResponse?
+    var locationToCurrentStopResponse : MKDirectionsResponse?
 
     /**
     Contains all the responses for each step of route, from first pickup to last dropoff.
     Count is `count(pickups + dropoffs) - 1`
     `calculatePickupToDropoffRoutePiecesWithUpdateCallback` initializes with all nils, then populates.
     */
-    var stopStepResponses : [MKDirectionsResponse?]!
+    var stopStepResponses : [MKDirectionsResponse?]?
     
     lazy var pickupToDropoffDirections : MKDirections? = {
         return self.stopToStopDirections( self.pickups.first , second: self.dropoffs.first )
@@ -113,7 +113,18 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         self.pickups = pickups
         self.dropoffs = dropoffs
     }
-
+    
+    ///call this function when you've set a Stop hasStopped to true or false
+    ///it will lead to updates causing your onDirectionUpdate to fire, etc
+    func updateForStopped() {
+        locationToCurrentStopResponse = nil
+        locationToCurrentStopDirections = nil
+        if onDirectionUpdate != nil {
+            println("since on directionUpdate running, we should update this")
+        }
+    }
+    
+    //CALCULATIONS SECTION
     func stopToStopDirections(first: Stop? , second: Stop?) -> MKDirections? {
         if first == nil || second == nil {
             return nil
@@ -124,12 +135,22 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         return MKDirections(request: request)
     }
     
-    lazy var locationToCurrentStopDirections : MKDirections = {
-        var request = MKDirectionsRequest()
-        request.setSource(MKMapItem.mapItemForCurrentLocation())
-        request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: self.currentStop!.coordinate, addressDictionary: nil)))
-        return MKDirections(request: request)
-    }()
+
+    var _locationToCurrentStopDirections : MKDirections?
+    var locationToCurrentStopDirections : MKDirections? {
+        get {
+            if _locationToCurrentStopDirections == nil {
+                var request = MKDirectionsRequest()
+                request.setSource(MKMapItem.mapItemForCurrentLocation())
+                request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: self.currentStop!.coordinate, addressDictionary: nil)))
+                _locationToCurrentStopDirections = MKDirections(request: request)
+            }
+            return _locationToCurrentStopDirections
+        }
+        set (newValue) {
+            _locationToCurrentStopDirections = newValue
+        }
+    }
     
     func startUpdatingETAWithCallback(callback : ETACallback) {
         onETAUpdate = callback
@@ -147,13 +168,16 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     Initializes `stopStepResponses` with all nils, then populates. Calls callback while populating.
     */
     func calculatePickupToDropoffRoutePiecesWithUpdateCallback(callback: ((updatedArray: [MKDirectionsResponse?], error: NSError?) -> (Void))){
+        if stopStepResponses != nil {
+            return callback(updatedArray: self.stopStepResponses!, error: nil)
+        }
         let allStops = pickups + dropoffs
         stopStepResponses = [MKDirectionsResponse?](count: Int(allStops.count-1), repeatedValue: nil)
         for (index, stop) in enumerate(allStops){
             if (index + 1 < allStops.count){
                 var nextStop = allStops[index+1]
                 stopToStopDirections(stop, second: nextStop)?.calculateDirectionsWithCompletionHandler { (response: MKDirectionsResponse!, error: NSError!) -> Void in
-                    self.stopStepResponses[index] = response
+                    self.stopStepResponses![index] = response
                     if error != nil {
                         println("error in calculateRoutePieces: " + error.description)
                     }
@@ -170,26 +194,32 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         pickupToDropoffDirections?.calculateDirectionsWithCompletionHandler(callback)
     }
 
-    func calculateCurrentToPickupRouteWithCallback(callback: MKDirectionsHandler!) {
-        onCurrentToPickupRouteDetermined = callback
-        if currentToPickupResponse != nil {
-            return callback(currentToPickupResponse, nil)
+    func calculateLocationToCurrentStopRouteWithCallback(callback: MKDirectionsHandler!) {
+        onLocationToCurrentStopRouteDetermined = callback
+        if locationToCurrentStopResponse != nil {
+            return callback(locationToCurrentStopResponse, nil)
         }
         if locationManager == nil {
             locationManager = CLLocationManager()
             locationManager.delegate = self
         }
-        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            self.locationManager(locationManager, didChangeAuthorizationStatus: CLLocationManager.authorizationStatus())
+        }
     }
 
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status.rawValue < CLAuthorizationStatus.AuthorizedAlways.rawValue {
             return
         }
-        
-        locationToCurrentStopDirections.calculateDirectionsWithCompletionHandler({ (response: MKDirectionsResponse!, error: NSError!) -> Void in
-            self.currentToPickupResponse = response
-            self.onCurrentToPickupRouteDetermined!(response, error);
+        if locationToCurrentStopDirections?.calculating == true {
+            return
+        }
+        locationToCurrentStopDirections!.calculateDirectionsWithCompletionHandler({ (response: MKDirectionsResponse!, error: NSError!) -> Void in
+            self.locationToCurrentStopResponse = response
+            self.onLocationToCurrentStopRouteDetermined!(response, error);
         })
     }
 }

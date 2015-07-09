@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		791BAD501B471236008DC186 /* navmapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BAD4F1B471236008DC186 /* navmapsTests.swift */; };
+		791C2E611B4E2DFC0045555C /* MapViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C2E601B4E2DFC0045555C /* MapViewDatasource.swift */; };
 		7929641E1B48881700BE3250 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929641D1B48881700BE3250 /* MapKit.framework */; };
 		792964281B4899A200BE3250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792964201B4899A200BE3250 /* AppDelegate.swift */; };
 		792964291B4899A200BE3250 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792964211B4899A200BE3250 /* LaunchScreen.xib */; };
@@ -40,6 +41,7 @@
 		791BAD491B471236008DC186 /* navmapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = navmapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		791BAD4E1B471236008DC186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		791BAD4F1B471236008DC186 /* navmapsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navmapsTests.swift; sourceTree = "<group>"; };
+		791C2E601B4E2DFC0045555C /* MapViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDatasource.swift; sourceTree = "<group>"; };
 		7929641D1B48881700BE3250 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		792964201B4899A200BE3250 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		792964221B4899A200BE3250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				79A702D21B4A22F300D17537 /* Navigation.swift */,
+				791C2E601B4E2DFC0045555C /* MapViewDatasource.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				799792FC1B472B0200463FA7 /* DetailMapVC.swift in Sources */,
 				79E0BDC01B4A312300B54903 /* MapUserImageView.swift in Sources */,
 				799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */,
+				791C2E611B4E2DFC0045555C /* MapViewDatasource.swift in Sources */,
 				79E0BDBF1B4A312300B54903 /* BorderedBarishButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,4 +9,5 @@ To integrate navMaps
 
 Changelog
 July 8
+Now have navigation mode, allowing toggling pickups and getting apple maps directions
 Now have multiple pickup, multiple dropoff support with intelligent routing
