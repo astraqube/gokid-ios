@@ -97,6 +97,7 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        mapView.deselectAnnotation(view.annotation, animated: false)
         onAnnotationSelect?(selectedAnnotationView: view)
     }
     
