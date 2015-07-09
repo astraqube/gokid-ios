@@ -16,9 +16,9 @@ enum MapViewDataSourceType : Int {
 
 enum MapTrackMode : Int {
     case Everything
-    case UserStop
     case NextStop
     case User
+    case UserStop
 }
 
 typealias AnnotationSelectHandler = ((selectedAnnotationView: MKAnnotationView) -> (Void))
@@ -120,15 +120,16 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
             if mapView.userLocation != nil{
                 annotations.append(mapView.userLocation)
             }
+            mapView.showAnnotations(annotations, animated: true)
         case .User:
-            annotations = [mapView.userLocation]
-            mapView.userTrackingMode = MKUserTrackingMode.Follow
+            mapView.setUserTrackingMode(MKUserTrackingMode.FollowWithHeading, animated: false)
         case .UserStop:
             annotations = [ navigation.currentStop != nil ? navigation.currentStop! : navigation.dropoffs.last!, mapView.userLocation]
+            mapView.showAnnotations(annotations, animated: true)
         case .NextStop:
             annotations = [navigation.currentStop != nil ? navigation.currentStop! : navigation.dropoffs.last!] as [MKAnnotation]!
+            mapView.showAnnotations(annotations, animated: true)
         }
-        mapView.showAnnotations(annotations, animated: true)
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
