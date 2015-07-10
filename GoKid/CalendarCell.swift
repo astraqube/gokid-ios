@@ -18,4 +18,6 @@ class CalendarCell: UITableViewCell {
     
     @IBOutlet weak var pickupIcon: UILabel!
     @IBOutlet weak var dropoffIcon: UILabel!
+    
+    @IBOutlet var pickupImageCollection : [UIImageView]!
 }

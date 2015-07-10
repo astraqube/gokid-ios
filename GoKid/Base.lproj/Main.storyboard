@@ -1289,12 +1289,25 @@
                                                                 <constraint firstItem="7Y2-55-5Pf" firstAttribute="centerY" secondItem="r8p-Dk-dRL" secondAttribute="centerY" id="xBd-T3-2tV"/>
                                                             </constraints>
                                                         </view>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emma" translatesAutoresizingMaskIntoConstraints="NO" id="RsE-Mc-ELq" userLabel="userImage View" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                            <rect key="frame" x="104" y="66" width="44" height="44"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="44" id="aOV-fv-c0U"/>
+                                                                <constraint firstAttribute="width" constant="44" id="mSy-2a-gGD"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="22"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="5mo-XU-ywY" secondAttribute="bottom" id="Bdb-0e-a1h"/>
                                                         <constraint firstAttribute="height" constant="134" id="BzQ-dr-XCx"/>
                                                         <constraint firstAttribute="centerY" secondItem="2Cl-4f-vdy" secondAttribute="centerY" id="FHu-Cv-Tvf"/>
+                                                        <constraint firstItem="RsE-Mc-ELq" firstAttribute="leading" secondItem="2Cl-4f-vdy" secondAttribute="trailing" constant="14" id="Lg1-a2-p9Q"/>
                                                         <constraint firstAttribute="bottom" secondItem="LoW-zx-eYE" secondAttribute="bottom" id="ODY-PN-pLL"/>
                                                         <constraint firstItem="Flx-JH-oVl" firstAttribute="top" secondItem="vpy-Z9-an7" secondAttribute="top" constant="17" id="QVc-33-2n0"/>
                                                         <constraint firstAttribute="bottom" secondItem="jsZ-y2-4rn" secondAttribute="bottom" id="Rn8-0L-Ajp"/>
@@ -1305,6 +1318,7 @@
                                                         <constraint firstItem="5mo-XU-ywY" firstAttribute="top" secondItem="vpy-Z9-an7" secondAttribute="top" id="cxz-cU-dQG"/>
                                                         <constraint firstItem="LoW-zx-eYE" firstAttribute="top" secondItem="vpy-Z9-an7" secondAttribute="top" id="jUF-si-4c3"/>
                                                         <constraint firstItem="Flx-JH-oVl" firstAttribute="leading" secondItem="2Cl-4f-vdy" secondAttribute="trailing" constant="11" id="mUJ-zL-8EU"/>
+                                                        <constraint firstAttribute="bottom" secondItem="RsE-Mc-ELq" secondAttribute="bottom" constant="24" id="mUm-c6-5qb"/>
                                                         <constraint firstItem="5mo-XU-ywY" firstAttribute="leading" secondItem="LoW-zx-eYE" secondAttribute="trailing" id="so4-lr-STG"/>
                                                         <constraint firstItem="LoW-zx-eYE" firstAttribute="leading" secondItem="jsZ-y2-4rn" secondAttribute="trailing" id="yzw-NE-pPe"/>
                                                     </constraints>
@@ -1326,6 +1340,7 @@
                                             <outlet property="profileImageView" destination="iiC-nf-6oh" id="FKg-Gg-1MK"/>
                                             <outlet property="timeLabel" destination="OLz-kz-mpp" id="lZe-Im-S00"/>
                                             <outlet property="typeLabel" destination="r8p-Dk-dRL" id="dCQ-PD-WF5"/>
+                                            <outletCollection property="pickupImageCollection" destination="RsE-Mc-ELq" collectionClass="NSMutableArray" id="W59-cd-26Q"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CalendarTimeToGoCell" rowHeight="190" id="jzg-Mo-cfx" userLabel="CalendarTimeToGoCell" customClass="CalendarTimeToGoCell" customModule="GoKid" customModuleProvider="target">
