@@ -1199,8 +1199,9 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Cl-4f-vdy" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                             <rect key="frame" x="26" y="35" width="64" height="64"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emma" translatesAutoresizingMaskIntoConstraints="NO" id="iiC-nf-6oh" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emma" translatesAutoresizingMaskIntoConstraints="NO" id="iiC-nf-6oh" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                     <rect key="frame" x="5" y="5" width="54" height="54"/>
+                                                                    <gestureRecognizers/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="54" id="CuP-tU-y1H"/>
                                                                         <constraint firstAttribute="width" constant="54" id="ODf-Y0-U4Q"/>
@@ -1504,7 +1505,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1s-mF-Os7" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                             <rect key="frame" x="26" y="35" width="64" height="64"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emma" translatesAutoresizingMaskIntoConstraints="NO" id="f0H-ih-E8P" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emma" translatesAutoresizingMaskIntoConstraints="NO" id="f0H-ih-E8P" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                     <rect key="frame" x="5" y="5" width="54" height="54"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="54" id="Bx4-iQ-1Dd"/>

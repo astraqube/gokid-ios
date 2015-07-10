@@ -141,8 +141,26 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.text = model.poolname
         cell.timeLabel.text = model.pooltimeStr
         cell.typeLabel.text = model.poolType
+        if model.poolType == "DROP OFF" {
+            cell.pickupIcon.hidden = true
+            cell.dropoffIcon.hidden = false
+        }else {
+            cell.pickupIcon.hidden = false
+            cell.dropoffIcon.hidden = true
+        }
         cell.profileImageView.image = nil
         imageManager.setImageToView(cell.profileImageView, urlStr: model.poolDriverImageUrl)
+        weak var wModel = model
+        cell.onProfileImageViewTapped = { () -> (Void) in
+            if wModel == nil { return }
+            var volunteerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            var volunteerTitle = "Volunteer to \(wModel!.poolType)"
+            volunteerActionSheet.addAction(UIAlertAction(title: volunteerTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
+                UIAlertView(title: "Program faster!", message: nil, delegate: nil, cancelButtonTitle: "Okay").show()
+            }))
+            volunteerActionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            self.presentViewController(volunteerActionSheet, animated: true, completion: nil)
+        }
         return cell
     }
     
