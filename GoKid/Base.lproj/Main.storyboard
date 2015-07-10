@@ -1240,13 +1240,13 @@
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-55-5Pf" userLabel="dropoff">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-55-5Pf" userLabel="dropoff icon">
                                                                     <rect key="frame" x="0.0" y="1" width="15" height="17"/>
                                                                     <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88w-Bo-ce2" userLabel="pickup">
+                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88w-Bo-ce2" userLabel="pickup icon">
                                                                     <rect key="frame" x="0.0" y="1" width="15" height="17"/>
                                                                     <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1320,13 +1320,15 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
+                                            <outlet property="dropoffIcon" destination="7Y2-55-5Pf" id="OOh-hI-NIX"/>
                                             <outlet property="nameLabel" destination="LgA-qe-nVL" id="05I-T4-bbx"/>
+                                            <outlet property="pickupIcon" destination="88w-Bo-ce2" id="Tpy-c3-s1n"/>
                                             <outlet property="profileImageView" destination="iiC-nf-6oh" id="FKg-Gg-1MK"/>
                                             <outlet property="timeLabel" destination="OLz-kz-mpp" id="lZe-Im-S00"/>
                                             <outlet property="typeLabel" destination="r8p-Dk-dRL" id="dCQ-PD-WF5"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CalendarCellTimeOfDay" rowHeight="190" id="jzg-Mo-cfx" userLabel="CalendarTimeOfDay">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CalendarTimeToGoCell" rowHeight="190" id="jzg-Mo-cfx" userLabel="CalendarTimeToGoCell" customClass="CalendarTimeToGoCell" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jzg-Mo-cfx" id="DUs-m5-zHL" userLabel="calendarCellView">
@@ -1509,6 +1511,11 @@
                                                 <constraint firstAttribute="trailing" secondItem="rWt-bc-KtB" secondAttribute="trailing" id="rJv-kf-MPR"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="timeToGoTimeLabel" destination="b8R-vk-JV9" id="WGH-Wx-0yc"/>
+                                            <outlet property="timeToGoTitleLabel" destination="68u-MH-iiF" id="qZ9-pf-BGP"/>
+                                            <outlet property="updatedLabel" destination="vye-yD-bMA" id="ewI-HX-a2o"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CalendarAddCell" rowHeight="130" id="586-a3-bRg" customClass="CalendarAddCell" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

@@ -114,6 +114,7 @@
 		796E69C61B4A6E5600DF8D43 /* MapUserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E69B71B4A6E5600DF8D43 /* MapUserImageView.swift */; };
 		796E69C81B4A6F0B00DF8D43 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 796E69C71B4A6F0B00DF8D43 /* MapKit.framework */; };
 		796E69CA1B4A6F1200DF8D43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 796E69C91B4A6F1200DF8D43 /* CoreLocation.framework */; };
+		7984A32A1B4F7277006621B5 /* CalendarTimeToGoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7984A3291B4F7277006621B5 /* CalendarTimeToGoCell.swift */; };
 		79C229D91B4EF6FD0051F148 /* MapViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C229D81B4EF6FD0051F148 /* MapViewDatasource.swift */; };
 		ECE57027C4889A619FFDC703 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF40D0E37CF42771C6294E4C /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -247,6 +248,7 @@
 		796E69B71B4A6E5600DF8D43 /* MapUserImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUserImageView.swift; sourceTree = "<group>"; };
 		796E69C71B4A6F0B00DF8D43 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		796E69C91B4A6F1200DF8D43 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7984A3291B4F7277006621B5 /* CalendarTimeToGoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTimeToGoCell.swift; sourceTree = "<group>"; };
 		79C229D81B4EF6FD0051F148 /* MapViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDatasource.swift; sourceTree = "<group>"; };
 		93CC9E48A48DAB1946EA9A2A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DD2545F713FEF193EB6D553D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 				1D8F78F61B36A07F00C78CAF /* CalendarAddCell.swift */,
 				1D8F78F71B36A07F00C78CAF /* CalendarDateCell.swift */,
 				1D8F78F81B36A07F00C78CAF /* CalendarCell.swift */,
+				7984A3291B4F7277006621B5 /* CalendarTimeToGoCell.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -925,6 +928,7 @@
 				1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */,
 				1D39AAB31B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift in Sources */,
 				1D8F78FB1B36A07F00C78CAF /* CalendarDateCell.swift in Sources */,
+				7984A32A1B4F7277006621B5 /* CalendarTimeToGoCell.swift in Sources */,
 				1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */,
 				1DEFF1711B49EE4B0094B54E /* InviteeCell.swift in Sources */,
 				1D8F78FA1B36A07F00C78CAF /* CalendarAddCell.swift in Sources */,
