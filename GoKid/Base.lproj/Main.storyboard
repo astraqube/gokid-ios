@@ -1512,8 +1512,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dropoffIcon" destination="krx-eI-brN" id="xCX-gc-x41"/>
+                                            <outlet property="nameLabel" destination="7ff-KH-Qru" id="F0d-bw-ovP"/>
+                                            <outlet property="pickupIcon" destination="1gG-x9-2hd" id="pUf-kh-Cy7"/>
+                                            <outlet property="profileImageView" destination="f0H-ih-E8P" id="1bQ-wC-Vd8"/>
+                                            <outlet property="timeLabel" destination="wmU-lX-SHK" id="Wed-iO-Vfi"/>
                                             <outlet property="timeToGoTimeLabel" destination="b8R-vk-JV9" id="WGH-Wx-0yc"/>
                                             <outlet property="timeToGoTitleLabel" destination="68u-MH-iiF" id="qZ9-pf-BGP"/>
+                                            <outlet property="typeLabel" destination="faF-bq-hCR" id="DYk-Jg-7TR"/>
                                             <outlet property="updatedLabel" destination="vye-yD-bMA" id="ewI-HX-a2o"/>
                                         </connections>
                                     </tableViewCell>
