@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var nav = window!.rootViewController as! UINavigationController
         var vc = nav.topViewController as! DetailMapVC
         vc.navigation = Navigation()
-        vc.navigation.setup([Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1833), name: "Menlo's House", stopID: "1", thumbnailImage: UIImage(named: "test_userImage")), Stop(coordinate: CLLocationCoordinate2DMake(37.4598, -122.1893), name: "Kid's House", stopID: "2", thumbnailImage: nil),Stop(coordinate: CLLocationCoordinate2DMake(37.4608, -122.2093), name: "Another Kid's House", stopID: "3", thumbnailImage: nil)], dropoffs: [Stop(coordinate: CLLocationCoordinate2DMake(37.783333, -122.416667), name: "Soccer Club", stopID: "10", thumbnailImage: nil)]);
+        vc.navigation.setup([Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1833), name: "Menlo's House", phoneNumber: "18002831337", stopID: "1", thumbnailImage: UIImage(named: "test_userImage")), Stop(coordinate: CLLocationCoordinate2DMake(37.4598, -122.1893), name: "Kid's House", phoneNumber: "18002831337", stopID: "2", thumbnailImage: nil),Stop(coordinate: CLLocationCoordinate2DMake(37.4608, -122.2093), name: "Another Kid's House", phoneNumber: "18002831337", stopID: "3", thumbnailImage: nil)], dropoffs: [Stop(coordinate: CLLocationCoordinate2DMake(37.783333, -122.416667), name: "Soccer Club", phoneNumber: "18002831337", stopID: "10", thumbnailImage: nil)]);
         return true
     }
 

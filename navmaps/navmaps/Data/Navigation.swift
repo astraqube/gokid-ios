@@ -33,12 +33,14 @@ class Stop : NSObject, MKAnnotation {
     var coordinate : CLLocationCoordinate2D
     var name : NSString
     var thumbnailImage : UIImage?
-    var hasStopped : Bool = false
+    var phoneNumber : NSString
     var stopID : NSString
+    var hasStopped : Bool = false
     
-    init(coordinate: CLLocationCoordinate2D, name: NSString, stopID : NSString, thumbnailImage: UIImage?) {
+    init(coordinate: CLLocationCoordinate2D, name: NSString, phoneNumber : NSString, stopID : NSString, thumbnailImage: UIImage?) {
         self.coordinate = coordinate
         self.name = name
+        self.phoneNumber = phoneNumber
         self.stopID = stopID
         self.thumbnailImage = thumbnailImage
     }

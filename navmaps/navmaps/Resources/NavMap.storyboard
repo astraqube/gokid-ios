@@ -27,7 +27,7 @@
         <!--Detail MapVC-->
         <scene sceneID="SBX-m0-WlO">
             <objects>
-                <viewController id="NC8-s1-hOT" customClass="DetailMapVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailMapVC" id="NC8-s1-hOT" customClass="DetailMapVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zPp-4j-8Cd"/>
                         <viewControllerLayoutGuide type="bottom" id="9nn-Kl-2QR"/>
@@ -54,6 +54,9 @@
                                                 <state key="normal" image="map_back-arrow">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="backButtonPressed:" destination="NC8-s1-hOT" eventType="touchUpInside" id="QOo-mg-XL6"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccer Practice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNX-Ky-EdS">
                                                 <rect key="frame" x="233" y="0.0" width="135" height="22"/>

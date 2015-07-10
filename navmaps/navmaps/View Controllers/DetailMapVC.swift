@@ -21,9 +21,17 @@ class DetailMapVC: UIViewController {
         mapDataSource.setup()
     }
  
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let drivingModeVC = segue.destinationViewController as? DrivingModeVC {
             drivingModeVC.navigation = navigation
         }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
     }
 }
