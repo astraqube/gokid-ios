@@ -19,5 +19,12 @@ class CalendarCell: UITableViewCell {
     @IBOutlet weak var pickupIcon: UILabel!
     @IBOutlet weak var dropoffIcon: UILabel!
     
-    @IBOutlet var pickupImageCollection : [UIImageView]!
+    /**
+    The in-order collection of `CallendarUserImageView`
+
+    Iterate through them. Add data you have. Clear data you don't.
+
+    Set hidden the ones there are no riders for.
+    */
+    @IBOutlet var pickupImageCollection : [CalendarUserImageView]!
 }

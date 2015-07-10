@@ -194,6 +194,7 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
             iconLabel.text = abbreviation
             iconLabel.textAlignment = .Center
             iconLabel.textColor = UIColor.whiteColor()
+            iconLabel.font = UIFont(name: "Raleway-Regular", size: 16)
             pinImageView.addSubview(iconLabel)
             iconLabel.center = pinImageView.center
             iconLabel.center.y -= 3

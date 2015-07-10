@@ -9,11 +9,46 @@
 import UIKit
 
 @IBDesignable
-class CalendarUserImageView: UIImageView {
+class CalendarUserImageView: UIView {
+    lazy var imageView = UIImageView()
+    @IBInspectable var image : UIImage? {
+        didSet{
+            imageView.image = self.image
+            update()
+        }
+    }
+    lazy var nameLabel = UILabel()
+    @IBInspectable var nameString : NSString = "?" {
+        didSet{
+            var abbreviation : String?
+            if self.nameString.length >= 2 {
+                abbreviation = self.nameString.substringToIndex(2)
+            }else{
+                abbreviation = self.nameString.substringToIndex(self.nameString.length)
+            }
+            var words = self.nameString.componentsSeparatedByString(" ")
+            if words.count > 1 {
+                abbreviation = words[0].substringToIndex(1) + words[1].substringToIndex(1)
+            }
+            nameLabel.text = abbreviation
+        }
+    }
+    
+    @IBInspectable var noImageColor : UIColor = UIColor.whiteColor() {
+        didSet {
+            imageView.backgroundColor = noImageColor
+        }
+    }
+    
     @IBInspectable var cornerRadius : CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
             layer.masksToBounds = cornerRadius > 0
+            
+            if cornerRadius > 0 {
+                imageView.layer.cornerRadius = cornerRadius + 1.0
+                imageView.layer.masksToBounds = true
+            }
         }
     }
     
@@ -40,7 +75,25 @@ class CalendarUserImageView: UIImageView {
     }
     
     func setup() {
-        self.borderWidth = CGFloat(3.5)
-        self.borderColor = ColorManager.sharedInstance.appLightGreen
+        self.borderWidth = CGFloat(4)
+        self.borderColor = UIColor(red: 230.0/255.0, green: 246.0/255.0, blue: 230.0/255.0, alpha: 1.0)
+        
+        self.addSubview(imageView)
+        imageView.frame = self.bounds
+
+        nameLabel.textAlignment = .Center
+        nameLabel.textColor = UIColor.whiteColor()
+        nameLabel.font = UIFont(name: "Raleway-Regular", size: 16)
+        self.addSubview(nameLabel)
+        nameLabel.frame = self.bounds
+        update()
+    }
+    
+    func update() {
+        if image == nil{
+            nameLabel.hidden = false
+        } else {
+            nameLabel.hidden = true
+        }
     }
 }
