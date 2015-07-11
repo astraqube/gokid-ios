@@ -28,6 +28,7 @@ extension DataManager {
                 "schedule": schedule
             ]
         ]
+        println(map)
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             var carpool = CarpoolModel(json: JSON(obj))

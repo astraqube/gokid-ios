@@ -48,6 +48,7 @@ class TeamMemberModel: NSObject {
             if index == "0" { // user info
                 var um = UserManager.sharedInstance
                 um.updateUserWithTeamMembersInfo(subJson["user"])
+                continue
             }
             var member = TeamMemberModel(json: subJson)
             member.cellType = .EditMember

@@ -16,6 +16,7 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getTeamMembersOfTeam success")
             var json = JSON(obj)
+            println(json)
             var members =  TeamMemberModel.arrayOfMembers(json["permissions"])
             self.userManager.teamMembers = members
             self.userManager.userHomeAdress = json["teams"][0]["address"].stringValue
