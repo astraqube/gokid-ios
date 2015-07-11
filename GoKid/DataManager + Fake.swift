@@ -38,8 +38,12 @@ extension DataManager {
     }
     
     func fakeTimeAndDateTableViewData(vc: TimeAndDateVC) {
+        var startStr = "Select"
+        if let date = userManager.currentCarpoolModel.startDate {
+            startStr = date.dateString()
+        }
         var c1 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
-        var c2 = TDCellModel(title: "Start date",      value: "Select", switchValue: true,  type: .Text,     action: .ChooseDate)
+        var c2 = TDCellModel(title: "Start date",      value: startStr, switchValue: true,  type: .Text,     action: .ChooseDate)
         var c3 = TDCellModel(title: "Repeat",          value: "",       switchValue: false, type: .Switcher, action: .None)
         var c4 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
         var c5 = TDCellModel(title: vc.eventStart,     value: "Select", switchValue: true,  type: .Text,     action: .ChooseTime)
@@ -53,8 +57,12 @@ extension DataManager {
     }
     
     func fakeTimeAndDateRepetedTableViewData(vc: TimeAndDateVC) {
+        var startStr = "Select"
+        if let date = userManager.currentCarpoolModel.startDate {
+            startStr = date.dateString()
+        }
         var c1 = TDCellModel(title: "",                value: "",       switchValue: true,  type: .Empty,    action: .None)
-        var c2 = TDCellModel(title: "Start Date ",     value: "Select", switchValue: true,  type: .Text,     action: .ChooseDate)
+        var c2 = TDCellModel(title: "Start Date ",     value: startStr, switchValue: true,  type: .Text,     action: .ChooseDate)
         var c3 = TDCellModel(title: "End Date ",       value: "Select", switchValue: true,  type: .Text,     action: .ChooseDate)
         var c4 = TDCellModel(title: "Frequency",       value: ">",      switchValue: true,  type: .Text,     action: .None)
         var c5 = TDCellModel(title: "Repeat",          value: "",       switchValue: true,  type: .Switcher, action: .None)

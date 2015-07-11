@@ -94,13 +94,25 @@ extension TimeAndDateVC {
     
     func checkDateValid(date: NSDate) -> Bool {
         var model = userManager.currentCarpoolModel
-        if currentBindModel?.titleString == "End Date" && model.startDate != nil {
-            if date.timeIntervalSinceDate(model.startDate) < 0 {
-                
+        if currentBindModel?.titleString == "End Date " && model.startDate != nil {
+            if date.timeIntervalSinceDate(model.startDate!) < 0 {
+                showAlert("Date invalid", messege: "End date needs to be later then start date", cancleTitle: "OK")
+                return false
             }
+            return true
         }
-        if currentBindModel?.titleString == "Start Date" && model.endDate != nil {
-            
+        println(currentBindModel?.titleString)
+        println(model.endDate?.dateString())
+        println(model.endDate?.timeString())
+        println(date.dateString())
+        println(date.timeString())
+        if currentBindModel?.titleString == "Start Date " && model.endDate != nil {
+            if date.timeIntervalSinceDate(model.endDate!) > 0 {
+                showAlert("Date invalid", messege: "Start date needs to be earlier then end date", cancleTitle: "OK")
+                return false
+            }
+            return true
         }
+        return true
     }
 }
