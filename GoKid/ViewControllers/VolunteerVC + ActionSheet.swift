@@ -63,7 +63,7 @@ extension VolunteerVC {
             LoadingView.dismiss()
             onMainThread() {
                 if success {
-                    cell.checkButton.backgroundColor = UIColor.lightGrayColor()
+                    cell.checkButton.backgroundColor = UIColor.clearColor()
                     model.taken = !model.taken
                 } else {
                     self.showAlert("Fail to unvolunteer", messege: errStr, cancleTitle: "OK")

@@ -50,15 +50,23 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
         var sections = 1
         
         for i in 0..<sections {
-            var monday = FrequencyModel("Monday", 1, false)
-            var tuesday = FrequencyModel("Tuesday", 2, false)
+            var monday    = FrequencyModel("Monday",    1, false)
+            var tuesday   = FrequencyModel("Tuesday",   2, false)
             var wednesday = FrequencyModel("Wednesday", 3, false)
-            var thursday = FrequencyModel("Thursday", 4, false)
-            var friday = FrequencyModel("Friday", 5, false)
-            var saturday = FrequencyModel("Saturday", 6, false)
-            var sunday = FrequencyModel("Sunday", 0, false)
+            var thursday  = FrequencyModel("Thursday",  4, false)
+            var friday    = FrequencyModel("Friday",    5, false)
+            var saturday  = FrequencyModel("Saturday",  6, false)
+            var sunday    = FrequencyModel("Sunday",    0, false)
             
-            var data = [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
+            var data = [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
+            if let occ = userManager.currentCarpoolModel.occurence {
+                println(occ)
+                for i in occ {
+                    data[i].selected = true
+                }
+            }
+            
+            data = [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
             dataSource.append(data)
         }
         
@@ -94,8 +102,14 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var model = dataSource[indexPath.section][indexPath.row]
         var cell = tableView.cellWithID("FrequencyCell", indexPath) as! FrequencyCell
         cell.timeLabel.text = dataSource[indexPath.section][indexPath.row].name
+        if model.selected {
+            cell.checkImageView.backgroundColor = UIColor.lightGrayColor()
+        } else {
+            cell.checkImageView.backgroundColor = UIColor.clearColor()
+        }
         return cell
     }
     
@@ -125,7 +139,9 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
         var occ = [Int]()
         for section in dataSource {
             for item in section {
-                occ.append(item.num)
+                if item.selected {
+                    occ.append(item.num)
+                }
             }
         }
         return occ

@@ -175,6 +175,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tryLoadTableData() {
         if userManager.userLoggedIn {
+            LoadingView.showWithMaskType(.Black)
             dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
         } else {
             if userManager.currentCarpoolModel.isValidForTime() {

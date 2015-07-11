@@ -14,11 +14,11 @@ class VolunteerCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var poolTypeLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet weak var driverImageView: UIImageView!
     var checkButtonHandler: ((VolunteerCell, UIButton)->(Void))?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkButton.backgroundColor = UIColor.lightGrayColor()
         checkButton.setRounded()
     }
     

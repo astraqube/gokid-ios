@@ -104,7 +104,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YLr-ET-zku" customClass="STCollapseTableView">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YLr-ET-zku" customClass="STCollapseTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -741,6 +741,7 @@
                                         <color key="backgroundColor" red="0.98431372549999996" green="0.99215686270000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="checkButton" destination="WzJ-6D-3c1" id="4fj-Qi-X8m"/>
+                                            <outlet property="driverImageView" destination="eKp-pi-UPg" id="RHe-3Z-uyz"/>
                                             <outlet property="driverTitleLabel" destination="NkC-W5-giZ" id="iTx-By-Izb"/>
                                             <outlet property="poolTypeLabel" destination="yfw-3S-mnl" id="zow-TM-yVK"/>
                                             <outlet property="timeLabel" destination="kKz-YF-Xww" id="fpB-eH-ObW"/>
