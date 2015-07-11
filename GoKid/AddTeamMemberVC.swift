@@ -41,7 +41,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     }
     
     func setupNavBar() {
-        setNavBarRightButtonTitle("Done", action: "handleDoneButtonClick")
+        setNavBarRightButtonTitle("save", action: "handleSaveButtonClick")
     }
     
     func setRemoveButtonState() {
@@ -135,6 +135,8 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
         for title in titles {
             let button = UIAlertAction(title: title, style: .Default) { (alert) in
                 self.roleButton.setTitle(title, forState: .Normal)
+                self.model.role = title.lowercaseString
+                self.tableView.reloadData()
             }
             alert.addAction(button)
         }
@@ -152,10 +154,10 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
             }
             return
         }
-        handleDoneButtonClick()
+        handleSaveButtonClick()
     }
     
-    func handleDoneButtonClick() {
+    func handleSaveButtonClick() {
         if let model = getTeamModel() {
             LoadingView.showWithMaskType(.Black)
             if sourceCellType == .AddMember {
@@ -237,4 +239,20 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
             navigationController?.popViewControllerAnimated(true)
         }
     }
+    
+    // MARK: Text Field Delegate
+    // --------------------------------------------------------------------------------------------
+    
+    @IBAction func firstNameEditingChanged(sender: UITextField) {
+        model.firstName = sender.text
+    }
+
+    @IBAction func lastNameEditingChanged(sender: UITextField) {
+        model.lastName = sender.text
+    }
+    
+    @IBAction func phoneNumberEditingChanged(sender: UITextField) {
+        model.phoneNumber = sender.text
+    }
+    
 }

@@ -135,8 +135,8 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
         let button2 = UIAlertAction(title: "Daddy", style: .Default) { (alert) in
             self.roleButton.setTitle("Daddy", forState: .Normal)
         }
-        let button3 = UIAlertAction(title: "Child", style: .Default) { (alert) in
-            self.roleButton.setTitle("Child", forState: .Normal)
+        let button3 = UIAlertAction(title: "Kid", style: .Default) { (alert) in
+            self.roleButton.setTitle("Kid", forState: .Normal)
         }
         let button4 = UIAlertAction(title: "Sitter", style: .Default) { (alert) in
             self.roleButton.setTitle("Sitter", forState: .Normal)

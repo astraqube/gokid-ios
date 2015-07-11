@@ -26,6 +26,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         setupSubviews()
         setupLoginButton()
         setupGuestureRecognizer()
+        self.keyBoardMoveUp = 95
     }
     
     func setupSubviews() {
@@ -124,7 +125,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        
+      
     }
     
     // MARK: UIImagePickerControllerDelegate
@@ -139,5 +140,24 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
             }
             picker.dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+    
+    // MARK: TextField Delegate
+    // --------------------------------------------------------------------------------------------
+    
+    @IBAction func lastNameTextFieldReturn(sender: AnyObject) {
+        firstNameTextField.becomeFirstResponder()
+    }
+    
+    @IBAction func firstNameTextFieldReturn(sender: AnyObject) {
+        emailTextField.becomeFirstResponder()
+    }
+    
+    @IBAction func emailTextFieldReturn(sender: AnyObject) {
+        passwordTextField.becomeFirstResponder()
+    }
+    
+    @IBAction func passwordTextFieldReturn(sender: AnyObject) {
+        passwordTextField.resignFirstResponder()
     }
 }
