@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoKid/CalendarModel.swift"
-            timestampString = "458283869.78848"
+            timestampString = "458285987.85914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "parseDate(_:key:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -276,7 +276,7 @@
                   moduleName = "GoKid"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bingwen/Desktop/GooooooKid/gokid-ios/GoKid/DataMnager%20+%20Invitation.swift"
-                  timestampString = "458284289.589963"
+                  timestampString = "458287111.443113"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "75"
@@ -291,7 +291,7 @@
                   moduleName = "GoKid"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/bingwen/Desktop/GooooooKid/gokid-ios/GoKid/DataMnager%20+%20Invitation.swift"
-                  timestampString = "458284289.590096"
+                  timestampString = "458287111.443243"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -410,6 +410,22 @@
             startingLineNumber = "110"
             endingLineNumber = "110"
             landmarkName = "checkDateValid(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoKid/DataManager + Team.swift"
+            timestampString = "458286081.897775"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "addTeamMember(_:comp:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

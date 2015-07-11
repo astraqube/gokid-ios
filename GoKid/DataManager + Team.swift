@@ -78,14 +78,18 @@ extension DataManager {
     func addTeamMember(model: TeamMemberModel, comp: UserCompletion) {
         var teamID = String(userManager.info.teamID)
         var url = baseURL + "/api/teams/\(teamID)/permissions"
-        var map = [
-            "permission": [
-                "first_name": model.firstName,
-                "last_name": model.lastName,
-                "phone_number": model.phoneNumber,
-                "role": model.role.lowercaseString
-            ]
+        
+        var permission = [
+            "first_name": model.firstName,
+            "last_name": model.lastName,
+            "role": model.role.lowercaseString
         ]
+        if model.phoneNumber != "" {
+            permission["phone_number"] = model.phoneNumber
+        }
+        var map = ["permission" : permission]
+        println(map)
+        
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("addTeamMember success")

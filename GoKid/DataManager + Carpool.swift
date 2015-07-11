@@ -131,7 +131,7 @@ extension DataManager {
             println("getFakeVolunteerList success")
             var json = JSON(obj)
             println(json)
-            var events = CalendarModel.arrayOfFakeVolunteerEventsFromOccurrences(json, model.name)
+            var events = CalendarModel.arrayOfFakeVolunteerEventsFromOccurrences(json["carpools"], model.name)
             self.userManager.fakeVolunteerEvents = events
             comp(true, "")
         }) { (op, error) in

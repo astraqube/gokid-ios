@@ -79,9 +79,9 @@ class CalendarModel: NSObject {
 
     
     func generateOtherField() {
-        if poolType == "pickup" { poolType = "PICK UP" }
-        else if poolType == "dropoff" { poolType = "DROP OFF" }
-        else { poolType = "Unknown type" }
+        //if poolType == "pickup" { poolType = "PICK UP" }
+        //else if poolType == "dropoff" { poolType = "DROP OFF" }
+        //else { poolType = "Unknown type" }
         
         if poolDriver == "" {
             poolDriver = "No Driver yet"
