@@ -19,6 +19,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var phoneNumberTextField: PaddingTextField!
     @IBOutlet weak var roleButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -279,16 +280,18 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
             firstName = firstNameTextField.text,
             lastName = lastNameTextField.text,
             email = emailTextField.text,
-            role = roleButton.titleLabel?.text?.lowercaseString
+            role = roleButton.titleLabel?.text?.lowercaseString,
+            phoneNum = phoneNumberTextField.text
         {
-                var signupForm = SignupForm()
-                signupForm.passwordConfirm = password
-                signupForm.password = password
-                signupForm.firstName = firstName
-                signupForm.lastName = lastName
-                signupForm.email = email
-                signupForm.role = role
-                return signupForm
+            var signupForm = SignupForm()
+            signupForm.passwordConfirm = password
+            signupForm.password = password
+            signupForm.firstName = firstName
+            signupForm.lastName = lastName
+            signupForm.phoneNum = phoneNum
+            signupForm.email = email
+            signupForm.role = role
+            return signupForm
         }
         return nil
     }

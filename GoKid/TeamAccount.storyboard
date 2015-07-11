@@ -778,21 +778,30 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unset" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSU-Li-XLA">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSU-Li-XLA">
                                                     <rect key="frame" x="136" y="12" width="143" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SC3-K8-7Ju" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
+                                                    <rect key="frame" x="136" y="12" width="143" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="kSU-Li-XLA" firstAttribute="height" secondItem="SC3-K8-7Ju" secondAttribute="height" id="CYL-TT-ivB"/>
                                                 <constraint firstItem="Nm0-q0-6he" firstAttribute="top" secondItem="S6u-IN-01s" secondAttribute="topMargin" constant="2" id="OZq-yN-eOi"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="kSU-Li-XLA" secondAttribute="bottom" constant="2" id="PxE-pd-UPV"/>
                                                 <constraint firstItem="Nm0-q0-6he" firstAttribute="leading" secondItem="S6u-IN-01s" secondAttribute="leadingMargin" constant="12" id="g9Q-7K-slD"/>
                                                 <constraint firstItem="kSU-Li-XLA" firstAttribute="leading" secondItem="Nm0-q0-6he" secondAttribute="trailing" constant="16" id="mHi-Rp-W88"/>
+                                                <constraint firstItem="kSU-Li-XLA" firstAttribute="top" secondItem="SC3-K8-7Ju" secondAttribute="bottom" constant="-21" id="n5X-qV-hdc"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Nm0-q0-6he" secondAttribute="bottom" constant="1" id="oo2-SY-0GO"/>
                                                 <constraint firstItem="kSU-Li-XLA" firstAttribute="top" secondItem="S6u-IN-01s" secondAttribute="topMargin" constant="4" id="p3i-qq-vAe"/>
                                                 <constraint firstItem="kSU-Li-XLA" firstAttribute="trailing" secondItem="S6u-IN-01s" secondAttribute="trailingMargin" id="qpS-XC-c5X"/>
+                                                <constraint firstItem="kSU-Li-XLA" firstAttribute="width" secondItem="SC3-K8-7Ju" secondAttribute="width" id="ut3-K2-LE1"/>
+                                                <constraint firstItem="kSU-Li-XLA" firstAttribute="leading" secondItem="SC3-K8-7Ju" secondAttribute="trailing" constant="-143" id="z7f-qo-bua"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1056,6 +1065,7 @@
                         <outlet property="lastNameTextField" destination="Amo-uV-njM" id="tGT-ls-oUO"/>
                         <outlet property="passwordTextField" destination="aBS-Yk-RhN" id="bT8-K2-I9w"/>
                         <outlet property="phoneNumberLabel" destination="kSU-Li-XLA" id="y1C-vS-2XK"/>
+                        <outlet property="phoneNumberTextField" destination="SC3-K8-7Ju" id="QlA-lk-c18"/>
                         <outlet property="profileImageButton" destination="sqF-7f-K7x" id="TFw-oR-Hdh"/>
                         <outlet property="profileImageView" destination="dUI-wM-RQ4" id="3aK-2P-s12"/>
                         <outlet property="roleButton" destination="izL-wI-10Z" id="z79-XP-pcd"/>

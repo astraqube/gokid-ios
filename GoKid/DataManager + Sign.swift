@@ -46,6 +46,7 @@ extension DataManager {
             "password": signupForm.password,
             "last_name": signupForm.lastName,
             "first_name": signupForm.firstName,
+            "phone_number": signupForm.phoneNum,
             "password_confirmation": signupForm.passwordConfirm
         ]
         var map = ["user": arr]
@@ -145,6 +146,7 @@ extension DataManager {
             "password": signupForm.password,
             "last_name": signupForm.lastName,
             "first_name": signupForm.firstName,
+            "phone_number": signupForm.phoneNum
         ]
         var map = ["user": arr]
         var manager = managerWithToken()
