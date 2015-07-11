@@ -686,9 +686,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkCirc" translatesAutoresizingMaskIntoConstraints="NO" id="eKp-pi-UPg">
+                                                    <rect key="frame" x="100" y="11" width="45" height="45"/>
+                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzJ-6D-3c1">
                                                     <rect key="frame" x="100" y="11" width="45" height="45"/>
-                                                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="45" id="DOr-45-FmV"/>
                                                         <constraint firstAttribute="width" constant="45" id="jUP-hx-rXc"/>
@@ -722,10 +725,14 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="WzJ-6D-3c1" firstAttribute="top" secondItem="eKp-pi-UPg" secondAttribute="bottom" constant="-45" id="2kf-fa-66c"/>
                                                 <constraint firstItem="NkC-W5-giZ" firstAttribute="trailing" secondItem="2vj-Nb-qsh" secondAttribute="trailingMargin" id="3n4-58-ggf"/>
                                                 <constraint firstAttribute="centerY" secondItem="WzJ-6D-3c1" secondAttribute="centerY" constant="1" id="CSl-ad-ePt"/>
+                                                <constraint firstItem="WzJ-6D-3c1" firstAttribute="height" secondItem="eKp-pi-UPg" secondAttribute="height" id="M3r-qe-JzA"/>
                                                 <constraint firstItem="NkC-W5-giZ" firstAttribute="leading" secondItem="WzJ-6D-3c1" secondAttribute="trailing" constant="14" id="O4V-1x-pZn"/>
                                                 <constraint firstItem="PbB-AK-fcZ" firstAttribute="leading" secondItem="WzJ-6D-3c1" secondAttribute="trailing" constant="1" id="UAF-ri-aK2"/>
+                                                <constraint firstItem="WzJ-6D-3c1" firstAttribute="leading" secondItem="eKp-pi-UPg" secondAttribute="trailing" constant="-45" id="atT-8q-ZXB"/>
+                                                <constraint firstItem="WzJ-6D-3c1" firstAttribute="width" secondItem="eKp-pi-UPg" secondAttribute="width" id="g1U-AY-mAz"/>
                                                 <constraint firstAttribute="centerY" secondItem="PbB-AK-fcZ" secondAttribute="centerY" id="icw-XY-PxW"/>
                                                 <constraint firstAttribute="centerY" secondItem="NkC-W5-giZ" secondAttribute="centerY" constant="1.5" id="orV-7N-1zS"/>
                                                 <constraint firstAttribute="centerX" secondItem="PbB-AK-fcZ" secondAttribute="centerX" constant="-0.5" id="rsv-jR-7uM"/>
@@ -1008,6 +1015,7 @@
     <resources>
         <image name="carpool_map" width="375" height="667"/>
         <image name="carpool_name_selected" width="22" height="22"/>
+        <image name="checkCirc" width="51" height="52"/>
         <image name="kid_name_selected" width="14" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

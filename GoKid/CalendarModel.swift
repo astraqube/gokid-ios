@@ -86,10 +86,17 @@ class CalendarModel: NSObject {
         if poolDriver == "" {
             poolDriver = "No Driver yet"
         }
-        
         if let date = poolDate {
             poolDateStr = date.dateString()
             pooltimeStr = date.timeString()
+            var today = NSDate()
+            var tomorrow = today.dateByAddingTimeInterval(60*60*24)
+            if poolDateStr == today.dateString() {
+                poolDateStr = "Today"
+            }
+            if poolDateStr == tomorrow.dateString() {
+                poolDateStr = "Tomorrow"
+            }
         }
     }
     

@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "checkCirc.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "checkCirc@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "kid_smaple.png"
+      "filename" : "checkCirc@3x.png"
     }
   ],
   "info" : {
