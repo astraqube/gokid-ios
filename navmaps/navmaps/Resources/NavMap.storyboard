@@ -338,14 +338,124 @@
                                             <constraint firstItem="9Vg-wI-GhI" firstAttribute="leading" secondItem="rzH-Aq-xRB" secondAttribute="leading" id="vwN-DR-qQo"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIJ-jn-hJv" userLabel="userImages">
+                                        <rect key="frame" x="0.0" y="107" width="600" height="87"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_userImageBG" translatesAutoresizingMaskIntoConstraints="NO" id="5QD-1n-7eT">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="87"/>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-Ac-6Oc" userLabel="userImage 2" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                <rect key="frame" x="124" y="6" width="44" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="fRo-Ac-6Oc" secondAttribute="height" multiplier="1:1" id="FQT-6O-bgB"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
+                                                        <color key="value" red="0.46274509800000002" green="0.6705882353" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little Wayne"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0I-Xo-meP" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                <rect key="frame" x="70" y="6" width="44" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="aa7-Oy-NaI"/>
+                                                    <constraint firstAttribute="width" secondItem="c0I-Xo-meP" secondAttribute="height" multiplier="1:1" id="lLn-JH-QD1"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="test_userImage"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
+                                                        <color key="value" red="0.54117647059999996" green="0.78823529410000004" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-N4-wcM" userLabel="userImage 3" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                <rect key="frame" x="178" y="8" width="44" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="7cM-WU-gQu"/>
+                                                    <constraint firstAttribute="width" secondItem="1P8-N4-wcM" secondAttribute="height" multiplier="1:1" id="Shs-KO-CEO"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.90196078430000004" green="0.96470588239999999" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
+                                                        <color key="value" red="0.36078431370000003" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="John Doe"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uJ-kG-NLO" userLabel="userImage 4" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                <rect key="frame" x="232" y="8" width="44" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="4uJ-kG-NLO" secondAttribute="height" multiplier="1:1" id="vNe-TF-UOO"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.90196078430000004" green="0.96470588239999999" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
+                                                        <color key="value" red="0.36470588240000001" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Junior Mafia"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="4uJ-kG-NLO" firstAttribute="width" secondItem="1P8-N4-wcM" secondAttribute="width" id="6AC-ys-JdF"/>
+                                            <constraint firstItem="5QD-1n-7eT" firstAttribute="top" secondItem="KIJ-jn-hJv" secondAttribute="top" id="ISK-s7-I3s"/>
+                                            <constraint firstItem="4uJ-kG-NLO" firstAttribute="leading" secondItem="1P8-N4-wcM" secondAttribute="trailing" constant="10" id="Jk9-jw-Ulc"/>
+                                            <constraint firstItem="1P8-N4-wcM" firstAttribute="leading" secondItem="fRo-Ac-6Oc" secondAttribute="trailing" constant="10" id="Kbm-bb-2hs"/>
+                                            <constraint firstItem="fRo-Ac-6Oc" firstAttribute="centerY" secondItem="c0I-Xo-meP" secondAttribute="centerY" id="Ojg-tb-HZI"/>
+                                            <constraint firstItem="4uJ-kG-NLO" firstAttribute="centerY" secondItem="1P8-N4-wcM" secondAttribute="centerY" id="Sju-AA-YhN"/>
+                                            <constraint firstItem="5QD-1n-7eT" firstAttribute="bottom" secondItem="c0I-Xo-meP" secondAttribute="bottom" constant="37" id="U4M-TA-pEU"/>
+                                            <constraint firstItem="fRo-Ac-6Oc" firstAttribute="centerY" secondItem="1P8-N4-wcM" secondAttribute="centerY" constant="-2" id="U7F-Rw-0W5"/>
+                                            <constraint firstItem="fRo-Ac-6Oc" firstAttribute="centerY" secondItem="1P8-N4-wcM" secondAttribute="centerY" constant="-2" id="UhD-Y3-u7p"/>
+                                            <constraint firstAttribute="trailing" secondItem="5QD-1n-7eT" secondAttribute="trailing" id="gat-nj-MpQ"/>
+                                            <constraint firstItem="5QD-1n-7eT" firstAttribute="leading" secondItem="KIJ-jn-hJv" secondAttribute="leading" id="gwZ-52-Sim"/>
+                                            <constraint firstAttribute="height" constant="87" id="hCz-h3-ebf"/>
+                                            <constraint firstItem="fRo-Ac-6Oc" firstAttribute="width" secondItem="1P8-N4-wcM" secondAttribute="width" id="nqH-96-DXe"/>
+                                            <constraint firstItem="c0I-Xo-meP" firstAttribute="leading" secondItem="KIJ-jn-hJv" secondAttribute="leading" constant="70" id="tUu-7B-n1C"/>
+                                            <constraint firstAttribute="bottom" secondItem="5QD-1n-7eT" secondAttribute="bottom" id="ue1-wt-7rC"/>
+                                            <constraint firstItem="fRo-Ac-6Oc" firstAttribute="leading" secondItem="c0I-Xo-meP" secondAttribute="trailing" constant="10" id="zxH-lu-zNK"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="KIJ-jn-hJv" firstAttribute="leading" secondItem="hdt-TA-ZWy" secondAttribute="leading" id="9qO-Qc-V4f"/>
                                     <constraint firstAttribute="height" constant="400" id="FNL-PF-0fE"/>
                                     <constraint firstItem="rzH-Aq-xRB" firstAttribute="top" secondItem="hdt-TA-ZWy" secondAttribute="top" id="G3h-OP-Pov"/>
                                     <constraint firstItem="rzH-Aq-xRB" firstAttribute="leading" secondItem="hdt-TA-ZWy" secondAttribute="leading" id="Xm5-Jq-bhR"/>
                                     <constraint firstAttribute="trailing" secondItem="rzH-Aq-xRB" secondAttribute="trailing" id="jLe-Gn-8jE"/>
+                                    <constraint firstItem="KIJ-jn-hJv" firstAttribute="bottom" secondItem="hdt-TA-ZWy" secondAttribute="top" constant="194" id="qOb-oF-HLn"/>
+                                    <constraint firstAttribute="trailing" secondItem="KIJ-jn-hJv" secondAttribute="trailing" id="ygd-3T-Efb"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="5AZ-Eg-3Ji" appends="YES" id="337-Pn-lKD"/>
@@ -512,12 +622,14 @@ toward West St.</string>
     </scenes>
     <resources>
         <image name="dot" width="22" height="22"/>
+        <image name="emma" width="220" height="233"/>
         <image name="envelope" width="32" height="25"/>
         <image name="greenButton" width="357" height="53"/>
         <image name="map_angleUp" width="13" height="8"/>
         <image name="map_back-arrow" width="23" height="21"/>
         <image name="map_bottomNav" width="1" height="114"/>
         <image name="map_topNav" width="1" height="76"/>
+        <image name="map_userImageBG" width="1" height="87"/>
         <image name="map_x" width="17" height="18"/>
         <image name="test_userImage" width="110" height="116"/>
     </resources>

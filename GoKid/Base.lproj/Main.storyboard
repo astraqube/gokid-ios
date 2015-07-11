@@ -1391,7 +1391,7 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" image="calendarCellMiddle" translatesAutoresizingMaskIntoConstraints="NO" id="cqg-B9-maS">
                                                             <rect key="frame" x="16" y="0.0" width="285" height="134"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarCellLeft" translatesAutoresizingMaskIntoConstraints="NO" id="yOg-ty-71F">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarCellLeft" translatesAutoresizingMaskIntoConstraints="NO" id="yOg-ty-71F">
                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="134"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" image="calendarCellRight" translatesAutoresizingMaskIntoConstraints="NO" id="E0o-VV-108" userLabel="calendarCellRight">
