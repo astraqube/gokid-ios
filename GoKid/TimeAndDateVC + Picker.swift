@@ -67,11 +67,13 @@ extension TimeAndDateVC {
     // --------------------------------------------------------------------------------------------
     
     func datePickerDonePressed(datePicker: THDatePickerViewController!) {
-        var str = dateFormatter.stringFromDate(datePicker.date)
-        currentBindLabel?.text = str
-        currentBindModel?.valueString = str
-        updateCurrentUserCarpoolModel(currentBindModel!, date: datePicker.date)
-        self.dismissSemiModalView()
+        if checkDateValid(datePicker.date) {
+            var str = dateFormatter.stringFromDate(datePicker.date)
+            currentBindLabel?.text = str
+            currentBindModel?.valueString = str
+            updateCurrentUserCarpoolModel(currentBindModel!, date: datePicker.date)
+            self.dismissSemiModalView()
+        }
     }
     
     func datePickerCancelPressed(datePicker: THDatePickerViewController!) {
@@ -88,5 +90,17 @@ extension TimeAndDateVC {
     
     func timePickerCancleButtonClick() {
         dismissDateTimePicker()
+    }
+    
+    func checkDateValid(date: NSDate) -> Bool {
+        var model = userManager.currentCarpoolModel
+        if currentBindModel?.titleString == "End Date" && model.startDate != nil {
+            if date.timeIntervalSinceDate(model.startDate) < 0 {
+                
+            }
+        }
+        if currentBindModel?.titleString == "Start Date" && model.endDate != nil {
+            
+        }
     }
 }
