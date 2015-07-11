@@ -80,7 +80,7 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
 
     func displayStaticRoutes() {
         let allStops = navigation.pickups + navigation.dropoffs
-        let overlaysSet = (self.mapView.overlays != nil) ?  NSSet(array: self.mapView.overlays) : NSSet()
+        let overlaysSet = (self.mapView?.overlays != nil) ?  NSSet(array: self.mapView.overlays) : NSSet()
         for (index, response) in enumerate(navigation.stopStepResponses!) {
             let stopFor = allStops[index]
             if response != nil {
