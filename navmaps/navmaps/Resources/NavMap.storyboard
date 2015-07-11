@@ -372,6 +372,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1000"/>
                     <connections>
+                        <outlet property="bottomTrayAngleUp" destination="a5S-y0-oZ8" id="0Hx-Il-3rf"/>
                         <outlet property="bottomTrayNavView" destination="rzH-Aq-xRB" id="2Uc-nk-9yq"/>
                         <outlet property="bottomTrayView" destination="hdt-TA-ZWy" id="G8W-vt-43A"/>
                         <outlet property="mapView" destination="eAd-9y-yff" id="BcG-ml-TLi"/>

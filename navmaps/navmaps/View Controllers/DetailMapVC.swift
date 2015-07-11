@@ -14,17 +14,18 @@ class DetailMapVC: UIViewController {
     @IBOutlet weak var trayOffsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomTrayNavView: UIView!
     @IBOutlet weak var bottomTrayView: UIView!
+    @IBOutlet weak var bottomTrayAngleUp: UIImageView!
     var mapDataSource : MapViewDatasource!
     var navigation : Navigation!
     
     var trayShown : Bool {
         get { return trayOffsetConstraint.constant != 0 }
-        set(newValue) {
-            let constant = newValue ? trayShowConstraintOffset : 0
+        set(show) {
+            let constant = show ? trayShowConstraintOffset : 0
             trayOffsetConstraint.constant = constant
-            
             UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: UIViewAnimationOptions.AllowAnimatedContent | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
                 self.view.layoutIfNeeded()
+                self.bottomTrayAngleUp.transform = show ? CGAffineTransformMakeRotation(CGFloat(M_PI)) : CGAffineTransformIdentity
             }, completion: nil)
         }
     }
