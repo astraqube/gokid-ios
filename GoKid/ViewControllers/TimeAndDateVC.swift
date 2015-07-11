@@ -219,7 +219,7 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
     
     func occurenceOfDate(date: NSDate) -> [Int] {
         var component = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
-        var day = component.weekday - 1
+        var day = component.weekday
         return [day]
     }
   

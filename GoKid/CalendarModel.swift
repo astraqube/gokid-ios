@@ -65,10 +65,13 @@ class CalendarModel: NSObject {
     }
     
     
-    class func arrayOfFakeVolunteerEventsFromOccurrences(json: JSON) -> [CalendarModel] {
+    class func arrayOfFakeVolunteerEventsFromOccurrences(json: JSON, _ name: String) -> [CalendarModel] {
         var arr = [CalendarModel]()
         for (index: String, subJson: JSON) in json {
             var carpool = CalendarModel(fakeList: subJson)
+            carpool.poolname = name
+            println(carpool.poolType)
+            println(carpool.poolDate)
             arr.append(carpool)
         }
         return arr

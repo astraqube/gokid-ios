@@ -18,6 +18,7 @@ extension DataManager {
             "date_starts_at": model.startDate!.iso8601String(),
             "date_ends_at": model.endDate!.iso8601String(),
             "days_occuring": model.occurence!,
+            "time_zone": "Pacific Time (US & Canada)",
             //"origin": model.startLocation!,
             //"destination": model.endLocation!
         ]
@@ -118,7 +119,8 @@ extension DataManager {
             "pickup_at": model.pickUpTime!.iso8601String(),
             "starts_at": model.startDate!.iso8601String(),
             "ends_at": model.endDate!.iso8601String(),
-            "days_occuring": model.occurence!
+            "days_occuring": model.occurence!,
+            "time_zone": "Pacific Time (US & Canada)",
         ]
         var map = [
             "schedule": schedule
@@ -129,7 +131,7 @@ extension DataManager {
             println("getFakeVolunteerList success")
             var json = JSON(obj)
             println(json)
-            var events = CalendarModel.arrayOfFakeVolunteerEventsFromOccurrences(json)
+            var events = CalendarModel.arrayOfFakeVolunteerEventsFromOccurrences(json, model.name)
             self.userManager.fakeVolunteerEvents = events
             comp(true, "")
         }) { (op, error) in
