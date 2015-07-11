@@ -165,6 +165,10 @@ extension String {
         self.replaceRange(index...index, with: String(self[index]).capitalizedString)
         return self
     }
+    
+    static func fromData(data: NSData) -> String {
+        return NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+    }
 }
 
 extension Array {

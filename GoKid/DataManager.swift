@@ -45,16 +45,38 @@ class DataManager: NSObject {
         comp(false, errorStr, nil)
     }
     
+    
+    let __debug__ = true
     func constructErrorString(op: AFHTTPRequestOperation?, error: NSError?) -> String {
+        if __debug__ {
+            return constructDebugErrorStr(op, error)
+        } else {
+            return constructRelaseErrorStr(op, error)
+        }
+    }
+    
+    func constructDebugErrorStr(op: AFHTTPRequestOperation?, _ error: NSError?) -> String {
         var opErrorStr = ""
         var nsErrorStr = ""
+        if let data = op?.responseData { opErrorStr = String.fromData(data) }
+        if let str = error?.localizedDescription { nsErrorStr = str }
+        return opErrorStr + " " + nsErrorStr
+    }
+    
+    func constructRelaseErrorStr(op: AFHTTPRequestOperation?, _ error: NSError?) -> String {
         if let data = op?.responseData {
-            opErrorStr = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+            var json = JSON(data: data)
+            println(json)
+            var message = json["message"].stringValue
+            if message != "" {
+                return message
+            }
         }
-        if let str = error?.localizedDescription {
-            nsErrorStr = str
-        }
-        var errorStr = opErrorStr + " " + nsErrorStr
-        return errorStr
+        return "No message returned from sever, devon is fixing it"
     }
 }
+
+
+
+
+

@@ -130,17 +130,17 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     
     
     @IBAction func roleButtonClicked(sender: AnyObject) {
-        let button1 = UIAlertAction(title: "Mommy", style: .Default) { (alert) in
-            self.roleButton.setTitle("Mommy", forState: .Normal)
+        let button1 = UIAlertAction(title: RoleTypeMommy, style: .Default) { (alert) in
+            self.roleButton.setTitle(RoleTypeMommy, forState: .Normal)
         }
-        let button2 = UIAlertAction(title: "Daddy", style: .Default) { (alert) in
-            self.roleButton.setTitle("Daddy", forState: .Normal)
+        let button2 = UIAlertAction(title: RoleTypeDaddy, style: .Default) { (alert) in
+            self.roleButton.setTitle(RoleTypeDaddy, forState: .Normal)
         }
-        let button3 = UIAlertAction(title: "Kid", style: .Default) { (alert) in
-            self.roleButton.setTitle("Kid", forState: .Normal)
+        let button3 = UIAlertAction(title: RoleTypeChild, style: .Default) { (alert) in
+            self.roleButton.setTitle(RoleTypeChild, forState: .Normal)
         }
-        let button4 = UIAlertAction(title: "Sitter", style: .Default) { (alert) in
-            self.roleButton.setTitle("Sitter", forState: .Normal)
+        let button4 = UIAlertAction(title: RoleTypeCareTaker, style: .Default) { (alert) in
+            self.roleButton.setTitle(RoleTypeCareTaker, forState: .Normal)
         }
         let button5 = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)

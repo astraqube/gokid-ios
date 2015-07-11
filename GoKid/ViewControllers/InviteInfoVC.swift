@@ -118,35 +118,9 @@ class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControl
             signupForm.lastName = lastName
             signupForm.email = email
             signupForm.phoneNum = phoneNum
-            // This is temp, this depend on whether backend needs a role
-            signupForm.role = "kid"
             signupForm.image = profileImageView.image
             return signupForm
         }
         return nil
     }
-    
-    //    func createUser(signupForm: SignupForm) {
-    //        dataManager.signup(signupForm) { (success, errorStr) in
-    //            if success {
-    //                self.fetchInvite()
-    //            } else {
-    //                self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
-    //            }
-    //        }
-    //    }
-    //
-    
-    //    func fetchInvite() {
-    //        dataManager.getCarpools() { (success, errorStr) in
-    //            if success {
-    //                var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
-    //                vc.fromCarpoolInvite = true
-    //                vc.phoneNumberString = self.phoneNumberTextField.text
-    //                self.navigationController?.pushViewController(vc, animated: true)
-    //            } else {
-    //                self.showAlert("Alert", messege: "You are not invited by any user", cancleTitle: "OK")
-    //            }
-    //        }
-    //    }
 }

@@ -144,7 +144,9 @@ extension DataManager {
     func addKidsNameToCarpool(carpoolID: Int, name: String, comp: completion) {
         var url = baseURL + "/api/carpools/" + String(carpoolID) + "/riders"
         var map = [
-            "first_name": name
+            "rider" : [
+                "first_name": name
+            ]
         ]
         var manager = managerWithToken()
         manager.POST(url, parameters:map, success: { (op, obj) in
