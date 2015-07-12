@@ -62,6 +62,11 @@ extension LocationVC {
         setupButtons()
         setupImageViews()
         
+        // iphone 5
+        if userManager.windowW < 580 {
+            heightRatio = 0.45
+        }
+        
         switchBackgroundView.layer.borderColor = UIColor.lightGrayColor().CGColor
         switchBackgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
         
@@ -96,7 +101,7 @@ extension LocationVC {
         doubleArrow.center.x = x * 2.0
         eventButton.center.x = x * 3.0
         
-        var y = view.h * 0.3
+        var y = view.h * heightRatio
         startLocationButton.center.y = y
         doubleArrow.center.y = y
         eventButton.center.y = y
@@ -111,7 +116,7 @@ extension LocationVC {
         arrow2.center.x = x * 4.0
         destLocationButton.center.x = x * 5.0
         
-        var y = view.h * 0.3
+        var y = view.h * heightRatio
         startLocationButton.center.y = y
         arrow1.center.y = y
         eventButton.center.y = y

@@ -456,7 +456,6 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SoJ-kX-Ko8" firstAttribute="trailing" secondItem="YIh-om-Rtx" secondAttribute="trailingMargin" constant="-258" id="2Ch-MA-hRU"/>
                                                 <constraint firstItem="AJ5-hG-ctI" firstAttribute="leading" secondItem="YIh-om-Rtx" secondAttribute="leadingMargin" constant="9" id="7oJ-9g-xnc"/>
                                                 <constraint firstItem="AJ5-hG-ctI" firstAttribute="top" secondItem="YIh-om-Rtx" secondAttribute="topMargin" constant="4" id="VuP-ve-ZMt"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="SoJ-kX-Ko8" secondAttribute="bottom" constant="6" id="m31-yN-dTT"/>
@@ -514,16 +513,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on each circle to enter location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2R-hM-Rvp">
-                                <rect key="frame" x="62" y="90" width="196" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="196" id="BVh-Ng-uik"/>
-                                    <constraint firstAttribute="height" constant="50" id="q8C-1y-r3g"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="19"/>
-                                <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuU-tp-NbT">
                                 <rect key="frame" x="0.0" y="379" width="320" height="50"/>
                                 <subviews>
@@ -597,11 +586,31 @@
                                 <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="C92-A1-L4w" customClass="GKSegmentControl" customModule="GoKid" customModuleProvider="target">
+                                <rect key="frame" x="62" y="89" width="212" height="29"/>
+                                <segments>
+                                    <segment title="Monday"/>
+                                    <segment title="Thursday"/>
+                                    <segment title="Friday"/>
+                                </segments>
+                                <color key="tintColor" red="0.34509803919999998" green="0.72156862749999995" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on each circle to enter location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2R-hM-Rvp">
+                                <rect key="frame" x="62" y="146" width="196" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="196" id="BVh-Ng-uik"/>
+                                    <constraint firstAttribute="height" constant="50" id="q8C-1y-r3g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="19"/>
+                                <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="J2R-hM-Rvp" secondAttribute="centerX" id="7i7-UD-Rv5"/>
                             <constraint firstAttribute="centerX" secondItem="6FD-YB-Iwp" secondAttribute="centerX" constant="-0.5" id="81M-aj-cUg"/>
+                            <constraint firstItem="C92-A1-L4w" firstAttribute="top" secondItem="J2R-hM-Rvp" secondAttribute="bottom" constant="-107" id="AXZ-XK-S9c"/>
                             <constraint firstItem="iKh-NM-kQI" firstAttribute="leading" secondItem="bkw-aU-Plo" secondAttribute="leadingMargin" constant="-4" id="Asu-Wy-lfL"/>
                             <constraint firstItem="iKh-NM-kQI" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" constant="4" id="GIC-p3-Va9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DX2-Dg-Buk" secondAttribute="trailing" constant="-3" id="JYF-Qn-nws"/>
@@ -610,8 +619,9 @@
                             <constraint firstItem="kwE-Ew-p5T" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" id="kx9-07-EZS"/>
                             <constraint firstItem="DX2-Dg-Buk" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" constant="4" id="mkR-9Q-FJn"/>
                             <constraint firstAttribute="trailing" secondItem="yuU-tp-NbT" secondAttribute="trailing" id="oNE-0L-ZH3"/>
+                            <constraint firstAttribute="centerX" secondItem="C92-A1-L4w" secondAttribute="centerX" constant="-8" id="qYj-7C-saX"/>
                             <constraint firstAttribute="centerX" secondItem="kwE-Ew-p5T" secondAttribute="centerX" constant="-0.5" id="v7l-3b-fDY"/>
-                            <constraint firstItem="J2R-hM-Rvp" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" constant="70" id="x7i-24-FTb"/>
+                            <constraint firstItem="J2R-hM-Rvp" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" constant="126" id="x7i-24-FTb"/>
                             <constraint firstItem="6FD-YB-Iwp" firstAttribute="top" secondItem="kwE-Ew-p5T" secondAttribute="bottom" constant="-2" id="xVp-02-EiO"/>
                         </constraints>
                     </view>

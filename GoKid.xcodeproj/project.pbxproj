@@ -83,6 +83,7 @@
 		1DB5CC811B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC801B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift */; };
 		1DB5CC831B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC821B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift */; };
 		1DB5CC851B521DCF004F6ECB /* LocationVC + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC841B521DCF004F6ECB /* LocationVC + Layout.swift */; };
+		1DB5CC871B5244FC004F6ECB /* GKSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC861B5244FC004F6ECB /* GKSegmentControl.swift */; };
 		1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */; };
 		1DC765C41B32754800D9D306 /* DataManager + Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC765C31B32754800D9D306 /* DataManager + Team.swift */; };
 		1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */; };
@@ -219,6 +220,7 @@
 		1DB5CC801B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeAndDateVC + Signup.swift"; sourceTree = "<group>"; };
 		1DB5CC821B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeAndDateVC + Carpool.swift.swift"; sourceTree = "<group>"; };
 		1DB5CC841B521DCF004F6ECB /* LocationVC + Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationVC + Layout.swift"; sourceTree = "<group>"; };
+		1DB5CC861B5244FC004F6ECB /* GKSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKSegmentControl.swift; sourceTree = "<group>"; };
 		1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Sign.swift"; sourceTree = "<group>"; };
 		1DC765C31B32754800D9D306 /* DataManager + Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Team.swift"; sourceTree = "<group>"; };
 		1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolModel.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 		1D3F65121B2005B200CCF6A1 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				1DB5CC861B5244FC004F6ECB /* GKSegmentControl.swift */,
 				1DD6A4D31B3BA565006A97ED /* PlacePickerVC.swift */,
 				1D3F65131B2005D500CCF6A1 /* LocationVC.swift */,
 				1DB5CC841B521DCF004F6ECB /* LocationVC + Layout.swift */,
@@ -985,6 +988,7 @@
 				1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */,
 				1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */,
 				1D10D7AA1B1C38FE007CDB66 /* BasicInfoVC.swift in Sources */,
+				1DB5CC871B5244FC004F6ECB /* GKSegmentControl.swift in Sources */,
 				796E69C31B4A6E5600DF8D43 /* DrivingModeVC.swift in Sources */,
 				1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */,
 				1D1FD6881B1C001E00287FA0 /* HelperFunction.swift in Sources */,

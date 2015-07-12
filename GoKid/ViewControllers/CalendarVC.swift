@@ -95,8 +95,8 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     @IBAction func createButtonClicked(sender: UIButton) {
-        //var vc = vcWithID("BasicInfoVC")
-        var vc = vcWithID("LocationVC")
+        var vc = vcWithID("BasicInfoVC")
+        //var vc = vcWithID("LocationVC")
         navigationController?.pushViewController(vc, animated: true)
     }
     

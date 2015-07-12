@@ -97,6 +97,7 @@ extension DataManager {
     
     func getOccurenceOfCarpool(carpoolID: Int, comp: completion) {
         var url = baseURL + "/api/carpools/\(carpoolID)/occurrences"
+        println(url)
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getOccurenceOfCarpool success")

@@ -27,6 +27,7 @@ class LocationVC: BaseVC {
     
     @IBOutlet weak var taponLabel: UILabel!
     var layoutSame = true
+    var heightRatio: CGFloat = 0.40
     
     override func viewDidLoad() {
         super.viewDidLoad()
