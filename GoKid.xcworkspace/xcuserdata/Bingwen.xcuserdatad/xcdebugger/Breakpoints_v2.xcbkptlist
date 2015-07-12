@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoKid/FrequencyPickerVC.swift"
-            timestampString = "458292337.758529"
+            timestampString = "458395201.594897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "setupTableViewData()"
             landmarkType = "5">
          </BreakpointContent>

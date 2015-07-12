@@ -33,6 +33,11 @@ class FrequencyPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, STC
         setupTableViewData()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     func setupNavBar() {
         setNavBarTitle("Repeat")
         setNavBarLeftButtonTitle("Back", action: "backButtonClick")

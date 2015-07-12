@@ -30,12 +30,14 @@ class LocationVC: BaseVC {
     
     var layoutSame = true
     var heightRatio: CGFloat = 0.40
+    var dataSource = [(CalendarModel?, CalendarModel?)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
         setupSubviews()
         relayout()
+        tryRefreshUI()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,12 +57,12 @@ class LocationVC: BaseVC {
     }
     
     override func rightNavButtonTapped() {
-        if userManager.currentCarpoolModel.isValidForLocation() {
+        //if userManager.currentCarpoolModel.isValidForLocation() {
             var vc = vcWithID("VolunteerVC")
             navigationController?.pushViewController(vc, animated: true)
-        } else {
-            showAlert("Alert", messege: "Please fill in all locations", cancleTitle: "OK")
-        }
+        //} else {
+        //    showAlert("Alert", messege: "Please fill in all locations", cancleTitle: "OK")
+        //}
     }
     
     func startLocationButtonTapped(sender: AnyObject) {
@@ -93,4 +95,39 @@ class LocationVC: BaseVC {
         self.destinationLocationLabel.text = address
         userManager.currentCarpoolModel.endLocation = address
     }
+    
+    // MARK: Network Flow
+    // --------------------------------------------------------------------------------------------
+    
+    func tryRefreshUI() {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id) { success, errStr in
+            onMainThread() {
+                LoadingView.dismiss()
+                self.handleGetOccurenceOfCarpool(success, errStr)
+            }
+        }
+    }
+    
+    func handleGetOccurenceOfCarpool(success: Bool, _ errStr: String) {
+        if success {
+            generateDataSource()
+        } else {
+            showAlert("Fail to fetch carpools", messege: errStr, cancleTitle: "OK")
+        }
+    }
+    
+    func generateDataSource() {
+        var lastEvent = CalendarModel()
+        for eve in userManager.volunteerEvents {
+            if eve.poolDateStr == lastEvent.poolDateStr {
+                dataSource.append((lastEvent, eve))
+                continue
+            }
+            lastEvent = eve
+        }
+    }
 }
+
+
+

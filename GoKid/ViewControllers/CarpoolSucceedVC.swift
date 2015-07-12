@@ -17,25 +17,23 @@ class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
     }
     
     func setupNavBar() {
-        setNavBarTitle("Done")
-        setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
+        self.subtitleLabel?.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
     }
     
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func backButtonClick() {
+    override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    func nextButtonClick() {
+    override func rightNavButtonTapped() {
         var vc = vcWithID("CalendarVC")
         navigationController?.setViewControllers([vc], animated: true)
     }
     
     @IBAction func viewCalendarButtonClick(sender: AnyObject) {
-        nextButtonClick()
+        rightNavButtonTapped()
     }
     
     @IBAction func addTeamMemberButtonClick(sender: AnyObject) {

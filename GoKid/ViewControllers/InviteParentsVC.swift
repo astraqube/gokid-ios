@@ -49,6 +49,14 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    override func leftNavButtonTapped() {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func rightNavButtonTapped() {
+        doItLaterButtonClicker(UIButton())
+    }
+    
     // MARK: Choose From Contact
     // --------------------------------------------------------------------------------------------
     
