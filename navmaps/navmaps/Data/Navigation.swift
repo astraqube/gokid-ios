@@ -32,14 +32,16 @@ typealias LocationCallback = ((error: NSError, location : CLLocation))
 class Stop : NSObject, MKAnnotation {
     var coordinate : CLLocationCoordinate2D
     var name : NSString
+    var address : NSString?
     var thumbnailImage : UIImage?
     var phoneNumber : NSString
     var stopID : NSString
     var hasStopped : Bool = false
     
-    init(coordinate: CLLocationCoordinate2D, name: NSString, phoneNumber : NSString, stopID : NSString, thumbnailImage: UIImage?) {
+    init(coordinate: CLLocationCoordinate2D, name: NSString, address: NSString, phoneNumber : NSString, stopID : NSString, thumbnailImage: UIImage?) {
         self.coordinate = coordinate
         self.name = name
+        self.address = address
         self.phoneNumber = phoneNumber
         self.stopID = stopID
         self.thumbnailImage = thumbnailImage
