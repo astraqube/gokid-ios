@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m5G-xI-nfN">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -537,6 +537,9 @@
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1k-7u-inN">
                                         <rect key="frame" x="263" y="10" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="OriginDestinationSame:" destination="LG2-du-YDZ" eventType="valueChanged" id="wQ6-bP-bjV"/>
+                                        </connections>
                                     </switch>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="originDestination" translatesAutoresizingMaskIntoConstraints="NO" id="9ad-cW-2oG">
                                         <rect key="frame" x="9" y="17" width="20" height="15"/>
@@ -658,12 +661,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="arrow1" destination="iBb-gy-z8q" id="rlC-nt-uLt"/>
+                        <outlet property="arrow2" destination="R73-wA-ZZn" id="bxy-hM-0HQ"/>
                         <outlet property="destLocationButton" destination="gVt-kC-l0k" id="eyI-xf-2ye"/>
                         <outlet property="destinationLocationLabel" destination="K0b-n1-9ni" id="AOo-9F-OTA"/>
+                        <outlet property="doubleArrow" destination="6wC-cX-KbO" id="0By-nG-9C3"/>
+                        <outlet property="eventButton" destination="CLm-Ks-rsz" id="GKG-Ni-V3l"/>
+                        <outlet property="eventLabel" destination="uRj-DY-xBO" id="HkT-Cz-TMt"/>
                         <outlet property="navSubtitleLabel" destination="6FD-YB-Iwp" id="F7O-I1-1iu"/>
                         <outlet property="startLocationButton" destination="P1D-8u-o2M" id="IGP-ys-JhC"/>
                         <outlet property="startLocationLabel" destination="10b-9U-ORt" id="3H8-Zr-Sjo"/>
                         <outlet property="switchBackgroundView" destination="yuU-tp-NbT" id="xkk-lh-Ks5"/>
+                        <outlet property="taponLabel" destination="J2R-hM-Rvp" id="6iH-jS-se0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CHy-K6-tHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
