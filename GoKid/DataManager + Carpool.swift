@@ -19,8 +19,6 @@ extension DataManager {
             "date_ends_at": model.endDate!.iso8601String(),
             "days_occuring": model.occurence!,
             "time_zone": "Pacific Time (US & Canada)",
-            "origin": model.startLocation!,
-            "destination": model.endLocation!
         ]
         var map = [
             "carpool": [
