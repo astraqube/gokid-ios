@@ -20,6 +20,7 @@
 		7929643A1B48D14200BE3250 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792964391B48D14200BE3250 /* BorderedView.swift */; };
 		799792FC1B472B0200463FA7 /* DetailMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FB1B472B0200463FA7 /* DetailMapVC.swift */; };
 		799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */; };
+		79A20E281B51DD5B00871CAB /* MapItineraryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A20E271B51DD5B00871CAB /* MapItineraryItemView.swift */; };
 		79A48F691B51A7790023FEB7 /* CalendarUserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A48F681B51A7790023FEB7 /* CalendarUserImageView.swift */; };
 		79A702D31B4A22F300D17537 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A702D21B4A22F300D17537 /* Navigation.swift */; };
 		79A702D51B4A244F00D17537 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A702D41B4A244F00D17537 /* CoreLocation.framework */; };
@@ -56,6 +57,7 @@
 		792964391B48D14200BE3250 /* BorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
 		799792FB1B472B0200463FA7 /* DetailMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapVC.swift; sourceTree = "<group>"; };
 		799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrivingModeVC.swift; sourceTree = "<group>"; };
+		79A20E271B51DD5B00871CAB /* MapItineraryItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapItineraryItemView.swift; sourceTree = "<group>"; };
 		79A48F681B51A7790023FEB7 /* CalendarUserImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarUserImageView.swift; sourceTree = "<group>"; };
 		79A702D21B4A22F300D17537 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		79A702D41B4A244F00D17537 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -157,6 +159,7 @@
 				79E0BDBD1B4A312300B54903 /* BorderedBarishButton.swift */,
 				79E0BDBE1B4A312300B54903 /* MapUserImageView.swift */,
 				792964391B48D14200BE3250 /* BorderedView.swift */,
+				79A20E271B51DD5B00871CAB /* MapItineraryItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				79E0BDC01B4A312300B54903 /* MapUserImageView.swift in Sources */,
 				799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */,
 				791C2E611B4E2DFC0045555C /* MapViewDatasource.swift in Sources */,
+				79A20E281B51DD5B00871CAB /* MapItineraryItemView.swift in Sources */,
 				79E0BDBF1B4A312300B54903 /* BorderedBarishButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
