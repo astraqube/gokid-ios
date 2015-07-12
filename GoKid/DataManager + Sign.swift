@@ -41,14 +41,17 @@ extension DataManager {
     func signup(signupForm:SignupForm, comp: completion) {
         var url = baseURL + "/api/users"
         var arr = [
-            // "role": signupForm.role,
             "email": signupForm.email,
             "password": signupForm.password,
             "last_name": signupForm.lastName,
             "first_name": signupForm.firstName,
-            "phone_number": signupForm.phoneNum,
             "password_confirmation": signupForm.passwordConfirm
         ]
+        if signupForm.phoneNum != "" {
+            arr["phone_number"] = signupForm.phoneNum
+        } else {
+            arr["phone_number"] = nil
+        }
         var map = ["user": arr]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: map, success: { (op, obj) in
@@ -146,8 +149,12 @@ extension DataManager {
             "password": signupForm.password,
             "last_name": signupForm.lastName,
             "first_name": signupForm.firstName,
-            "phone_number": signupForm.phoneNum
         ]
+        if signupForm.phoneNum != "" {
+            arr["phone_number"] = signupForm.phoneNum
+        } else {
+            arr["phone_number"] = nil
+        }
         var map = ["user": arr]
         var manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
