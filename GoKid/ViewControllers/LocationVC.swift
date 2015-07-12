@@ -10,8 +10,8 @@ import UIKit
 
 class LocationVC: BaseVC {
 
-    @IBOutlet weak var navSubtitleLabel: UILabel!
     @IBOutlet weak var switchBackgroundView: UIView!
+    @IBOutlet weak var taponLabel: UILabel!
     
     var destLocationButton: UIButton!
     var startLocationButton: UIButton!
@@ -19,13 +19,15 @@ class LocationVC: BaseVC {
     
     var destinationLocationLabel: UILabel!
     var startLocationLabel: UILabel!
+    
+    var startLabel: UILabel!
+    var destLabel: UILabel!
     var eventLabel: UILabel!
     
     var doubleArrow: UIImageView!
     var arrow1: UIImageView!
     var arrow2: UIImageView!
     
-    @IBOutlet weak var taponLabel: UILabel!
     var layoutSame = true
     var heightRatio: CGFloat = 0.40
     
@@ -42,17 +44,17 @@ class LocationVC: BaseVC {
     }
     
     func setUpNavigationBar() {
-        navSubtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        subtitleLabel?.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
     }
     
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    @IBAction func backButtonTapped(sender: AnyObject) {
+    override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    @IBAction func nextButtonTapped(sender: AnyObject) {
+    override func rightNavButtonTapped() {
         if userManager.currentCarpoolModel.isValidForLocation() {
             var vc = vcWithID("VolunteerVC")
             navigationController?.pushViewController(vc, animated: true)

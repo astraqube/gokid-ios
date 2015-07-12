@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
+class TimeAndDateVC: BaseVC, THDatePickerDelegate {
     
     var signupVC: SignUpVC!
     var dataSource = [TDCellModel]()
@@ -26,6 +26,8 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
     var startTimeModel: TDCellModel?
     var endTimeModel: TDCellModel?
     
+    @IBOutlet weak var tableView: UITableView!
+    
     let eventStart = "Start Time"
     let eventEnd = "End Time"
 
@@ -38,14 +40,8 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
     }
     
     func setUpNavigationBar() {
-        var nav = navigationController as! ZGNavVC
-        nav.addTitleViewToViewController(self)
-        self.title = "Date & Time"
-        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        self.subtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
         setStatusBarColorDark()
-        setNavBarColor(colorManager.appLightGreen)
-        setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
     }
     
     func clenUserCurrentCarPoolData() {
@@ -59,16 +55,15 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func backButtonClick() {
+    override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    func nextButtonClick() {
+    override func rightNavButtonTapped() {
         if userManager.userLoggedIn == false {
             animatShowSignupVC()
             return
         }
-        
         if userManager.currentCarpoolModel.isValidForTime() {
             startCarpoolCreation()
         } else {
@@ -79,15 +74,15 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
     // MARK: TableView DataSource
     // --------------------------------------------------------------------------------------------
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var model = dataSource[indexPath.row]
         if model.type == .Empty {
             let cell = tableView.cellWithID("TDEmptyCell", indexPath) as! TDEmptyCell
@@ -129,7 +124,7 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
     // MARK: TableView Delegate
     // --------------------------------------------------------------------------------------------
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var model = dataSource[indexPath.row]
         if model.type == .Empty { return 20.0 }
         else if model.type == .Text { return 60.0 }
@@ -137,7 +132,7 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
         else { return 50.0 }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var model = dataSource[indexPath.row]
         if model.titleString == "Frequency" {
             frequencyCellClicked()

@@ -12,17 +12,33 @@ extension LocationVC {
         var textColor = rgb(106, 192, 139)
         var textFont = UIFont(name: "Raleway-Bold", size: 17)
         
-        destinationLocationLabel = UILabel(frame: CGRectZero)
-        destinationLocationLabel.text = "Destination"
-        destinationLocationLabel.font = textFont
+        destinationLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
+        destinationLocationLabel.text = "Sharon park Dr 350, United States"
+        destinationLocationLabel.font = UIFont(name: "Raleway", size: 13)
         destinationLocationLabel.textColor = textColor
+        destinationLocationLabel.numberOfLines = 0
+        destinationLocationLabel.textAlignment = .Center
         destinationLocationLabel.sizeToFit()
         
-        startLocationLabel = UILabel(frame: CGRectZero)
-        startLocationLabel.text = "Origin"
-        startLocationLabel.font = textFont
+        startLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
+        startLocationLabel.text = "San Francisco xxxx xxxxxxxxx xxx 1010"
+        startLocationLabel.font = UIFont(name: "Raleway", size: 13)
         startLocationLabel.textColor = textColor
+        startLocationLabel.textAlignment = .Center
+        startLocationLabel.numberOfLines = 0
         startLocationLabel.sizeToFit()
+        
+        destLabel = UILabel(frame: CGRectZero)
+        destLabel.text = "Destination"
+        destLabel.font = textFont
+        destLabel.textColor = textColor
+        destLabel.sizeToFit()
+        
+        startLabel = UILabel(frame: CGRectZero)
+        startLabel.text = "Origin"
+        startLabel.font = textFont
+        startLabel.textColor = textColor
+        startLabel.sizeToFit()
         
         eventLabel = UILabel(frame: CGRectZero)
         eventLabel.text = "Event"
@@ -63,7 +79,7 @@ extension LocationVC {
         setupImageViews()
         
         // iphone 5
-        if userManager.windowW < 580 {
+        if userManager.windowH < 580 {
             heightRatio = 0.45
         }
         
@@ -71,7 +87,7 @@ extension LocationVC {
         switchBackgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
         
         var vs = [startLocationButton, startLocationLabel, destLocationButton,
-            destinationLocationLabel, eventButton, eventLabel, arrow1, arrow2, doubleArrow]
+            destinationLocationLabel, eventButton, eventLabel, arrow1, arrow2, doubleArrow, startLabel, destLabel]
         for v in vs {
             view.addSubview(v)
         }
@@ -127,19 +143,24 @@ extension LocationVC {
     }
     
     func associateLabelWithButton() {
-        startLocationLabel.center.x = startLocationButton.center.x
+        startLabel.center.x = startLocationButton.center.x
         eventLabel.center.x = eventButton.center.x
+        destLabel.center.x = destLocationButton.center.x
+        startLocationLabel.center.x = startLocationButton.center.x
         destinationLocationLabel.center.x = destLocationButton.center.x
         
         var insets: CGFloat = 12.0
-        startLocationLabel.y = startLocationButton.y + startLocationButton.h + insets
+        startLabel.y = startLocationButton.y + startLocationButton.h + insets
         eventLabel.y = eventButton.y + eventButton.h + insets
-        destinationLocationLabel.y = destLocationButton.y + destLocationButton.h + insets
+        destLabel.y = destLocationButton.y + destLocationButton.h + insets
+        
+        startLocationLabel.y = startLabel.y + startLabel.h + insets
+        destinationLocationLabel.y = destLabel.y + destLabel.h + insets
     }
 
     
     func showOptionalViews(show: Bool) {
-        var vs = [destLocationButton, destinationLocationLabel, arrow1, arrow2]
+        var vs = [destLocationButton, destinationLocationLabel, arrow1, arrow2, destLabel]
         for v in vs {
             if show {
                 v.alpha = 1.0

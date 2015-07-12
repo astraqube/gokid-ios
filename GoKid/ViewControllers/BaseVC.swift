@@ -15,11 +15,30 @@ class BaseVC: UIViewController {
     var colorManager = ColorManager.sharedInstance
     var imageManager = ImageManager.sharedInstance
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var leftButton: UIButton!
+    @IBOutlet weak var rightButton: UIButton!
+    
     var keyBoardMoveUp : CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForKeyBoardNotification()
+        
+        leftButton?.addTarget(self, action: "leftNavButtonTapped", forControlEvents: .TouchUpInside)
+        rightButton?.addTarget(self, action: "rightNavButtonTapped", forControlEvents: .TouchUpInside)
+    }
+    
+    // MARK: IBAction Method
+    // --------------------------------------------------------------------------------------------
+    
+    func leftNavButtonTapped() {
+        
+    }
+    
+    func rightNavButtonTapped() {
+        
     }
     
     // MARK: Move View up when keyboard shows

@@ -20,6 +20,11 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         refreshUI()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     func setupNacBar() {
         var nav = navigationController as! ZGNavVC
         nav.addTitleViewToViewController(self)

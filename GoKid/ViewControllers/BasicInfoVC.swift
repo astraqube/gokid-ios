@@ -24,7 +24,6 @@ class BasicInfoVC: BaseVC {
         super.viewWillAppear(animated)
         setStatusBarColorDark()
         setNavBarColor(colorManager.appGreen)
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -66,7 +65,7 @@ class BasicInfoVC: BaseVC {
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func nextButtonClick() {
+    override func rightNavButtonTapped() {
         userManager.currentCarpoolName = carpoolTitleTextField.text!
         userManager.currentCarpoolKidName = kidsNameTextField.text!
         userManager.currentCarpoolModel.name = carpoolTitleTextField.text!
@@ -74,7 +73,7 @@ class BasicInfoVC: BaseVC {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func doLaterButtonClick() {
+    override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
     
