@@ -8,23 +8,7 @@
 
 extension LocationVC {
     
-    func addsubviews() {
-        
-        var image = UIImage(named: "location_up")
-        
-        destLocationButton = UIButton(frame: CGRectMake(0, 0, 55, 55))
-        destLocationButton.setImage(image, forState: .Normal)
-        destLocationButton.addTarget(self, action: "destButtonTapped", forControlEvents: .TouchUpInside)
-        
-        startLocationButton = UIButton(frame: CGRectMake(0, 0, 55, 55))
-        startLocationButton.setImage(image, forState: .Normal)
-        startLocationButton.addTarget(self, action: "startLocationButtonTapped", forControlEvents: .TouchUpInside)
-        
-        eventButton = UIButton(frame: CGRectMake(0, 0, 55, 55))
-        eventButton.setImage(image, forState: .Normal)
-        eventButton.addTarget(self, action: "eventButtonTapped", forControlEvents: .TouchUpInside)
-        
-        
+    func setupLabels() {
         var textColor = rgb(106, 192, 139)
         var textFont = UIFont(name: "Raleway-Bold", size: 17)
         
@@ -45,7 +29,24 @@ extension LocationVC {
         eventLabel.font = textFont
         eventLabel.textColor = textColor
         eventLabel.sizeToFit()
+    }
+    
+    func setupButtons() {
+        var image = UIImage(named: "location_up")
+        destLocationButton = UIButton(frame: CGRectMake(0, 0, 55, 55))
+        destLocationButton.setImage(image, forState: .Normal)
+        destLocationButton.addTarget(self, action: "destButtonTapped:", forControlEvents: .TouchUpInside)
         
+        startLocationButton = UIButton(frame: CGRectMake(0, 0, 55, 55))
+        startLocationButton.setImage(image, forState: .Normal)
+        startLocationButton.addTarget(self, action: "startLocationButtonTapped:", forControlEvents: .TouchUpInside)
+        
+        eventButton = UIButton(frame: CGRectMake(0, 0, 55, 55))
+        eventButton.setImage(image, forState: .Normal)
+        eventButton.addTarget(self, action: "eventButtonTapped:", forControlEvents: .TouchUpInside)
+    }
+    
+    func setupImageViews() {
         doubleArrow = UIImageView(frame: CGRectMake(0, 0, 35, 39))
         doubleArrow.image = UIImage(named: "roundTrip")
         
@@ -54,6 +55,15 @@ extension LocationVC {
         
         arrow2 = UIImageView(frame: CGRectMake(0, 0, 30, 20))
         arrow2.image = UIImage(named: "arrow")
+    }
+    
+    func setupSubviews() {
+        setupLabels()
+        setupButtons()
+        setupImageViews()
+        
+        switchBackgroundView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        switchBackgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
         
         var vs = [startLocationButton, startLocationLabel, destLocationButton,
             destinationLocationLabel, eventButton, eventLabel, arrow1, arrow2, doubleArrow]

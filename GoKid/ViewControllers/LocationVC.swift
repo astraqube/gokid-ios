@@ -31,8 +31,7 @@ class LocationVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
-        addsubviews()
-        setupSubview()
+        setupSubviews()
         relayout()
     }
     
@@ -43,11 +42,6 @@ class LocationVC: BaseVC {
     
     func setUpNavigationBar() {
         navSubtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
-    }
-    
-    func setupSubview() {
-        switchBackgroundView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        switchBackgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
     }
     
     // MARK: IBAction Method
@@ -66,16 +60,20 @@ class LocationVC: BaseVC {
         }
     }
     
-    @IBAction func startLocationButtonClick(sender: AnyObject) {
+    func startLocationButtonTapped(sender: AnyObject) {
         var vc = vcWithID("LocationInputVC") as! LocationInputVC
         vc.donePickingWithAddress = donePickingStartLocationWithAddress
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func destinationLocationButtonClick(sender: AnyObject) {
+    func destButtonTapped(sender: AnyObject) {
         var vc = vcWithID("LocationInputVC") as! LocationInputVC
         vc.donePickingWithAddress = donePickingEndLocationWithAddress
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func eventButtonTapped(sender: AnyObject) {
+        
     }
     
     @IBAction func OriginDestinationSame(sender: UISwitch) {
