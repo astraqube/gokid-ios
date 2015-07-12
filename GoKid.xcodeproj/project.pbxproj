@@ -82,6 +82,7 @@
 		1DB5CC7F1B51F8B6004F6ECB /* FackCarpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC7E1B51F8B6004F6ECB /* FackCarpool.swift */; };
 		1DB5CC811B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC801B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift */; };
 		1DB5CC831B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC821B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift */; };
+		1DB5CC851B521DCF004F6ECB /* LocationVC + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC841B521DCF004F6ECB /* LocationVC + Layout.swift */; };
 		1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */; };
 		1DC765C41B32754800D9D306 /* DataManager + Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC765C31B32754800D9D306 /* DataManager + Team.swift */; };
 		1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */; };
@@ -217,6 +218,7 @@
 		1DB5CC7E1B51F8B6004F6ECB /* FackCarpool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FackCarpool.swift; sourceTree = "<group>"; };
 		1DB5CC801B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeAndDateVC + Signup.swift"; sourceTree = "<group>"; };
 		1DB5CC821B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeAndDateVC + Carpool.swift.swift"; sourceTree = "<group>"; };
+		1DB5CC841B521DCF004F6ECB /* LocationVC + Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationVC + Layout.swift"; sourceTree = "<group>"; };
 		1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Sign.swift"; sourceTree = "<group>"; };
 		1DC765C31B32754800D9D306 /* DataManager + Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Team.swift"; sourceTree = "<group>"; };
 		1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolModel.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 			children = (
 				1DD6A4D31B3BA565006A97ED /* PlacePickerVC.swift */,
 				1D3F65131B2005D500CCF6A1 /* LocationVC.swift */,
+				1DB5CC841B521DCF004F6ECB /* LocationVC + Layout.swift */,
 				1D3F65151B2005EC00CCF6A1 /* LocationInputVC.swift */,
 			);
 			name = Location;
@@ -995,6 +998,7 @@
 				1D975A3A1B1F40E500CD4D89 /* InviteConfirmVC.swift in Sources */,
 				1D3F65181B2073D700CCF6A1 /* RecentAddressCell.swift in Sources */,
 				1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */,
+				1DB5CC851B521DCF004F6ECB /* LocationVC + Layout.swift in Sources */,
 				1D891F211B242B89006FD961 /* SwiftyJSON.swift in Sources */,
 				7984A32C1B4F7835006621B5 /* CalendarUserImageView.swift in Sources */,
 				796E69BC1B4A6E5600DF8D43 /* Navigation.swift in Sources */,

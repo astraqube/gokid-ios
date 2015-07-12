@@ -10,51 +10,53 @@ import UIKit
 
 class LocationVC: BaseVC {
 
-    @IBOutlet weak var destinationLocationLabel: UILabel!
-    @IBOutlet weak var startLocationLabel: UILabel!
+    @IBOutlet weak var navSubtitleLabel: UILabel!
+    @IBOutlet weak var switchBackgroundView: UIView!
+    
     @IBOutlet weak var destLocationButton: UIButton!
     @IBOutlet weak var startLocationButton: UIButton!
+    @IBOutlet weak var eventButton: UIButton!
+    
+    @IBOutlet weak var destinationLocationLabel: UILabel!
+    @IBOutlet weak var startLocationLabel: UILabel!
+    @IBOutlet weak var eventLabel: UILabel!
+    
+    @IBOutlet weak var doubleArrow: UIImageView!
+    @IBOutlet weak var arrow1: UIImageView!
+    @IBOutlet weak var arrow2: UIImageView!
+    
+    @IBOutlet weak var taponLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
-        setUpButtonApperence()
+        setupSubview()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func setUpNavigationBar() {
-        var nav = navigationController as! ZGNavVC
-        nav.addTitleViewToViewController(self)
-        self.title = "Location"
-        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
-        setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
+        navSubtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
     }
     
-    func setUpButtonApperence() {
-        var w: CGFloat = 5.0
-        destLocationButton.layer.cornerRadius = destLocationButton.w/2.0
-        destLocationButton.layer.borderColor = colorManager.blueColor.CGColor
-        destLocationButton.layer.borderWidth = w
-        startLocationButton.layer.cornerRadius = startLocationButton.w/2.0
-        startLocationButton.layer.borderColor = colorManager.blueColor.CGColor
-        startLocationButton.layer.borderWidth = w
+    func setupSubview() {
+        switchBackgroundView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        switchBackgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
     }
     
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func backButtonClick() {
+    @IBAction func backButtonTapped(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    func nextButtonClick() {
+    @IBAction func nextButtonTapped(sender: AnyObject) {
         if userManager.currentCarpoolModel.isValidForLocation() {
-            var vc = vcWithID("LocationVC")
+            var vc = vcWithID("VolunteerVC")
             navigationController?.pushViewController(vc, animated: true)
         } else {
             showAlert("Alert", messege: "Please fill in all locations", cancleTitle: "OK")
@@ -71,6 +73,14 @@ class LocationVC: BaseVC {
         var vc = vcWithID("LocationInputVC") as! LocationInputVC
         vc.donePickingWithAddress = donePickingEndLocationWithAddress
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func OriginDestinationSame(sender: UISwitch) {
+        if sender.on {
+            setOriginDestinationSameLayout()
+        } else {
+            setOriginEventDestinationLayout()
+        }
     }
     
     func donePickingStartLocationWithAddress(address: String) {
