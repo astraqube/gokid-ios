@@ -13,7 +13,4 @@ class TDTextCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
-    override func awakeFromNib() {
-        backgroundColor = ColorManager.sharedInstance.cellBgColor
-    }
 }

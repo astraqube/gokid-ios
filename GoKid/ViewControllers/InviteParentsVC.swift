@@ -26,10 +26,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     }
     
     func setupNacBar() {
-        var nav = navigationController as! ZGNavVC
-        nav.addTitleViewToViewController(self)
-        self.title = "Invite Parents"
-        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        self.subtitleLabel?.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
     }
     
     func refreshUI() {

@@ -26,29 +26,19 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupNavigationBar() {
-        var nav = navigationController as! ZGNavVC
-        nav.addTitleViewToViewController(self)
-        self.title = "Volunteer"
-        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
-        setNavBarLeftButtonTitle("Location", action: "locationButtonClick")
-        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.subtitleLabel?.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
     }
     
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func locationButtonClick() {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
-    func nextButtonClick() {
+    override func rightNavButtonTapped() {
         var vc = vcWithID("InviteParentsVC")
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func leftNavButtonTapped() {
+        navigationController?.popViewControllerAnimated(true)
     }
     
     func checkButtonClickHandler(cell: VolunteerCell, button: UIButton) {

@@ -24,7 +24,7 @@ class Person {
     }
 }
 
-class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -35,14 +35,18 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
+        setupSubViews()
         setUpDataSourceAndDelegate()
         tryUpdateTableView()
     }
     
     func setUpNavigationBar() {
-        setNavBarTitle("Add Friends")
-        setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
+        self.subtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+    }
+    
+    func setupSubViews() {
+        collectionView.layer.borderColor = rgb(197, 200, 199).CGColor
+        collectionView.layer.borderWidth = 1.0
     }
     
     func setUpDataSourceAndDelegate() {
@@ -55,11 +59,11 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func backButtonClick() {
+    override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    func nextButtonClick() {
+    override func rightNavButtonTapped() {
         var dm = DataManager.sharedInstance
         var um = UserManager.sharedInstance
         var carpoolID = um.currentCarpoolModel.id
@@ -103,6 +107,19 @@ class ContactPickerVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         } else {
             return ""
         }
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var id = "customHeader";
+        var vHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier(id) as? UITableViewHeaderFooterView
+        
+        if  vHeader == nil {
+            vHeader = UITableViewHeaderFooterView(reuseIdentifier: id)
+            vHeader?.textLabel.font = UIFont(name: "Raleway-Bold", size: 15)
+        }
+        vHeader?.textLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+        vHeader?.contentView.backgroundColor = rgb(246, 253, 243)
+        return vHeader;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

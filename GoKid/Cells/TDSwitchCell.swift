@@ -16,7 +16,6 @@ class TDSwitchCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = ColorManager.sharedInstance.cellBgColor
         switcher.addTarget(self, action: "switched:", forControlEvents: .ValueChanged)
     }
     
