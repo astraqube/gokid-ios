@@ -14,6 +14,7 @@ class LocationVC: BaseVC {
     @IBOutlet weak var startLocationLabel: UILabel!
     @IBOutlet weak var destLocationButton: UIButton!
     @IBOutlet weak var startLocationButton: UIButton!
+    @IBOutlet weak var navSubtitleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +24,11 @@ class LocationVC: BaseVC {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func setUpNavigationBar() {
-        var nav = navigationController as! ZGNavVC
-        nav.addTitleViewToViewController(self)
-        self.title = "Location"
-        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
-        setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
+        navSubtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
     }
     
     func setUpButtonApperence() {
@@ -48,11 +44,11 @@ class LocationVC: BaseVC {
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func backButtonClick() {
+    @IBAction func backButtonTapped(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    func nextButtonClick() {
+    @IBAction func nextButtonTapped(sender: AnyObject) {
         if userManager.currentCarpoolModel.isValidForLocation() {
             var vc = vcWithID("VolunteerVC")
             navigationController?.pushViewController(vc, animated: true)
