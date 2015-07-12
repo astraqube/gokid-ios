@@ -34,6 +34,11 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         setNavBarRightButtonTitle("Next", action: "nextButtonClick")
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     

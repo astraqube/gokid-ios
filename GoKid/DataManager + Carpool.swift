@@ -15,8 +15,8 @@ extension DataManager {
         var schedule = [
             "dropoff_at": model.dropOffTime!.iso8601String(),
             "pickup_at": model.pickUpTime!.iso8601String(),
-            "date_starts_at": model.startDate!.iso8601String(),
-            "date_ends_at": model.endDate!.iso8601String(),
+            "starts_at": model.startDate!.iso8601String(),
+            "ends_at": model.endDate!.iso8601String(),
             "days_occuring": model.occurence!,
             "time_zone": "Pacific Time (US & Canada)",
         ]
