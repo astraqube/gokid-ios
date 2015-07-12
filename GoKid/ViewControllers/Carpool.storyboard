@@ -4,6 +4,18 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Raleway-Bold.ttf">
+            <string>Raleway-Bold</string>
+        </mutableArray>
+        <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Carpool SucceedVC-->
         <scene sceneID="Hdk-Yy-bkT">
@@ -489,117 +501,90 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on each circle to enter location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2R-hM-Rvp">
-                                <rect key="frame" x="26" y="84" width="269" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap on each circle to enter location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2R-hM-Rvp">
+                                <rect key="frame" x="62" y="90" width="196" height="50"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="19"/>
+                                <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1D-8u-o2M">
-                                <rect key="frame" x="44" y="164" width="75" height="75"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="6Ym-4h-lT3"/>
-                                    <constraint firstAttribute="height" constant="75" id="NyM-dn-jY7"/>
-                                </constraints>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startLocationButtonClick:" destination="LG2-du-YDZ" eventType="touchUpInside" id="TDU-d3-L46"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVt-kC-l0k">
-                                <rect key="frame" x="201" y="164" width="75" height="75"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="QnO-vQ-qgh"/>
-                                    <constraint firstAttribute="width" constant="75" id="suJ-1T-qoq"/>
-                                </constraints>
-                                <state key="normal">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVt-kC-l0k">
+                                <rect key="frame" x="212" y="171" width="70" height="70"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="location_up">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="destinationLocationButtonClick:" destination="LG2-du-YDZ" eventType="touchUpInside" id="6lN-nx-pnP"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-cX-KbO">
-                                <rect key="frame" x="130" y="164" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="RgW-55-s3D"/>
-                                    <constraint firstAttribute="height" constant="60" id="TRK-Vl-Jsp"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundTrip" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-cX-KbO">
+                                <rect key="frame" x="142" y="186" width="37" height="39"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuU-tp-NbT">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yuU-tp-NbT">
                                 <rect key="frame" x="0.0" y="379" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.98431372549999996" green="0.99215686270000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="6F3-ee-Rfz"/>
-                                </constraints>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1k-7u-inN">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1k-7u-inN">
                                 <rect key="frame" x="264" y="388" width="51" height="31"/>
                             </switch>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ad-cW-2oG">
-                                <rect key="frame" x="8" y="389" width="30" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="c8J-YW-MhL"/>
-                                    <constraint firstAttribute="height" constant="30" id="gtT-nU-Gbg"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundTrip" translatesAutoresizingMaskIntoConstraints="NO" id="9ad-cW-2oG">
+                                <rect key="frame" x="9" y="394" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origin &amp; destination are the same" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7b-1X-nrq">
-                                <rect key="frame" x="46" y="395" width="215" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Origin &amp; destination are the same" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7b-1X-nrq">
+                                <rect key="frame" x="41" y="395" width="215" height="17"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
+                                <color key="textColor" red="0.25098039215686274" green="0.3843137254901961" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sdscd" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10b-9U-ORt">
+                                <rect key="frame" x="22" y="252" width="101" height="94"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10b-9U-ORt">
-                                <rect key="frame" x="31" y="252" width="101" height="94"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="101" id="JE3-CZ-jOQ"/>
-                                    <constraint firstAttribute="height" constant="94" id="JLg-k7-Dvm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sdcsdc" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-n1-9ni">
+                                <rect key="frame" x="197" y="252" width="101" height="94"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-n1-9ni">
-                                <rect key="frame" x="188" y="252" width="101" height="94"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="94" id="L2e-v3-tnk"/>
-                                    <constraint firstAttribute="width" constant="101" id="k0i-j5-uTb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-Ew-p5T">
+                                <rect key="frame" x="123" y="18" width="75" height="22"/>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
+                                <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX2-Dg-Buk">
+                                <rect key="frame" x="288" y="20" width="20" height="20"/>
+                                <state key="normal" image="next_arrow">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKh-NM-kQI">
+                                <rect key="frame" x="8" y="20" width="20" height="20"/>
+                                <state key="normal" image="back_arrow">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Soccor practice for Tom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FD-YB-Iwp">
+                                <rect key="frame" x="88" y="38" width="145" height="16"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
+                                <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1D-8u-o2M">
+                                <rect key="frame" x="37" y="171" width="70" height="70"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="location_up">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startLocationButtonClick:" destination="LG2-du-YDZ" eventType="touchUpInside" id="TDU-d3-L46"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="J2R-hM-Rvp" secondAttribute="centerX" constant="-0.5" id="2Gc-qR-ofF"/>
-                            <constraint firstItem="9ad-cW-2oG" firstAttribute="centerY" secondItem="Q7b-1X-nrq" secondAttribute="centerY" id="4va-4M-T4t"/>
-                            <constraint firstItem="K0b-n1-9ni" firstAttribute="top" secondItem="gVt-kC-l0k" secondAttribute="bottom" constant="13" id="5xZ-Mg-H9m"/>
-                            <constraint firstItem="6wC-cX-KbO" firstAttribute="leading" secondItem="P1D-8u-o2M" secondAttribute="trailing" constant="11" id="5yD-e2-tAB"/>
-                            <constraint firstItem="K0b-n1-9ni" firstAttribute="centerX" secondItem="gVt-kC-l0k" secondAttribute="centerX" id="6aA-Qb-m5U"/>
-                            <constraint firstItem="W1k-7u-inN" firstAttribute="leading" secondItem="Q7b-1X-nrq" secondAttribute="trailing" constant="3" id="7F7-Bf-h4k"/>
-                            <constraint firstItem="P1D-8u-o2M" firstAttribute="centerX" secondItem="10b-9U-ORt" secondAttribute="centerX" id="Fdb-Dw-AS7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yuU-tp-NbT" secondAttribute="trailing" constant="-16" id="HXE-uJ-1uy"/>
-                            <constraint firstItem="6wC-cX-KbO" firstAttribute="top" secondItem="J2R-hM-Rvp" secondAttribute="bottom" constant="60" id="LpA-Oo-P73"/>
-                            <constraint firstItem="9ad-cW-2oG" firstAttribute="leading" secondItem="bkw-aU-Plo" secondAttribute="leadingMargin" constant="-8" id="QHD-22-Dgs"/>
-                            <constraint firstItem="gVt-kC-l0k" firstAttribute="leading" secondItem="6wC-cX-KbO" secondAttribute="trailing" constant="11" id="Qwa-Eu-GrC"/>
-                            <constraint firstAttribute="centerX" secondItem="6wC-cX-KbO" secondAttribute="centerX" id="SxG-QB-HiN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="W1k-7u-inN" secondAttribute="trailing" constant="-9" id="U3Z-8C-8dX"/>
-                            <constraint firstItem="P1D-8u-o2M" firstAttribute="top" secondItem="J2R-hM-Rvp" secondAttribute="bottom" constant="60" id="XKq-5h-U7c"/>
-                            <constraint firstItem="Q7b-1X-nrq" firstAttribute="leading" secondItem="9ad-cW-2oG" secondAttribute="trailing" constant="8" id="cfg-qd-aIm"/>
-                            <constraint firstItem="yuU-tp-NbT" firstAttribute="top" secondItem="K0b-n1-9ni" secondAttribute="bottom" constant="33" id="eY5-SG-ITL"/>
-                            <constraint firstItem="9ad-cW-2oG" firstAttribute="centerY" secondItem="W1k-7u-inN" secondAttribute="centerY" id="hUS-TY-Mi6"/>
-                            <constraint firstItem="yuU-tp-NbT" firstAttribute="leading" secondItem="bkw-aU-Plo" secondAttribute="leadingMargin" constant="-16" id="piU-wR-r4b"/>
-                            <constraint firstItem="9ad-cW-2oG" firstAttribute="top" secondItem="10b-9U-ORt" secondAttribute="bottom" constant="43" id="sHc-eP-kHw"/>
-                            <constraint firstItem="gVt-kC-l0k" firstAttribute="top" secondItem="J2R-hM-Rvp" secondAttribute="bottom" constant="60" id="sZw-vE-5Q0"/>
-                            <constraint firstItem="J2R-hM-Rvp" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" constant="64" id="swy-EL-k4J"/>
-                            <constraint firstItem="10b-9U-ORt" firstAttribute="top" secondItem="P1D-8u-o2M" secondAttribute="bottom" constant="13" id="wCW-I1-HeZ"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="destLocationButton" destination="gVt-kC-l0k" id="eyI-xf-2ye"/>
@@ -624,7 +609,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9QG-xe-krS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9QG-xe-krS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -758,6 +743,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="9QG-xe-krS" secondAttribute="trailing" constant="-16" id="nIl-aI-1zS"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="9ig-DU-C0c"/>
                     <connections>
                         <outlet property="tableView" destination="9QG-xe-krS" id="pQT-7a-kSM"/>
                     </connections>
@@ -1014,10 +1000,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back_arrow" width="138" height="126"/>
         <image name="carpool_map" width="375" height="667"/>
         <image name="carpool_name_selected" width="22" height="22"/>
         <image name="checkCirc" width="51" height="52"/>
         <image name="kid_name_selected" width="14" height="30"/>
+        <image name="location_up" width="83" height="83"/>
+        <image name="next_arrow" width="46" height="42"/>
+        <image name="roundTrip" width="60" height="64"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

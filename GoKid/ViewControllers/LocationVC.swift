@@ -54,7 +54,7 @@ class LocationVC: BaseVC {
     
     func nextButtonClick() {
         if userManager.currentCarpoolModel.isValidForLocation() {
-            var vc = vcWithID("LocationVC")
+            var vc = vcWithID("VolunteerVC")
             navigationController?.pushViewController(vc, animated: true)
         } else {
             showAlert("Alert", messege: "Please fill in all locations", cancleTitle: "OK")

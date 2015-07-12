@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h81-NN-g8A">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h81-NN-g8A">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -27,7 +27,7 @@
         <!--Detail MapVC-->
         <scene sceneID="SBX-m0-WlO">
             <objects>
-                <viewController storyboardIdentifier="DetailMapVC" id="NC8-s1-hOT" customClass="DetailMapVC" customModule="navmaps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailMapVC" id="NC8-s1-hOT" customClass="DetailMapVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zPp-4j-8Cd"/>
                         <viewControllerLayoutGuide type="bottom" id="9nn-Kl-2QR"/>
@@ -73,7 +73,7 @@
                                                         <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssp-Sr-fTb" customClass="BorderedBarishButton" customModule="navmaps" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssp-Sr-fTb" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="542" y="14" width="46" height="26"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="46" id="3yU-dH-azO"/>
@@ -234,10 +234,10 @@
                                                             </mask>
                                                         </variation>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsB-3u-eqE" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsB-3u-eqE" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="17" y="9" width="64" height="64"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_userImage" translatesAutoresizingMaskIntoConstraints="NO" id="c3M-hr-K5M" userLabel="userImage View" customClass="MapUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_userImage" translatesAutoresizingMaskIntoConstraints="NO" id="c3M-hr-K5M" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                 <rect key="frame" x="5" y="5" width="54" height="54"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="54" id="6Jf-hg-pQa"/>
@@ -396,7 +396,7 @@
         <!--Driving ModeVC-->
         <scene sceneID="wUZ-7b-jfy">
             <objects>
-                <viewController id="lS1-KS-oXw" customClass="DrivingModeVC" customModule="navmaps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lS1-KS-oXw" customClass="DrivingModeVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="It7-vj-a8F"/>
                         <viewControllerLayoutGuide type="bottom" id="UP3-dv-Rdd"/>
