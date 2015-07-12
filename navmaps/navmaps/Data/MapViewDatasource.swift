@@ -40,7 +40,11 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
     }()
     var locationToCurrentStopRoute : MKRoute? {
         willSet { mapView.removeOverlay(self.locationToCurrentStopRoute?.polyline) }
-        didSet { mapView.addOverlay(self.locationToCurrentStopRoute?.polyline) }
+        didSet {
+            if self.locationToCurrentStopRoute?.polyline != nil {
+                mapView.addOverlay(self.locationToCurrentStopRoute?.polyline)
+            }
+        }
     }
     
     ///Set me to support Tap handling of Tap events from `mapView:didSelectAnnotationView:`
@@ -60,10 +64,12 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         updateRoutes()
     }
     
+    var showedError = false
     func updateRoutes() {
         navigation.calculatePickupToDropoffRoutePiecesWithUpdateCallback { (updatedArray: [MKDirectionsResponse?], error: NSError?) -> (Void) in
-            if error != nil {
+            if error != nil && self.showedError == false{
                 UIAlertView(title: "Problem showing route", message: "You will still be able to navigate", delegate: nil, cancelButtonTitle: "Okay").show()
+                self.showedError = true
             }
             self.displayStaticRoutes()
         }

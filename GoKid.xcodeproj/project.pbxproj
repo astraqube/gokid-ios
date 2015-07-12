@@ -105,6 +105,7 @@
 		1DFBBE9C1B1C78DC00630440 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */; };
 		1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */; };
 		1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */; };
+		7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */; };
 		796E699E1B4A6E0C00DF8D43 /* Fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */; };
 		796E699F1B4A6E0C00DF8D43 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */; };
 		796E69A01B4A6E0C00DF8D43 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */; };
@@ -243,6 +244,7 @@
 		1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpVC.swift; path = ViewControllers/SignUpVC.swift; sourceTree = "<group>"; };
 		1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamAccountVC.swift; path = ViewControllers/TeamAccountVC.swift; sourceTree = "<group>"; };
 		1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAccountCell.swift; sourceTree = "<group>"; };
+		7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapItineraryItemView.swift; sourceTree = "<group>"; };
 		796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontawesome.ttf; sourceTree = "<group>"; };
 		796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
@@ -757,6 +759,7 @@
 		796E69B41B4A6E5600DF8D43 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */,
 				796E69B51B4A6E5600DF8D43 /* BorderedBarishButton.swift */,
 				796E69B61B4A6E5600DF8D43 /* BorderedView.swift */,
 				796E69B71B4A6E5600DF8D43 /* MapUserImageView.swift */,
@@ -958,6 +961,7 @@
 				1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */,
 				796E69C51B4A6E5600DF8D43 /* BorderedView.swift in Sources */,
 				1D975A431B1F94B500CD4D89 /* TDTextCell.swift in Sources */,
+				7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */,
 				1D891F141B23FDD8006FD961 /* SwiftAddressBookSource.swift in Sources */,
 				1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */,
 				1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */,
