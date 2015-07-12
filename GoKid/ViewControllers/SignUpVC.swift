@@ -60,7 +60,6 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     @IBAction func doneButtonClick(sender: AnyObject) {
         
         var signupForm = SignupForm()
-        signupForm.role = "kid"
         signupForm.email = emailTextField.text
         signupForm.firstName = firstNameTextField.text
         signupForm.lastName = lastNameTextField.text

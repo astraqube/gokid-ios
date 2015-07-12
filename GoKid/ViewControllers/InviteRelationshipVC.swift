@@ -26,15 +26,15 @@ class InviteRelationshipVC: BaseVC {
     }
     
     @IBAction func mommyClick(sender: AnyObject) {
-        setRoleAndMoveToVolunteerVC("mommy")
+        setRoleAndMoveToVolunteerVC(RoleTypeMommy)
     }
     
     @IBAction func daddyClick(sender: AnyObject) {
-        setRoleAndMoveToVolunteerVC("daddy")
+        setRoleAndMoveToVolunteerVC(RoleTypeDaddy)
     }
     
     @IBAction func sitterClick(sender: AnyObject) {
-        setRoleAndMoveToVolunteerVC("sitter")
+        setRoleAndMoveToVolunteerVC(RoleTypeCareTaker)
     }
     
     @IBAction func otherClick(sender: AnyObject) {

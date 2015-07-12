@@ -8,6 +8,11 @@
 
 import UIKit
 
+let RoleTypeCareTaker = "Caretaker"
+let RoleTypeChild = "Child"
+let RoleTypeMommy = "Mommy"
+let RoleTypeDaddy = "Daddy"
+
 class UserManager: NSObject {
     
     // MARK: Singleton

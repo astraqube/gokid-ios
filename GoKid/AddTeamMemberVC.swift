@@ -45,7 +45,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     }
     
     func setRemoveButtonState() {
-        if model.role != "sitter" {
+        if model.role != RoleTypeCareTaker {
             buttomButton.backgroundColor = UIColor.grayColor()
             buttomButton.superview?.backgroundColor = UIColor.grayColor()
         }
@@ -97,7 +97,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
         var row = indexPath.row
         var section = indexPath.section
         
-        if model.role.lowercaseString == "kid" {
+        if model.role.lowercaseString == RoleTypeChild.lowercaseString {
             if section == 1 { return 0.0 }
             if section == 3 && row == 1 { return 0.0 }
         }
@@ -107,7 +107,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if model.role.lowercaseString == "kid" {
+        if model.role.lowercaseString == RoleTypeChild.lowercaseString {
             if section == 1 { return 0.0 }
         }
         if section == 0 { return 0.0 }
@@ -131,7 +131,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     
     @IBAction func roleButtonClick(sender: AnyObject) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        var titles = ["Mommy", "Daddy", "Kid", "Sitter"]
+        var titles = [RoleTypeMommy, RoleTypeDaddy, RoleTypeChild, RoleTypeCareTaker]
         for title in titles {
             let button = UIAlertAction(title: title, style: .Default) { (alert) in
                 self.roleButton.setTitle(title, forState: .Normal)
@@ -147,7 +147,7 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     
     @IBAction func buttomButtonClick(sender: AnyObject) {
         if sourceCellType == .EditMember {
-            if model.role.lowercaseString == "sitter" {
+            if model.role.lowercaseString == RoleTypeCareTaker.lowercaseString {
                 showDeleteMemberAlertView()
             } else {
                 self.showAlert("Can not delete", messege: "You can only delete a member whose role is sitter", cancleTitle: "OK")
