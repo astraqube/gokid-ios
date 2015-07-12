@@ -34,6 +34,16 @@ class CalendarUserImageView: UIView {
         }
     }
     
+    @IBInspectable var centerImage : Bool = false {
+        didSet{
+            if self.centerImage {
+                imageView.contentMode = UIViewContentMode.Center
+            } else {
+                imageView.contentMode = UIViewContentMode.ScaleAspectFill
+            }
+        }
+    }
+    
     @IBInspectable var noImageColor : UIColor = UIColor.whiteColor() {
         didSet {
             imageView.backgroundColor = noImageColor
