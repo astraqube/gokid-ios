@@ -15,11 +15,12 @@ class LocationVC: BaseVC {
     @IBOutlet weak var destLocationButton: UIButton!
     @IBOutlet weak var startLocationButton: UIButton!
     @IBOutlet weak var navSubtitleLabel: UILabel!
+    @IBOutlet weak var switchBackgroundView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
-        setUpButtonApperence()
+        setupSubview()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,14 +32,9 @@ class LocationVC: BaseVC {
         navSubtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
     }
     
-    func setUpButtonApperence() {
-        var w: CGFloat = 5.0
-        destLocationButton.layer.cornerRadius = destLocationButton.w/2.0
-        destLocationButton.layer.borderColor = colorManager.blueColor.CGColor
-        destLocationButton.layer.borderWidth = w
-        startLocationButton.layer.cornerRadius = startLocationButton.w/2.0
-        startLocationButton.layer.borderColor = colorManager.blueColor.CGColor
-        startLocationButton.layer.borderWidth = w
+    func setupSubview() {
+        switchBackgroundView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        switchBackgroundView.layer.borderWidth = 2.0
     }
     
     // MARK: IBAction Method

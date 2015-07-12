@@ -520,43 +520,62 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundTrip" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-cX-KbO">
                                 <rect key="frame" x="142" y="186" width="37" height="39"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yuU-tp-NbT">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuU-tp-NbT">
                                 <rect key="frame" x="0.0" y="379" width="320" height="50"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1k-7u-inN">
+                                        <rect key="frame" x="263" y="10" width="51" height="31"/>
+                                    </switch>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundTrip" translatesAutoresizingMaskIntoConstraints="NO" id="9ad-cW-2oG">
+                                        <rect key="frame" x="8" y="16" width="20" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="upX-rl-E2l"/>
+                                            <constraint firstAttribute="height" constant="20" id="vQW-Xi-zsi"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origin &amp; destination are the same" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7b-1X-nrq">
+                                        <rect key="frame" x="41" y="16" width="214" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
+                                        <color key="textColor" red="0.25098039215686274" green="0.3843137254901961" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.98431372549999996" green="0.99215686270000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="W1k-7u-inN" secondAttribute="centerY" constant="-0.5" id="1I1-af-kDc"/>
+                                    <constraint firstAttribute="centerY" secondItem="Q7b-1X-nrq" secondAttribute="centerY" id="E7L-JS-y4b"/>
+                                    <constraint firstAttribute="trailing" secondItem="W1k-7u-inN" secondAttribute="trailing" constant="8" id="O7Q-xb-K24"/>
+                                    <constraint firstItem="9ad-cW-2oG" firstAttribute="top" secondItem="yuU-tp-NbT" secondAttribute="top" constant="16" id="UkU-jl-mx4"/>
+                                    <constraint firstItem="9ad-cW-2oG" firstAttribute="leading" secondItem="yuU-tp-NbT" secondAttribute="leading" constant="8" id="aoj-CR-ADB"/>
+                                    <constraint firstAttribute="height" constant="50" id="f5u-v2-FhQ"/>
+                                    <constraint firstItem="Q7b-1X-nrq" firstAttribute="leading" secondItem="9ad-cW-2oG" secondAttribute="trailing" constant="13" id="vsu-sP-FTE"/>
+                                </constraints>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1k-7u-inN">
-                                <rect key="frame" x="264" y="388" width="51" height="31"/>
-                            </switch>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundTrip" translatesAutoresizingMaskIntoConstraints="NO" id="9ad-cW-2oG">
-                                <rect key="frame" x="9" y="394" width="20" height="20"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Origin &amp; destination are the same" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7b-1X-nrq">
-                                <rect key="frame" x="41" y="395" width="215" height="17"/>
-                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
-                                <color key="textColor" red="0.25098039215686274" green="0.3843137254901961" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sdscd" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10b-9U-ORt">
                                 <rect key="frame" x="22" y="252" width="101" height="94"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sdcsdc" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-n1-9ni">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="sdcsdc" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-n1-9ni">
                                 <rect key="frame" x="197" y="252" width="101" height="94"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-Ew-p5T">
-                                <rect key="frame" x="123" y="18" width="75" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-Ew-p5T">
+                                <rect key="frame" x="123" y="18" width="75" height="21.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
                                 <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX2-Dg-Buk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX2-Dg-Buk">
                                 <rect key="frame" x="288" y="20" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="2GD-h7-cI1"/>
+                                    <constraint firstAttribute="height" constant="20" id="kjR-iD-afy"/>
+                                </constraints>
                                 <state key="normal" image="next_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -564,8 +583,12 @@
                                     <action selector="nextButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="oGY-EV-60Y"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKh-NM-kQI">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKh-NM-kQI">
                                 <rect key="frame" x="8" y="20" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="1RV-YJ-9ah"/>
+                                    <constraint firstAttribute="width" constant="20" id="rCq-mX-UKD"/>
+                                </constraints>
                                 <state key="normal" image="back_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -573,8 +596,8 @@
                                     <action selector="backButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="znq-YX-iW5"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Soccor practice for Tom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FD-YB-Iwp">
-                                <rect key="frame" x="88" y="38" width="145" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FD-YB-Iwp">
+                                <rect key="frame" x="89" y="37" width="143" height="16"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -591,14 +614,28 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="6FD-YB-Iwp" secondAttribute="centerX" constant="-0.5" id="81M-aj-cUg"/>
+                            <constraint firstItem="iKh-NM-kQI" firstAttribute="leading" secondItem="bkw-aU-Plo" secondAttribute="leadingMargin" constant="-8" id="Asu-Wy-lfL"/>
+                            <constraint firstItem="iKh-NM-kQI" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" id="GIC-p3-Va9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DX2-Dg-Buk" secondAttribute="trailing" constant="-4" id="JYF-Qn-nws"/>
+                            <constraint firstItem="V4M-oP-QVJ" firstAttribute="top" secondItem="yuU-tp-NbT" secondAttribute="bottom" constant="139" id="NCq-z4-jzr"/>
+                            <constraint firstItem="yuU-tp-NbT" firstAttribute="top" secondItem="K0b-n1-9ni" secondAttribute="bottom" constant="33" id="Yha-RN-AyO"/>
+                            <constraint firstItem="yuU-tp-NbT" firstAttribute="leading" secondItem="bkw-aU-Plo" secondAttribute="leading" id="eYO-a0-LlP"/>
+                            <constraint firstItem="kwE-Ew-p5T" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" constant="-2" id="kx9-07-EZS"/>
+                            <constraint firstItem="DX2-Dg-Buk" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" id="mkR-9Q-FJn"/>
+                            <constraint firstAttribute="trailing" secondItem="yuU-tp-NbT" secondAttribute="trailing" id="oNE-0L-ZH3"/>
+                            <constraint firstAttribute="centerX" secondItem="kwE-Ew-p5T" secondAttribute="centerX" constant="-0.5" id="v7l-3b-fDY"/>
+                            <constraint firstItem="6FD-YB-Iwp" firstAttribute="top" secondItem="kwE-Ew-p5T" secondAttribute="bottom" constant="-2" id="xVp-02-EiO"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="destLocationButton" destination="gVt-kC-l0k" id="eyI-xf-2ye"/>
                         <outlet property="destinationLocationLabel" destination="K0b-n1-9ni" id="AOo-9F-OTA"/>
                         <outlet property="navSubtitleLabel" destination="6FD-YB-Iwp" id="F7O-I1-1iu"/>
-                        <outlet property="nextButtonTapped" destination="DX2-Dg-Buk" id="OO0-Jf-JZn"/>
                         <outlet property="startLocationButton" destination="P1D-8u-o2M" id="IGP-ys-JhC"/>
                         <outlet property="startLocationLabel" destination="10b-9U-ORt" id="3H8-Zr-Sjo"/>
+                        <outlet property="switchBackgroundView" destination="yuU-tp-NbT" id="xkk-lh-Ks5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CHy-K6-tHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
