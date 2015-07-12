@@ -66,16 +66,17 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         signupForm.password = passwordTextField.text
         signupForm.passwordConfirm = passwordTextField.text
         
+        LoadingView.showWithMaskType(.Black)
         dataManager.signup(signupForm) { (success, errorStr) in
+            LoadingView.dismiss()
+            onMainThread() {
             if success {
                 self.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
-                    // self.willMoveToParentViewController(nil)
                     self.view.removeFromSuperview()
-                    // self.removeFromParentViewController()
                 }
             } else {
                 self.showAlert("Failed to Signup", messege: errorStr, cancleTitle: "OK")
-            }
+            }}
         }        
     }
     

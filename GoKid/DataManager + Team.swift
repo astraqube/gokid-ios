@@ -117,14 +117,17 @@ extension DataManager {
     
     func updateTeamMember(model: TeamMemberModel, comp: UserCompletion) {
         var url = baseURL + "/api/users/" + String(model.userID)
-        var map = [
-            "user": [
-                "first_name": model.firstName,
-                "last_name" : model.lastName,
-                "phone_number": model.phoneNumber,
-                "role": model.role.lowercaseString
-            ]
+        var user = [
+            "first_name": model.firstName,
+            "last_name" : model.lastName,
+            "role": model.role.lowercaseString
         ]
+        if model.phoneNumber != "" {
+            user["phone_number"] = model.phoneNumber
+        } else {
+            user["phone_number"] = nil
+        }        
+        var map = ["user" : user]
         var manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
             println("updateTeamMember success")

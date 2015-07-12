@@ -10,6 +10,7 @@ import UIKit
 
 class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
     
+    var signupVC: SignUpVC!
     var dataSource = [TDCellModel]()
     var timePicker: DateTimePicker!
     var datePicker: THDatePickerViewController!
@@ -63,9 +64,13 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
     }
     
     func nextButtonClick() {
+        if userManager.userLoggedIn == false {
+            animatShowSignupVC()
+            return
+        }
+        
         if userManager.currentCarpoolModel.isValidForTime() {
-            var vc = vcWithID("LocationVC")
-            self.navigationController?.pushViewController(vc, animated: true)
+            startCarpoolCreation()
         } else {
             showAlert("Alert", messege: "Please fill in all fields", cancleTitle: "OK")
         }
@@ -221,16 +226,6 @@ class TimeAndDateVC: BaseTVC, THDatePickerDelegate {
         var component = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
         var day = component.weekday - 1
         return [day]
-    }
-  
-    func dismissDateTimePicker() {
-        timePicker.alphaAnimation(0.0, duration: 0.3) { (anim, finished) in
-            self.timePicker.removeFromSuperview()
-        }
-    }
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        dismissDateTimePicker()
     }
 }
 

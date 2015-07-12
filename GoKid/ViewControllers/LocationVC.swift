@@ -54,7 +54,8 @@ class LocationVC: BaseVC {
     
     func nextButtonClick() {
         if userManager.currentCarpoolModel.isValidForLocation() {
-            startCarpoolCreation()
+            var vc = vcWithID("LocationVC")
+            navigationController?.pushViewController(vc, animated: true)
         } else {
             showAlert("Alert", messege: "Please fill in all locations", cancleTitle: "OK")
         }
@@ -80,33 +81,5 @@ class LocationVC: BaseVC {
     func donePickingEndLocationWithAddress(address: String) {
         self.destinationLocationLabel.text = address
         userManager.currentCarpoolModel.endLocation = address
-    }
-    
-    // MARK: NetWork Carpool Creation
-    // --------------------------------------------------------------------------------------------
-    
-    func startCarpoolCreation() {
-        LoadingView.showWithMaskType(.Black)
-        if userManager.userLoggedIn {
-            dataManager.createCarpool(userManager.currentCarpoolModel, comp: handleCreateCarpool)
-        } else {
-            moveToVolunteerVC()
-        }
-    }
-    
-    func handleCreateCarpool(success: Bool, errorStr: String) {
-        LoadingView.dismiss()
-        if success {
-            moveToVolunteerVC()
-        } else {
-            self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
-        }
-    }
-    
-    func moveToVolunteerVC() {
-        onMainThread() {
-            var vc = vcWithID("VolunteerVC")
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
     }
 }
