@@ -34,7 +34,7 @@ class LocationVC: BaseVC {
     
     func setupSubview() {
         switchBackgroundView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        switchBackgroundView.layer.borderWidth = 2.0
+        switchBackgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
     }
     
     // MARK: IBAction Method
