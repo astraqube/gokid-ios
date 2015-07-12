@@ -17,7 +17,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         setupNavigationBar()
         setupTableView()
-        registerForNotification("SignupFinished", action: "fetchDataAfterLogin")
     }
     
     func setupTableView() {
@@ -43,21 +42,13 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func nextButtonClick() {
-        if userManager.userLoggedIn {
-            var vc = vcWithID("InviteParentsVC")
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            animatShowSignupVC()
-        }
+        var vc = vcWithID("InviteParentsVC")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func checkButtonClickHandler(cell: VolunteerCell, button: UIButton) {
         if let row = tableView.indexPathForCell(cell)?.row {
-            if userManager.userLoggedIn == false {
-                animatShowSignupVC()
-            } else {
-                showActionSheet(cell)
-            }
+            showActionSheet(cell)
         }
     }
     
@@ -110,52 +101,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    // MARK: Signin Signup
-    // --------------------------------------------------------------------------------------------
-    
-    var signupVC: SignUpVC!
-    func animatShowSignupVC() {
-        signupVC = vcWithID("SignUpVC") as! SignUpVC
-        signupVC.view.alpha = 0.0
-        
-        // view controller operations
-        navigationController?.view.addSubview(signupVC.view)
-        signupVC.signinButtonHandler = signupToSignin
-        
-        // animation
-        signupVC.view.alphaAnimation(1.0, duration: 0.5, completion: nil)
-    }
-    
-    func signupToSignin() {
-        signupVC.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
-            self.signupVC.view.removeFromSuperview()
-            withDelay(0.2) {
-                var vc = vcWithID("SignInVC") as! SignInVC
-                vc.signinSuccessHandler = self.signinSuccessHandler
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
-    }
-    
-    func signinSuccessHandler() {
-        navigationController?.popViewControllerAnimated(true)
-        fetchDataAfterLogin()
-    }
-    
-    func fetchDataAfterLogin() {
-        LoadingView.showWithMaskType(.Black)
-        dataManager.createCarpool(userManager.currentCarpoolModel, comp: handleCreateCarpoolSuccess)
-    }
-    
-    func handleCreateCarpoolSuccess(success: Bool, errorStr: String) {
-        if success {
-            tryLoadTableData()
-        } else {
-            LoadingView.dismiss()
-            self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
-        }
-    }
-    
     // MARK: NetWork Create Carpool
     // --------------------------------------------------------------------------------------------
     
@@ -171,18 +116,12 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
       }
     }
     
-    
-    
     func tryLoadTableData() {
         if userManager.userLoggedIn {
             LoadingView.showWithMaskType(.Black)
             dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
         } else {
-            if userManager.currentCarpoolModel.isValidForTime() {
-                dataManager.getFakeVolunteerList(userManager.currentCarpoolModel, comp: handleGetFakeVolunteerList)
-            } else {
-                self.showAlert("currentCarpoolModel not valid", messege: "currentCarpoolModel not valid for time", cancleTitle: "OK")
-            }
+            showAlert("Cannot fetch data", messege: "You are not logged in", cancleTitle: "OK")
         }
     }
     
@@ -193,16 +132,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             reloadWithDataSourceOnMainThread()
         } else {
             self.showAlert("Fail to fetch vlounteer list", messege: errorStr, cancleTitle: "OK")
-        }
-    }
-    
-    func handleGetFakeVolunteerList(success: Bool, errorStr: String) {
-        LoadingView.dismiss()
-        if success {
-            dataSource = processRawCalendarEvents(userManager.fakeVolunteerEvents)
-            reloadWithDataSourceOnMainThread()
-        } else {
-            self.showAlert("Fail to fecth unregistered volunteer list", messege: errorStr, cancleTitle: "OK")
         }
     }
     

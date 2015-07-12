@@ -113,34 +113,6 @@ extension DataManager {
         }
     }
     
-    func getFakeVolunteerList(model: CarpoolModel, comp: completion) {
-        var url = baseURL + "/api/carpools/temp-schedule"
-        var schedule = [
-            "dropoff_at": model.dropOffTime!.iso8601String(),
-            "pickup_at": model.pickUpTime!.iso8601String(),
-            "starts_at": model.startDate!.iso8601String(),
-            "ends_at": model.endDate!.iso8601String(),
-            "days_occuring": model.occurence!,
-            "time_zone": "Pacific Time (US & Canada)",
-        ]
-        var map = [
-            "schedule": schedule
-        ]
-        println(map)
-        var manager = managerWithToken()
-        manager.POST(url, parameters:map , success: { (op, obj) in
-            println("getFakeVolunteerList success")
-            var json = JSON(obj)
-            println(json)
-            var events = CalendarModel.arrayOfFakeVolunteerEventsFromOccurrences(json["carpools"], model.name)
-            self.userManager.fakeVolunteerEvents = events
-            comp(true, "")
-        }) { (op, error) in
-            println("getFakeVolunteerList failed")
-            self.handleRequestError(op, error: error, comp: comp)
-        }
-    }
-    
     func addKidsNameToCarpool(carpoolID: Int, name: String, comp: completion) {
         var url = baseURL + "/api/carpools/" + String(carpoolID) + "/riders"
         var map = [
