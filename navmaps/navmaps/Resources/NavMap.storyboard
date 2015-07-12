@@ -446,6 +446,15 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffb-4Z-rUf">
+                                                        <rect key="frame" x="-1" y="47" width="47" height="13"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="47" id="YgR-RP-8or"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="11"/>
+                                                        <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Little" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhw-S3-9wv">
                                                         <rect key="frame" x="53" y="47" width="47" height="13"/>
                                                         <constraints>
@@ -468,15 +477,6 @@
                                                         <rect key="frame" x="161" y="47" width="47" height="13"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="47" id="pd3-u3-kJ0"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="11"/>
-                                                        <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffb-4Z-rUf">
-                                                        <rect key="frame" x="-1" y="47" width="47" height="13"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="47" id="YgR-RP-8or"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="11"/>
                                                         <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
@@ -689,17 +689,23 @@
                                                         <constraints>
                                                             <constraint firstItem="SPo-Ij-KNI" firstAttribute="centerY" secondItem="7c6-AS-mG5" secondAttribute="centerY" id="FH1-UL-acw"/>
                                                             <constraint firstItem="SPo-Ij-KNI" firstAttribute="leading" secondItem="Dmm-GU-eM4" secondAttribute="trailing" constant="5" id="I9R-Dp-viW"/>
+                                                            <constraint firstAttribute="height" id="KvC-Jf-CA9"/>
                                                             <constraint firstItem="csf-9B-5wR" firstAttribute="leading" secondItem="6EI-Vg-n9p" secondAttribute="leading" constant="12" id="M58-OO-ty8"/>
-                                                            <constraint firstAttribute="height" constant="68" id="MbO-Wa-iAp"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Dmm-GU-eM4" secondAttribute="bottom" priority="999" id="Mtt-Vr-fsF"/>
                                                             <constraint firstItem="Dmm-GU-eM4" firstAttribute="top" secondItem="6EI-Vg-n9p" secondAttribute="top" constant="16" id="Nly-JV-FcN"/>
                                                             <constraint firstAttribute="trailing" secondItem="SPo-Ij-KNI" secondAttribute="trailing" constant="18" id="RRz-0E-8cu"/>
                                                             <constraint firstItem="Dmm-GU-eM4" firstAttribute="leading" secondItem="6EI-Vg-n9p" secondAttribute="leading" constant="83" id="mFe-fN-RYJ"/>
                                                             <constraint firstItem="7c6-AS-mG5" firstAttribute="centerY" secondItem="csf-9B-5wR" secondAttribute="centerY" id="mUC-Pr-d0L"/>
                                                         </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="KvC-Jf-CA9"/>
+                                                            </mask>
+                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="tcJ-fL-rVN" id="jTs-UF-lbz"/>
                                                             <outlet property="borderedView" destination="Dmm-GU-eM4" id="DFl-62-vvq"/>
-                                                            <outlet property="heightConstraint" destination="MbO-Wa-iAp" id="lxZ-GW-RsD"/>
+                                                            <outlet property="collapseHeightConstraint" destination="KvC-Jf-CA9" id="fQj-vp-6nE"/>
                                                             <outlet property="timeLabel" destination="csf-9B-5wR" id="vE1-Rl-YWN"/>
                                                             <outlet property="titleLabel" destination="2z5-3o-GL8" id="Zx1-Ui-3nQ"/>
                                                             <outlet property="userImageView" destination="7c6-AS-mG5" id="daT-E4-Xwt"/>
@@ -802,18 +808,25 @@
                                                             <constraint firstItem="xHv-CM-4Ir" firstAttribute="leading" secondItem="Dtc-Te-xzY" secondAttribute="leading" constant="12" id="AWM-iZ-WUd"/>
                                                             <constraint firstAttribute="trailing" secondItem="Cn5-Od-nKR" secondAttribute="trailing" constant="18" id="Aso-Pt-JEG"/>
                                                             <constraint firstItem="ofr-Vp-kze" firstAttribute="centerY" secondItem="xHv-CM-4Ir" secondAttribute="centerY" id="CbJ-xF-ip0"/>
-                                                            <constraint firstAttribute="bottom" secondItem="eaw-UY-2Sr" secondAttribute="bottom" id="SSh-Sh-JsJ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="eaw-UY-2Sr" secondAttribute="bottom" priority="999" id="SSh-Sh-JsJ"/>
                                                             <constraint firstItem="Cn5-Od-nKR" firstAttribute="leading" secondItem="eaw-UY-2Sr" secondAttribute="trailing" constant="5" id="SlM-Oy-BxE"/>
                                                             <constraint firstItem="Cn5-Od-nKR" firstAttribute="centerY" secondItem="ofr-Vp-kze" secondAttribute="centerY" id="YHC-e8-0sD"/>
+                                                            <constraint firstAttribute="height" id="eqS-kT-e8N"/>
                                                             <constraint firstItem="aL4-p2-ugy" firstAttribute="top" secondItem="Dtc-Te-xzY" secondAttribute="top" constant="-1" id="evP-Oq-h4f"/>
                                                             <constraint firstItem="eaw-UY-2Sr" firstAttribute="centerX" secondItem="aL4-p2-ugy" secondAttribute="centerX" id="iTp-KN-cba"/>
                                                             <constraint firstItem="eaw-UY-2Sr" firstAttribute="top" secondItem="Dtc-Te-xzY" secondAttribute="top" constant="16" id="k5n-x9-JBd"/>
                                                             <constraint firstItem="eaw-UY-2Sr" firstAttribute="top" secondItem="aL4-p2-ugy" secondAttribute="bottom" constant="-1" id="wI6-AD-ChM"/>
                                                             <constraint firstItem="eaw-UY-2Sr" firstAttribute="leading" secondItem="Dtc-Te-xzY" secondAttribute="leading" constant="83" id="zQJ-BP-UEN"/>
                                                         </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="eqS-kT-e8N"/>
+                                                            </mask>
+                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="f4W-i9-QA9" id="Otf-Mg-670"/>
                                                             <outlet property="borderedView" destination="eaw-UY-2Sr" id="69b-Xv-Tjg"/>
+                                                            <outlet property="collapseHeightConstraint" destination="eqS-kT-e8N" id="Vun-I8-A2U"/>
                                                             <outlet property="dotsImageView" destination="aL4-p2-ugy" id="1eu-4C-NhV"/>
                                                             <outlet property="timeLabel" destination="xHv-CM-4Ir" id="UtX-1c-ffj"/>
                                                             <outlet property="titleLabel" destination="QRr-Ph-q6Y" id="frT-4n-orh"/>
@@ -914,10 +927,11 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="height" id="1NP-dv-UOQ"/>
                                                             <constraint firstItem="o2L-co-GrT" firstAttribute="top" secondItem="gpY-Vn-hiw" secondAttribute="bottom" constant="-1" id="50f-xJ-hCz"/>
                                                             <constraint firstItem="o2L-co-GrT" firstAttribute="centerX" secondItem="gpY-Vn-hiw" secondAttribute="centerX" id="CsM-4F-Nct"/>
                                                             <constraint firstItem="o2L-co-GrT" firstAttribute="top" secondItem="JFt-iC-6Yq" secondAttribute="top" constant="16" id="DUV-9f-2za"/>
-                                                            <constraint firstAttribute="bottom" secondItem="o2L-co-GrT" secondAttribute="bottom" id="K1f-5h-Cbh"/>
+                                                            <constraint firstAttribute="bottom" secondItem="o2L-co-GrT" secondAttribute="bottom" priority="999" id="K1f-5h-Cbh"/>
                                                             <constraint firstAttribute="trailing" secondItem="8R3-zX-Vv3" secondAttribute="trailing" constant="18" id="Kzg-rE-oJT"/>
                                                             <constraint firstItem="8R3-zX-Vv3" firstAttribute="centerY" secondItem="x8E-U6-Ly3" secondAttribute="centerY" id="RTp-vk-4g8"/>
                                                             <constraint firstItem="o2L-co-GrT" firstAttribute="leading" secondItem="JFt-iC-6Yq" secondAttribute="leading" constant="83" id="a0y-BU-q7s"/>
@@ -926,9 +940,15 @@
                                                             <constraint firstItem="x8E-U6-Ly3" firstAttribute="centerY" secondItem="fKs-zg-O1w" secondAttribute="centerY" id="m1D-ok-b69"/>
                                                             <constraint firstItem="8R3-zX-Vv3" firstAttribute="leading" secondItem="o2L-co-GrT" secondAttribute="trailing" constant="5" id="mgv-vc-vVe"/>
                                                         </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="1NP-dv-UOQ"/>
+                                                            </mask>
+                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="cKd-vG-90p" id="etb-pF-eDg"/>
                                                             <outlet property="borderedView" destination="o2L-co-GrT" id="ScA-c2-kBC"/>
+                                                            <outlet property="collapseHeightConstraint" destination="1NP-dv-UOQ" id="a4d-Ei-uwR"/>
                                                             <outlet property="dotsImageView" destination="gpY-Vn-hiw" id="gpW-6V-xV0"/>
                                                             <outlet property="timeLabel" destination="fKs-zg-O1w" id="rRm-p1-Ztu"/>
                                                             <outlet property="titleLabel" destination="l46-e0-YnI" id="LAD-PJ-R6l"/>
@@ -1034,18 +1054,25 @@ Greenwich, CT.</string>
                                                             <constraint firstItem="5IP-2s-Iya" firstAttribute="top" secondItem="eRU-1q-ggq" secondAttribute="top" constant="-1" id="0PY-cA-Jo0"/>
                                                             <constraint firstItem="NgM-Rm-ImJ" firstAttribute="centerY" secondItem="gFL-ZJ-Uvr" secondAttribute="centerY" id="4el-Tp-9zP"/>
                                                             <constraint firstAttribute="trailing" secondItem="xcH-S4-1xU" secondAttribute="trailing" constant="18" id="C7o-uR-zxi"/>
-                                                            <constraint firstAttribute="bottom" secondItem="vaI-CQ-G0d" secondAttribute="bottom" id="CA6-ne-azB"/>
+                                                            <constraint firstAttribute="bottom" secondItem="vaI-CQ-G0d" secondAttribute="bottom" priority="999" id="CA6-ne-azB"/>
                                                             <constraint firstItem="vaI-CQ-G0d" firstAttribute="top" secondItem="5IP-2s-Iya" secondAttribute="bottom" constant="-1" id="DuP-5T-yfu"/>
                                                             <constraint firstItem="vaI-CQ-G0d" firstAttribute="leading" secondItem="eRU-1q-ggq" secondAttribute="leading" constant="83" id="FCn-kW-3Yd"/>
                                                             <constraint firstItem="gFL-ZJ-Uvr" firstAttribute="leading" secondItem="eRU-1q-ggq" secondAttribute="leading" constant="12" id="Fxp-6j-fGe"/>
                                                             <constraint firstItem="vaI-CQ-G0d" firstAttribute="centerX" secondItem="5IP-2s-Iya" secondAttribute="centerX" id="SGb-pG-1E0"/>
                                                             <constraint firstItem="vaI-CQ-G0d" firstAttribute="top" secondItem="eRU-1q-ggq" secondAttribute="top" constant="16" id="UX8-tL-zpr"/>
+                                                            <constraint firstAttribute="height" id="WyQ-f2-i2v"/>
                                                             <constraint firstItem="xcH-S4-1xU" firstAttribute="centerY" secondItem="NgM-Rm-ImJ" secondAttribute="centerY" id="ej0-ke-Teu"/>
                                                             <constraint firstItem="xcH-S4-1xU" firstAttribute="leading" secondItem="vaI-CQ-G0d" secondAttribute="trailing" constant="5" id="jc2-76-x5i"/>
                                                         </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="WyQ-f2-i2v"/>
+                                                            </mask>
+                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="ddA-d2-vgC" id="HYe-2e-hT5"/>
                                                             <outlet property="borderedView" destination="vaI-CQ-G0d" id="ioC-A3-Zn8"/>
+                                                            <outlet property="collapseHeightConstraint" destination="WyQ-f2-i2v" id="V9b-nv-4cT"/>
                                                             <outlet property="dotsImageView" destination="5IP-2s-Iya" id="wxh-zX-tqn"/>
                                                             <outlet property="timeLabel" destination="gFL-ZJ-Uvr" id="BVe-PH-LfS"/>
                                                             <outlet property="titleLabel" destination="dXR-lv-gyb" id="yE2-S6-GLJ"/>
@@ -1148,10 +1175,11 @@ Greenwich, CT.</string>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="35u-oF-vlc" firstAttribute="leading" secondItem="9pX-jT-oe4" secondAttribute="leading" constant="12" id="6Hk-Fe-ZHj"/>
+                                                            <constraint firstAttribute="height" id="8qi-DY-1Lr"/>
                                                             <constraint firstItem="VzO-c2-jS5" firstAttribute="centerY" secondItem="2XB-2N-hcI" secondAttribute="centerY" id="95T-uE-lgC"/>
                                                             <constraint firstAttribute="trailing" secondItem="VzO-c2-jS5" secondAttribute="trailing" constant="18" id="Bvd-E1-jyO"/>
                                                             <constraint firstItem="NQq-V1-tE0" firstAttribute="top" secondItem="T7A-wX-xQr" secondAttribute="bottom" constant="-1" id="EYh-id-sT5"/>
-                                                            <constraint firstAttribute="bottom" secondItem="NQq-V1-tE0" secondAttribute="bottom" id="NwZ-oi-saA"/>
+                                                            <constraint firstAttribute="bottom" secondItem="NQq-V1-tE0" secondAttribute="bottom" priority="999" id="NwZ-oi-saA"/>
                                                             <constraint firstItem="2XB-2N-hcI" firstAttribute="centerY" secondItem="35u-oF-vlc" secondAttribute="centerY" id="QdH-Aw-s1H"/>
                                                             <constraint firstItem="VzO-c2-jS5" firstAttribute="leading" secondItem="NQq-V1-tE0" secondAttribute="trailing" constant="5" id="Xyh-Tv-qre"/>
                                                             <constraint firstItem="NQq-V1-tE0" firstAttribute="leading" secondItem="9pX-jT-oe4" secondAttribute="leading" constant="83" id="cPT-wM-HuZ"/>
@@ -1159,9 +1187,15 @@ Greenwich, CT.</string>
                                                             <constraint firstItem="T7A-wX-xQr" firstAttribute="top" secondItem="9pX-jT-oe4" secondAttribute="top" constant="-1" id="gvk-hJ-UbW"/>
                                                             <constraint firstItem="NQq-V1-tE0" firstAttribute="centerX" secondItem="T7A-wX-xQr" secondAttribute="centerX" id="u0r-O1-XCa"/>
                                                         </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="8qi-DY-1Lr"/>
+                                                            </mask>
+                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="bxL-Kv-ozb" id="YBU-wL-na7"/>
                                                             <outlet property="borderedView" destination="NQq-V1-tE0" id="VJt-5e-rwC"/>
+                                                            <outlet property="collapseHeightConstraint" destination="8qi-DY-1Lr" id="5tH-cj-c4t"/>
                                                             <outlet property="dotsImageView" destination="T7A-wX-xQr" id="VbN-kQ-L3S"/>
                                                             <outlet property="timeLabel" destination="35u-oF-vlc" id="9xR-7J-GL0"/>
                                                             <outlet property="titleLabel" destination="5Hg-Rc-VuS" id="hw4-N2-TrC"/>
@@ -1248,6 +1282,19 @@ Greenwich, CT.</string>
                         <outlet property="bottomTrayView" destination="hdt-TA-ZWy" id="G8W-vt-43A"/>
                         <outlet property="mapView" destination="eAd-9y-yff" id="BcG-ml-TLi"/>
                         <outlet property="trayOffsetConstraint" destination="aaN-En-EI7" id="N4L-Ty-GlY"/>
+                        <outletCollection property="itineraryRows" destination="6EI-Vg-n9p" collectionClass="NSMutableArray" id="wIc-E5-YnH"/>
+                        <outletCollection property="itineraryRows" destination="Dtc-Te-xzY" collectionClass="NSMutableArray" id="OQd-Ad-ZGH"/>
+                        <outletCollection property="itineraryRows" destination="JFt-iC-6Yq" collectionClass="NSMutableArray" id="fqn-zu-hVH"/>
+                        <outletCollection property="itineraryRows" destination="eRU-1q-ggq" collectionClass="NSMutableArray" id="k6R-TU-lWM"/>
+                        <outletCollection property="itineraryRows" destination="9pX-jT-oe4" collectionClass="NSMutableArray" id="olw-k4-bHW"/>
+                        <outletCollection property="pickupImageViews" destination="c0I-Xo-meP" collectionClass="NSMutableArray" id="EQS-30-Yer"/>
+                        <outletCollection property="pickupImageViews" destination="fRo-Ac-6Oc" collectionClass="NSMutableArray" id="yC9-g2-Dyy"/>
+                        <outletCollection property="pickupImageViews" destination="1P8-N4-wcM" collectionClass="NSMutableArray" id="uGm-Yc-tSj"/>
+                        <outletCollection property="pickupImageViews" destination="4uJ-kG-NLO" collectionClass="NSMutableArray" id="Q18-30-yqi"/>
+                        <outletCollection property="pickupLabelViews" destination="Ffb-4Z-rUf" collectionClass="NSMutableArray" id="U6g-b9-0af"/>
+                        <outletCollection property="pickupLabelViews" destination="dhw-S3-9wv" collectionClass="NSMutableArray" id="29t-zO-rPT"/>
+                        <outletCollection property="pickupLabelViews" destination="EcY-am-iAh" collectionClass="NSMutableArray" id="PWo-Ic-DIz"/>
+                        <outletCollection property="pickupLabelViews" destination="c4f-Lc-Zzq" collectionClass="NSMutableArray" id="uU9-Gr-SVl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGP-9n-Yxv" userLabel="First Responder" sceneMemberID="firstResponder"/>

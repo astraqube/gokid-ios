@@ -15,6 +15,9 @@ class DetailMapVC: UIViewController {
     @IBOutlet weak var bottomTrayNavView: UIView!
     @IBOutlet weak var bottomTrayView: UIView!
     @IBOutlet weak var bottomTrayAngleUp: UIImageView!
+    @IBOutlet var pickupImageViews : [CalendarUserImageView]!
+    @IBOutlet var pickupLabelViews : [UILabel]!
+    @IBOutlet var itineraryRows : [MapItineraryItemView]!
     var mapDataSource : MapViewDatasource!
     var navigation : Navigation!
     
