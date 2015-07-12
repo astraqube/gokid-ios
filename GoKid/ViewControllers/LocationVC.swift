@@ -26,6 +26,7 @@ class LocationVC: BaseVC {
     @IBOutlet weak var arrow2: UIImageView!
     
     @IBOutlet weak var taponLabel: UILabel!
+    var layoutSame = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +78,7 @@ class LocationVC: BaseVC {
     
     @IBAction func OriginDestinationSame(sender: UISwitch) {
         if sender.on {
+            
             setOriginDestinationSameLayout()
         } else {
             setOriginEventDestinationLayout()
