@@ -85,11 +85,11 @@ extension TimeAndDateVC {
         currentBindLabel?.text = str
         currentBindModel?.valueString = str
         updateCurrentUserCarpoolModel(currentBindModel!, date: timePicker.picker.date)
-        dismissDateTimePicker()
+        dismissTimePicker()
     }
     
     func timePickerCancleButtonClick() {
-        dismissDateTimePicker()
+        dismissTimePicker()
     }
     
     func checkDateValid(date: NSDate) -> Bool {
@@ -114,5 +114,15 @@ extension TimeAndDateVC {
             return true
         }
         return true
+    }
+    
+    func dismissTimePicker() {
+        timePicker.alphaAnimation(0.0, duration: 0.3) { (anim, finished) in
+            self.timePicker.removeFromSuperview()
+        }
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        dismissTimePicker()
     }
 }

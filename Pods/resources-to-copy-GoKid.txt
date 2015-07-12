@@ -1,0 +1,2 @@
+/Users/bingwen/Desktop/GooooooKid/gokid-ios/Pods/GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle
+/Users/bingwen/Desktop/GooooooKid/gokid-ios/Pods/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle

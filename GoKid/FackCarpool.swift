@@ -57,17 +57,13 @@
 
 // registerForNotification("SignupFinished", action: "fetchDataAfterLogin")
 
-
-//func signinSuccessHandler() {
-//    navigationController?.popViewControllerAnimated(true)
-//    fetchDataAfterLogin()
-//}
 //
 //func fetchDataAfterLogin() {
 //    LoadingView.showWithMaskType(.Black)
 //    dataManager.createCarpool(userManager.currentCarpoolModel, comp: handleCreateCarpoolSuccess)
 //}
 //
+
 //func handleCreateCarpoolSuccess(success: Bool, errorStr: String) {
 //    if success {
 //        tryLoadTableData()
@@ -76,92 +72,6 @@
 //        self.showAlert("Fail to create carpool", messege: errorStr, cancleTitle: "OK")
 //    }
 //}
-
-
-//func signupToSignin() {
-//    signupVC.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
-//        self.signupVC.view.removeFromSuperview()
-//        withDelay(0.2) {
-//            var vc = vcWithID("SignInVC") as! SignInVC
-//            vc.signinSuccessHandler = self.signinSuccessHandler
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-//    }
-//}
-
-//// MARK: Signin Signup
-//// --------------------------------------------------------------------------------------------
-//
-//var signupVC: SignUpVC!
-//func animatShowSignupVC() {
-//    signupVC = vcWithID("SignUpVC") as! SignUpVC
-//    signupVC.view.alpha = 0.0
-//    
-//    // view controller operations
-//    navigationController?.view.addSubview(signupVC.view)
-//    signupVC.signinButtonHandler = signupToSignin
-//    
-//    // animation
-//    signupVC.view.alphaAnimation(1.0, duration: 0.5, completion: nil)
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
