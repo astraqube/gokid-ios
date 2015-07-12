@@ -13,17 +13,17 @@ class LocationVC: BaseVC {
     @IBOutlet weak var navSubtitleLabel: UILabel!
     @IBOutlet weak var switchBackgroundView: UIView!
     
-    @IBOutlet weak var destLocationButton: UIButton!
-    @IBOutlet weak var startLocationButton: UIButton!
-    @IBOutlet weak var eventButton: UIButton!
+    var destLocationButton: UIButton!
+    var startLocationButton: UIButton!
+    var eventButton: UIButton!
     
-    @IBOutlet weak var destinationLocationLabel: UILabel!
-    @IBOutlet weak var startLocationLabel: UILabel!
-    @IBOutlet weak var eventLabel: UILabel!
+    var destinationLocationLabel: UILabel!
+    var startLocationLabel: UILabel!
+    var eventLabel: UILabel!
     
-    @IBOutlet weak var doubleArrow: UIImageView!
-    @IBOutlet weak var arrow1: UIImageView!
-    @IBOutlet weak var arrow2: UIImageView!
+    var doubleArrow: UIImageView!
+    var arrow1: UIImageView!
+    var arrow2: UIImageView!
     
     @IBOutlet weak var taponLabel: UILabel!
     var layoutSame = true
@@ -31,7 +31,9 @@ class LocationVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
+        addsubviews()
         setupSubview()
+        relayout()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -77,12 +79,8 @@ class LocationVC: BaseVC {
     }
     
     @IBAction func OriginDestinationSame(sender: UISwitch) {
-        if sender.on {
-            
-            setOriginDestinationSameLayout()
-        } else {
-            setOriginEventDestinationLayout()
-        }
+        layoutSame = (sender.on == true)
+        relayout()
     }
     
     func donePickingStartLocationWithAddress(address: String) {

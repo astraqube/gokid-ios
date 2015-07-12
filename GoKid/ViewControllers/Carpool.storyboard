@@ -7,9 +7,6 @@
     <customFonts key="customFonts">
         <mutableArray key="Raleway-Bold.ttf">
             <string>Raleway-Bold</string>
-            <string>Raleway-Bold</string>
-            <string>Raleway-Bold</string>
-            <string>Raleway-Bold</string>
         </mutableArray>
         <mutableArray key="Raleway-Regular.ttf">
             <string>Raleway-Regular</string>
@@ -512,26 +509,6 @@
                                 <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVt-kC-l0k">
-                                <rect key="frame" x="243" y="171" width="55" height="55"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="location_up">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="destinationLocationButtonClick:" destination="LG2-du-YDZ" eventType="touchUpInside" id="6lN-nx-pnP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLm-Ks-rsz">
-                                <rect key="frame" x="133" y="171" width="55" height="55"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="location_up">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="destinationLocationButtonClick:" destination="LG2-du-YDZ" eventType="touchUpInside" id="lNY-av-Ez9"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuU-tp-NbT">
                                 <rect key="frame" x="0.0" y="379" width="320" height="50"/>
                                 <subviews>
@@ -567,18 +544,6 @@
                                     <constraint firstItem="Q7b-1X-nrq" firstAttribute="leading" secondItem="9ad-cW-2oG" secondAttribute="trailing" constant="12" id="vsu-sP-FTE"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Origin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10b-9U-ORt">
-                                <rect key="frame" x="27" y="239" width="44" height="18"/>
-                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
-                                <color key="textColor" red="0.34509803921568627" green="0.72156862745098038" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destination" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-n1-9ni">
-                                <rect key="frame" x="229" y="239" width="83" height="18"/>
-                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
-                                <color key="textColor" red="0.34509803921568627" green="0.72156862745098038" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-Ew-p5T">
                                 <rect key="frame" x="123" y="20" width="75" height="21.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
@@ -617,31 +582,6 @@
                                 <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1D-8u-o2M">
-                                <rect key="frame" x="22" y="171" width="55" height="55"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="location_up">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startLocationButtonClick:" destination="LG2-du-YDZ" eventType="touchUpInside" id="TDU-d3-L46"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRj-DY-xBO">
-                                <rect key="frame" x="140" y="239" width="41" height="18"/>
-                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
-                                <color key="textColor" red="0.34509803921568627" green="0.72156862745098038" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="iBb-gy-z8q">
-                                <rect key="frame" x="89" y="189" width="30" height="20"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="R73-wA-ZZn">
-                                <rect key="frame" x="200" y="189" width="30" height="20"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundTrip" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-cX-KbO">
-                                <rect key="frame" x="143" y="291" width="35" height="39"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -661,16 +601,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="arrow1" destination="iBb-gy-z8q" id="rlC-nt-uLt"/>
-                        <outlet property="arrow2" destination="R73-wA-ZZn" id="bxy-hM-0HQ"/>
-                        <outlet property="destLocationButton" destination="gVt-kC-l0k" id="eyI-xf-2ye"/>
-                        <outlet property="destinationLocationLabel" destination="K0b-n1-9ni" id="AOo-9F-OTA"/>
-                        <outlet property="doubleArrow" destination="6wC-cX-KbO" id="0By-nG-9C3"/>
-                        <outlet property="eventButton" destination="CLm-Ks-rsz" id="GKG-Ni-V3l"/>
-                        <outlet property="eventLabel" destination="uRj-DY-xBO" id="HkT-Cz-TMt"/>
                         <outlet property="navSubtitleLabel" destination="6FD-YB-Iwp" id="F7O-I1-1iu"/>
-                        <outlet property="startLocationButton" destination="P1D-8u-o2M" id="IGP-ys-JhC"/>
-                        <outlet property="startLocationLabel" destination="10b-9U-ORt" id="3H8-Zr-Sjo"/>
                         <outlet property="switchBackgroundView" destination="yuU-tp-NbT" id="xkk-lh-Ks5"/>
                         <outlet property="taponLabel" destination="J2R-hM-Rvp" id="6iH-jS-se0"/>
                     </connections>
@@ -1082,16 +1013,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow" width="534" height="302"/>
         <image name="back_arrow" width="138" height="126"/>
         <image name="carpool_map" width="375" height="667"/>
         <image name="carpool_name_selected" width="22" height="22"/>
         <image name="checkCirc" width="51" height="52"/>
         <image name="kid_name_selected" width="14" height="30"/>
-        <image name="location_up" width="83" height="83"/>
         <image name="next_arrow" width="46" height="42"/>
         <image name="originDestination" width="40" height="31"/>
-        <image name="roundTrip" width="60" height="64"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
