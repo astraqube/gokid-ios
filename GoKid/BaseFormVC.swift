@@ -15,12 +15,23 @@ class BaseFormVC: XLFormViewController {
     var colorManager = ColorManager.sharedInstance
     var imageManager = ImageManager.sharedInstance
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var leftButton: UIButton!
+    @IBOutlet weak var rightButton: UIButton!
+    
     override func viewDidLoad() {
         self.initForm()
         super.viewDidLoad()
 
         self.setUpNavigationBar()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.tableView.backgroundColor = colorManager.colorEBF7EB
+        self.view.backgroundColor = colorManager.colorEBF7EB
         self.view.tintColor = colorManager.color67C18B
     }
     
@@ -32,6 +43,7 @@ class BaseFormVC: XLFormViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.resignFirstResponder()
+        self.view.endEditing(true)
     }
     
     func initForm() {
@@ -39,26 +51,20 @@ class BaseFormVC: XLFormViewController {
     }
 
     func setUpNavigationBar() {
-        var nav = navigationController as! ZGNavVC
-        nav.addTitleViewToViewController(self)
-        self.title = "Date & Time"
-        self.subtitle = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
-        self.setStatusBarColorDark()
-        self.setNavBarColor(colorManager.colorEBF7EB)
-        self.setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        self.setNavBarRightButtonTitle("Next", action: "nextButtonClick")
-
-        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.leftButton?.addTarget(self, action: "leftNavButtonTapped", forControlEvents: .TouchUpInside)
+        self.rightButton?.addTarget(self, action: "rightNavButtonTapped", forControlEvents: .TouchUpInside)
+        
+        self.rightButton.enabled = false
     }
 
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func backButtonClick() {
+    func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    func nextButtonClick() {
+    func rightNavButtonTapped() {
         // child implements this
     }
     

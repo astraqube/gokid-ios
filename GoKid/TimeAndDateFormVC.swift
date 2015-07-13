@@ -20,6 +20,14 @@ class TimeAndDateFormVC: BaseFormVC {
         case OneWay = "one_way"
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.titleLabel.text = "Date & Time"
+        self.subtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        setStatusBarColorDark()
+    }
+    
     func resetCarpoolModel() {
         var model = userManager.currentCarpoolModel
         model.startDate = nil
@@ -148,18 +156,20 @@ class TimeAndDateFormVC: BaseFormVC {
         }
         
         // enable or disable the next button
-        self.navigationItem.rightBarButtonItem?.enabled = self.formValidationErrors().isEmpty
+        self.rightButton.enabled = self.formValidationErrors().isEmpty
     }
     
 
-    override func nextButtonClick() {
+    override func rightNavButtonTapped() {
         let validationErrors: Array<NSError> = self.formValidationErrors() as! Array<NSError>
 
         if validationErrors.count > 0 {
             self.showFormValidationError(validationErrors.first)
             return
         }
-        
+
+        self.tableView.endEditing(true)
+
         self.updateCarpoolModel()
         
         var vc = vcWithID("LocationVC")
