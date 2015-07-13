@@ -41,7 +41,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func setUpNavigationBar() {
-        self.subtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        self.subtitleLabel.text = userManager.currentCarpoolDescription()
     }
     
     func setupSubViews() {

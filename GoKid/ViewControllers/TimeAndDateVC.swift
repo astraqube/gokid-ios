@@ -40,7 +40,7 @@ class TimeAndDateVC: BaseVC, THDatePickerDelegate {
     }
     
     func setUpNavigationBar() {
-        self.subtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        self.subtitleLabel.text = userManager.currentCarpoolDescription()
         setStatusBarColorDark()
     }
     

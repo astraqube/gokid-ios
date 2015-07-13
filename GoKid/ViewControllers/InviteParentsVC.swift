@@ -26,7 +26,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     }
     
     func setupNacBar() {
-        self.subtitleLabel?.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        self.subtitleLabel?.text = userManager.currentCarpoolDescription()
     }
     
     func refreshUI() {

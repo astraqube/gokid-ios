@@ -49,7 +49,7 @@ class LocationVC: BaseVC {
     }
     
     func setUpNavigationBar() {
-        subtitleLabel?.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        subtitleLabel?.text = userManager.currentCarpoolDescription()
     }
     
     // MARK: IBAction Method

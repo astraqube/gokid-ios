@@ -22,9 +22,8 @@ class TimeAndDateFormVC: BaseFormVC {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.titleLabel.text = "Date & Time"
-        self.subtitleLabel.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        self.subtitleLabel.text = userManager.currentCarpoolDescription()
         setStatusBarColorDark()
     }
     

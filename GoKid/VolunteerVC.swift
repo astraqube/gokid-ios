@@ -26,7 +26,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupNavigationBar() {
-        self.subtitleLabel?.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        self.subtitleLabel?.text = userManager.currentCarpoolDescription()
     }
     
     // MARK: IBAction Method

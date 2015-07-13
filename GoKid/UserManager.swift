@@ -70,6 +70,10 @@ class UserManager: NSObject {
         teamMembers = [TeamMemberModel()]
     }
     
+    func currentCarpoolDescription() -> String {
+        return currentCarpoolName + " for " + currentCarpoolKidName
+    }
+    
     // use the info get from all team members
     func updateUserWithTeamMembersInfo(json: JSON) {
         info.phoneNumber = json["phone_number"].stringValue

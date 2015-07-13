@@ -17,7 +17,6 @@ class ColorManager: NSObject {
         return Static.instance
     }
     
-    let blueColor = rgb(0, 143, 254)
     let lightGrayColor = rgb(230,230,230)
     let darkGrayColor = rgb(167,167,167)
     let disableColor = rgb(100, 100, 100)
@@ -25,7 +24,6 @@ class ColorManager: NSObject {
     let appLightGreen = rgb(237, 249, 237)
     let appNavTextButtonColor = rgb(81, 118, 115)
     let appDarkGreen = rgb(79, 118, 115)
-    let cellBgColor = rgb(251, 253, 247)
 
     // MARK: Primary Colors
     let color67C18B = rgb(103, 193, 139)

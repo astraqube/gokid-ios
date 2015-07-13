@@ -17,7 +17,7 @@ class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
     }
     
     func setupNavBar() {
-        self.subtitleLabel?.text = userManager.currentCarpoolName + " for " + userManager.currentCarpoolKidName
+        self.subtitleLabel?.text = userManager.currentCarpoolDescription()
     }
     
     // MARK: IBAction Method
