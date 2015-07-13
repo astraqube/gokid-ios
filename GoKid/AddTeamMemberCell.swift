@@ -13,7 +13,8 @@ class AddTeamMemberCell: UICollectionViewCell {
   @IBOutlet weak var contentLabel: UILabel!
     
     override func awakeFromNib() {
-        layer.borderColor = UIColor.whiteColor().CGColor
-        layer.borderWidth = 5.0
+        layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+        layer.borderColor = rgb(186, 210, 182).CGColor
+        layer.cornerRadius = 3.0
     }
 }

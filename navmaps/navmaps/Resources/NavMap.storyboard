@@ -367,7 +367,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1r0-BW-qDo" userLabel="centering view">
                                                 <rect key="frame" x="197" y="7" width="206" height="60"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0I-Xo-meP" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0I-Xo-meP" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -388,7 +388,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-Ac-6Oc" userLabel="userImage 2" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-Ac-6Oc" userLabel="userImage 2" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="54" y="0.0" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -407,7 +407,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little Wayne"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-N4-wcM" userLabel="userImage 3" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-N4-wcM" userLabel="userImage 3" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="108" y="0.0" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -426,7 +426,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uJ-kG-NLO" userLabel="userImage 4" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uJ-kG-NLO" userLabel="userImage 4" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="162" y="0.0" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -536,7 +536,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="z2O-5s-7fN"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiD-qa-azg" customClass="BorderedBarishButton" customModule="navmaps" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiD-qa-azg" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
                                                 <rect key="frame" x="12" y="12" width="576" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="b6A-6W-Bb1"/>
@@ -595,13 +595,13 @@
                                             <view contentMode="scaleToFill" verticalHuggingPriority="253" translatesAutoresizingMaskIntoConstraints="NO" id="yci-Jl-M0E">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="356"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6EI-Vg-n9p" userLabel="row1" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6EI-Vg-n9p" userLabel="row1" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmm-GU-eM4" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmm-GU-eM4" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7c6-AS-mG5" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7c6-AS-mG5" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -711,13 +711,13 @@
                                                             <outlet property="userImageView" destination="7c6-AS-mG5" id="daT-E4-Xwt"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dtc-Te-xzY" userLabel="row2" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dtc-Te-xzY" userLabel="row2" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="68" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaw-UY-2Sr" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaw-UY-2Sr" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofr-Vp-kze" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofr-Vp-kze" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -833,13 +833,13 @@
                                                             <outlet property="userImageView" destination="ofr-Vp-kze" id="otC-I7-LXZ"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFt-iC-6Yq" userLabel="row3" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFt-iC-6Yq" userLabel="row3" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="136" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2L-co-GrT" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2L-co-GrT" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8E-U6-Ly3" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8E-U6-Ly3" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -955,13 +955,13 @@
                                                             <outlet property="userImageView" destination="x8E-U6-Ly3" id="hZr-5L-VGK"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRU-1q-ggq" userLabel="row4" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRU-1q-ggq" userLabel="row4" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="204" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vaI-CQ-G0d" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vaI-CQ-G0d" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgM-Rm-ImJ" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgM-Rm-ImJ" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -1079,13 +1079,13 @@ Greenwich, CT.</string>
                                                             <outlet property="userImageView" destination="NgM-Rm-ImJ" id="PHf-D4-OBA"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pX-jT-oe4" userLabel="row5" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pX-jT-oe4" userLabel="row5" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="272" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQq-V1-tE0" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQq-V1-tE0" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XB-2N-hcI" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XB-2N-hcI" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>

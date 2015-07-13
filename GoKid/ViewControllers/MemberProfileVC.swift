@@ -41,12 +41,14 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBarColorLight()
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        setStatusBarColorDark()
     }
     
     func setupNavBar() {
         setNavBarTitle("Your profile")
         setNavBarRightButtonTitle("Save", action: "saveButtonClick")
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func setupLoginButton() {

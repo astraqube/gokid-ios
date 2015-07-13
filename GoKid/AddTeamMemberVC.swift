@@ -37,7 +37,8 @@ class AddTeamMemberVC: BaseTVC, UIAlertViewDelegate, UIImagePickerControllerDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBarColorLight()
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        setStatusBarColorDark()
     }
     
     func setupNavBar() {

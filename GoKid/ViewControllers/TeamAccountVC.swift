@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TeamAccountVC: BaseCVC {
+class TeamAccountVC: BaseVC {
     
+    @IBOutlet weak var collectionView: UICollectionView!
     var dataSource = [TeamMemberModel]()
     
     override func viewDidLoad() {
@@ -19,20 +20,24 @@ class TeamAccountVC: BaseCVC {
         prepareAndLoadTeamMemberCollectionView()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setStatusBarColorLight()
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func setupNavBar() {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        var nav = navigationController as! ZGNavVC
-        nav.addTitleViewToViewController(self)
-        setNavBarLeftButtonTitle("Menu", action: "menuButtonClick")
-        self.title = "Your Team"
+        var gr = UITapGestureRecognizer(target: self, action: "navBarTapped")
+        subtitleLabel.addGestureRecognizer(gr)
+        subtitleLabel.userInteractionEnabled = true
         refreshHomeAddress()
     }
     
     func refreshHomeAddress() {
-        if um.userHomeAdress != "" {
-            self.subtitle = um.userHomeAdress
+        if userManager.userHomeAdress != "" {
+            self.subtitleLabel.text = userManager.userHomeAdress
         } else {
-            self.subtitle = "Home Address"
+            self.subtitleLabel.text = "Home Address"
         }
     }
     
@@ -43,12 +48,12 @@ class TeamAccountVC: BaseCVC {
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func menuButtonClick() {
+    override func leftNavButtonTapped() {
         viewDeckController.toggleLeftView()
     }
     
     func navBarTapped() {
-        if um.userLoggedIn {
+        if userManager.userLoggedIn {
             var vc = vcWithID("PlacePickerVC") as! PlacePickerVC
             vc.teamVC = self
             self.presentViewController(vc, animated: true, completion: nil)
@@ -57,7 +62,7 @@ class TeamAccountVC: BaseCVC {
     
     func setHomeAddress(address1: String, address2: String) {
         LoadingView.showWithMaskType(.Black)
-        dm.updateTeamAddress(address1, address2: address2) { (success, errorStr) in
+        dataManager.updateTeamAddress(address1, address2: address2) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
                 onMainThread() { self.subtitle = address1 }
@@ -70,15 +75,15 @@ class TeamAccountVC: BaseCVC {
     // MARK: CollectionView DataSource
     // --------------------------------------------------------------------------------------------
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cv = collectionView
         var model = dataSource[indexPath.row]
         if model.cellType == .AddMember {
@@ -93,13 +98,13 @@ class TeamAccountVC: BaseCVC {
             var cell = cv.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
             cell.roleLabel.text = model.role
             cell.nameLabel.text = model.firstName
-            im.setImageToView(cell.profileImageView, urlStr: model.thumURL)
+            imageManager.setImageToView(cell.profileImageView, urlStr: model.thumURL)
             return cell
         } else if model.cellType == .EditUser {
             var cell = cv.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
             cell.roleLabel.text = "You"
             cell.nameLabel.text = model.firstName
-            im.setImageToView(cell.profileImageView, urlStr: model.thumURL)
+            imageManager.setImageToView(cell.profileImageView, urlStr: model.thumURL)
             return cell
         } else {
             println("Unknow Cell Type")
@@ -110,7 +115,7 @@ class TeamAccountVC: BaseCVC {
     // MARK: UICollectionViewDelegate
     // --------------------------------------------------------------------------------------------
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var model = dataSource[indexPath.row]
         var cellType = model.cellType
         if cellType == .AddMember || cellType == .EditMember {
@@ -164,7 +169,7 @@ class TeamAccountVC: BaseCVC {
     func removeMember(vc: AddTeamMemberVC) {
         var row = vc.sourceCellIndex
         var model = dataSource[row]
-        dm.deleteTeamMember(model.permissionID) { (success, errorStr) in
+        dataManager.deleteTeamMember(model.permissionID) { (success, errorStr) in
             if !success {
                 self.showAlert("Failed to delete member", messege: errorStr, cancleTitle: "OK")
             }
@@ -178,8 +183,8 @@ class TeamAccountVC: BaseCVC {
     
     func prepareAndLoadTeamMemberCollectionView() {
         dataSource = [TeamMemberModel]()
-        if um.userLoggedIn {
-            dataSource.append(um.info)
+        if userManager.userLoggedIn {
+            dataSource.append(userManager.info)
             addTeamMembersInfoAndLoadCollectionView()
         } else {
             var addUser = TeamMemberModel()
@@ -191,10 +196,10 @@ class TeamAccountVC: BaseCVC {
     
     func addTeamMembersInfoAndLoadCollectionView() {
         LoadingView.showWithMaskType(.Black)
-        dm.getTeamMembersOfTeam { (success, errorStr) in
+        dataManager.getTeamMembersOfTeam { (success, errorStr) in
             LoadingView.dismiss()
             if success {
-                self.dataSource.appendArr(self.um.teamMembers)
+                self.dataSource.appendArr(self.userManager.teamMembers)
                 self.appendAddMemberCell()
                 self.reloadCollectionViewOnMainThread()
                 self.refreshHomeAddress()
