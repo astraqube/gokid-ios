@@ -803,6 +803,9 @@
                                     <segment title="Friday"/>
                                 </segments>
                                 <color key="tintColor" red="0.34509803919999998" green="0.72156862749999995" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentControlTapped:" destination="LG2-du-YDZ" eventType="valueChanged" id="OfP-AM-7rA"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on each circle to enter location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2R-hM-Rvp">
                                 <rect key="frame" x="62" y="146" width="196" height="50"/>
@@ -837,6 +840,7 @@
                     <connections>
                         <outlet property="leftButton" destination="iKh-NM-kQI" id="OCY-J9-TQz"/>
                         <outlet property="rightButton" destination="DX2-Dg-Buk" id="rA3-GI-ACR"/>
+                        <outlet property="segmentControl" destination="C92-A1-L4w" id="9jU-36-LCO"/>
                         <outlet property="subtitleLabel" destination="6FD-YB-Iwp" id="yqm-9U-NcE"/>
                         <outlet property="switchBackgroundView" destination="yuU-tp-NbT" id="xkk-lh-Ks5"/>
                         <outlet property="taponLabel" destination="J2R-hM-Rvp" id="6iH-jS-se0"/>

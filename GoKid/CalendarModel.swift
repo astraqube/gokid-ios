@@ -22,6 +22,10 @@ class CalendarModel: NSObject {
     var poolname = ""
     var poolDate: NSDate?
     
+    var locationLatitude: CLLocationDegrees = 0.0
+    var locationLongtitude: CLLocationDegrees  = 0.0
+    var poolLocation = ""
+    
     var cellType: CalendarCellType = .None
     var pooltimeStr = ""
     var poolDateStr = ""

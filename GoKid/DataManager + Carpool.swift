@@ -112,6 +112,32 @@ extension DataManager {
         }
     }
     
+    
+    func updateOccurenceLocation(occ: CalendarModel, comp: completion) {
+        var url = baseURL + "/api/occurrences/" + String(occ.occrencID)
+        var map = [
+            "occurrence": [
+                "locations": [
+                    "display": occ.poolLocation,
+                    "longitude": occ.locationLongtitude,
+                    "latitude": occ.locationLatitude
+                ]
+            ]
+        ]
+        println(url)
+        println(map)
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: map, success: { (op, obj) in
+            println("updateOccurenceLocation success")
+            var json = JSON(obj)
+            println(json)
+            comp(true, "")
+        }) { (op, error) in
+            println("updateOccurenceLocation failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+    
     func addKidsNameToCarpool(carpoolID: Int, name: String, comp: completion) {
         var url = baseURL + "/api/carpools/" + String(carpoolID) + "/riders"
         var map = [

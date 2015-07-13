@@ -34,10 +34,12 @@ extension LocationVC {
         destLabel.textColor = textColor
         destLabel.sizeToFit()
         
-        startLabel = UILabel(frame: CGRectZero)
-        startLabel.text = "Origin"
+        startLabel = UILabel(frame: CGRectMake(0, 0, 100, 30))
+        startLabel.text = "Origin&\nDestination"
         startLabel.font = textFont
         startLabel.textColor = textColor
+        startLabel.numberOfLines = 0
+        startLabel.textAlignment = .Center
         startLabel.sizeToFit()
         
         eventLabel = UILabel(frame: CGRectZero)
@@ -94,7 +96,7 @@ extension LocationVC {
     }
     
     func relayout() {
-        if layoutSame {
+        if originDestSame {
             setOriginDestinationSameLayout()
         } else {
             setOriginEventDestinationLayout()
@@ -112,6 +114,10 @@ extension LocationVC {
     }
     
     func layoutSubviewSame() {
+        startLabel.text = "Origin&\nDestination"
+        startLabel.frame = CGRectMake(0, 0, 100, 30)
+        startLabel.sizeToFit()
+        
         var x = view.w / 4.0
         startLocationButton.center.x = x * 1.0
         doubleArrow.center.x = x * 2.0
@@ -125,6 +131,10 @@ extension LocationVC {
     }
     
     func layoutSubviewNotSame() {
+        startLabel.text = "Origin"
+        startLabel.frame = CGRectMake(0, 0, 100, 30)
+        startLabel.sizeToFit()
+        
         var x = view.w / 6.0
         startLocationButton.center.x = x * 1.0
         arrow1.center.x = x * 2.0

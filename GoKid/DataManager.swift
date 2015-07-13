@@ -27,7 +27,6 @@ class DataManager: NSObject {
     
     func managerWithToken() -> AFHTTPRequestOperationManager {
         var token = userManager.userToken
-        println(token)
         var manager = AFHTTPRequestOperationManager()
         manager.requestSerializer.setValue("token " + token, forHTTPHeaderField: "Authorization")
         return manager
