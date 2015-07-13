@@ -21,10 +21,7 @@ class DateTransformer : NSValueTransformer {
         if let valueData: AnyObject = value {
             if valueData.isKindOfClass(NSDate) {
                 let date = valueData as! NSDate
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-                dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-                return dateFormatter.stringFromDate(date)
+                return date.dateString()
             }
         }
         return nil
@@ -46,10 +43,7 @@ class TimeTransformer: NSValueTransformer {
         if let valueData: AnyObject = value {
             if valueData.isKindOfClass(NSDate) {
                 let date = valueData as! NSDate
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-                dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-                return dateFormatter.stringFromDate(date)
+                return date.timeString()
             }
         }
         return nil
