@@ -51,15 +51,11 @@ class BasicInfoVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     func disableRightBarItem() {
-        var rightButton = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: nil)
-        rightButton.tintColor = colorManager.disableColor
-        self.navigationItem.rightBarButtonItem = rightButton
+        self.rightButton.enabled = false
     }
     
     func activeRightBarItem() {
-        var rightButton = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextButtonClick")
-        rightButton.tintColor = UIColor.whiteColor()
-        self.navigationItem.rightBarButtonItem = rightButton
+        self.rightButton.enabled = true
     }
     
     // MARK: IBAction Method
