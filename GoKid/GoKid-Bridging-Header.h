@@ -16,3 +16,4 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import <XLForm/XLForm.h>

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04FB80971B530E1B00F73C74 /* BaseFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80961B530E1B00F73C74 /* BaseFormVC.swift */; };
+		04FB80991B530E3A00F73C74 /* TimeAndDateFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */; };
+		04FB809B1B530E4F00F73C74 /* TimeAndDateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB809A1B530E4F00F73C74 /* TimeAndDateTransformer.swift */; };
+		04FB809F1B5311AA00F73C74 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04FB809C1B53113900F73C74 /* Raleway-Light.ttf */; };
+		04FB80A01B5311AA00F73C74 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04FB809D1B53113900F73C74 /* Raleway-Medium.ttf */; };
+		04FB80A11B5311AA00F73C74 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04FB809E1B53113900F73C74 /* Raleway-SemiBold.ttf */; };
 		1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */; };
 		1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A51B1C2C33007CDB66 /* SignInVC.swift */; };
 		1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */; };
@@ -137,6 +143,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04FB80961B530E1B00F73C74 /* BaseFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFormVC.swift; sourceTree = "<group>"; };
+		04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDateFormVC.swift; sourceTree = "<group>"; };
+		04FB809A1B530E4F00F73C74 /* TimeAndDateTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDateTransformer.swift; sourceTree = "<group>"; };
+		04FB809C1B53113900F73C74 /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
+		04FB809D1B53113900F73C74 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		04FB809E1B53113900F73C74 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
 		1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KidAboutYouVC.swift; path = ViewControllers/KidAboutYouVC.swift; sourceTree = "<group>"; };
 		1D10D7A51B1C2C33007CDB66 /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInVC.swift; path = ViewControllers/SignInVC.swift; sourceTree = "<group>"; };
 		1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarVC.swift; path = ViewControllers/CalendarVC.swift; sourceTree = "<group>"; };
@@ -553,6 +565,7 @@
 		1D58668A1B3FCFFE00F141F8 /* Base ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				04FB80961B530E1B00F73C74 /* BaseFormVC.swift */,
 				1D8F78EF1B36733F00C78CAF /* BaseCVC.swift */,
 				1D8F78ED1B3672D300C78CAF /* BaseTVC.swift */,
 				1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */,
@@ -635,6 +648,8 @@
 			children = (
 				1D975A3D1B1F7FF700CD4D89 /* FrequencyPickerVC.swift */,
 				1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */,
+				04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */,
+				04FB809A1B530E4F00F73C74 /* TimeAndDateTransformer.swift */,
 				1DB5CC801B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift */,
 				1D368F151B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift */,
 				1DB5CC821B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift */,
@@ -728,6 +743,9 @@
 				796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */,
 				796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */,
 				796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */,
+				04FB809C1B53113900F73C74 /* Raleway-Light.ttf */,
+				04FB809D1B53113900F73C74 /* Raleway-Medium.ttf */,
+				04FB809E1B53113900F73C74 /* Raleway-SemiBold.ttf */,
 			);
 			name = Fonts;
 			path = navmaps/navmaps/Resources/Fonts;
@@ -867,6 +885,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04FB809F1B5311AA00F73C74 /* Raleway-Light.ttf in Resources */,
+				04FB80A01B5311AA00F73C74 /* Raleway-Medium.ttf in Resources */,
+				04FB80A11B5311AA00F73C74 /* Raleway-SemiBold.ttf in Resources */,
 				796E69C11B4A6E5600DF8D43 /* NavMap.storyboard in Resources */,
 				1D1FD66A1B1BFC4A00287FA0 /* Main.storyboard in Resources */,
 				1D1228E01B424AD9001CA6A4 /* TeamAccount.storyboard in Resources */,
@@ -979,6 +1000,7 @@
 				1D368F161B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift in Sources */,
 				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
 				79C229D91B4EF6FD0051F148 /* MapViewDatasource.swift in Sources */,
+				04FB80971B530E1B00F73C74 /* BaseFormVC.swift in Sources */,
 				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,
 				1DEFF16D1B49E3160094B54E /* YourKidVC.swift in Sources */,
 				796E69C61B4A6E5600DF8D43 /* MapUserImageView.swift in Sources */,
@@ -1010,6 +1032,7 @@
 				1D3F651C1B207D3200CCF6A1 /* VolunteerCell.swift in Sources */,
 				1DEFF1851B4A8B620094B54E /* LastOnboardVC.swift in Sources */,
 				1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */,
+				04FB809B1B530E4F00F73C74 /* TimeAndDateTransformer.swift in Sources */,
 				1DEFF1741B4A1A760094B54E /* InviteTimeConfirmVC.swift in Sources */,
 				1D1FD6931B1C04D100287FA0 /* MainStackVC.swift in Sources */,
 				1D8F78EE1B3672D300C78CAF /* BaseTVC.swift in Sources */,
@@ -1031,6 +1054,7 @@
 				1D7D8DF31B3A76D8002D29A5 /* DataManager + Carpool.swift in Sources */,
 				1DEFF1801B4A87D70094B54E /* OnboardingContentViewController.m in Sources */,
 				796E69C21B4A6E5600DF8D43 /* DetailMapVC.swift in Sources */,
+				04FB80991B530E3A00F73C74 /* TimeAndDateFormVC.swift in Sources */,
 				1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */,
 				1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */,
 				1D891F271B2734C2006FD961 /* TeamMemberModel.swift in Sources */,
