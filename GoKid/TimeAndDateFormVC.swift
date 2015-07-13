@@ -176,3 +176,26 @@ class TimeAndDateFormVC: BaseFormVC {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+
+// MARK: Table header icons
+extension TimeAndDateFormVC {
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var imageIcon = UIImage(named: section == 0 ? "date" : "time")
+        var imageView = UIImageView(image: imageIcon)
+        var header = UIView(frame: CGRectMake(0,0, tableView.bounds.size.width, 50))
+        
+        imageView.center = CGPointMake(header.bounds.size.width/2, header.bounds.size.height/2)
+        
+        header.backgroundColor = UIColor.whiteColor()
+        header.addSubview(imageView)
+        
+        return header
+    }
+    
+}
