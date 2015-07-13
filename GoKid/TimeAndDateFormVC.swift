@@ -168,6 +168,11 @@ class TimeAndDateFormVC: BaseFormVC {
             return
         }
 
+        if let errorMsg = self.isValidDateSequence() as String? {
+            self.showAlert("Invalid Schedule", messege: errorMsg, cancleTitle: "OK")
+            return
+        }
+
         self.tableView.endEditing(true)
 
         self.updateCarpoolModel()
@@ -198,4 +203,37 @@ extension TimeAndDateFormVC {
         return header
     }
     
+}
+
+// MARK: Validators
+extension TimeAndDateFormVC {
+
+    func isValidDateSequence() -> String? {
+        let startDateCell = self.form.formRowWithTag(Tags.StartDate.rawValue)
+        let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
+
+        let startDate = startDateCell.value as? NSDate
+        let endDate = endDateCell.value as? NSDate
+
+        let startTimeCell = self.form.formRowWithTag(Tags.StartTime.rawValue)
+        let endTimeCell = self.form.formRowWithTag(Tags.EndTime.rawValue)
+
+        let startTime = startTimeCell.value as? NSDate
+        let endTime = endTimeCell.value as? NSDate
+
+        if startDate != nil && endDate != nil {
+            if startDate!.isGreaterThanDate(endDate!) {
+                return "These dates are out of order!"
+            }
+        }
+
+        if startDate != nil && endDate == nil {
+            if startTime!.isGreaterThanDate(endTime!) {
+                return "These times are out of order!"
+            }
+        }
+
+        return nil
+    }
+
 }
