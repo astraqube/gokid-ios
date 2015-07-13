@@ -18,7 +18,6 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // setupNavBar()
         setupTableView()
         setupTableViewContent()
     }
@@ -27,12 +26,6 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         super.viewWillAppear(animated)
         setStatusBarColorLight()
         navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    func setupNavBar() {
-        setNavBarTitle("GoKids")
-        setNavBarLeftButtonTitle("Menu", action: "menuButtonClick")
-        setNavBarRightButtonTitle("Create", action: "createButtonClicked")
     }
     
     func setupTableView() {
@@ -96,7 +89,6 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     @IBAction func createButtonClicked(sender: UIButton) {
         var vc = vcWithID("BasicInfoVC")
-        //var vc = vcWithID("LocationVC")
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -216,6 +208,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             vc.navigation = navigation
             navigationController?.pushViewController(vc, animated: true)
             setStatusBarColorDark() //dude, this is lame, try func preferredStatusBarStyle
+            // you should know, in previous design, they keep changing the color of status bar between view controllers
         }
     }
 }

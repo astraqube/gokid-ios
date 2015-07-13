@@ -47,12 +47,12 @@ class Stop : NSObject, MKAnnotation {
         self.thumbnailImage = thumbnailImage
     }
     
-    init(occ: CalendarModel) {
-        self.coordinate = CLLocationCoordinate2DMake(occ.poolLocation.lati, occ.poolLocation.long)
-        self.name = occ.poolname
-        self.address = occ.poolLocation.name
-        self.stopID = occ.poolLocation.stopID
-        self.phoneNumber = occ.poolDriverPhoneNum
+    init(occurrence: CalendarModel) {
+        self.coordinate = CLLocationCoordinate2DMake(occurrence.poolLocation.lati, occurrence.poolLocation.long)
+        self.name = occurrence.poolname
+        self.address = occurrence.poolLocation.name
+        self.stopID = occurrence.poolLocation.stopID
+        self.phoneNumber = occurrence.poolDriverPhoneNum
     }
 }
 

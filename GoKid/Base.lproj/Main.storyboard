@@ -1152,7 +1152,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Cl-4f-vdy" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                             <rect key="frame" x="26" y="35" width="64" height="64"/>
                                                             <subviews>
-                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emma" translatesAutoresizingMaskIntoConstraints="NO" id="iiC-nf-6oh" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkCirc" translatesAutoresizingMaskIntoConstraints="NO" id="iiC-nf-6oh" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                     <rect key="frame" x="5" y="5" width="54" height="54"/>
                                                                     <gestureRecognizers/>
                                                                     <constraints>
@@ -1461,7 +1461,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1s-mF-Os7" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
                                                             <rect key="frame" x="26" y="35" width="64" height="64"/>
                                                             <subviews>
-                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emma" translatesAutoresizingMaskIntoConstraints="NO" id="f0H-ih-E8P" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkCirc" translatesAutoresizingMaskIntoConstraints="NO" id="f0H-ih-E8P" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
                                                                     <rect key="frame" x="5" y="5" width="54" height="54"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="54" id="Bx4-iQ-1Dd"/>
@@ -1723,6 +1723,7 @@
         <image name="calendarTimeOfDayRight" width="18" height="79"/>
         <image name="car" width="33" height="20"/>
         <image name="carSelected" width="33" height="20"/>
+        <image name="checkCirc" width="51" height="52"/>
         <image name="emma" width="220" height="233"/>
         <image name="gear" width="27" height="27"/>
         <image name="gearSelected" width="27" height="27"/>

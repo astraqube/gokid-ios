@@ -139,24 +139,10 @@ class LocationVC: BaseVC {
     
     func handleGetOccurenceOfCarpool(success: Bool, _ errStr: String) {
         if success {
-            generateDataSource()
+            dataSource = userManager.groupedVolunteerEvents()
             displayWithDataSource()
         } else {
             showAlert("Fail to fetch carpools", messege: errStr, cancleTitle: "OK")
-        }
-    }
-    
-    // this is very bad but devon insist we grop occrence by time
-    // as a reault this cause week connction between pickup and drop out
-    // might be a bug in the future
-    func generateDataSource() {
-        var lastEvent = CalendarModel()
-        for eve in userManager.volunteerEvents {
-            if eve.poolDateStr == lastEvent.poolDateStr {
-                dataSource.append((lastEvent, eve))
-                continue
-            }
-            lastEvent = eve
         }
     }
     
@@ -170,9 +156,9 @@ class LocationVC: BaseVC {
                 var title = data.0.poolDate?.weekDayString()
                 segmentControl.insertSegmentWithTitle(title, atIndex: i, animated: false)
             }
-            segmentControl.selectedSegmentIndex = 0
-            updateEventViewOnMainThread()
         }
+        segmentControl.selectedSegmentIndex = 0
+        updateEventViewOnMainThread()
     }
     
     func syncLocalEventsWithSever() {
