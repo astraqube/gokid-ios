@@ -119,9 +119,9 @@ extension DataManager {
         var map = [
             "occurrence": [
                 "locations": [
-                    "display": occ.poolLocation,
-                    "longitude": occ.locationLongtitude,
-                    "latitude": occ.locationLatitude
+                    "display": occ.poolLocation.name,
+                    "longitude": occ.poolLocation.long,
+                    "latitude": occ.poolLocation.lati
                 ]
             ]
         ]
