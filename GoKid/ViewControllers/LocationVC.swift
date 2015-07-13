@@ -167,7 +167,7 @@ class LocationVC: BaseVC {
     }
     
     func displayWithDataSource() {
-        if dataSource.count >= 10 {
+        if dataSource.count <= 1 {
             segmentControl.alpha = 0.0
             segmentControl.userInteractionEnabled = false
         } else {
