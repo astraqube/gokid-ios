@@ -13,7 +13,7 @@ extension LocationVC {
         var textFont = UIFont(name: "Raleway-Bold", size: 17)
         
         destinationLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
-        destinationLocationLabel.text = "Sharon park Dr 350, United States"
+        destinationLocationLabel.text = "                                  "
         destinationLocationLabel.font = UIFont(name: "Raleway", size: 13)
         destinationLocationLabel.textColor = textColor
         destinationLocationLabel.numberOfLines = 0
@@ -21,7 +21,7 @@ extension LocationVC {
         destinationLocationLabel.sizeToFit()
         
         startLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
-        startLocationLabel.text = "San Francisco xxxx xxxxxxxxx xxx 1010"
+        startLocationLabel.text = "                                        "
         startLocationLabel.font = UIFont(name: "Raleway", size: 13)
         startLocationLabel.textColor = textColor
         startLocationLabel.textAlignment = .Center

@@ -11,12 +11,6 @@ import MapKit
 
 class LocationVC: BaseVC {
     
-    struct Address {
-        var name: String = ""
-        var long: CLLocationDegrees = 0.0
-        var lati: CLLocationDegrees = 0.0
-    }
-    
     @IBOutlet weak var switchBackgroundView: UIView!
     @IBOutlet weak var taponLabel: UILabel!
     @IBOutlet weak var segmentControl: GKSegmentControl!
@@ -110,10 +104,10 @@ class LocationVC: BaseVC {
     func donePickingStartLocationWithAddress(address: String) {
         geoCodeAddress(address) { (long, lati) in
             var i = self.segmentControl.selectedSegmentIndex
-            var add = Address(name: address, long: long, lati: lati)
-            self.updateOccrenceWithAddress(self.dataSource[i].0, add)
+            var location = Location(name: address, long: long, lati: lati)
+            self.dataSource[i].0.poolLocation = location.makeCopy()
             if self.originDestSame {
-                self.updateOccrenceWithAddress(self.dataSource[i].1, add)
+                self.dataSource[i].1.poolLocation = location.makeCopy()
             }
             self.updateEventViewOnMainThread()
             self.syncLocalEventsWithSever()
@@ -123,8 +117,8 @@ class LocationVC: BaseVC {
     func donePickingEndLocationWithAddress(address: String) {
         geoCodeAddress(address) { (long, lati) in
             var i = self.segmentControl.selectedSegmentIndex
-            var add = Address(name: address, long: long, lati: lati)
-            self.updateOccrenceWithAddress(self.dataSource[i].1, add)
+            var location = Location(name: address, long: long, lati: lati)
+            self.dataSource[i].1.poolLocation = location.makeCopy()
             self.updateEventViewOnMainThread()
             self.syncLocalEventsWithSever()
         }
@@ -203,8 +197,8 @@ class LocationVC: BaseVC {
     func updateEventViewOnMainThread() {
         var i = segmentControl.selectedSegmentIndex
         onMainThread() {
-            self.startLocationLabel.text = self.dataSource[i].0.poolLocation
-            self.destinationLocationLabel.text = self.dataSource[i].1.poolLocation
+            self.startLocationLabel.text = self.dataSource[i].0.poolLocation.name
+            self.destinationLocationLabel.text = self.dataSource[i].1.poolLocation.name
         }
     }
     
@@ -222,12 +216,6 @@ class LocationVC: BaseVC {
             }
             self.showAlert("Cannot geocode address", messege: address, cancleTitle: "OK")
         }
-    }
-    
-    func updateOccrenceWithAddress(occ: CalendarModel, _ add: Address) {
-        occ.locationLongtitude = add.long
-        occ.locationLatitude = add.lati
-        occ.poolLocation = add.name
     }
 }
 
