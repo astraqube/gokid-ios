@@ -218,6 +218,15 @@ extension NSDate {
         df.dateFormat = "EE"
         return df.stringFromDate(self)
     }
+
+    func isGreaterThanDate(dateToCompare : NSDate) -> Bool {
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedDescending
+    }
+
+    func isLessThanDate(dateToCompare : NSDate) -> Bool {
+        return self.compare(dateToCompare) == NSComparisonResult.OrderedAscending
+    }
+
 }
 
 extension SwiftAddressBookPerson {

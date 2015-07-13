@@ -85,7 +85,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["detailTextLabel.font"] = fontValue
         row.cellConfig["detailTextLabel.color"] = colorLabel
         row.cellConfig["minimumDate"] = now
-        row.hidden = "$\(Tags.Repeat.rawValue)==0"
+        row.hidden = true
         row.valueTransformer = DateTransformer.self
         section.addFormRow(row)
         
@@ -94,7 +94,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["textLabel.color"] = colorLabel
         row.cellConfig["detailTextLabel.font"] = fontValue
         row.selectorOptions = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-        row.hidden = "$\(Tags.Repeat.rawValue)==0"
+        row.hidden = true
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: "Repeat")
@@ -147,9 +147,11 @@ class TimeAndDateFormVC: BaseFormVC {
             let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
             let frequencyCell = self.form.formRowWithTag(Tags.Frequency.rawValue)
             
+            endDateCell.hidden = !(newValue as! Bool)
             endDateCell.required = newValue as! Bool
             self.updateFormRow(endDateCell)
             
+            frequencyCell.hidden = !(newValue as! Bool)
             frequencyCell.required = newValue as! Bool
             self.updateFormRow(frequencyCell)
         }
@@ -157,13 +159,17 @@ class TimeAndDateFormVC: BaseFormVC {
         // enable or disable the next button
         self.rightButton.enabled = self.formValidationErrors().isEmpty
     }
-    
 
     override func rightNavButtonTapped() {
         let validationErrors: Array<NSError> = self.formValidationErrors() as! Array<NSError>
 
         if validationErrors.count > 0 {
             self.showFormValidationError(validationErrors.first)
+            return
+        }
+
+        if let errorMsg = self.isValidDateSequence() as String? {
+            self.showAlert("Invalid Schedule", messege: errorMsg, cancleTitle: "OK")
             return
         }
 
@@ -197,4 +203,37 @@ extension TimeAndDateFormVC {
         return header
     }
     
+}
+
+// MARK: Validators
+extension TimeAndDateFormVC {
+
+    func isValidDateSequence() -> String? {
+        let startDateCell = self.form.formRowWithTag(Tags.StartDate.rawValue)
+        let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
+
+        let startDate = startDateCell.value as? NSDate
+        let endDate = endDateCell.value as? NSDate
+
+        let startTimeCell = self.form.formRowWithTag(Tags.StartTime.rawValue)
+        let endTimeCell = self.form.formRowWithTag(Tags.EndTime.rawValue)
+
+        let startTime = startTimeCell.value as? NSDate
+        let endTime = endTimeCell.value as? NSDate
+
+        if startDate != nil && endDate != nil {
+            if startDate!.isGreaterThanDate(endDate!) {
+                return "These dates are out of order!"
+            }
+        }
+
+        if startDate != nil && endDate == nil {
+            if startTime!.isGreaterThanDate(endTime!) {
+                return "These times are out of order!"
+            }
+        }
+
+        return nil
+    }
+
 }
