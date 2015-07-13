@@ -13,7 +13,7 @@ extension LocationVC {
         var textFont = UIFont(name: "Raleway-Bold", size: 17)
         
         destinationLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
-        destinationLocationLabel.text = "Sharon park Dr 350, United States"
+        destinationLocationLabel.text = "                                  "
         destinationLocationLabel.font = UIFont(name: "Raleway", size: 13)
         destinationLocationLabel.textColor = textColor
         destinationLocationLabel.numberOfLines = 0
@@ -21,7 +21,7 @@ extension LocationVC {
         destinationLocationLabel.sizeToFit()
         
         startLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
-        startLocationLabel.text = "San Francisco xxxx xxxxxxxxx xxx 1010"
+        startLocationLabel.text = "                                        "
         startLocationLabel.font = UIFont(name: "Raleway", size: 13)
         startLocationLabel.textColor = textColor
         startLocationLabel.textAlignment = .Center
@@ -34,10 +34,12 @@ extension LocationVC {
         destLabel.textColor = textColor
         destLabel.sizeToFit()
         
-        startLabel = UILabel(frame: CGRectZero)
-        startLabel.text = "Origin"
+        startLabel = UILabel(frame: CGRectMake(0, 0, 100, 30))
+        startLabel.text = "Origin&\nDestination"
         startLabel.font = textFont
         startLabel.textColor = textColor
+        startLabel.numberOfLines = 0
+        startLabel.textAlignment = .Center
         startLabel.sizeToFit()
         
         eventLabel = UILabel(frame: CGRectZero)
@@ -94,7 +96,7 @@ extension LocationVC {
     }
     
     func relayout() {
-        if layoutSame {
+        if originDestSame {
             setOriginDestinationSameLayout()
         } else {
             setOriginEventDestinationLayout()
@@ -112,6 +114,10 @@ extension LocationVC {
     }
     
     func layoutSubviewSame() {
+        startLabel.text = "Origin&\nDestination"
+        startLabel.frame = CGRectMake(0, 0, 100, 30)
+        startLabel.sizeToFit()
+        
         var x = view.w / 4.0
         startLocationButton.center.x = x * 1.0
         doubleArrow.center.x = x * 2.0
@@ -125,6 +131,10 @@ extension LocationVC {
     }
     
     func layoutSubviewNotSame() {
+        startLabel.text = "Origin"
+        startLabel.frame = CGRectMake(0, 0, 100, 30)
+        startLabel.sizeToFit()
+        
         var x = view.w / 6.0
         startLocationButton.center.x = x * 1.0
         arrow1.center.x = x * 2.0

@@ -12,15 +12,45 @@ enum CalendarCellType {
     case Notification, Time, Normal, Add, None
 }
 
+class Location: NSObject {
+    var name: String = ""
+    var long: CLLocationDegrees = 0.0
+    var lati: CLLocationDegrees = 0.0
+    var stopID = "0"
+    
+    override init() {
+        super.init()
+    }
+    
+    init(name: String, long: Double, lati: Double) {
+        self.name = String(name)
+        self.long = long
+        self.lati = lati
+    }
+    
+    init(json: JSON) {
+        self.name = json["display"].stringValue
+        self.long = json["longitude"].doubleValue
+        self.lati = json["latitude"].doubleValue
+    }
+    
+    func makeCopy() -> Location {
+        return Location(name: name, long: long, lati: lati)
+    }
+}
+
 class CalendarModel: NSObject {
 
     var taken = false
-    var poolDriver = ""
+    var poolDriverName = ""
     var poolDriverImageUrl = ""
+    var poolDriverPhoneNum = ""
     
     var poolType = ""
     var poolname = ""
     var poolDate: NSDate?
+    
+    var poolLocation = Location()
     
     var cellType: CalendarCellType = .None
     var pooltimeStr = ""
@@ -42,8 +72,9 @@ class CalendarModel: NSObject {
         poolType = occurence["kind"].stringValue
         carpoolID = occurence["carpool"]["id"].intValue
         poolname = occurence["carpool"]["name"].stringValue
-        poolDriver = occurence["volunteer"]["first_name"].stringValue
+        poolDriverName = occurence["volunteer"]["first_name"].stringValue
         poolDriverImageUrl = occurence["volunteer"]["avatar"]["thumb_url"].stringValue
+        poolLocation = Location(json: occurence["locations"][0])
         generateOtherField()
     }
     
@@ -69,8 +100,8 @@ class CalendarModel: NSObject {
         //else if poolType == "dropoff" { poolType = "DROP OFF" }
         //else { poolType = "Unknown type" }
         
-        if poolDriver == "" {
-            poolDriver = "No Driver yet"
+        if poolDriverName == "" {
+            poolDriverName = "No Driver yet"
         }
         if let date = poolDate {
             poolDateStr = date.dateString()

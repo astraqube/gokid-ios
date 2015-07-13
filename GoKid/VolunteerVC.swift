@@ -68,8 +68,8 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             cell.timeLabel.text = model.poolTimeStringWithSpace()
             cell.poolTypeLabel.text = model.poolType
             cell.checkButtonHandler = checkButtonClickHandler
-            if model.poolDriver == "No Driver yet" { cell.driverTitleLabel.text = "Volunteer to Drive" }
-            else { cell.driverTitleLabel.text = model.poolDriver }
+            if model.poolDriverName == "No Driver yet" { cell.driverTitleLabel.text = "Volunteer to Drive" }
+            else { cell.driverTitleLabel.text = model.poolDriverName }
             return cell
         } else if model.cellType == .Time {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell

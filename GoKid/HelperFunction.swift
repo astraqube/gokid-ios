@@ -212,6 +212,12 @@ extension NSDate {
         df.dateFormat = "hh:mma"
         return df.stringFromDate(self).lowercaseString
     }
+    
+    func weekDayString() -> String {
+        var df = NSDateFormatter()
+        df.dateFormat = "EE"
+        return df.stringFromDate(self)
+    }
 }
 
 extension SwiftAddressBookPerson {
