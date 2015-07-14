@@ -68,6 +68,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["detailTextLabel.color"] = colorLabel
         row.cellConfig["minimumDate"] = now
         row.required = true
+        row.value = carpoolModel.startDate
         row.valueTransformer = DateTransformer.self
         section.addFormRow(row)
         
@@ -78,6 +79,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["detailTextLabel.color"] = colorLabel
         row.cellConfig["minimumDate"] = now
         row.hidden = true
+        row.value = carpoolModel.endDate
         row.valueTransformer = DateTransformer.self
         section.addFormRow(row)
         
@@ -93,7 +95,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: "Repeat")
         row.cellConfig["textLabel.font"] = fontLabel
         row.cellConfig["textLabel.color"] = colorLabel
-        row.value = 0
+        row.value = (carpoolModel.occurence != nil && carpoolModel.occurence?.isEmpty == false)
         section.addFormRow(row)
         
         form.addFormSection(section)
@@ -106,6 +108,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["detailTextLabel.font"] = fontValue
         row.cellConfig["detailTextLabel.color"] = colorLabel
         row.required = true
+        row.value = carpoolModel.pickUpTime
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.EndTime.rawValue, rowType: XLFormRowDescriptorTypeTime, title: "End Time")
@@ -114,9 +117,10 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["detailTextLabel.font"] = fontValue
         row.cellConfig["detailTextLabel.color"] = colorLabel
         row.required = true
+        row.value = carpoolModel.dropOffTime
         section.addFormRow(row)
         
-        row = XLFormRowDescriptor(tag: Tags.OneWay.rawValue, rowType: XLFormRowDescriptorTypeSelectorPickerViewInline, title: "One-way Carpool")
+        row = XLFormRowDescriptor(tag: Tags.OneWay.rawValue, rowType: XLFormRowDescriptorTypeSelectorPickerView, title: "One-way Carpool")
         row.cellConfig["textLabel.font"] = fontLabel
         row.cellConfig["textLabel.color"] = colorLabel
         row.cellConfig["detailTextLabel.font"] = fontValue
@@ -173,6 +177,7 @@ class TimeAndDateFormVC: BaseFormVC {
         var vc = vcWithID("LocationVC")
         self.navigationController?.pushViewController(vc, animated: true)
     }
+
 }
 
 
