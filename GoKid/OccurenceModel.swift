@@ -1,5 +1,5 @@
 //
-//  CalendarModel.swift
+//  OccurenceModel.swift
 //  
 //
 //  Created by Bingwen Fu on 6/21/15.
@@ -39,7 +39,7 @@ class Location: NSObject {
     }
 }
 
-class CalendarModel: NSObject {
+class OccurenceModel: NSObject {
 
     var taken = false
     var poolDriverName = ""
@@ -78,10 +78,10 @@ class CalendarModel: NSObject {
         generateOtherField()
     }
     
-    class func arrayOfEventsFromOccurrences(json: JSON) -> [CalendarModel] {
-        var arr = [CalendarModel]()
+    class func arrayOfEventsFromOccurrences(json: JSON) -> [OccurenceModel] {
+        var arr = [OccurenceModel]()
         for (index: String, subJson: JSON) in json {
-            var carpool = CalendarModel(occurence: subJson)
+            var carpool = OccurenceModel(occurence: subJson)
             arr.append(carpool)
         }
         return arr

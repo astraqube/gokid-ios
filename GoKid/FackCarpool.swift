@@ -2,10 +2,10 @@
 // This file is unused code for now, I keep it because we may add it back in the future
 
 
-//class func arrayOfFakeVolunteerEventsFromOccurrences(json: JSON, _ name: String) -> [CalendarModel] {
-//    var arr = [CalendarModel]()
+//class func arrayOfFakeVolunteerEventsFromOccurrences(json: JSON, _ name: String) -> [OccurenceModel] {
+//    var arr = [OccurenceModel]()
 //    for (index: String, subJson: JSON) in json {
-//        var carpool = CalendarModel(fakeList: subJson)
+//        var carpool = OccurenceModel(fakeList: subJson)
 //        carpool.poolname = name
 //        println(carpool.poolType)
 //        println(carpool.poolDate)
@@ -34,7 +34,7 @@
 //        println("getFakeVolunteerList success")
 //        var json = JSON(obj)
 //        println(json)
-//        var events = CalendarModel.arrayOfFakeVolunteerEventsFromOccurrences(json["carpools"], model.name)
+//        var events = OccurenceModel.arrayOfFakeVolunteerEventsFromOccurrences(json["carpools"], model.name)
 //        self.userManager.fakeVolunteerEvents = events
 //        comp(true, "")
 //        }) { (op, error) in

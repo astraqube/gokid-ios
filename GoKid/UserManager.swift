@@ -29,9 +29,9 @@ class UserManager: NSObject {
     var userProfileImage: UIImage?
     var info = TeamMemberModel()
     var teamMembers = [TeamMemberModel]()
-    var calendarEvents = [CalendarModel]()
-    var volunteerEvents = [CalendarModel]()
-    var fakeVolunteerEvents = [CalendarModel]()
+    var calendarEvents = [OccurenceModel]()
+    var volunteerEvents = [OccurenceModel]()
+    var fakeVolunteerEvents = [OccurenceModel]()
     
     
     var updatedMember = TeamMemberModel()
@@ -225,9 +225,9 @@ class UserManager: NSObject {
     // this is very bad but devon insist we grop occrence by time
     // as a reault this cause weak connction between pickup and drop off
     // might be a bug in the future
-    func groupedVolunteerEvents() -> [(CalendarModel, CalendarModel)] {
-        var lastEvent = CalendarModel()
-        var data = [(CalendarModel, CalendarModel)]()
+    func groupedVolunteerEvents() -> [(OccurenceModel, OccurenceModel)] {
+        var lastEvent = OccurenceModel()
+        var data = [(OccurenceModel, OccurenceModel)]()
         for event in volunteerEvents {
             if event.poolDateStr == lastEvent.poolDateStr {
                 data.append((lastEvent, event))

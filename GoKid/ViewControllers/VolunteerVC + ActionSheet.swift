@@ -21,7 +21,7 @@ extension VolunteerVC {
         }
     }
     
-    func showTakenActionSheet(cell: VolunteerCell, model: CalendarModel) {
+    func showTakenActionSheet(cell: VolunteerCell, model: OccurenceModel) {
         let button1 = UIAlertAction(title: "Unvolunteer", style: .Default) { (alert) in
             self.unRegisterVolunteerForCell(cell, model: model)
         }
@@ -34,7 +34,7 @@ extension VolunteerVC {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func showUntakenActionSheet(cell: VolunteerCell, model: CalendarModel) {
+    func showUntakenActionSheet(cell: VolunteerCell, model: OccurenceModel) {
         let button1 = UIAlertAction(title: "Volunteer", style: .Default) { (alert) in
             self.registerVolunteerForCell(cell, model: model)
         }
@@ -57,7 +57,7 @@ extension VolunteerVC {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func unRegisterVolunteerForCell(cell: VolunteerCell, model: CalendarModel) {
+    func unRegisterVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
         LoadingView.showWithMaskType(.Black)
         self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
             LoadingView.dismiss()
@@ -72,7 +72,7 @@ extension VolunteerVC {
         }
     }
     
-    func registerVolunteerForCell(cell: VolunteerCell, model: CalendarModel) {
+    func registerVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
         LoadingView.showWithMaskType(.Black)
         self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
             LoadingView.dismiss()

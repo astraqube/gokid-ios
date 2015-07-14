@@ -47,7 +47,7 @@ class Stop : NSObject, MKAnnotation {
         self.thumbnailImage = thumbnailImage
     }
     
-    init(occurrence: CalendarModel) {
+    init(occurrence: OccurenceModel) {
         self.coordinate = CLLocationCoordinate2DMake(occurrence.poolLocation.lati, occurrence.poolLocation.long)
         self.name = occurrence.poolname
         self.address = occurrence.poolLocation.name

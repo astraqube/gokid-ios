@@ -46,7 +46,7 @@ extension DataManager {
             println("getAllUserCarpools success")
             println(obj)
             var json = JSON(obj)["occurrences"]
-            var events = CalendarModel.arrayOfEventsFromOccurrences(json)
+            var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
             self.userManager.calendarEvents = events
             comp(true, "")
         }) { (op, error) in
@@ -104,7 +104,7 @@ extension DataManager {
             println("getOccurenceOfCarpool success")
             var json = JSON(obj)["occurrences"]
             println(json)
-            var events = CalendarModel.arrayOfEventsFromOccurrences(json)
+            var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
             self.userManager.volunteerEvents = events
             comp(true, "")
         }) { (op, error) in
@@ -113,7 +113,7 @@ extension DataManager {
         }
     }
     
-    func updateOccurenceLocation(occ: CalendarModel, comp: completion) {
+    func updateOccurenceLocation(occ: OccurenceModel, comp: completion) {
         var url = baseURL + "/api/occurrences/" + String(occ.occurenceID)
         var map = [
             "occurrence": [
@@ -138,14 +138,14 @@ extension DataManager {
         }
     }
     
-    func updateOccurenceRiders(occ: CalendarModel, comp: completion) {
+    func updateOccurenceRiders(occ: OccurenceModel, comp: completion) {
         var url = baseURL + "/api/carpools/" + String(occ.carpoolID) + "/occurrences/" + String(occ.occurenceID) + "/riders"
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getAllUserCarpools success")
             println(obj)
             var json = JSON(obj)["occurrences"]
-            var events = CalendarModel.arrayOfEventsFromOccurrences(json)
+            var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
             self.userManager.calendarEvents = events
             comp(true, "")
             }) { (op, error) in

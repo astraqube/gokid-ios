@@ -11,7 +11,7 @@ import UIKit
 class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var dataSource = [CalendarModel]()
+    var dataSource = [OccurenceModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,12 +130,12 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func processRawCalendarEvents(events: [CalendarModel]) -> [CalendarModel] {
-        var data = [CalendarModel]()
+    func processRawCalendarEvents(events: [OccurenceModel]) -> [OccurenceModel] {
+        var data = [OccurenceModel]()
         var lastDateStr = ""
         for event in events {
             if event.poolDateStr != lastDateStr {
-                var dateCell = CalendarModel()
+                var dateCell = OccurenceModel()
                 dateCell.cellType = .Time
                 dateCell.poolDateStr = event.poolDateStr
                 data.append(dateCell)

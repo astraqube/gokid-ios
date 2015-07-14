@@ -11,7 +11,7 @@ import UIKit
 class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    var dataSource = [CalendarModel]()
+    var dataSource = [OccurenceModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +72,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                     str = str.replace("#date", "on " + date.shortDateString())
                 }
             }
-            var cell = CalendarModel()
+            var cell = OccurenceModel()
             cell.cellType = .Notification
             cell.notification = str
             dataSource.insert(cell, atIndex: 0)
@@ -80,11 +80,11 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func processRawCalendarEvents() {
-        var data = [CalendarModel]()
+        var data = [OccurenceModel]()
         var lastDateStr = ""
         for event in userManager.calendarEvents {
             if event.poolDateStr != lastDateStr {
-                var dateCell = CalendarModel()
+                var dateCell = OccurenceModel()
                 dateCell.cellType = .Time
                 dateCell.poolDateStr = event.poolDateStr
                 data.append(dateCell)
@@ -97,7 +97,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func addCreateCarpoolCellToDataSource() {
-        var c = CalendarModel()
+        var c = OccurenceModel()
         c.cellType = .Add
         dataSource.append(c)
     }
@@ -141,13 +141,13 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     // MARK: Construct TableView Cells
     // --------------------------------------------------------------------------------------------
     
-    func configNotificationCell(ip: NSIndexPath, _ model: CalendarModel) -> CalendarNotificationCell {
+    func configNotificationCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarNotificationCell {
         var cell = tableView.cellWithID("CalendarNotificationCell", ip) as! CalendarNotificationCell
         cell.notificationLabel.text = model.notification
         return cell
     }
     
-    func configCalendarCell(ip: NSIndexPath, _ model: CalendarModel) -> CalendarCell {
+    func configCalendarCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarCell {
         var cell = tableView.cellWithID("CalendarCell", ip) as! CalendarCell
         cell.nameLabel.text = model.poolname
         cell.timeLabel.text = model.pooltimeStr
@@ -175,13 +175,13 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func configCalendarDateCell(ip: NSIndexPath, _ model: CalendarModel) -> CalendarDateCell {
+    func configCalendarDateCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarDateCell {
         var cell = tableView.cellWithID("CalendarDateCell", ip) as! CalendarDateCell
         cell.dateLabel.text = model.poolDateStr
         return cell
     }
     
-    func configCalendarAddCell(ip: NSIndexPath, _ model: CalendarModel) -> CalendarAddCell {
+    func configCalendarAddCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarAddCell {
         var cell = tableView.cellWithID("CalendarAddCell", ip) as! CalendarAddCell
         return cell
     }

@@ -33,7 +33,7 @@ class LocationVC: BaseVC {
     
     var originDestSame = true
     var heightRatio: CGFloat = 0.40
-    var dataSource = [(CalendarModel, CalendarModel)]() // drop pick
+    var dataSource = [(OccurenceModel, OccurenceModel)]() // drop pick
     
     override func viewDidLoad() {
         super.viewDidLoad()
