@@ -667,22 +667,22 @@
                                 <rect key="frame" x="0.0" y="379" width="320" height="50"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1k-7u-inN">
-                                        <rect key="frame" x="263" y="10" width="51" height="31"/>
+                                        <rect key="frame" x="265" y="10" width="51" height="31"/>
                                         <connections>
                                             <action selector="OriginDestinationSame:" destination="LG2-du-YDZ" eventType="valueChanged" id="wQ6-bP-bjV"/>
                                         </connections>
                                     </switch>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="originDestination" translatesAutoresizingMaskIntoConstraints="NO" id="9ad-cW-2oG">
-                                        <rect key="frame" x="9" y="17" width="20" height="15"/>
+                                        <rect key="frame" x="8" y="18" width="20" height="15"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="upX-rl-E2l"/>
                                             <constraint firstAttribute="height" constant="15" id="vQW-Xi-zsi"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origin &amp; destination are the same" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7b-1X-nrq">
-                                        <rect key="frame" x="41" y="16" width="214" height="17"/>
-                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origin and drop off location are the same" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7b-1X-nrq">
+                                        <rect key="frame" x="36" y="18.5" width="225.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                         <color key="textColor" red="0.25098039215686274" green="0.3843137254901961" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -691,11 +691,11 @@
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="W1k-7u-inN" secondAttribute="centerY" constant="-0.5" id="1I1-af-kDc"/>
                                     <constraint firstAttribute="centerY" secondItem="Q7b-1X-nrq" secondAttribute="centerY" id="E7L-JS-y4b"/>
-                                    <constraint firstAttribute="trailing" secondItem="W1k-7u-inN" secondAttribute="trailing" constant="8" id="O7Q-xb-K24"/>
-                                    <constraint firstItem="9ad-cW-2oG" firstAttribute="top" secondItem="yuU-tp-NbT" secondAttribute="top" constant="17" id="UkU-jl-mx4"/>
-                                    <constraint firstItem="9ad-cW-2oG" firstAttribute="leading" secondItem="yuU-tp-NbT" secondAttribute="leading" constant="9" id="aoj-CR-ADB"/>
+                                    <constraint firstAttribute="trailing" secondItem="W1k-7u-inN" secondAttribute="trailing" constant="6" id="O7Q-xb-K24"/>
+                                    <constraint firstItem="9ad-cW-2oG" firstAttribute="top" secondItem="yuU-tp-NbT" secondAttribute="top" constant="18" id="UkU-jl-mx4"/>
+                                    <constraint firstItem="9ad-cW-2oG" firstAttribute="leading" secondItem="yuU-tp-NbT" secondAttribute="leading" constant="8" id="aoj-CR-ADB"/>
                                     <constraint firstAttribute="height" constant="50" id="f5u-v2-FhQ"/>
-                                    <constraint firstItem="Q7b-1X-nrq" firstAttribute="leading" secondItem="9ad-cW-2oG" secondAttribute="trailing" constant="12" id="vsu-sP-FTE"/>
+                                    <constraint firstItem="Q7b-1X-nrq" firstAttribute="leading" secondItem="9ad-cW-2oG" secondAttribute="trailing" constant="8" id="vsu-sP-FTE"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-Ew-p5T">
@@ -728,7 +728,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FD-YB-Iwp">
-                                <rect key="frame" x="89" y="44" width="143" height="16"/>
+                                <rect key="frame" x="89" y="44" width="142.5" height="15.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
