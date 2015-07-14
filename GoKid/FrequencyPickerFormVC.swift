@@ -138,12 +138,6 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
             self.currentValues.removeAllObjects()
         }
 
-        if formRow.tag == GKFrequency.EveryWeek.rawValue {
-            if formRow.value as! Bool {
-                self.currentValues.addObjectsFromArray(GKDays.allValues)
-            }
-        }
-
         if formRow.tag != GKFrequency.JustOnce.rawValue {
             if formRow.value as! Bool {
                 self.currentValues.addObject(formRow.tag)
