@@ -35,7 +35,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         if userManager.userLoggedIn {
             fetchDataAndReloadTableView()
         } else {
-//            addCreateCarpoolCellToDataSource()
+            addCreateCarpoolCellToDataSource()
             tableView.reloadData()
         }
     }
