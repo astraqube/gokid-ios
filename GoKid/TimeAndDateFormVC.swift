@@ -95,6 +95,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["textLabel.color"] = colorLabel
         row.cellConfig["detailTextLabel.font"] = fontValue
         row.action.viewControllerClass = FrequencyPickerFormVC.self
+        row.valueTransformer = FrequencyTransformer.self
         row.hidden = true
         row.value = carpoolModel.occurence == nil ? [] : carpoolModel.occurence
         section.addFormRow(row)
