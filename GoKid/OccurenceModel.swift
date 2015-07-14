@@ -49,6 +49,7 @@ class OccurenceModel: NSObject {
         poolname = occurence["carpool"]["name"].stringValue
         poolDriverName = occurence["volunteer"]["first_name"].stringValue
         poolDriverImageUrl = occurence["volunteer"]["avatar"]["thumb_url"].stringValue
+        riders = RiderModel.arrayOfRidersWithJSON(occurence["riders"])
         poolLocation = Location(json: occurence["locations"][0])
         generateOtherField()
     }

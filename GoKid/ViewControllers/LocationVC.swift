@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 
 class LocationVC: BaseVC {
-    
     @IBOutlet weak var switchBackgroundView: UIView!
     @IBOutlet weak var taponLabel: UILabel!
     @IBOutlet weak var segmentControl: GKSegmentControl!

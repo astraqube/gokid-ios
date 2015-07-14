@@ -34,4 +34,13 @@ class RiderModel: NSObject {
         pickupLocation = Location(json: json["pickup_address"])
         dropoffLocation = Location(json: json["dropoff_address"])
     }
+    
+    class func arrayOfRidersWithJSON(json: JSON) -> [RiderModel] {
+        var arr = [RiderModel]()
+        for (index: String, subJson: JSON) in json {
+            var rider = RiderModel(json: subJson)
+            arr.append(rider)
+        }
+        return arr
+    }
 }

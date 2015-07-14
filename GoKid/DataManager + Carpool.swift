@@ -142,14 +142,14 @@ extension DataManager {
         var url = baseURL + "/api/carpools/" + String(occ.carpoolID) + "/occurrences/" + String(occ.occurenceID) + "/riders"
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getAllUserCarpools success")
+            println("updateOccurenceRiders success")
             println(obj)
-            var json = JSON(obj)["occurrences"]
-            var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
-            self.userManager.calendarEvents = events
+            var ridersJson = JSON(obj)["riders"]
+            var riders = RiderModel.arrayOfRidersWithJSON(ridersJson)
+            occ.riders = riders
             comp(true, "")
             }) { (op, error) in
-                println("getAllUserCarpools failed")
+                println("updateOccurenceRiders failed")
                 self.handleRequestError(op, error: error, comp: comp)
         }
     }
