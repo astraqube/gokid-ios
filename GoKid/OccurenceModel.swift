@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 enum CalendarCellType {
     case Notification, Time, Normal, Add, None

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
