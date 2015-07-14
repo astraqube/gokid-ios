@@ -207,6 +207,12 @@ extension NSDate {
         return df.stringFromDate(self)
     }
     
+    func shortDateString() -> String {
+        var df = NSDateFormatter()
+        df.dateFormat = "EE MMMM d"
+        return df.stringFromDate(self)
+    }
+    
     func timeString() -> String {
         var df = NSDateFormatter()
         df.dateFormat = "hh:mma"

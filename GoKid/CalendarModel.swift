@@ -59,7 +59,7 @@ class CalendarModel: NSObject {
    
     var occrencID = 0
     var carpoolID = 0
-    
+
     override init() {
         super.init()
     }

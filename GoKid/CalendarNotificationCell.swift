@@ -10,6 +10,6 @@ import UIKit
 
 class CalendarNotificationCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var notificationLabel: UILabel!
     
 }

@@ -11,9 +11,6 @@ import UIKit
 class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    /// Default 78, set to zero to hide header alert view
-    @IBOutlet weak var alertViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var headerAlertLabel: UILabel!
     var dataSource = [CalendarModel]()
     
     override func viewDidLoad() {
@@ -62,6 +59,26 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func tryAddNotificationHeader() {
+        // we have one last cell for add carpool thus here is 2
+        if dataSource.count >= 3 {
+            var model = dataSource[1]
+            var str = "Hi #name you are driving #date"
+            str = str.replace("#name", userManager.info.firstName)
+            if model.poolDateStr == "Today" || model.poolDateStr == "Tomorrow" {
+                str = str.replace("#date", model.poolDateStr)
+            } else {
+                if let date = model.poolDate {
+                    str = str.replace("#date", "on " + date.shortDateString())
+                }
+            }
+            var cell = CalendarModel()
+            cell.cellType = .Notification
+            cell.notification = str
+            dataSource.insert(cell, atIndex: 0)
+        }
+    }
+    
     func processRawCalendarEvents() {
         var data = [CalendarModel]()
         var lastDateStr = ""
@@ -76,6 +93,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             data.append(event)
         }
         dataSource = data
+        tryAddNotificationHeader()
     }
     
     func addCreateCarpoolCellToDataSource() {
@@ -125,7 +143,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func configNotificationCell(ip: NSIndexPath, _ model: CalendarModel) -> CalendarNotificationCell {
         var cell = tableView.cellWithID("CalendarNotificationCell", ip) as! CalendarNotificationCell
-        cell.titleLabel.text = model.notification
+        cell.notificationLabel.text = model.notification
         return cell
     }
     
@@ -175,7 +193,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         var model = dataSource[indexPath.row]
         switch model.cellType {
         case .Notification:
-            return 83.0
+            return 72.0
         case .Time:
             return 39.0
         case .Add:

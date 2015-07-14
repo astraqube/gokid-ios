@@ -84,14 +84,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Taylor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUg-nF-rle">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Team Taylor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUg-nF-rle">
                                 <rect key="frame" x="161" y="115" width="93" height="19"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="16"/>
                                 <color key="textColor" red="0.90588235294117647" green="0.96470588235294119" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSw-Oe-WbQ">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSw-Oe-WbQ">
                                 <rect key="frame" x="85" y="259" width="84" height="36"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
@@ -107,7 +107,7 @@
                                     <action selector="calendarButtonClick:" destination="2Rn-72-GPK" eventType="touchUpInside" id="Czf-jj-0HM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-nd-2AV">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-nd-2AV">
                                 <rect key="frame" x="85" y="362" width="91" height="36"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
@@ -123,7 +123,7 @@
                                     <action selector="myDrivesClicked:" destination="2Rn-72-GPK" eventType="touchUpInside" id="vgl-85-TdX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Od-jI-Hwr">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Od-jI-Hwr">
                                 <rect key="frame" x="85" y="413" width="158" height="36"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
@@ -139,7 +139,7 @@
                                     <action selector="accountSettingClicked:" destination="2Rn-72-GPK" eventType="touchUpInside" id="VlL-rD-eEU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhk-HD-WmE">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhk-HD-WmE">
                                 <rect key="frame" x="161" y="120" width="59" height="65"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -235,7 +235,7 @@
                                     <constraint firstAttribute="centerY" secondItem="Guj-3M-nFL" secondAttribute="centerY" constant="0.5" id="lw8-Ub-6C1"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBx-hG-xJ2">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBx-hG-xJ2">
                                 <rect key="frame" x="85" y="311" width="140" height="36"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
@@ -1108,6 +1108,39 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarNotificationCell" rowHeight="72" id="1al-by-yaF" customClass="CalendarNotificationCell" customModule="GoKid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1al-by-yaF" id="qFU-2i-HHP">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey #name, You're driving #date" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhi-us-wr9">
+                                                    <rect key="frame" x="51" y="27" width="261" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="LOf-RI-LzN">
+                                                    <rect key="frame" x="16" y="21" width="27" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="27" id="Ost-1V-ZJD"/>
+                                                        <constraint firstAttribute="height" constant="29" id="SqR-uN-kPG"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jhi-us-wr9" firstAttribute="trailing" secondItem="qFU-2i-HHP" secondAttribute="trailingMargin" id="C7I-7d-O9H"/>
+                                                <constraint firstAttribute="centerY" secondItem="jhi-us-wr9" secondAttribute="centerY" id="Ndf-PA-qda"/>
+                                                <constraint firstItem="LOf-RI-LzN" firstAttribute="leading" secondItem="qFU-2i-HHP" secondAttribute="leadingMargin" constant="8" id="WOr-FD-mne"/>
+                                                <constraint firstItem="LOf-RI-LzN" firstAttribute="top" secondItem="qFU-2i-HHP" secondAttribute="topMargin" constant="13" id="i3D-Te-es1"/>
+                                                <constraint firstItem="jhi-us-wr9" firstAttribute="leading" secondItem="LOf-RI-LzN" secondAttribute="trailing" constant="8" id="sE3-KG-InZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.97647058823529409" green="0.99215686274509807" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="notificationLabel" destination="jhi-us-wr9" id="hre-xi-cT5"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CalendarDateCell" rowHeight="25" id="vpB-9i-s9C" customClass="CalendarDateCell" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1185,28 +1218,28 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Flx-JH-oVl" userLabel="textview">
+                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Flx-JH-oVl" userLabel="textview">
                                                             <rect key="frame" x="101" y="17" width="183" height="43"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dropoff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8p-Dk-dRL">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="dropoff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8p-Dk-dRL">
                                                                     <rect key="frame" x="17" y="0.0" width="53" height="18"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-55-5Pf" userLabel="dropoff icon">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-55-5Pf" userLabel="dropoff icon">
                                                                     <rect key="frame" x="0.0" y="1" width="15" height="17"/>
                                                                     <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88w-Bo-ce2" userLabel="pickup icon">
+                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88w-Bo-ce2" userLabel="pickup icon">
                                                                     <rect key="frame" x="0.0" y="1" width="15" height="17"/>
                                                                     <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZW-AJ-Qc1">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZW-AJ-Qc1">
                                                                     <rect key="frame" x="72" y="0.0" width="14" height="18"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1218,7 +1251,7 @@
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jenny's Birthday Party" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgA-qe-nVL">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jenny's Birthday Party" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgA-qe-nVL">
                                                                     <rect key="frame" x="0.0" y="21" width="183" height="22"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
                                                                     <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
@@ -1400,28 +1433,28 @@
                                                                 <constraint firstAttribute="height" constant="134" id="bad-Sn-jx8"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihI-RP-Q1v" userLabel="textview">
+                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihI-RP-Q1v" userLabel="textview">
                                                             <rect key="frame" x="101" y="17" width="183" height="43"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dropoff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faF-bq-hCR">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="dropoff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faF-bq-hCR">
                                                                     <rect key="frame" x="17" y="0.0" width="53" height="18"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krx-eI-brN" userLabel="dropoff">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krx-eI-brN" userLabel="dropoff">
                                                                     <rect key="frame" x="0.0" y="1" width="15" height="17"/>
                                                                     <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gG-x9-2hd" userLabel="pickup">
+                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gG-x9-2hd" userLabel="pickup">
                                                                     <rect key="frame" x="0.0" y="1" width="15" height="17"/>
                                                                     <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPc-1j-G7i">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPc-1j-G7i">
                                                                     <rect key="frame" x="72" y="0.0" width="14" height="18"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1433,7 +1466,7 @@
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jenny's Birthday Party" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ff-KH-Qru">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jenny's Birthday Party" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ff-KH-Qru">
                                                                     <rect key="frame" x="0.0" y="21" width="183" height="22"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
                                                                     <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
@@ -1505,19 +1538,19 @@
                                                                 <constraint firstAttribute="height" constant="77" id="agh-e9-7HN"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't keep Joshua waiting!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68u-MH-iiF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Can't keep Joshua waiting!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68u-MH-iiF">
                                                             <rect key="frame" x="25" y="136" width="171" height="17"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's time to go!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8R-vk-JV9">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="It's time to go!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8R-vk-JV9">
                                                             <rect key="frame" x="200" y="136" width="96" height="17"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated just now" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vye-yD-bMA">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Updated just now" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vye-yD-bMA">
                                                             <rect key="frame" x="25" y="152" width="99" height="15"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                             <color key="textColor" red="0.15686274509803921" green="0.44313725490196076" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
@@ -1631,84 +1664,12 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
-                        <outlet property="alertViewHeightConstraint" destination="tTV-Pk-MAH" id="Vhb-TT-bUz"/>
-                        <outlet property="headerAlertLabel" destination="tYC-ZO-qml" id="OWq-HH-yN2"/>
                         <outlet property="tableView" destination="EXg-6c-kkS" id="MTL-07-8Dc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O6q-Jo-9us" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="343" y="1093"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="1XD-9T-osE">
-            <objects>
-                <tableViewController id="5QH-a4-ht4" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="orZ-wU-HJr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="csw-wC-djc" userLabel="headerAlertView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evk-it-2mv" userLabel="headerAlertContentView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarHeaderAlertBackground" translatesAutoresizingMaskIntoConstraints="NO" id="X4h-by-wJJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey Liz, You're driving on May 1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYC-ZO-qml">
-                                            <rect key="frame" x="52" y="30" width="216" height="18"/>
-                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="xed-gI-Kwc">
-                                            <rect key="frame" x="15" y="24" width="27" height="29"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tYC-ZO-qml" secondAttribute="trailing" constant="5" id="6wt-8H-9Fz"/>
-                                        <constraint firstItem="X4h-by-wJJ" firstAttribute="leading" secondItem="evk-it-2mv" secondAttribute="leading" id="7QN-k3-qdY"/>
-                                        <constraint firstItem="X4h-by-wJJ" firstAttribute="top" secondItem="evk-it-2mv" secondAttribute="top" id="8ZC-mv-XdQ"/>
-                                        <constraint firstAttribute="bottom" secondItem="X4h-by-wJJ" secondAttribute="bottom" id="Bgd-nz-6v5"/>
-                                        <constraint firstAttribute="centerX" secondItem="tYC-ZO-qml" secondAttribute="centerX" id="YtK-9u-ot1"/>
-                                        <constraint firstAttribute="centerY" secondItem="tYC-ZO-qml" secondAttribute="centerY" id="ZZH-K2-DLz"/>
-                                        <constraint firstItem="xed-gI-Kwc" firstAttribute="centerY" secondItem="tYC-ZO-qml" secondAttribute="centerY" id="e52-V3-eLu"/>
-                                        <constraint firstItem="tYC-ZO-qml" firstAttribute="leading" secondItem="xed-gI-Kwc" secondAttribute="trailing" constant="10" id="mYq-oM-RbH"/>
-                                        <constraint firstAttribute="trailing" secondItem="X4h-by-wJJ" secondAttribute="trailing" id="pT4-Hj-Ao2"/>
-                                        <constraint firstItem="xed-gI-Kwc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="evk-it-2mv" secondAttribute="leading" constant="5" id="qIS-U8-wd0"/>
-                                        <constraint firstAttribute="height" constant="78" id="tTV-Pk-MAH" userLabel="headerAlertContentViewHeight"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="evk-it-2mv" secondAttribute="bottom" id="4Id-Ci-6cN"/>
-                                <constraint firstItem="evk-it-2mv" firstAttribute="top" secondItem="csw-wC-djc" secondAttribute="top" id="Qa6-rf-1Bj"/>
-                                <constraint firstItem="evk-it-2mv" firstAttribute="leading" secondItem="csw-wC-djc" secondAttribute="leading" id="Riw-Se-nPW"/>
-                                <constraint firstAttribute="trailing" secondItem="evk-it-2mv" secondAttribute="trailing" id="YUK-8N-u7k"/>
-                            </constraints>
-                        </view>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wAi-l7-GRf">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wAi-l7-GRf" id="dJH-lD-46j">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="5QH-a4-ht4" id="1hC-MK-FMF"/>
-                            <outlet property="delegate" destination="5QH-a4-ht4" id="ZoY-G0-1Ms"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fox-iG-p0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="733" y="977"/>
         </scene>
     </scenes>
     <resources>
@@ -1717,7 +1678,6 @@
         <image name="calendarCellLeft" width="16" height="134"/>
         <image name="calendarCellMiddle" width="1" height="134"/>
         <image name="calendarCellRight" width="19" height="137"/>
-        <image name="calendarHeaderAlertBackground" width="1" height="78"/>
         <image name="calendarTimeOfDayLeft" width="64" height="77"/>
         <image name="calendarTimeOfDayMiddle" width="1" height="77"/>
         <image name="calendarTimeOfDayRight" width="18" height="79"/>
