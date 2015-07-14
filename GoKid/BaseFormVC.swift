@@ -50,10 +50,12 @@ class BaseFormVC: XLFormViewController {
     }
 
     func setUpNavigationBar() {
+        self.setStatusBarColorDark()
+
         self.leftButton?.addTarget(self, action: "leftNavButtonTapped", forControlEvents: .TouchUpInside)
         self.rightButton?.addTarget(self, action: "rightNavButtonTapped", forControlEvents: .TouchUpInside)
         
-        self.rightButton.enabled = false
+        self.rightButton?.enabled = false
     }
 
     // MARK: IBAction Method
