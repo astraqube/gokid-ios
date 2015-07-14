@@ -46,7 +46,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             if success {
                 self.generateTableDataAndReload()
             } else {
-                self.showAlert("Fail to update carpools", messege: errorStr, cancleTitle: "OK")
+                self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
@@ -206,31 +206,39 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.row == dataSource.count-1 {
             self.createButtonClicked(UIButton())
         }
         if tableView.cellForRowAtIndexPath(indexPath) as? CalendarCell != nil {
-            var model = dataSource[indexPath.row]
-            var navigation = Navigation()
-            var pickups = [
-                // right now we only have one stop for each 
-                // pick-up/drop-off we will add more later
-                // Stop(occurrence: model)
-                Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1833), name: "Menlo's House", address: "123 Fake St 91210", phoneNumber: "18002831337", stopID: "1", thumbnailImage: UIImage(named: "test_userImage")),
-                Stop(coordinate: CLLocationCoordinate2DMake(37.4598, -122.1893), name: "Kid's House", address: "4821 Fake Ln 91210", phoneNumber: "18002831437", stopID: "2", thumbnailImage: nil),
-                Stop(coordinate: CLLocationCoordinate2DMake(37.4608, -122.2093), name: "Another Kid's House", address: "8912 Big Fake Ave 91211", phoneNumber: "18002831537", stopID: "3", thumbnailImage: nil)
-            ]
-            
-            var dropoffs = [
-                Stop(coordinate: CLLocationCoordinate2DMake(37.783333, -122.416667), name: "Soccer Club", address: "4 Soccer Way 92118", phoneNumber: "18002831637", stopID: "10", thumbnailImage: nil)
-            ]
-            navigation.setup(pickups, dropoffs:dropoffs);
-            
-            var vc = vcWithID("DetailMapVC") as! DetailMapVC
-            vc.navigation = navigation
-            navigationController?.pushViewController(vc, animated: true)
-            setStatusBarColorDark() //dude, this is lame, try func preferredStatusBarStyle
-            // you should know, in previous design, they keep changing the color of status bar between view controllers
+            LoadingView.showWithMaskType(.Black)
+            dataManager.updateOccurenceRiders(dataSource[indexPath.row]) { (success, errorStr) -> () in
+                LoadingView.dismiss()
+                if success {
+                    var model = self.dataSource[indexPath.row]
+                    var navigation = Navigation()
+                    var pickups = [
+                        // right now we only have one stop for each
+                        // pick-up/drop-off we will add more later
+                        // Stop(occurrence: model)
+                        Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1833), name: "Menlo's House", address: "123 Fake St 91210", phoneNumber: "18002831337", stopID: "1", thumbnailImage: UIImage(named: "test_userImage")),
+                        Stop(coordinate: CLLocationCoordinate2DMake(37.4598, -122.1893), name: "Kid's House", address: "4821 Fake Ln 91210", phoneNumber: "18002831437", stopID: "2", thumbnailImage: nil),
+                        Stop(coordinate: CLLocationCoordinate2DMake(37.4608, -122.2093), name: "Another Kid's House", address: "8912 Big Fake Ave 91211", phoneNumber: "18002831537", stopID: "3", thumbnailImage: nil)
+                    ]
+                    
+                    var dropoffs = [
+                        Stop(coordinate: CLLocationCoordinate2DMake(37.783333, -122.416667), name: "Soccer Club", address: "4 Soccer Way 92118", phoneNumber: "18002831637", stopID: "10", thumbnailImage: nil)
+                    ]
+                    navigation.setup(pickups, dropoffs:dropoffs);
+                    
+                    var vc = vcWithID("DetailMapVC") as! DetailMapVC
+                    vc.navigation = navigation
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    self.setStatusBarColorDark() //dude, this is lame, try func preferredStatusBarStyle
+                } else {
+                    self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
+                }
+            }
         }
     }
 }

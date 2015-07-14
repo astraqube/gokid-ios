@@ -151,6 +151,7 @@ class UserManager: NSObject {
         } else {
             println("\(__FUNCTION__) + cannot save user info + \(map)" )
         }
+        ud.synchronize()
     }
     
     func loadUserInfo() {

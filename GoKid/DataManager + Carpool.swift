@@ -113,7 +113,6 @@ extension DataManager {
         }
     }
     
-    
     func updateOccurenceLocation(occ: CalendarModel, comp: completion) {
         var url = baseURL + "/api/occurrences/" + String(occ.occurenceID)
         var map = [
@@ -136,6 +135,22 @@ extension DataManager {
         }) { (op, error) in
             println("updateOccurenceLocation failed")
             self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+    
+    func updateOccurenceRiders(occ: CalendarModel, comp: completion) {
+        var url = baseURL + "/api/carpools/" + String(occ.carpoolID) + "/occurrences/" + String(occ.occurenceID) + "/riders"
+        var manager = managerWithToken()
+        manager.GET(url, parameters: nil, success: { (op, obj) in
+            println("getAllUserCarpools success")
+            println(obj)
+            var json = JSON(obj)["occurrences"]
+            var events = CalendarModel.arrayOfEventsFromOccurrences(json)
+            self.userManager.calendarEvents = events
+            comp(true, "")
+            }) { (op, error) in
+                println("getAllUserCarpools failed")
+                self.handleRequestError(op, error: error, comp: comp)
         }
     }
     

@@ -142,8 +142,8 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         if didFitMapOnce {
             return
         }
-        updateMapTrack()
         didFitMapOnce = true
+        updateMapTrack()
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
