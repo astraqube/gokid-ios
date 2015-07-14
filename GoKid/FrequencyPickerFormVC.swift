@@ -51,11 +51,13 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorStyle = .None
+        self.title = "Frequency"
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+
         self.currentValues.addObjectsFromArray(self.rowDescriptor?.value as! Array)
         self.updateFormFields()
     }
