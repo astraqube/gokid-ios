@@ -12,18 +12,10 @@ extension DataManager {
     
     func createCarpool(model: CarpoolModel, comp: completion) {
         var url = baseURL + "/api/carpools"
-        var schedule = [
-            "dropoff_at": model.dropOffTime!.iso8601String(),
-            "pickup_at": model.pickUpTime!.iso8601String(),
-            "starts_at": model.startDate!.iso8601String(),
-            "ends_at": model.endDate!.iso8601String(),
-            "days_occuring": model.occurence!,
-            "time_zone": "Pacific Time (US & Canada)",
-        ]
         var map = [
             "carpool": [
                 "name": model.name,
-                "schedule": schedule
+                "schedule": model.toSchedule()
             ]
         ]
         println(map)
