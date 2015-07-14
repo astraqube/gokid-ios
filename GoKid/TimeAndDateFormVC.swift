@@ -45,6 +45,7 @@ class TimeAndDateFormVC: BaseFormVC {
                     }
                 }
             }
+
         } else {
             carpoolModel.endDate = nil
             carpoolModel.occurence = nil
@@ -53,7 +54,20 @@ class TimeAndDateFormVC: BaseFormVC {
         carpoolModel.pickUpTime = formData[Tags.StartTime.rawValue] as? NSDate
         carpoolModel.dropOffTime = formData[Tags.EndTime.rawValue] as? NSDate
     }
-    
+
+    private func createCarpoolData() {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.createCarpool(userManager.currentCarpoolModel) { (success, errorMessage) -> () in
+            LoadingView.dismiss()
+            if success {
+                var vc = vcWithID("LocationVC")
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.showAlert("Fail to create carpool", messege: errorMessage, cancleTitle: "OK")
+            }
+        }
+    }
+
     override func initForm() {
         let form = XLFormDescriptor()
         var row: XLFormRowDescriptor!
@@ -180,9 +194,7 @@ class TimeAndDateFormVC: BaseFormVC {
         self.tableView.endEditing(true)
 
         self.updateCarpoolModel()
-        
-        var vc = vcWithID("LocationVC")
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.createCarpoolData()
     }
 
 }
