@@ -160,9 +160,8 @@ class TimeAndDateFormVC: BaseFormVC {
             frequencyCell.required = newValue as! Bool
             self.updateFormRow(frequencyCell)
         }
-        
-        // enable or disable the next button
-        self.rightButton.enabled = self.formValidationErrors().isEmpty
+
+        self.toggleRightNavButtonState()
     }
 
     override func rightNavButtonTapped() {

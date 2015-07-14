@@ -37,6 +37,7 @@ class BaseFormVC: XLFormViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.becomeFirstResponder()
+        self.toggleRightNavButtonState()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -63,8 +64,11 @@ class BaseFormVC: XLFormViewController {
         // For the hand-made navbar
         self.leftButton?.addTarget(self, action: "leftNavButtonTapped", forControlEvents: .TouchUpInside)
         self.rightButton?.addTarget(self, action: "rightNavButtonTapped", forControlEvents: .TouchUpInside)
-        
-        self.rightButton?.enabled = false
+    }
+
+    func toggleRightNavButtonState() {
+        // enable or disable the next button
+        self.rightButton?.enabled = self.formValidationErrors().isEmpty
     }
 
     // MARK: IBAction Method
