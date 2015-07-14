@@ -13,35 +13,7 @@ enum CalendarCellType {
     case Notification, Time, Normal, Add, None
 }
 
-class Location: NSObject {
-    var name: String = ""
-    var long: CLLocationDegrees = 0.0
-    var lati: CLLocationDegrees = 0.0
-    var stopID = "0"
-    
-    override init() {
-        super.init()
-    }
-    
-    init(name: String, long: Double, lati: Double) {
-        self.name = String(name)
-        self.long = long
-        self.lati = lati
-    }
-    
-    init(json: JSON) {
-        self.name = json["display"].stringValue
-        self.long = json["longitude"].doubleValue
-        self.lati = json["latitude"].doubleValue
-    }
-    
-    func makeCopy() -> Location {
-        return Location(name: name, long: long, lati: lati)
-    }
-}
-
 class OccurenceModel: NSObject {
-
     var taken = false
     var poolDriverName = ""
     var poolDriverImageUrl = ""
@@ -58,13 +30,15 @@ class OccurenceModel: NSObject {
     var occursAtStr = ""
     var notification = ""
    
+    var riders : [RiderModel]?
+    
     var occurenceID = 0
     var carpoolID = 0
-
+    
     override init() {
         super.init()
     }
-    
+
     init(occurence: JSON) {
         super.init()
         occursAt = parseDate(occurence, key: "occurs_at")
@@ -97,10 +71,6 @@ class OccurenceModel: NSObject {
     }
     
     func generateOtherField() {
-        //if poolType == "pickup" { poolType = "PICK UP" }
-        //else if poolType == "dropoff" { poolType = "DROP OFF" }
-        //else { poolType = "Unknown type" }
-        
         if poolDriverName == "" {
             poolDriverName = "No Driver yet"
         }

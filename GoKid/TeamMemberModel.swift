@@ -13,7 +13,6 @@ enum TeamCellType {
 }
 
 class TeamMemberModel: NSObject {
-    
     var cellType: TeamCellType = .None
     var phoneNumber: String = ""
     var firstName: String = ""
@@ -27,7 +26,7 @@ class TeamMemberModel: NSObject {
     var permissionID: Int = 0
     
     override init() {
-        // do nothing
+        super.init()
     }
     
     init(json: JSON) {
@@ -40,8 +39,7 @@ class TeamMemberModel: NSObject {
         role = user["role"].stringValue
         userID = user["id"].intValue
     }
-    
-    
+
     class func arrayOfMembers(json: JSON) -> [TeamMemberModel] {
         var arr = [TeamMemberModel]()
         for (index: String, subJson: JSON) in json {

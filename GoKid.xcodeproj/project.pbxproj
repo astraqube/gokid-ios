@@ -114,6 +114,8 @@
 		1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */; };
 		1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */; };
 		7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */; };
+		793374D01B558D820072FA13 /* RiderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374CF1B558D820072FA13 /* RiderModel.swift */; };
+		793374D41B558FB50072FA13 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374D31B558FB50072FA13 /* Location.swift */; };
 		796E699E1B4A6E0C00DF8D43 /* Fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */; };
 		796E699F1B4A6E0C00DF8D43 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */; };
 		796E69A01B4A6E0C00DF8D43 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */; };
@@ -261,6 +263,8 @@
 		1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamAccountVC.swift; path = ViewControllers/TeamAccountVC.swift; sourceTree = "<group>"; };
 		1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAccountCell.swift; sourceTree = "<group>"; };
 		7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapItineraryItemView.swift; sourceTree = "<group>"; };
+		793374CF1B558D820072FA13 /* RiderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderModel.swift; sourceTree = "<group>"; };
+		793374D31B558FB50072FA13 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontawesome.ttf; sourceTree = "<group>"; };
 		796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
@@ -687,6 +691,8 @@
 			isa = PBXGroup;
 			children = (
 				1D8F78FD1B36A18300C78CAF /* OccurenceModel.swift */,
+				793374CF1B558D820072FA13 /* RiderModel.swift */,
+				793374D31B558FB50072FA13 /* Location.swift */,
 				1DD1BAAB1B2AAF2100D1BBA3 /* CarpoolModel.swift */,
 				1D891F261B2734C2006FD961 /* TeamMemberModel.swift */,
 				1D3F65221B207FBA00CCF6A1 /* VolunteerModel.swift */,
@@ -972,6 +978,7 @@
 				1D8F78FB1B36A07F00C78CAF /* CalendarDateCell.swift in Sources */,
 				7984A32A1B4F7277006621B5 /* CalendarTimeToGoCell.swift in Sources */,
 				1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */,
+				793374D01B558D820072FA13 /* RiderModel.swift in Sources */,
 				1DEFF1711B49EE4B0094B54E /* InviteeCell.swift in Sources */,
 				1D8F78FA1B36A07F00C78CAF /* CalendarAddCell.swift in Sources */,
 				1DEFF16B1B4937EA0094B54E /* InviteRelationshipVC.swift in Sources */,
@@ -1058,6 +1065,7 @@
 				1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */,
 				1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */,
 				1D891F271B2734C2006FD961 /* TeamMemberModel.swift in Sources */,
+				793374D41B558FB50072FA13 /* Location.swift in Sources */,
 				1D8F78FE1B36A18300C78CAF /* OccurenceModel.swift in Sources */,
 				1D891F131B23FDD8006FD961 /* SwiftAddressBookRecord.swift in Sources */,
 				1D891F231B244536006FD961 /* DataManager.swift in Sources */,
