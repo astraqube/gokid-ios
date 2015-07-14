@@ -10,13 +10,12 @@ import UIKit
 
 enum GKFrequency : String {
     case JustOnce = "Just Once"
-    case EveryDay = "Every Day"
     case EveryWeek = "Every Week"
     case EveryMonth = "Every Month"
     case EveryYear = "Every Year"
 
     static let allValues = [
-        JustOnce.rawValue, EveryDay.rawValue, EveryWeek.rawValue,
+        JustOnce.rawValue, EveryWeek.rawValue,
         EveryMonth.rawValue, EveryYear.rawValue
     ]
 }
@@ -83,14 +82,6 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         row.cellConfig["textLabel.font"] = fontLabel
         row.cellConfig["textLabel.color"] = colorLabel
         row.value = self.isChecked(GKFrequency.JustOnce.rawValue)
-        section.addFormRow(row)
-
-        row = XLFormRowDescriptor(tag: GKFrequency.EveryDay.rawValue,
-                                  rowType: XLFormRowDescriptorTypeBooleanCheck,
-                                  title: GKFrequency.EveryDay.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.value = self.isChecked(GKFrequency.EveryDay.rawValue)
         section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: GKFrequency.EveryWeek.rawValue,
