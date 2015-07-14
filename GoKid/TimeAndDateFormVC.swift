@@ -32,19 +32,25 @@ class TimeAndDateFormVC: BaseFormVC {
         let carpoolModel = userManager.currentCarpoolModel
         
         carpoolModel.startDate = formData[Tags.StartDate.rawValue] as? NSDate
-        carpoolModel.endDate = formData[Tags.EndDate.rawValue] as? NSDate
+
+        if formData[Tags.Repeat.rawValue] as! Bool {
+            carpoolModel.endDate = formData[Tags.EndDate.rawValue] as? NSDate
+
+            let occurence = formData[Tags.Frequency.rawValue] as! NSArray
+            carpoolModel.occurence = [] // reset
+
+            for day in occurence {
+                if let num = GKDays.asKeys[day as! String] as Int? {
+                    carpoolModel.occurence?.append(num)
+                }
+            }
+        } else {
+            carpoolModel.endDate = nil
+            carpoolModel.occurence = []
+        }
 
         carpoolModel.pickUpTime = formData[Tags.StartTime.rawValue] as? NSDate
         carpoolModel.dropOffTime = formData[Tags.EndTime.rawValue] as? NSDate
-        
-        // FIXME: unclear on what this is really doing
-        carpoolModel.occurence = self.occurenceOfDate(carpoolModel.startDate!)
-    }
-    
-    private func occurenceOfDate(date: NSDate) -> [Int] {
-        var component = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
-        var day = component.weekday - 1
-        return [day]
     }
     
     override func initForm() {
