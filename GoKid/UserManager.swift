@@ -229,7 +229,7 @@ class UserManager: NSObject {
         var lastEvent = OccurenceModel()
         var data = [(OccurenceModel, OccurenceModel)]()
         for event in volunteerEvents {
-            if event.poolDateStr == lastEvent.poolDateStr {
+            if event.occursAtStr == lastEvent.occursAtStr {
                 data.append((lastEvent, event))
                 continue
             }

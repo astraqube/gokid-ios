@@ -153,7 +153,7 @@ class LocationVC: BaseVC {
         } else {
             segmentControl.removeAllSegments()
             for (i, data) in enumerate(dataSource) {
-                var title = data.0.poolDate?.weekDayString()
+                var title = data.0.occursAt?.weekDayString()
                 segmentControl.insertSegmentWithTitle(title, atIndex: i, animated: false)
             }
         }

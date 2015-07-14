@@ -73,7 +73,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if model.cellType == .Time {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
-            cell.timeLabel.text = model.poolDateStr
+            cell.timeLabel.text = model.occursAtStr
             cell.locationLabel.text = userManager.currentCarpoolModel.startLocation
             return cell
         } else {
@@ -134,12 +134,12 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         var data = [OccurenceModel]()
         var lastDateStr = ""
         for event in events {
-            if event.poolDateStr != lastDateStr {
+            if event.occursAtStr != lastDateStr {
                 var dateCell = OccurenceModel()
                 dateCell.cellType = .Time
-                dateCell.poolDateStr = event.poolDateStr
+                dateCell.occursAtStr = event.occursAtStr
                 data.append(dateCell)
-                lastDateStr = event.poolDateStr
+                lastDateStr = event.occursAtStr
             }
             data.append(event)
         }

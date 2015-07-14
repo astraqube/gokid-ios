@@ -8,7 +8,7 @@
 //        var carpool = OccurenceModel(fakeList: subJson)
 //        carpool.poolname = name
 //        println(carpool.poolType)
-//        println(carpool.poolDate)
+//        println(carpool.occursAt)
 //        arr.append(carpool)
 //    }
 //    return arr

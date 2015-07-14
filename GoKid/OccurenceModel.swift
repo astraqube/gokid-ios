@@ -49,13 +49,13 @@ class OccurenceModel: NSObject {
     
     var poolType = ""
     var poolname = ""
-    var poolDate: NSDate?
+    var occursAt: NSDate?
     
     var poolLocation = Location()
     
     var cellType: CalendarCellType = .None
     var pooltimeStr = ""
-    var poolDateStr = ""
+    var occursAtStr = ""
     var notification = ""
    
     var occurenceID = 0
@@ -67,7 +67,7 @@ class OccurenceModel: NSObject {
     
     init(occurence: JSON) {
         super.init()
-        poolDate = parseDate(occurence, key: "occurs_at")
+        occursAt = parseDate(occurence, key: "occurs_at")
         cellType = .Normal
         occurenceID = occurence["id"].intValue
         poolType = occurence["kind"].stringValue
@@ -91,7 +91,7 @@ class OccurenceModel: NSObject {
     init(fakeList: JSON) {
         super.init()
         cellType = .Normal
-        poolDate = parseDate(fakeList, key: "occurs_at")
+        occursAt = parseDate(fakeList, key: "occurs_at")
         poolType = fakeList["kind"].stringValue
         generateOtherField()
     }
@@ -104,16 +104,16 @@ class OccurenceModel: NSObject {
         if poolDriverName == "" {
             poolDriverName = "No Driver yet"
         }
-        if let date = poolDate {
-            poolDateStr = date.dateString()
+        if let date = occursAt {
+            occursAtStr = date.dateString()
             pooltimeStr = date.timeString()
             var today = NSDate()
             var tomorrow = today.dateByAddingTimeInterval(60*60*24)
-            if poolDateStr == today.dateString() {
-                poolDateStr = "Today"
+            if occursAtStr == today.dateString() {
+                occursAtStr = "Today"
             }
-            if poolDateStr == tomorrow.dateString() {
-                poolDateStr = "Tomorrow"
+            if occursAtStr == tomorrow.dateString() {
+                occursAtStr = "Tomorrow"
             }
         }
     }

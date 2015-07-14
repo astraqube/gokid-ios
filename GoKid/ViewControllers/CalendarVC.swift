@@ -66,10 +66,10 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             var model = dataSource[1]
             var str = "Hi #name you are driving #date"
             str = str.replace("#name", userManager.info.firstName)
-            if model.poolDateStr == "Today" || model.poolDateStr == "Tomorrow" {
-                str = str.replace("#date", model.poolDateStr)
+            if model.occursAtStr == "Today" || model.occursAtStr == "Tomorrow" {
+                str = str.replace("#date", model.occursAtStr)
             } else {
-                if let date = model.poolDate {
+                if let date = model.occursAt {
                     str = str.replace("#date", "on " + date.shortDateString())
                 }
             }
@@ -84,12 +84,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         var data = [OccurenceModel]()
         var lastDateStr = ""
         for event in userManager.calendarEvents {
-            if event.poolDateStr != lastDateStr {
+            if event.occursAtStr != lastDateStr {
                 var dateCell = OccurenceModel()
                 dateCell.cellType = .Time
-                dateCell.poolDateStr = event.poolDateStr
+                dateCell.occursAtStr = event.occursAtStr
                 data.append(dateCell)
-                lastDateStr = event.poolDateStr
+                lastDateStr = event.occursAtStr
             }
             data.append(event)
         }
@@ -178,7 +178,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func configCalendarDateCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarDateCell {
         var cell = tableView.cellWithID("CalendarDateCell", ip) as! CalendarDateCell
-        cell.dateLabel.text = model.poolDateStr
+        cell.dateLabel.text = model.occursAtStr
         return cell
     }
     
