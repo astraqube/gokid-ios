@@ -115,7 +115,7 @@ extension DataManager {
     
     
     func updateOccurenceLocation(occ: CalendarModel, comp: completion) {
-        var url = baseURL + "/api/occurrences/" + String(occ.occrencID)
+        var url = baseURL + "/api/occurrences/" + String(occ.occurenceID)
         var map = [
             "occurrence": [
                 "locations": [

@@ -29,10 +29,10 @@ extension DataManager {
             var v1 = userManager.volunteerEvents[1]
             
             c3.carpoolID = v0.carpoolID
-            c3.occrenceID = v0.occrencID
+            c3.occrenceID = v0.occurenceID
             
             c2.carpoolID = v1.carpoolID
-            c2.occrenceID = v1.occrencID
+            c2.occrenceID = v1.occurenceID
         }
         return [c0, c1, c2, c3]
     }

@@ -222,17 +222,17 @@ class UserManager: NSObject {
     
     
     // this is very bad but devon insist we grop occrence by time
-    // as a reault this cause week connction between pickup and drop out
+    // as a reault this cause weak connction between pickup and drop off
     // might be a bug in the future
     func groupedVolunteerEvents() -> [(CalendarModel, CalendarModel)] {
         var lastEvent = CalendarModel()
         var data = [(CalendarModel, CalendarModel)]()
-        for eve in volunteerEvents {
-            if eve.poolDateStr == lastEvent.poolDateStr {
-                data.append((lastEvent, eve))
+        for event in volunteerEvents {
+            if event.poolDateStr == lastEvent.poolDateStr {
+                data.append((lastEvent, event))
                 continue
             }
-            lastEvent = eve
+            lastEvent = event
         }
         return data
     }

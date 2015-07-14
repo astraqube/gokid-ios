@@ -57,7 +57,7 @@ class CalendarModel: NSObject {
     var poolDateStr = ""
     var notification = ""
    
-    var occrencID = 0
+    var occurenceID = 0
     var carpoolID = 0
 
     override init() {
@@ -68,7 +68,7 @@ class CalendarModel: NSObject {
         super.init()
         poolDate = parseDate(occurence, key: "occurs_at")
         cellType = .Normal
-        occrencID = occurence["id"].intValue
+        occurenceID = occurence["id"].intValue
         poolType = occurence["kind"].stringValue
         carpoolID = occurence["carpool"]["id"].intValue
         poolname = occurence["carpool"]["name"].stringValue

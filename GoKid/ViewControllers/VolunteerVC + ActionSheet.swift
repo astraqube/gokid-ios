@@ -59,7 +59,7 @@ extension VolunteerVC {
     
     func unRegisterVolunteerForCell(cell: VolunteerCell, model: CalendarModel) {
         LoadingView.showWithMaskType(.Black)
-        self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occrencID) { (success, errStr) in
+        self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
             LoadingView.dismiss()
             onMainThread() {
                 if success {
@@ -74,7 +74,7 @@ extension VolunteerVC {
     
     func registerVolunteerForCell(cell: VolunteerCell, model: CalendarModel) {
         LoadingView.showWithMaskType(.Black)
-        self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occrencID) { (success, errStr) in
+        self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
             LoadingView.dismiss()
             onMainThread() {
                 if success {
