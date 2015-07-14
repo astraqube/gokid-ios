@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047AADA71B542F18006628EF /* FrequencyPickerFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */; };
 		04FB80971B530E1B00F73C74 /* BaseFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80961B530E1B00F73C74 /* BaseFormVC.swift */; };
 		04FB80991B530E3A00F73C74 /* TimeAndDateFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */; };
 		04FB809B1B530E4F00F73C74 /* TimeAndDateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB809A1B530E4F00F73C74 /* TimeAndDateTransformer.swift */; };
@@ -143,6 +144,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyPickerFormVC.swift; sourceTree = "<group>"; };
 		04FB80961B530E1B00F73C74 /* BaseFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFormVC.swift; sourceTree = "<group>"; };
 		04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDateFormVC.swift; sourceTree = "<group>"; };
 		04FB809A1B530E4F00F73C74 /* TimeAndDateTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDateTransformer.swift; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				1D975A3D1B1F7FF700CD4D89 /* FrequencyPickerVC.swift */,
+				047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */,
 				1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */,
 				04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */,
 				04FB809A1B530E4F00F73C74 /* TimeAndDateTransformer.swift */,
@@ -1021,6 +1024,7 @@
 				1D891F111B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift in Sources */,
 				1D1FD6651B1BFC4A00287FA0 /* AppDelegate.swift in Sources */,
 				1D3F65251B208A9600CCF6A1 /* InviteParentsVC.swift in Sources */,
+				047AADA71B542F18006628EF /* FrequencyPickerFormVC.swift in Sources */,
 				1D975A3A1B1F40E500CD4D89 /* InviteConfirmVC.swift in Sources */,
 				1D3F65181B2073D700CCF6A1 /* RecentAddressCell.swift in Sources */,
 				1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */,
