@@ -58,7 +58,10 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
 
-        self.currentValues.addObjectsFromArray(self.rowDescriptor?.value as! Array)
+        if let currentFrequency = self.rowDescriptor?.value as? NSMutableArray {
+            self.currentValues = currentFrequency
+        }
+
         self.updateFormFields()
     }
 
@@ -146,8 +149,16 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
             }
         }
 
-        self.rowDescriptor?.value = self.currentValues as Array
+        self.updateRowDescriptor()
         self.updateFormFields()
+    }
+
+    func updateRowDescriptor() {
+        if self.currentValues.count > 0 {
+            self.rowDescriptor?.value = self.currentValues as Array
+        } else {
+            self.rowDescriptor?.value = nil
+        }
     }
 
     func updateFormFields() {

@@ -37,17 +37,17 @@ class TimeAndDateFormVC: BaseFormVC {
         if formData[Tags.Repeat.rawValue] as! Bool {
             carpoolModel.endDate = formData[Tags.EndDate.rawValue] as? NSDate
 
-            let occurence = formData[Tags.Frequency.rawValue] as! NSArray
-            carpoolModel.occurence = [] // reset
-
-            for day in occurence {
-                if let num = GKDays.asKeys[day as! String] as Int? {
-                    carpoolModel.occurence?.append(num)
+            if let occurence = formData[Tags.Frequency.rawValue] as? NSArray {
+                carpoolModel.occurence = [] // reset
+                for day in occurence {
+                    if let num = GKDays.asKeys[day as! String] as Int? {
+                        carpoolModel.occurence?.append(num)
+                    }
                 }
             }
         } else {
             carpoolModel.endDate = nil
-            carpoolModel.occurence = []
+            carpoolModel.occurence = nil
         }
 
         carpoolModel.pickUpTime = formData[Tags.StartTime.rawValue] as? NSDate
@@ -97,7 +97,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.action.viewControllerClass = FrequencyPickerFormVC.self
         row.valueTransformer = FrequencyTransformer.self
         row.hidden = true
-        row.value = carpoolModel.occurence == nil ? [] : carpoolModel.occurence
+        row.value = carpoolModel.occurence
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: "Repeat")
