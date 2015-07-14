@@ -35,7 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // for fabric
         Fabric.with([Crashlytics()])
-                
+
+        // Default colors
+        self.window?.tintColor = ColorManager.sharedInstance.color67C18B
+        self.window?.backgroundColor = ColorManager.sharedInstance.colorD4EDDC
+
         return true
     }
     

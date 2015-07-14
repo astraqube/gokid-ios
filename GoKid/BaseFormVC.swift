@@ -31,8 +31,7 @@ class BaseFormVC: XLFormViewController {
         super.viewWillAppear(animated)
         
         self.tableView.backgroundColor = colorManager.colorEBF7EB
-        self.view.backgroundColor = colorManager.colorEBF7EB
-        self.view.tintColor = colorManager.color67C18B
+        self.tableView.tintColor = colorManager.color67C18B
     }
     
     override func viewDidAppear(animated: Bool) {
