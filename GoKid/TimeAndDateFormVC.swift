@@ -27,14 +27,6 @@ class TimeAndDateFormVC: BaseFormVC {
         setStatusBarColorDark()
     }
     
-    func resetCarpoolModel() {
-        var model = userManager.currentCarpoolModel
-        model.startDate = nil
-        model.endDate = nil
-        model.pickUpTime = nil
-        model.dropOffTime = nil
-    }
-    
     private func updateCarpoolModel() {
         let formData = self.form.formValues()
         let carpoolModel = userManager.currentCarpoolModel
@@ -65,8 +57,8 @@ class TimeAndDateFormVC: BaseFormVC {
         let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
         let colorLabel = colorManager.color507573
         
-        self.resetCarpoolModel()
-        
+        let carpoolModel = userManager.currentCarpoolModel
+
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         
         row = XLFormRowDescriptor(tag: Tags.StartDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: "Start Date")
@@ -89,12 +81,13 @@ class TimeAndDateFormVC: BaseFormVC {
         row.valueTransformer = DateTransformer.self
         section.addFormRow(row)
         
-        row = XLFormRowDescriptor(tag: Tags.Frequency.rawValue, rowType: XLFormRowDescriptorTypeMultipleSelector, title: "Frequency")
+        row = XLFormRowDescriptor(tag: Tags.Frequency.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: "Frequency")
         row.cellConfig["textLabel.font"] = fontLabel
         row.cellConfig["textLabel.color"] = colorLabel
         row.cellConfig["detailTextLabel.font"] = fontValue
-        row.selectorOptions = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        row.action.viewControllerClass = FrequencyPickerFormVC.self
         row.hidden = true
+        row.value = carpoolModel.occurence == nil ? [] : carpoolModel.occurence
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: "Repeat")
