@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 
@@ -34,7 +35,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         if userManager.userLoggedIn {
             fetchDataAndReloadTableView()
         } else {
-            addCreateCarpoolCellToDataSource()
+//            addCreateCarpoolCellToDataSource()
             tableView.reloadData()
         }
     }
@@ -152,7 +153,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.text = model.poolname
         cell.timeLabel.text = model.pooltimeStr
         cell.typeLabel.text = model.poolType
-        if model.poolType == "DROP OFF" {
+        if model.poolType == "dropoff" {
             cell.pickupIcon.hidden = true
             cell.dropoffIcon.hidden = false
         }else {
