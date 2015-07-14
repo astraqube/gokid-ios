@@ -45,7 +45,7 @@ class DataManager: NSObject {
     }
     
     
-    let __debug__ = true
+    let __debug__ = false
     func constructErrorString(op: AFHTTPRequestOperation?, error: NSError?) -> String {
         if __debug__ {
             return constructDebugErrorStr(op, error)
@@ -71,7 +71,7 @@ class DataManager: NSObject {
                 return message
             }
         }
-        return "No message returned from sever, devon is fixing it"
+        return "Something went wrong..."
     }
 }
 
