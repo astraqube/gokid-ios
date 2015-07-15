@@ -216,8 +216,12 @@ class UserManager: NSObject {
             ud.setValue(newValue, forKey: "userToken")
         }
         get {
-            if let v = ud.valueForKey("userToken") as? String { return v }
-            else { return "" }
+            if let v = ud.valueForKey("userToken") as? String {
+                return v
+            } else {
+                self.postNotification("requestForUserToken")
+                return ""
+            }
         }
     }
     

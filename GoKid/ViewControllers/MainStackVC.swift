@@ -16,6 +16,8 @@ class MainStackVC: IIViewDeckController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "popUpSignInView", name: "requestForUserToken", object: nil)
+
         setStatusBarColorDark()
       
         // if user logged in direct go to CalendarVC
@@ -58,6 +60,13 @@ class MainStackVC: IIViewDeckController {
         self.leftSize = 100
         self.leftController = meneVC
     }
+
+    func popUpSignInView() {
+        var signInVC = vcWithID("SignInVC") as! SignInVC
+        signInVC.parentVC = self
+        self.presentViewController(signInVC, animated: true, completion: nil)
+    }
+
 }
 
 

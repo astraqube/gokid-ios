@@ -14,7 +14,9 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
     @IBOutlet weak var passwordTextField: PaddingTextField!
     @IBOutlet weak var fbloginButton: FBSDKLoginButton!
     var signinSuccessHandler: (()->())?
-    
+
+    var parentVC: UIViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -24,29 +26,34 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBarColorDark()
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func setupNavBar() {
         setNavBarTitle("Sign In")
         // setNavBarTitleAndButtonColor(colorManager.appNavTextButtonColor)
-        setNavBarRightButtonTitle("Submit", action: "SubmitButtonClicked")
     }
     
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
-    
-    func SubmitButtonClicked() {
-        
+
+    override func leftNavButtonTapped() {
+        self.parentVC.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    override func rightNavButtonTapped() {
+        let _self = self
         var email = emailTextField.text
         var passw = passwordTextField.text
         LoadingView.showWithMaskType(.Black)
         dataManager.signin(email, password: passw) { (success, errorStr) -> () in
             LoadingView.dismiss()
             if success {
-                self.signinSuccessHandler?()
+                _self.parentVC.dismissViewControllerAnimated(true) {
+                    _self.signinSuccessHandler?()
+                }
             } else {
-                self.showAlert("Sign In Failed", messege: errorStr, cancleTitle: "OK")
+                _self.showAlert("Sign In Failed", messege: errorStr, cancleTitle: "OK")
             }
         }
     }

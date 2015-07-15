@@ -8,10 +8,9 @@
 
 import UIKit
 
-class OnboardVC: UIViewController, UIAlertViewDelegate {
+class OnboardVC: BaseVC, UIAlertViewDelegate {
     
     typealias OVC = OnboardingContentViewController
-    var colorManager = ColorManager.sharedInstance
     var contentVC: OnboardingViewController?
     var lastOnBoardVC : LastOnboardVC!
 
@@ -25,7 +24,16 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
         setStatusBarColorDark()
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if self.userManager.userLoggedIn {
+            var calendarVC = vcWithID("CalendarVC")
+            self.navigationController?.pushViewController(calendarVC, animated: true)
+        }
+    }
+
     func addOnboardContent() {
         var vc = generateOnboardVC()
 
@@ -39,14 +47,7 @@ class OnboardVC: UIViewController, UIAlertViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func signInButtonClicked(button: UIButton) {
-        var signInVC = vcWithID("SignInVC") as! SignInVC
-        signInVC.signinSuccessHandler = signinSuccess
-        navigationController?.pushViewController(signInVC, animated: true)
-    }
-    
-    func signinSuccess() {
-        var calendarVC = vcWithID("CalendarVC")
-        self.navigationController?.pushViewController(calendarVC, animated: true)
+        self.postNotification("requestForUserToken")
     }
     
     func goNowButtonHandler() {
