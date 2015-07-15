@@ -105,17 +105,27 @@ extension DataManager {
         }
     }
     
-    func updateOccurenceLocation(occ: OccurenceModel, comp: completion) {
-        var url = baseURL + "/api/occurrences/" + String(occ.occurenceID)
-        var map = [
-            "occurrence": [
-                "locations": [
-                    "display": occ.poolLocation.name,
-                    "longitude": occ.poolLocation.long,
-                    "latitude": occ.poolLocation.lati
+    func updateOccurencesLocation(occs: [(OccurenceModel, OccurenceModel)], comp: completion) {
+        var url = baseURL + "/carpools/" + String(userManager.currentCarpoolModel.id) + "/occurrences"
+        
+        var data = [OccurenceModel]()
+        for (pickup, dropoff) in occs {
+            data.append(pickup)
+            data.append(dropoff)
+        }
+        
+        var map = NSMutableArray()
+        for occ in data {
+            var json = [
+                "occurrence_ids": [occ.occurenceID],
+                "occurrence": [
+                    "event_location": occ.eventLocation.toJson(),
+                    "default_address": occ.defaultLocation.toJson()
                 ]
             ]
-        ]
+            map.addObject(json)
+        }
+        
         println(url)
         println(map)
         var manager = managerWithToken()

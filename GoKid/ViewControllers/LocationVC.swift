@@ -21,6 +21,7 @@ class LocationVC: BaseVC {
     
     var destinationLocationLabel: UILabel!
     var startLocationLabel: UILabel!
+    var eventLocationLabel: UILabel!
     
     var startLabel: UILabel!
     var destLabel: UILabel!
@@ -55,7 +56,7 @@ class LocationVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     override func leftNavButtonTapped() {
-        navigationController?.popViewControllerAnimated(true)
+        syncLocalEventsWithSever()
     }
     
     override func rightNavButtonTapped() {
@@ -80,7 +81,9 @@ class LocationVC: BaseVC {
     }
     
     func eventButtonTapped(sender: AnyObject) {
-        
+        var vc = vcWithID("LocationInputVC") as! LocationInputVC
+        vc.donePickingWithAddress = donePickingEventLocationWithAddress
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func OriginDestinationSame(sender: UISwitch) {
@@ -89,9 +92,8 @@ class LocationVC: BaseVC {
         
         var i = segmentControl.selectedSegmentIndex
         if originDestSame {
-            dataSource[i].1.poolLocation = dataSource[i].0.poolLocation
+            dataSource[i].1.defaultLocation = dataSource[i].0.defaultLocation
         }
-        syncLocalEventsWithSever()
         updateEventViewOnMainThread()
     }
     
@@ -104,12 +106,11 @@ class LocationVC: BaseVC {
         geoCodeAddress(address) { (long, lati) in
             var i = self.segmentControl.selectedSegmentIndex
             var location = Location(name: address, long: long, lati: lati)
-            self.dataSource[i].0.poolLocation = location.makeCopy()
+            self.dataSource[i].0.defaultLocation = location.makeCopy()
             if self.originDestSame {
-                self.dataSource[i].1.poolLocation = location.makeCopy()
+                self.dataSource[i].1.defaultLocation = location.makeCopy()
             }
             self.updateEventViewOnMainThread()
-            self.syncLocalEventsWithSever()
         }
     }
     
@@ -117,9 +118,18 @@ class LocationVC: BaseVC {
         geoCodeAddress(address) { (long, lati) in
             var i = self.segmentControl.selectedSegmentIndex
             var location = Location(name: address, long: long, lati: lati)
-            self.dataSource[i].1.poolLocation = location.makeCopy()
+            self.dataSource[i].1.defaultLocation = location.makeCopy()
             self.updateEventViewOnMainThread()
-            self.syncLocalEventsWithSever()
+        }
+    }
+    
+    func donePickingEventLocationWithAddress(address: String) {
+        geoCodeAddress(address) { (long, lati) in
+            var i = self.segmentControl.selectedSegmentIndex
+            var location = Location(name: address, long: long, lati: lati)
+            self.dataSource[i].0.eventLocation = location.makeCopy()
+            self.dataSource[i].1.eventLocation = location.makeCopy()
+            self.updateEventViewOnMainThread()
         }
     }
     
@@ -161,19 +171,16 @@ class LocationVC: BaseVC {
     }
     
     func syncLocalEventsWithSever() {
-        var i = segmentControl.selectedSegmentIndex
-        var drop = dataSource[i].0
-        var pick = dataSource[i].1
-        
         LoadingView.showWithMaskType(.Black)
-        dataManager.updateOccurenceLocation(drop) { (success, errStr) in }
-        dataManager.updateOccurenceLocation(pick, comp: handleUpdateLocation)
+        dataManager.updateOccurencesLocation(dataSource, comp: handleUpdateLocation)
     }
     
     func handleUpdateLocation(success: Bool, errStr: String) {
         onMainThread() {
             LoadingView.dismiss()
-            if !success {
+            if success {
+                self.navigationController?.popViewControllerAnimated(true)
+            } else {
                 self.showAlert("Fail to update location", messege: errStr, cancleTitle: "OK")
             }
         }
@@ -182,8 +189,9 @@ class LocationVC: BaseVC {
     func updateEventViewOnMainThread() {
         var i = segmentControl.selectedSegmentIndex
         onMainThread() {
-            self.startLocationLabel.text = self.dataSource[i].0.poolLocation.name
-            self.destinationLocationLabel.text = self.dataSource[i].1.poolLocation.name
+            self.startLocationLabel.text = self.dataSource[i].0.defaultLocation.name
+            self.destinationLocationLabel.text = self.dataSource[i].1.defaultLocation.name
+            self.eventLocationLabel.text = self.dataSource[i].0.eventLocation.name
         }
     }
     

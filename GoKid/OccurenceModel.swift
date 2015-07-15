@@ -23,7 +23,8 @@ class OccurenceModel: NSObject {
     var poolname = ""
     var occursAt: NSDate?
     
-    var poolLocation = Location()
+    var eventLocation = Location()
+    var defaultLocation = Location()
     
     var cellType: CalendarCellType = .None
     var pooltimeStr = ""
@@ -50,7 +51,8 @@ class OccurenceModel: NSObject {
         poolDriverName = occurence["volunteer"]["first_name"].stringValue
         poolDriverImageUrl = occurence["volunteer"]["avatar"]["thumb_url"].stringValue
         riders = RiderModel.arrayOfRidersWithJSON(occurence["riders"])
-        poolLocation = Location(json: occurence["locations"][0])
+        eventLocation = Location(json: occurence["event_location"])
+        defaultLocation = Location(json: occurence["default_address"])
         generateOtherField()
     }
     

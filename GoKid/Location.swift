@@ -34,4 +34,13 @@ class Location: NSObject {
     func makeCopy() -> Location {
         return Location(name: name, long: long, lati: lati)
     }
+    
+    func toJson() -> NSDictionary {
+        var json = [
+            "display": name,
+            "longitude": long,
+            "latitude": lati
+        ]
+        return json
+    }
 }

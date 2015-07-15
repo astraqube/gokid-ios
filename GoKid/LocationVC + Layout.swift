@@ -11,10 +11,11 @@ extension LocationVC {
     func setupLabels() {
         var textColor = rgb(106, 192, 139)
         var textFont = UIFont(name: "Raleway-Bold", size: 17)
+        var smallTextFont = UIFont(name: "Raleway", size: 13)
         
         destinationLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
         destinationLocationLabel.text = "Sharon park Dr 350, United States"
-        destinationLocationLabel.font = UIFont(name: "Raleway", size: 13)
+        destinationLocationLabel.font = smallTextFont
         destinationLocationLabel.textColor = textColor
         destinationLocationLabel.numberOfLines = 0
         destinationLocationLabel.textAlignment = .Center
@@ -22,11 +23,19 @@ extension LocationVC {
         
         startLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
         startLocationLabel.text = "San Francisco xxxx xxxxxxxxx xxx 1010"
-        startLocationLabel.font = UIFont(name: "Raleway", size: 13)
+        startLocationLabel.font = smallTextFont
         startLocationLabel.textColor = textColor
         startLocationLabel.textAlignment = .Center
         startLocationLabel.numberOfLines = 0
         startLocationLabel.sizeToFit()
+        
+        eventLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
+        eventLocationLabel.text = "San Francisco xxxx xxxxxxxxx xxx 1010"
+        eventLocationLabel.font = smallTextFont
+        eventLocationLabel.textColor = textColor
+        eventLocationLabel.textAlignment = .Center
+        eventLocationLabel.numberOfLines = 0
+        eventLocationLabel.sizeToFit()
         
         destLabel = UILabel(frame: CGRectZero)
         destLabel.text = "Destination"
@@ -89,7 +98,8 @@ extension LocationVC {
         switchBackgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
         
         var vs = [startLocationButton, startLocationLabel, destLocationButton,
-            destinationLocationLabel, eventButton, eventLabel, arrow1, arrow2, doubleArrow, startLabel, destLabel]
+            destinationLocationLabel, eventButton, eventLabel, eventLocationLabel,
+            arrow1, arrow2, doubleArrow, startLabel, destLabel]
         for v in vs {
             view.addSubview(v)
         }
@@ -158,6 +168,7 @@ extension LocationVC {
         destLabel.center.x = destLocationButton.center.x
         startLocationLabel.center.x = startLocationButton.center.x
         destinationLocationLabel.center.x = destLocationButton.center.x
+        eventLocationLabel.center.x = eventButton.center.x
         
         var insets: CGFloat = 12.0
         startLabel.y = startLocationButton.y + startLocationButton.h + insets
@@ -166,6 +177,7 @@ extension LocationVC {
         
         startLocationLabel.y = startLabel.y + startLabel.h + insets
         destinationLocationLabel.y = destLabel.y + destLabel.h + insets
+        eventLocationLabel.y = eventLabel.y + eventLabel.h + insets
     }
 
     
