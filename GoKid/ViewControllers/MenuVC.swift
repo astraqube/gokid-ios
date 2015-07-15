@@ -97,11 +97,19 @@ class MenuVC: BaseVC {
     
     @IBAction func listButtonClicked(sender: AnyObject) {
         viewDeckController.toggleLeftView()
+        if !(navVC?.topViewController is CarpoolListVC) {
+            var vc = vcWithID("CarpoolListVC")
+            navVC?.setViewControllers([vc], animated: true)
+        }
         selectButtons(allButtons, select: [listIconButton, listButton])
     }
 
     @IBAction func myDrivesClicked(sender: AnyObject) {
         viewDeckController.toggleLeftView()
+        if !(navVC?.topViewController is CalendarVC) {
+            var vc = vcWithID("CalendarVC")
+            navVC?.setViewControllers([vc], animated: true)
+        }
         selectButtons(allButtons, select: [myDrivesIconButton, myDrivesButton])
     }
     

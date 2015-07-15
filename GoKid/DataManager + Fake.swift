@@ -93,6 +93,7 @@ extension DataManager {
             "PlacePickerVC": true,
             "KidAboutYouVC": true,
             "CalendarVC": true,
+            "CarpoolListVC": true,
             "MenuVC": true,
             "MainStackVC": true,
             "InviteRelationshipVC": true,
