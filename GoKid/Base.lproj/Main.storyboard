@@ -24,6 +24,10 @@
             <string>Raleway-Bold</string>
             <string>Raleway-Bold</string>
         </mutableArray>
+        <mutableArray key="Raleway-Medium.ttf">
+            <string>Raleway-Medium</string>
+            <string>Raleway-Medium</string>
+        </mutableArray>
         <mutableArray key="Raleway-Regular.ttf">
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
@@ -1627,9 +1631,9 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="45" id="eAk-E5-Gtv"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="16"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="1" maxX="10" maxY="0.0"/>
-                                                    <state key="normal" title="Create Carpool">
+                                                    <state key="normal" title="Create a new carpool">
                                                         <color key="titleColor" red="0.28627450980000002" green="0.70196078429999997" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1974,9 +1978,9 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="45" id="7LS-Bj-Wy3"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="16"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="1" maxX="10" maxY="0.0"/>
-                                                    <state key="normal" title="Create Carpool">
+                                                    <state key="normal" title="Create a new carpool">
                                                         <color key="titleColor" red="0.28627450980000002" green="0.70196078429999997" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
