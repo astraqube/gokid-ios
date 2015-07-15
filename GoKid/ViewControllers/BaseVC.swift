@@ -24,8 +24,7 @@ class BaseVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerForKeyBoardNotification()
-        
+
         leftButton?.addTarget(self, action: "leftNavButtonTapped", forControlEvents: .TouchUpInside)
         rightButton?.addTarget(self, action: "rightNavButtonTapped", forControlEvents: .TouchUpInside)
     }
@@ -110,7 +109,3 @@ extension UIViewController {
         }
     }
 }
-
-
-
-
