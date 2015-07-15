@@ -45,9 +45,7 @@ class CarpoolModel: NSObject {
             schedule.setValue(endDate!.iso8601String(), forKey: "ends_at")
             schedule.setValue(occurence!, forKey: "days_occuring")
         } else {
-            // FIXME: strange requirements from the backend
             schedule.setValue(startDate!.iso8601String(), forKey: "ends_at")
-            schedule.setValue([3], forKey: "days_occuring")
         }
 
         return schedule
