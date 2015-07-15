@@ -116,6 +116,9 @@
 		7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */; };
 		793374D01B558D820072FA13 /* RiderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374CF1B558D820072FA13 /* RiderModel.swift */; };
 		793374D41B558FB50072FA13 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374D31B558FB50072FA13 /* Location.swift */; };
+		793374D81B55CEFA0072FA13 /* CarpoolListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374D71B55CEFA0072FA13 /* CarpoolListVC.swift */; };
+		7943CF451B55DC1D007F6F8A /* CarpoolInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943CF441B55DC1D007F6F8A /* CarpoolInviteCell.swift */; };
+		7943CF471B55DC2E007F6F8A /* CarpoolListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943CF461B55DC2E007F6F8A /* CarpoolListCell.swift */; };
 		796E699E1B4A6E0C00DF8D43 /* Fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */; };
 		796E699F1B4A6E0C00DF8D43 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */; };
 		796E69A01B4A6E0C00DF8D43 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */; };
@@ -265,6 +268,9 @@
 		7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapItineraryItemView.swift; sourceTree = "<group>"; };
 		793374CF1B558D820072FA13 /* RiderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderModel.swift; sourceTree = "<group>"; };
 		793374D31B558FB50072FA13 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		793374D71B55CEFA0072FA13 /* CarpoolListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolListVC.swift; sourceTree = "<group>"; };
+		7943CF441B55DC1D007F6F8A /* CarpoolInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolInviteCell.swift; sourceTree = "<group>"; };
+		7943CF461B55DC2E007F6F8A /* CarpoolListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolListCell.swift; sourceTree = "<group>"; };
 		796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontawesome.ttf; sourceTree = "<group>"; };
 		796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
@@ -420,6 +426,7 @@
 				1D3F65201B207E2000CCF6A1 /* Phone Number */,
 				1D3F65211B207E3500CCF6A1 /* Sign in/up */,
 				1D808FCE1B2934F900D295BE /* Team Account */,
+				793374D61B55CEA60072FA13 /* CarpoolList */,
 				1D8F78F11B36991B00C78CAF /* Calendar */,
 				1D5866891B3FCF6800F141F8 /* Onboard */,
 			);
@@ -506,6 +513,7 @@
 		1D3F65281B237ED900CCF6A1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7943CF431B55DC06007F6F8A /* CarpoolList */,
 				1D8F78F41B36996E00C78CAF /* Calendar */,
 				1D891F1A1B240068006FD961 /* Contact */,
 				1DA789421B238BF600B391E8 /* Recent Address */,
@@ -741,6 +749,23 @@
 				EF40D0E37CF42771C6294E4C /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		793374D61B55CEA60072FA13 /* CarpoolList */ = {
+			isa = PBXGroup;
+			children = (
+				793374D71B55CEFA0072FA13 /* CarpoolListVC.swift */,
+			);
+			name = CarpoolList;
+			sourceTree = "<group>";
+		};
+		7943CF431B55DC06007F6F8A /* CarpoolList */ = {
+			isa = PBXGroup;
+			children = (
+				7943CF441B55DC1D007F6F8A /* CarpoolInviteCell.swift */,
+				7943CF461B55DC2E007F6F8A /* CarpoolListCell.swift */,
+			);
+			name = CarpoolList;
 			sourceTree = "<group>";
 		};
 		796E699A1B4A6E0C00DF8D43 /* Fonts */ = {
@@ -997,6 +1022,7 @@
 				1D975A431B1F94B500CD4D89 /* TDTextCell.swift in Sources */,
 				7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */,
 				1D891F141B23FDD8006FD961 /* SwiftAddressBookSource.swift in Sources */,
+				7943CF451B55DC1D007F6F8A /* CarpoolInviteCell.swift in Sources */,
 				1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */,
 				1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */,
 				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
@@ -1023,6 +1049,7 @@
 				1D1FD6881B1C001E00287FA0 /* HelperFunction.swift in Sources */,
 				1D891F251B24635A006FD961 /* ContactNameCell.swift in Sources */,
 				1DB5CC811B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift in Sources */,
+				7943CF471B55DC2E007F6F8A /* CarpoolListCell.swift in Sources */,
 				1D891F171B23FFA0006FD961 /* ContactPickerVC.swift in Sources */,
 				1D39AAB01B3FFD7C00215D6E /* FrequencyHeader.swift in Sources */,
 				1D891F111B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift in Sources */,
@@ -1031,6 +1058,7 @@
 				047AADA71B542F18006628EF /* FrequencyPickerFormVC.swift in Sources */,
 				1D975A3A1B1F40E500CD4D89 /* InviteConfirmVC.swift in Sources */,
 				1D3F65181B2073D700CCF6A1 /* RecentAddressCell.swift in Sources */,
+				793374D81B55CEFA0072FA13 /* CarpoolListVC.swift in Sources */,
 				1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */,
 				1DB5CC851B521DCF004F6ECB /* LocationVC + Layout.swift in Sources */,
 				1D891F211B242B89006FD961 /* SwiftyJSON.swift in Sources */,
