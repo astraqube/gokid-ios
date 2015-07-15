@@ -171,7 +171,6 @@ class TimeAndDateFormVC: BaseFormVC {
             self.updateFormRow(endDateCell)
             
             frequencyCell.hidden = !(newValue as! Bool)
-            frequencyCell.required = newValue as! Bool
             self.updateFormRow(frequencyCell)
         }
 
