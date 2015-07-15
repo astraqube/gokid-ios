@@ -1756,11 +1756,11 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CarpoolInviteCell" rowHeight="91" id="vAt-Zj-TT7" customClass="CarpoolInviteCell" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vAt-Zj-TT7" id="pp5-Xf-Rmn">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="vAt-Zj-TT7" id="pp5-Xf-Rmn">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="carpoolInviteCellBG" translatesAutoresizingMaskIntoConstraints="NO" id="kws-Uc-JGw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1" height="91"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carpoolInviteCellBG" translatesAutoresizingMaskIntoConstraints="NO" id="kws-Uc-JGw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Helen invited you to join" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQH-o9-CJ4">
                                                     <rect key="frame" x="27" y="14" width="148" height="15.5"/>
@@ -1769,7 +1769,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jenny's Birthday Party" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8q-gk-hOn">
-                                                    <rect key="frame" x="27" y="30.5" width="153.5" height="45"/>
+                                                    <rect key="frame" x="27" y="30" width="153.5" height="45"/>
                                                     <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="19"/>
                                                     <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1829,16 +1829,20 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="kws-Uc-JGw" firstAttribute="leading" secondItem="pp5-Xf-Rmn" secondAttribute="leading" id="64v-Gn-Uil"/>
                                                 <constraint firstItem="7oo-jE-4V7" firstAttribute="top" secondItem="pp5-Xf-Rmn" secondAttribute="top" constant="11" id="8ec-F0-Ta0"/>
                                                 <constraint firstItem="6JL-eq-fZe" firstAttribute="top" secondItem="7oo-jE-4V7" secondAttribute="bottom" constant="10" id="9Sb-I8-cpd"/>
                                                 <constraint firstItem="mQH-o9-CJ4" firstAttribute="leading" secondItem="pp5-Xf-Rmn" secondAttribute="leading" constant="27" id="Bdd-LQ-zhN"/>
+                                                <constraint firstAttribute="trailing" secondItem="kws-Uc-JGw" secondAttribute="trailing" id="CIG-gO-8Ff"/>
                                                 <constraint firstItem="mQH-o9-CJ4" firstAttribute="top" secondItem="pp5-Xf-Rmn" secondAttribute="top" constant="14" id="D9C-71-VOV"/>
                                                 <constraint firstAttribute="trailing" secondItem="6JL-eq-fZe" secondAttribute="trailing" constant="13" id="KCa-0m-viS"/>
                                                 <constraint firstItem="6JL-eq-fZe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="p8q-gk-hOn" secondAttribute="trailing" constant="15" id="VeR-OE-8Mj"/>
+                                                <constraint firstAttribute="bottom" secondItem="kws-Uc-JGw" secondAttribute="bottom" id="VnS-ZM-FK3"/>
                                                 <constraint firstItem="p8q-gk-hOn" firstAttribute="top" secondItem="mQH-o9-CJ4" secondAttribute="bottom" constant="1" id="gwo-sy-qYs"/>
                                                 <constraint firstAttribute="trailing" secondItem="7oo-jE-4V7" secondAttribute="trailing" constant="13" id="hAo-Wq-zb9"/>
                                                 <constraint firstItem="7oo-jE-4V7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mQH-o9-CJ4" secondAttribute="trailing" constant="15" id="iUM-cl-K7G"/>
                                                 <constraint firstItem="mQH-o9-CJ4" firstAttribute="leading" secondItem="p8q-gk-hOn" secondAttribute="leading" id="iar-eo-WQb"/>
+                                                <constraint firstItem="kws-Uc-JGw" firstAttribute="top" secondItem="pp5-Xf-Rmn" secondAttribute="top" id="rD3-ot-2fY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.97647058819999999" green="0.99215686270000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
