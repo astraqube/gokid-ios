@@ -48,7 +48,6 @@
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
-            <string>Raleway-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -193,75 +192,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aH8-tj-Y8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1556" y="2052"/>
-        </scene>
-        <!--Frequency PickerVC-->
-        <scene sceneID="C2h-aW-Hth">
-            <objects>
-                <viewController storyboardIdentifier="FrequencyPickerVC" id="JfL-x9-YbR" customClass="FrequencyPickerVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bIO-12-HAr"/>
-                        <viewControllerLayoutGuide type="bottom" id="ROb-CS-drF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SvB-tP-AOT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YLr-ET-zku">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FrequencyCell" rowHeight="60" id="RAd-Bi-YAd" customClass="FrequencyCell" customModule="GoKid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RAd-Bi-YAd" id="6ui-gS-2tl">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-Ch-U2M">
-                                                    <rect key="frame" x="8" y="15" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="Gfc-fI-HIr"/>
-                                                        <constraint firstAttribute="height" constant="30" id="ndD-cV-btn"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TableView Cell" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4C1-as-qEN">
-                                                    <rect key="frame" x="46" y="20" width="260" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
-                                                    <color key="textColor" red="0.2784313725" green="0.67843137249999996" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="4C1-as-qEN" secondAttribute="centerY" constant="0.25" id="Am2-3A-yxJ"/>
-                                                <constraint firstAttribute="centerY" secondItem="aSK-Ch-U2M" secondAttribute="centerY" constant="-0.25" id="RId-uN-n0c"/>
-                                                <constraint firstItem="4C1-as-qEN" firstAttribute="leading" secondItem="aSK-Ch-U2M" secondAttribute="trailing" constant="8" id="euj-NB-Zd4"/>
-                                                <constraint firstItem="aSK-Ch-U2M" firstAttribute="leading" secondItem="6ui-gS-2tl" secondAttribute="leadingMargin" id="nOw-pz-azB"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="4C1-as-qEN" secondAttribute="trailing" constant="6" id="urK-St-b5Q"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.98431372549999996" green="0.99215686270000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="checkImageView" destination="aSK-Ch-U2M" id="10j-7n-q8Z"/>
-                                            <outlet property="timeLabel" destination="4C1-as-qEN" id="IPB-n1-AUB"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.87450980389999999" green="0.96078431369999995" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="YLr-ET-zku" firstAttribute="leading" secondItem="SvB-tP-AOT" secondAttribute="leadingMargin" constant="-16" id="b5S-LE-OnO"/>
-                            <constraint firstItem="ROb-CS-drF" firstAttribute="top" secondItem="YLr-ET-zku" secondAttribute="bottom" id="bWe-tA-Nak"/>
-                            <constraint firstItem="YLr-ET-zku" firstAttribute="top" secondItem="SvB-tP-AOT" secondAttribute="topMargin" id="di3-TU-PCE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YLr-ET-zku" secondAttribute="trailing" constant="-16" id="jSX-AY-WOQ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="YLr-ET-zku" id="PWX-4S-9Od"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GXP-az-mL0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-728" y="2052"/>
         </scene>
         <!--Time And Date FormVC-->
         <scene sceneID="nvf-dU-ps2">

@@ -5,7 +5,7 @@
 //  Created by Bingwen Fu on 6/28/15.
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
-
+/* DEPRECATED
 import UIKit
 
 class FrequencyHeader: UIView {
@@ -28,3 +28,4 @@ class FrequencyHeader: UIView {
         timeLabel.autoPinEdgesToSuperviewEdgesWithInsets(insets)
     }
 }
+*/

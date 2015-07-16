@@ -5,7 +5,7 @@
 //  Created by Bingwen Fu on 6/28/15.
 //
 //
-
+/* DEPRECATED
 import UIKit
 
 class FrequencyCell: UITableViewCell {
@@ -21,3 +21,4 @@ class FrequencyCell: UITableViewCell {
         }
     }
 }
+*/
