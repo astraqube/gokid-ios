@@ -16,7 +16,6 @@ DerivedData
 .idea/
 *.hmap
 *.xccheckout
-.swp
-
-#CocoaPods included?
-#Pods
+*.swp
+*.lock
+Pods/
