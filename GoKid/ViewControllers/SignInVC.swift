@@ -19,18 +19,8 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
         setupLoginButton()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        setStatusBarColorDark()
-    }
-    
-    func setupNavBar() {
-        setNavBarTitle("Sign In")
-        // setNavBarTitleAndButtonColor(colorManager.appNavTextButtonColor)
+        self.registerForKeyBoardNotification()
     }
     
     // MARK: IBAction Method
@@ -57,6 +47,10 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
         }
     }
     
+    @IBAction func signUpButtonClicked(sender: AnyObject) {
+        (self.parentVC as! MainStackVC).popUpSignUpView()
+    }
+
     // MARK: Facebook Login
     // --------------------------------------------------------------------------------------------
     
@@ -90,4 +84,15 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
         
     }
     
+    // MARK: TextField Delegate
+    // --------------------------------------------------------------------------------------------
+
+    @IBAction func emailTextFieldReturn(sender: AnyObject) {
+        emailTextField.becomeFirstResponder()
+    }
+
+    @IBAction func passwordTextFieldReturn(sender: AnyObject) {
+        passwordTextField.becomeFirstResponder()
+    }
+
 }

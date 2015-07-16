@@ -67,7 +67,7 @@ class MainStackVC: IIViewDeckController {
         signInVC.modalTransitionStyle = .CrossDissolve
         signInVC.modalPresentationStyle = .OverCurrentContext
         if self.presentedViewController != nil {
-            self.dismissViewControllerAnimated(false) {
+            self.dismissViewControllerAnimated(true) {
                 self.presentViewController(signInVC, animated: true, completion: nil)
             }
         } else {
@@ -81,7 +81,7 @@ class MainStackVC: IIViewDeckController {
         signUpVC.modalTransitionStyle = .CrossDissolve
         signUpVC.modalPresentationStyle = .OverCurrentContext
         if self.presentedViewController != nil {
-            self.dismissViewControllerAnimated(false) {
+            self.dismissViewControllerAnimated(true) {
                 self.presentViewController(signUpVC, animated: true, completion: nil)
             }
         } else {

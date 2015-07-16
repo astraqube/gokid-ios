@@ -20,8 +20,6 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
 
     var parentVC: UIViewController!
 
-    var backgroundView = UIView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLoginButton()
