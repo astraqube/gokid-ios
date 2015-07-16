@@ -16,7 +16,7 @@ class MainStackVC: IIViewDeckController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "popUpSignUpView", name: "requestForUserToken", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "popUpSignInView", name: "requestForUserToken", object: nil)
 
         setStatusBarColorDark()
       
@@ -89,7 +89,8 @@ class MainStackVC: IIViewDeckController {
         }
     }
 
+    func refreshCurrentVC(animated: Bool) {
+        self.rootVC?.viewDidAppear(animated)
+    }
+
 }
-
-
-

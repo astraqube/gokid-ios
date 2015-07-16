@@ -26,6 +26,10 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         self.registerForKeyBoardNotification()
     }
 
+    func afterSignUp() {
+        (self.parentVC as! MainStackVC).refreshCurrentVC(false)
+    }
+
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
@@ -45,14 +49,12 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         LoadingView.showWithMaskType(.Black)
         dataManager.signup(signupForm) { (success, errorStr) in
             LoadingView.dismiss()
-            onMainThread() {
-                if success {
-                    _self.parentVC.dismissViewControllerAnimated(true, completion: nil)
-                } else {
-                    self.showAlert("Failed to Signup", messege: errorStr, cancleTitle: "OK")
-                }
+            if success {
+                _self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignUp)
+            } else {
+                self.showAlert("Failed to Sign up", messege: errorStr, cancleTitle: "OK")
             }
-        }        
+        }
     }
 
     @IBAction func imageButtonClicked(sender: AnyObject) {
@@ -75,17 +77,17 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if error != nil {
-            self.showAlert("Falied to user FB Signup", messege:error.localizedDescription , cancleTitle: "OK")
+            self.showAlert("Failed to connect with Facebook", messege:error.localizedDescription , cancleTitle: "OK")
         } else if (result.isCancelled) {
-            self.showAlert("Falied to user FB Signup", messege:"You cancled login" , cancleTitle: "OK")
+            self.showAlert("Failed to connect with Facebook", messege:"You cancelled login" , cancleTitle: "OK")
         } else {
             if result.grantedPermissions.contains("email") {
                 println("success")
                 dataManager.fbSignin() { (success, errorStr) in
                     if success {
-                        self.parentVC.dismissViewControllerAnimated(true, completion: nil)
+                        self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignUp)
                     } else {
-                        self.showAlert("Falied to user FB Signup", messege:errorStr , cancleTitle: "OK")
+                        self.showAlert("Failed to connect with Facebook", messege:errorStr , cancleTitle: "OK")
                     }
                 }
             }

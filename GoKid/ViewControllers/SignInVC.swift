@@ -13,7 +13,6 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
     @IBOutlet weak var emailTextField: PaddingTextField!
     @IBOutlet weak var passwordTextField: PaddingTextField!
     @IBOutlet weak var fbloginButton: FBSDKLoginButton!
-    var signinSuccessHandler: (()->())?
 
     var parentVC: UIViewController!
 
@@ -22,7 +21,11 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
         setupLoginButton()
         self.registerForKeyBoardNotification()
     }
-    
+
+    func afterSignIn() {
+        (self.parentVC as! MainStackVC).refreshCurrentVC(false)
+    }
+
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
 
@@ -38,11 +41,9 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
         dataManager.signin(email, password: passw) { (success, errorStr) -> () in
             LoadingView.dismiss()
             if success {
-                _self.parentVC.dismissViewControllerAnimated(true) {
-                    _self.signinSuccessHandler?()
-                }
+                _self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignIn)
             } else {
-                _self.showAlert("Sign In Failed", messege: errorStr, cancleTitle: "OK")
+                _self.showAlert("Failed to sign in", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
@@ -61,9 +62,9 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if error != nil {
-            self.showAlert("Falied to user FB Signup", messege:error.localizedDescription , cancleTitle: "OK")
+            self.showAlert("Failed to sign in with Facebook", messege:error.localizedDescription , cancleTitle: "OK")
         } else if (result.isCancelled) {
-            self.showAlert("Falied to user FB Signup", messege:"You cancled login" , cancleTitle: "OK")
+            self.showAlert("Failed to sign in with Facebook", messege:"You cancelled login" , cancleTitle: "OK")
         } else {
             if result.grantedPermissions.contains("email") {
                 println("success")
@@ -71,9 +72,9 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
                 dataManager.fbSignin() { (success, errorStr) in
                     LoadingView.dismiss()
                     if success {
-                        self.signinSuccessHandler?()
+                        self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignIn)
                     } else {
-                        self.showAlert("Falied to user FB Signup", messege:errorStr , cancleTitle: "OK")
+                        self.showAlert("Failed to sign in with Facebook", messege:errorStr , cancleTitle: "OK")
                     }
                 }
             }
