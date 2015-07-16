@@ -267,12 +267,11 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRl-DH-fTd" userLabel="Photo View">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="86"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="f0d-5t-iJR">
-                                                        <rect key="frame" x="30" y="25" width="20" height="20"/>
-                                                        <color key="backgroundColor" red="0.4039215686" green="0.75686274509999996" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="rUH-vq-aSI">
+                                                        <rect key="frame" x="30" y="22" width="21" height="21"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="20" id="Gv6-Yt-4zj"/>
-                                                            <constraint firstAttribute="height" constant="20" id="Q7P-eS-aZH"/>
+                                                            <constraint firstAttribute="height" constant="21" id="HVl-AX-SeG"/>
+                                                            <constraint firstAttribute="width" constant="21" id="cjJ-dO-hBD"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXq-HB-fIH">
@@ -281,6 +280,9 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f0d-5t-iJR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="86"/>
+                                                    </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfg-di-3nH">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="86"/>
                                                         <state key="normal">
@@ -295,11 +297,15 @@
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="yXq-HB-fIH" secondAttribute="bottom" constant="8" id="1xS-oA-QAs"/>
                                                     <constraint firstAttribute="centerY" secondItem="rfg-di-3nH" secondAttribute="centerY" id="3TN-b9-qPy"/>
+                                                    <constraint firstAttribute="centerX" secondItem="rUH-vq-aSI" secondAttribute="centerX" id="4uQ-Nf-h3a"/>
+                                                    <constraint firstItem="rUH-vq-aSI" firstAttribute="top" secondItem="NRl-DH-fTd" secondAttribute="top" constant="22" id="6xH-Ni-LtZ"/>
                                                     <constraint firstAttribute="centerX" secondItem="rfg-di-3nH" secondAttribute="centerX" id="Hp6-tF-vXb"/>
+                                                    <constraint firstItem="f0d-5t-iJR" firstAttribute="width" secondItem="NRl-DH-fTd" secondAttribute="width" id="KCF-W4-iAs"/>
                                                     <constraint firstAttribute="width" secondItem="rfg-di-3nH" secondAttribute="width" id="Kdu-Rb-2wl"/>
                                                     <constraint firstAttribute="height" secondItem="rfg-di-3nH" secondAttribute="height" id="LYf-nc-2Vi"/>
+                                                    <constraint firstItem="f0d-5t-iJR" firstAttribute="height" secondItem="NRl-DH-fTd" secondAttribute="height" id="UR0-gJ-G8g"/>
                                                     <constraint firstAttribute="width" constant="80" id="c4e-GO-h6w"/>
-                                                    <constraint firstAttribute="centerY" secondItem="f0d-5t-iJR" secondAttribute="centerY" constant="8" id="ddp-K3-5wJ"/>
+                                                    <constraint firstAttribute="centerY" secondItem="f0d-5t-iJR" secondAttribute="centerY" id="ddp-K3-5wJ"/>
                                                     <constraint firstAttribute="centerX" secondItem="yXq-HB-fIH" secondAttribute="centerX" id="pFN-fF-kLl"/>
                                                     <constraint firstAttribute="centerX" secondItem="f0d-5t-iJR" secondAttribute="centerX" id="qe7-rz-ecF"/>
                                                 </constraints>
@@ -315,6 +321,12 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                                         <real key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.60392156860000001" green="0.71764705880000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="firstNameTextFieldReturn:" destination="Vno-EF-vFD" eventType="editingDidEndOnExit" id="0tP-dV-MR9"/>
@@ -327,6 +339,12 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                                         <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.60392156860000001" green="0.71764705880000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -341,6 +359,12 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                                         <real key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.60392156860000001" green="0.71764705880000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="emailTextFieldReturn:" destination="Vno-EF-vFD" eventType="editingDidEndOnExit" id="3od-e2-fG2"/>
@@ -353,6 +377,12 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                                         <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.60392156860000001" green="0.71764705880000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
