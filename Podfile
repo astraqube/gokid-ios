@@ -12,7 +12,6 @@ pod 'SVProgressHUD'
 
 pod 'ViewDeck', '~> 2.2.11'
 pod 'KNSemiModalViewController'
-pod 'THCalendarDatePicker', '~> 1.1.1'
 
 pod 'XLForm'
 

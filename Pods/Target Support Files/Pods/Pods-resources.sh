@@ -60,17 +60,11 @@ install_resource()
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/THDateDay.xib"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/THDatePickerViewController.xib"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/Images.xcassets"
   install_resource "XLForm/XLForm/XLForm.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/THDateDay.xib"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/THDatePickerViewController.xib"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/Images.xcassets"
   install_resource "XLForm/XLForm/XLForm.bundle"
 fi
 

@@ -9,7 +9,6 @@
 #import "SVProgressHUD.h"
 #import "ZGNavigationBarTitleViewController.h"
 #import "PureLayout.h"
-#import "THDatePickerViewController.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
