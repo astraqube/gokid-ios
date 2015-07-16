@@ -24,24 +24,10 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSubviews()
         setupLoginButton()
         self.registerForKeyBoardNotification()
     }
 
-    func setupSubviews() {
-//        backgroundView.frame = view.frame
-//        backgroundView.backgroundColor = UIColor.blackColor()
-//        backgroundView.alpha = 0.85
-//        view.backgroundColor = UIColor.clearColor()
-//        view.addSubview(backgroundView)
-//        view.sendSubviewToBack(backgroundView)
-
-        profileImageView.setRounded()
-        profileImageView.backgroundColor = UIColor.grayColor()
-        profileImageView.userInteractionEnabled = false
-    }
-    
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
