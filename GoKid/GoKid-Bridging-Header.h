@@ -8,7 +8,6 @@
 #import <AFNetworking.h>
 #import "SVProgressHUD.h"
 #import "ZGNavigationBarTitleViewController.h"
-#import "STCollapseTableView.h"
 #import "PureLayout.h"
 #import "THDatePickerViewController.h"
 

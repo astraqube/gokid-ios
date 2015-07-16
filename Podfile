@@ -10,7 +10,6 @@ pod 'AFNetworking'
 pod 'Reachability'
 pod 'SVProgressHUD'
 
-pod 'STCollapseTableView'
 pod 'ViewDeck', '~> 2.2.11'
 pod 'KNSemiModalViewController'
 pod 'THCalendarDatePicker', '~> 1.1.1'
