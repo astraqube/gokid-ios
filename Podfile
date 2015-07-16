@@ -11,7 +11,6 @@ pod 'Reachability'
 pod 'SVProgressHUD'
 
 pod 'ViewDeck', '~> 2.2.11'
-pod 'KNSemiModalViewController'
 
 pod 'XLForm'
 

@@ -38,7 +38,6 @@ PODS:
   - FBSDKLoginKit (4.2.0):
     - FBSDKCoreKit
   - GoogleMaps (1.10.1)
-  - KNSemiModalViewController (0.3)
   - pop (1.0.7)
   - PureLayout (2.0.6)
   - Reachability (3.2)
@@ -51,7 +50,6 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - GoogleMaps
-  - KNSemiModalViewController
   - pop
   - PureLayout
   - Reachability
@@ -65,7 +63,6 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 84b3616a361801f190e43a9909caead7bb6087c7
   FBSDKLoginKit: 57e37106af12c9e264e473dcb75d7decdbb07fe4
   GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
-  KNSemiModalViewController: 8c0056377714b5170c52c65977d540200405411f
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
