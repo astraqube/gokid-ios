@@ -20,7 +20,7 @@ class BaseVC: UIViewController {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     
-    var keyBoardMoveUp : CGFloat = 0
+    var keyBoardMoveUp : CGFloat = 100
 
     override func viewDidLoad() {
         super.viewDidLoad()
