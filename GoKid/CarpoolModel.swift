@@ -43,7 +43,7 @@ class CarpoolModel: NSObject {
 
         if occurence != nil && occurence?.isEmpty == false {
             schedule.setValue(endDate!.iso8601String(), forKey: "ends_at")
-            schedule.setValue(occurence!, forKey: "days_occuring")
+            schedule.setValue(occurence!, forKey: "days_occurring")
         } else {
             schedule.setValue(startDate!.iso8601String(), forKey: "ends_at")
         }
