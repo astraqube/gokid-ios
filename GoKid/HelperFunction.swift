@@ -289,6 +289,18 @@ class PaddingTextField: UITextField {
     override func editingRectForBounds(bounds: CGRect) -> CGRect {
         return textRectForBounds(bounds)
     }
+
+    @IBInspectable var borderColor : UIColor = UIColor.blackColor() {
+        didSet {
+            layer.borderColor = borderColor.CGColor;
+        }
+    }
+
+    @IBInspectable var borderWidth : CGFloat = 0 {
+        didSet {
+            layer.borderWidth = borderWidth
+        }
+    }
 }
 
 typealias LoadingView = SVProgressHUD
