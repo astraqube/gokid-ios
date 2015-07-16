@@ -5,7 +5,7 @@
 //  Created by Coder on 4/2/14.
 //  Copyright (c) 2014 AcademicSoftware. All rights reserved.
 //
-
+/* DEPRECATED
 #import "DateTimePicker.h"
 
 #define MyDateTimePickerToolbarHeight 40
@@ -94,4 +94,4 @@
 }
 
 @end
-
+*/

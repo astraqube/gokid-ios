@@ -65,7 +65,7 @@ class BasicInfoVC: BaseVC {
         userManager.currentCarpoolName = carpoolTitleTextField.text!
         userManager.currentCarpoolKidName = kidsNameTextField.text!
         userManager.currentCarpoolModel.name = carpoolTitleTextField.text!
-        var vc = vcWithID("TimeAndDateVC")
+        var vc = vcWithID("TimeAndDateFormVC")
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

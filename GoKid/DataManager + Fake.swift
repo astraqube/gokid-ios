@@ -36,7 +36,7 @@ extension DataManager {
         }
         return [c0, c1, c2, c3]
     }
-    
+/* DEPRECATED
     func fakeTimeAndDateTableViewData(vc: TimeAndDateVC) {
         var startStr = "Select"
         if let date = userManager.currentCarpoolModel.startDate {
@@ -73,7 +73,7 @@ extension DataManager {
         vc.oneCarpoolModle = c9
         vc.dataSource = [c1, c2, c3, c4, c5, c6, c7, c8, c9]
     }
-    
+*/
     func sbViewControllerList() -> [String:[String:Bool]] {
         var carpool = [
             "CarpoolSucceedVC": true,
@@ -82,8 +82,8 @@ extension DataManager {
             "VolunteerVC": true,
             "LocationInputVC": true,
             "LocationVC": true,
-            "FrequencyPickerVC": true,
-            "TimeAndDateVC": true,
+            "FrequencyPickerFormVC": true,
+            "TimeAndDateFormVC": true,
             "BasicInfoVC": true,
         ]
         var main = [

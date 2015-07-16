@@ -7,7 +7,7 @@
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
 
-
+/* DEPRECATED
 extension TimeAndDateVC {
     
     // MARK: Signin Signup
@@ -19,7 +19,7 @@ extension TimeAndDateVC {
     
         // view controller operations
         navigationController?.view.addSubview(signupVC.view)
-        // signupVC.signinButtonHandler = signupToSignin
+        signupVC.signinButtonHandler = signupToSignin
 
         // animation
         signupVC.view.alphaAnimation(1.0, duration: 0.5, completion: nil)
@@ -30,7 +30,7 @@ extension TimeAndDateVC {
             self.signupVC.view.removeFromSuperview()
             withDelay(0.2) {
                 var vc = vcWithID("SignInVC") as! SignInVC
-                vc.signinSuccessHandler = self.signinSuccessHandler
+                // vc.signinSuccessHandler = self.signinSuccessHandler
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -40,4 +40,4 @@ extension TimeAndDateVC {
         navigationController?.popViewControllerAnimated(true)
     }
 }
-
+*/

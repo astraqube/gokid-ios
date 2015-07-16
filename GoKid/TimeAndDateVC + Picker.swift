@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
 
-
+/* DEPRECATED
 extension TimeAndDateVC {
     
     // MARK: Date Time Picker setup
@@ -126,3 +126,4 @@ extension TimeAndDateVC {
         dismissTimePicker()
     }
 }
+*/
