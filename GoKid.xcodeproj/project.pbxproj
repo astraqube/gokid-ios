@@ -82,7 +82,6 @@
 		1D975A451B1F9EB800CD4D89 /* TDSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A441B1F9EB800CD4D89 /* TDSwitchCell.swift */; };
 		1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A461B1FA09100CD4D89 /* TDCellModel.swift */; };
 		1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A481B1FA72500CD4D89 /* TDEmptyCell.swift */; };
-		1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */; };
 		1DA789441B23962200B391E8 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789431B23962200B391E8 /* ColorManager.swift */; };
 		1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789451B23C42700B391E8 /* OnboardVC.swift */; };
 		1DB5CC7F1B51F8B6004F6ECB /* FackCarpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC7E1B51F8B6004F6ECB /* FackCarpool.swift */; };
@@ -229,8 +228,6 @@
 		1D975A441B1F9EB800CD4D89 /* TDSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TDSwitchCell.swift; path = Cells/TDSwitchCell.swift; sourceTree = "<group>"; };
 		1D975A461B1FA09100CD4D89 /* TDCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCellModel.swift; sourceTree = "<group>"; };
 		1D975A481B1FA72500CD4D89 /* TDEmptyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TDEmptyCell.swift; path = Cells/TDEmptyCell.swift; sourceTree = "<group>"; };
-		1D975A4A1B1FACB400CD4D89 /* DateTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimePicker.h; sourceTree = "<group>"; };
-		1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimePicker.m; sourceTree = "<group>"; };
 		1DA789431B23962200B391E8 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		1DA789451B23C42700B391E8 /* OnboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardVC.swift; sourceTree = "<group>"; };
 		1DB5CC7E1B51F8B6004F6ECB /* FackCarpool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FackCarpool.swift; sourceTree = "<group>"; };
@@ -405,7 +402,6 @@
 			isa = PBXGroup;
 			children = (
 				1DD6A4D71B3BD321006A97ED /* ZGNavigation */,
-				1DC765C61B3278DE00D9D306 /* DateTimePicker */,
 				1DC765C51B3278D100D9D306 /* JSON */,
 				1D891F071B23FDCD006FD961 /* SwiftAddressBook */,
 				1D39AAB11B40C08000215D6E /* Helper Functions */,
@@ -684,15 +680,6 @@
 				1D891F201B242B89006FD961 /* SwiftyJSON.swift */,
 			);
 			name = JSON;
-			sourceTree = "<group>";
-		};
-		1DC765C61B3278DE00D9D306 /* DateTimePicker */ = {
-			isa = PBXGroup;
-			children = (
-				1D975A4A1B1FACB400CD4D89 /* DateTimePicker.h */,
-				1D975A4B1B1FACB400CD4D89 /* DateTimePicker.m */,
-			);
-			name = DateTimePicker;
 			sourceTree = "<group>";
 		};
 		1DD1BAA61B2AA31A00D1BBA3 /* Model */ = {
@@ -993,7 +980,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D975A4C1B1FACB400CD4D89 /* DateTimePicker.m in Sources */,
 				1D891F101B23FDD8006FD961 /* SwiftAddressBookGroup.swift in Sources */,
 				1DC765C41B32754800D9D306 /* DataManager + Team.swift in Sources */,
 				1DEFF1811B4A87D70094B54E /* OnboardingViewController.m in Sources */,
