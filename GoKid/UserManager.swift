@@ -59,7 +59,7 @@ class UserManager: NSObject {
     // this is for invitation flow
     var inviterName = ""
     var inviteKidName = ""
-    
+
     override init() {
         super.init()
         initForTeamMembers()
@@ -113,7 +113,15 @@ class UserManager: NSObject {
         if let passWord = user["password"].string {
             info.passWord = passWord
         }
-        userToken = user["token"].stringValue
+
+        self.userToken = user["token"].stringValue
+
+        if self.userToken != "" {
+            self.userLoggedIn = true
+        } else {
+            self.userLoggedIn = false
+        }
+
         saveUserInfo()
     }
     
@@ -178,7 +186,17 @@ class UserManager: NSObject {
             recentAddressTitles = data
         }
     }
-    
+
+    func logoutUser() {
+        self.userToken = ""
+        self.info = TeamMemberModel()
+        self.saveUserInfo()
+
+        self.userLoggedIn = false
+        self.useFBLogIn = false
+        self.userFirstTimeLogin = true
+    }
+
     var over18: Bool {
         set { ud.setValue(newValue, forKey: "over18") }
         get {
@@ -216,15 +234,14 @@ class UserManager: NSObject {
             ud.setValue(newValue, forKey: "userToken")
         }
         get {
-            if let v = ud.valueForKey("userToken") as? String {
-                return v
-            } else {
+            let v = ud.valueForKey("userToken") as? String
+            if (v == nil || v == "") && self.userLoggedIn == false {
                 self.postNotification("requestForUserToken")
-                return ""
             }
+            return v!
         }
     }
-    
+
     
     // this is very bad but devon insist we grop occrence by time
     // as a reault this cause weak connction between pickup and drop off

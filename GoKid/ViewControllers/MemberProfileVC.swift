@@ -193,14 +193,8 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     }
     
     func logout() {
-        var um = UserManager.sharedInstance
-        um.userLoggedIn = false
-        um.userToken = ""
-        um.useFBLogIn = false
-        um.userFirstTimeLogin = true
-        um.info = TeamMemberModel()
-        um.saveUserInfo()
-        
+        UserManager.sharedInstance.logoutUser()
+
         var vc = OnboardVC()
         navigationController?.setViewControllers([vc], animated: true)
     }

@@ -29,7 +29,6 @@ extension DataManager {
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("signin success")
             self.userManager.setWithJsonReponse(JSON(obj))
-            self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
         }) { (op, error) in
@@ -57,7 +56,6 @@ extension DataManager {
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("signup success")
             self.userManager.setWithJsonReponse(JSON(obj))
-            self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
         }) { (op, error) in
@@ -81,7 +79,6 @@ extension DataManager {
             println("fbSignin user success")
             println(FBSDKAccessToken.currentAccessToken().tokenString)
             self.userManager.setWithJsonReponse(JSON(obj))
-            self.userManager.userLoggedIn = true
             self.userManager.useFBLogIn = true
             onMainThread() {
                 self.postNotification("SignupFinished")
@@ -101,7 +98,6 @@ extension DataManager {
             println("fbSignup user success")
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.useFBLogIn = true
-            self.userManager.userLoggedIn = true
             onMainThread() {
                 self.postNotification("SignupFinished")
             }
@@ -160,7 +156,6 @@ extension DataManager {
         manager.PUT(url, parameters: map, success: { (op, obj) in
             println("update user success")
             self.userManager.setWithJsonReponse(JSON(obj))
-            self.userManager.userLoggedIn = true
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
         }) { (op, error) in
@@ -179,7 +174,6 @@ extension DataManager {
         manager.PUT(url, parameters: map, success: { (op, obj) in
             println("updateUserRole success")
             self.userManager.setWithJsonReponse(JSON(obj))
-            self.userManager.userLoggedIn = true
             comp(true, "")
         }) { (op, error) in
             println("updateUserRole failed")
