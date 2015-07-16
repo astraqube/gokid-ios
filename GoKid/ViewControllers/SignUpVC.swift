@@ -17,39 +17,60 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     @IBOutlet weak var emailTextField: PaddingTextField!
     @IBOutlet weak var passwordTextField: PaddingTextField!
     @IBOutlet weak var fbloginButton: FBSDKLoginButton!
-    
+
+    var parentVC: UIViewController!
+
     var backgroundView = UIView()
-    var signinButtonHandler: ((Void)->(Void))?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
         setupLoginButton()
-        setupGuestureRecognizer()
-        self.keyBoardMoveUp = 95
+        self.registerForKeyBoardNotification()
     }
-    
+
     func setupSubviews() {
-        backgroundView.frame = view.frame
-        backgroundView.backgroundColor = UIColor.blackColor()
-        backgroundView.alpha = 0.85
-        view.backgroundColor = UIColor.clearColor()
-        view.addSubview(backgroundView)
-        view.sendSubviewToBack(backgroundView)
-        
+//        backgroundView.frame = view.frame
+//        backgroundView.backgroundColor = UIColor.blackColor()
+//        backgroundView.alpha = 0.85
+//        view.backgroundColor = UIColor.clearColor()
+//        view.addSubview(backgroundView)
+//        view.sendSubviewToBack(backgroundView)
+
         profileImageView.setRounded()
         profileImageView.backgroundColor = UIColor.grayColor()
         profileImageView.userInteractionEnabled = false
     }
     
-    func setupGuestureRecognizer() {
-        var tapGR = UITapGestureRecognizer(target: self, action: "backgroundTapped:")
-        backgroundView.addGestureRecognizer(tapGR)
-    }
-    
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
+    override func leftNavButtonTapped() {
+        self.parentVC.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    override func rightNavButtonTapped() {
+        var signupForm = SignupForm()
+        signupForm.email = emailTextField.text
+        signupForm.firstName = firstNameTextField.text
+        signupForm.lastName = lastNameTextField.text
+        signupForm.password = passwordTextField.text
+        signupForm.passwordConfirm = passwordTextField.text
+
+        let _self = self
+        LoadingView.showWithMaskType(.Black)
+        dataManager.signup(signupForm) { (success, errorStr) in
+            LoadingView.dismiss()
+            onMainThread() {
+                if success {
+                    _self.parentVC.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    self.showAlert("Failed to Signup", messege: errorStr, cancleTitle: "OK")
+                }
+            }
+        }        
+    }
+
     @IBAction func imageButtonClicked(sender: AnyObject) {
         var picker = UIImagePickerController()
         picker.sourceType = .PhotoLibrary
@@ -57,47 +78,10 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         self.presentViewController(picker, animated: true, completion: nil)
     }
     
-    @IBAction func doneButtonClick(sender: AnyObject) {
-        
-        var signupForm = SignupForm()
-        signupForm.email = emailTextField.text
-        signupForm.firstName = firstNameTextField.text
-        signupForm.lastName = lastNameTextField.text
-        signupForm.password = passwordTextField.text
-        signupForm.passwordConfirm = passwordTextField.text
-        
-        LoadingView.showWithMaskType(.Black)
-        dataManager.signup(signupForm) { (success, errorStr) in
-            LoadingView.dismiss()
-            onMainThread() {
-            if success {
-                self.view.alphaAnimation(0.0, duration: 0.4) { (anim, finished) in
-                    self.view.removeFromSuperview()
-                }
-            } else {
-                self.showAlert("Failed to Signup", messege: errorStr, cancleTitle: "OK")
-            }}
-        }        
+    @IBAction func signInButtonClicked(sender: AnyObject) {
+        (self.parentVC as! MainStackVC).popUpSignInView()
     }
-    
-    @IBAction func signinButtonClick(sender: AnyObject) {
-        signinButtonHandler?()
-    }
-    
-    func backgroundTapped(gr: UITapGestureRecognizer) {
-        animateRemoveFromParentViewController()
-    }
-    
-    func animateRemoveFromParentViewController() {
-        self.view.alphaAnimation(0.0, duration: 0.5) { (anim, finished) in
-            onMainThread() {
-                //self.willMoveToParentViewController(nil)
-                self.view.removeFromSuperview()
-                //self.removeFromParentViewController()
-            }
-        }
-    }
-    
+
     // MARK: Facebook Login
     // --------------------------------------------------------------------------------------------
     func setupLoginButton() {
@@ -115,7 +99,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
                 println("success")
                 dataManager.fbSignin() { (success, errorStr) in
                     if success {
-                        self.animateRemoveFromParentViewController()
+                        self.parentVC.dismissViewControllerAnimated(true, completion: nil)
                     } else {
                         self.showAlert("Falied to user FB Signup", messege:errorStr , cancleTitle: "OK")
                     }

@@ -26,7 +26,6 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBarColorDark()
-        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func setupNavBar() {

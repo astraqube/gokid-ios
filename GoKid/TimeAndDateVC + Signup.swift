@@ -19,8 +19,8 @@ extension TimeAndDateVC {
     
         // view controller operations
         navigationController?.view.addSubview(signupVC.view)
-        signupVC.signinButtonHandler = signupToSignin
-    
+        // signupVC.signinButtonHandler = signupToSignin
+
         // animation
         signupVC.view.alphaAnimation(1.0, duration: 0.5, completion: nil)
     }

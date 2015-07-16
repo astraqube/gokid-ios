@@ -16,7 +16,7 @@ class MainStackVC: IIViewDeckController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "popUpSignInView", name: "requestForUserToken", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "popUpSignUpView", name: "requestForUserToken", object: nil)
 
         setStatusBarColorDark()
       
@@ -64,7 +64,29 @@ class MainStackVC: IIViewDeckController {
     func popUpSignInView() {
         var signInVC = vcWithID("SignInVC") as! SignInVC
         signInVC.parentVC = self
-        self.presentViewController(signInVC, animated: true, completion: nil)
+        signInVC.modalTransitionStyle = .CrossDissolve
+        signInVC.modalPresentationStyle = .OverCurrentContext
+        if self.presentedViewController != nil {
+            self.dismissViewControllerAnimated(false) {
+                self.presentViewController(signInVC, animated: true, completion: nil)
+            }
+        } else {
+            self.presentViewController(signInVC, animated: true, completion: nil)
+        }
+    }
+
+    func popUpSignUpView() {
+        var signUpVC = vcWithID("SignUpVC") as! SignUpVC
+        signUpVC.parentVC = self
+        signUpVC.modalTransitionStyle = .CrossDissolve
+        signUpVC.modalPresentationStyle = .OverCurrentContext
+        if self.presentedViewController != nil {
+            self.dismissViewControllerAnimated(false) {
+                self.presentViewController(signUpVC, animated: true, completion: nil)
+            }
+        } else {
+            self.presentViewController(signUpVC, animated: true, completion: nil)
+        }
     }
 
 }
