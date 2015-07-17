@@ -1,7 +1,11 @@
-# gokid-ios-swift
-# :)
+# GoKid in iOS - built with Swift
 
-Changelog: 
+## Installation
+1. Install CocoaPods `sudo gem install cocoapods`
+2. Run `pod install`
+3. Open in XCode, build, and run
+
+## Changelog
 AHL July 9:
 Now you can tap on profile image on calendarview to open action, and pickup/dropoff icons work as expected
 built those fun CalendarUserImageViews with backup text etc
