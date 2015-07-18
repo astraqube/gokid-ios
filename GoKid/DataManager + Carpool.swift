@@ -53,8 +53,9 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getCarpool success")
             println(obj)
-            var carpool = CarpoolModel(json: JSON(obj))
-            self.userManager.currentCarpoolModel = carpool
+            var json = JSON(obj)["carpools"]
+            var carpools = CarpoolModel.arrayOfCarpoolsFromJSON(json)
+            self.userManager.carpools = carpools
             comp(true, "")
         }) { (op, error) in
             println("get carpool failed")

@@ -32,7 +32,7 @@ class UserManager: NSObject {
     var calendarEvents = [OccurenceModel]()
     var volunteerEvents = [OccurenceModel]()
     var fakeVolunteerEvents = [OccurenceModel]()
-    
+    var carpools = [CarpoolModel]()
     
     var updatedMember = TeamMemberModel()
     

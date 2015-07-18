@@ -33,6 +33,16 @@ class CarpoolModel: NSObject {
         super.init()
     }
 
+    class func arrayOfCarpoolsFromJSON(json: JSON) -> [CarpoolModel] {
+        var arr = [CarpoolModel]()
+        for (index: String, subJson: JSON) in json {
+            var carpool = CarpoolModel(json: subJson)
+            arr.append(carpool)
+        }
+        return arr
+        
+    }
+    
     func toSchedule() -> NSDictionary {
         var schedule: NSMutableDictionary = [
             "dropoff_at": dropOffTime!.iso8601String(),
