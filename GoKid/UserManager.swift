@@ -93,7 +93,9 @@ class UserManager: NSObject {
         info.email = user["email"].stringValue
         info.role = user["role"].stringValue
         info.phoneNumber = user["phone_number"].stringValue
+        info.userID = user["id"].intValue
         info.cellType = .EditUser
+
         
         if let arr = user["recentAddress"].arrayObject as? [String] {
             recentAddress = arr
@@ -142,6 +144,7 @@ class UserManager: NSObject {
             "password" : info.passWord,
             "last_name": info.lastName,
             "email": info.email,
+            "id": info.userID,
             "token": userToken,
             "role": info.role,
             "avatar": avatar,

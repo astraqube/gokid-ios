@@ -16,6 +16,11 @@ enum VOCellType {
 
 class VolunteerModel: NSObject {
     
+    var firstName = ""
+    var lastName = ""
+    var id = 0
+    var imageURL = ""
+    
     var timeString = ""
     var titleString = ""
     var poolTypeString = ""
@@ -32,4 +37,13 @@ class VolunteerModel: NSObject {
         self.taken = false
         super.init()
     }
+
+    init(json: JSON) {
+        self.firstName = json["first_name"].stringValue
+        self.lastName = json["last_name"].stringValue
+        self.id = json["id"].intValue
+        self.imageURL = json["avatar"]["thumb_url"].stringValue
+        super.init()
+    }
+
 }

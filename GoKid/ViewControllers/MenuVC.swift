@@ -86,28 +86,45 @@ class MenuVC: BaseVC {
         }
     }
     
-    @IBAction func calendarButtonClick(sender: AnyObject) {
-        viewDeckController.toggleLeftView()
-        if !(navVC?.topViewController is CalendarVC) {
-            var vc = vcWithID("CalendarVC")
-            navVC?.setViewControllers([vc], animated: true)
-        }
-        selectButtons(allButtons, select: [calendarIconButton, calendarButton])
-    }
-    
     @IBAction func listButtonClicked(sender: AnyObject) {
         viewDeckController.toggleLeftView()
-        if !(navVC?.topViewController is CarpoolListVC) {
+        var shown = false
+        if var carpoolListVC = navVC?.topViewController as? CarpoolListVC {
+            shown = true
+        }
+        if !shown {
             var vc = vcWithID("CarpoolListVC")
             navVC?.setViewControllers([vc], animated: true)
         }
         selectButtons(allButtons, select: [listIconButton, listButton])
     }
 
+    @IBAction func calendarButtonClick(sender: AnyObject) {
+        viewDeckController.toggleLeftView()
+        var shown = false
+        if var calendarVC = navVC?.topViewController as? CalendarVC {
+            if calendarVC.onlyShowOurDrives == false {
+                shown = true
+            }
+        }
+        if !shown {
+            var vc = vcWithID("CalendarVC")
+            navVC?.setViewControllers([vc], animated: true)
+        }
+        selectButtons(allButtons, select: [calendarIconButton, calendarButton])
+    }
+    
     @IBAction func myDrivesClicked(sender: AnyObject) {
         viewDeckController.toggleLeftView()
-        if !(navVC?.topViewController is CalendarVC) {
-            var vc = vcWithID("CalendarVC")
+        var shown = false
+        if var calendarVC = navVC?.topViewController as? CalendarVC {
+            if calendarVC.onlyShowOurDrives == true {
+                shown = true
+            }
+        }
+        if !shown {
+            var vc = vcWithID("CalendarVC") as! CalendarVC
+            vc.onlyShowOurDrives = true
             navVC?.setViewControllers([vc], animated: true)
         }
         selectButtons(allButtons, select: [myDrivesIconButton, myDrivesButton])

@@ -10,9 +10,9 @@ import UIKit
 import CoreLocation
 
 class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
-
     @IBOutlet weak var tableView: UITableView!
     var dataSource = [OccurenceModel]()
+    var onlyShowOurDrives = false //set true before viewDidLoad to only see our drives
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +84,10 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         var data = [OccurenceModel]()
         var lastDateStr = ""
         for event in userManager.calendarEvents {
+            if onlyShowOurDrives && event.volunteer?.id != userManager.info.userID{
+                continue
+            }
+            
             if event.occursAtStr != lastDateStr {
                 var dateCell = OccurenceModel()
                 dateCell.cellType = .Time

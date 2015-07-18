@@ -18,6 +18,7 @@ class OccurenceModel: NSObject {
     var poolDriverName = ""
     var poolDriverImageUrl = ""
     var poolDriverPhoneNum = ""
+    var volunteer : VolunteerModel?
     
     var poolType = ""
     var poolname = ""
@@ -49,6 +50,9 @@ class OccurenceModel: NSObject {
         carpoolID = occurence["carpool"]["id"].intValue
         poolname = occurence["carpool"]["name"].stringValue
         poolDriverName = occurence["volunteer"]["first_name"].stringValue
+        if let volunteerJSON = occurence["volunteer"] as JSON? {
+            volunteer = VolunteerModel(json: volunteerJSON)
+        }
         poolDriverImageUrl = occurence["volunteer"]["avatar"]["thumb_url"].stringValue
         riders = RiderModel.arrayOfRidersWithJSON(occurence["riders"])
         eventLocation = Location(json: occurence["event_location"])
