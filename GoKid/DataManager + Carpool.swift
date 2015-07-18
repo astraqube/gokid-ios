@@ -31,18 +31,18 @@ extension DataManager {
         }
     }
     
-    func getAllUserCarpools(comp: completion) {
+    func getAllUserOccurrences(comp: completion) {
         var url = baseURL + "/api/occurrences"
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getAllUserCarpools success")
+            println("getAllUserOccurrences success")
             println(obj)
             var json = JSON(obj)["occurrences"]
             var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
             self.userManager.calendarEvents = events
             comp(true, "")
         }) { (op, error) in
-            println("getAllUserCarpools failed")
+            println("getAllUserOccurrences failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }

@@ -42,7 +42,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func fetchDataAndReloadTableView() {
         LoadingView.showWithMaskType(.Black)
-        dataManager.getAllUserCarpools { (success, errorStr) -> () in
+        dataManager.getAllUserOccurrences { (success, errorStr) -> () in
             LoadingView.dismiss()
             if success {
                 self.generateTableDataAndReload()
