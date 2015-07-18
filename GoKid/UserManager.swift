@@ -95,7 +95,6 @@ class UserManager: NSObject {
         info.phoneNumber = user["phone_number"].stringValue
         info.userID = user["id"].intValue
         info.cellType = .EditUser
-
         
         if let arr = user["recentAddress"].arrayObject as? [String] {
             recentAddress = arr

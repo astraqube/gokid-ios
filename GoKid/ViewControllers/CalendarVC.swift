@@ -20,7 +20,6 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         setupTableView()
         setupTableViewContent()
-        
         if onlyShowOurDrives {
             goKidLogo.hidden = true
             myDrivesLabel.hidden = false
@@ -94,7 +93,6 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             if onlyShowOurDrives && event.volunteer?.id != userManager.info.userID{
                 continue
             }
-            
             if event.occursAtStr != lastDateStr {
                 var dateCell = OccurenceModel()
                 dateCell.cellType = .Time
@@ -176,10 +174,43 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         weak var wModel = model
         cell.onProfileImageViewTapped = { () -> (Void) in
             if wModel == nil { return }
+            var volunteerID = wModel?.volunteer?.id
+            var volunteerable = false;
+            if volunteerID == nil || volunteerID == 0 || volunteerID == self.userManager.info.userID {
+                volunteerable = true
+            }
             var volunteerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
             var volunteerTitle = "Volunteer to \(wModel!.poolType)"
+            var unvolunteer = false
+            if volunteerID == self.userManager.info.userID {
+                volunteerTitle = "Unvolunteer"
+                unvolunteer = true
+            }
             volunteerActionSheet.addAction(UIAlertAction(title: volunteerTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
-                UIAlertView(title: "Program faster!", message: nil, delegate: nil, cancelButtonTitle: "Okay").show()
+                LoadingView.showWithMaskType(.Black)
+                if unvolunteer {
+                    self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
+                        LoadingView.dismiss()
+                        onMainThread() {
+                            if success {
+                                cell.profileImageView.image = nil
+                                self.fetchDataAndReloadTableView()
+                            } else {
+                                self.showAlert("Fail to volunteer", messege: errStr, cancleTitle: "OK")
+                            }}
+                    }
+                } else {
+                    self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
+                        LoadingView.dismiss()
+                        onMainThread() {
+                            if success {
+                                self.imageManager.setImageToView(cell.profileImageView, urlStr: self.userManager.info.thumURL)
+                                self.fetchDataAndReloadTableView()
+                            } else {
+                                self.showAlert("Fail to volunteer", messege: errStr, cancleTitle: "OK")
+                            }}
+                    }
+                }
             }))
             volunteerActionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             self.presentViewController(volunteerActionSheet, animated: true, completion: nil)
