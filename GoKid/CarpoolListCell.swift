@@ -9,5 +9,15 @@
 import UIKit
 
 class CarpoolListCell: UITableViewCell {
-
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    /**
+    The in-order collection of `CallendarUserImageView`
+    
+    Iterate through them. Add data you have. Clear data you don't.
+    
+    Set hidden the ones there are no riders for.
+    */
+    @IBOutlet var pickupImageCollection : [CalendarUserImageView]!
 }

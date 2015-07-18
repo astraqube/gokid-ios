@@ -9,7 +9,5 @@
 import UIKit
 
 class CalendarDateCell: UITableViewCell {
-    
-    @IBOutlet weak var dateLabel: UILabel!
-    
+    @IBOutlet weak var dateLabel: UILabel!    
 }

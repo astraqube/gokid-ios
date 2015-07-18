@@ -198,7 +198,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         case .Time:
             return 39.0
         case .Add:
-            return 130.0
+            return 77.0
         case .Normal:
             return 134.0
         default:

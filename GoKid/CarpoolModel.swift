@@ -19,6 +19,8 @@ class CarpoolModel: NSObject {
     var startLocation: String?
     var endLocation: String?
     
+    var riders = [RiderModel]()
+    
     var kidName = ""
     var name = ""
     var id = 0
@@ -28,11 +30,23 @@ class CarpoolModel: NSObject {
     }
     
     init(json: JSON) {
-        name = json["carpool"]["name"].stringValue
-        id = json["carpool"]["id"].intValue
         super.init()
+        name = json["name"].stringValue
+        id = json["id"].intValue
+        startDate = parseDate(json, key: "startDate")
+        endDate = parseDate(json, key: "endDate")
+        riders = RiderModel.arrayOfRidersWithJSON(json["riders"])
     }
 
+    func parseDate(json: JSON, key: String) -> NSDate? {
+        if let dateStr = json[key].string {
+            if let date = NSDate.dateFromIso8601String(dateStr) {
+                return date
+            }
+        }
+        return nil
+    }
+    
     class func arrayOfCarpoolsFromJSON(json: JSON) -> [CarpoolModel] {
         var arr = [CarpoolModel]()
         for (index: String, subJson: JSON) in json {

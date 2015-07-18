@@ -8,17 +8,69 @@
 
 import UIKit
 
+enum ListSection : Int {
+    case Invites
+    case Carpools
+    case AddNew
+}
+
 class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-    var dataSource = [CarpoolModel]()
+    var carpoolsDataSource = [CarpoolModel]()
+    var invitesDataSource = [AnyObject]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 130
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        fetchDataAndReloadTableView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setStatusBarColorLight()
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3 //invites carpools newCarpool
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        if section == ListSection.Carpools.rawValue {
+            return carpoolsDataSource.count
+        }
+        if section == ListSection.Invites.rawValue {
+            return invitesDataSource.count
+        }
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var model = dataSource[indexPath.row]
+        if indexPath.section == ListSection.AddNew.rawValue {
+            var cell = tableView.cellWithID("CalendarAddCell", indexPath) as! CalendarAddCell
+            return cell
+        }
+        if indexPath.section == ListSection.Carpools.rawValue {
+            var model = carpoolsDataSource[indexPath.row]
+            return configCarpoolCell(indexPath, model)
+        }
+        if indexPath.section == ListSection.Invites.rawValue {
+            var model: AnyObject = invitesDataSource[indexPath.row]
+            var cell = tableView.cellWithID("CarpoolInviteCell", indexPath) as! CarpoolInviteCell
+            return cell
+        }
         return UITableViewCell()
+    }
+    
+    func configCarpoolCell(ip: NSIndexPath, _ model: CarpoolModel) -> CarpoolListCell {
+        var cell = tableView.cellWithID("CarpoolListCell", ip) as! CarpoolListCell
+        cell.timeLabel.text = "\(model.startDate?.dateString()) - \(model.endDate?.dateString())"
+        cell.nameLabel.text = model.name
+        return cell
     }
     
     @IBAction func menuButtonClick(sender: UIButton) {
@@ -29,4 +81,24 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         var vc = vcWithID("BasicInfoVC")
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func fetchDataAndReloadTableView() {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.getCarpools { (success, errorStr) -> () in
+            LoadingView.dismiss()
+            if success {
+                self.generateTableDataAndReload()
+            } else {
+                self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+    
+    func generateTableDataAndReload() {
+        carpoolsDataSource = userManager.carpools
+        onMainThread() {
+            self.tableView.reloadData()
+        }
+    }
+
 }

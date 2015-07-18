@@ -1732,8 +1732,8 @@
                                             <action selector="createButtonClicked:" destination="Bcm-PH-nhX" eventType="touchUpInside" id="9MY-h9-S1b"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccer Practice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Iu-LS-1wZ">
-                                        <rect key="frame" x="93" y="36" width="135" height="21.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Carpool List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Iu-LS-1wZ">
+                                        <rect key="frame" x="95" y="36" width="131" height="21.5"/>
                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
                                         <color key="textColor" red="0.93725490196078431" green="0.96470588235294119" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1851,7 +1851,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.97647058819999999" green="0.99215686270000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CalendarCell" rowHeight="71" id="p17-aW-Yaf" customClass="CarpoolListCell" customModule="GoKid" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CarpoolListCell" rowHeight="71" id="p17-aW-Yaf" customClass="CarpoolListCell" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p17-aW-Yaf" id="hVc-Hx-jDW" userLabel="calendarCellView">
@@ -1893,13 +1893,13 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jenny's Birthday Party" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRr-2B-qV6">
-                                                            <rect key="frame" x="28" y="18" width="152.5" height="18"/>
+                                                            <rect key="frame" x="65" y="18" width="142" height="18"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                                             <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apr 19 - Jan 27, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYi-dY-jJ7">
-                                                            <rect key="frame" x="28" y="38" width="124" height="15.5"/>
+                                                            <rect key="frame" x="65" y="38" width="124" height="15.5"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="13"/>
                                                             <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1928,13 +1928,18 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
+                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="event-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Rip-W3-aBg">
+                                                            <rect key="frame" x="35" y="25" width="17" height="22"/>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstItem="Rip-W3-aBg" firstAttribute="leading" secondItem="wAP-fn-CMt" secondAttribute="leading" constant="35" id="0Vc-s1-NP2"/>
                                                         <constraint firstItem="9pf-EO-h51" firstAttribute="top" secondItem="wAP-fn-CMt" secondAttribute="top" id="4GR-Cs-ItS"/>
                                                         <constraint firstItem="VRr-2B-qV6" firstAttribute="leading" secondItem="YYi-dY-jJ7" secondAttribute="leading" id="60O-r8-Fau"/>
                                                         <constraint firstItem="hQs-Vg-qJY" firstAttribute="leading" secondItem="wAP-fn-CMt" secondAttribute="leading" id="6wg-hf-uhr"/>
                                                         <constraint firstItem="VRr-2B-qV6" firstAttribute="top" secondItem="wAP-fn-CMt" secondAttribute="top" constant="18" id="6xk-hf-Ur0"/>
+                                                        <constraint firstItem="2NM-ok-WA4" firstAttribute="centerY" secondItem="Rip-W3-aBg" secondAttribute="centerY" constant="-0.5" id="7lC-1e-UlX"/>
                                                         <constraint firstItem="Cmc-SA-uya" firstAttribute="centerY" secondItem="8d4-Cm-muY" secondAttribute="centerY" id="8cm-ul-Tsc"/>
                                                         <constraint firstItem="9pf-EO-h51" firstAttribute="leading" secondItem="2NM-ok-WA4" secondAttribute="trailing" id="JxB-F0-EUq"/>
                                                         <constraint firstItem="2NM-ok-WA4" firstAttribute="top" secondItem="wAP-fn-CMt" secondAttribute="top" id="Mpd-qh-jlS"/>
@@ -1949,7 +1954,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="hQs-Vg-qJY" secondAttribute="bottom" id="tsk-Z5-zjW"/>
                                                         <constraint firstAttribute="trailing" secondItem="9pf-EO-h51" secondAttribute="trailing" id="ubo-56-NaC"/>
                                                         <constraint firstItem="YYi-dY-jJ7" firstAttribute="top" secondItem="VRr-2B-qV6" secondAttribute="bottom" constant="2" id="v7Y-nR-v5O"/>
-                                                        <constraint firstItem="VRr-2B-qV6" firstAttribute="leading" secondItem="wAP-fn-CMt" secondAttribute="leading" constant="28" id="ytA-47-9uu"/>
+                                                        <constraint firstItem="VRr-2B-qV6" firstAttribute="leading" secondItem="wAP-fn-CMt" secondAttribute="leading" constant="65" id="ytA-47-9uu"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1961,10 +1966,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="iconImageView" destination="Rip-W3-aBg" id="0og-VH-wCo"/>
                                             <outlet property="nameLabel" destination="VRr-2B-qV6" id="pFE-OL-YSv"/>
                                             <outlet property="timeLabel" destination="YYi-dY-jJ7" id="Mxa-Vs-YZu"/>
-                                            <outletCollection property="pickupImageCollection" destination="8d4-Cm-muY" collectionClass="NSMutableArray" id="fST-4a-Yg1"/>
                                             <outletCollection property="pickupImageCollection" destination="Cmc-SA-uya" collectionClass="NSMutableArray" id="Qvh-bA-Gjw"/>
+                                            <outletCollection property="pickupImageCollection" destination="8d4-Cm-muY" collectionClass="NSMutableArray" id="mZk-R7-7l6"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CalendarAddCell" rowHeight="77" id="MI3-xe-gY4" customClass="CalendarAddCell" customModule="GoKid" customModuleProvider="target">
@@ -2054,6 +2060,7 @@
         <image name="carpoolInviteCellBG" width="1" height="91"/>
         <image name="checkCirc" width="51" height="52"/>
         <image name="emma" width="220" height="233"/>
+        <image name="event-icon" width="17" height="22"/>
         <image name="gear" width="27" height="27"/>
         <image name="gearSelected" width="27" height="27"/>
         <image name="goKidLogo" width="91" height="48"/>
