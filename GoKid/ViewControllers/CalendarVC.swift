@@ -13,11 +13,18 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var dataSource = [OccurenceModel]()
     var onlyShowOurDrives = false //set true before viewDidLoad to only see our drives
+    @IBOutlet weak var myDrivesLabel: UILabel!
+    @IBOutlet weak var goKidLogo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupTableViewContent()
+        
+        if onlyShowOurDrives {
+            goKidLogo.hidden = true
+            myDrivesLabel.hidden = false
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
