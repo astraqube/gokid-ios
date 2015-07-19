@@ -38,13 +38,13 @@ extension LocationVC {
         eventLocationLabel.sizeToFit()
         
         destLabel = UILabel(frame: CGRectZero)
-        destLabel.text = "Destination"
+        destLabel.text = "Dropoff"
         destLabel.font = textFont
         destLabel.textColor = textColor
         destLabel.sizeToFit()
         
         startLabel = UILabel(frame: CGRectMake(0, 0, 100, 30))
-        startLabel.text = "Origin&\nDestination"
+        startLabel.text = "Pickup&\nDropoff"
         startLabel.font = textFont
         startLabel.textColor = textColor
         startLabel.numberOfLines = 0
@@ -124,7 +124,7 @@ extension LocationVC {
     }
     
     func layoutSubviewSame() {
-        startLabel.text = "Origin&\nDestination"
+        startLabel.text = "Pickup&\nDropoff"
         startLabel.frame = CGRectMake(0, 0, 100, 30)
         startLabel.sizeToFit()
         
@@ -141,7 +141,7 @@ extension LocationVC {
     }
     
     func layoutSubviewNotSame() {
-        startLabel.text = "Origin"
+        startLabel.text = "Pickup"
         startLabel.frame = CGRectMake(0, 0, 100, 30)
         startLabel.sizeToFit()
         

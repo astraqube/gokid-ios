@@ -211,6 +211,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
                 sections = [Person]()
             }
             sections.append(person)
+            last = person.firstName.firstCharacter()
         }
         tableDataSource.append(sections)
         

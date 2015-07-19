@@ -45,7 +45,7 @@ class DataManager: NSObject {
     }
     
     
-    let __debug__ = false
+    let __debug__ = true
     func constructErrorString(op: AFHTTPRequestOperation?, error: NSError?) -> String {
         if __debug__ {
             return constructDebugErrorStr(op, error)

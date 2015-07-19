@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -42,7 +42,7 @@
                                 <color key="textColor" red="0.92156862745098034" green="0.96470588235294119" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktj-zb-crK" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktj-zb-crK" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
                                 <rect key="frame" x="264" y="28" width="48" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="5bD-rZ-P6X"/>
@@ -75,7 +75,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNR-dq-O9j">
-                                <rect key="frame" x="89" y="42" width="143" height="16"/>
+                                <rect key="frame" x="67" y="42" width="187" height="16"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.92156862745098034" green="0.96470588235294119" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -145,8 +145,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="169" height="207"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add other drivers in you carpool team" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nam-aF-sTI">
-                                                    <rect key="frame" x="11" y="112" width="146" height="70"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="add additional team member" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nam-aF-sTI">
+                                                    <rect key="frame" x="10.5" y="112" width="146" height="70"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="146" id="s7I-VH-9wk"/>
                                                         <constraint firstAttribute="height" constant="70" id="skn-vf-Ib3"/>
@@ -192,8 +192,10 @@
                             <constraint firstAttribute="trailing" secondItem="pni-Yp-6SL" secondAttribute="trailing" id="O4M-uV-3CP"/>
                             <constraint firstItem="jNR-dq-O9j" firstAttribute="centerX" secondItem="xjo-2X-haN" secondAttribute="centerX" constant="-4.75" id="Pfa-Py-9KM"/>
                             <constraint firstItem="U3F-Te-6XF" firstAttribute="top" secondItem="a9u-Ic-iLU" secondAttribute="bottom" constant="11" id="Vaw-bC-hFH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jNR-dq-O9j" secondAttribute="trailing" constant="50" id="ccf-44-Qhe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ktj-zb-crK" secondAttribute="trailing" constant="-8" id="drW-eN-hmu"/>
                             <constraint firstItem="xjo-2X-haN" firstAttribute="top" secondItem="a9u-Ic-iLU" secondAttribute="bottom" id="i9Z-dD-awV"/>
+                            <constraint firstItem="jNR-dq-O9j" firstAttribute="leading" secondItem="XvH-bL-7J0" secondAttribute="leadingMargin" constant="51" id="jyF-7r-FAN"/>
                             <constraint firstAttribute="centerX" secondItem="jNR-dq-O9j" secondAttribute="centerX" constant="-0.5" id="sTe-PK-iRm"/>
                             <constraint firstItem="pni-Yp-6SL" firstAttribute="top" secondItem="a9u-Ic-iLU" secondAttribute="bottom" constant="48" id="t7a-dd-ORT"/>
                             <constraint firstItem="jNR-dq-O9j" firstAttribute="top" secondItem="xjo-2X-haN" secondAttribute="bottom" id="uAD-0Q-ITV"/>
