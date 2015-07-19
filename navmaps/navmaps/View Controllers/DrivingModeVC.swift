@@ -33,9 +33,11 @@ class DrivingModeVC: UIViewController {
                     self.mapDataSource.updateRoutes()
                     self.mapDataSource.updateMapTrack()
                 }))
-                stopActionSheet.addAction(UIAlertAction(title: "Send Message", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction!) -> Void in
-                    UIApplication.sharedApplication().openURL(NSURL(string: "sms:\(stop.phoneNumber)")!)
-                }))
+                if stop.phoneNumber != nil {
+                    stopActionSheet.addAction(UIAlertAction(title: "Send Message", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction!) -> Void in
+                        UIApplication.sharedApplication().openURL(NSURL(string: "sms:\(stop.phoneNumber)")!)
+                    }))
+                }
                 stopActionSheet.addAction(UIAlertAction(title: "Navigate in Maps", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction!) -> Void in
                     var mapItem = MKMapItem(placemark: MKPlacemark(coordinate: stop.coordinate, addressDictionary: nil))
                     mapItem.name = stop.name as String

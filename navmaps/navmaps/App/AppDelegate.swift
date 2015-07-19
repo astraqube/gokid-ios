@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         
         var dropoffs = [
-            Stop(coordinate: CLLocationCoordinate2DMake(37.783333, -122.416667), name: "Soccer Club", address: "4 Soccer Way 92118", phoneNumber: "18002831637", stopID: "10", thumbnailImage: nil)
+            Stop(coordinate: CLLocationCoordinate2DMake(37.783333, -122.416667), name: "Soccer Club", address: "4 Soccer Way 92118", phoneNumber: nil, stopID: "10", thumbnailImage: nil)
         ]
         navigation.setup(pickups, dropoffs:dropoffs);
         vc.navigation = navigation

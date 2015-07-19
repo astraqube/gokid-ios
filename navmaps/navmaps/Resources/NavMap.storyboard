@@ -204,6 +204,9 @@
                                                                 <state key="normal" image="envelope">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="sendMessageTapped:" destination="NC8-s1-hOT" eventType="touchUpInside" id="paa-WF-k6I"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="776-kO-lLL">
                                                                 <rect key="frame" x="0.0" y="25" width="63" height="18"/>

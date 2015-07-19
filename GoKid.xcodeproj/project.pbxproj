@@ -116,6 +116,7 @@
 		793374D01B558D820072FA13 /* RiderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374CF1B558D820072FA13 /* RiderModel.swift */; };
 		793374D41B558FB50072FA13 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374D31B558FB50072FA13 /* Location.swift */; };
 		793374D81B55CEFA0072FA13 /* CarpoolListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374D71B55CEFA0072FA13 /* CarpoolListVC.swift */; };
+		794121E81B5B64F80012732A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794121E71B5B64F80012732A /* MessageUI.framework */; };
 		7943CF451B55DC1D007F6F8A /* CarpoolInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943CF441B55DC1D007F6F8A /* CarpoolInviteCell.swift */; };
 		7943CF471B55DC2E007F6F8A /* CarpoolListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943CF461B55DC2E007F6F8A /* CarpoolListCell.swift */; };
 		796E699E1B4A6E0C00DF8D43 /* Fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */; };
@@ -266,6 +267,7 @@
 		793374CF1B558D820072FA13 /* RiderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderModel.swift; sourceTree = "<group>"; };
 		793374D31B558FB50072FA13 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		793374D71B55CEFA0072FA13 /* CarpoolListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolListVC.swift; sourceTree = "<group>"; };
+		794121E71B5B64F80012732A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7943CF441B55DC1D007F6F8A /* CarpoolInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolInviteCell.swift; sourceTree = "<group>"; };
 		7943CF461B55DC2E007F6F8A /* CarpoolListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolListCell.swift; sourceTree = "<group>"; };
 		796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontawesome.ttf; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				794121E81B5B64F80012732A /* MessageUI.framework in Frameworks */,
 				796E69CA1B4A6F1200DF8D43 /* CoreLocation.framework in Frameworks */,
 				796E69C81B4A6F0B00DF8D43 /* MapKit.framework in Frameworks */,
 				ECE57027C4889A619FFDC703 /* libPods.a in Frameworks */,
@@ -729,6 +732,7 @@
 		68926BFAEF467AB3FED52BD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				794121E71B5B64F80012732A /* MessageUI.framework */,
 				1D533D1B1B29533600F848B8 /* Fabric.framework */,
 				1D533D1C1B29533600F848B8 /* Crashlytics.framework */,
 				796E69C91B4A6F1200DF8D43 /* CoreLocation.framework */,

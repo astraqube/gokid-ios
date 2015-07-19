@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import MessageUI
 
 class DetailMapVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
@@ -144,5 +145,22 @@ class DetailMapVC: UIViewController {
         } else if sender.state == .Ended {
             trayShown = velocityY > 0
         }
+    }
+    
+    @IBAction func sendMessageTapped(sender: AnyObject) {
+        if !MFMessageComposeViewController.canSendText() {
+            return UIAlertView(title: "Whoops!", message: "Your device doesn't support messages!", delegate: nil, cancelButtonTitle: "OK").show()
+        }
+        
+        var messageVC = MFMessageComposeViewController()
+        var stops = self.navigation.pickups + self.navigation.dropoffs
+        var recipeints = [NSString]()
+        for stop in stops {
+            if stop.phoneNumber != nil {
+                recipeints.append(stop.phoneNumber!)
+            }
+        }
+        messageVC.recipients = recipeints
+        presentViewController(messageVC, animated: true, completion: nil)
     }
 }
