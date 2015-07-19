@@ -21,7 +21,8 @@ extension DataManager {
         println(map)
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            var carpool = CarpoolModel(json: JSON(obj))
+            var json = JSON(obj)["carpool"]
+            var carpool = CarpoolModel(json: json)
             self.userManager.currentCarpoolModel.id = carpool.id
             println("create carpool success")
             comp(true, "")
