@@ -25,7 +25,7 @@ struct MapMetadata {
     var type : OccurenceType
 }
 
-class DetailMapVC: UIViewController {
+class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var trayOffsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomTrayNavView: UIView!
@@ -185,8 +185,8 @@ class DetailMapVC: UIViewController {
         if !MFMessageComposeViewController.canSendText() {
             return UIAlertView(title: "Whoops!", message: "Your device doesn't support messages!", delegate: nil, cancelButtonTitle: "OK").show()
         }
-        
         var messageVC = MFMessageComposeViewController()
+        messageVC.messageComposeDelegate = self
         var stops = self.navigation.pickups + self.navigation.dropoffs
         var recipeints = [NSString]()
         for stop in stops {
@@ -196,5 +196,9 @@ class DetailMapVC: UIViewController {
         }
         messageVC.recipients = recipeints
         presentViewController(messageVC, animated: true, completion: nil)
+    }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult){
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
