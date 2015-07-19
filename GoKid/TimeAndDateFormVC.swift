@@ -177,6 +177,19 @@ class TimeAndDateFormVC: BaseFormVC {
         self.toggleRightNavButtonState()
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+
+        var formRow = self.form.formRowAtIndex(indexPath)
+
+        if contains([XLFormRowDescriptorTypeDate, XLFormRowDescriptorTypeTime], formRow.rowType) {
+            if formRow.value == nil {
+                formRow.value = NSDate()
+                self.updateFormRow(formRow)
+            }
+        }
+    }
+
     override func rightNavButtonTapped() {
         let validationErrors: Array<NSError> = self.formValidationErrors() as! Array<NSError>
 
