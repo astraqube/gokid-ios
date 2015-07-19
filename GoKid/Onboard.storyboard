@@ -72,8 +72,8 @@
                                     <constraint firstAttribute="height" constant="1" id="O2X-3Q-nxE"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Got invited to join the carpool?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWN-BN-Wvv">
-                                <rect key="frame" x="34" y="319" width="253" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Got invited to join a carpool?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWN-BN-Wvv">
+                                <rect key="frame" x="43" y="319" width="235" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="yaL-ex-MCO"/>
                                 </constraints>
