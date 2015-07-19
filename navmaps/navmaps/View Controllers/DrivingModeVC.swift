@@ -11,6 +11,7 @@ import MapKit
 
 class DrivingModeVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var directionsLabel: UILabel!
     var mapDataSource : MapViewDatasource!
     var navigation : Navigation!
     
@@ -19,6 +20,14 @@ class DrivingModeVC: UIViewController {
         mapDataSource = MapViewDatasource(type: .Driving, navigation: navigation, mapView: mapView)
         mapView.delegate = mapDataSource
         mapDataSource.setup()
+        
+        navigation.onDirectionUpdate = { (error: NSError?, nextDirection : NSString) -> (Void) in
+            if error != nil {
+                UIAlertView(title: "Navigation Error!", message: "You can resume where you left off", delegate: nil, cancelButtonTitle: "Okay").show()
+                return self.exitPressed(self)
+            }
+            self.directionsLabel.text = nextDirection as String
+        }
 
         mapDataSource.onAnnotationSelect = { (annotationView: MKAnnotationView) -> Void in
             if let stop = annotationView.annotation as? Stop {
@@ -32,6 +41,7 @@ class DrivingModeVC: UIViewController {
                     self.navigation.updateForStopped()
                     self.mapDataSource.updateRoutes()
                     self.mapDataSource.updateMapTrack()
+                    self.checkIfDone()
                 }))
                 if stop.phoneNumber != nil {
                     stopActionSheet.addAction(UIAlertAction(title: "Send Message", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction!) -> Void in
@@ -49,8 +59,18 @@ class DrivingModeVC: UIViewController {
         }
     }
 
+    func checkIfDone() {
+        if navigation.currentStop == nil {
+            var alert = UIAlertController(title: "Completed!", message: "Nice work, route complete!", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .Default , handler: { (action: UIAlertAction!) -> Void in
+                self.exitPressed(self)
+            }))
+            presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func changeTrackModeRecognized(sender: UIGestureRecognizer) {
-            mapDataSource.toggleTrackMode()
+        mapDataSource.toggleTrackMode()
     }
     
     @IBAction func exitPressed(sender: AnyObject) {

@@ -20,7 +20,7 @@ typealias ETACallback = ((error: NSError, minutes: Double) -> (Void))
 :param: error an error called if Navigation can not update the next direction. After an error there will be no subsequent invocation of this callback.
 :param: nextDirection a localized String with the next direction the user should take
 */
-typealias DirectionCallback = ((error: NSError, nextDirection : NSString))
+typealias DirectionCallback = ((error: NSError?, nextDirection : NSString) -> (Void))
 
 /**
 :param: error an error called if Navigation can not update the ETA. After an error there will be no subsequent invocation of this callback.

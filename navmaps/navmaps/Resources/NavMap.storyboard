@@ -1389,6 +1389,7 @@ toward West St.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="directionsLabel" destination="8iM-w7-JXo" id="VBf-9w-LNJ"/>
                         <outlet property="mapView" destination="Pdy-RL-n1v" id="Nq9-HB-Mif"/>
                     </connections>
                 </viewController>
