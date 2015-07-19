@@ -1,5 +1,5 @@
 To integrate navMaps
-1) Include MapKit.framework, and CoreLocation.framework into your project
+1) Include MessageUI.framework, MapKit.framework, and CoreLocation.framework into your project
 2) Copy the Resources/Fonts folder to your project
 3) Copy the navmaps/Resources NavMap.storyboard into your project
 4) Open the project, and navigate to the Images.xcassets folder- option-DRAG the "map" asset subfolder to your project's assets folder
@@ -8,6 +8,9 @@ To integrate navMaps
 6) Copy navMaps' info plist key/value pair for UIAppFonts to your info.plist
 
 Changelog
+July 18
+Added message support
+Integrated Itinerary with data
 July 9
 Added send messaage stub
 Now say dropoff for dropoffs

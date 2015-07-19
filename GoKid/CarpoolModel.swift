@@ -54,7 +54,6 @@ class CarpoolModel: NSObject {
             arr.append(carpool)
         }
         return arr
-        
     }
     
     func toSchedule() -> NSDictionary {

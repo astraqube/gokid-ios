@@ -11,6 +11,7 @@ import UIKit
 @IBDesignable
 class CalendarUserImageView: UIView {
     lazy var imageView = UIImageView()
+    ///Set this guy to display the image
     @IBInspectable var image : UIImage? {
         didSet{
             imageView.image = self.image
@@ -18,6 +19,7 @@ class CalendarUserImageView: UIView {
         }
     }
     lazy var nameLabel = UILabel()
+    ///Set this guy to have letters made when no image
     @IBInspectable var nameString : NSString = "?" {
         didSet{
             var abbreviation : String?
@@ -54,7 +56,6 @@ class CalendarUserImageView: UIView {
         didSet {
             layer.cornerRadius = cornerRadius
             layer.masksToBounds = cornerRadius > 0
-            
             if cornerRadius > 0 {
                 imageView.layer.cornerRadius = cornerRadius + 1.0
                 imageView.layer.masksToBounds = true
