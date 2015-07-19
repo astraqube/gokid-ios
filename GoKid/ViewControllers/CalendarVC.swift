@@ -264,7 +264,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                         // right now we only have one stop for each
                         // pick-up/drop-off we will add more later
                         // Stop(occurrence: model)
-                        Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1833), name: "Menlo's House", address: "123 Fake St 91210", phoneNumber: "18002831337", stopID: "1", thumbnailImage: UIImage(named: "test_userImage")),
+                        Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1833), name: "Menlo's House", address: "123 Fake St 91210", phoneNumber: "18002831337", stopID: "1", thumbnailImage: UIImage(named: "emma")),
                         Stop(coordinate: CLLocationCoordinate2DMake(37.4598, -122.1893), name: "Kid's House", address: "4821 Fake Ln 91210", phoneNumber: "18002831437", stopID: "2", thumbnailImage: nil),
                         Stop(coordinate: CLLocationCoordinate2DMake(37.4608, -122.2093), name: "Another Kid's House", address: "8912 Big Fake Ave 91211", phoneNumber: "18002831537", stopID: "3", thumbnailImage: nil)
                     ]
@@ -276,6 +276,8 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                     
                     var vc = vcWithID("DetailMapVC") as! DetailMapVC
                     vc.navigation = navigation
+                    var canNavigate =  model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID
+                    vc.metadata = MapMetadata(name: model.poolname, thumbnailImage: UIImage(named: "emma"), dateString: model.occursAt!.dateString(), shortDateString: model.occursAt!.shortDateString(), canNavigate: canNavigate, id: model.occurenceID, type: (model.poolType == "dropoff") ? .Dropoff : .Pickup )
                     self.navigationController?.pushViewController(vc, animated: true)
                     self.setStatusBarColorDark() //dude, this is lame, try func preferredStatusBarStyle
                 } else {

@@ -10,20 +10,38 @@ import UIKit
 import MapKit
 import MessageUI
 
-class DetailMapVC: UIViewController {
+enum OccurenceType {
+    case Pickup
+    case Dropoff
+}
+
+struct MapMetadata {
+    var name : String
+    var thumbnailImage : UIImage?
+    var dateString : String
+    var shortDateString : String
+    var canNavigate : Bool
+    var id : Int?
+    var type : OccurenceType
+}
+
+class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var trayOffsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomTrayNavView: UIView!
     @IBOutlet weak var bottomTrayView: UIView!
     @IBOutlet weak var bottomTrayAngleUp: UIImageView!
+    @IBOutlet weak var navigateButton: UIButton!
     
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var tripThumbnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var shortDateLabel: UILabel!
     @IBOutlet weak var pickupIcon: UILabel!
     @IBOutlet weak var dropoffIcon: UILabel!
+    ///Use this to set extra data about the trip!
+    var metadata : MapMetadata!
     
     @IBOutlet var riderImageViews : [CalendarUserImageView]!
     @IBOutlet var riderLabelViews : [UILabel]!
@@ -104,6 +122,22 @@ class DetailMapVC: UIViewController {
             }
         }
         itineraryScrollView.layoutIfNeeded()
+        
+        if metadata != nil {
+            self.nameLabel.text = metadata.name
+            self.dateLabel.text = metadata.dateString
+            self.shortDateLabel.text = metadata.shortDateString
+            switch metadata.type {
+            case .Pickup:
+                self.pickupIcon.hidden = false
+                self.dropoffIcon.hidden = true
+            case .Dropoff:
+                self.pickupIcon.hidden = true
+                self.dropoffIcon.hidden = false
+            }
+            self.navigateButton.hidden = !metadata.canNavigate
+            self.tripThumbnailImageView.image = metadata.thumbnailImage
+        }
     }
     
     func setupUserImageView (userImageView : CalendarUserImageView, model: Stop) {
@@ -151,8 +185,8 @@ class DetailMapVC: UIViewController {
         if !MFMessageComposeViewController.canSendText() {
             return UIAlertView(title: "Whoops!", message: "Your device doesn't support messages!", delegate: nil, cancelButtonTitle: "OK").show()
         }
-        
         var messageVC = MFMessageComposeViewController()
+        messageVC.messageComposeDelegate = self
         var stops = self.navigation.pickups + self.navigation.dropoffs
         var recipeints = [NSString]()
         for stop in stops {
@@ -162,5 +196,9 @@ class DetailMapVC: UIViewController {
         }
         messageVC.recipients = recipeints
         presentViewController(messageVC, animated: true, completion: nil)
+    }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult){
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
