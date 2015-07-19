@@ -10,12 +10,27 @@ import UIKit
 import MapKit
 import MessageUI
 
+enum OccurenceType {
+    case Pickup
+    case Dropoff
+}
+
+struct MapMetadata {
+    var name : String
+    var dateString : String
+    var shortDateString : String
+    var canNavigate : Bool
+    var id : Int?
+    var type : OccurenceType
+}
+
 class DetailMapVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var trayOffsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomTrayNavView: UIView!
     @IBOutlet weak var bottomTrayView: UIView!
     @IBOutlet weak var bottomTrayAngleUp: UIImageView!
+    @IBOutlet weak var navigateButton: UIButton!
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -24,6 +39,8 @@ class DetailMapVC: UIViewController {
     @IBOutlet weak var shortDateLabel: UILabel!
     @IBOutlet weak var pickupIcon: UILabel!
     @IBOutlet weak var dropoffIcon: UILabel!
+    ///Use this to set extra data about the trip!
+    var metadata : MapMetadata!
     
     @IBOutlet var riderImageViews : [CalendarUserImageView]!
     @IBOutlet var riderLabelViews : [UILabel]!
@@ -104,6 +121,21 @@ class DetailMapVC: UIViewController {
             }
         }
         itineraryScrollView.layoutIfNeeded()
+        
+        if metadata != nil {
+            self.nameLabel.text = metadata.name
+            self.dateLabel.text = metadata.dateString
+            self.shortDateLabel.text = metadata.shortDateString
+            switch metadata.type {
+            case .Pickup:
+                self.pickupIcon.hidden = false
+                self.dropoffIcon.hidden = true
+            case .Dropoff:
+                self.pickupIcon.hidden = true
+                self.dropoffIcon.hidden = false
+            }
+            self.navigateButton.hidden = !metadata.canNavigate
+        }
     }
     
     func setupUserImageView (userImageView : CalendarUserImageView, model: Stop) {

@@ -276,6 +276,8 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                     
                     var vc = vcWithID("DetailMapVC") as! DetailMapVC
                     vc.navigation = navigation
+                    var canNavigate =  model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID
+                    vc.metadata = MapMetadata(name: model.poolname, dateString: model.occursAt!.dateString(), shortDateString: model.occursAt!.shortDateString(), canNavigate: canNavigate, id: model.occurenceID, type: (model.poolType == "dropoff") ? .Dropoff : .Pickup )
                     self.navigationController?.pushViewController(vc, animated: true)
                     self.setStatusBarColorDark() //dude, this is lame, try func preferredStatusBarStyle
                 } else {
