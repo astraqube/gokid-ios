@@ -17,6 +17,7 @@ enum OccurenceType {
 
 struct MapMetadata {
     var name : String
+    var thumbnailImage : UIImage?
     var dateString : String
     var shortDateString : String
     var canNavigate : Bool
@@ -32,7 +33,7 @@ class DetailMapVC: UIViewController {
     @IBOutlet weak var bottomTrayAngleUp: UIImageView!
     @IBOutlet weak var navigateButton: UIButton!
     
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var tripThumbnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -135,6 +136,7 @@ class DetailMapVC: UIViewController {
                 self.dropoffIcon.hidden = false
             }
             self.navigateButton.hidden = !metadata.canNavigate
+            self.tripThumbnailImageView.image = metadata.thumbnailImage
         }
     }
     
