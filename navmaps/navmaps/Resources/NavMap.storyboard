@@ -1321,7 +1321,7 @@ Greenwich, CT.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dw8-hl-sDJ" userLabel="header">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="8iM-w7-JXo">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="8iM-w7-JXo">
                                                 <rect key="frame" x="24" y="15" width="510" height="53"/>
                                                 <string key="text">Loading…
 Stay on your St.</string>
