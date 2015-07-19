@@ -1323,8 +1323,8 @@ Greenwich, CT.</string>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="8iM-w7-JXo">
                                                 <rect key="frame" x="24" y="15" width="510" height="53"/>
-                                                <string key="text">Head west on Jane St.
-toward West St.</string>
+                                                <string key="text">Loading…
+Stay on your St.</string>
                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="69"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>

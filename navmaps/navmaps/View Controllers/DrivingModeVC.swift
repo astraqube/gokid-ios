@@ -21,12 +21,12 @@ class DrivingModeVC: UIViewController {
         mapView.delegate = mapDataSource
         mapDataSource.setup()
         
-        navigation.onDirectionUpdate = { (error: NSError?, nextDirection : NSString) -> (Void) in
+        navigation.startUpdatingDirectionsWithCallback { (error: NSError?, nextDirection : NSString?) -> (Void) in
             if error != nil {
                 UIAlertView(title: "Navigation Error!", message: "You can resume where you left off", delegate: nil, cancelButtonTitle: "Okay").show()
                 return self.exitPressed(self)
             }
-            self.directionsLabel.text = nextDirection as String
+            self.directionsLabel.text = nextDirection as String?
         }
 
         mapDataSource.onAnnotationSelect = { (annotationView: MKAnnotationView) -> Void in
@@ -67,6 +67,11 @@ class DrivingModeVC: UIViewController {
             }))
             presentViewController(alert, animated: true, completion: nil)
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigation.stopUpdatingDirections()
     }
     
     @IBAction func changeTrackModeRecognized(sender: UIGestureRecognizer) {

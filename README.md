@@ -6,6 +6,8 @@
 3. Open in XCode, build, and run
 
 ## Changelog
+AHL July 18:
+Navigation works
 AHL July 9:
 Now you can tap on profile image on calendarview to open action, and pickup/dropoff icons work as expected
 built those fun CalendarUserImageViews with backup text etc

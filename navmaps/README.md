@@ -9,8 +9,9 @@ To integrate navMaps
 
 Changelog
 July 18
+Navigation works
 Added message support
-Integrated Itinerary with data
+Integrated Itinerary/MapDetail with data
 July 9
 Added send messaage stub
 Now say dropoff for dropoffs

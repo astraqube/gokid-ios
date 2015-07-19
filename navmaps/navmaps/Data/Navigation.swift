@@ -20,7 +20,7 @@ typealias ETACallback = ((error: NSError, minutes: Double) -> (Void))
 :param: error an error called if Navigation can not update the next direction. After an error there will be no subsequent invocation of this callback.
 :param: nextDirection a localized String with the next direction the user should take
 */
-typealias DirectionCallback = ((error: NSError?, nextDirection : NSString) -> (Void))
+typealias DirectionCallback = ((error: NSError?, nextDirection : NSString?) -> (Void))
 
 /**
 :param: error an error called if Navigation can not update the ETA. After an error there will be no subsequent invocation of this callback.
@@ -71,7 +71,6 @@ class Navigation : NSObject, CLLocationManagerDelegate {
             self.dropoffs.append(lastStop)
         }
     }
-
     func sortStops(inout stops: [Stop], beginningAt : Stop?) {
         let firstCoord = beginningAt?.coordinate
         let firstLocation = CLLocation(latitude: firstCoord!.latitude, longitude: firstCoord!.longitude)
@@ -94,7 +93,16 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         }
     }
 
-    var locationManager : CLLocationManager!
+    var analyzeRouteTimer : NSTimer?
+    var currentRoute : MKRoute?
+    var currentRouteStepIndex : Int = -1
+    var lastLocation : CLLocation?
+    lazy var locationManager : CLLocationManager! = {
+        var mngr = CLLocationManager()
+        mngr.delegate = self
+        mngr.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        return mngr
+    }()
     var pickupToDropoffResponse : MKDirectionsResponse?
     var locationToCurrentStopResponse : MKDirectionsResponse?
 
@@ -162,9 +170,75 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     }
     
     func startUpdatingDirectionsWithCallback(callback : DirectionCallback) {
+        if analyzeRouteTimer != nil {
+            stopUpdatingDirections()
+        }
         onDirectionUpdate = callback
+        analyzeRouteTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "analyzeRoute", userInfo: nil, repeats: true)
+        locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
+        
+        var error : NSString?
+        if let stop = currentStop {
+            if let directionsResponse = locationToCurrentStopResponse {
+                if let route = directionsResponse.routes.first as? MKRoute? {
+                    currentRoute = route
+                    currentRouteStepIndex = -1
+                } else { error = "No route to current stop" }
+            } else { error = "never sought directions to each stop" }
+
+        } else { error = "no current step" }
+        if error != nil {
+            UIAlertView(title: "Navigation Error", message: error! as String, delegate: nil, cancelButtonTitle: "Okay").show()
+            stopUpdatingDirections()
+        }
     }
 
+    func analyzeRoute() {
+        //Navigation next step: currentStep until closer to nextStep.firstPoint than currentStep.lastPoint
+        //Navigation off-route: if closest distance from currentStep.path.allPoints > 300 ft, recalculate
+        var currentRouteStep = (currentRoute?.steps.count > currentRouteStepIndex && currentRouteStepIndex >= 0 ? currentRoute?.steps[currentRouteStepIndex] : nil) as! MKRouteStep?
+        var nextRouteStep = (currentRoute?.steps.count > currentRouteStepIndex + 1 ? currentRoute?.steps[currentRouteStepIndex + 1] : nil) as! MKRouteStep?
+        var readyForNextStep = false
+        if nextRouteStep != nil && currentRouteStep == nil {
+            readyForNextStep = true
+        } else if nextRouteStep != nil && currentRouteStep != nil {
+            var currentLastCoordinate = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(1)
+            var nextFirstCoordinate = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(1)
+            var currentPointCount = currentRouteStep!.polyline.pointCount
+            currentRouteStep?.polyline.getCoordinates(currentLastCoordinate, range: NSMakeRange(currentPointCount - 2, 1))
+            nextRouteStep?.polyline.getCoordinates(nextFirstCoordinate, range: NSMakeRange(0, 1))
+            
+            var currentDistance = lastLocation?.distanceFromLocation(CLLocation(latitude: currentLastCoordinate[0].latitude, longitude: currentLastCoordinate[0].longitude))
+            var nextDistance = lastLocation?.distanceFromLocation(CLLocation(latitude: nextFirstCoordinate[0].latitude, longitude: nextFirstCoordinate[0].longitude))
+            
+            if nextDistance < currentDistance {
+                readyForNextStep = true
+            }
+            
+            currentLastCoordinate.dealloc(1)
+            nextFirstCoordinate.dealloc(1)
+        }
+        
+        
+        //if closer to last point of next step
+        if readyForNextStep {
+            var newStep = nextRouteStep
+            currentRouteStepIndex++
+            onDirectionUpdate!(error: nil, nextDirection : nextRouteStep?.instructions)
+        }
+    }
+    
+    func stopUpdatingDirections() {
+        if analyzeRouteTimer != nil {
+            analyzeRouteTimer?.invalidate()
+        }
+        analyzeRouteTimer = nil
+        onDirectionUpdate = nil
+        locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingHeading()
+    }
+    
     func startUpdatingLocationWithCallback(callback : LocationCallback) {
         onLocationUpdate = callback
     }
@@ -204,10 +278,6 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         if locationToCurrentStopResponse != nil {
             return callback(locationToCurrentStopResponse, nil)
         }
-        if locationManager == nil {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-        }
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
             locationManager.requestWhenInUseAuthorization()
         } else {
@@ -226,5 +296,9 @@ class Navigation : NSObject, CLLocationManagerDelegate {
             self.locationToCurrentStopResponse = response
             self.onLocationToCurrentStopRouteDetermined!(response, error);
         })
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        lastLocation = locations.first as? CLLocation
     }
 }
