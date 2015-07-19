@@ -192,7 +192,7 @@ extension NSDate {
     class func dateFromIso8601String(str: String) -> NSDate? {
         var df = NSDateFormatter()
         var enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZZZZZ"
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         df.locale = enUSPosixLocale
         if let date = df.dateFromString(str) {
             return date
