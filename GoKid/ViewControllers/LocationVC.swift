@@ -166,18 +166,18 @@ class LocationVC: BaseVC {
     }
     
     func syncLocalEventsWithSever() {
-        LoadingView.showWithMaskType(.Black)
-        dataManager.updateOccurencesLocation(dataSource) { success, errStr in
-            onMainThread() {
-                LoadingView.dismiss()
-                if success {
+//        LoadingView.showWithMaskType(.Black)
+//        dataManager.updateOccurencesLocation(dataSource) { success, errStr in
+//            onMainThread() {
+//                LoadingView.dismiss()
+//                if success {
                     var vc = vcWithID("VolunteerVC")
                     self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    self.showAlert("Fail to update location", messege: errStr, cancleTitle: "OK")
-                }
-            }
-        }
+//                } else {
+//                    self.showAlert("Fail to update location", messege: errStr, cancleTitle: "OK")
+//                }
+//            }
+//        }
     }
     
     func updateEventViewOnMainThread() {

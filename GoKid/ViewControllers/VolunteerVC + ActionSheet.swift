@@ -80,6 +80,7 @@ extension VolunteerVC {
                 if success {
                     self.imageManager.setImageToView(cell.driverImageView, urlStr: self.userManager.info.thumURL)
                     model.taken = !model.taken
+                    model.poolDriverImageUrl = self.userManager.info.thumURL
                 } else {
                     self.showAlert("Fail to volunteer", messege: errStr, cancleTitle: "OK")
                 }}

@@ -20,13 +20,33 @@ class BaseVC: UIViewController {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     
+    var largeLeftButton: UIButton?
+    var largeRightButton: UIButton?
+    
     var keyBoardMoveUp : CGFloat = 100
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         leftButton?.addTarget(self, action: "leftNavButtonTapped", forControlEvents: .TouchUpInside)
         rightButton?.addTarget(self, action: "rightNavButtonTapped", forControlEvents: .TouchUpInside)
+        addLargeNavigationButton()
+    }
+    
+    func addLargeNavigationButton() {
+        var buttonW: CGFloat = 40
+        var buttonH: CGFloat = 36
+        var windowW = userManager.windowW
+        largeLeftButton = UIButton(frame: CGRectMake(0.0, 20.0, buttonW, buttonH))
+        largeRightButton = UIButton(frame: CGRectMake(windowW-buttonW, 20.0, buttonW, buttonH))
+        largeLeftButton?.addTarget(self, action: "leftNavButtonTapped", forControlEvents: .TouchUpInside)
+        largeRightButton?.addTarget(self, action: "rightNavButtonTapped", forControlEvents: .TouchUpInside)
+        if leftButton != nil {
+            view.insertSubview(largeLeftButton!, belowSubview: leftButton)
+        }
+        if rightButton != nil {
+            view.insertSubview(largeRightButton!, belowSubview: rightButton)
+        }
     }
     
     // MARK: IBAction Method
