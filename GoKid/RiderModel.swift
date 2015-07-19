@@ -19,6 +19,32 @@ class RiderModel: NSObject {
     var pickupLocation = Location()
     var dropoffLocation = Location()
     
+    static var ridersByID = [ Int : RiderModel]()
+    
+    class func ridersForRiderIDs(riderIDs : [Int]) -> ([RiderModel]){
+        return riderIDs.reduce([RiderModel](), combine: { (acc: [RiderModel], id) -> [RiderModel] in
+            if let rider = self.ridersByID[id] {
+                return acc + [rider]
+            }
+            return acc
+        })
+    }
+    
+    class func cacheRiders(riders: [RiderModel]) {
+        for rider in riders {
+            ridersByID[rider.riderID] = rider
+        }
+    }
+
+    class func arrayOfRidersWithJSON(json: JSON) -> [RiderModel] {
+        var arr = [RiderModel]()
+        for (index: String, subJson: JSON) in json {
+            var rider = RiderModel(json: subJson)
+            arr.append(rider)
+        }
+        return arr
+    }
+    
     override init() {
         super.init()
     }
@@ -33,14 +59,5 @@ class RiderModel: NSObject {
 
         pickupLocation = Location(json: json["pickup_address"])
         dropoffLocation = Location(json: json["dropoff_address"])
-    }
-    
-    class func arrayOfRidersWithJSON(json: JSON) -> [RiderModel] {
-        var arr = [RiderModel]()
-        for (index: String, subJson: JSON) in json {
-            var rider = RiderModel(json: subJson)
-            arr.append(rider)
-        }
-        return arr
     }
 }

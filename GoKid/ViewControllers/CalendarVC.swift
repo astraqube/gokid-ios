@@ -169,6 +169,16 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             cell.pickupIcon.hidden = false
             cell.dropoffIcon.hidden = true
         }
+        for (index, riderImageView) in enumerate(cell.pickupImageCollection) {
+            let rider : RiderModel? = (model.riders?.count > index) ? model.riders![index] : nil
+            if rider != nil {
+                riderImageView.nameString = "\(rider!.firstName) \(rider!.lastName)"
+                //riderImageView.image = rider.thumURL //gotta get images
+                riderImageView.hidden = false
+            } else {
+                riderImageView.hidden = true
+            }
+        }
         cell.profileImageView.image = nil
         imageManager.setImageToView(cell.profileImageView, urlStr: model.poolDriverImageUrl)
         weak var wModel = model

@@ -73,6 +73,16 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         } else {
             cell.timeLabel.text = "loading…"
         }
+        for (index, riderImageView) in enumerate(cell.pickupImageCollection) {
+            let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
+            if rider != nil {
+                riderImageView.nameString = "\(rider!.firstName) \(rider!.lastName)"
+                //riderImageView.image = rider.thumURL //gotta get images
+                riderImageView.hidden = false
+            } else {
+                riderImageView.hidden = true
+            }
+        }
         cell.nameLabel.text = model.name
         return cell
     }

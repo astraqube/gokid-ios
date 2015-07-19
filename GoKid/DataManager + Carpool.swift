@@ -37,8 +37,12 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getAllUserOccurrences success")
             println(obj)
-            var json = JSON(obj)["occurrences"]
-            var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
+            var json = JSON(obj)
+            var ridersJ = json["riders"]
+            var riders = RiderModel.arrayOfRidersWithJSON(ridersJ)
+            RiderModel.cacheRiders(riders)
+            var occurrencesJ = json["occurrences"]
+            var events = OccurenceModel.arrayOfEventsFromOccurrences(occurrencesJ)
             self.userManager.calendarEvents = events
             comp(true, "")
         }) { (op, error) in
@@ -53,8 +57,11 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getCarpool success")
             println(obj)
-            var json = JSON(obj)["carpools"]
-            var carpools = CarpoolModel.arrayOfCarpoolsFromJSON(json)
+            var json = JSON(obj)
+            var ridersJ = json["riders"]
+            RiderModel.cacheRiders(RiderModel.arrayOfRidersWithJSON(ridersJ))
+            var carpoolsJ = json["carpools"]
+            var carpools = CarpoolModel.arrayOfCarpoolsFromJSON(carpoolsJ)
             self.userManager.carpools = carpools
             comp(true, "")
         }) { (op, error) in
