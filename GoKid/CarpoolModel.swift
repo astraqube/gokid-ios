@@ -33,8 +33,9 @@ class CarpoolModel: NSObject {
         super.init()
         name = json["name"].stringValue
         id = json["id"].intValue
-        startDate = parseDate(json, key: "startDate")
-        endDate = parseDate(json, key: "endDate")
+        var schedule = json["schedule"]
+        startDate = parseDate(schedule, key: "starts_at")
+        endDate = parseDate(schedule, key: "ends_at")
         riders = RiderModel.arrayOfRidersWithJSON(json["riders"])
     }
 

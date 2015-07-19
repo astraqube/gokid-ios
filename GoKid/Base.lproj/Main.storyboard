@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1984,6 +1984,7 @@
                                                         <constraint firstItem="Cmc-SA-uya" firstAttribute="centerY" secondItem="8d4-Cm-muY" secondAttribute="centerY" id="8cm-ul-Tsc"/>
                                                         <constraint firstItem="9pf-EO-h51" firstAttribute="leading" secondItem="2NM-ok-WA4" secondAttribute="trailing" id="JxB-F0-EUq"/>
                                                         <constraint firstItem="2NM-ok-WA4" firstAttribute="top" secondItem="wAP-fn-CMt" secondAttribute="top" id="Mpd-qh-jlS"/>
+                                                        <constraint firstItem="8d4-Cm-muY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YYi-dY-jJ7" secondAttribute="trailing" constant="8" id="VfI-fl-OAl"/>
                                                         <constraint firstItem="8d4-Cm-muY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VRr-2B-qV6" secondAttribute="trailing" constant="8" id="YUh-zq-pQX"/>
                                                         <constraint firstItem="hQs-Vg-qJY" firstAttribute="top" secondItem="wAP-fn-CMt" secondAttribute="top" id="aMA-ss-zVm"/>
                                                         <constraint firstAttribute="bottom" secondItem="9pf-EO-h51" secondAttribute="bottom" id="cYO-tD-N0b"/>

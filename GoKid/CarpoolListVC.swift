@@ -68,7 +68,11 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func configCarpoolCell(ip: NSIndexPath, _ model: CarpoolModel) -> CarpoolListCell {
         var cell = tableView.cellWithID("CarpoolListCell", ip) as! CarpoolListCell
-        cell.timeLabel.text = "\(model.startDate?.dateString()) - \(model.endDate?.dateString())"
+        if model.startDate != nil && model.endDate != nil {
+            cell.timeLabel.text = "\(model.startDate!.shortDateString()) - \(model.endDate!.shortDateString())"
+        } else {
+            cell.timeLabel.text = "loading…"
+        }
         cell.nameLabel.text = model.name
         return cell
     }

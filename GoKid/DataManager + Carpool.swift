@@ -9,7 +9,6 @@
 import UIKit
 
 extension DataManager {
-    
     func createCarpool(model: CarpoolModel, comp: completion) {
         var url = baseURL + "/api/carpools"
         var map = [
