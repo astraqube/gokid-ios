@@ -66,7 +66,6 @@
 		1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F281B273535006FD961 /* AddTeamMemberCell.swift */; };
 		1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F2A1B273C2E006FD961 /* AddTeamMemberVC.swift */; };
 		1D8F78EE1B3672D300C78CAF /* BaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F78ED1B3672D300C78CAF /* BaseTVC.swift */; };
-		1D8F78F01B36733F00C78CAF /* BaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F78EF1B36733F00C78CAF /* BaseCVC.swift */; };
 		1D8F78F91B36A07F00C78CAF /* CalendarNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F78F51B36A07F00C78CAF /* CalendarNotificationCell.swift */; };
 		1D8F78FA1B36A07F00C78CAF /* CalendarAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F78F61B36A07F00C78CAF /* CalendarAddCell.swift */; };
 		1D8F78FB1B36A07F00C78CAF /* CalendarDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F78F71B36A07F00C78CAF /* CalendarDateCell.swift */; };
@@ -213,7 +212,6 @@
 		1D891F281B273535006FD961 /* AddTeamMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeamMemberCell.swift; sourceTree = "<group>"; };
 		1D891F2A1B273C2E006FD961 /* AddTeamMemberVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeamMemberVC.swift; sourceTree = "<group>"; };
 		1D8F78ED1B3672D300C78CAF /* BaseTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTVC.swift; path = ViewControllers/BaseTVC.swift; sourceTree = "<group>"; };
-		1D8F78EF1B36733F00C78CAF /* BaseCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCVC.swift; sourceTree = "<group>"; };
 		1D8F78F51B36A07F00C78CAF /* CalendarNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarNotificationCell.swift; sourceTree = "<group>"; };
 		1D8F78F61B36A07F00C78CAF /* CalendarAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarAddCell.swift; sourceTree = "<group>"; };
 		1D8F78F71B36A07F00C78CAF /* CalendarDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDateCell.swift; sourceTree = "<group>"; };
@@ -577,7 +575,6 @@
 			isa = PBXGroup;
 			children = (
 				04FB80961B530E1B00F73C74 /* BaseFormVC.swift */,
-				1D8F78EF1B36733F00C78CAF /* BaseCVC.swift */,
 				1D8F78ED1B3672D300C78CAF /* BaseTVC.swift */,
 				1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */,
 			);
@@ -1067,7 +1064,6 @@
 				1D891F121B23FDD8006FD961 /* SwiftAddressBookPerson.swift in Sources */,
 				1D891F0F1B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift in Sources */,
 				1D3F65141B2005D500CCF6A1 /* LocationVC.swift in Sources */,
-				1D8F78F01B36733F00C78CAF /* BaseCVC.swift in Sources */,
 				1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */,
 				1DA789441B23962200B391E8 /* ColorManager.swift in Sources */,
 				1D891F191B240051006FD961 /* ContactCell.swift in Sources */,
