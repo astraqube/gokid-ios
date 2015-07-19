@@ -127,7 +127,6 @@ extension DataManager {
             ]
             map.addObject(json)
         }
-        
         println(url)
         println(map)
         var manager = managerWithToken()

@@ -88,7 +88,7 @@ class TeamAccountVC: BaseVC {
         var model = dataSource[indexPath.row]
         if model.cellType == .AddMember {
             var cell = cv.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
-            cell.contentLabel.text = "Add other drivers in you carpool team"
+            cell.contentLabel.text = "add additional team member"
             return cell
         } else if model.cellType == .AddUser {
             var cell = cv.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell

@@ -56,16 +56,11 @@ class LocationVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     override func leftNavButtonTapped() {
-        syncLocalEventsWithSever()
+        navigationController?.popViewControllerAnimated(true)
     }
     
     override func rightNavButtonTapped() {
-        //if userManager.currentCarpoolModel.isValidForLocation() {
-            var vc = vcWithID("VolunteerVC")
-            navigationController?.pushViewController(vc, animated: true)
-        //} else {
-        //    showAlert("Alert", messege: "Please fill in all locations", cancleTitle: "OK")
-        //}
+        syncLocalEventsWithSever()
     }
     
     func startLocationButtonTapped(sender: AnyObject) {
@@ -172,16 +167,15 @@ class LocationVC: BaseVC {
     
     func syncLocalEventsWithSever() {
         LoadingView.showWithMaskType(.Black)
-        dataManager.updateOccurencesLocation(dataSource, comp: handleUpdateLocation)
-    }
-    
-    func handleUpdateLocation(success: Bool, errStr: String) {
-        onMainThread() {
-            LoadingView.dismiss()
-            if success {
-                self.navigationController?.popViewControllerAnimated(true)
-            } else {
-                self.showAlert("Fail to update location", messege: errStr, cancleTitle: "OK")
+        dataManager.updateOccurencesLocation(dataSource) { success, errStr in
+            onMainThread() {
+                LoadingView.dismiss()
+                if success {
+                    var vc = vcWithID("VolunteerVC")
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    self.showAlert("Fail to update location", messege: errStr, cancleTitle: "OK")
+                }
             }
         }
     }
@@ -198,9 +192,7 @@ class LocationVC: BaseVC {
     func geoCodeAddress(address: String, comp: GeoCompltion) {
         var geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (obj, err)  in
-            println(obj)
             if let pms = obj as? [CLPlacemark] {
-                println(pms.count)
                 if pms.count >= 1 {
                     var coor = pms[0].location.coordinate
                     comp(coor.longitude, coor.latitude)
