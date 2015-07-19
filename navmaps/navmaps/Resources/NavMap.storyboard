@@ -47,7 +47,7 @@
         <!--Detail MapVC-->
         <scene sceneID="SBX-m0-WlO">
             <objects>
-                <viewController storyboardIdentifier="DetailMapVC" id="NC8-s1-hOT" customClass="DetailMapVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailMapVC" id="NC8-s1-hOT" customClass="DetailMapVC" customModule="navmaps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zPp-4j-8Cd"/>
                         <viewControllerLayoutGuide type="bottom" id="9nn-Kl-2QR"/>
@@ -82,18 +82,18 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccer Practice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNX-Ky-EdS">
-                                                        <rect key="frame" x="233" y="0.0" width="135" height="22"/>
+                                                        <rect key="frame" x="233" y="0.0" width="135" height="21.5"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
                                                         <color key="textColor" red="0.25490196078431371" green="0.3843137254901961" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-1P-Bgj">
-                                                        <rect key="frame" x="281" y="22" width="38" height="17"/>
+                                                        <rect key="frame" x="281.5" y="21.5" width="37.5" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                                         <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssp-Sr-fTb" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssp-Sr-fTb" customClass="BorderedBarishButton" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="542" y="14" width="46" height="26"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="46" id="3yU-dH-azO"/>
@@ -254,10 +254,10 @@
                                                             </mask>
                                                         </variation>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsB-3u-eqE" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsB-3u-eqE" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="17" y="9" width="64" height="64"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_userImage" translatesAutoresizingMaskIntoConstraints="NO" id="c3M-hr-K5M" userLabel="userImage View" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_userImage" translatesAutoresizingMaskIntoConstraints="NO" id="c3M-hr-K5M" userLabel="userImage View" customClass="MapUserImageView" customModule="navmaps" customModuleProvider="target">
                                                                 <rect key="frame" x="5" y="5" width="54" height="54"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="54" id="6Jf-hg-pQa"/>
@@ -290,10 +290,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Va7-kL-xkr" userLabel="textview">
-                                                        <rect key="frame" x="89" y="21" width="161" height="41"/>
+                                                        <rect key="frame" x="89" y="21" width="160.5" height="41"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue January 25, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmV-10-HOB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="161" height="20"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="160.5" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                 <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -367,7 +367,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1r0-BW-qDo" userLabel="centering view">
                                                 <rect key="frame" x="197" y="7" width="206" height="60"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0I-Xo-meP" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0I-Xo-meP" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -388,7 +388,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-Ac-6Oc" userLabel="userImage 2" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-Ac-6Oc" userLabel="userImage 2" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="54" y="0.0" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -407,7 +407,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little Wayne"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-N4-wcM" userLabel="userImage 3" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-N4-wcM" userLabel="userImage 3" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="108" y="0.0" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -426,7 +426,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uJ-kG-NLO" userLabel="userImage 4" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uJ-kG-NLO" userLabel="userImage 4" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="162" y="0.0" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -536,7 +536,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="z2O-5s-7fN"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiD-qa-azg" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiD-qa-azg" customClass="BorderedBarishButton" customModule="navmaps" customModuleProvider="target">
                                                 <rect key="frame" x="12" y="12" width="576" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="b6A-6W-Bb1"/>
@@ -595,13 +595,13 @@
                                             <view contentMode="scaleToFill" verticalHuggingPriority="253" translatesAutoresizingMaskIntoConstraints="NO" id="yci-Jl-M0E">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="356"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6EI-Vg-n9p" userLabel="row1" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6EI-Vg-n9p" userLabel="row1" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmm-GU-eM4" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmm-GU-eM4" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7c6-AS-mG5" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7c6-AS-mG5" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -647,13 +647,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:30 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csf-9B-5wR">
-                                                                <rect key="frame" x="12" y="33" width="51" height="17"/>
+                                                                <rect key="frame" x="12" y="33.5" width="51" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPo-Ij-KNI">
-                                                                <rect key="frame" x="140" y="24" width="442" height="36"/>
+                                                                <rect key="frame" x="140" y="24.5" width="442" height="35.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leave House with Tommy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2z5-3o-GL8">
                                                                         <rect key="frame" x="0.0" y="0.0" width="442" height="19"/>
@@ -662,13 +662,13 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3201 Kings Dr., Greenwich, CT" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcJ-fL-rVN">
-                                                                        <rect key="frame" x="11" y="20" width="431" height="16"/>
+                                                                        <rect key="frame" x="11" y="20" width="431" height="15.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                                                         <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" image="smLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="BeO-vo-8dY">
-                                                                        <rect key="frame" x="0.0" y="23" width="8" height="11"/>
+                                                                        <rect key="frame" x="0.0" y="22.5" width="8" height="11"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -687,21 +687,17 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="height" constant="68" placeholder="YES" id="B4A-Yc-acm" userLabel="removed highter"/>
                                                             <constraint firstItem="SPo-Ij-KNI" firstAttribute="centerY" secondItem="7c6-AS-mG5" secondAttribute="centerY" id="FH1-UL-acw"/>
                                                             <constraint firstItem="SPo-Ij-KNI" firstAttribute="leading" secondItem="Dmm-GU-eM4" secondAttribute="trailing" constant="5" id="I9R-Dp-viW"/>
-                                                            <constraint firstAttribute="height" id="KvC-Jf-CA9"/>
+                                                            <constraint firstAttribute="height" priority="999" id="KvC-Jf-CA9"/>
                                                             <constraint firstItem="csf-9B-5wR" firstAttribute="leading" secondItem="6EI-Vg-n9p" secondAttribute="leading" constant="12" id="M58-OO-ty8"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Dmm-GU-eM4" secondAttribute="bottom" priority="999" id="Mtt-Vr-fsF"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Dmm-GU-eM4" secondAttribute="bottom" priority="750" id="Mtt-Vr-fsF"/>
                                                             <constraint firstItem="Dmm-GU-eM4" firstAttribute="top" secondItem="6EI-Vg-n9p" secondAttribute="top" constant="16" id="Nly-JV-FcN"/>
                                                             <constraint firstAttribute="trailing" secondItem="SPo-Ij-KNI" secondAttribute="trailing" constant="18" id="RRz-0E-8cu"/>
                                                             <constraint firstItem="Dmm-GU-eM4" firstAttribute="leading" secondItem="6EI-Vg-n9p" secondAttribute="leading" constant="83" id="mFe-fN-RYJ"/>
                                                             <constraint firstItem="7c6-AS-mG5" firstAttribute="centerY" secondItem="csf-9B-5wR" secondAttribute="centerY" id="mUC-Pr-d0L"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="KvC-Jf-CA9"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="tcJ-fL-rVN" id="jTs-UF-lbz"/>
                                                             <outlet property="borderedView" destination="Dmm-GU-eM4" id="DFl-62-vvq"/>
@@ -711,13 +707,13 @@
                                                             <outlet property="userImageView" destination="7c6-AS-mG5" id="daT-E4-Xwt"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dtc-Te-xzY" userLabel="row2" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dtc-Te-xzY" userLabel="row2" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="68" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaw-UY-2Sr" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaw-UY-2Sr" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofr-Vp-kze" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofr-Vp-kze" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -762,13 +758,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:35 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHv-CM-4Ir">
-                                                                <rect key="frame" x="12" y="33" width="51" height="17"/>
+                                                                <rect key="frame" x="12" y="33.5" width="50.5" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cn5-Od-nKR">
-                                                                <rect key="frame" x="140" y="24" width="442" height="36"/>
+                                                                <rect key="frame" x="140" y="24.5" width="442" height="35.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Natalie's House" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRr-Ph-q6Y">
                                                                         <rect key="frame" x="0.0" y="0.0" width="442" height="19"/>
@@ -777,13 +773,13 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="303 Gladys Ln., Greenwich, CT" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4W-i9-QA9">
-                                                                        <rect key="frame" x="11" y="20" width="431" height="16"/>
+                                                                        <rect key="frame" x="11" y="20" width="431" height="15.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                                                         <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" image="smLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="XSV-ci-o5A">
-                                                                        <rect key="frame" x="0.0" y="23" width="8" height="11"/>
+                                                                        <rect key="frame" x="0.0" y="22.5" width="8" height="11"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -808,21 +804,17 @@
                                                             <constraint firstItem="xHv-CM-4Ir" firstAttribute="leading" secondItem="Dtc-Te-xzY" secondAttribute="leading" constant="12" id="AWM-iZ-WUd"/>
                                                             <constraint firstAttribute="trailing" secondItem="Cn5-Od-nKR" secondAttribute="trailing" constant="18" id="Aso-Pt-JEG"/>
                                                             <constraint firstItem="ofr-Vp-kze" firstAttribute="centerY" secondItem="xHv-CM-4Ir" secondAttribute="centerY" id="CbJ-xF-ip0"/>
-                                                            <constraint firstAttribute="bottom" secondItem="eaw-UY-2Sr" secondAttribute="bottom" priority="999" id="SSh-Sh-JsJ"/>
+                                                            <constraint firstAttribute="height" constant="68" placeholder="YES" id="SK2-4f-1aS" userLabel="removed highter"/>
+                                                            <constraint firstAttribute="bottom" secondItem="eaw-UY-2Sr" secondAttribute="bottom" priority="750" id="SSh-Sh-JsJ"/>
                                                             <constraint firstItem="Cn5-Od-nKR" firstAttribute="leading" secondItem="eaw-UY-2Sr" secondAttribute="trailing" constant="5" id="SlM-Oy-BxE"/>
                                                             <constraint firstItem="Cn5-Od-nKR" firstAttribute="centerY" secondItem="ofr-Vp-kze" secondAttribute="centerY" id="YHC-e8-0sD"/>
-                                                            <constraint firstAttribute="height" id="eqS-kT-e8N"/>
+                                                            <constraint firstAttribute="height" priority="999" id="eqS-kT-e8N"/>
                                                             <constraint firstItem="aL4-p2-ugy" firstAttribute="top" secondItem="Dtc-Te-xzY" secondAttribute="top" constant="-1" id="evP-Oq-h4f"/>
                                                             <constraint firstItem="eaw-UY-2Sr" firstAttribute="centerX" secondItem="aL4-p2-ugy" secondAttribute="centerX" id="iTp-KN-cba"/>
                                                             <constraint firstItem="eaw-UY-2Sr" firstAttribute="top" secondItem="Dtc-Te-xzY" secondAttribute="top" constant="16" id="k5n-x9-JBd"/>
                                                             <constraint firstItem="eaw-UY-2Sr" firstAttribute="top" secondItem="aL4-p2-ugy" secondAttribute="bottom" constant="-1" id="wI6-AD-ChM"/>
                                                             <constraint firstItem="eaw-UY-2Sr" firstAttribute="leading" secondItem="Dtc-Te-xzY" secondAttribute="leading" constant="83" id="zQJ-BP-UEN"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="eqS-kT-e8N"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="f4W-i9-QA9" id="Otf-Mg-670"/>
                                                             <outlet property="borderedView" destination="eaw-UY-2Sr" id="69b-Xv-Tjg"/>
@@ -833,13 +825,13 @@
                                                             <outlet property="userImageView" destination="ofr-Vp-kze" id="otC-I7-LXZ"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFt-iC-6Yq" userLabel="row3" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFt-iC-6Yq" userLabel="row3" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="136" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2L-co-GrT" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2L-co-GrT" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8E-U6-Ly3" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8E-U6-Ly3" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -884,13 +876,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:41 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKs-zg-O1w">
-                                                                <rect key="frame" x="12" y="33" width="49" height="17"/>
+                                                                <rect key="frame" x="12" y="33.5" width="49" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8R3-zX-Vv3">
-                                                                <rect key="frame" x="140" y="24" width="442" height="36"/>
+                                                                <rect key="frame" x="140" y="24.5" width="442" height="35.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andy's House" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l46-e0-YnI">
                                                                         <rect key="frame" x="0.0" y="0.0" width="442" height="19"/>
@@ -899,13 +891,13 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 Daisy Ave., Greenwich, CT" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKd-vG-90p">
-                                                                        <rect key="frame" x="11" y="20" width="431" height="16"/>
+                                                                        <rect key="frame" x="11" y="20" width="431" height="15.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                                                         <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" image="smLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ZBJ-Rb-7Ql">
-                                                                        <rect key="frame" x="0.0" y="23" width="8" height="11"/>
+                                                                        <rect key="frame" x="0.0" y="22.5" width="8" height="11"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -927,11 +919,11 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" id="1NP-dv-UOQ"/>
+                                                            <constraint firstAttribute="height" priority="999" id="1NP-dv-UOQ"/>
                                                             <constraint firstItem="o2L-co-GrT" firstAttribute="top" secondItem="gpY-Vn-hiw" secondAttribute="bottom" constant="-1" id="50f-xJ-hCz"/>
                                                             <constraint firstItem="o2L-co-GrT" firstAttribute="centerX" secondItem="gpY-Vn-hiw" secondAttribute="centerX" id="CsM-4F-Nct"/>
                                                             <constraint firstItem="o2L-co-GrT" firstAttribute="top" secondItem="JFt-iC-6Yq" secondAttribute="top" constant="16" id="DUV-9f-2za"/>
-                                                            <constraint firstAttribute="bottom" secondItem="o2L-co-GrT" secondAttribute="bottom" priority="999" id="K1f-5h-Cbh"/>
+                                                            <constraint firstAttribute="bottom" secondItem="o2L-co-GrT" secondAttribute="bottom" priority="750" id="K1f-5h-Cbh"/>
                                                             <constraint firstAttribute="trailing" secondItem="8R3-zX-Vv3" secondAttribute="trailing" constant="18" id="Kzg-rE-oJT"/>
                                                             <constraint firstItem="8R3-zX-Vv3" firstAttribute="centerY" secondItem="x8E-U6-Ly3" secondAttribute="centerY" id="RTp-vk-4g8"/>
                                                             <constraint firstItem="o2L-co-GrT" firstAttribute="leading" secondItem="JFt-iC-6Yq" secondAttribute="leading" constant="83" id="a0y-BU-q7s"/>
@@ -939,12 +931,8 @@
                                                             <constraint firstItem="fKs-zg-O1w" firstAttribute="leading" secondItem="JFt-iC-6Yq" secondAttribute="leading" constant="12" id="hNs-dp-pnP"/>
                                                             <constraint firstItem="x8E-U6-Ly3" firstAttribute="centerY" secondItem="fKs-zg-O1w" secondAttribute="centerY" id="m1D-ok-b69"/>
                                                             <constraint firstItem="8R3-zX-Vv3" firstAttribute="leading" secondItem="o2L-co-GrT" secondAttribute="trailing" constant="5" id="mgv-vc-vVe"/>
+                                                            <constraint firstAttribute="height" constant="68" placeholder="YES" id="os3-Lf-E8V" userLabel="removed highter"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="1NP-dv-UOQ"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="cKd-vG-90p" id="etb-pF-eDg"/>
                                                             <outlet property="borderedView" destination="o2L-co-GrT" id="ScA-c2-kBC"/>
@@ -955,13 +943,13 @@
                                                             <outlet property="userImageView" destination="x8E-U6-Ly3" id="hZr-5L-VGK"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRU-1q-ggq" userLabel="row4" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRU-1q-ggq" userLabel="row4" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="204" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vaI-CQ-G0d" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vaI-CQ-G0d" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgM-Rm-ImJ" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgM-Rm-ImJ" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -1006,7 +994,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:52 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFL-ZJ-Uvr">
-                                                                <rect key="frame" x="12" y="33" width="50" height="17"/>
+                                                                <rect key="frame" x="12" y="33.5" width="50" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1054,21 +1042,17 @@ Greenwich, CT.</string>
                                                             <constraint firstItem="5IP-2s-Iya" firstAttribute="top" secondItem="eRU-1q-ggq" secondAttribute="top" constant="-1" id="0PY-cA-Jo0"/>
                                                             <constraint firstItem="NgM-Rm-ImJ" firstAttribute="centerY" secondItem="gFL-ZJ-Uvr" secondAttribute="centerY" id="4el-Tp-9zP"/>
                                                             <constraint firstAttribute="trailing" secondItem="xcH-S4-1xU" secondAttribute="trailing" constant="18" id="C7o-uR-zxi"/>
-                                                            <constraint firstAttribute="bottom" secondItem="vaI-CQ-G0d" secondAttribute="bottom" priority="999" id="CA6-ne-azB"/>
+                                                            <constraint firstAttribute="bottom" secondItem="vaI-CQ-G0d" secondAttribute="bottom" priority="750" id="CA6-ne-azB"/>
                                                             <constraint firstItem="vaI-CQ-G0d" firstAttribute="top" secondItem="5IP-2s-Iya" secondAttribute="bottom" constant="-1" id="DuP-5T-yfu"/>
                                                             <constraint firstItem="vaI-CQ-G0d" firstAttribute="leading" secondItem="eRU-1q-ggq" secondAttribute="leading" constant="83" id="FCn-kW-3Yd"/>
                                                             <constraint firstItem="gFL-ZJ-Uvr" firstAttribute="leading" secondItem="eRU-1q-ggq" secondAttribute="leading" constant="12" id="Fxp-6j-fGe"/>
                                                             <constraint firstItem="vaI-CQ-G0d" firstAttribute="centerX" secondItem="5IP-2s-Iya" secondAttribute="centerX" id="SGb-pG-1E0"/>
                                                             <constraint firstItem="vaI-CQ-G0d" firstAttribute="top" secondItem="eRU-1q-ggq" secondAttribute="top" constant="16" id="UX8-tL-zpr"/>
-                                                            <constraint firstAttribute="height" id="WyQ-f2-i2v"/>
+                                                            <constraint firstAttribute="height" priority="999" id="WyQ-f2-i2v"/>
                                                             <constraint firstItem="xcH-S4-1xU" firstAttribute="centerY" secondItem="NgM-Rm-ImJ" secondAttribute="centerY" id="ej0-ke-Teu"/>
                                                             <constraint firstItem="xcH-S4-1xU" firstAttribute="leading" secondItem="vaI-CQ-G0d" secondAttribute="trailing" constant="5" id="jc2-76-x5i"/>
+                                                            <constraint firstAttribute="height" constant="68" placeholder="YES" id="lPw-2v-MBM" userLabel="removed highter"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="WyQ-f2-i2v"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="ddA-d2-vgC" id="HYe-2e-hT5"/>
                                                             <outlet property="borderedView" destination="vaI-CQ-G0d" id="ioC-A3-Zn8"/>
@@ -1079,13 +1063,13 @@ Greenwich, CT.</string>
                                                             <outlet property="userImageView" destination="NgM-Rm-ImJ" id="PHf-D4-OBA"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pX-jT-oe4" userLabel="row5" customClass="MapItineraryItemView" customModule="GoKid" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pX-jT-oe4" userLabel="row5" customClass="MapItineraryItemView" customModule="navmaps" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="272" width="600" height="68"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQq-V1-tE0" userLabel="userImage container" customClass="BorderedView" customModule="GoKid" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQq-V1-tE0" userLabel="userImage container" customClass="BorderedView" customModule="navmaps" customModuleProvider="target">
                                                                 <rect key="frame" x="83" y="16" width="52" height="52"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XB-2N-hcI" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XB-2N-hcI" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="navmaps" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="4" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -1131,13 +1115,13 @@ Greenwich, CT.</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35u-oF-vlc">
-                                                                <rect key="frame" x="12" y="33" width="59" height="17"/>
+                                                                <rect key="frame" x="12" y="33.5" width="58.5" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VzO-c2-jS5">
-                                                                <rect key="frame" x="140" y="24" width="442" height="36"/>
+                                                                <rect key="frame" x="140" y="24.5" width="442" height="35.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrive at Soccer Practice" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Hg-Rc-VuS">
                                                                         <rect key="frame" x="0.0" y="0.0" width="442" height="19"/>
@@ -1146,13 +1130,13 @@ Greenwich, CT.</string>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="303 Gladstone St., Greenwich, CT" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxL-Kv-ozb">
-                                                                        <rect key="frame" x="11" y="20" width="431" height="16"/>
+                                                                        <rect key="frame" x="11" y="20" width="431" height="15.5"/>
                                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                                                         <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" image="smLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Bpd-qU-Adh">
-                                                                        <rect key="frame" x="0.0" y="23" width="8" height="11"/>
+                                                                        <rect key="frame" x="0.0" y="22.5" width="8" height="11"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1175,11 +1159,12 @@ Greenwich, CT.</string>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="35u-oF-vlc" firstAttribute="leading" secondItem="9pX-jT-oe4" secondAttribute="leading" constant="12" id="6Hk-Fe-ZHj"/>
-                                                            <constraint firstAttribute="height" id="8qi-DY-1Lr"/>
+                                                            <constraint firstAttribute="height" priority="999" id="8qi-DY-1Lr"/>
                                                             <constraint firstItem="VzO-c2-jS5" firstAttribute="centerY" secondItem="2XB-2N-hcI" secondAttribute="centerY" id="95T-uE-lgC"/>
                                                             <constraint firstAttribute="trailing" secondItem="VzO-c2-jS5" secondAttribute="trailing" constant="18" id="Bvd-E1-jyO"/>
+                                                            <constraint firstAttribute="height" constant="68" placeholder="YES" id="Cgd-wU-klO" userLabel="removed highter"/>
                                                             <constraint firstItem="NQq-V1-tE0" firstAttribute="top" secondItem="T7A-wX-xQr" secondAttribute="bottom" constant="-1" id="EYh-id-sT5"/>
-                                                            <constraint firstAttribute="bottom" secondItem="NQq-V1-tE0" secondAttribute="bottom" priority="999" id="NwZ-oi-saA"/>
+                                                            <constraint firstAttribute="bottom" secondItem="NQq-V1-tE0" secondAttribute="bottom" priority="750" id="NwZ-oi-saA"/>
                                                             <constraint firstItem="2XB-2N-hcI" firstAttribute="centerY" secondItem="35u-oF-vlc" secondAttribute="centerY" id="QdH-Aw-s1H"/>
                                                             <constraint firstItem="VzO-c2-jS5" firstAttribute="leading" secondItem="NQq-V1-tE0" secondAttribute="trailing" constant="5" id="Xyh-Tv-qre"/>
                                                             <constraint firstItem="NQq-V1-tE0" firstAttribute="leading" secondItem="9pX-jT-oe4" secondAttribute="leading" constant="83" id="cPT-wM-HuZ"/>
@@ -1187,11 +1172,6 @@ Greenwich, CT.</string>
                                                             <constraint firstItem="T7A-wX-xQr" firstAttribute="top" secondItem="9pX-jT-oe4" secondAttribute="top" constant="-1" id="gvk-hJ-UbW"/>
                                                             <constraint firstItem="NQq-V1-tE0" firstAttribute="centerX" secondItem="T7A-wX-xQr" secondAttribute="centerX" id="u0r-O1-XCa"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="8qi-DY-1Lr"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <outlet property="addressLabel" destination="bxL-Kv-ozb" id="YBU-wL-na7"/>
                                                             <outlet property="borderedView" destination="NQq-V1-tE0" id="VJt-5e-rwC"/>
@@ -1225,7 +1205,7 @@ Greenwich, CT.</string>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" priority="999" constant="200" id="Gca-rU-0Do"/>
+                                            <constraint firstAttribute="height" priority="999" constant="220" id="Gca-rU-0Do"/>
                                             <constraint firstAttribute="height" constant="355" placeholder="YES" id="UvS-7E-vsl"/>
                                             <constraint firstItem="yci-Jl-M0E" firstAttribute="width" secondItem="VZi-un-xGy" secondAttribute="width" id="ZFT-Tc-QtE"/>
                                             <constraint firstItem="yci-Jl-M0E" firstAttribute="top" secondItem="VZi-un-xGy" secondAttribute="top" id="det-ZR-kRL"/>
@@ -1280,21 +1260,29 @@ Greenwich, CT.</string>
                         <outlet property="bottomTrayAngleUp" destination="a5S-y0-oZ8" id="0Hx-Il-3rf"/>
                         <outlet property="bottomTrayNavView" destination="rzH-Aq-xRB" id="2Uc-nk-9yq"/>
                         <outlet property="bottomTrayView" destination="hdt-TA-ZWy" id="G8W-vt-43A"/>
+                        <outlet property="dateLabel" destination="cmV-10-HOB" id="o7w-LA-KvB"/>
+                        <outlet property="dropoffIcon" destination="NSD-ve-o1h" id="MQA-lq-bcQ"/>
+                        <outlet property="itineraryScrollView" destination="VZi-un-xGy" id="vQD-Mn-eVJ"/>
                         <outlet property="mapView" destination="eAd-9y-yff" id="BcG-ml-TLi"/>
+                        <outlet property="nameLabel" destination="RNX-Ky-EdS" id="jeB-WZ-wl7"/>
+                        <outlet property="pickupIcon" destination="t1l-sa-PDc" id="dd6-gR-btB"/>
+                        <outlet property="profileImageView" destination="c3M-hr-K5M" id="e5i-O9-HfX"/>
+                        <outlet property="shortDateLabel" destination="fVc-1P-Bgj" id="b5t-bW-EIF"/>
+                        <outlet property="timeLabel" destination="PM7-rD-ZXE" id="6tA-pF-zjq"/>
                         <outlet property="trayOffsetConstraint" destination="aaN-En-EI7" id="N4L-Ty-GlY"/>
                         <outletCollection property="itineraryRows" destination="6EI-Vg-n9p" collectionClass="NSMutableArray" id="wIc-E5-YnH"/>
                         <outletCollection property="itineraryRows" destination="Dtc-Te-xzY" collectionClass="NSMutableArray" id="OQd-Ad-ZGH"/>
                         <outletCollection property="itineraryRows" destination="JFt-iC-6Yq" collectionClass="NSMutableArray" id="fqn-zu-hVH"/>
                         <outletCollection property="itineraryRows" destination="eRU-1q-ggq" collectionClass="NSMutableArray" id="k6R-TU-lWM"/>
                         <outletCollection property="itineraryRows" destination="9pX-jT-oe4" collectionClass="NSMutableArray" id="olw-k4-bHW"/>
-                        <outletCollection property="pickupImageViews" destination="c0I-Xo-meP" collectionClass="NSMutableArray" id="EQS-30-Yer"/>
-                        <outletCollection property="pickupImageViews" destination="fRo-Ac-6Oc" collectionClass="NSMutableArray" id="yC9-g2-Dyy"/>
-                        <outletCollection property="pickupImageViews" destination="1P8-N4-wcM" collectionClass="NSMutableArray" id="uGm-Yc-tSj"/>
-                        <outletCollection property="pickupImageViews" destination="4uJ-kG-NLO" collectionClass="NSMutableArray" id="Q18-30-yqi"/>
-                        <outletCollection property="pickupLabelViews" destination="Ffb-4Z-rUf" collectionClass="NSMutableArray" id="U6g-b9-0af"/>
-                        <outletCollection property="pickupLabelViews" destination="dhw-S3-9wv" collectionClass="NSMutableArray" id="29t-zO-rPT"/>
-                        <outletCollection property="pickupLabelViews" destination="EcY-am-iAh" collectionClass="NSMutableArray" id="PWo-Ic-DIz"/>
-                        <outletCollection property="pickupLabelViews" destination="c4f-Lc-Zzq" collectionClass="NSMutableArray" id="uU9-Gr-SVl"/>
+                        <outletCollection property="riderImageViews" destination="c0I-Xo-meP" collectionClass="NSMutableArray" id="EQS-30-Yer"/>
+                        <outletCollection property="riderImageViews" destination="fRo-Ac-6Oc" collectionClass="NSMutableArray" id="yC9-g2-Dyy"/>
+                        <outletCollection property="riderImageViews" destination="1P8-N4-wcM" collectionClass="NSMutableArray" id="uGm-Yc-tSj"/>
+                        <outletCollection property="riderImageViews" destination="4uJ-kG-NLO" collectionClass="NSMutableArray" id="Q18-30-yqi"/>
+                        <outletCollection property="riderLabelViews" destination="Ffb-4Z-rUf" collectionClass="NSMutableArray" id="U6g-b9-0af"/>
+                        <outletCollection property="riderLabelViews" destination="dhw-S3-9wv" collectionClass="NSMutableArray" id="29t-zO-rPT"/>
+                        <outletCollection property="riderLabelViews" destination="EcY-am-iAh" collectionClass="NSMutableArray" id="PWo-Ic-DIz"/>
+                        <outletCollection property="riderLabelViews" destination="c4f-Lc-Zzq" collectionClass="NSMutableArray" id="uU9-Gr-SVl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGP-9n-Yxv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1314,7 +1302,7 @@ Greenwich, CT.</string>
         <!--Driving ModeVC-->
         <scene sceneID="wUZ-7b-jfy">
             <objects>
-                <viewController id="lS1-KS-oXw" customClass="DrivingModeVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lS1-KS-oXw" customClass="DrivingModeVC" customModule="navmaps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="It7-vj-a8F"/>
                         <viewControllerLayoutGuide type="bottom" id="UP3-dv-Rdd"/>

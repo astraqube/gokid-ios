@@ -46,14 +46,6 @@ class Stop : NSObject, MKAnnotation {
         self.stopID = stopID
         self.thumbnailImage = thumbnailImage
     }
-    
-    init(occurrence: OccurenceModel) {
-        self.coordinate = CLLocationCoordinate2DMake(occurrence.defaultLocation.lati, occurrence.defaultLocation.long)
-        self.name = occurrence.poolname
-        self.address = occurrence.defaultLocation.name
-        self.stopID = occurrence.defaultLocation.stopID
-        self.phoneNumber = occurrence.poolDriverPhoneNum
-    }
 }
 
 /**
