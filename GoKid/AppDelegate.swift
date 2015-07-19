@@ -66,9 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         var dm = DataManager.sharedInstance
-        dm.updateNotificationToken(String(str)) { (success, errorStr) in
-            if !success {
-                // do nothing here for now
+        if UserManager.sharedInstance.userLoggedIn {
+            dm.updateNotificationToken(String(str)) { (success, errorStr) in
+                if !success {
+                    // do nothing here for now
+                }
             }
         }
     }
