@@ -9,7 +9,8 @@
 import CoreLocation
 
 class ETACalculator {
-    static let metersPerSecond = 8.9408 //20 mph
+    static let pickupStopLength = 60.0*5.0 //5 minute pickup
+    static let metersPerSecond = 11.176 //25 mph
     ///returns tuples of minutes from first stop
     class func estimateArrivalTimeForStops(stops: [Stop]) -> [(Double, Stop)]{
         var travelTimes = [(Double, Stop)]()
@@ -21,7 +22,8 @@ class ETACalculator {
             let lastStop = stops[index - 1]
             let lastLocation = CLLocation(latitude: lastStop.coordinate.latitude, longitude: lastStop.coordinate.longitude)
             let distance = lastLocation.distanceFromLocation(CLLocation(latitude: stop.coordinate.latitude, longitude: stop.coordinate.longitude))
-            let seconds = distance / metersPerSecond
+            //extra minutes to get to next stop based on pickup length
+            let seconds = distance / metersPerSecond + pickupStopLength
             let prevSeconds = travelTimes[index - 1].0
          
             travelTimes.append((seconds +  prevSeconds, stop))
