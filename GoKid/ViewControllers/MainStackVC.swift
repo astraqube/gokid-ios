@@ -9,56 +9,52 @@
 import UIKit
 
 class MainStackVC: IIViewDeckController {
-    
-    var rootVC: UIViewController?
-    var colorManager = ColorManager.sharedInstance
-    
+
+    var rootVC: UIViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "popUpSignInView", name: "requestForUserToken", object: nil)
 
-        setStatusBarColorDark()
-      
-        // if user logged in direct go to CalendarVC
-        var um = UserManager.sharedInstance
-        if um.userLoggedIn {
-            self.rootVC = vcWithID("CalendarVC")
-            self.setCenterAndLeftViewControllers()
-            return
-        }
-        
-        // otherwise check fblogin or Onoard
-        if um.useFBLogIn {
-            DataManager.sharedInstance.fbSignin() { (success, errorStr) in
-                if success { self.rootVC = vcWithID("CalendarVC") }
-                else {
-                    println(errorStr)
-                    self.rootVC = OnboardVC()
-                }
-                self.setCenterAndLeftViewControllers()
-            }
+        self.determineStateForViews()
+    }
+
+    func determineStateForViews() {
+        let userManager = UserManager.sharedInstance
+
+        if userManager.userLoggedIn {
+            self.setSignedInView()
+        } else if userManager.useFBLogIn {
+            self.setSetSignedInFBView()
         } else {
-            rootVC = OnboardVC()
-            setCenterAndLeftViewControllers()
+            self.setWelcomeView()
         }
     }
-    
-    func setCenterAndLeftViewControllers() {
-        var meneVC = vcWithID("MenuVC") as! MenuVC
-        meneVC.mainStack = self
-        
-        var centerVC = ZGNavigationBarTitleViewController()
-        centerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : colorManager.appNavTextButtonColor]
-        centerVC.navigationBar.barTintColor =  colorManager.appLightGreen
-        centerVC.navigationBar.tintColor = colorManager.appNavTextButtonColor
-        centerVC.navigationBar.backgroundColor = UIColor.blackColor()
-        centerVC.navigationBarHidden = true
-        centerVC.pushViewController(rootVC!, animated: false)
-        
-        self.centerController = centerVC
+
+    func setSignedInView() {
+        let menuVC = vcWithID("MenuVC") as! MenuVC
+        self.leftController = menuVC
         self.leftSize = 100
-        self.leftController = meneVC
+
+        self.rootVC = vcWithID("CalendarVC")
+        self.centerController = UINavigationController(rootViewController: self.rootVC)
+    }
+
+    func setWelcomeView() {
+        self.rootVC = OnboardVC()
+        self.centerController = UINavigationController(rootViewController: self.rootVC)
+    }
+
+    func setSetSignedInFBView() {
+        DataManager.sharedInstance.fbSignin() { (success, errorStr) in
+            if success {
+                self.setSignedInView()
+            } else {
+                println(errorStr)
+                self.setWelcomeView()
+            }
+        }
     }
 
     func popUpSignInView() {
@@ -90,7 +86,7 @@ class MainStackVC: IIViewDeckController {
     }
 
     func refreshCurrentVC(animated: Bool) {
-        self.rootVC?.viewDidAppear(animated)
+        (self.centerController as! UINavigationController).visibleViewController.viewDidAppear(animated)
     }
 
 }

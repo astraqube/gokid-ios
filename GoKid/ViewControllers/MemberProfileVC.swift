@@ -195,8 +195,9 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     func logout() {
         UserManager.sharedInstance.logoutUser()
 
-        var vc = OnboardVC()
-        navigationController?.setViewControllers([vc], animated: true)
+        let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+        let mainController = appDelegate.window!.rootViewController as! MainStackVC
+        mainController.setWelcomeView()
     }
     
     func handleLoginResult(success: Bool, errorStr: String) {

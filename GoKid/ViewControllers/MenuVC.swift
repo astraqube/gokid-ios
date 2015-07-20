@@ -27,15 +27,15 @@ class MenuVC: BaseVC {
         return [self.calendarIconButton,self.calendarButton,self.listIconButton,self.listButton,self.myDrivesIconButton,self.myDrivesButton,self.settingsIconButton,self.settingsButton]
     }()
     
-    var mainStack: UIViewController?
-    var navVC: UINavigationController?
+    var navVC: UINavigationController? {
+        return viewDeckController.centerController as? UINavigationController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForNotification()
         setupSubViews()
-        navVC = viewDeckController.centerController as? UINavigationController
-        
+
         if (navVC?.topViewController is CalendarVC) {
             selectButtons(allButtons, select: [calendarIconButton, calendarButton])   
         }

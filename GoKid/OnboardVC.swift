@@ -22,15 +22,16 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBarColorDark()
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
         if self.userManager.userLoggedIn {
-            var calendarVC = vcWithID("CalendarVC")
-            self.navigationController?.pushViewController(calendarVC, animated: true)
+            let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+            let mainController = appDelegate.window!.rootViewController as! MainStackVC
+            mainController.determineStateForViews()
         }
     }
 
@@ -56,7 +57,7 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
     
     func joinNowButtonHandler() {
         var invitedInfoVC = vcWithID("InviteInfoVC")
-        navigationController?.pushViewController(invitedInfoVC, animated: true)
+        self.navigationController?.pushViewController(invitedInfoVC, animated: true)
     }
     
     // MARK: Alert View
@@ -69,18 +70,17 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
     
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         var um = UserManager.sharedInstance
-        if buttonIndex == 0 {
+        var presentVC: UIViewController!
+
+        if buttonIndex == 0 { // yes
             um.over18 = true
-            var infoVC = vcWithID("BasicInfoVC")
-            var calendarVC = vcWithID("CalendarVC")
-            var arr = [calendarVC, infoVC]
-            navigationController?.setViewControllers(arr, animated: true)
-            return
-        } else { // children
+            presentVC = vcWithID("BasicInfoVC")
+        } else { // no
             um.over18 = false
-            var vc = vcWithID("KidAboutYouVC")
-            navigationController?.pushViewController(vc, animated: true)
+            presentVC = vcWithID("KidAboutYouVC")
         }
+
+        self.navigationController?.pushViewController(presentVC, animated: true)
     }
     
     // MARK: Generate OnboardVC
