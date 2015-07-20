@@ -54,7 +54,6 @@ class OccurenceModel: NSObject {
             volunteer = VolunteerModel(json: volunteerJSON)
         }
         poolDriverImageUrl = occurence["volunteer"]["avatar"]["thumb_url"].stringValue
-        
         var riderIDs = [Int]()
         for (index: String, value: JSON) in occurence["rider_ids"] {
             riderIDs.append(value.intValue)
