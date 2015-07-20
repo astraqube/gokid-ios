@@ -6,6 +6,9 @@
 3. Open in XCode, build, and run
 
 ## Changelog
+AHL July 19:
+Now eta calculation works
+Now off-route recalculation works
 AHL July 18:
 Navigation works
 AHL July 9:

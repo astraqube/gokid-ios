@@ -20,6 +20,8 @@
 		7929643A1B48D14200BE3250 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792964391B48D14200BE3250 /* BorderedView.swift */; };
 		794121E61B5B5ABA0012732A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794121E51B5B5ABA0012732A /* MessageUI.framework */; };
 		796ABA531B5D5B610037F840 /* Navigation + Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796ABA521B5D5B610037F840 /* Navigation + Directions.swift */; };
+		796ABA571B5D7BB70037F840 /* ETACalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796ABA561B5D7BB70037F840 /* ETACalculator.swift */; };
+		796ABA5E1B5D82F20037F840 /* HelperFunction + NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796ABA5D1B5D82F20037F840 /* HelperFunction + NSDate.swift */; };
 		799792FC1B472B0200463FA7 /* DetailMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FB1B472B0200463FA7 /* DetailMapVC.swift */; };
 		799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */; };
 		79A20E281B51DD5B00871CAB /* MapItineraryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A20E271B51DD5B00871CAB /* MapItineraryItemView.swift */; };
@@ -59,6 +61,8 @@
 		792964391B48D14200BE3250 /* BorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
 		794121E51B5B5ABA0012732A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		796ABA521B5D5B610037F840 /* Navigation + Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation + Directions.swift"; sourceTree = "<group>"; };
+		796ABA561B5D7BB70037F840 /* ETACalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETACalculator.swift; sourceTree = "<group>"; };
+		796ABA5D1B5D82F20037F840 /* HelperFunction + NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HelperFunction + NSDate.swift"; path = "../../../GoKid/HelperFunction + NSDate.swift"; sourceTree = "<group>"; };
 		799792FB1B472B0200463FA7 /* DetailMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapVC.swift; sourceTree = "<group>"; };
 		799792FD1B472B1B00463FA7 /* DrivingModeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrivingModeVC.swift; sourceTree = "<group>"; };
 		79A20E271B51DD5B00871CAB /* MapItineraryItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapItineraryItemView.swift; sourceTree = "<group>"; };
@@ -143,9 +147,11 @@
 		791BAD601B4712EF008DC186 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				796ABA5A1B5D81790037F840 /* From GoKid */,
 				79A702D21B4A22F300D17537 /* Navigation.swift */,
 				796ABA521B5D5B610037F840 /* Navigation + Directions.swift */,
 				791C2E601B4E2DFC0045555C /* MapViewDatasource.swift */,
+				796ABA561B5D7BB70037F840 /* ETACalculator.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -200,6 +206,14 @@
 				792964311B489BEB00BE3250 /* Raleway-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		796ABA5A1B5D81790037F840 /* From GoKid */ = {
+			isa = PBXGroup;
+			children = (
+				796ABA5D1B5D82F20037F840 /* HelperFunction + NSDate.swift */,
+			);
+			name = "From GoKid";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,9 +328,11 @@
 				796ABA531B5D5B610037F840 /* Navigation + Directions.swift in Sources */,
 				7929643A1B48D14200BE3250 /* BorderedView.swift in Sources */,
 				79A702D31B4A22F300D17537 /* Navigation.swift in Sources */,
+				796ABA5E1B5D82F20037F840 /* HelperFunction + NSDate.swift in Sources */,
 				79A48F691B51A7790023FEB7 /* CalendarUserImageView.swift in Sources */,
 				792964281B4899A200BE3250 /* AppDelegate.swift in Sources */,
 				799792FC1B472B0200463FA7 /* DetailMapVC.swift in Sources */,
+				796ABA571B5D7BB70037F840 /* ETACalculator.swift in Sources */,
 				79E0BDC01B4A312300B54903 /* MapUserImageView.swift in Sources */,
 				799792FE1B472B1B00463FA7 /* DrivingModeVC.swift in Sources */,
 				791C2E611B4E2DFC0045555C /* MapViewDatasource.swift in Sources */,

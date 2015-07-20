@@ -120,6 +120,7 @@
 		7943CF451B55DC1D007F6F8A /* CarpoolInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943CF441B55DC1D007F6F8A /* CarpoolInviteCell.swift */; };
 		7943CF471B55DC2E007F6F8A /* CarpoolListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943CF461B55DC2E007F6F8A /* CarpoolListCell.swift */; };
 		796ABA551B5D72DE0037F840 /* Navigation + Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796ABA541B5D72DE0037F840 /* Navigation + Directions.swift */; };
+		796ABA5C1B5D82CF0037F840 /* HelperFunction + NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796ABA5B1B5D82CF0037F840 /* HelperFunction + NSDate.swift */; };
 		796E699E1B4A6E0C00DF8D43 /* Fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */; };
 		796E699F1B4A6E0C00DF8D43 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */; };
 		796E69A01B4A6E0C00DF8D43 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */; };
@@ -272,6 +273,7 @@
 		7943CF441B55DC1D007F6F8A /* CarpoolInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolInviteCell.swift; sourceTree = "<group>"; };
 		7943CF461B55DC2E007F6F8A /* CarpoolListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolListCell.swift; sourceTree = "<group>"; };
 		796ABA541B5D72DE0037F840 /* Navigation + Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation + Directions.swift"; sourceTree = "<group>"; };
+		796ABA5B1B5D82CF0037F840 /* HelperFunction + NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HelperFunction + NSDate.swift"; sourceTree = "<group>"; };
 		796E699B1B4A6E0C00DF8D43 /* Fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontawesome.ttf; sourceTree = "<group>"; };
 		796E699C1B4A6E0C00DF8D43 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		796E699D1B4A6E0C00DF8D43 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 			children = (
 				1D1FD6861B1C001E00287FA0 /* HelperFunction.swift */,
 				1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */,
+				796ABA5B1B5D82CF0037F840 /* HelperFunction + NSDate.swift */,
 			);
 			name = "Helper Functions";
 			sourceTree = "<group>";
@@ -1073,6 +1076,7 @@
 				1D891F0F1B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift in Sources */,
 				1D3F65141B2005D500CCF6A1 /* LocationVC.swift in Sources */,
 				1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */,
+				796ABA5C1B5D82CF0037F840 /* HelperFunction + NSDate.swift in Sources */,
 				1DA789441B23962200B391E8 /* ColorManager.swift in Sources */,
 				1D891F191B240051006FD961 /* ContactCell.swift in Sources */,
 				1D8F79001B36A47A00C78CAF /* ImageManager.swift in Sources */,

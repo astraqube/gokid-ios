@@ -18,9 +18,7 @@ enum OccurenceType {
 struct MapMetadata {
     var name : String
     var thumbnailImage : UIImage?
-    var dateString : String
-    var shortDateString : String
-    var timeString : String
+    var date : NSDate
     var canNavigate : Bool
     var id : Int?
     var type : OccurenceType
@@ -103,6 +101,22 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
             }
         }
         var stops = self.navigation.pickups + self.navigation.dropoffs
+        var etas = ETACalculator.estimateArrivalTimeForStops(stops)
+        var startAtNow : Bool = true
+        if metadata != nil && NSDate(timeIntervalSinceNow: etas.last!.0).timeIntervalSince1970 <= metadata.date.timeIntervalSince1970 {
+            startAtNow = false
+        }
+        var etaDates = [NSDate]()
+        if startAtNow {
+            etaDates = etas.map { (tuple: (Double, Stop)) -> NSDate in
+                return NSDate(timeIntervalSinceNow: tuple.0)
+            }
+        }else {
+            etaDates = etas.map { (tuple: (Double, Stop)) -> NSDate in
+                let interval = tuple.0 - etas.last!.0
+                return self.metadata.date.dateByAddingTimeInterval(interval)
+            }
+        }
         for (index, itineraryItemView) in enumerate(itineraryRows){
             let model : Stop? = (stops.count > index) ? stops[index] : nil
             if model != nil {
@@ -114,6 +128,9 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
                 }
                 itineraryItemView.titleLabel.text = titleString
                 itineraryItemView.addressLabel.text = model!.address as String?
+                if etaDates.count > index {
+                    itineraryItemView.timeLabel.text = etaDates[index].timeString()
+                }
                 setupUserImageView(itineraryItemView.userImageView, model: model!)
                 itineraryItemView.collapseHeightConstraint.active = false
                 itineraryItemView.hidden = false
@@ -126,9 +143,9 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
         
         if metadata != nil {
             self.nameLabel.text = metadata.name
-            self.dateLabel.text = metadata.dateString
-            self.shortDateLabel.text = metadata.shortDateString
-            self.timeLabel.text = metadata.timeString
+            self.dateLabel.text = metadata.date.dateString()
+            self.shortDateLabel.text = metadata.date.shortDateString()
+            self.timeLabel.text = metadata.date.timeString()
             switch metadata.type {
             case .Pickup:
                 self.pickupIcon.hidden = false

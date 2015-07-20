@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         navigation.setup(pickups, dropoffs:dropoffs);
         vc.navigation = navigation
-        vc.metadata = MapMetadata(name: "Soccer", thumbnailImage: UIImage(named: "test_userImage"), dateString: "Wed July 20, 2015", shortDateString: "July 20", timeString: "8:00 am", canNavigate: true, id: 0, type: .Dropoff)
+        vc.metadata = MapMetadata(name: "Soccer", thumbnailImage: UIImage(named: "test_userImage"), date: NSDate(timeIntervalSinceNow: 0), canNavigate: true, id: 0, type: .Dropoff)
         return true
     }
 

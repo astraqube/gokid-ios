@@ -61,24 +61,15 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     ///A callback to be called after locationToCurrentStopDirection completes. Use `calculateCurrentToPickupRouteWithCallback`.
     var onLocationToCurrentStopRouteDetermined : MKDirectionsHandler?
     var pickups : [Stop]! = [] {
-        didSet { sortStops(&self.pickups!, beginningAt: self.pickups.first) }
+        didSet { ETACalculator.sortStops(&self.pickups!, beginningAt: self.pickups.first) }
     }
     var dropoffs : [Stop]! = []{
         didSet {
             if self.dropoffs.count == 0 { return }
             var lastStop = self.dropoffs.removeLast()
-            sortStops(&self.dropoffs!, beginningAt: self.pickups.last)
+            ETACalculator.sortStops(&self.dropoffs!, beginningAt: self.pickups.last)
             self.dropoffs.append(lastStop)
         }
-    }
-    func sortStops(inout stops: [Stop], beginningAt : Stop?) {
-        let firstCoord = beginningAt?.coordinate
-        let firstLocation = CLLocation(latitude: firstCoord!.latitude, longitude: firstCoord!.longitude)
-        stops.sort({ (stopA, stopB) -> Bool in
-            let distanceA = firstLocation.distanceFromLocation(CLLocation(latitude: stopA.coordinate.latitude, longitude: stopA.coordinate.longitude))
-            let distanceB = firstLocation.distanceFromLocation(CLLocation(latitude: stopB.coordinate.latitude, longitude: stopB.coordinate.longitude))
-            return distanceA < distanceB
-        })
     }
     
     /// The next pickup where `pickup.hasStopped == false`, otherwise, the next dropoff where `dropoff.hasStopped == false`, otherwise nil.
