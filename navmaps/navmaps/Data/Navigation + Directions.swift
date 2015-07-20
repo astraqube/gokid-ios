@@ -49,6 +49,13 @@ extension Navigation {
     }
     
     func analyzeRoute() {
+        if NSThread.isMainThread(){
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                self.analyzeRoute()
+            })
+            return
+        }
+        
         //Navigation next step: currentStep until closer to nextStep.firstPoint than currentStep.lastPoint
         //Navigation off-route: if closest distance from currentStep.path.allPoints > 300 ft, recalculate
         var currentRouteStep = (currentRoute?.steps.count > currentRouteStepIndex && currentRouteStepIndex >= 0 ? currentRoute?.steps[currentRouteStepIndex] : nil) as! MKRouteStep?
@@ -101,9 +108,10 @@ extension Navigation {
             }
             
             if minDistance > recalculateDistance {
-                recalculateRoute()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.recalculateRoute()
+                }
             }
-            
             currentCoordinates.dealloc(currentPointCount)
         }
         
@@ -111,7 +119,9 @@ extension Navigation {
         if readyForNextStep {
             var newStep = nextRouteStep
             currentRouteStepIndex++
-            onDirectionUpdate!(error: nil, nextDirection : nextRouteStep?.instructions)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.onDirectionUpdate!(error: nil, nextDirection : nextRouteStep?.instructions)
+            }
         }
     }
     
