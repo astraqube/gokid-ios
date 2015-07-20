@@ -20,6 +20,7 @@ struct MapMetadata {
     var thumbnailImage : UIImage?
     var dateString : String
     var shortDateString : String
+    var timeString : String
     var canNavigate : Bool
     var id : Int?
     var type : OccurenceType
@@ -127,6 +128,7 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
             self.nameLabel.text = metadata.name
             self.dateLabel.text = metadata.dateString
             self.shortDateLabel.text = metadata.shortDateString
+            self.timeLabel.text = metadata.timeString
             switch metadata.type {
             case .Pickup:
                 self.pickupIcon.hidden = false
