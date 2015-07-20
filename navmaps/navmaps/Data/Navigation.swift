@@ -177,7 +177,8 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         analyzeRouteTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "analyzeRoute", userInfo: nil, repeats: true)
         locationManager.startUpdatingLocation()
         locationManager.startUpdatingHeading()
-        
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "recalculateRoute", name: UIApplicationWillEnterForegroundNotification, object: nil)
         recalculateRoute()
     }
     
@@ -233,7 +234,7 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         
         //determine if off route
         //draw a line between each point along path
-        //if distance from path is greater than 300ft, recalculate
+        //if distance from path is greater than 300meters, recalculate
         //edge– just one point in path
         
         
@@ -253,6 +254,7 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         onDirectionUpdate = nil
         locationManager.stopUpdatingLocation()
         locationManager.stopUpdatingHeading()
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     func startUpdatingLocationWithCallback(callback : LocationCallback) {
