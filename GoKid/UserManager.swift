@@ -36,8 +36,6 @@ class UserManager: NSObject {
     
     var updatedMember = TeamMemberModel()
     
-    var currentCarpoolName: String = ""
-    var currentCarpoolKidName: String = ""
     var currentChoosenDate: String?
     var currentChossenStartTime: String?
     var currentChoosenEndTime: String?
@@ -71,7 +69,7 @@ class UserManager: NSObject {
     }
     
     func currentCarpoolDescription() -> String {
-        return currentCarpoolName + " for " + currentCarpoolKidName
+        return currentCarpoolModel.name + " for " + currentCarpoolModel.kidName
     }
     
     // use the info get from all team members

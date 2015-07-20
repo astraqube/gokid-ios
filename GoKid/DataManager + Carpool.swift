@@ -14,7 +14,11 @@ extension DataManager {
         var map = [
             "carpool": [
                 "name": model.name,
-                "schedule": model.toSchedule()
+                "schedule": model.toSchedule(),
+                "kids": [[
+                    "first_name": model.kidName,
+                    "last_name": UserManager.sharedInstance.info.lastName
+                ]]
             ]
         ]
         println(map)

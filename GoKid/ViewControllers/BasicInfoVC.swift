@@ -62,8 +62,7 @@ class BasicInfoVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     override func rightNavButtonTapped() {
-        userManager.currentCarpoolName = carpoolTitleTextField.text!
-        userManager.currentCarpoolKidName = kidsNameTextField.text!
+        userManager.currentCarpoolModel.kidName = kidsNameTextField.text!
         userManager.currentCarpoolModel.name = carpoolTitleTextField.text!
         var vc = vcWithID("TimeAndDateFormVC")
         self.navigationController?.pushViewController(vc, animated: true)
