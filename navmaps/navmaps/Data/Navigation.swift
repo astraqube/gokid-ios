@@ -178,19 +178,30 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         locationManager.startUpdatingHeading()
         
-        var error : NSString?
-        if let stop = currentStop {
-            if let directionsResponse = locationToCurrentStopResponse {
-                if let route = directionsResponse.routes.first as? MKRoute? {
-                    currentRoute = route
-                    currentRouteStepIndex = -1
-                } else { error = "No route to current stop" }
-            } else { error = "never sought directions to each stop" }
-
-        } else { error = "no current step" }
-        if error != nil {
-            UIAlertView(title: "Navigation Error", message: error! as String, delegate: nil, cancelButtonTitle: "Okay").show()
-            stopUpdatingDirections()
+        recalculateRoute()
+    }
+    
+    func recalculateRoute() {
+        if locationToCurrentStopResponse != nil {
+            locationToCurrentStopResponse = nil
+            locationToCurrentStopDirections = nil
+            onDirectionUpdate!(error: nil, nextDirection : "Recalculating…")
+        }
+        calculateLocationToCurrentStopRouteWithCallback { (response: MKDirectionsResponse!, calcError: NSError!) -> Void in
+            var error : NSString?
+            if let stop = self.currentStop {
+                if let directionsResponse = response {
+                    if let route = directionsResponse.routes.first as? MKRoute? {
+                        self.currentRoute = route
+                        self.currentRouteStepIndex = -1
+                    } else { error = "No route to current stop" }
+                } else { error = "couldn't get directions to stop \(calcError.description)" }
+                
+            } else { error = "no current step" }
+            if error != nil {
+                UIAlertView(title: "Navigation Error", message: error! as String, delegate: nil, cancelButtonTitle: "Okay").show()
+                self.stopUpdatingDirections()
+            }
         }
     }
 
@@ -219,6 +230,11 @@ class Navigation : NSObject, CLLocationManagerDelegate {
             currentLastCoordinate.dealloc(1)
             nextFirstCoordinate.dealloc(1)
         }
+        
+        //determine if off route
+        //draw a line between each point along path
+        //if distance from path is greater than 300ft, recalculate
+        //edge– just one point in path
         
         
         //if closer to last point of next step
@@ -274,7 +290,15 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     }
 
     func calculateLocationToCurrentStopRouteWithCallback(callback: MKDirectionsHandler!) {
-        onLocationToCurrentStopRouteDetermined = callback
+        if onLocationToCurrentStopRouteDetermined != nil {
+            let copy = onLocationToCurrentStopRouteDetermined!
+            onLocationToCurrentStopRouteDetermined = { MKDirectionsHandler in
+                copy(MKDirectionsHandler)
+                callback(MKDirectionsHandler)
+            }
+        } else {
+            onLocationToCurrentStopRouteDetermined = callback
+        }
         if locationToCurrentStopResponse != nil {
             return callback(locationToCurrentStopResponse, nil)
         }
