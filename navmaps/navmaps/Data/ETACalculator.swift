@@ -29,6 +29,24 @@ class ETACalculator {
         return travelTimes
     }
     
+    class func stopDatesFromEstimatesAndArrivalTargetDate(etas: [(Double, Stop)], target: NSDate?) -> [(NSDate, Stop)]{
+        var startAtNow : Bool = true
+        if target != nil && NSDate(timeIntervalSinceNow: etas.last!.0).timeIntervalSince1970 <= target!.timeIntervalSince1970 {
+            startAtNow = false
+        }
+        var etaDates = [NSDate]()
+        if startAtNow {
+            return etas.map { (tuple: (Double, Stop)) -> (NSDate, Stop) in
+                return (NSDate(timeIntervalSinceNow: tuple.0), tuple.1)
+            }
+        }else {
+            return etas.map { (tuple: (Double, Stop)) -> (NSDate, Stop) in
+                let interval = tuple.0 - etas.last!.0
+                return (target!.dateByAddingTimeInterval(interval), tuple.1)
+            }
+        }
+    }
+    
     ///Use distances to naively sort stops such that they are in increasing distance from the first stop
     class func sortStops(inout stops: [Stop], beginningAt : Stop?) {
         let firstCoord = beginningAt?.coordinate

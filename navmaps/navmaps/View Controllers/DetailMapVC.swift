@@ -101,22 +101,7 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
             }
         }
         var stops = self.navigation.pickups + self.navigation.dropoffs
-        var etas = ETACalculator.estimateArrivalTimeForStops(stops)
-        var startAtNow : Bool = true
-        if metadata != nil && NSDate(timeIntervalSinceNow: etas.last!.0).timeIntervalSince1970 <= metadata.date.timeIntervalSince1970 {
-            startAtNow = false
-        }
-        var etaDates = [NSDate]()
-        if startAtNow {
-            etaDates = etas.map { (tuple: (Double, Stop)) -> NSDate in
-                return NSDate(timeIntervalSinceNow: tuple.0)
-            }
-        }else {
-            etaDates = etas.map { (tuple: (Double, Stop)) -> NSDate in
-                let interval = tuple.0 - etas.last!.0
-                return self.metadata.date.dateByAddingTimeInterval(interval)
-            }
-        }
+        var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: metadata?.date)
         for (index, itineraryItemView) in enumerate(itineraryRows){
             let model : Stop? = (stops.count > index) ? stops[index] : nil
             if model != nil {
@@ -129,7 +114,7 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
                 itineraryItemView.titleLabel.text = titleString
                 itineraryItemView.addressLabel.text = model!.address as String?
                 if etaDates.count > index {
-                    itineraryItemView.timeLabel.text = etaDates[index].timeString()
+                    itineraryItemView.timeLabel.text = etaDates[index].0.timeString()
                 }
                 setupUserImageView(itineraryItemView.userImageView, model: model!)
                 itineraryItemView.collapseHeightConstraint.active = false
