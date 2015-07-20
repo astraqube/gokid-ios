@@ -16,28 +16,17 @@ class InviteConfirmVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
         inviteLabel.text = inviteLabel.text?.replace("xPoolNamex", userManager.currentCarpoolModel.name)
         inviteLabel.text = inviteLabel.text?.replace("xNamex", userManager.inviterName)
         kidNameLabel.text = kidNameLabel.text?.replace("xxx", userManager.inviteKidName)
     }
     
-    func setupNavBar() {
-        setNavBarTitle("You're invited")
-        setNavBarLeftButtonTitle("Later", action: "laterButtonClick")
-    }
-    
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
-    
-    func laterButtonClick() {
-        navigationController?.popViewControllerAnimated(true)
-    }
     
     @IBAction func acceptButtonClick(sender: AnyObject) {
         LoadingView.showWithMaskType(.Black)

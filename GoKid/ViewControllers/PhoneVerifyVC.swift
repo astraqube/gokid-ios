@@ -8,100 +8,81 @@
 
 import UIKit
 
-class PhoneVerifyVC: BaseVC {
+class PhoneVerifyVC: BaseFormVC {
     
-    @IBOutlet weak var infoTextLabel: UILabel!
-    @IBOutlet weak var codeTextField: PaddingTextField!
     var memberProfileVC: MemberProfileVC?
-    var signupForm: SignupForm?
     var phoneNumberString = ""
-    var fromCarpoolInvite = false
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupNavBar()
-        setupTextField()
+    override func initForm() {
+        let form = XLFormDescriptor()
+        var row: XLFormRowDescriptor!
+        var section: XLFormSectionDescriptor!
+
+        let now = NSDate()
+        let fontLabel = UIFont(name: "Raleway-Light", size: 17)!
+        let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
+        let colorLabel = colorManager.color507573
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: "verification", rowType: XLFormRowDescriptorTypeNumber, title: "Verification Code")
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["detailTextLabel.font"] = fontValue
+        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.required = true
+        section.addFormRow(row)
+
+        let msg = "We have sent a verification code to ###. Please check your phone."
+        section.footerTitle = msg.replace("###", self.phoneNumberString)
+
+        form.addFormSection(section)
+
+        self.form = form
+        self.form.delegate = self
+    }
+
+    override func formRowDescriptorValueHasChanged(formRow: XLFormRowDescriptor!, oldValue: AnyObject!, newValue: AnyObject!) {
+        super.formRowDescriptorValueHasChanged(formRow, oldValue: oldValue, newValue: newValue)
+        
+        self.toggleRightNavButtonState()
     }
     
-    func setupNavBar() {
-        setNavBarTitle("Phone Verify")
-        setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        setNavBarRightButtonTitle("Next", action: "doneButtonClick")
-    }
-    
-    func setupTextField() {
-        var str = infoTextLabel.text
-        infoTextLabel.text = str?.replace("###", phoneNumberString)
-    }
-    
-    // MARK: IBAction Method
-    // --------------------------------------------------------------------------------------------
-    
-    func backButtonClick() {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
-    func doneButtonClick() {
-        if codeTextField.text != "" {
-            verifyCode(codeTextField.text)
-        } else {
-            showAlert("Action required", messege: "Please fill you verification code", cancleTitle: "OK")
+    override func rightNavButtonTapped() {
+        let validationErrors: Array<NSError> = self.formValidationErrors() as! Array<NSError>
+
+        if validationErrors.count > 0 {
+            self.showFormValidationError(validationErrors.first)
+            return
         }
+
+        self.tableView.endEditing(true)
+
+        self.proceed()
     }
-    
-    // MARK: Network Flow
-    // --------------------------------------------------------------------------------------------
-    
-    func verifyCode(code: String) {
-        if fromCarpoolInvite {
-            inviteVerifyCode(code)
-        } else {
-            memberPhoneVerify(code)
-        }
-    }
-    
-    func memberPhoneVerify(code: String) {
+
+    private func proceed() {
+        let formData = self.form.formValues()
+        let verification = formData["verification"] as! Int
+
         LoadingView.showWithMaskType(.Black)
-        dataManager.memberPhoneVerification(code) {(success, errorStr) in
+        dataManager.memberPhoneVerification(verification.description) {(success, errorStr) in
             if success {
                 LoadingView.showSuccessWithStatus("Success")
-                self.handleMemberPhoneVerificationSuccess()
+
+                if let vc = self.memberProfileVC {
+                    vc.phoneNumberLabel.text = self.phoneNumberString
+                    self.navigationController?.popToViewController(vc, animated: true)
+                } else {
+                    var vc = vcWithID("InviteConfirmVC")
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+
             } else {
                 LoadingView.dismiss()
-                self.showAlert("Fail to verify code", messege: errorStr, cancleTitle: "OK")
+                self.showAlert("Verification Failed", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
-    
-    func handleMemberPhoneVerificationSuccess() {
-        onMainThread() {
-            if let vc = self.memberProfileVC {
-                vc.phoneNumberLabel.text = self.phoneNumberString
-                self.navigationController?.popToViewController(vc, animated: true)
-            }
-        }
-    }
-    
-    // MARK: Carpool Invitation Nextwork flow
-    // --------------------------------------------------------------------------------------------
-   
-    func inviteVerifyCode(code: String) {
-        LoadingView.showWithMaskType(.Black)
-        dataManager.inviteSignupUser(phoneNumberString, code: code, form: signupForm!) { (success, errStr) in
-            LoadingView.dismiss()
-            if success {
-                self.handleVerificatoinSuccessFromCarpoolInvite()
-            } else {
-                self.showAlert("Fail to verify code", messege: errStr, cancleTitle: "OK")
-            }
-        }
-    }
-    
-    func handleVerificatoinSuccessFromCarpoolInvite() {
-        onMainThread() {
-            var vc = vcWithID("InviteConfirmVC")
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-}
 
+}

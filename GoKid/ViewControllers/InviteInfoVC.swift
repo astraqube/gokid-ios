@@ -13,7 +13,9 @@ class InviteInfoVC: BaseFormVC {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         // require user session
-        self.postNotification("requestForUserToken")
+        if self.userManager.userLoggedIn == false {
+            self.postNotification("requestForUserToken")
+        }
     }
 
     override func initForm() {
@@ -65,12 +67,14 @@ class InviteInfoVC: BaseFormVC {
 
     private func proceed() {
         let formData = self.form.formValues()
+        var phoneNumber = formData["phone"] as? String
 
         LoadingView.showWithMaskType(.Black)
-        dataManager.verifyCarPoolInvitation(formData["phone"] as! String) { (success, errorStr) in
+        dataManager.verifyCarPoolInvitation(phoneNumber!) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
-                var vc = vcWithID("PhoneVerifyVC")
+                var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
+                vc.phoneNumberString = phoneNumber!
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 self.showAlert("Can't find that Invitation", messege: errorStr, cancleTitle: "OK")
