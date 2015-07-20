@@ -10,8 +10,6 @@ import UIKit
 
 class InviteInfoVC: BaseFormVC {
 
-    @IBOutlet weak var phoneNumberTextField: PaddingTextField!
-
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         // require user session
@@ -27,8 +25,6 @@ class InviteInfoVC: BaseFormVC {
         let fontLabel = UIFont(name: "Raleway-Light", size: 17)!
         let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
         let colorLabel = colorManager.color507573
-
-        let carpoolModel = userManager.currentCarpoolModel
 
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
