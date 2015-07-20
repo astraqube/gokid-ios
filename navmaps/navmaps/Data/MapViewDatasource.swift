@@ -110,7 +110,14 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
     
     func toggleTrackMode() {
         didFitMapOnce = false
-        if let newTrack = MapTrackMode(rawValue: mapTrackMode.rawValue + 1) {
+        if type == .Driving {
+            switch mapTrackMode {
+            case .User:
+                mapTrackMode = .UserStop
+            default:
+                mapTrackMode = .User
+            }
+        }else if let newTrack = MapTrackMode(rawValue: mapTrackMode.rawValue + 1) {
             mapTrackMode = newTrack
         }else{
             mapTrackMode = MapTrackMode(rawValue: 0)!
