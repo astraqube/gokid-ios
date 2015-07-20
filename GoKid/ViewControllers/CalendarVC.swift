@@ -301,7 +301,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 
     func mapMetadataForModel(model : OccurenceModel) -> MapMetadata {
         var canNavigate =  model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID
-        return MapMetadata(name: model.poolname, thumbnailImage: UIImage(named: "emma"), dateString: model.occursAt!.dateString(), shortDateString: model.occursAt!.shortDateString(), timeString: model.occursAt!.timeString() , canNavigate: canNavigate, id: model.occurenceID, type: (model.poolType == "dropoff") ? .Dropoff : .Pickup )
+        return MapMetadata(name: model.poolname, thumbnailImage: UIImage(named: "emma"), date: model.occursAt!, canNavigate: canNavigate, id: model.occurenceID, type: (model.poolType == "dropoff") ? .Dropoff : .Pickup )
     }
 
 }
