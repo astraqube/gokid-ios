@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  GoKid
+
+  Created by Dean Quinanola on 7/19/15.
+  Copyright (c) 2015 GoKid. All rights reserved.
+*/
+
+"XLFormViewController_ValidationErrorTitle" = "Please make this correction";
+"XLFormController_DeleteConfirmation" = "Are you sure?";

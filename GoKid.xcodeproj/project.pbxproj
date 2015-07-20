@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0455A2291B5CB6D700F007E6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0455A2281B5CB6D700F007E6 /* Localizable.strings */; };
 		047AADA71B542F18006628EF /* FrequencyPickerFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */; };
 		04FB80971B530E1B00F73C74 /* BaseFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80961B530E1B00F73C74 /* BaseFormVC.swift */; };
 		04FB80991B530E3A00F73C74 /* TimeAndDateFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */; };
@@ -147,6 +148,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0455A2281B5CB6D700F007E6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyPickerFormVC.swift; sourceTree = "<group>"; };
 		04FB80961B530E1B00F73C74 /* BaseFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFormVC.swift; sourceTree = "<group>"; };
 		04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDateFormVC.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			children = (
 				796E699A1B4A6E0C00DF8D43 /* Fonts */,
 				1D1FD6631B1BFC4A00287FA0 /* Info.plist */,
+				0455A2281B5CB6D700F007E6 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 				1D1FD66F1B1BFC4A00287FA0 /* LaunchScreen.xib in Resources */,
 				1DEFF1831B4A8ACB0094B54E /* Onboard.storyboard in Resources */,
 				796E69A01B4A6E0C00DF8D43 /* Raleway-Regular.ttf in Resources */,
+				0455A2291B5CB6D700F007E6 /* Localizable.strings in Resources */,
 				1D1228DE1B424AC6001CA6A4 /* Login.storyboard in Resources */,
 				796E699E1B4A6E0C00DF8D43 /* Fontawesome.ttf in Resources */,
 				1D1FD66C1B1BFC4A00287FA0 /* Images.xcassets in Resources */,
