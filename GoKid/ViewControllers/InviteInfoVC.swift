@@ -10,12 +10,12 @@ import UIKit
 
 class InviteInfoVC: BaseFormVC {
 
-    @IBOutlet weak var phoneNumberTextField: PaddingTextField!
-
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         // require user session
-        self.postNotification("requestForUserToken")
+        if self.userManager.userLoggedIn == false {
+            self.postNotification("requestForUserToken")
+        }
     }
 
     override func initForm() {
@@ -27,8 +27,6 @@ class InviteInfoVC: BaseFormVC {
         let fontLabel = UIFont(name: "Raleway-Light", size: 17)!
         let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
         let colorLabel = colorManager.color507573
-
-        let carpoolModel = userManager.currentCarpoolModel
 
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
@@ -69,12 +67,14 @@ class InviteInfoVC: BaseFormVC {
 
     private func proceed() {
         let formData = self.form.formValues()
+        var phoneNumber = formData["phone"] as? String
 
         LoadingView.showWithMaskType(.Black)
-        dataManager.verifyCarPoolInvitation(formData["phone"] as! String) { (success, errorStr) in
+        dataManager.verifyCarPoolInvitation(phoneNumber!) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
-                var vc = vcWithID("PhoneVerifyVC")
+                var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
+                vc.phoneNumberString = phoneNumber!
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 self.showAlert("Can't find that Invitation", messege: errorStr, cancleTitle: "OK")
