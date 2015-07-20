@@ -45,7 +45,7 @@ class DrivingModeVC: UIViewController {
                 }))
                 if stop.phoneNumber != nil {
                     stopActionSheet.addAction(UIAlertAction(title: "Send Message", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction!) -> Void in
-                        UIApplication.sharedApplication().openURL(NSURL(string: "sms:\(stop.phoneNumber)")!)
+                        UIApplication.sharedApplication().openURL(NSURL(string: "sms:\(stop.phoneNumber!)")!)
                     }))
                 }
                 stopActionSheet.addAction(UIAlertAction(title: "Navigate in Maps", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction!) -> Void in
