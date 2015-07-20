@@ -7,120 +7,79 @@
 //
 
 import UIKit
-import MobileCoreServices
 
-class InviteInfoVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    
-    @IBOutlet weak var passWordTextField: PaddingTextField!
+class InviteInfoVC: BaseFormVC {
+
     @IBOutlet weak var phoneNumberTextField: PaddingTextField!
-    @IBOutlet weak var emailTextField: PaddingTextField!
-    @IBOutlet weak var firstNameTextField: PaddingTextField!
-    @IBOutlet weak var lastNameTextfield: PaddingTextField!
-    @IBOutlet weak var profileImageView: UIImageView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupNavigationBar()
-        
-        // move view up when keyboard shows
-        self.keyBoardMoveUp = 95
-        // round profile image view
-        profileImageView.setRounded()
-    }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBarColorDark()
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        // require user session
+        self.postNotification("requestForUserToken")
     }
-    
-    func setupNavigationBar() {
-        setNavBarTitle("I was invited")
-        setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
+
+    override func initForm() {
+        let form = XLFormDescriptor()
+        var row: XLFormRowDescriptor!
+        var section: XLFormSectionDescriptor!
+
+        let now = NSDate()
+        let fontLabel = UIFont(name: "Raleway-Light", size: 17)!
+        let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
+        let colorLabel = colorManager.color507573
+
+        let carpoolModel = userManager.currentCarpoolModel
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: "phone", rowType: XLFormRowDescriptorTypePhone, title: "Phone Number")
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["detailTextLabel.font"] = fontValue
+        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.required = true
+        section.addFormRow(row)
+
+        section.footerTitle = "Enter the phone number in which you received the invitation"
+
+        form.addFormSection(section)
+
+        self.form = form
+        self.form.delegate = self
     }
-    
-    // MARK: IBAction Mathod
-    // --------------------------------------------------------------------------------------------
-    
-    func backButtonClick() {
-        navigationController?.popViewControllerAnimated(true)
+
+    override func formRowDescriptorValueHasChanged(formRow: XLFormRowDescriptor!, oldValue: AnyObject!, newValue: AnyObject!) {
+        super.formRowDescriptorValueHasChanged(formRow, oldValue: oldValue, newValue: newValue)
+
+        self.toggleRightNavButtonState()
     }
-    
-    func nextButtonClick() {
-        if let signupForm = getSignupForm() {
-            proceedToNextVC(signupForm)
-        } else {
-            showAlert("Alert", messege: "Please Fill in all Blank", cancleTitle: "OK")
+
+    override func rightNavButtonTapped() {
+        let validationErrors: Array<NSError> = self.formValidationErrors() as! Array<NSError>
+
+        if validationErrors.count > 0 {
+            self.showFormValidationError(validationErrors.first)
+            return
         }
+
+        self.tableView.endEditing(true)
+
+        self.proceed()
     }
-    
-    @IBAction func chooseImageButtonClick(sender: AnyObject) {
-        var picker = UIImagePickerController()
-        picker.sourceType = .PhotoLibrary
-        picker.delegate = self
-        self.presentViewController(picker, animated: true, completion: nil)
-    }
-    
-    
-    // MARK: UIImagePickerControllerDelegate
-    // --------------------------------------------------------------------------------------------
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        if let mediaType = info[UIImagePickerControllerMediaType] as? String {
-            if mediaType == String(kUTTypeImage) {
-                if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                    self.profileImageView.image = image
-                }
-            }
-            picker.dismissViewControllerAnimated(true, completion: nil)
-        }
-    }
-    
-    // MARK: Network Flow
-    // --------------------------------------------------------------------------------------------
-    
-    func proceedToNextVC(form: SignupForm) {
-        userManager.unregisteredUserInfo = form
+
+    private func proceed() {
+        let formData = self.form.formValues()
+
         LoadingView.showWithMaskType(.Black)
-        dataManager.verifyCarPoolInvitation(form.phoneNum) { (success, errorStr) in
+        dataManager.verifyCarPoolInvitation(formData["phone"] as! String) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
-                self.moveToPhoneVerifyVC(form)
+                var vc = vcWithID("PhoneVerifyVC")
+                self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                self.showAlert("Your Phone Number Doesn't Match", messege: errorStr, cancleTitle: "OK")
+                self.showAlert("Can't find that Invitation", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
-    
-    func moveToPhoneVerifyVC(form: SignupForm) {
-        onMainThread() {
-            var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
-            vc.fromCarpoolInvite = true
-            vc.phoneNumberString = self.phoneNumberTextField.text
-            vc.signupForm = form
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    func getSignupForm() -> SignupForm? {
-        if let password = passWordTextField.text,
-            phoneNum = phoneNumberTextField.text,
-            firstName = firstNameTextField.text,
-            lastName = lastNameTextfield.text,
-            email = emailTextField.text
-        {
-            var signupForm = SignupForm()
-            signupForm.passwordConfirm = password
-            signupForm.password = password
-            signupForm.firstName = firstName
-            signupForm.lastName = lastName
-            signupForm.email = email
-            signupForm.phoneNum = phoneNum
-            signupForm.image = profileImageView.image
-            return signupForm
-        }
-        return nil
-    }
+
 }
