@@ -40,7 +40,6 @@ extension DataManager {
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getAllUserOccurrences success")
-            println(obj)
             var json = JSON(obj)
             var ridersJ = json["riders"]
             var riders = RiderModel.arrayOfRidersWithJSON(ridersJ)
@@ -107,7 +106,6 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getOccurenceOfCarpool success")
             var json = JSON(obj)["occurrences"]
-            println(json)
             var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
             self.userManager.volunteerEvents = events
             comp(true, "")
@@ -118,7 +116,7 @@ extension DataManager {
     }
     
     func updateOccurencesLocation(occs: [(OccurenceModel, OccurenceModel)], comp: completion) {
-        var url = baseURL + "/carpools/" + String(userManager.currentCarpoolModel.id) + "/occurrences"
+        var url = baseURL + "/api/carpools/" + String(userManager.currentCarpoolModel.id) + "/occurrences"
         
         var data = [OccurenceModel]()
         for (pickup, dropoff) in occs {
