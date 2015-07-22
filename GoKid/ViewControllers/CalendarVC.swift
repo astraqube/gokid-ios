@@ -93,6 +93,9 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             if onlyShowOurDrives && event.volunteer?.id != userManager.info.userID{
                 continue
             }
+            if event.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -24 * 60 * 60)) {
+                continue
+            }
             if event.occursAtStr != lastDateStr {
                 var dateCell = OccurenceModel()
                 dateCell.cellType = .Time
