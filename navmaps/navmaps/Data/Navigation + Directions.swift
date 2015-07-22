@@ -31,6 +31,7 @@ extension Navigation {
             onDirectionUpdate!(error: nil, nextDirection : "Recalculating…")
         }
         calculateLocationToCurrentStopRouteWithCallback { (response: MKDirectionsResponse!, calcError: NSError!) -> Void in
+            self.onLocationToCurrentStopRouteDetermined = nil
             var error : NSString?
             if let stop = self.currentStop {
                 if let directionsResponse = response {
@@ -43,6 +44,7 @@ extension Navigation {
             } else { error = "no current step" }
             if error != nil {
                 UIAlertView(title: "Navigation Error", message: error! as String, delegate: nil, cancelButtonTitle: "Okay").show()
+                self.onDirectionUpdate!(error: nil, nextDirection : "Navigation")
                 self.stopUpdatingDirections()
             }
         }
