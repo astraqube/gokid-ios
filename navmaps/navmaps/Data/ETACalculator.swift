@@ -51,6 +51,7 @@ class ETACalculator {
     
     ///Use distances to naively sort stops such that they are in increasing distance from the first stop
     class func sortStops(inout stops: [Stop], beginningAt : Stop?) {
+        if stops.count == 0 || beginningAt == nil { return }
         let firstCoord = beginningAt?.coordinate
         let firstLocation = CLLocation(latitude: firstCoord!.latitude, longitude: firstCoord!.longitude)
         stops.sort({ (stopA, stopB) -> Bool in
