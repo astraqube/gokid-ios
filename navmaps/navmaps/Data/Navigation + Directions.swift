@@ -38,7 +38,7 @@ extension Navigation {
                         self.currentRoute = route
                         self.currentRouteStepIndex = -1
                     } else { error = "No route to current stop" }
-                } else { error = "couldn't get directions to stop\n\(calcError.localizedFailureReason)" }
+                } else { error = "couldn't get directions to stop\n\(calcError.localizedFailureReason != nil ? calcError.localizedFailureReason! : calcError.localizedDescription)" }
                 
             } else { error = "no current step" }
             if error != nil {
