@@ -32,7 +32,7 @@ class OccurenceModel: NSObject {
     var occursAtStr = ""
     var notification = ""
    
-    var riders : [RiderModel]?
+    var riders = [RiderModel]()
     
     var occurenceID = 0
     var carpoolID = 0

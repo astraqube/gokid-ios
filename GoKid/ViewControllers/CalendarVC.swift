@@ -170,7 +170,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             cell.dropoffIcon.hidden = true
         }
         for (index, riderImageView) in enumerate(cell.pickupImageCollection) {
-            let rider : RiderModel? = (model.riders?.count > index) ? model.riders![index] : nil
+            let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
             if rider != nil {
                 riderImageView.nameString = "\(rider!.firstName) \(rider!.lastName)"
                 //riderImageView.image = rider.thumURL //gotta get images
@@ -283,17 +283,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func navigationForModel(model : OccurenceModel) -> Navigation {
         var navigation = Navigation()
-        var pickups = [
-            // right now we only have one stop for each
-            // pick-up/drop-off we will add more later
-            // Stop(occurrence: model)
-            Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1833), name: "Menlo's House", address: "123 Fake St 91210", phoneNumber: "18002831337", stopID: "1", thumbnailImage: UIImage(named: "emma")),
-            Stop(coordinate: CLLocationCoordinate2DMake(37.4598, -122.1893), name: "Kid's House", address: "4821 Fake Ln 91210", phoneNumber: "18002831437", stopID: "2", thumbnailImage: nil),
-            Stop(coordinate: CLLocationCoordinate2DMake(37.4608, -122.2093), name: "Another Kid's House", address: "8912 Big Fake Ave 91211", phoneNumber: "18002831537", stopID: "3", thumbnailImage: nil)
-        ]
-        
+        var pickups = [Stop]()
+        for rider in model.riders {
+            pickups.append(Stop(coordinate: CLLocationCoordinate2D(latitude: rider.pickupLocation.lati, longitude: rider.pickupLocation.long) , name: "\(rider.firstName) \(rider.lastName)", address: rider.pickupLocation.name, phoneNumber: rider.phoneNumber, stopID: NSNumber(integer: rider.riderID).stringValue, thumbnailImage: nil))
+        }
         var dropoffs = [
-            Stop(coordinate: CLLocationCoordinate2DMake(37.783333, -122.416667), name: "Soccer Club", address: "4 Soccer Way 92118", phoneNumber: "18002831637", stopID: "10", thumbnailImage: nil)
+            Stop(coordinate: CLLocationCoordinate2D(latitude: model.eventLocation.lati, longitude: model.eventLocation.long) , name: model.poolname, address: model.eventLocation.name, phoneNumber: nil, stopID: String(model.occurenceID), thumbnailImage: nil)
         ]
         navigation.setup(pickups, dropoffs:dropoffs);
         return navigation

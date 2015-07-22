@@ -23,6 +23,11 @@ enum MapTrackMode : Int {
 
 typealias AnnotationSelectHandler = ((selectedAnnotationView: MKAnnotationView) -> (Void))
 
+public func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+    return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+}
+extension CLLocationCoordinate2D : Equatable {}
+
 class MapViewDatasource: NSObject, MKMapViewDelegate {
     var type : MapViewDataSourceType
     var navigation : Navigation
@@ -104,7 +109,17 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
-        mapView.deselectAnnotation(view.annotation, animated: false)
+        if let siblingViews = view.superview?.subviews as? [MKAnnotationView] {
+            var deselect = true
+            for sibling in siblingViews {
+                if sibling != view && sibling.annotation.coordinate == view.annotation.coordinate {
+                    deselect = false
+                }
+            }
+            if deselect == true {
+                mapView.deselectAnnotation(view.annotation, animated: false)
+            }
+        }
         onAnnotationSelect?(selectedAnnotationView: view)
     }
     

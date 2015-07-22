@@ -6,6 +6,8 @@
 3. Open in XCode, build, and run
 
 ## Changelog
+AHL July 21:
+Now show real data on mapview
 AHL July 19:
 Now eta calculation works
 Now off-route recalculation works
