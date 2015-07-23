@@ -27,8 +27,12 @@ class BaseFormVC: XLFormViewController {
         self.initForm()
         super.viewDidLoad()
         addLargeNavigationButton()
+
+        // Get rid of navbar border
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
-    
+
     func addLargeNavigationButton() {
         var buttonW: CGFloat = 40
         var buttonH: CGFloat = 36

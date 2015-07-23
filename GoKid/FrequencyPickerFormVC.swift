@@ -9,7 +9,7 @@
 import UIKit
 
 enum GKFrequency : String {
-    case JustOnce = "Just Once"
+    case JustOnce = "Daily"
     case EveryWeek = "Every Week"
     case EveryMonth = "Every Month"
     case EveryYear = "Every Year"
@@ -44,7 +44,7 @@ enum GKDays : String {
 
 class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
 
-    var rowDescriptor: XLFormRowDescriptor?
+    var rowDescriptor: XLFormRowDescriptor!
 
     private var currentValues: NSMutableArray! = []
 
@@ -58,16 +58,17 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
 
-        if let currentFrequency = self.rowDescriptor?.value as? NSMutableArray {
-            self.currentValues = currentFrequency
+        if let current = self.rowDescriptor.value as? [AnyObject] {
+            self.currentValues.addObjectsFromArray(self.convertValuesToForm(current))
         }
-
         self.updateFormFields()
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+
+        self.rowDescriptor.value = self.convertFormToValues(self.currentValues as [AnyObject])
     }
 
     override func initForm() {
@@ -149,15 +150,24 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
             }
         }
 
-        self.updateRowDescriptor()
         self.updateFormFields()
     }
 
     func updateRowDescriptor() {
         if self.currentValues.count > 0 {
-            self.rowDescriptor?.value = self.currentValues as Array
+            var collection: [Int] = []
+            for val in self.currentValues {
+                let valStr = val as! String
+                if contains(GKDays.asKeys.keys, valStr) {
+                    if let num = GKDays.asKeys[valStr] as Int? {
+                        collection.append(num)
+                    }
+                }
+            }
+
+            self.rowDescriptor.value = collection
         } else {
-            self.rowDescriptor?.value = nil
+            self.rowDescriptor.value = nil
         }
     }
 
@@ -182,12 +192,44 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         }
 
         if val == GKFrequency.EveryWeek.rawValue && self.currentValues.count > 0 {
-            if contains(GKDays.allValues, self.currentValues.firstObject as! String) {
+            if contains(GKDays.asKeys.keys, self.currentValues.firstObject as! String) {
                 return true
             }
         }
 
         return self.currentValues.containsObject(val)
+    }
+
+    func convertValuesToForm(data: [AnyObject]) -> [String] {
+        var converted: [String]! = []
+
+        for _val in data {
+            let val = _val as! Int
+            if contains(GKDays.asKeys.values, val) {
+                let day: String = GKDays.asKeys.keys[find(GKDays.asKeys.values, val)!]
+                converted.append(day)
+            }
+        }
+
+        return converted
+    }
+
+    func convertFormToValues(data: [AnyObject]) -> [Int] {
+        var converted: [Int]! = []
+
+        for _field in data {
+            let field = _field as! String
+            if contains(GKDays.asKeys.keys, field) {
+                let dayNum: Int = GKDays.asKeys[field]!
+                converted.append(dayNum)
+            }
+        }
+
+        converted.sort {
+            return $0 < $1
+        }
+
+        return converted
     }
 
 }
