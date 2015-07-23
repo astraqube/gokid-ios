@@ -272,16 +272,44 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                 LoadingView.dismiss()
                 if success {
                     var model = self.dataSource[indexPath.row]
-                    var vc = vcWithID("DetailMapVC") as! DetailMapVC
-                    vc.navigation = self.navigationForModel(model)
-                    vc.metadata = self.mapMetadataForModel(model)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    self.setStatusBarColorDark() //dude, this is lame, try func preferredStatusBarStyle
+                    self.showOccurenceVCWithModel(model)
                 } else {
                     self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
                 }
             }
         }
+    }
+    
+    func showOccurenceVCWithModel(model: OccurenceModel) {
+        var vc = vcWithID("DetailMapVC") as! DetailMapVC
+        vc.onEditButtonPressed = { (vc: DetailMapVC) in
+            var inviteVC = vcWithID("InviteParentsVC")
+            vc.navigationController?.pushViewController(inviteVC, animated: true)
+        }
+        vc.onOptOutButtonPressed = { (vc: DetailMapVC) in
+            var optOutRider = model.riders.first
+            if optOutRider == nil { return }
+            var optOutSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            let optOutString = "Opt Out \(optOutRider!.firstName)"
+            optOutSheet.addAction(UIAlertAction(title: optOutString, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
+                vc.navigationController?.popViewControllerAnimated(true)
+                LoadingView.showWithMaskType(.Black)
+                self.dataManager.deleteFromOccurenceRiders(optOutRider!, occ: model, comp: { (success, errorStr) -> () in
+                    LoadingView.dismiss()
+                    if success {
+                        self.fetchDataAndReloadTableView()
+                    } else {
+                        self.showAlert("Failed to opt out rider", messege: errorStr, cancleTitle: "OK")
+                    }
+                })
+            }))
+            optOutSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            self.presentViewController(optOutSheet, animated: true, completion: nil)
+        }
+        vc.navigation = self.navigationForModel(model)
+        vc.metadata = self.mapMetadataForModel(model)
+        self.navigationController?.pushViewController(vc, animated: true)
+        self.setStatusBarColorDark()
     }
     
     func navigationForModel(model : OccurenceModel) -> Navigation {

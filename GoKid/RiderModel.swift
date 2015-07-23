@@ -8,6 +8,11 @@
 
 import UIKit
 
+func ==(lhs: RiderModel, rhs: RiderModel) -> Bool {
+    return lhs.riderID == rhs.riderID
+}
+extension RiderModel : Equatable {}
+
 class RiderModel: NSObject {
     var riderID = 0
     var phoneNumber: String = ""

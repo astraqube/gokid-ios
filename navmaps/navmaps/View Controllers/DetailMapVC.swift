@@ -41,6 +41,10 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     @IBOutlet weak var dropoffIcon: UILabel!
     ///Use this to set extra data about the trip!
     var metadata : MapMetadata!
+    ///Use this to get a callback when users presses Edit
+    var onEditButtonPressed : ((vc: DetailMapVC)-> Void)?
+    ///Use this to get a callback when users presses Edit
+    var onOptOutButtonPressed : ((vc: DetailMapVC)-> Void)?
     
     @IBOutlet var riderImageViews : [CalendarUserImageView]!
     @IBOutlet var riderLabelViews : [UILabel]!
@@ -183,6 +187,14 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
         } else if sender.state == .Ended {
             trayShown = velocityY > 0
         }
+    }
+    
+    @IBAction func editButtonTapped(sender: AnyObject) {
+        onEditButtonPressed?(vc: self)
+    }
+
+    @IBAction func optOutButtonTapped(sender: AnyObject) {
+        onOptOutButtonPressed?(vc: self)
     }
     
     @IBAction func sendMessageTapped(sender: AnyObject) {
