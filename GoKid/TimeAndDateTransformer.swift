@@ -65,7 +65,15 @@ class FrequencyTransformer: NSValueTransformer {
         if let valueData: AnyObject = value {
             if valueData.isKindOfClass(NSArray) {
                 let occurence = valueData as! NSArray
-                return occurence.componentsJoinedByString(", ")
+                var converted: [String] = []
+                for num in occurence {
+                    let val = num as! Int
+                    if contains(GKDays.asKeys.values, val) {
+                        let day: String = GKDays.asKeys.keys[find(GKDays.asKeys.values, val)!]
+                        converted.append(day)
+                    }
+                }
+                return ", ".join(converted)
             }
         }
         return nil
