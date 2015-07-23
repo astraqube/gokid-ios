@@ -31,8 +31,12 @@ class BaseVC: UIViewController {
         leftButton?.addTarget(self, action: "leftNavButtonTapped", forControlEvents: .TouchUpInside)
         rightButton?.addTarget(self, action: "rightNavButtonTapped", forControlEvents: .TouchUpInside)
         addLargeNavigationButton()
+
+        // Get rid of navbar border
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
-    
+
     func addLargeNavigationButton() {
         var buttonW: CGFloat = 40
         var buttonH: CGFloat = 36
