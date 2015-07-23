@@ -283,7 +283,11 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func showOccurenceVCWithModel(model: OccurenceModel) {
         var vc = vcWithID("DetailMapVC") as! DetailMapVC
         vc.onEditButtonPressed = { (vc: DetailMapVC) in
-            var inviteVC = vcWithID("InviteParentsVC")
+            UserManager.sharedInstance.currentCarpoolModel = CarpoolModel()
+            UserManager.sharedInstance.currentCarpoolModel.id = model.carpoolID
+            UserManager.sharedInstance.currentCarpoolModel.name = model.poolname
+            var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
+            inviteVC.hideForwardNavigationButtons = true
             vc.navigationController?.pushViewController(inviteVC, animated: true)
         }
         vc.onOptOutButtonPressed = { (vc: DetailMapVC) in
