@@ -29,6 +29,7 @@ class OccurenceModel: NSObject {
     
     var cellType: CalendarCellType = .None
     var pooltimeStr = ""
+    ///this is a localized date string 'today' or 'tomorrow'
     var occursAtStr = ""
     var notification = ""
    

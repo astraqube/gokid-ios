@@ -7,6 +7,7 @@
 
 ## Changelog
 AHL July 23:
+got TimeToGoCell displaying with accurate ETA info on CalendarVC
 onLocationUpdated callbacks every 10 seconds update the carpool location on server
 Now trigger onPickupArrival notifications
 Opt out & Edit Button work on Map View

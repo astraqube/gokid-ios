@@ -67,9 +67,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tryAddNotificationHeader() {
-        // we have one last cell for add carpool thus here is 2
-        if dataSource.count >= 3 {
-            var model = dataSource[1]
+        if let model = nextDrivingOccurrence() {
             var str = "Hi #name you are driving #date"
             str = str.replace("#name", userManager.info.firstName)
             if model.occursAtStr == "Today" || model.occursAtStr == "Tomorrow" {
@@ -84,6 +82,16 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             cell.notification = str
             dataSource.insert(cell, atIndex: 0)
         }
+    }
+    
+    func nextDrivingOccurrence() -> OccurenceModel? {
+        for model in self.dataSource {
+            if model.cellType != .Normal { continue }
+            if model.volunteer?.id == userManager.info.userID {
+                return model
+            }
+        }
+        return nil
     }
     
     func processRawCalendarEvents() {
@@ -161,7 +169,25 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func configCalendarCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarCell {
-        var cell = tableView.cellWithID("CalendarCell", ip) as! CalendarCell
+        var cell : CalendarCell!
+        if model == nextDrivingOccurrence() {
+            var gCell = tableView.cellWithID("CalendarTimeToGoCell", ip) as! CalendarTimeToGoCell
+            gCell.timeToGoTitleLabel.text = "Can't keep kids waiting!"
+
+            var stops = model.riders.map { return $0.stopValue } + [model.stopValue]
+            ETACalculator.sortStops(&stops, beginningAt: stops.first)
+            var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: model.occursAt!)
+            if let (departDate, stop) = etaDates.first {
+                if departDate.isLessThanDate(NSDate(timeIntervalSinceNow: 100)) {
+                    gCell.timeToGoTimeLabel.text = "It's time to go!"
+                } else {
+                    gCell.timeToGoTimeLabel.text = "We gotta go at \(departDate.timeString())!"
+                }
+            }
+            cell = gCell
+        } else {
+            cell = tableView.cellWithID("CalendarCell", ip) as! CalendarCell
+        }
         cell.nameLabel.text = model.poolname
         cell.timeLabel.text = model.pooltimeStr
         cell.typeLabel.text = model.poolType
@@ -255,6 +281,9 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         case .Add:
             return 77.0
         case .Normal:
+            if model == nextDrivingOccurrence() {
+                return 190
+            }
             return 134.0
         default:
             return 50.0
@@ -320,10 +349,10 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         var navigation = Navigation()
         var pickups = [Stop]()
         for rider in model.riders {
-            pickups.append(Stop(coordinate: CLLocationCoordinate2D(latitude: rider.pickupLocation.lati, longitude: rider.pickupLocation.long) , name: "\(rider.firstName) \(rider.lastName)", address: rider.pickupLocation.name, phoneNumber: rider.phoneNumber, stopID: NSNumber(integer: rider.riderID).stringValue, thumbnailImage: nil))
+            pickups.append(rider.stopValue)
         }
         var dropoffs = [
-            Stop(coordinate: CLLocationCoordinate2D(latitude: model.eventLocation.lati, longitude: model.eventLocation.long) , name: model.poolname, address: model.eventLocation.name, phoneNumber: nil, stopID: String(model.occurenceID), thumbnailImage: nil)
+            model.stopValue
         ]
         navigation.setup(pickups, dropoffs:dropoffs);
         navigation.onStopStateChanged = { (nav : Navigation, stop: Stop) in
@@ -335,6 +364,9 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                         self.showAlert("Failed to notify rider of arrival", messege: "You may want to message them!", cancleTitle: "OK")
                     }
                 })
+            }
+            if navigation.currentStop == nil {
+                println("routing done– time to update interested parties")
             }
         }
         navigation.onLocationUpdate = { (error: NSError?, location : CLLocation!) in
@@ -353,4 +385,20 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         return MapMetadata(name: model.poolname, thumbnailImage: UIImage(named: "emma"), date: model.occursAt!, canNavigate: canNavigate, id: model.occurenceID, type: (model.poolType == "dropoff") ? .Dropoff : .Pickup )
     }
 
+}
+
+protocol Stopify {
+    var stopValue : Stop { get }
+}
+
+extension RiderModel : Stopify {
+    var stopValue : Stop { get {
+        return Stop(coordinate: CLLocationCoordinate2D(latitude: self.pickupLocation.lati, longitude: self.pickupLocation.long) , name: "\(self.firstName) \(self.lastName)", address: self.pickupLocation.name, phoneNumber: self.phoneNumber, stopID: NSNumber(integer: self.riderID).stringValue, thumbnailImage: nil)
+        }}
+}
+
+extension OccurenceModel : Stopify {
+    var stopValue : Stop { get {
+        return Stop(coordinate: CLLocationCoordinate2D(latitude: self.eventLocation.lati, longitude: self.eventLocation.long) , name: self.poolname, address: self.eventLocation.name, phoneNumber: nil, stopID: String(self.occurenceID), thumbnailImage: nil)
+        }}
 }

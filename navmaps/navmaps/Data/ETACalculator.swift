@@ -31,6 +31,7 @@ class ETACalculator {
         return travelTimes
     }
     
+    ///returns array of departure dates for each stop, in order 
     class func stopDatesFromEstimatesAndArrivalTargetDate(etas: [(Double, Stop)], target: NSDate?) -> [(NSDate, Stop)]{
         var startAtNow : Bool = true
         if target != nil && NSDate(timeIntervalSinceNow: etas.last!.0).timeIntervalSince1970 <= target!.timeIntervalSince1970 {
