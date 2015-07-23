@@ -7,6 +7,7 @@
 
 ## Changelog
 AHL July 23:
+Now trigger onPickupArrival notifications
 Opt out & Edit Button work on Map View
 AHL July 21:
 Now show real data on mapview

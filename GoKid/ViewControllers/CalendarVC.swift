@@ -326,6 +326,17 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             Stop(coordinate: CLLocationCoordinate2D(latitude: model.eventLocation.lati, longitude: model.eventLocation.long) , name: model.poolname, address: model.eventLocation.name, phoneNumber: nil, stopID: String(model.occurenceID), thumbnailImage: nil)
         ]
         navigation.setup(pickups, dropoffs:dropoffs);
+        navigation.onStopStateChanged = { (nav : Navigation, stop: Stop) in
+            if stop.state == .Arrived {
+                var rider = RiderModel()
+                rider.riderID = stop.stopID.integerValue
+                self.dataManager.notifyRiderStopArrival(model, rider: rider, comp: { (success, errorString) -> () in
+                    if !success {
+                        self.showAlert("Failed to notify rider of arrival", messege: "You may want to message them!", cancleTitle: "OK")
+                    }
+                })
+            }
+        }
         return navigation
     }
 

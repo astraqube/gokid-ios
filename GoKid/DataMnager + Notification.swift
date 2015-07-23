@@ -9,9 +9,18 @@
 import UIKit
 
 extension DataManager {
-    
-    // MARK: Network request for notifications
-    // --------------------------------------------------------------------------------------------
+    func notifyRiderStopArrival(occurrence: OccurenceModel, rider: RiderModel, comp: completion) {
+        var url = baseURL + "/api/occurrences/" + String(occurrence.occurenceID) + "/riders/" +  String(rider.riderID) + "/notifications"
+        var map = ["notification": ["kind": "arriving"]]
+        var manager = managerWithToken()
+        manager.POST(url, parameters: map, success: { (op, obj) in
+            println("notifyRiderStopArrival success")
+            comp(true, "")
+            }) { (op, error) in
+                println("notifyRiderStopArrival failed")
+                self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
     
     func updateNotificationToken(token: String, comp: completion) {
         var url = baseURL + "/api_ios_device_token"

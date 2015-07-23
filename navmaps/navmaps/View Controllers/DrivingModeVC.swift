@@ -32,12 +32,26 @@ class DrivingModeVC: UIViewController {
         mapDataSource.onAnnotationSelect = { (annotationView: MKAnnotationView) -> Void in
             if let stop = annotationView.annotation as? Stop {
                 var stopActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-                var stopTitle = stop.hasStopped == false ? "Pickup " + (stop.name as String) : "Undo Pickup"
-                if (self.navigation.dropoffs as NSArray).containsObject(stop) == true {
-                    stopTitle = stop.hasStopped == false ? "Dropoff " + (stop.name as String) : "Undo Dropoff"
+                var nextState = stop.state
+                var stopTitle = ""
+                switch stop.state {
+                case .Pending:
+                    nextState = .Arrived
+                    stopTitle = "Arrive at " + (stop.name as String)
+                    if (self.navigation.dropoffs as NSArray).containsObject(stop) == true {
+                        stopTitle = "Dropoff " + (stop.name as String)
+                        nextState = .Completed
+                    }                    
+                case .Arrived:
+                    nextState = .Completed
+                    stopTitle = "Pickup " + (stop.name as String)
+                case .Completed:
+                    nextState = .Pending
+                    stopTitle = "Undo Pickup of " + (stop.name as String)
                 }
                 stopActionSheet.addAction(UIAlertAction(title: stopTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
-                    stop.hasStopped = !stop.hasStopped
+                    stop.state = nextState
+                    self.navigation.onStopStateChanged?(self.navigation, stop)
                     self.navigation.updateForStopped()
                     self.mapDataSource.updateRoutes()
                     self.mapDataSource.updateMapTrack()

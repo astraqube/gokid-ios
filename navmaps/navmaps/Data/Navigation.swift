@@ -36,7 +36,13 @@ class Stop : NSObject, MKAnnotation {
     var thumbnailImage : UIImage?
     var phoneNumber : NSString?
     var stopID : NSString
-    var hasStopped : Bool = false
+    var state : State = .Pending
+    
+    enum State {
+        case Pending
+        case Arrived
+        case Completed
+    }
     
     init(coordinate: CLLocationCoordinate2D, name: NSString, address: NSString, phoneNumber : NSString?, stopID : NSString, thumbnailImage: UIImage?) {
         self.coordinate = coordinate
@@ -72,11 +78,14 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         }
     }
     
+    ///Called directly *AFTER* a change is made to the state of a `Stop` object
+    var onStopStateChanged : ((Navigation, Stop) ->Void)?
+    
     /// The next pickup where `pickup.hasStopped == false`, otherwise, the next dropoff where `dropoff.hasStopped == false`, otherwise nil.
     var currentStop : Stop? {
         get {
             for stop in pickups + dropoffs {
-                if stop.hasStopped == false{
+                if stop.state != .Completed{
                     return stop
                 }
             }
@@ -137,7 +146,6 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: second!.coordinate, addressDictionary: nil)))
         return MKDirections(request: request)
     }
-    
 
     var _locationToCurrentStopDirections : MKDirections?
     var locationToCurrentStopDirections : MKDirections? {
