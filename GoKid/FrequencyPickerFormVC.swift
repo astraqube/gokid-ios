@@ -44,7 +44,7 @@ enum GKDays : String {
 
 class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
 
-    var rowDescriptor: XLFormRowDescriptor?
+    var rowDescriptor: XLFormRowDescriptor!
 
     private var currentValues: NSMutableArray! = []
 
@@ -58,10 +58,9 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
 
-        if let currentFrequency = self.rowDescriptor?.value as? NSMutableArray {
-            self.currentValues = currentFrequency
+        if let current = self.rowDescriptor.value as? [AnyObject] {
+            self.currentValues.addObjectsFromArray(current)
         }
-
         self.updateFormFields()
     }
 
@@ -155,9 +154,9 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
 
     func updateRowDescriptor() {
         if self.currentValues.count > 0 {
-            self.rowDescriptor?.value = self.currentValues as Array
+            self.rowDescriptor.value = self.currentValues as Array
         } else {
-            self.rowDescriptor?.value = nil
+            self.rowDescriptor.value = nil
         }
     }
 
