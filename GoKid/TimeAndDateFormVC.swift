@@ -36,16 +36,7 @@ class TimeAndDateFormVC: BaseFormVC {
 
         if formData[Tags.Repeat.rawValue] as! Bool {
             carpoolModel.endDate = formData[Tags.EndDate.rawValue] as? NSDate
-
-            if let occurence = formData[Tags.Frequency.rawValue] as? NSArray {
-                carpoolModel.occurence = [] // reset
-                for day in occurence {
-                    if let num = GKDays.asKeys[day as! String] as Int? {
-                        carpoolModel.occurence?.append(num)
-                    }
-                }
-            }
-
+            carpoolModel.occurence = formData[Tags.Frequency.rawValue] as? [Int]
         } else {
             carpoolModel.endDate = nil
             carpoolModel.occurence = nil
