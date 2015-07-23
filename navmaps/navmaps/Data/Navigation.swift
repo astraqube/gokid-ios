@@ -14,7 +14,7 @@ import CoreLocation
  :param: error an error called if Navigation can not update the ETA. After an error there will be no subsequent invocation of this callback.
  :param: minutes minutes until destination reached
 */
-typealias ETACallback = ((error: NSError, minutes: Double) -> (Void))
+typealias ETACallback = ((error: NSError?, minutes: Double) -> (Void))
 
 /**
 :param: error an error called if Navigation can not update the next direction. After an error there will be no subsequent invocation of this callback.
@@ -26,7 +26,7 @@ typealias DirectionCallback = ((error: NSError?, nextDirection : NSString?) -> (
 :param: error an error called if Navigation can not update the ETA. After an error there will be no subsequent invocation of this callback.
 :param: location the current location of the user
 */
-typealias LocationCallback = ((error: NSError, location : CLLocation))
+typealias LocationCallback = ((error: NSError?, location : CLLocation!) -> Void)
 
 /// The 🚏 data type used by Navigation. hasStopped is used internally to determine whether the stop, *a pickup or a dropoff*, has occured– `hasStopped` is therefore false by default.
 class Stop : NSObject, MKAnnotation {
@@ -82,17 +82,15 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     var onStopStateChanged : ((Navigation, Stop) ->Void)?
     
     /// The next pickup where `pickup.hasStopped == false`, otherwise, the next dropoff where `dropoff.hasStopped == false`, otherwise nil.
-    var currentStop : Stop? {
-        get {
+    var currentStop : Stop? { get {
             for stop in pickups + dropoffs {
-                if stop.state != .Completed{
-                    return stop
-                }
+                if stop.state != .Completed { return stop }
             }
             return nil
         }
     }
 
+    var updateLocationTimer : NSTimer?
     var analyzeRouteTimer : NSTimer?
     var currentRoute : MKRoute?
     var currentRouteStepIndex : Int = -1
@@ -170,6 +168,21 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         
     func startUpdatingLocationWithCallback(callback : LocationCallback) {
         onLocationUpdate = callback
+        if updateLocationTimer != nil {
+            stopUpdatingDirections()
+        }
+        updateLocationTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "updateLocation", userInfo: nil, repeats: true)
+    }
+    
+    func updateLocation() {
+        onLocationUpdate?(error: nil, location: lastLocation)
+    }
+    
+    func stopUpdatingLocation() {
+        if updateLocationTimer != nil {
+            updateLocationTimer?.invalidate()
+        }
+        updateLocationTimer = nil
     }
 
     /**

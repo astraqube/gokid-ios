@@ -28,6 +28,7 @@ class DrivingModeVC: UIViewController {
             }
             self.directionsLabel.text = nextDirection as String?
         }
+        if navigation.onLocationUpdate != nil { navigation.startUpdatingLocationWithCallback(navigation.onLocationUpdate!) }
 
         mapDataSource.onAnnotationSelect = { (annotationView: MKAnnotationView) -> Void in
             if let stop = annotationView.annotation as? Stop {
@@ -86,6 +87,7 @@ class DrivingModeVC: UIViewController {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         navigation.stopUpdatingDirections()
+        navigation.stopUpdatingLocation()
     }
     
     @IBAction func changeTrackModeRecognized(sender: UIGestureRecognizer) {

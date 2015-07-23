@@ -337,6 +337,14 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                 })
             }
         }
+        navigation.onLocationUpdate = { (error: NSError?, location : CLLocation!) in
+            if let error = error { return println("onLocationUpdate error: \(error.description)") }
+            self.dataManager.putOccurrenceCurrentLocation(location, occurrence: model, comp: { (success, errorString) -> () in
+                if !success {
+                    println("failed to onLocationUpdate + putOccurrenceCurrentLocation")
+                }
+            })
+        }
         return navigation
     }
 

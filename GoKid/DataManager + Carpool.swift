@@ -149,6 +149,24 @@ extension DataManager {
         }
     }
     
+    func putOccurrenceCurrentLocation(location: CLLocation, occurrence: OccurenceModel, comp: completion){
+        var url = baseURL + "/api/occurrences/" + String(occurrence.occurenceID) + "/location"
+        let map = ["location" : [ "latitude" : location.coordinate.latitude,
+            "longitude" : location.coordinate.longitude,
+            "heading" : location.course
+        ]]
+        println(url)
+        var manager = managerWithToken()
+        manager.requestSerializer.timeoutInterval = 10 //the same as the request interval– don't want these piling up
+        manager.PUT(url, parameters: map, success: { (op, obj) in
+            println("putOccurrenceCurrentLocation success")
+            comp(true, "")
+            }) { (op, error) in
+                println("putOccurrenceCurrentLocation failed")
+                self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+    
     func updateOccurenceRiders(occ: OccurenceModel, comp: completion) {
         var url = baseURL + "/api/carpools/" + String(occ.carpoolID) + "/occurrences/" + String(occ.occurenceID) + "/riders"
         var manager = managerWithToken()
@@ -195,4 +213,5 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
+
 }
