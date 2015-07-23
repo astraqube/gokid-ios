@@ -6,6 +6,8 @@
 3. Open in XCode, build, and run
 
 ## Changelog
+AHL July 23:
+Opt out & Edit Button work on Map View
 AHL July 21:
 Now show real data on mapview
 AHL July 19:
