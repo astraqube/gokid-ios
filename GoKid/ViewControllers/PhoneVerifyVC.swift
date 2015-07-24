@@ -25,7 +25,7 @@ class PhoneVerifyVC: BaseFormVC {
 
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
-        row = XLFormRowDescriptor(tag: "verification", rowType: XLFormRowDescriptorTypeNumber, title: "Verification Code")
+        row = XLFormRowDescriptor(tag: "verification", rowType: XLFormRowDescriptorTypeText, title: "Verification Code")
         row.cellConfig["textLabel.font"] = fontLabel
         row.cellConfig["textLabel.color"] = colorLabel
         row.cellConfig["detailTextLabel.font"] = fontValue
@@ -63,10 +63,10 @@ class PhoneVerifyVC: BaseFormVC {
 
     private func proceed() {
         let formData = self.form.formValues()
-        let verification = formData["verification"] as! Int
+        let verification = formData["verification"] as! String
 
         LoadingView.showWithMaskType(.Black)
-        dataManager.memberPhoneVerification(verification.description) {(success, errorStr) in
+        dataManager.memberPhoneVerification(verification) {(success, errorStr) in
             if success {
                 LoadingView.showSuccessWithStatus("Success")
 
