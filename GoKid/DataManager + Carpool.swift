@@ -198,7 +198,8 @@ extension DataManager {
         var url = baseURL + "/api/carpools/" + String(carpoolID) + "/riders"
         var map = [
             "rider" : [
-                "first_name": name
+                "first_name": name,
+                "last_name": self.userManager.info.lastName
             ]
         ]
         var manager = managerWithToken()
