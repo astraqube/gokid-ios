@@ -35,11 +35,11 @@ class YourKidVC: BaseVC {
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
-    func backButtonClick() {
+    override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    func nextButtonClick() {
+    override func rightNavButtonTapped() {
         if kidsNameTextField.text == "" {
             showAlert("Alert", messege: "Please fiil yout kid's name", cancleTitle: "OK")
             return
