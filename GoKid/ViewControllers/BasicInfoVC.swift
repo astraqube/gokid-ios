@@ -32,7 +32,9 @@ class BasicInfoVC: BaseVC, UITextFieldDelegate {
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        view.endEditing(true)
+
+        self.resignFirstResponder()
+        self.view.endEditing(true)
     }
 
     // MARK: IBAction Method
