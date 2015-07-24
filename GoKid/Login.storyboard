@@ -510,9 +510,6 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="emailTextFieldReturn:" destination="yAs-G3-djZ" eventType="editingDidEndOnExit" id="s4Q-7T-j64"/>
-                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pWV-f0-y4s" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="24" y="218" width="240" height="44"/>
@@ -532,9 +529,6 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="passwordTextFieldReturn:" destination="yAs-G3-djZ" eventType="editingDidEndOnExit" id="NaQ-A6-RS0"/>
-                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kr8-Jd-UQl">
                                         <rect key="frame" x="260" y="8" width="20" height="20"/>
