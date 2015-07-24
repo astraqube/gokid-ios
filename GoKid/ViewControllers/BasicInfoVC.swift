@@ -8,64 +8,43 @@
 
 import UIKit
 
-class BasicInfoVC: BaseVC {
+class BasicInfoVC: BaseVC, UITextFieldDelegate {
     
     @IBOutlet weak var carpoolTitleTextField: PaddingTextField!
     @IBOutlet weak var kidsNameTextField: PaddingTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
-        setupKeyBoardMoveup()
-        clenUserCurrentCarPoolData()
+
+        userManager.currentCarpoolModel = CarpoolModel()
+
+        self.carpoolTitleTextField.delegate = self
+        self.kidsNameTextField.delegate = self
+
+        self.rightButton.enabled = self.canProceed()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        setStatusBarColorDark()
-        setNavBarColor(colorManager.appGreen)
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.carpoolTitleTextField.becomeFirstResponder()
     }
-    
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         view.endEditing(true)
     }
-    
-    func setupNavigationBar() {
-        setNavBarLeftButtonTitle("Do this later", action: "doLaterButtonClick")
-        disableRightBarItem()
-    }
-  
-    func clenUserCurrentCarPoolData() {
-        userManager.currentCarpoolModel = CarpoolModel()
-    }
-    
-    func setupKeyBoardMoveup() {
-        // iphone 5
-        if userManager.windowH < 580 {
-            self.keyBoardMoveUp = 82
-        }
-    }
-    
-    // MARK: Disable and Active Nav Right Button
-    // --------------------------------------------------------------------------------------------
-    
-    func disableRightBarItem() {
-        self.rightButton.enabled = false
-    }
-    
-    func activeRightBarItem() {
-        self.rightButton.enabled = true
-    }
-    
+
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
     override func rightNavButtonTapped() {
-        userManager.currentCarpoolModel.kidName = kidsNameTextField.text!
-        userManager.currentCarpoolModel.name = carpoolTitleTextField.text!
-        var vc = vcWithID("TimeAndDateFormVC")
-        self.navigationController?.pushViewController(vc, animated: true)
+        if self.canProceed() {
+            userManager.currentCarpoolModel.kidName = kidsNameTextField.text!
+            userManager.currentCarpoolModel.name = carpoolTitleTextField.text!
+            var vc = vcWithID("TimeAndDateFormVC")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     override func leftNavButtonTapped() {
@@ -73,23 +52,38 @@ class BasicInfoVC: BaseVC {
     }
     
     @IBAction func carpoolTitleChanged(sender: AnyObject) {
-        checkRightBarItemAvalebility()
+        self.rightButton.enabled = self.canProceed()
     }
     
     @IBAction func kidsNameChanged(sender: AnyObject) {
-        checkRightBarItemAvalebility()
+        self.rightButton.enabled = self.canProceed()
     }
     
     // MARK: Helper Methos
     // --------------------------------------------------------------------------------------------
     
-    func checkRightBarItemAvalebility() {
+    func canProceed() -> Bool {
         var s1 = carpoolTitleTextField.text
         var s2 = kidsNameTextField.text
-        if count(s1) > 0 && count(s2) > 0 {
-            activeRightBarItem()
-        } else {
-            disableRightBarItem()
-        }
+        return count(s1) > 0 && count(s2) > 0
     }
+
+    // MARK: TextField Delegate
+    // --------------------------------------------------------------------------------------------
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.carpoolTitleTextField {
+            self.kidsNameTextField.becomeFirstResponder()
+            return false
+        }
+
+        if textField == self.kidsNameTextField {
+            self.kidsNameTextField.resignFirstResponder()
+            self.rightNavButtonTapped()
+            return false
+        }
+
+        return true
+    }
+
 }
