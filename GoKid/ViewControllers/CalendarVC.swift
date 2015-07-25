@@ -359,14 +359,18 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             if stop.state == .Arrived {
                 var rider = RiderModel()
                 rider.riderID = stop.stopID.integerValue
-                self.dataManager.notifyRiderStopArrival(model, rider: rider, comp: { (success, errorString) -> () in
+                self.dataManager.notifyRider(RiderNotificationType.Arriving , occurrence: model, rider: rider, comp: { (success, errorString) -> () in
                     if !success {
                         self.showAlert("Failed to notify rider of arrival", messege: "You may want to message them!", cancleTitle: "OK")
                     }
                 })
             }
             if navigation.currentStop == nil {
-                println("routing done– time to update interested parties")
+                self.dataManager.notifyRiders(RiderNotificationType.RideComplete , occurrence: model, comp: { (success, errorString) -> () in
+                    if !success {
+                        self.showAlert("Failed to notify parents of ride completion!", messege: "You may want to message parents!", cancleTitle: "OK")
+                    }
+                })
             }
         }
         navigation.onLocationUpdate = { (error: NSError?, location : CLLocation!) in
