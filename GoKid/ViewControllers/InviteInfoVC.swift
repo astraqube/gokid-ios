@@ -70,7 +70,7 @@ class InviteInfoVC: BaseFormVC {
         var phoneNumber = formData["phone"] as? String
 
         LoadingView.showWithMaskType(.Black)
-        dataManager.verifyCarPoolInvitation(phoneNumber!) { (success, errorStr) in
+        dataManager.requestVerificationCode(phoneNumber!) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
                 var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC

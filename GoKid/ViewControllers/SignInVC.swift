@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
+class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: PaddingTextField!
     @IBOutlet weak var passwordTextField: PaddingTextField!
@@ -20,6 +20,9 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         setupLoginButton()
         self.registerForKeyBoardNotification()
+
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
     }
 
     func afterSignIn() {
@@ -88,12 +91,19 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate {
     // MARK: TextField Delegate
     // --------------------------------------------------------------------------------------------
 
-    @IBAction func emailTextFieldReturn(sender: AnyObject) {
-        emailTextField.becomeFirstResponder()
-    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.emailTextField {
+            self.passwordTextField.becomeFirstResponder()
+            return false
+        }
 
-    @IBAction func passwordTextFieldReturn(sender: AnyObject) {
-        passwordTextField.becomeFirstResponder()
+        if textField == self.passwordTextField {
+            self.passwordTextField.resignFirstResponder()
+            self.rightNavButtonTapped()
+            return false
+        }
+
+        return true
     }
 
 }

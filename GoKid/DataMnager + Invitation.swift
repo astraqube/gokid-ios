@@ -93,4 +93,25 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
+
+    // FIXME: This is temporary until we sort out Invitations
+    func getFirstInvitation(comp: completion) {
+        var url = baseURL + "/api/invites/"
+        var manager = managerWithToken()
+        manager.GET(url, parameters: nil, success: { (op, obj) in
+            println("getFirstInvitation success")
+            var json = JSON(obj)
+
+            let invite = json["invites"][0]
+            self.userManager.currentCarpoolModel = CarpoolModel(json: invite["carpool"])
+            self.userManager.inviteID = invite["id"].intValue
+            self.userManager.inviterName = invite["inviter"]["first_name"].stringValue
+            self.userManager.inviteKidName = invite["riders"][0].stringValue
+
+            comp(true, "")
+        }) { (op, error) in
+            println("getFirstInvitation failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
 }

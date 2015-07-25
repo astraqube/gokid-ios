@@ -124,17 +124,14 @@ extension DataManager {
             data.append(dropoff)
         }
         
-        var map = NSMutableArray()
-        for occ in data {
-            var json = [
-                "occurrence_ids": [occ.occurenceID],
-                "occurrence": [
-                    "event_location": occ.eventLocation.toJson(),
-                    "default_address": occ.defaultLocation.toJson()
-                ]
+        let map = [
+            "occurrence_ids": data.map { return $0.occurenceID },
+            "occurrence": [
+                "event_location": data[0].eventLocation.toJson(),
+                "default_address": data[0].defaultLocation.toJson()
             ]
-            map.addObject(json)
-        }
+        ]
+        
         println(url)
         println(map)
         var manager = managerWithToken()
@@ -201,7 +198,8 @@ extension DataManager {
         var url = baseURL + "/api/carpools/" + String(carpoolID) + "/riders"
         var map = [
             "rider" : [
-                "first_name": name
+                "first_name": name,
+                "last_name": self.userManager.info.lastName
             ]
         ]
         var manager = managerWithToken()

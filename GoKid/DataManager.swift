@@ -45,12 +45,12 @@ class DataManager: NSObject {
     }
     
     
-    let __debug__ = true
+    let __debug__ = false
     func constructErrorString(op: AFHTTPRequestOperation?, error: NSError?) -> String {
         if __debug__ {
             return constructDebugErrorStr(op, error)
         } else {
-            return constructRelaseErrorStr(op, error)
+            return constructReleaseErrorStr(op, error)
         }
     }
     
@@ -62,7 +62,7 @@ class DataManager: NSObject {
         return opErrorStr + " " + nsErrorStr
     }
     
-    func constructRelaseErrorStr(op: AFHTTPRequestOperation?, _ error: NSError?) -> String {
+    func constructReleaseErrorStr(op: AFHTTPRequestOperation?, _ error: NSError?) -> String {
         if let data = op?.responseData {
             var json = JSON(data: data)
             println(json)
