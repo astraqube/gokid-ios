@@ -1,5 +1,14 @@
 # GoKid in iOS - built with Swift
 
+## Technologies
+* Amazon Web Services
+* Ruby on Rails
+* PostgreSQL database
+* Pusher API (real-time updates)
+* Twilio (SMS messaging)
+* Facebook API
+* Google Maps
+
 ## Installation
 1. Install CocoaPods `sudo gem install cocoapods`
 2. Run `pod install`
