@@ -76,8 +76,10 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
             um.over18 = true
             presentVC = vcWithID("BasicInfoVC")
         } else { // no
-            um.over18 = false
-            presentVC = vcWithID("KidAboutYouVC")
+            // TODO: Removed this flow until needed (in the future)
+            // um.over18 = false
+            // presentVC = vcWithID("KidAboutYouVC")
+            return
         }
 
         self.navigationController?.pushViewController(presentVC, animated: true)
