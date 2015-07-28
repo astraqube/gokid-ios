@@ -76,8 +76,6 @@ class BaseFormVC: XLFormViewController {
     }
 
     func setUpNavigationBar() {
-        self.setStatusBarColorDark()
-
         // For the actual navbar
         navigationController?.navigationBar.translucent = false
         navigationController?.navigationBar.barTintColor = colorManager.colorEBF7EB
