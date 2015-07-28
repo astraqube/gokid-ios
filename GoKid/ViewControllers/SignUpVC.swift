@@ -27,7 +27,9 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     }
 
     func afterSignUp() {
-        (self.parentVC as! MainStackVC).refreshCurrentVC(false)
+        self.parentVC.dismissViewControllerAnimated(true) {
+            (self.parentVC as! MainStackVC).refreshCurrentVC(false)
+        }
     }
 
     // MARK: IBAction Method
@@ -48,10 +50,21 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         let _self = self
         LoadingView.showWithMaskType(.Black)
         dataManager.signup(signupForm) { (success, errorStr) in
-            LoadingView.dismiss()
             if success {
-                _self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignUp)
+                if let avatar = self.profileImageView.image {
+                    self.dataManager.upLoadImage(avatar) { (_success, _errorStr) in
+                        if _errorStr != "" {
+                            self.showAlert("Failed to Sign up", messege: errorStr, cancleTitle: "OK")
+                        }
+                        LoadingView.dismiss()
+                        self.afterSignUp()
+                    }
+                } else {
+                    LoadingView.dismiss()
+                    self.afterSignUp()
+                }
             } else {
+                LoadingView.dismiss()
                 self.showAlert("Failed to Sign up", messege: errorStr, cancleTitle: "OK")
             }
         }
@@ -85,7 +98,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
                 println("success")
                 dataManager.fbSignin() { (success, errorStr) in
                     if success {
-                        self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignUp)
+                        self.afterSignUp()
                     } else {
                         self.showAlert("Failed to connect with Facebook", messege:errorStr , cancleTitle: "OK")
                     }
@@ -111,7 +124,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
             picker.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-    
+
     // MARK: TextField Delegate
     // --------------------------------------------------------------------------------------------
     
