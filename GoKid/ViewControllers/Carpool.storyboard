@@ -1279,4 +1279,5 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <color key="tintColor" red="0.40392156862745099" green="0.75686274509803919" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
 </document>

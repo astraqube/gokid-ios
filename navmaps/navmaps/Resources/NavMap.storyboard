@@ -1441,4 +1441,5 @@ Greenwich, CT.</string>
         <image name="smLocationIcon" width="8" height="11"/>
         <image name="test_userImage" width="110" height="116"/>
     </resources>
+    <color key="tintColor" red="0.4039215686" green="0.75686274509999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
 </document>
