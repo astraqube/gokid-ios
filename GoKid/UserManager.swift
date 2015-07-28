@@ -12,6 +12,8 @@ let RoleTypeCareTaker = "Caretaker"
 let RoleTypeChild = "Child"
 let RoleTypeMommy = "Mommy"
 let RoleTypeDaddy = "Daddy"
+let RoleTypeParent = "Parent"
+let RoleTypeOther = "Other"
 
 class UserManager: NSObject {
     

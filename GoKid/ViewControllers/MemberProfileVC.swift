@@ -8,35 +8,51 @@
 
 import UIKit
 
-class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    
-    @IBOutlet weak var emailLogoutButton: UIButton!
-    @IBOutlet weak var fblogoutButton: FBSDKLoginButton!
-    @IBOutlet weak var fbloginButton: FBSDKLoginButton!
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
+    private enum Tags : String {
+        case FirstName = "First Name"
+        case LastName = "Last Name"
+        case Email = "Email"
+        case Password = "Password"
+        case Role = "Role"
+        case Phone = "Phone #"
+        case CanManage = "Can edit and manage events"
+        case Driver = "Driver"
+        case EmailNotification = "Email Notification"
+        case SMSNotification = "SMS Notification"
+        case PushNotification = "Push Notification"
+        case AllTeamNotification = "All Team Notification"
+        case IllBeDrivingNotification = "I'll be driving Notification"
+        case Logout = "Logout"
+    }
+
+//    @IBOutlet weak var emailLogoutButton: UIButton!
+//    @IBOutlet weak var fblogoutButton: FBSDKLoginButton!
+//    @IBOutlet weak var fbloginButton: FBSDKLoginButton!
+//    @IBOutlet weak var firstNameTextField: UITextField!
+//    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var phoneNumberLabel: UILabel!
-    @IBOutlet weak var phoneNumberTextField: PaddingTextField!
-    @IBOutlet weak var roleButton: UIButton!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    
+//    @IBOutlet weak var phoneNumberLabel: UILabel!
+//    @IBOutlet weak var phoneNumberTextField: PaddingTextField!
+//    @IBOutlet weak var roleButton: UIButton!
+//    @IBOutlet weak var emailTextField: UITextField!
+//    @IBOutlet weak var passwordTextField: UITextField!
+
     var doneButtonHandler: ((MemberProfileVC)->())?
     var sourceCellType: TeamCellType = .None
     var sourceCellIndex: Int = 0
-    var model = TeamMemberModel()
+    var model: TeamMemberModel! = TeamMemberModel()
     var pickedNewImage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        setupTableView()
-        setupLoginButton()
-        setUpLogoutButton()
-        refreshUIIfNeeded()
+//        setupTableView()
+//        setupLoginButton()
+//        setUpLogoutButton()
+//        refreshUIIfNeeded()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,18 +60,35 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
         navigationController?.setNavigationBarHidden(false, animated: true)
         setStatusBarColorDark()
     }
-    
-    func setupNavBar() {
-        setNavBarTitle("Your profile")
-        setNavBarRightButtonTitle("Save", action: "saveButtonClick")
-        navigationController?.setNavigationBarHidden(false, animated: true)
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // require user session
+        self.requireSession()
     }
-    
+
+    func requireSession() {
+        if self.userManager.userLoggedIn == false {
+            self.postNotification("requestForUserToken")
+        } else {
+            if self.model.userID == 0 {
+                self.model = self.userManager.info
+            }
+            self.tableView.reloadData()
+        }
+    }
+
+    func setupNavBar() {
+        setNavBarTitle("Your Profile")
+        setNavBarRightButtonTitle("Save", action: "rightNavButtonTapped")
+    }
+/* DEPRECATED
     func setupLoginButton() {
         fbloginButton.readPermissions = ["public_profile", "email", "user_friends"];
         fbloginButton.delegate = self
     }
-    
+
     func setUpLogoutButton() {
         fblogoutButton.delegate = self
         if userManager.useFBLogIn {
@@ -64,11 +97,11 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
             fblogoutButton.removeFromSuperview()
         }
     }
-    
+
     func setupTableView() {
         tableView.delegate = self
     }
-    
+
     func refreshUIIfNeeded() {
         self.firstNameTextField.text = model.firstName
         self.lastNameTextField.text = model.lastName
@@ -78,7 +111,161 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
         self.passwordTextField.text = model.passWord
         ImageManager.sharedInstance.setImageToView(profileImageView, urlStr: model.thumURL)
     }
-    
+*/
+    override func initForm() {
+        let form = XLFormDescriptor()
+        var row: XLFormRowDescriptor!
+        var section: XLFormSectionDescriptor!
+
+        let fontLabel = UIFont(name: "Raleway-Light", size: 17)!
+        let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
+        let colorLabel = colorManager.color507573
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: Tags.Role.rawValue, rowType: XLFormRowDescriptorTypeSelectorPickerView, title: Tags.Role.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["detailTextLabel.font"] = fontValue
+        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.required = true
+        row.selectorOptions = [RoleTypeParent, RoleTypeDaddy, RoleTypeMommy, RoleTypeChild, RoleTypeCareTaker, RoleTypeOther]
+        row.value = model.role
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.FirstName.rawValue, rowType: XLFormRowDescriptorTypeName, title: Tags.FirstName.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textField.font"] = fontValue
+        row.cellConfig["textField.textColor"] = colorLabel
+        row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
+        row.required = true
+        row.value = model.firstName
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.LastName.rawValue, rowType: XLFormRowDescriptorTypeName, title: Tags.LastName.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textField.font"] = fontValue
+        row.cellConfig["textField.textColor"] = colorLabel
+        row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
+        row.required = true
+        row.value = model.lastName
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.Email.rawValue, rowType: XLFormRowDescriptorTypeEmail, title: Tags.Email.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textField.font"] = fontValue
+        row.cellConfig["textField.textColor"] = colorLabel
+        row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
+        row.required = true
+        row.value = model.email
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.Password.rawValue, rowType: XLFormRowDescriptorTypePassword, title: Tags.Password.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textField.font"] = fontValue
+        row.cellConfig["textField.textColor"] = colorLabel
+        row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
+        row.required = true
+        row.value = model.passWord
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.Phone.rawValue, rowType: XLFormRowDescriptorTypePhone, title: Tags.Phone.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textField.font"] = fontValue
+        row.cellConfig["textField.textColor"] = colorLabel
+        row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
+        row.cellConfig["textField.enabled"] = false
+        row.value = model.phoneNumber
+        section.addFormRow(row)
+
+        section.footerTitle = "You'll be notified when it's your turn to drive, your kids have arrived safely and when other parents are talking to you."
+
+        form.addFormSection(section)
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: Tags.CanManage.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.CanManage.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.Driver.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Driver.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        form.addFormSection(section)
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+        
+        row = XLFormRowDescriptor(tag: Tags.EmailNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.EmailNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.SMSNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.SMSNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.PushNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.PushNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        form.addFormSection(section)
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: Tags.AllTeamNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.AllTeamNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+        
+        row = XLFormRowDescriptor(tag: Tags.IllBeDrivingNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.IllBeDrivingNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        form.addFormSection(section)
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+        
+        row = XLFormRowDescriptor(tag: Tags.Logout.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.Logout.rawValue)
+        row.cellConfig["textLabel.font"] = fontValue
+        row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
+        row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
+        row.action.formSelector = "logout"
+        section.addFormRow(row)
+
+        form.addFormSection(section)
+
+        self.form = form
+        self.form.delegate = self
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+
+        var formRow = self.form.formRowAtIndex(indexPath)
+
+        if formRow.tag == Tags.Phone.rawValue {
+            self.alertPhoneEdit(formRow)
+        }
+    }
+/* DEPRECATED
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var um = UserManager.sharedInstance
         var section = indexPath.section
@@ -96,7 +283,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
         }
         return 44.0
     }
-    
+*/
     
     // MARK: UIImagePickerControllerDelegate
     // --------------------------------------------------------------------------------------------
@@ -116,11 +303,11 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
-    
+/* DEPRECATED
     @IBAction func emailLogoutButtonClick(sender: AnyObject) {
         logout()
     }
-    
+*/
     
     @IBAction func imageProfileButtonClick(sender: AnyObject) {
         setStatusBarColorDark()
@@ -130,7 +317,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
         self.presentViewController(picker, animated: true, completion: nil)
     }
     
-    
+/* DEPRECATED
     @IBAction func roleButtonClicked(sender: AnyObject) {
         let button1 = UIAlertAction(title: RoleTypeMommy, style: .Default) { (alert) in
             self.roleButton.setTitle(RoleTypeMommy, forState: .Normal)
@@ -153,27 +340,35 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
         alert.addAction(button5)
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-    func saveButtonClick() {
-        var um = UserManager.sharedInstance
-        if let signupForm = getSignupForm() {
-            if um.userLoggedIn { updateUser(signupForm) }
-            else { createUser(signupForm) }
-        } else {
-            showAlert("Alert", messege: "Please Fill in all Blank", cancleTitle: "OK")
+*/
+    override func rightNavButtonTapped() {
+        let validationErrors: Array<NSError> = self.formValidationErrors() as! Array<NSError>
+
+        if validationErrors.count > 0 {
+            self.showFormValidationError(validationErrors.first)
+            return
         }
+
+        self.tableView.endEditing(true)
+
+        self.saveProfile()
     }
-    
+
+    private func saveProfile() {
+        let signupForm = getSignupForm()
+        self.updateUser(signupForm!)
+    }
+/* DEPRECATED
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PhoneVerification" {
             var des = segue.destinationViewController as! Phone_VC
             des.memberProfileVC = self
         }
     }
-    
+*/
     // MARK: Facebook Login
     // --------------------------------------------------------------------------------------------
-    
+/* DEPRECATED
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if error != nil {
             self.showAlert("Falied to user FB Signup", messege:error.localizedDescription , cancleTitle: "OK")
@@ -191,7 +386,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         logout()
     }
-    
+*/
     func logout() {
         UserManager.sharedInstance.logoutUser()
 
@@ -199,7 +394,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
         let mainController = appDelegate.window!.rootViewController as! MainStackVC
         mainController.setWelcomeView()
     }
-    
+/* DEPRECATED
     func handleLoginResult(success: Bool, errorStr: String) {
         LoadingView.dismiss()
         onMainThread() {
@@ -211,7 +406,7 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
             }
         }
     }
-
+*/
     
     // MARK: Helper Method
     // --------------------------------------------------------------------------------------------
@@ -273,23 +468,101 @@ class MemberProfileVC: BaseTVC, FBSDKLoginButtonDelegate, UIImagePickerControlle
     }
     
     func getSignupForm() -> SignupForm? {
-        if let password = passwordTextField.text,
-            firstName = firstNameTextField.text,
-            lastName = lastNameTextField.text,
-            email = emailTextField.text,
-            role = roleButton.titleLabel?.text?.lowercaseString,
-            phoneNum = phoneNumberTextField.text
-        {
-            var signupForm = SignupForm()
-            signupForm.passwordConfirm = password
-            signupForm.password = password
-            signupForm.firstName = firstName
-            signupForm.lastName = lastName
-            signupForm.phoneNum = phoneNum
-            signupForm.email = email
-            signupForm.role = role
-            return signupForm
-        }
-        return nil
+        let formData = self.form.formValues()
+        var signupForm = SignupForm()
+        signupForm.passwordConfirm = formData[Tags.Password.rawValue] as! String
+        signupForm.password = formData[Tags.Password.rawValue] as! String
+        signupForm.firstName = formData[Tags.FirstName.rawValue] as! String
+        signupForm.lastName = formData[Tags.LastName.rawValue] as! String
+        signupForm.phoneNum = formData[Tags.Phone.rawValue] as! String
+        signupForm.email = formData[Tags.Email.rawValue] as! String
+        signupForm.role = formData[Tags.Role.rawValue] as! String
+        return signupForm
     }
+}
+
+extension MemberProfileVC {
+
+    // MARK: Phone Editing and Verification
+
+    private func alertPhoneEdit(fieldCell: XLFormRowDescriptor!) {
+        let confirmPrompt = UIAlertController(title: "Enter Your Phone", message: nil, preferredStyle: .Alert)
+        confirmPrompt.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+            textField.text = fieldCell.value as! String
+            textField.placeholder = "Phone Number"
+        }
+
+        confirmPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+
+        confirmPrompt.addAction(UIAlertAction(title: "Submit", style: .Default, handler: { (alert: UIAlertAction!) in
+            if let textField = confirmPrompt.textFields?.first as? UITextField{
+                self.checkPhone(textField.text)
+            }
+        }))
+
+        presentViewController(confirmPrompt, animated: true, completion: nil)
+    }
+
+    private func alertPhoneVerification(phone: String) {
+        if phone == "" { return }
+
+        var msg = "We have sent a verification code to ###. Please check your phone."
+        msg = msg.replace("###", phone)
+
+        let confirmPrompt = UIAlertController(title: "Verify Your Phone", message: msg, preferredStyle: .Alert)
+        confirmPrompt.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+            textField.placeholder = "enter code"
+        }
+
+        confirmPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (alert: UIAlertAction!) in
+            self.setPhoneField(nil)
+        }))
+
+        confirmPrompt.addAction(UIAlertAction(title: "Verify", style: .Default, handler: { (alert: UIAlertAction!) in
+            if let textField = confirmPrompt.textFields?.first as? UITextField{
+                self.verifyPhone(textField.text)
+            }
+        }))
+
+        presentViewController(confirmPrompt, animated: true, completion: nil)
+    }
+
+    private func checkPhone(phone: String) {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.requestVerificationCode(phone) { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                self.alertPhoneVerification(phone)
+                self.setPhoneField(phone)
+            } else {
+                self.showAlert("Failed to Submit", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+
+    private func verifyPhone(verification: String) {
+        LoadingView.showWithMaskType(.Black)
+        self.dataManager.memberPhoneVerification(verification) { (success, errorStr) in
+            if success {
+                LoadingView.showSuccessWithStatus("Success")
+            } else {
+                LoadingView.dismiss()
+                self.showAlert("Verification Failed", messege: errorStr, cancleTitle: "OK")
+                self.setPhoneField(nil)
+            }
+        }
+    }
+
+    private func setPhoneField(newNumber: String?) {
+        let phoneCell = self.form.formRowWithTag(Tags.Phone.rawValue)
+
+        if newNumber != nil {
+            phoneCell.value = newNumber!
+        } else {
+            phoneCell.value = self.model.phoneNumber
+        }
+
+        self.tableView.reloadData()
+    }
+
 }

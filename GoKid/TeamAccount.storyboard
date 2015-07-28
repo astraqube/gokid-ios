@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjo-2X-haN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjo-2X-haN">
                                 <rect key="frame" x="120" y="20" width="90" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="ke7-sn-YeG"/>
@@ -104,7 +104,7 @@
                                                         <constraint firstAttribute="width" constant="112" id="FbC-hk-RJF"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhh-ao-h0d">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhh-ao-h0d">
                                                     <rect key="frame" x="65" y="141" width="37" height="25"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -112,7 +112,7 @@
                                                     <color key="textColor" red="0.21176470588235294" green="0.32549019607843138" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mommy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZJ-MQ-pv5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mommy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZJ-MQ-pv5">
                                                     <rect key="frame" x="55" y="169" width="58" height="18"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -146,7 +146,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="add additional team member" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nam-aF-sTI">
-                                                    <rect key="frame" x="10.5" y="112" width="146" height="70"/>
+                                                    <rect key="frame" x="11" y="112" width="146" height="70"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="146" id="s7I-VH-9wk"/>
                                                         <constraint firstAttribute="height" constant="70" id="skn-vf-Ib3"/>
@@ -698,7 +698,7 @@
         <!--Member ProfileVC-->
         <scene sceneID="F9M-by-RDb">
             <objects>
-                <tableViewController storyboardIdentifier="MemberProfileVC" id="Es6-6M-ztg" customClass="MemberProfileVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Es6-6M-ztg" customClass="MemberProfileVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="UfO-Y6-nHw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1183,6 +1183,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9n-VO-Iu6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-55" y="2456"/>
+        </scene>
+        <!--Member ProfileVC-->
+        <scene sceneID="P3E-Ur-GT2">
+            <objects>
+                <viewController storyboardIdentifier="MemberProfileVC" id="KUD-MM-kcI" customClass="MemberProfileVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PTa-zQ-aKu"/>
+                        <viewControllerLayoutGuide type="bottom" id="jih-RT-ueH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GLU-yi-DHI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0sI-3x-WIr">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="KUD-MM-kcI" id="DwK-70-hxk"/>
+                                    <outlet property="delegate" destination="KUD-MM-kcI" id="3Dt-4H-0sP"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="0sI-3x-WIr" firstAttribute="leading" secondItem="GLU-yi-DHI" secondAttribute="leadingMargin" constant="-16" id="Lgy-uz-aVc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0sI-3x-WIr" secondAttribute="trailing" constant="-16" id="bnX-Yv-Gt0"/>
+                            <constraint firstItem="0sI-3x-WIr" firstAttribute="top" secondItem="PTa-zQ-aKu" secondAttribute="bottom" id="g0t-Xi-ARo"/>
+                            <constraint firstItem="jih-RT-ueH" firstAttribute="top" secondItem="0sI-3x-WIr" secondAttribute="bottom" id="xHY-ay-4ux"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="0sI-3x-WIr" id="qUt-4k-R0L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N63-Br-E10" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55" y="3115"/>
         </scene>
     </scenes>
     <resources>
