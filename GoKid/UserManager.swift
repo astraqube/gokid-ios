@@ -237,8 +237,10 @@ class UserManager: NSObject {
             let v = ud.valueForKey("userToken") as? String
             if (v == nil || v == "") && self.userLoggedIn == false {
                 self.postNotification("requestForUserToken")
+                return ""
+            } else {
+                return v!
             }
-            return v!
         }
     }
 
