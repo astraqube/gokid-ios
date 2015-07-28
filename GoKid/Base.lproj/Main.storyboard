@@ -341,10 +341,10 @@
             </objects>
             <point key="canvasLocation" x="-55" y="1093"/>
         </scene>
-        <!--PhoneVC-->
+        <!--View Controller-->
         <scene sceneID="RQ0-od-cap">
             <objects>
-                <viewController storyboardIdentifier="Phone_VC" id="IEa-gq-2K6" customClass="Phone_VC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IEa-gq-2K6" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cND-oR-Ovr"/>
                         <viewControllerLayoutGuide type="bottom" id="Eeq-3E-GUm"/>

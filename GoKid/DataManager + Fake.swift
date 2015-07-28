@@ -23,7 +23,7 @@ extension DataManager {
         var main = [
             "InviteConfirmVC": true,
             "PhoneVerifyVC": true,
-            "Phone_VC": true,
+            // "Phone_VC": true,
             "PlacePickerVC": true,
             "KidAboutYouVC": true,
             "CalendarVC": true,
