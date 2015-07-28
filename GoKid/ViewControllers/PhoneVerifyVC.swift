@@ -28,8 +28,8 @@ class PhoneVerifyVC: BaseFormVC {
         row = XLFormRowDescriptor(tag: "verification", rowType: XLFormRowDescriptorTypeText, title: "Verification Code")
         row.cellConfig["textLabel.font"] = fontLabel
         row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["detailTextLabel.font"] = fontValue
-        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.cellConfig["textField.font"] = fontValue
+        row.cellConfig["textField.tintColor"] = colorLabel
         row.required = true
         section.addFormRow(row)
 

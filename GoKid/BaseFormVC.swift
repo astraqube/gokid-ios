@@ -54,6 +54,7 @@ class BaseFormVC: XLFormViewController {
         
         self.setUpNavigationBar()
 
+        self.view.backgroundColor = colorManager.colorEBF7EB
         self.tableView.backgroundColor = colorManager.colorEBF7EB
         self.tableView.tintColor = colorManager.color67C18B
     }

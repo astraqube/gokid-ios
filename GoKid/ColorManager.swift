@@ -43,4 +43,7 @@ class ColorManager: NSObject {
     let colorF9FCF5 = rgb(249, 252, 245)
     let colorEBF7EB = rgb(235, 247, 235)
     let colorD4EDDC = rgb(212, 237, 220)
+
+    // MARK: Danger red color
+    let colorDangerRed = rgb(217, 56, 41)
 }
