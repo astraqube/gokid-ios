@@ -1199,6 +1199,53 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0sI-3x-WIr">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="1Qw-d5-Vwx" userLabel="image picker">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="pob-8I-ufj">
+                                            <rect key="frame" x="150" y="38" width="21" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="XFr-NL-N7I"/>
+                                                <constraint firstAttribute="width" constant="21" id="d5M-m6-ajF"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KLG-n7-Omg" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
+                                            <rect key="frame" x="120" y="8" width="80" height="80"/>
+                                            <color key="backgroundColor" red="0.43137254899999999" green="0.58823529409999997" blue="0.58431372550000005" alpha="0.5" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="Y5w-M5-Oao"/>
+                                                <constraint firstAttribute="height" constant="80" id="mur-oz-rGN"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="40"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkd-3h-G18">
+                                            <rect key="frame" x="120" y="8" width="80" height="80"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="imageProfileButtonClick:" destination="KUD-MM-kcI" eventType="touchUpInside" id="AuJ-Rj-Pm5"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jkd-3h-G18" firstAttribute="width" secondItem="KLG-n7-Omg" secondAttribute="width" id="46f-66-He4"/>
+                                        <constraint firstAttribute="height" constant="96" id="5tQ-LL-iiZ"/>
+                                        <constraint firstAttribute="centerX" secondItem="KLG-n7-Omg" secondAttribute="centerX" id="Kaf-Vk-Dh8"/>
+                                        <constraint firstItem="jkd-3h-G18" firstAttribute="height" secondItem="KLG-n7-Omg" secondAttribute="height" id="OxF-mA-M4d"/>
+                                        <constraint firstItem="jkd-3h-G18" firstAttribute="centerY" secondItem="pob-8I-ufj" secondAttribute="centerY" id="RT8-Ga-eH1"/>
+                                        <constraint firstItem="jkd-3h-G18" firstAttribute="centerX" secondItem="pob-8I-ufj" secondAttribute="centerX" id="TsE-iM-x8Q"/>
+                                        <constraint firstItem="jkd-3h-G18" firstAttribute="centerX" secondItem="KLG-n7-Omg" secondAttribute="centerX" id="aQV-wP-JSi"/>
+                                        <constraint firstAttribute="bottom" secondItem="KLG-n7-Omg" secondAttribute="bottom" id="bkM-Wg-XLO"/>
+                                        <constraint firstItem="jkd-3h-G18" firstAttribute="centerY" secondItem="KLG-n7-Omg" secondAttribute="centerY" id="cYZ-Ck-Gmy"/>
+                                    </constraints>
+                                </view>
                                 <connections>
                                     <outlet property="dataSource" destination="KUD-MM-kcI" id="DwK-70-hxk"/>
                                     <outlet property="delegate" destination="KUD-MM-kcI" id="3Dt-4H-0sP"/>
@@ -1206,13 +1253,15 @@
                             </tableView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="0sI-3x-WIr" firstAttribute="top" secondItem="PTa-zQ-aKu" secondAttribute="bottom" id="Hsj-Zs-701"/>
                             <constraint firstItem="0sI-3x-WIr" firstAttribute="leading" secondItem="GLU-yi-DHI" secondAttribute="leadingMargin" constant="-16" id="Lgy-uz-aVc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0sI-3x-WIr" secondAttribute="trailing" constant="-16" id="bnX-Yv-Gt0"/>
-                            <constraint firstItem="0sI-3x-WIr" firstAttribute="top" secondItem="PTa-zQ-aKu" secondAttribute="bottom" id="g0t-Xi-ARo"/>
                             <constraint firstItem="jih-RT-ueH" firstAttribute="top" secondItem="0sI-3x-WIr" secondAttribute="bottom" id="xHY-ay-4ux"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="profileImageButton" destination="jkd-3h-G18" id="dHr-YK-IjK"/>
+                        <outlet property="profileImageView" destination="KLG-n7-Omg" id="Bzs-f9-cJ5"/>
                         <outlet property="tableView" destination="0sI-3x-WIr" id="qUt-4k-R0L"/>
                     </connections>
                 </viewController>
@@ -1222,6 +1271,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="21" height="21"/>
         <image name="menuIcon" width="26" height="19"/>
         <image name="plus" width="14" height="14"/>
     </resources>

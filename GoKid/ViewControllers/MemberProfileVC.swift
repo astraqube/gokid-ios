@@ -75,7 +75,10 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
             if self.model.userID == 0 {
                 self.model = self.userManager.info
             }
-            self.tableView.reloadData()
+
+            if self.model.thumURL != "" && self.profileImageView.image == nil {
+                ImageManager.sharedInstance.setImageToView(self.profileImageView, urlStr: self.model.thumURL)
+            }
         }
     }
 
@@ -418,7 +421,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
                 self.handleUpdateOrCreateUserSuccess()
             } else {
                 LoadingView.dismiss()
-                self.showAlert("Falied to use FB Signup", messege:errorStr , cancleTitle: "OK")
+                self.showAlert("Failed to update", messege:errorStr , cancleTitle: "OK")
             }
         }
     }
