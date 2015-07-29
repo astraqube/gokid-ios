@@ -8,12 +8,12 @@
 
 import UIKit
 
-let RoleTypeCareTaker = "Caretaker"
-let RoleTypeChild = "Child"
-let RoleTypeMommy = "Mommy"
-let RoleTypeDaddy = "Daddy"
-let RoleTypeParent = "Parent"
-let RoleTypeOther = "Other"
+let RoleTypeCareTaker = "caretaker"
+let RoleTypeChild = "child"
+let RoleTypeMommy = "mommy"
+let RoleTypeDaddy = "daddy"
+let RoleTypeParent = "parent"
+let RoleTypeOther = "other"
 
 class UserManager: NSObject {
     

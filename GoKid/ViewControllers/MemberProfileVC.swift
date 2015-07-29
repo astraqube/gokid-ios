@@ -66,6 +66,8 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 
         // require user session
         self.requireSession()
+
+        self.fieldReactorRole(self.model.role == RoleTypeChild)
     }
 
     func requireSession() {
@@ -267,6 +269,32 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         if formRow.tag == Tags.Phone.rawValue {
             self.alertPhoneEdit(formRow)
         }
+    }
+
+    override func formRowDescriptorValueHasChanged(formRow: XLFormRowDescriptor!, oldValue: AnyObject!, newValue: AnyObject!) {
+        super.formRowDescriptorValueHasChanged(formRow, oldValue: oldValue, newValue: newValue)
+
+        if formRow.tag == Tags.Role.rawValue {
+            self.fieldReactorRole((newValue as! String) == RoleTypeChild)
+        }
+
+        self.toggleRightNavButtonState()
+    }
+
+    // MARK: Field Reactors
+
+    func fieldReactorRole(condition: Bool) {
+        let canManageCell = self.form.formRowWithTag(Tags.CanManage.rawValue)
+        let driverCell = self.form.formRowWithTag(Tags.Driver.rawValue)
+        let illBeDrivingCell = self.form.formRowWithTag(Tags.IllBeDrivingNotification.rawValue)
+
+        canManageCell.hidden = condition
+        driverCell.hidden = condition
+        illBeDrivingCell.hidden = condition
+
+        self.updateFormRow(canManageCell)
+        self.updateFormRow(driverCell)
+        self.updateFormRow(illBeDrivingCell)
     }
 /* DEPRECATED
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
