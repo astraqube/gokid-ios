@@ -1203,15 +1203,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="pob-8I-ufj">
-                                            <rect key="frame" x="150" y="38" width="21" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="XFr-NL-N7I"/>
-                                                <constraint firstAttribute="width" constant="21" id="d5M-m6-ajF"/>
-                                            </constraints>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KLG-n7-Omg" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
-                                            <rect key="frame" x="120" y="8" width="80" height="80"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KLG-n7-Omg" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
+                                            <rect key="frame" x="120" y="16" width="80" height="80"/>
                                             <color key="backgroundColor" red="0.43137254899999999" green="0.58823529409999997" blue="0.58431372550000005" alpha="0.5" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="Y5w-M5-Oao"/>
@@ -1223,8 +1216,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkd-3h-G18">
-                                            <rect key="frame" x="120" y="8" width="80" height="80"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkd-3h-G18">
+                                            <rect key="frame" x="120" y="16" width="80" height="80"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1234,13 +1227,12 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="jkd-3h-G18" firstAttribute="width" secondItem="KLG-n7-Omg" secondAttribute="width" id="46f-66-He4"/>
                                         <constraint firstAttribute="height" constant="96" id="5tQ-LL-iiZ"/>
                                         <constraint firstAttribute="centerX" secondItem="KLG-n7-Omg" secondAttribute="centerX" id="Kaf-Vk-Dh8"/>
                                         <constraint firstItem="jkd-3h-G18" firstAttribute="height" secondItem="KLG-n7-Omg" secondAttribute="height" id="OxF-mA-M4d"/>
-                                        <constraint firstItem="jkd-3h-G18" firstAttribute="centerY" secondItem="pob-8I-ufj" secondAttribute="centerY" id="RT8-Ga-eH1"/>
-                                        <constraint firstItem="jkd-3h-G18" firstAttribute="centerX" secondItem="pob-8I-ufj" secondAttribute="centerX" id="TsE-iM-x8Q"/>
                                         <constraint firstItem="jkd-3h-G18" firstAttribute="centerX" secondItem="KLG-n7-Omg" secondAttribute="centerX" id="aQV-wP-JSi"/>
                                         <constraint firstAttribute="bottom" secondItem="KLG-n7-Omg" secondAttribute="bottom" id="bkM-Wg-XLO"/>
                                         <constraint firstItem="jkd-3h-G18" firstAttribute="centerY" secondItem="KLG-n7-Omg" secondAttribute="centerY" id="cYZ-Ck-Gmy"/>
@@ -1271,7 +1263,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="21" height="21"/>
         <image name="menuIcon" width="26" height="19"/>
         <image name="plus" width="14" height="14"/>
     </resources>
