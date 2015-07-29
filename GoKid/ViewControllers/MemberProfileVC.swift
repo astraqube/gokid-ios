@@ -67,20 +67,13 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         // require user session
         self.requireSession()
 
+        self.fieldReactorAvatar()
         self.fieldReactorRole(self.model.role == RoleTypeChild)
     }
 
     func requireSession() {
         if self.userManager.userLoggedIn == false {
             self.postNotification("requestForUserToken")
-        } else {
-            if self.model.userID == 0 {
-                self.model = self.userManager.info
-            }
-
-            if self.model.thumURL != "" && self.profileImageView.image == nil {
-                ImageManager.sharedInstance.setImageToView(self.profileImageView, urlStr: self.model.thumURL)
-            }
         }
     }
 
@@ -282,6 +275,12 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     }
 
     // MARK: Field Reactors
+
+    func fieldReactorAvatar() {
+        if self.model.thumURL != "" && self.profileImageView.image == nil {
+            ImageManager.sharedInstance.setImageToView(self.profileImageView, urlStr: self.model.thumURL)
+        }
+    }
 
     func fieldReactorRole(condition: Bool) {
         let canManageCell = self.form.formRowWithTag(Tags.CanManage.rawValue)
