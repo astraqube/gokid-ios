@@ -76,7 +76,7 @@ extension DataManager {
     }
 
     
-    func addTeamMember(model: TeamMemberModel, comp: UserCompletion) {
+    func addTeamMember(model: TeamMemberModel, comp: ObjectCompletion) {
         var teamID = String(userManager.info.teamID)
         var url = baseURL + "/api/teams/\(teamID)/permissions"
         
@@ -115,7 +115,7 @@ extension DataManager {
         }
     }
     
-    func updateTeamMember(model: TeamMemberModel, comp: UserCompletion) {
+    func updateTeamMember(model: TeamMemberModel, comp: ObjectCompletion) {
         var url = baseURL + "/api/users/" + String(model.userID)
         var user = [
             "first_name": model.firstName,

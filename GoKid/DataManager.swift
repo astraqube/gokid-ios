@@ -14,7 +14,7 @@ class DataManager: NSObject {
     var userManager = UserManager.sharedInstance
     var imageManager = ImageManager.sharedInstance
     typealias completion = ((Bool, String)->())
-    typealias UserCompletion = ((Bool, String, TeamMemberModel?)->())
+    typealias ObjectCompletion = ((Bool, String, AnyObject?)->())
     
     
     // MARK: Singleton
@@ -38,7 +38,7 @@ class DataManager: NSObject {
         comp(false, errorStr)
     }
     
-    func handleUserResuestError(op: AFHTTPRequestOperation?, error: NSError?, comp: UserCompletion) {
+    func handleUserResuestError(op: AFHTTPRequestOperation?, error: NSError?, comp: ObjectCompletion) {
         var errorStr = constructErrorString(op, error: error)
         println(errorStr)
         comp(false, errorStr, nil)

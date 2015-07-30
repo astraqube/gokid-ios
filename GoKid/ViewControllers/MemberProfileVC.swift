@@ -521,9 +521,9 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         }
     }
     
-    func handleUpdateOrCreateMemberSuccess(success: Bool, errorStr: String, newModel: TeamMemberModel?) {
+    func handleUpdateOrCreateMemberSuccess(success: Bool, errorStr: String, newModel: AnyObject?) {
         if success {
-            self.model = newModel!
+            self.model = newModel as! TeamMemberModel
             if self.pickedNewImage {
                 self.uploadMemberProfileImage()
             } else {
