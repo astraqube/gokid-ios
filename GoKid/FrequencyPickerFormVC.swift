@@ -9,14 +9,15 @@
 import UIKit
 
 enum GKFrequency : String {
-    case JustOnce = "Daily"
+    case JustOnce = "Just Once"
+    case Daily = "Daily"
     case EveryWeek = "Every Week"
-    case EveryMonth = "Every Month"
-    case EveryYear = "Every Year"
+//    case EveryMonth = "Every Month"
+//    case EveryYear = "Every Year"
 
     static let allValues = [
-        JustOnce.rawValue, EveryWeek.rawValue,
-        EveryMonth.rawValue, EveryYear.rawValue
+        JustOnce.rawValue, Daily.rawValue, EveryWeek.rawValue,
+//        EveryMonth.rawValue, EveryYear.rawValue
     ]
 }
 
@@ -90,6 +91,14 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         row.value = self.isChecked(GKFrequency.JustOnce.rawValue)
         section.addFormRow(row)
 
+        row = XLFormRowDescriptor(tag: GKFrequency.Daily.rawValue,
+            rowType: XLFormRowDescriptorTypeBooleanCheck,
+            title: GKFrequency.Daily.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.value = self.isChecked(GKFrequency.Daily.rawValue)
+        section.addFormRow(row)
+
         row = XLFormRowDescriptor(tag: GKFrequency.EveryWeek.rawValue,
                                   rowType: XLFormRowDescriptorTypeBooleanCheck,
                                   title: GKFrequency.EveryWeek.rawValue)
@@ -107,7 +116,7 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
             row.hidden = true
             section.addFormRow(row)
         }
-
+/* NOT YET SUPPORTED
         row = XLFormRowDescriptor(tag: GKFrequency.EveryMonth.rawValue,
                                   rowType: XLFormRowDescriptorTypeBooleanCheck,
                                   title: GKFrequency.EveryMonth.rawValue)
@@ -125,7 +134,7 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         row.value = self.isChecked(GKFrequency.EveryYear.rawValue)
         row.disabled = true // TODO: disabled until requirements are clear
         section.addFormRow(row)
-
+*/
         form.addFormSection(section)
 
         self.form = form
@@ -148,6 +157,10 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
             } else {
                 self.currentValues.removeObject(formRow.tag)
             }
+        }
+
+        if formRow.tag == GKFrequency.Daily.rawValue {
+            self.currentValues.addObjectsFromArray(GKDays.asKeys.keys.array)
         }
 
         self.updateFormFields()
@@ -191,8 +204,12 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
             return self.currentValues.count == 0
         }
 
-        if val == GKFrequency.EveryWeek.rawValue && self.currentValues.count > 0 {
-            if contains(GKDays.asKeys.keys, self.currentValues.firstObject as! String) {
+        if self.currentValues.count > 0 && contains(GKDays.asKeys.keys, self.currentValues.firstObject as! String) {
+            if val == GKFrequency.Daily.rawValue && self.currentValues.count == 7 {
+                return true
+            }
+
+            if val == GKFrequency.EveryWeek.rawValue && self.currentValues.count < 7 {
                 return true
             }
         }

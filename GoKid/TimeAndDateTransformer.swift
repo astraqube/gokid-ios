@@ -64,16 +64,25 @@ class FrequencyTransformer: NSValueTransformer {
     override func transformedValue(value: AnyObject?) -> AnyObject? {
         if let valueData: AnyObject = value {
             if valueData.isKindOfClass(NSArray) {
-                let occurence = valueData as! NSArray
-                var converted: [String] = []
-                for num in occurence {
-                    let val = num as! Int
-                    if contains(GKDays.asKeys.values, val) {
-                        let day: String = GKDays.asKeys.keys[find(GKDays.asKeys.values, val)!]
-                        converted.append(day)
+                let occurrence = valueData as! NSArray
+
+                if occurrence.count == 0 {
+                    return GKFrequency.JustOnce.rawValue
+
+                } else if occurrence.count == 7 {
+                    return GKFrequency.Daily.rawValue
+
+                } else {
+                    var converted: [String] = []
+                    for num in occurrence {
+                        let val = num as! Int
+                        if contains(GKDays.asKeys.values, val) {
+                            let day: String = GKDays.asKeys.keys[find(GKDays.asKeys.values, val)!]
+                            converted.append(day)
+                        }
                     }
+                    return ", ".join(converted)
                 }
-                return ", ".join(converted)
             }
         }
         return nil
