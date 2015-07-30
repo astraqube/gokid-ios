@@ -449,6 +449,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     }
 */
     func logout() {
+        FBSDKLoginManager().logOut()
         UserManager.sharedInstance.logoutUser()
 
         let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
