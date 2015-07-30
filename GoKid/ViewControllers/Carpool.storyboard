@@ -95,9 +95,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNu-Yv-ly8">
                                 <rect key="frame" x="44" y="423" width="232" height="44"/>
                                 <color key="backgroundColor" red="0.33333333333333331" green="0.72156862745098038" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="4NZ-NV-hkT"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                                 <state key="normal" title="Add team members">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
