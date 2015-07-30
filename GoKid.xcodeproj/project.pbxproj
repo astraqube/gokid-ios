@@ -1242,7 +1242,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7df05534-1aff-428c-b4c4-18ee4dd4fec2";
+				PROVISIONING_PROFILE = "8e6ba46a-1fac-41b3-908f-14a39f7d2917";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoKid/GoKid-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1264,7 +1264,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7df05534-1aff-428c-b4c4-18ee4dd4fec2";
+				PROVISIONING_PROFILE = "8e6ba46a-1fac-41b3-908f-14a39f7d2917";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoKid/GoKid-Bridging-Header.h";
 			};
 			name = Release;
