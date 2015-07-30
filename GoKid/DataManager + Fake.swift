@@ -35,7 +35,7 @@ extension DataManager {
             "YourKidVC": true
         ]
         var teamAccount = [
-            "AddTeamMemberVC": true,
+            // "AddTeamMemberVC": true,
             "MemberProfileVC": true,
             "TeamAccountVC": true
         ]

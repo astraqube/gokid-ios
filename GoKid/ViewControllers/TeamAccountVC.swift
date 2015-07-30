@@ -119,7 +119,7 @@ class TeamAccountVC: BaseVC {
         var model = dataSource[indexPath.row]
         var cellType = model.cellType
         if cellType == .AddMember || cellType == .EditMember {
-            var vc = vcWithID("AddTeamMemberVC") as! AddTeamMemberVC
+            var vc = vcWithID("MemberProfileVC") as! MemberProfileVC
             if model.cellType == .AddMember { vc.model = TeamMemberModel() }
             else { vc.model = model }
             vc.sourceCellIndex = indexPath.row
@@ -142,7 +142,7 @@ class TeamAccountVC: BaseVC {
     // MARK: Handle Team account Edit/Add/Delete
     // --------------------------------------------------------------------------------------------
     
-    func addMemberDone(vc: AddTeamMemberVC) {
+    func addMemberDone(vc: MemberProfileVC) {
         var model = vc.model
         if vc.sourceCellType == .AddMember {
             model.cellType = .EditMember
@@ -166,7 +166,7 @@ class TeamAccountVC: BaseVC {
         collectionView?.reloadData()
     }
     
-    func removeMember(vc: AddTeamMemberVC) {
+    func removeMember(vc: MemberProfileVC) {
         var row = vc.sourceCellIndex
         var model = dataSource[row]
         dataManager.deleteTeamMember(model.permissionID) { (success, errorStr) in

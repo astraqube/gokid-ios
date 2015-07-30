@@ -41,8 +41,11 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 //    @IBOutlet weak var passwordTextField: UITextField!
 
     var doneButtonHandler: ((MemberProfileVC)->())?
+    var removeButtonHandler: ((MemberProfileVC)->())?
+
     var sourceCellType: TeamCellType = .None
     var sourceCellIndex: Int = 0
+
     var model: TeamMemberModel! = TeamMemberModel()
     var pickedNewImage = false
     
@@ -66,9 +69,6 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 
         // require user session
         self.requireSession()
-
-        self.fieldReactorAvatar()
-        self.fieldReactorRole(self.model.role == RoleTypeChild)
     }
 
     func requireSession() {
@@ -78,7 +78,13 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     }
 
     func setupNavBar() {
-        setNavBarTitle("Your Profile")
+        if sourceCellType == .AddMember {
+            setNavBarTitle("Add Member")
+        } else if sourceCellType == .EditMember {
+            setNavBarTitle("Edit Member")
+        } else if sourceCellType == .EditUser {
+            setNavBarTitle("Your Profile")
+        }
         setNavBarRightButtonTitle("Save", action: "rightNavButtonTapped")
     }
 /* DEPRECATED
@@ -127,7 +133,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         row.cellConfig["detailTextLabel.font"] = fontValue
         row.cellConfig["detailTextLabel.color"] = colorLabel
         row.required = true
-        row.selectorOptions = [RoleTypeParent, RoleTypeDaddy, RoleTypeMommy, RoleTypeChild, RoleTypeCareTaker, RoleTypeOther]
+        row.selectorOptions = [RoleTypeParent, RoleTypeChild, RoleTypeCareTaker]
         row.value = model.role
         section.addFormRow(row)
 
@@ -239,19 +245,25 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 
         form.addFormSection(section)
 
-        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
-        
-        row = XLFormRowDescriptor(tag: Tags.Logout.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.Logout.rawValue)
-        row.cellConfig["textLabel.font"] = fontValue
-        row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
-        row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
-        row.action.formSelector = "logout"
-        section.addFormRow(row)
+        if sourceCellType == .EditUser {
+            section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+            
+            row = XLFormRowDescriptor(tag: Tags.Logout.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.Logout.rawValue)
+            row.cellConfig["textLabel.font"] = fontValue
+            row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
+            row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
+            row.action.formSelector = "logout"
+            section.addFormRow(row)
 
-        form.addFormSection(section)
+            form.addFormSection(section)
+        }
 
         self.form = form
         self.form.delegate = self
+
+        self.fieldReactorAvatar()
+        self.fieldReactorRole(self.model.role == RoleTypeChild)
+        self.fieldReactorLoginFields(self.sourceCellType == .AddMember || self.sourceCellType == .EditMember)
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -275,6 +287,20 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     }
 
     // MARK: Field Reactors
+
+    func fieldReactorLoginFields(condition: Bool) {
+        let emailCell = self.form.formRowWithTag(Tags.Email.rawValue)
+        let passwordCell = self.form.formRowWithTag(Tags.Password.rawValue)
+
+        emailCell.required = !condition
+        emailCell.hidden = condition
+
+        passwordCell.required = !condition
+        passwordCell.hidden = condition
+
+        self.updateFormRow(emailCell)
+        self.updateFormRow(passwordCell)
+    }
 
     func fieldReactorAvatar() {
         if self.model.thumURL != "" && self.profileImageView.image == nil {
@@ -385,8 +411,13 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     }
 
     private func saveProfile() {
-        let signupForm = getSignupForm()
-        self.updateUser(signupForm!)
+        if sourceCellType == .AddMember {
+            self.createMember()
+        } else if sourceCellType == .EditMember {
+            self.updateMember()
+        } else if sourceCellType == .EditUser {
+            self.updateUser()
+        }
     }
 /* DEPRECATED
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -441,18 +472,24 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     // MARK: Helper Method
     // --------------------------------------------------------------------------------------------
     
-    func updateUser(signupForm: SignupForm) {
+    func updateUser() {
         LoadingView.showWithMaskType(.Black)
-        dataManager.updateUser(signupForm) { (success, errorStr) in
-            if success {
-                self.handleUpdateOrCreateUserSuccess()
-            } else {
-                LoadingView.dismiss()
-                self.showAlert("Failed to update", messege:errorStr , cancleTitle: "OK")
-            }
-        }
+        let signupForm = getSignupForm()
+        dataManager.updateUser(signupForm, comp: handleUpdateOrCreateUserSuccess)
     }
-    
+
+    func createMember() {
+        LoadingView.showWithMaskType(.Black)
+        let memberForm = getMemberForm()
+        dataManager.addTeamMember(memberForm, comp: handleUpdateOrCreateMemberSuccess)
+    }
+
+    func updateMember() {
+        LoadingView.showWithMaskType(.Black)
+        let memberForm = getMemberForm()
+        dataManager.updateTeamMember(memberForm, comp: handleUpdateOrCreateMemberSuccess)
+    }
+/* DEPRECATED
     func createUser(signupForm: SignupForm) {
         LoadingView.showWithMaskType(.Black)
         dataManager.signup(signupForm) { (success, errorStr) in
@@ -466,25 +503,54 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
             }
         }
     }
-    
-    func handleUpdateOrCreateUserSuccess() {
-        if self.pickedNewImage {
-            self.uploadUserProfileImage()
-        } else {
-            onMainThread() {
-                LoadingView.dismiss()
-                self.doneButtonHandler?(self)
-                self.navigationController?.popViewControllerAnimated(true)
+*/
+    func handleUpdateOrCreateUserSuccess(success: Bool, errorStr: String) {
+        if success {
+            if self.pickedNewImage {
+                self.uploadUserProfileImage()
+            } else {
+                onMainThread() {
+                    LoadingView.dismiss()
+                    self.doneButtonHandler?(self)
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
             }
+        } else {
+            LoadingView.dismiss()
+            self.showAlert("Failed to update", messege:errorStr , cancleTitle: "OK")
         }
     }
     
+    func handleUpdateOrCreateMemberSuccess(success: Bool, errorStr: String, newModel: TeamMemberModel?) {
+        if success {
+            self.model = newModel!
+            if self.pickedNewImage {
+                self.uploadMemberProfileImage()
+            } else {
+                onMainThread() {
+                    LoadingView.dismiss()
+                    self.doneButtonHandler?(self)
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+            }
+        } else {
+            LoadingView.dismiss()
+            self.showAlert("Failed to update", messege: errorStr, cancleTitle: "OK")
+        }
+    }
+
     func uploadUserProfileImage() {
         if let image = profileImageView.image {
             dataManager.upLoadImage(image, comp: handleUploadImageResult)
         }
     }
     
+    func uploadMemberProfileImage() {
+        if let image = profileImageView.image {
+            dataManager.upLoadTeamMemberImage(image, model: self.model, comp: handleUploadImageResult)
+        }
+    }
+
     func handleUploadImageResult(success: Bool, errorStr: String) {
         onMainThread() {
             LoadingView.dismiss()
@@ -497,9 +563,10 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         }
     }
     
-    func getSignupForm() -> SignupForm? {
+    func getSignupForm() -> SignupForm {
         let formData = self.form.formValues()
         var signupForm = SignupForm()
+
         signupForm.passwordConfirm = formData[Tags.Password.rawValue] as! String
         signupForm.password = formData[Tags.Password.rawValue] as! String
         signupForm.firstName = formData[Tags.FirstName.rawValue] as! String
@@ -508,6 +575,16 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         signupForm.email = formData[Tags.Email.rawValue] as! String
         signupForm.role = formData[Tags.Role.rawValue] as! String
         return signupForm
+    }
+
+    func getMemberForm() -> TeamMemberModel {
+        let formData = self.form.formValues()
+
+        self.model.firstName = formData[Tags.FirstName.rawValue] as! String
+        self.model.lastName = formData[Tags.LastName.rawValue] as! String
+        self.model.role = formData[Tags.Role.rawValue] as! String
+        self.model.phoneNumber = formData[Tags.Phone.rawValue] as! String
+        return self.model
     }
 }
 
