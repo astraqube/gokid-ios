@@ -12,6 +12,7 @@ class InvitationModel: NSObject {
     var inviteID: Int!
     var inviter: RiderModel!
     var carpool: CarpoolModel!
+    var rider: RiderModel!
 
     override init() {
         super.init()
@@ -21,5 +22,6 @@ class InvitationModel: NSObject {
         inviteID = json["id"].intValue
         inviter = RiderModel(json: json["inviter"])
         carpool = CarpoolModel(json: json["carpool"])
+        rider = RiderModel(json: json["carpool"]["riders"][0])
     }
 }

@@ -18,7 +18,12 @@ class InviteeListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         setupTableView()
         setupNavBar()
     }
-    
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     func setupNavBar() {
         setNavBarTitle("Invitees")
         setNavBarLeftButtonTitle("Back", action: "backButtonClick")

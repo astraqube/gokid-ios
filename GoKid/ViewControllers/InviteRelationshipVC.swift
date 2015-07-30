@@ -10,6 +10,8 @@ import UIKit
 
 class InviteRelationshipVC: BaseVC {
 
+    var invitation: InvitationModel!
+
     @IBOutlet weak var connectionLabel: UILabel!
     
     override func viewDidLoad() {
@@ -18,7 +20,7 @@ class InviteRelationshipVC: BaseVC {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        connectionLabel.text = connectionLabel.text?.replace("XXX", userManager.inviteKidName)
+        connectionLabel.text = connectionLabel.text?.replace("XXX", invitation.rider.firstName)
     }
     
     @IBAction func kidsFriendClick(sender: AnyObject) {
@@ -42,7 +44,8 @@ class InviteRelationshipVC: BaseVC {
     }
     
     func moveToYourKidVC() {
-        var vc = vcWithID("YourKidVC")
+        var vc = vcWithID("YourKidVC") as! YourKidVC
+        vc.invitation = self.invitation
         navigationController?.pushViewController(vc, animated: true)
     }
     

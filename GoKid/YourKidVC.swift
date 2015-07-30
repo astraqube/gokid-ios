@@ -10,6 +10,8 @@ import UIKit
 
 class YourKidVC: BaseVC {
 
+    var invitation: InvitationModel!
+
     @IBOutlet weak var kidsNameTextField: PaddingTextField!
     @IBOutlet weak var carpoolNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -17,19 +19,12 @@ class YourKidVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
     }
-    
-    func setupNavBar() {
-        setNavBarTitle("Your Kid")
-        setNavBarLeftButtonTitle("Back", action: "backButtonClick")
-        setNavBarRightButtonTitle("Next", action: "nextButtonClick")
-    }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        carpoolNameLabel.text = carpoolNameLabel.text?.replace("XXX", userManager.currentCarpoolModel.name)
-        kidNameLabel.text = kidNameLabel.text?.replace("XXX", userManager.inviteKidName)
+        carpoolNameLabel.text = carpoolNameLabel.text?.replace("XXX", invitation.carpool.name)
+        kidNameLabel.text = kidNameLabel.text?.replace("XXX", invitation.rider.firstName)
     }
     
     // MARK: IBAction Method
@@ -41,18 +36,17 @@ class YourKidVC: BaseVC {
     
     override func rightNavButtonTapped() {
         if kidsNameTextField.text == "" {
-            showAlert("Alert", messege: "Please fiil yout kid's name", cancleTitle: "OK")
+            showAlert("Alert", messege: "Please provide your kid's name", cancleTitle: "OK")
             return
         }
         
-        var carpoolID = userManager.currentCarpoolModel.id
         LoadingView.showWithMaskType(.Black)
-        dataManager.addKidsNameToCarpool(carpoolID, name: kidsNameTextField.text) { (success, errStr) in
+        dataManager.addKidsNameToCarpool(invitation.carpool.id, name: kidsNameTextField.text) { (success, errStr) in
             LoadingView.dismiss()
             if success {
                 self.moveToVolunteerVC()
             } else {
-                self.showAlert("Fail to add kids name", messege: errStr, cancleTitle: "OK")
+                self.showAlert("Failed to add your kid's name", messege: errStr, cancleTitle: "OK")
             }
         }
     }

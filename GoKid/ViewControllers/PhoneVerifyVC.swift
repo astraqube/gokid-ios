@@ -71,8 +71,9 @@ class PhoneVerifyVC: BaseFormVC {
                 LoadingView.showSuccessWithStatus("Success")
 
                 // FIXME: This is bad. Temporary. See datamanager.getFirstInvitation()
-                self.dataManager.getFirstInvitation() { (success, errorStr) -> () in
-                    var vc = vcWithID("InviteConfirmVC")
+                self.dataManager.getFirstInvitation() { (success, errorStr, invitation) -> () in
+                    var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
+                    vc.invitation = invitation as! InvitationModel
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
 

@@ -20,7 +20,7 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
-    
+/* DEPRECATED
     func inviteSignupUser(phoneNum: String, code: String, form: SignupForm, comp: completion) {
         var url = baseURL + "/api/invites/signup"
         var user = [
@@ -52,7 +52,7 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
-
+*/
     func invite(phoneNumbers: [String], carpoolID: Int, comp: completion) {
         var url = baseURL + "/api/invites"
         var invite = ["carpool_id": String(carpoolID), "phone_numbers": phoneNumbers]
@@ -95,23 +95,17 @@ extension DataManager {
     }
 
     // FIXME: This is temporary until we sort out Invitations
-    func getFirstInvitation(comp: completion) {
+    func getFirstInvitation(comp: ObjectCompletion) {
         var url = baseURL + "/api/invites/"
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getFirstInvitation success")
             var json = JSON(obj)
-
-            let invite = json["invites"][0]
-            self.userManager.currentCarpoolModel = CarpoolModel(json: invite["carpool"])
-            self.userManager.inviteID = invite["id"].intValue
-            self.userManager.inviterName = invite["inviter"]["first_name"].stringValue
-            self.userManager.inviteKidName = invite["riders"][0].stringValue
-
-            comp(true, "")
+            let invitation = InvitationModel(json: json["invites"][0])
+            comp(true, "", invitation)
         }) { (op, error) in
             println("getFirstInvitation failed")
-            self.handleRequestError(op, error: error, comp: comp)
+            self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 }

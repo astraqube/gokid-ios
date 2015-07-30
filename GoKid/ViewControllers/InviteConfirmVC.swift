@@ -9,28 +9,32 @@
 import UIKit
 
 class InviteConfirmVC: BaseVC {
-    
+
+    var invitation: InvitationModel!
+
     @IBOutlet weak var inviteLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var kidNameLabel: UILabel!
+    @IBOutlet weak var inviteImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        inviteLabel.text = inviteLabel.text?.replace("xPoolNamex", invitation.carpool.name)
+        inviteLabel.text = inviteLabel.text?.replace("xNamex", invitation.inviter.firstName)
+        inviteLabel.text = inviteLabel.text?.replace("xKidx", invitation.rider.firstName)
+        ImageManager.sharedInstance.setImageToView(inviteImage, urlStr: invitation.inviter.thumURL)
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        inviteLabel.text = inviteLabel.text?.replace("xPoolNamex", userManager.currentCarpoolModel.name)
-        inviteLabel.text = inviteLabel.text?.replace("xNamex", userManager.inviterName)
-        kidNameLabel.text = kidNameLabel.text?.replace("xxx", userManager.inviteKidName)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
+
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
     @IBAction func acceptButtonClick(sender: AnyObject) {
         LoadingView.showWithMaskType(.Black)
-        dataManager.acceptInvite(userManager.inviteID) { (success, errorStr) in
+        dataManager.acceptInvite(invitation.inviteID) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
                 self.moveToInviteRelationVC()
@@ -42,7 +46,7 @@ class InviteConfirmVC: BaseVC {
     
     @IBAction func declineButtonClick(sender: AnyObject) {
         LoadingView.showWithMaskType(.Black)
-        dataManager.declineInvite(userManager.inviteID) { (success, errorStr) in
+        dataManager.declineInvite(invitation.inviteID) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
                 self.moveToTeamAccountVC()
@@ -59,17 +63,17 @@ class InviteConfirmVC: BaseVC {
     
     func moveToInviteRelationVC() {
         onMainThread() {
-            var vc = vcWithID("InviteRelationshipVC")
+            var vc = vcWithID("InviteRelationshipVC") as! InviteRelationshipVC
+            vc.invitation = self.invitation
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
+
     func moveToTeamAccountVC() {
         onMainThread() {
-            var calenderVC = vcWithID("CalenderVC")
-            var teamAccountVC = vcWithID("TeamAccountVC")
-            var vcs = [calenderVC, teamAccountVC]
-            self.navigationController?.setViewControllers(vcs, animated: true)
+            let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+            let mainController = appDelegate.window!.rootViewController as! MainStackVC
+            mainController.determineStateForViews()
         }
     }
 }
