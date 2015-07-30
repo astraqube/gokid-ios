@@ -91,9 +91,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="viewCalendarButtonClick:" destination="NJk-qH-FvQ" eventType="touchUpInside" id="B4o-lO-BNK"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNu-Yv-ly8">
                                 <rect key="frame" x="44" y="416" width="232" height="45"/>
@@ -118,20 +115,7 @@
                                     <constraint firstAttribute="height" constant="110" id="GWJ-gY-bI1"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEv-in-hHn">
-                                <rect key="frame" x="288" y="36" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="QbX-1Z-c5G"/>
-                                    <constraint firstAttribute="width" constant="20" id="xbJ-k1-Iv1"/>
-                                </constraints>
-                                <state key="normal" image="next_arrow">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="tMN-PI-pXD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5f-KZ-rzc">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5f-KZ-rzc">
                                 <rect key="frame" x="12" y="36" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="Viu-GO-tup"/>
@@ -160,15 +144,12 @@
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="NyI-gb-cjM" secondAttribute="centerX" id="1rf-dh-fXt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZEv-in-hHn" secondAttribute="trailing" constant="-4" id="6X4-5Y-HqE"/>
                             <constraint firstItem="qaV-T1-bgw" firstAttribute="centerX" secondItem="NyI-gb-cjM" secondAttribute="centerX" constant="1" id="8Rc-jG-QDe"/>
                             <constraint firstAttribute="centerX" secondItem="ojp-rj-sT0" secondAttribute="centerX" id="Aii-Ib-ixY"/>
                             <constraint firstAttribute="centerX" secondItem="GrJ-Fs-GOU" secondAttribute="centerX" constant="-2" id="DB2-Nf-L9F"/>
-                            <constraint firstItem="ZEv-in-hHn" firstAttribute="top" secondItem="l3p-Ub-z46" secondAttribute="bottom" constant="16" id="DQH-pX-C2c"/>
                             <constraint firstItem="NyI-gb-cjM" firstAttribute="top" secondItem="l3p-Ub-z46" secondAttribute="bottom" id="F6j-Jn-Taq"/>
                             <constraint firstItem="ojp-rj-sT0" firstAttribute="top" secondItem="GrJ-Fs-GOU" secondAttribute="bottom" constant="23.5" id="GSB-rB-opj"/>
                             <constraint firstItem="ojp-rj-sT0" firstAttribute="leading" secondItem="aVm-9M-0tS" secondAttribute="leadingMargin" constant="28" id="GYe-Bz-QyR"/>
-                            <constraint firstItem="ZEv-in-hHn" firstAttribute="centerY" secondItem="V5f-KZ-rzc" secondAttribute="centerY" id="I9J-De-usy"/>
                             <constraint firstAttribute="centerX" secondItem="ZIJ-HC-LRz" secondAttribute="centerX" constant="1" id="Jk2-U4-lK1"/>
                             <constraint firstAttribute="centerX" secondItem="gNu-Yv-ly8" secondAttribute="centerX" id="JpM-lr-5Q1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ojp-rj-sT0" secondAttribute="trailing" constant="28" id="MBH-Eb-jHg"/>
@@ -185,7 +166,7 @@
                     </view>
                     <connections>
                         <outlet property="leftButton" destination="V5f-KZ-rzc" id="o2e-S4-KcH"/>
-                        <outlet property="rightButton" destination="ZEv-in-hHn" id="lKw-jz-J5M"/>
+                        <outlet property="rightButton" destination="ojp-rj-sT0" id="sD6-Pn-CAy"/>
                         <outlet property="subtitleLabel" destination="qaV-T1-bgw" id="rC9-xK-FIc"/>
                         <outlet property="titleLabel" destination="NyI-gb-cjM" id="BE2-f3-GJM"/>
                     </connections>

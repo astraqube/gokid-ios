@@ -32,10 +32,6 @@ class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
         navigationController?.setViewControllers([vc], animated: true)
     }
     
-    @IBAction func viewCalendarButtonClick(sender: AnyObject) {
-        rightNavButtonTapped()
-    }
-    
     @IBAction func addTeamMemberButtonClick(sender: AnyObject) {
         var vc = vcWithID("TeamAccountVC")
         navigationController?.setViewControllers([vc], animated: true)
