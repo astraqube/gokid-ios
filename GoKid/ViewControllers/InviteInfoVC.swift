@@ -10,12 +10,9 @@ import UIKit
 
 class InviteInfoVC: BaseFormVC {
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        // require user session
-        if self.userManager.userLoggedIn == false {
-            self.postNotification("requestForUserToken")
-        }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.requireSignup()
     }
 
     override func initForm() {
@@ -63,6 +60,15 @@ class InviteInfoVC: BaseFormVC {
         self.tableView.endEditing(true)
 
         self.proceed()
+    }
+
+    func requireSignup() {
+        // require user session
+        if self.userManager.userLoggedIn == false {
+            let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+            let mainController = appDelegate.window!.rootViewController as! MainStackVC
+            mainController.popUpSignUpView()
+        }
     }
 
     private func proceed() {
