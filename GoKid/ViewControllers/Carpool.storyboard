@@ -804,15 +804,20 @@
                                                     <color key="textColor" red="0.34509803919999998" green="0.72156862749999995" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkCirc" translatesAutoresizingMaskIntoConstraints="NO" id="eKp-pi-UPg">
-                                                    <rect key="frame" x="100" y="11" width="45" height="45"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkCirc" translatesAutoresizingMaskIntoConstraints="NO" id="eKp-pi-UPg" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
+                                                    <rect key="frame" x="101" y="12" width="44" height="44"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="22"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzJ-6D-3c1">
-                                                    <rect key="frame" x="100" y="11" width="45" height="45"/>
+                                                    <rect key="frame" x="101" y="12" width="44" height="44"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="DOr-45-FmV"/>
-                                                        <constraint firstAttribute="width" constant="45" id="jUP-hx-rXc"/>
+                                                        <constraint firstAttribute="height" constant="44" id="DOr-45-FmV"/>
+                                                        <constraint firstAttribute="width" constant="44" id="jUP-hx-rXc"/>
                                                     </constraints>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -843,13 +848,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="WzJ-6D-3c1" firstAttribute="top" secondItem="eKp-pi-UPg" secondAttribute="bottom" constant="-45" id="2kf-fa-66c"/>
                                                 <constraint firstItem="NkC-W5-giZ" firstAttribute="trailing" secondItem="2vj-Nb-qsh" secondAttribute="trailingMargin" id="3n4-58-ggf"/>
                                                 <constraint firstAttribute="centerY" secondItem="WzJ-6D-3c1" secondAttribute="centerY" constant="1" id="CSl-ad-ePt"/>
                                                 <constraint firstItem="WzJ-6D-3c1" firstAttribute="height" secondItem="eKp-pi-UPg" secondAttribute="height" id="M3r-qe-JzA"/>
                                                 <constraint firstItem="NkC-W5-giZ" firstAttribute="leading" secondItem="WzJ-6D-3c1" secondAttribute="trailing" constant="14" id="O4V-1x-pZn"/>
                                                 <constraint firstItem="PbB-AK-fcZ" firstAttribute="leading" secondItem="WzJ-6D-3c1" secondAttribute="trailing" constant="1" id="UAF-ri-aK2"/>
-                                                <constraint firstItem="WzJ-6D-3c1" firstAttribute="leading" secondItem="eKp-pi-UPg" secondAttribute="trailing" constant="-45" id="atT-8q-ZXB"/>
+                                                <constraint firstItem="eKp-pi-UPg" firstAttribute="centerX" secondItem="WzJ-6D-3c1" secondAttribute="centerX" id="b8l-OP-47e"/>
+                                                <constraint firstItem="eKp-pi-UPg" firstAttribute="centerY" secondItem="WzJ-6D-3c1" secondAttribute="centerY" id="ciC-KF-1L1"/>
                                                 <constraint firstItem="WzJ-6D-3c1" firstAttribute="width" secondItem="eKp-pi-UPg" secondAttribute="width" id="g1U-AY-mAz"/>
                                                 <constraint firstAttribute="centerY" secondItem="PbB-AK-fcZ" secondAttribute="centerY" id="icw-XY-PxW"/>
                                                 <constraint firstAttribute="centerY" secondItem="NkC-W5-giZ" secondAttribute="centerY" constant="1.5" id="orV-7N-1zS"/>
