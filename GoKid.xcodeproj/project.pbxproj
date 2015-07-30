@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0455A2291B5CB6D700F007E6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0455A2281B5CB6D700F007E6 /* Localizable.strings */; };
+		0472B41D1B69E5F300D94610 /* InvitationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472B41C1B69E5F300D94610 /* InvitationModel.swift */; };
 		047AADA71B542F18006628EF /* FrequencyPickerFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */; };
 		04FB80971B530E1B00F73C74 /* BaseFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80961B530E1B00F73C74 /* BaseFormVC.swift */; };
 		04FB80991B530E3A00F73C74 /* TimeAndDateFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */; };
@@ -152,6 +153,7 @@
 
 /* Begin PBXFileReference section */
 		0455A2281B5CB6D700F007E6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		0472B41C1B69E5F300D94610 /* InvitationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationModel.swift; sourceTree = "<group>"; };
 		047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyPickerFormVC.swift; sourceTree = "<group>"; };
 		04FB80961B530E1B00F73C74 /* BaseFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFormVC.swift; sourceTree = "<group>"; };
 		04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDateFormVC.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 				1D891F261B2734C2006FD961 /* TeamMemberModel.swift */,
 				1D3F65221B207FBA00CCF6A1 /* VolunteerModel.swift */,
 				1D975A461B1FA09100CD4D89 /* TDCellModel.swift */,
+				0472B41C1B69E5F300D94610 /* InvitationModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1091,6 +1094,7 @@
 				1D891F151B23FDD8006FD961 /* SwiftAddressBookWrapper.swift in Sources */,
 				1D7D8DF31B3A76D8002D29A5 /* DataManager + Carpool.swift in Sources */,
 				1DEFF1801B4A87D70094B54E /* OnboardingContentViewController.m in Sources */,
+				0472B41D1B69E5F300D94610 /* InvitationModel.swift in Sources */,
 				796E69C21B4A6E5600DF8D43 /* DetailMapVC.swift in Sources */,
 				04FB80991B530E3A00F73C74 /* TimeAndDateFormVC.swift in Sources */,
 				1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */,
