@@ -173,7 +173,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         if model == nextDrivingOccurrence() {
             var gCell = tableView.cellWithID("CalendarTimeToGoCell", ip) as! CalendarTimeToGoCell
             gCell.timeToGoTitleLabel.text = "Can't keep kids waiting!"
-
+            
             var stops = model.riders.map { return $0.stopValue } + [model.stopValue]
             ETACalculator.sortStops(&stops, beginningAt: stops.first)
             var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: model.occursAt!)
@@ -218,16 +218,14 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             if volunteerID == nil || volunteerID == 0 || volunteerID == self.userManager.info.userID {
                 volunteerable = true
             }
-            var volunteerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            var volunteerTitle = "Volunteer to \(wModel!.poolType)"
-            var unvolunteer = false
-            if volunteerID == self.userManager.info.userID {
-                volunteerTitle = "Unvolunteer"
-                unvolunteer = true
-            }
-            volunteerActionSheet.addAction(UIAlertAction(title: volunteerTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
-                LoadingView.showWithMaskType(.Black)
-                if unvolunteer {
+            
+            let alreadyVolunteered = volunteerID == self.userManager.info.userID
+            
+            if alreadyVolunteered {
+                var volunteerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+                var volunteerTitle = "Unvolunteer \(wModel!.poolType)"
+                volunteerActionSheet.addAction(UIAlertAction(title: volunteerTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
+                    LoadingView.showWithMaskType(.Black)
                     self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
                         LoadingView.dismiss()
                         onMainThread() {
@@ -235,24 +233,25 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                                 cell.profileImageView.image = nil
                                 self.fetchDataAndReloadTableView()
                             } else {
-                                self.showAlert("Fail to volunteer", messege: errStr, cancleTitle: "OK")
+                                self.showAlert("Failed to unvolunteer", messege: errStr, cancleTitle: "OK")
                             }}
                     }
-                } else {
-                    self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
-                        LoadingView.dismiss()
-                        onMainThread() {
-                            if success {
-                                self.imageManager.setImageToView(cell.profileImageView, urlStr: self.userManager.info.thumURL)
-                                self.fetchDataAndReloadTableView()
-                            } else {
-                                self.showAlert("Fail to volunteer", messege: errStr, cancleTitle: "OK")
-                            }}
-                    }
+                }))
+                volunteerActionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                self.presentViewController(volunteerActionSheet, animated: true, completion: nil)
+            } else {
+                LoadingView.showWithMaskType(.Black)
+                self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
+                    LoadingView.dismiss()
+                    onMainThread() {
+                        if success {
+                            self.imageManager.setImageToView(cell.profileImageView, urlStr: self.userManager.info.thumURL)
+                            self.fetchDataAndReloadTableView()
+                        } else {
+                            self.showAlert("Failed to volunteer", messege: errStr, cancleTitle: "OK")
+                        }}
                 }
-            }))
-            volunteerActionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-            self.presentViewController(volunteerActionSheet, animated: true, completion: nil)
+            }
         }
         return cell
     }
@@ -383,12 +382,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         }
         return navigation
     }
-
+    
     func mapMetadataForModel(model : OccurenceModel) -> MapMetadata {
         var canNavigate =  model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID
         return MapMetadata(name: model.poolname, thumbnailImage: UIImage(named: "emma"), date: model.occursAt!, canNavigate: canNavigate, id: model.occurenceID, type: (model.poolType == "dropoff") ? .Dropoff : .Pickup )
     }
-
+    
 }
 
 protocol Stopify {

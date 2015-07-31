@@ -15,6 +15,9 @@
 3. Open in XCode, build, and run
 
 ## Changelog
+AHL July 30:
+actionsheet only showed for unvolunteer now
+over the head camera for user tracking mod
 AHL July 23:
 got TimeToGoCell displaying with accurate ETA info on CalendarVC
 onLocationUpdated callbacks every 10 seconds update the carpool location on server
