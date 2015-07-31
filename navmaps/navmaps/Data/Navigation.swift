@@ -66,16 +66,14 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     var onLocationUpdate : LocationCallback?
     ///A callback to be called after locationToCurrentStopDirection completes. Use `calculateCurrentToPickupRouteWithCallback`.
     var onLocationToCurrentStopRouteDetermined : MKDirectionsHandler?
-    var pickups : [Stop]! = [] {
-        didSet { ETACalculator.sortStops(&self.pickups!, beginningAt: self.pickups.first) }
-    }
-    var dropoffs : [Stop]! = []{
-        didSet {
-            if self.dropoffs.count == 0 { return }
-            var lastStop = self.dropoffs.removeLast()
-            ETACalculator.sortStops(&self.dropoffs!, beginningAt: self.pickups.last)
-            self.dropoffs.append(lastStop)
-        }
+    var pickups = [Stop]()
+    var dropoffs = [Stop]()
+    
+    func optomizeRoute() {
+        if self.pickups.count == 0 || self.dropoffs.count == 0 { return }
+        var sorted = ETACalculator.superSortStops(self.pickups + self.dropoffs, beginningAt: self.pickups.first!, endingAt: self.dropoffs.last!)
+        dropoffs.sort { (left, right) -> Bool in return find(sorted, left) < find(sorted, right) }
+        pickups.sort { (left, right) -> Bool in return find(sorted, left) < find(sorted, right) }
     }
     
     ///Called directly *AFTER* a change is made to the state of a `Stop` object
@@ -122,6 +120,7 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     func setup(pickups : [Stop], dropoffs : [Stop]) {
         self.pickups = pickups
         self.dropoffs = dropoffs
+        self.optomizeRoute()
     }
     
     ///call this function when you've set a Stop hasStopped to true or false

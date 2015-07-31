@@ -15,6 +15,8 @@
 3. Open in XCode, build, and run
 
 ## Changelog
+AHL July 31:
+Now uses AI to always ensure the most optimal route. 
 AHL July 30:
 Created the new Image Fetch system for ImageManager that returns… UIImages! (based on NSOperations and NSOperationQueue)
 Now gracefully fail empty carpools on maps
