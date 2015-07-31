@@ -67,6 +67,13 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         mapView.addAnnotations(navigation.pickups + navigation.dropoffs)
         mapView.showAnnotations(navigation.pickups + navigation.dropoffs, animated: false)
         updateRoutes()
+        weak var wSelf = self
+        navigation.addLocationToCurrentStopRouteCallback { (response: MKDirectionsResponse?, error: NSError!) -> Void in
+            if error != nil {
+                UIAlertView(title: "Problem showing route from your location", message: "Tap a stop to get directions in Maps", delegate: nil, cancelButtonTitle: "Okay").show()
+            }
+            wSelf?.locationToCurrentStopRoute = response?.routes!.first as? MKRoute
+        }
     }
     
     var showedError = false
@@ -80,12 +87,7 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         }
         
         if type == .Driving {
-            navigation.calculateLocationToCurrentStopRouteWithCallback({ (response: MKDirectionsResponse?, error: NSError!) -> Void in
-                if error != nil {
-                    UIAlertView(title: "Problem showing route from your location", message: "Tap a stop to get directions in Maps", delegate: nil, cancelButtonTitle: "Okay").show()
-                }
-                self.locationToCurrentStopRoute = response?.routes!.first as? MKRoute
-            })
+            navigation.calculateLocationToCurrentStopRoute()
         }
     }
 

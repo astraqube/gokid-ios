@@ -215,7 +215,7 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         pickupToDropoffDirections?.calculateDirectionsWithCompletionHandler(callback)
     }
 
-    func calculateLocationToCurrentStopRouteWithCallback(callback: MKDirectionsHandler!) {
+    func addLocationToCurrentStopRouteCallback(callback: MKDirectionsHandler!) {
         if onLocationToCurrentStopRouteDetermined != nil {
             let copy = onLocationToCurrentStopRouteDetermined!
             onLocationToCurrentStopRouteDetermined = { MKDirectionsHandler in
@@ -225,8 +225,11 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         } else {
             onLocationToCurrentStopRouteDetermined = callback
         }
+    }
+    
+    func calculateLocationToCurrentStopRoute() {
         if locationToCurrentStopResponse != nil {
-            return callback(locationToCurrentStopResponse, nil)
+            return onLocationToCurrentStopRouteDetermined!(locationToCurrentStopResponse, nil)
         }
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
             locationManager.requestWhenInUseAuthorization()

@@ -22,6 +22,25 @@ extension Navigation {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "recalculateRoute", name: UIApplicationWillEnterForegroundNotification, object: nil)
         recalculateRoute()
+        
+        weak var wSelf = self
+        self.addLocationToCurrentStopRouteCallback { (response: MKDirectionsResponse!, calcError: NSError!) -> Void in
+            var error : NSString?
+            if let stop = wSelf?.currentStop {
+                if let directionsResponse = response {
+                    if let route = directionsResponse.routes.first as? MKRoute? {
+                        wSelf?.currentRoute = route
+                        wSelf?.currentRouteStepIndex = -1
+                    } else { error = "No route to current stop" }
+                } else { error = "couldn't get directions to stop\n\(calcError.localizedFailureReason != nil ? calcError.localizedFailureReason! : calcError.localizedDescription)" }
+                
+            } else { error = "no current step" }
+            if error != nil {
+                UIAlertView(title: "Navigation Error", message: error! as String, delegate: nil, cancelButtonTitle: "Okay").show()
+                wSelf?.onDirectionUpdate!(error: nil, nextDirection : "Navigation")
+                wSelf?.stopUpdatingDirections()
+            }
+        }
     }
     
     func recalculateRoute() {
@@ -30,24 +49,7 @@ extension Navigation {
             locationToCurrentStopDirections = nil
             onDirectionUpdate!(error: nil, nextDirection : "Recalculating…")
         }
-        calculateLocationToCurrentStopRouteWithCallback { (response: MKDirectionsResponse!, calcError: NSError!) -> Void in
-            self.onLocationToCurrentStopRouteDetermined = nil
-            var error : NSString?
-            if let stop = self.currentStop {
-                if let directionsResponse = response {
-                    if let route = directionsResponse.routes.first as? MKRoute? {
-                        self.currentRoute = route
-                        self.currentRouteStepIndex = -1
-                    } else { error = "No route to current stop" }
-                } else { error = "couldn't get directions to stop\n\(calcError.localizedFailureReason != nil ? calcError.localizedFailureReason! : calcError.localizedDescription)" }
-                
-            } else { error = "no current step" }
-            if error != nil {
-                UIAlertView(title: "Navigation Error", message: error! as String, delegate: nil, cancelButtonTitle: "Okay").show()
-                self.onDirectionUpdate!(error: nil, nextDirection : "Navigation")
-                self.stopUpdatingDirections()
-            }
-        }
+        self.calculateLocationToCurrentStopRoute()
     }
     
     func analyzeRoute() {
