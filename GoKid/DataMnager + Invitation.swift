@@ -101,8 +101,12 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getFirstInvitation success")
             var json = JSON(obj)
-            let invitation = InvitationModel(json: json["invites"][0])
-            comp(true, "", invitation)
+            if json["invites"].count > 0 {
+                let invitation = InvitationModel(json: json["invites"][0])
+                comp(true, "", invitation)
+            } else {
+                comp(false, "We're unable to find an invitation", nil)
+            }
         }) { (op, error) in
             println("getFirstInvitation failed")
             self.handleUserResuestError(op, error: error, comp: comp)

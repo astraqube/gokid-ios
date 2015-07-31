@@ -37,6 +37,7 @@ class PhoneVerifyVC: BaseFormVC {
         section.footerTitle = msg.replace("###", self.phoneNumberString)
 
         form.addFormSection(section)
+        form.assignFirstResponderOnShow = true
 
         self.form = form
         self.form.delegate = self
@@ -70,11 +71,16 @@ class PhoneVerifyVC: BaseFormVC {
             if success {
                 LoadingView.showSuccessWithStatus("Success")
 
-                // FIXME: This is bad. Temporary. See datamanager.getFirstInvitation()
                 self.dataManager.getFirstInvitation() { (success, errorStr, invitation) -> () in
-                    var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
-                    vc.invitation = invitation as! InvitationModel
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    if success {
+                        LoadingView.dismiss()
+                        var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
+                        vc.invitation = invitation as! InvitationModel
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        LoadingView.dismiss()
+                        self.showAlert("There's a problem", messege: errorStr, cancleTitle: "OK")
+                    }
                 }
 
             } else {

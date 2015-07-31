@@ -38,6 +38,7 @@ class InviteInfoVC: BaseFormVC {
         section.footerTitle = "Enter the phone number in which you received the invitation"
 
         form.addFormSection(section)
+        form.assignFirstResponderOnShow = true
 
         self.form = form
         self.form.delegate = self
