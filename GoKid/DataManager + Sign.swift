@@ -80,6 +80,13 @@ extension DataManager {
             println(FBSDKAccessToken.currentAccessToken().tokenString)
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.useFBLogIn = true
+            self.fbUploadProfileImage() { (result, error) -> () in
+                onMainThread() {
+                    self.postNotification("SignupFinished")
+                }
+                comp(result, error)
+            }
+
             onMainThread() {
                 self.postNotification("SignupFinished")
                 comp(true, "")
@@ -89,7 +96,7 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
-    
+/* DEPRECATED
     func fbSignup(fbtoken: String, comp: completion) {
         var url = baseURL + "/api/users"
         var map = ["fb_token": fbtoken]
@@ -107,7 +114,22 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
-    
+*/  
+    func fbUploadProfileImage(comp: completion) {
+        let fbUserID = FBSDKAccessToken.currentAccessToken().userID
+        let url = "http://graph.facebook.com/\(fbUserID)/picture?type=large"
+
+        imageManager.getImageAtURL(url) { (image, error) -> () in
+            if image != nil {
+                println("fbUploadProfileImage \(url)")
+                self.upLoadImage(image!, comp: comp)
+            } else {
+                println("fbUploadProfileImage failed")
+                comp(true, "") // do not disturb the process
+            }
+        }
+    }
+
     func upLoadImage(image: UIImage, comp: completion) {
         
         var urlStr = baseURL + "/api/me/upload"
