@@ -11,7 +11,7 @@ import CoreLocation
 class ETACalculator {
     static let pickupStopLength = 60.0*5.0 //5 minute pickup
     static let metersPerSecond = 11.176 //25 mph
-    ///returns tuples of minutes from first stop
+    ///returns tuples of minutes from first stop -- stops are not sorted here
     class func estimateArrivalTimeForStops(stops: [Stop]) -> [(Double, Stop)]{
         var travelTimes = [(Double, Stop)]()
         for (index, stop) in enumerate(stops) {
@@ -90,7 +90,6 @@ class ETACalculator {
                 path.append(prev!.edgeDestination)
                 prev = prev!.previous
             }
-            path.append(beginningAt)
             return path.reverse()
         }
 
