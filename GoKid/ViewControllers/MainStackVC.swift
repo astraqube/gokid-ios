@@ -14,10 +14,21 @@ class MainStackVC: IIViewDeckController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "popUpSignInView", name: "requestForUserToken", object: nil)
+
+        self.registerForNotification("requestForUserToken", action: "popUpSignInView")
+        self.registerForNotification("gotInvited", action: "presentInvitationView")
 
         self.determineStateForViews()
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // pickup a dropoff
+        let prefs = NSUserDefaults.standardUserDefaults()
+        if prefs.valueForKey("gotInvited") != nil {
+            self.presentInvitationView()
+        }
     }
 
     func determineStateForViews() {
@@ -83,6 +94,15 @@ class MainStackVC: IIViewDeckController {
         } else {
             self.presentViewController(signUpVC, animated: true, completion: nil)
         }
+    }
+
+    func presentInvitationView() {
+        // clear the dropoff
+        let prefs = NSUserDefaults.standardUserDefaults()
+        prefs.setValue(nil, forKey: "gotInvited")
+
+        var inviteVC = vcWithID("InviteInfoVC")
+        (self.centerController as! UINavigationController).pushViewController(inviteVC, animated: true)
     }
 
     func refreshCurrentVC(animated: Bool) {

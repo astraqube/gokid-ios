@@ -79,6 +79,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // --------------------------------------------------------------------------------------------
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+
+        if url.scheme == "gokid" {
+            if url.host == "invited" {
+                // dropoff for when `gotInvited` observer does not exist
+                let prefs = NSUserDefaults.standardUserDefaults()
+                prefs.setValue(true, forKey: "gotInvited")
+
+                // post when `gotInvited` observer exists
+                self.postNotification("gotInvited")
+            }
+        }
+
         // for facebook login
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }

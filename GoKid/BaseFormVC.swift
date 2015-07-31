@@ -57,8 +57,10 @@ class BaseFormVC: XLFormViewController {
         self.view.backgroundColor = colorManager.colorEBF7EB
         self.tableView.backgroundColor = colorManager.colorEBF7EB
         self.tableView.tintColor = colorManager.color67C18B
+
+        self.setStatusBarColorDark()
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.becomeFirstResponder()
