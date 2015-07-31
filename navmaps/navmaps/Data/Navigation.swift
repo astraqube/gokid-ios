@@ -193,6 +193,7 @@ class Navigation : NSObject, CLLocationManagerDelegate {
             return callback(updatedArray: self.stopStepResponses!, error: nil)
         }
         let allStops = pickups + dropoffs
+        if allStops.count == 0 { return }
         stopStepResponses = [MKDirectionsResponse?](count: Int(allStops.count-1), repeatedValue: nil)
         for (index, stop) in enumerate(allStops){
             if (index + 1 < allStops.count){

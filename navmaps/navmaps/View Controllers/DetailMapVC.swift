@@ -143,8 +143,12 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
                 self.pickupIcon.hidden = true
                 self.dropoffIcon.hidden = false
             }
-            self.navigateButton.hidden = !metadata.canNavigate
+            self.navigateButton.hidden = !metadata.canNavigate || stops.count == 0
             self.tripThumbnailImageView.image = metadata.thumbnailImage
+        }
+
+        if stops.count == 0 {
+            UIAlertView(title: "Carpool has no riders!", message: "Tap edit and invite some riders before carpooling", delegate: nil, cancelButtonTitle: "Okay").show()
         }
     }
     
