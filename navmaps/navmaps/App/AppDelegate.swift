@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var navigation = Navigation()
         var pickups : [Stop] = [
             Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1833), name: "Menlo's House", address: "123 Fake St 91210", phoneNumber: "18002831337", stopID: "1", thumbnailImage: UIImage(named: "test_userImage")),
+            Stop(coordinate: CLLocationCoordinate2DMake(37.4528, -122.1133), name: "Righty's House", address: "333 Fake St 91210", phoneNumber: "18002831337", stopID: "4", thumbnailImage: UIImage(named: "test_userImage")),
             Stop(coordinate: CLLocationCoordinate2DMake(37.4598, -122.1893), name: "Kid's House", address: "4821 Fake Ln 91210", phoneNumber: "18002831437", stopID: "2", thumbnailImage: nil),
             Stop(coordinate: CLLocationCoordinate2DMake(37.4608, -122.2093), name: "Another Kid's House", address: "8912 Big Fake Ave 91211", phoneNumber: "18002831537", stopID: "3", thumbnailImage: nil)
         ]

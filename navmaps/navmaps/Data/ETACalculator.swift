@@ -113,8 +113,8 @@ class EdgePath {
         edgeOrigin = origin
         edgeDestination = destination
         previous = previousEdge
-        self.lastStop = previous!.lastStop
-        self.remainingStops = previous!.remainingStops.subtract([edgeOrigin, edgeDestination] as Set)
+        self.lastStop = lastStop
+        self.remainingStops = remainingStops
         
         //calc weight
         let origin = CLLocation(coordinate: origin.coordinate)
