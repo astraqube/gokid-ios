@@ -15,12 +15,12 @@ extension VolunteerVC {
         var row = self.tableView.indexPathForCell(cell)!.row
         var model = self.dataSource[row]
         if model.taken {
-            showTakenActionSheet(cell, model: model)
+            self.unRegisterVolunteerForCell(cell, model: model)
         } else{
-            showUntakenActionSheet(cell, model: model)
+            self.registerVolunteerForCell(cell, model: model)
         }
     }
-    
+/* DEPRECATED
     func showTakenActionSheet(cell: VolunteerCell, model: OccurenceModel) {
         let button1 = UIAlertAction(title: "Unvolunteer", style: .Default) { (alert) in
             self.unRegisterVolunteerForCell(cell, model: model)
@@ -56,7 +56,7 @@ extension VolunteerVC {
         alert.addAction(button6)
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
+*/
     func unRegisterVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
         LoadingView.showWithMaskType(.Black)
         self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
@@ -66,7 +66,7 @@ extension VolunteerVC {
                     cell.driverImageView.image = UIImage(named: "checkCirc")
                     model.taken = !model.taken
                 } else {
-                    self.showAlert("Fail to unvolunteer", messege: errStr, cancleTitle: "OK")
+                    self.showAlert("Error", messege: errStr, cancleTitle: "OK")
                 }
             }
         }
@@ -82,8 +82,9 @@ extension VolunteerVC {
                     model.taken = !model.taken
                     model.poolDriverImageUrl = self.userManager.info.thumURL
                 } else {
-                    self.showAlert("Fail to volunteer", messege: errStr, cancleTitle: "OK")
-                }}
+                    self.showAlert("Error", messege: errStr, cancleTitle: "OK")
+                }
+            }
         }
     }
 }
