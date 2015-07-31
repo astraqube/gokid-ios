@@ -100,7 +100,7 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
             if response != nil {
                 var route : MKRoute? = response!.routes.first as? MKRoute
                 if let poly : MKPolyline = route?.polyline {
-                    if stopFor.state != .Pending {
+                    if stopFor.state == .Completed {
                         mapView.removeOverlay(poly)
                     } else if overlaysSet.containsObject(poly) == false {
                         mapView.addOverlay(poly)
