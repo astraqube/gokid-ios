@@ -66,13 +66,21 @@ class ETACalculator {
     
     ///A little bit of AI to sort stops guaranteed optimally
     class func superSortStops(stops: [Stop], beginningAt : Stop, endingAt : Stop) -> [Stop]{
-        var exploreQueue = [EdgePath]()
         //initialize
-        for stop in Set(stops).subtract([beginningAt, endingAt]){
-            exploreQueue.append(EdgePath(origin: beginningAt, destination: stop, previousEdge: nil, lastStop: endingAt, remainingStops: Set(stops).subtract([beginningAt, stop])))
-        }
+        var exploreQueue = [EdgePath(origin: beginningAt, destination: beginningAt, previousEdge: nil, lastStop: endingAt, remainingStops: Set(stops).subtract([beginningAt]))] //sets weight = 0, etc
         //run
         var bestPath : EdgePath?
+        while exploreQueue.count > 0 && bestPath == nil {
+            let next = exploreQueue.removeLast()
+            if next.edgeDestination == endingAt {
+                bestPath = next
+                continue
+            }
+            exploreQueue.extend(next.nextPathStates())
+            exploreQueue.sort { (left, right) -> Bool in
+                return left.weight > right.weight //is ordered before
+            }
+        }
         
         //dump data
         if let bestPath = bestPath {
@@ -111,7 +119,7 @@ class EdgePath {
         //calc weight
         let origin = CLLocation(coordinate: origin.coordinate)
         let destination = CLLocation(coordinate: destination.coordinate)
-        weight = destination.distanceFromLocation(origin)
+        weight = destination.distanceFromLocation(origin) + (previous != nil ? previous!.weight : 0.0)
     }
     
     func nextPathStates() -> [EdgePath] {
