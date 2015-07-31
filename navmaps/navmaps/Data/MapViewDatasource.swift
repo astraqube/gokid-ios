@@ -152,6 +152,9 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
             mapView.showAnnotations(annotations, animated: true)
         case .User:
             mapView.setUserTrackingMode(MKUserTrackingMode.FollowWithHeading, animated: false)
+            let modCamera = mapView.camera
+            modCamera.pitch = 45
+            mapView.setCamera(modCamera, animated: true)
         case .UserStop:
             annotations = [ navigation.currentStop != nil ? navigation.currentStop! : navigation.dropoffs.last!, mapView.userLocation]
             mapView.showAnnotations(annotations, animated: true)
