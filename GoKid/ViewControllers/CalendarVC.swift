@@ -15,6 +15,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     var onlyShowOurDrives = false //set true before viewDidLoad to only see our drives
     @IBOutlet weak var myDrivesLabel: UILabel!
     @IBOutlet weak var goKidLogo: UIImageView!
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,9 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             goKidLogo.hidden = true
             myDrivesLabel.hidden = false
         }
+        
+        refreshControl.addTarget(self, action: "asyncFetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -43,6 +47,17 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         } else {
             addCreateCarpoolCellToDataSource()
             tableView.reloadData()
+        }
+    }
+
+    func asyncFetchDataAndReloadTableView() {
+        dataManager.getAllUserOccurrences { (success, errorStr) -> () in
+            self.refreshControl.endRefreshing()
+            if success {
+                self.generateTableDataAndReload()
+            } else {
+                self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
+            }
         }
     }
     
@@ -101,7 +116,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             if onlyShowOurDrives && event.volunteer?.id != userManager.info.userID{
                 continue
             }
-            if event.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -24 * 60 * 60)) {
+            if event.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -8 * 60 * 60)) {
                 continue
             }
             if event.occursAtStr != lastDateStr {

@@ -18,7 +18,8 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var carpoolsDataSource = [CarpoolModel]()
     var invitesDataSource = [AnyObject]()
-    
+    let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -27,6 +28,9 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         fetchDataAndReloadTableView()
+        
+        refreshControl.addTarget(self, action: "asyncFetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -94,6 +98,17 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     @IBAction func createButtonClicked(sender: UIButton) {
         var vc = vcWithID("BasicInfoVC")
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func asyncFetchDataAndReloadTableView() {
+        dataManager.getAllUserOccurrences { (success, errorStr) -> () in
+            self.refreshControl.endRefreshing()
+            if success {
+                self.generateTableDataAndReload()
+            } else {
+                self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
+            }
+        }
     }
     
     func fetchDataAndReloadTableView() {
