@@ -16,6 +16,7 @@
 
 ## Changelog
 AHL July 30:
+Created the new Image Fetch system for ImageManager that returns… UIImages! (based on NSOperations and NSOperationQueue)
 Now gracefully fail empty carpools on maps
 Pull to refresh on calendar, my drives and carpool list
 actionsheet only showed for unvolunteer now

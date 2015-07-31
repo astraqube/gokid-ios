@@ -312,15 +312,31 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         if tableView.cellForRowAtIndexPath(indexPath) as? CalendarCell != nil {
             LoadingView.showWithMaskType(.Black)
             dataManager.updateOccurenceRiders(dataSource[indexPath.row]) { (success, errorStr) -> () in
-                LoadingView.dismiss()
                 if success {
                     var model = self.dataSource[indexPath.row]
-                    self.showOccurenceVCWithModel(model)
+                    self.getImagesForOccurrence(model) { () -> () in
+                        LoadingView.dismiss()
+                        self.showOccurenceVCWithModel(model)
+                    }
                 } else {
                     self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
                 }
             }
         }
+    }
+    
+    var currentOccurrenceImagesByURL : [String : UIImage]?
+    func getImagesForOccurrence(occurrence : OccurenceModel, then : (()->())){
+        currentOccurrenceImagesByURL = nil
+        let imageURLs = [occurrence.poolDriverImageUrl] + occurrence.riders.reduce([String]()) { (U, T) -> [String] in
+            let url = T.thumURL as NSString
+            if url.length > 0 && url.containsString("default") == false { return U + [T.thumURL] }
+            return U
+        }
+        imageManager.getImagesAtURLs(imageURLs, callback: { (imagesByURL) -> () in
+           self.currentOccurrenceImagesByURL = imagesByURL
+            then()
+        })
     }
     
     func showOccurenceVCWithModel(model: OccurenceModel) {
@@ -363,7 +379,11 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         var navigation = Navigation()
         var pickups = [Stop]()
         for rider in model.riders {
-            pickups.append(rider.stopValue)
+            let stop = rider.stopValue
+            if (rider.thumURL as NSString).containsString("default") == false {
+                stop.thumbnailImage = currentOccurrenceImagesByURL?[rider.thumURL]
+            }
+            pickups.append(stop)
         }
         var dropoffs = [
             model.stopValue
@@ -400,7 +420,8 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func mapMetadataForModel(model : OccurenceModel) -> MapMetadata {
         var canNavigate =  model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID
-        return MapMetadata(name: model.poolname, thumbnailImage: UIImage(named: "emma"), date: model.occursAt!, canNavigate: canNavigate, id: model.occurenceID, type: (model.poolType == "dropoff") ? .Dropoff : .Pickup )
+        var driverImage = currentOccurrenceImagesByURL?[model.poolDriverImageUrl]
+        return MapMetadata(name: model.poolname, thumbnailImage: driverImage, date: model.occursAt!, canNavigate: canNavigate, id: model.occurenceID, type: (model.poolType == "dropoff") ? .Dropoff : .Pickup )
     }
     
 }

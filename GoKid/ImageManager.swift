@@ -177,6 +177,98 @@ class ImageManager: NSObject {
         }
     }
     
+    
+    class ImageFetchOperation : NSOperation {
+        var url : String
+        var image : UIImage?
+        
+        init(imageUrl: String){
+            url = imageUrl
+        }
+        
+        var _executing = false
+        var _finished = false
+        
+        @objc override var executing : Bool {
+            get { return _executing }
+            set {
+                self.willChangeValueForKey("isExecuting")
+                self._executing = false
+                self.didChangeValueForKey("isExecuting")
+            }
+        }
+        @objc override var finished : Bool {
+            get { return _finished }
+            set {
+                self.willChangeValueForKey("isFinished")
+                self._finished = true
+                self.didChangeValueForKey("isFinished")
+            }
+        }
+        override var asynchronous : Bool { return true }
+        
+        override func start() {
+            self.executing = true
+            ImageManager.sharedInstance.getImageAtURL(url, callback: { (image, error) -> () in
+                self.image = image
+                if let error = error { println("failed ImageFetchOperation of url \(self.url) with error \(error)") }
+                self.finished = true
+                self.executing = false
+            })
+        }
+    }
+    
+    func getImagesAtURLs(urls: [String], callback: ((imagesByURL: [String : UIImage]) -> ())) {
+        var dict = [String : UIImage]()
+        if urls.count == 0 { callback(imagesByURL: dict); return }
+        
+        var operations = [ImageFetchOperation]()
+        
+        var onCompletionOp = NSBlockOperation { () -> Void in
+            for operation in operations{
+                if let image = operation.image {
+                    dict[operation.url] = image
+                }
+            }
+            callback(imagesByURL: dict)
+        }
+        for url in urls {
+            let imageOp = ImageFetchOperation(imageUrl: url)
+            onCompletionOp.addDependency(imageOp)
+            operations.append(imageOp)
+        }
+        NSOperationQueue.mainQueue().addOperations(operations, waitUntilFinished: false)
+        NSOperationQueue.mainQueue().addOperation(onCompletionOp)
+    }
+    
+    ///recrursive function taking a url and returning a uiimage
+    func getImageAtURL(urlStr: String, callback : ((image: UIImage?, error: String?)->())){
+        if let image = memCached[urlStr] {
+            callback(image: image, error: nil)
+        } else if findDiskCachedImageByURL(urlStr, { (img: UIImage?) in
+            if let image = img {
+                self.memCached[urlStr] = image
+            }else {
+                self.removeDiskCacheForURL(urlStr) //bad cache, but can still recurse
+            }
+            self.getImageAtURL(urlStr, callback: callback)
+        }){
+            return
+        } else if let url = NSURL(string: urlStr){
+            var session = NSURLSession.sharedSession()
+            session.dataTaskWithURL(url) { (data, response, error) in
+                if let image = UIImage(data: data) {
+                    self.memCached[urlStr] = image
+                    self.diskCacheImageWithURLStr(image, urlStr)
+                    self.getImageAtURL(urlStr, callback: callback)
+                } else {
+                    callback(image: nil, error: "couldn't download image")
+                }}.resume()
+        } else {
+            callback(image: nil, error: "malformed image url")
+        }
+    }
+    
     // set the image to all the imageView that
     // is waiting for this image
     func setAllWatingImageView(urlStr: String, _ image: UIImage) {
