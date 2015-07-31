@@ -190,13 +190,15 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             gCell.timeToGoTitleLabel.text = "Can't keep kids waiting!"
             
             var stops = model.riders.map { return $0.stopValue } + [model.stopValue]
-            ETACalculator.sortStops(&stops, beginningAt: stops.first)
-            var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: model.occursAt!)
-            if let (departDate, stop) = etaDates.first {
-                if departDate.isLessThanDate(NSDate(timeIntervalSinceNow: 100)) {
-                    gCell.timeToGoTimeLabel.text = "It's time to go!"
-                } else {
-                    gCell.timeToGoTimeLabel.text = "We gotta go at \(departDate.timeString())!"
+            if stops.count > 0 {
+                stops = ETACalculator.superSortStops(stops, beginningAt: stops.first!, endingAt: stops.last!)
+                var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: model.occursAt!)
+                if let (departDate, stop) = etaDates.first {
+                    if departDate.isLessThanDate(NSDate(timeIntervalSinceNow: 300)) {
+                        gCell.timeToGoTimeLabel.text = "It's time to go!"
+                    } else {
+                        gCell.timeToGoTimeLabel.text = "We gotta go at \(departDate.timeString())!"
+                    }
                 }
             }
             cell = gCell
