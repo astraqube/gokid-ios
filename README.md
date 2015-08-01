@@ -16,6 +16,7 @@
 
 ## Changelog
 AHL Aug 1:
+Added check-circ to calView and mapview
 Made message button feel more responsive
 Interactive tray background and UX effects
 AHL July 31:
