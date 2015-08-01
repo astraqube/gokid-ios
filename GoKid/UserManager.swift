@@ -42,8 +42,17 @@ class UserManager: NSObject {
     var currentChossenStartTime: String?
     var currentChoosenEndTime: String?
     var currentCarpoolModel = CarpoolModel()
-    
-    var userHomeAdress = ""
+
+    var address: String!
+    var address2: String!
+    var userHomeAdress: String {
+        if self.address != "" && self.address2 != "" {
+            return "\(self.address), \(self.address2)"
+        } else {
+            return ""
+        }
+    }
+
     var recentAddressTitles = [String]()
     var recentAddress = [String]()
     
@@ -96,12 +105,9 @@ class UserManager: NSObject {
         info.userID = user["id"].intValue
         info.cellType = .EditUser
 
-        let homeAddress1 = json["teams"][0]["address"].stringValue
-        let homeAddress2 = json["teams"][0]["address2"].stringValue
-        if homeAddress1 != "" && homeAddress2 != "" {
-            userHomeAdress = "\(homeAddress1), \(homeAddress2)"
-        }
-        
+        address  = json["teams"][0]["address"].stringValue
+        address2 = json["teams"][0]["address2"].stringValue
+
         if let arr = user["recentAddress"].arrayObject as? [String] {
             recentAddress = arr
         }
@@ -142,7 +148,11 @@ class UserManager: NSObject {
             "thumb_url": info.thumURL
         ]
         var teams = [
-            ["id": info.teamID]
+            [
+                "id": info.teamID,
+                "address": address,
+                "address2": address2
+            ]
         ]
         var userInfo = [
             "first_name": info.firstName,

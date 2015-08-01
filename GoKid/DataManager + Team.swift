@@ -26,19 +26,20 @@ extension DataManager {
         }
     }
     
-    func updateTeamAddress(address1: String, address2: String, comp: completion) {
+    func updateTeamAddress(address: String, address2: String, comp: completion) {
         var teamID = String(userManager.info.teamID)
         var url = baseURL + "/api/teams/\(teamID)"
         var map = [
             "team": [
-                "address": address1,
+                "address": address,
                 "address2": address2
             ]
         ]
         var manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
             println("updateTeamAddress success")
-            self.userManager.userHomeAdress = "\(address1), \(address2)"
+            self.userManager.address = address
+            self.userManager.address2 = address2
             comp(true, "")
         }) { (op, error) in
             println("updateTeamAddress failed")
