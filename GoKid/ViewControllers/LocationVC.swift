@@ -202,7 +202,5 @@ class LocationVC: BaseVC {
             self.showAlert("Cannot geocode address", messege: address, cancleTitle: "OK")
         }
     }
+
 }
-
-
-

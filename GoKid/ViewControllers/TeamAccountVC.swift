@@ -65,7 +65,9 @@ class TeamAccountVC: BaseVC {
         dataManager.updateTeamAddress(address1, address2: address2) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
-                onMainThread() { self.subtitle = address1 }
+                onMainThread() {
+                    self.refreshHomeAddress()
+                }
             } else {
                 self.showAlert("Fail to update home address", messege: errorStr, cancleTitle: "OK")
             }

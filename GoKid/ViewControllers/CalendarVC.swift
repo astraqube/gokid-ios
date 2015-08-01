@@ -187,7 +187,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         var cell : CalendarCell!
         if model == nextDrivingOccurrence() {
             var gCell = tableView.cellWithID("CalendarTimeToGoCell", ip) as! CalendarTimeToGoCell
-            gCell.timeToGoTitleLabel.text = "Can't keep kids waiting!"
+            gCell.timeToGoTitleLabel.text = "It's time to go!"
             
             var stops = model.riders.map { return $0.stopValue(model.occurrenceType) } + [model.stopValue(model.occurrenceType)]
             if stops.count > 0 {
