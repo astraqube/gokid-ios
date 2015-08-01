@@ -124,10 +124,12 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func generateTableDataAndReload() {
-        carpoolsDataSource = userManager.carpools
+        carpoolsDataSource = userManager.carpools.sorted { (left : CarpoolModel, right : CarpoolModel) -> Bool in
+            if left.startDate == nil || right.startDate == nil { return false}
+            return left.startDate!.isLessThanDate(right.startDate!)
+        }
         onMainThread() {
             self.tableView.reloadData()
         }
     }
-
 }
