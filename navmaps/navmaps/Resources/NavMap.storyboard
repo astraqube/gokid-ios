@@ -288,6 +288,7 @@
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="64" id="XQV-9t-9G7"/>
                                                             <constraint firstAttribute="height" constant="64" id="e4O-r1-HzL"/>
@@ -305,6 +306,9 @@
                                                                 <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="b3S-rQ-nuT" appends="YES" id="sHJ-vv-Bml"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Va7-kL-xkr" userLabel="textview">
                                                         <rect key="frame" x="89" y="21" width="161" height="41"/>
@@ -1323,6 +1327,11 @@ Greenwich, CT.</string>
                 <tapGestureRecognizer id="84l-Ur-tjA" userLabel="dismiss black cover taprec">
                     <connections>
                         <action selector="onTrayBackgroundTapped:" destination="NC8-s1-hOT" id="sp4-E1-Pra"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="b3S-rQ-nuT" userLabel="driver imageview tap">
+                    <connections>
+                        <action selector="onDriverImageViewTapped:" destination="NC8-s1-hOT" id="ngZ-m9-kbq"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

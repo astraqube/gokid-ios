@@ -46,6 +46,8 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     var onEditButtonPressed : ((vc: DetailMapVC)-> Void)?
     ///Use this to get a callback when users presses Edit
     var onOptOutButtonPressed : ((vc: DetailMapVC)-> Void)?
+    ///Use this to manage opt in/out being driver. You'll need to redisplay the VC for changes to take effect.
+    var onDriverImagePressed : ((vc: DetailMapVC)-> Void)?
     
     @IBOutlet var riderImageViews : [CalendarUserImageView]!
     @IBOutlet var riderLabelViews : [UILabel]!
@@ -215,6 +217,10 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
 
     @IBAction func optOutButtonTapped(sender: AnyObject) {
         onOptOutButtonPressed?(vc: self)
+    }
+    
+    @IBAction func onDriverImageViewTapped(sender: AnyObject) {
+        onDriverImagePressed?(vc: self)
     }
     
     @IBAction func sendMessageTapped(sender: UIButton) {

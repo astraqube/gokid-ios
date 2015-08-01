@@ -61,7 +61,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func fetchDataAndReloadTableView() {
+    func fetchDataAndReloadTableView(then : ((success: Bool)->())?){
         LoadingView.showWithMaskType(.Black)
         dataManager.getAllUserOccurrences { (success, errorStr) -> () in
             LoadingView.dismiss()
@@ -70,7 +70,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             } else {
                 self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
             }
+            then?(success: success)
         }
+    }
+    
+    func fetchDataAndReloadTableView() {
+        fetchDataAndReloadTableView(nil)
     }
     
     func generateTableDataAndReload() {
@@ -227,51 +232,56 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         }
         cell.profileImageView.image = nil
         imageManager.setImageToView(cell.profileImageView, urlStr: model.poolDriverImageUrl)
+        
         weak var wModel = model
         cell.onProfileImageViewTapped = { () -> (Void) in
             if wModel == nil { return }
-            var volunteerID = wModel?.volunteer?.id
-            var volunteerable = false;
-            if volunteerID == nil || volunteerID == 0 || volunteerID == self.userManager.info.userID {
-                volunteerable = true
-            }
-            
-            let alreadyVolunteered = volunteerID == self.userManager.info.userID
-            
-            if alreadyVolunteered {
-                var volunteerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-                var volunteerTitle = "Unvolunteer \(wModel!.poolType)"
-                volunteerActionSheet.addAction(UIAlertAction(title: volunteerTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
-                    LoadingView.showWithMaskType(.Black)
-                    self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
-                        LoadingView.dismiss()
-                        onMainThread() {
-                            if success {
-                                cell.profileImageView.image = nil
-                                self.fetchDataAndReloadTableView()
-                            } else {
-                                self.showAlert("Failed to unvolunteer", messege: errStr, cancleTitle: "OK")
-                            }}
+            self.presentVolunteerForOccurrence(wModel!, then: { (error) -> () in
+                self.fetchDataAndReloadTableView()
+                if wModel!.alreadyVolunteered {
+                    if error == nil {
+                        cell.profileImageView.image = nil
+                    } else {
+                        self.showAlert("Failed to unvolunteer", messege: error!, cancleTitle: "OK")
                     }
-                }))
-                volunteerActionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                self.presentViewController(volunteerActionSheet, animated: true, completion: nil)
-            } else {
-                LoadingView.showWithMaskType(.Black)
-                self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
-                    LoadingView.dismiss()
-                    onMainThread() {
-                        if success {
-                            self.imageManager.setImageToView(cell.profileImageView, urlStr: self.userManager.info.thumURL)
-                            self.fetchDataAndReloadTableView()
-                        } else {
-                            self.showAlert("Failed to volunteer", messege: errStr, cancleTitle: "OK")
-                        }}
+                }else {
+                    if error == nil {
+                        self.imageManager.setImageToView(cell.profileImageView, urlStr: self.userManager.info.thumURL)
+                    } else {
+                        self.showAlert("Failed to volunteer", messege: error!, cancleTitle: "OK")
+                    }
                 }
-            }
+            })
         }
         return cell
     }
+    
+    func presentVolunteerForOccurrence(model : OccurenceModel, then: ((error: String?)->())) {
+        if model.alreadyVolunteered {
+            var volunteerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            var volunteerTitle = "Unvolunteer \(model.poolType)"
+            volunteerActionSheet.addAction(UIAlertAction(title: volunteerTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
+                LoadingView.showWithMaskType(.Black)
+                self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
+                    LoadingView.dismiss()
+                    onMainThread() {
+                        then(error: success ? nil : errStr)
+                    }
+                }
+            }))
+            volunteerActionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            self.navigationController?.topViewController.presentViewController(volunteerActionSheet, animated: true, completion: nil)
+        } else {
+            LoadingView.showWithMaskType(.Black)
+            self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
+                LoadingView.dismiss()
+                onMainThread() {
+                        then(error: success ? nil : errStr)
+                }
+            }
+        }
+    }
+    
     
     func configCalendarDateCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarDateCell {
         var cell = tableView.cellWithID("CalendarDateCell", ip) as! CalendarDateCell
@@ -313,15 +323,11 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         }
         if tableView.cellForRowAtIndexPath(indexPath) as? CalendarCell != nil {
             LoadingView.showWithMaskType(.Black)
-            dataManager.updateOccurenceRiders(dataSource[indexPath.row]) { (success, errorStr) -> () in
+            let model = dataSource[indexPath.row]
+            updateOccurrenceAndGetImages(model) { (success) -> () in
+                LoadingView.dismiss()
                 if success {
-                    var model = self.dataSource[indexPath.row]
-                    self.getImagesForOccurrence(model) { () -> () in
-                        LoadingView.dismiss()
-                        self.showOccurenceVCWithModel(model)
-                    }
-                } else {
-                    self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
+                    self.showOccurenceVCWithModel(model)
                 }
             }
         }
@@ -336,9 +342,22 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             return U
         }
         imageManager.getImagesAtURLs(imageURLs, callback: { (imagesByURL) -> () in
-           self.currentOccurrenceImagesByURL = imagesByURL
+            self.currentOccurrenceImagesByURL = imagesByURL
             then()
         })
+    }
+    
+    func updateOccurrenceAndGetImages(occurrence: OccurenceModel, then: ((success: Bool)->())){
+        dataManager.updateOccurenceRiders(occurrence) { (occ, errorStr) -> () in
+            if occ {
+                self.getImagesForOccurrence(occurrence) { () -> () in
+                    then(success: true)
+                }
+            } else {
+                self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
+                then(success: false)
+            }
+        }
     }
     
     func showOccurenceVCWithModel(model: OccurenceModel) {
@@ -350,6 +369,28 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
             inviteVC.hideForwardNavigationButtons = true
             vc.navigationController?.pushViewController(inviteVC, animated: true)
+        }
+        vc.onDriverImagePressed = { (vc: DetailMapVC) in
+            self.presentVolunteerForOccurrence(model, then: { (error) -> () in
+                self.navigationController?.popToViewController(self, animated: true)
+                self.fetchDataAndReloadTableView({ (success) -> () in
+                    //match old model to new fetch
+                    var newModel : OccurenceModel?
+                    for obj in self.dataSource {
+                        if obj.occurenceID == model.occurenceID {
+                            newModel = obj
+                            break
+                        }
+                    }
+                    if newModel == nil { return }
+                    self.updateOccurrenceAndGetImages(newModel!) { (success) -> () in
+                        LoadingView.dismiss()
+                        if success {
+                            self.showOccurenceVCWithModel(newModel!)
+                        }
+                    }
+                })
+            })
         }
         vc.onOptOutButtonPressed = { (vc: DetailMapVC) in
             var optOutRider = model.riders.first
@@ -444,6 +485,19 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 extension OccurenceModel {
     var occurrenceType : OccurenceType {
         return (self.poolType == "dropoff") ? .Dropoff : .Pickup
+    }
+    var volunteerable : Bool {
+        var volunteerID = self.volunteer?.id
+        var volunteerable = false;
+        if volunteerID == nil || volunteerID == 0 || volunteerID == UserManager.sharedInstance.info.userID {
+            volunteerable = true
+        }
+        return volunteerable
+    }
+    var alreadyVolunteered : Bool {
+        var volunteerID = self.volunteer?.id
+        let already = volunteerID == UserManager.sharedInstance.info.userID
+        return already
     }
 }
 

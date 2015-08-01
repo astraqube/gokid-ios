@@ -16,6 +16,7 @@
 
 ## Changelog
 AHL Aug 1:
+You can now volunteer for carpools from the map itself
 Added check-circ to calView and mapview
 Made message button feel more responsive
 Interactive tray background and UX effects
