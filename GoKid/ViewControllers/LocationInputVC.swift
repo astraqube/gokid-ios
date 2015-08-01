@@ -52,9 +52,13 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     // --------------------------------------------------------------------------------------------
 
     func chooseAddressDone(addressTitle: String, address: String) {
-        self.userManager.addToRecentAddresses(addressTitle, address: address)
-        self.donePickingWithAddress?("\(addressTitle), \(address)")
-        navigationController?.popViewControllerAnimated(true)
+        self.askToSaveAsHomeAddress(addressTitle, address2: address) {
+            if addressTitle != "Home" {
+                self.userManager.addToRecentAddresses(addressTitle, address: address)
+            }
+            self.donePickingWithAddress?("\(addressTitle), \(address)")
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
 
     @IBAction func currentLocationButtonClick(sender: AnyObject) {
@@ -143,28 +147,25 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     // MARK: Alert View
     // --------------------------------------------------------------------------------------------
     
-    func showHomeAdreeAlertView() {
-        var alertView = UIAlertView(title: "Is this your home address?", message: locationInputTextField.text, delegate: self, cancelButtonTitle: "Yes", otherButtonTitles: "No")
-        alertView.show()
-    }
-    
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        if buttonIndex == 0 {
-            var address = locationInputTextField.text
-            LoadingView.showWithMaskType(.Black)
-            dataManager.updateTeamAddress(address, address2: "") { (success, errorStr) in
-                LoadingView.dismiss()
-                if success {
-                    self.userManager.userHomeAdress = address
-                } else {
-                    self.showAlert("Fail to update address", messege: errorStr, cancleTitle: "OK")
+    func askToSaveAsHomeAddress(address1: String, address2: String, completion: () -> Void) {
+        if userManager.userHomeAdress == "" {
+            let confirmPrompt = UIAlertController(title: "Is this your Home address?", message: "\(address1), \(address2)", preferredStyle: .Alert)
+
+            confirmPrompt.addAction(UIAlertAction(title: "No", style: .Cancel) { (alert: UIAlertAction!) -> Void in
+                completion()
+            })
+
+            confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default) { (alert: UIAlertAction!) in
+                self.dataManager.updateTeamAddress(address1, address2: address2) { (success, errorStr) in
+                    completion()
                 }
-                self.navigationController?.popViewControllerAnimated(true)
-                self.donePickingWithAddress?(self.locationInputTextField.text)
-            }
+            })
+
+            presentViewController(confirmPrompt, animated: true, completion: nil)
+
         } else {
-            navigationController?.popViewControllerAnimated(true)
-            self.donePickingWithAddress?(self.locationInputTextField.text)
+            completion()
         }
     }
+
 }
