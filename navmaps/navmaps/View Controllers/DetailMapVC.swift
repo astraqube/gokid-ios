@@ -217,10 +217,11 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
         onOptOutButtonPressed?(vc: self)
     }
     
-    @IBAction func sendMessageTapped(sender: AnyObject) {
+    @IBAction func sendMessageTapped(sender: UIButton) {
         if !MFMessageComposeViewController.canSendText() {
             return UIAlertView(title: "Whoops!", message: "Your device doesn't support messages!", delegate: nil, cancelButtonTitle: "OK").show()
         }
+        sender.enabled = false
         var messageVC = MFMessageComposeViewController()
         messageVC.messageComposeDelegate = self
         var stops = self.navigation.pickups + self.navigation.dropoffs
@@ -231,7 +232,9 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
             }
         }
         messageVC.recipients = recipeints
-        presentViewController(messageVC, animated: true, completion: nil)
+        presentViewController(messageVC, animated: true) {
+             sender.enabled = true
+        }
     }
     
     func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult){

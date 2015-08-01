@@ -15,6 +15,9 @@
 3. Open in XCode, build, and run
 
 ## Changelog
+AHL Aug 1:
+Made message button feel more responsive
+Interactive tray background and UX effects
 AHL July 31:
 Carpool list sorted; carpool list tap brings to edit mode
 Fixes bug with dropoff occurrences; fixes bug with routes after arrival
