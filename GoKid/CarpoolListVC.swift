@@ -70,6 +70,16 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         return UITableViewCell()
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == ListSection.Carpools.rawValue {
+            let carpool = carpoolsDataSource[indexPath.row]
+            UserManager.sharedInstance.currentCarpoolModel = carpool
+            var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
+            inviteVC.hideForwardNavigationButtons = true
+            navigationController?.pushViewController(inviteVC, animated: true)
+        }
+    }
+    
     func configCarpoolCell(ip: NSIndexPath, _ model: CarpoolModel) -> CarpoolListCell {
         var cell = tableView.cellWithID("CarpoolListCell", ip) as! CarpoolListCell
         if model.startDate != nil && model.endDate != nil {

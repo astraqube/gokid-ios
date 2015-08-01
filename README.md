@@ -16,6 +16,7 @@
 
 ## Changelog
 AHL July 31:
+Carpool list sorted; carpool list tap brings to edit mode
 Fixes bug with dropoff occurrences; fixes bug with routes after arrival
 Now uses AI to always ensure the most optimal route. 
 AHL July 30:
