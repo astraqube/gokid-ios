@@ -29,6 +29,7 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     @IBOutlet weak var trayOffsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomTrayNavView: UIView!
     @IBOutlet weak var bottomTrayView: UIView!
+    @IBOutlet weak var trayBlackCoverView: UIView!
     @IBOutlet weak var bottomTrayAngleUp: UIImageView!
     @IBOutlet weak var navigateButton: UIButton!
     
@@ -175,12 +176,16 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
         trayShown = !trayShown
     }
     
-    
     /// Step-wise replacement for action of trayShown
     ///
     /// :param: progress 0 to 1 is the happy range– feel free to send values outside for dramatic effect :)
     func updateTrayProgress(progress: CGFloat){
-        self.bottomTrayAngleUp.transform = CGAffineTransformMakeRotation(CGFloat(M_PI) * progress)
+        bottomTrayAngleUp.transform = CGAffineTransformMakeRotation(CGFloat(M_PI) * progress)
+        trayBlackCoverView.alpha = 0.8 * (progress > 1.0 ? progress * progress : progress)
+    }
+    
+    @IBAction func onTrayBackgroundTapped(sender: AnyObject) {
+        trayShown = false
     }
     
     var initialOffset : CGFloat = 0
