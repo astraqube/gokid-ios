@@ -15,8 +15,8 @@ class TimeAndDateFormVC: BaseFormVC {
         case EndDate = "End Date"
         case Frequency = "Frequency"
         case Repeat = "Repeat"
-        case StartTime = "Start Time"
-        case EndTime = "End Time"
+        case StartTime = "Event Start Time"
+        case EndTime = "Event End Time"
         case OneWay = "One-way Carpool"
     }
     
