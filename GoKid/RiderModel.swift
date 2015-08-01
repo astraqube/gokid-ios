@@ -61,6 +61,7 @@ class RiderModel: NSObject {
         riderID = json["id"].intValue
         email = json["email"].stringValue
         role = json["role"].stringValue
+        phoneNumber = json["phone_number"].stringValue
 
         pickupLocation = Location(json: json["pickup_address"])
         dropoffLocation = Location(json: json["dropoff_address"])
