@@ -60,7 +60,7 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
             trayOffsetConstraint.constant = constant
             UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: UIViewAnimationOptions.AllowAnimatedContent | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
                 self.view.layoutIfNeeded()
-                self.bottomTrayAngleUp.transform = show ? CGAffineTransformMakeRotation(CGFloat(M_PI)) : CGAffineTransformIdentity
+                self.updateTrayProgress(show ? 1 : 0)
             }, completion: nil)
         }
     }
@@ -175,6 +175,14 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
         trayShown = !trayShown
     }
     
+    
+    /// Step-wise replacement for action of trayShown
+    ///
+    /// :param: progress 0 to 1 is the happy range– feel free to send values outside for dramatic effect :)
+    func updateTrayProgress(progress: CGFloat){
+        self.bottomTrayAngleUp.transform = CGAffineTransformMakeRotation(CGFloat(M_PI) * progress)
+    }
+    
     var initialOffset : CGFloat = 0
     @IBAction func onTrayPan(sender: UIPanGestureRecognizer) {
         var translationY = sender.translationInView(view).y * -1
@@ -188,6 +196,9 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
                 newOffset = trayShowConstraintOffset + overshoot/6
             }
             trayOffsetConstraint.constant = newOffset
+            
+            let progress = newOffset / trayShowConstraintOffset
+            updateTrayProgress(progress)
         } else if sender.state == .Ended {
             trayShown = velocityY > 0
         }
