@@ -189,7 +189,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             var gCell = tableView.cellWithID("CalendarTimeToGoCell", ip) as! CalendarTimeToGoCell
             gCell.timeToGoTitleLabel.text = "Can't keep kids waiting!"
             
-            var stops = model.riders.map { return $0.stopValue } + [model.stopValue]
+            var stops = model.riders.map { return $0.stopValue(model.occurrenceType) } + [model.stopValue(model.occurrenceType)]
             if stops.count > 0 {
                 stops = ETACalculator.superSortStops(stops, beginningAt: stops.first!, endingAt: stops.last!)
                 var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: model.occursAt!)
@@ -378,23 +378,35 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func navigationForModel(model : OccurenceModel) -> Navigation {
-        var navigation = Navigation()
-        var pickups = [Stop]()
+        var eventStop = model.stopValue(model.occurrenceType)
+        var riderStops = [Stop]()
         for rider in model.riders {
-            let stop = rider.stopValue
+            let stop = rider.stopValue(model.occurrenceType)
             if (rider.thumURL as NSString).containsString("default") == false {
                 stop.thumbnailImage = currentOccurrenceImagesByURL?[rider.thumURL]
             }
-            pickups.append(stop)
+            riderStops.append(stop)
         }
-        var dropoffs = [
-            model.stopValue
-        ]
+        
+        var pickups : [Stop]!
+        var dropoffs : [Stop]!
+        
+        switch model.occurrenceType {
+        case .Pickup:
+            pickups = riderStops
+            dropoffs = [eventStop]
+        case .Dropoff:
+            pickups = [eventStop]
+            dropoffs = riderStops.reverse()
+        }
+        
+        var navigation = Navigation()
         navigation.setup(pickups, dropoffs:dropoffs);
         navigation.onStopStateChanged = { (nav : Navigation, stop: Stop) in
-            if stop.state == .Arrived {
+            let riderId = stop.stopID as? NSString
+            if riderId != nil && stop.state == .Arrived {
                 var rider = RiderModel()
-                rider.riderID = stop.stopID.integerValue
+                rider.riderID = riderId!.integerValue
                 self.dataManager.notifyRider(RiderNotificationType.Arriving , occurrence: model, rider: rider, comp: { (success, errorString) -> () in
                     if !success {
                         self.showAlert("Failed to notify rider of arrival", messege: "You may want to message them!", cancleTitle: "OK")
@@ -423,23 +435,38 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func mapMetadataForModel(model : OccurenceModel) -> MapMetadata {
         var canNavigate =  model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID
         var driverImage = currentOccurrenceImagesByURL?[model.poolDriverImageUrl]
-        return MapMetadata(name: model.poolname, thumbnailImage: driverImage, date: model.occursAt!, canNavigate: canNavigate, id: model.occurenceID, type: (model.poolType == "dropoff") ? .Dropoff : .Pickup )
+        return MapMetadata(name: model.poolname, thumbnailImage: driverImage, date: model.occursAt!, canNavigate: canNavigate, id: model.occurenceID, type: model.occurrenceType )
     }
     
 }
 
+
+extension OccurenceModel {
+    var occurrenceType : OccurenceType {
+        return (self.poolType == "dropoff") ? .Dropoff : .Pickup
+    }
+}
+
 protocol Stopify {
-    var stopValue : Stop { get }
+    func stopValue(type: OccurenceType) -> Stop
 }
 
 extension RiderModel : Stopify {
-    var stopValue : Stop { get {
-        return Stop(coordinate: CLLocationCoordinate2D(latitude: self.pickupLocation.lati, longitude: self.pickupLocation.long) , name: "\(self.firstName) \(self.lastName)", address: self.pickupLocation.name, phoneNumber: self.phoneNumber, stopID: NSNumber(integer: self.riderID).stringValue, thumbnailImage: nil)
-        }}
+    func stopValue(type: OccurenceType) -> Stop {
+        var location : Location!
+        switch type{
+        case .Dropoff:
+            location = self.dropoffLocation
+        default:
+            location = self.pickupLocation
+        }
+        return Stop(coordinate: CLLocationCoordinate2D(latitude: location.lati, longitude: location.long) , name: "\(self.firstName) \(self.lastName)", address: location.name, phoneNumber: self.phoneNumber, stopID: NSNumber(integer: self.riderID).stringValue, thumbnailImage: nil)
+    }
 }
 
+
 extension OccurenceModel : Stopify {
-    var stopValue : Stop { get {
-        return Stop(coordinate: CLLocationCoordinate2D(latitude: self.eventLocation.lati, longitude: self.eventLocation.long) , name: self.poolname, address: self.eventLocation.name, phoneNumber: nil, stopID: String(self.occurenceID), thumbnailImage: nil)
-        }}
+    func stopValue(type: OccurenceType) -> Stop {
+        return Stop(coordinate: CLLocationCoordinate2D(latitude: self.eventLocation.lati, longitude: self.eventLocation.long) , name: self.poolname, address: self.eventLocation.name, phoneNumber: nil, stopID: self, thumbnailImage: nil)
+    }
 }

@@ -49,6 +49,9 @@ class DrivingModeVC: UIViewController {
                 case .Completed:
                     nextState = .Pending
                     stopTitle = "Undo Pickup of " + (stop.name as String)
+                    if (self.navigation.dropoffs as NSArray).containsObject(stop) == true {
+                        stopTitle = "Undo Dropoff of " + (stop.name as String)
+                    }
                 }
                 stopActionSheet.addAction(UIAlertAction(title: stopTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
                     stop.state = nextState

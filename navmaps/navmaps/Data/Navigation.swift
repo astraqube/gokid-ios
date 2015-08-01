@@ -35,7 +35,7 @@ class Stop : NSObject, MKAnnotation {
     var address : NSString?
     var thumbnailImage : UIImage?
     var phoneNumber : NSString?
-    var stopID : NSString
+    var stopID : AnyObject
     var state : State = .Pending
     
     enum State {
@@ -44,7 +44,7 @@ class Stop : NSObject, MKAnnotation {
         case Completed
     }
     
-    init(coordinate: CLLocationCoordinate2D, name: NSString, address: NSString, phoneNumber : NSString?, stopID : NSString, thumbnailImage: UIImage?) {
+    init(coordinate: CLLocationCoordinate2D, name: NSString, address: NSString, phoneNumber : NSString?, stopID : AnyObject, thumbnailImage: UIImage?) {
         self.coordinate = coordinate
         self.name = name
         self.address = address

@@ -16,6 +16,7 @@
 
 ## Changelog
 AHL July 31:
+Fixes bug with dropoff occurrences; fixes bug with routes after arrival
 Now uses AI to always ensure the most optimal route. 
 AHL July 30:
 Created the new Image Fetch system for ImageManager that returns… UIImages! (based on NSOperations and NSOperationQueue)
