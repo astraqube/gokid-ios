@@ -24,12 +24,12 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBarColorDark()
+        self.searchTextField.becomeFirstResponder()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        setStatusBarColorLight()
+        self.searchTextField.resignFirstResponder()
     }
     
     func setupTableView() {
@@ -59,14 +59,11 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var prediction = dataSource[indexPath.row]
         var description = descriptionFromPrediction(prediction)
-        var fullAddress = description.title + ", " + description.subtitle
- 
-        userManager.recentAddressTitles.insert(description.title, atIndex: 0)
-        userManager.recentAddress.insert(description.subtitle, atIndex: 0)
-        userManager.saveUserInfo()
-        teamVC?.setHomeAddress(description.title, address2: description.subtitle)
-        locationVC?.locationInputTextField.text = fullAddress
-        self.dismissViewControllerAnimated(true, completion: nil)
+
+        self.dismissViewControllerAnimated(true) {
+            self.teamVC?.setHomeAddress(description.title, address2: description.subtitle)
+            self.locationVC?.chooseAddressDone(description.title, address: description.subtitle)
+        }
     }
     
     // MARK: IBAction Method

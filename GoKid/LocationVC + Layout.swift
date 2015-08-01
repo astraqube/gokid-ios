@@ -9,9 +9,10 @@
 extension LocationVC {
     
     func setupLabels() {
-        var textColor = rgb(106, 192, 139)
+        var textColor = colorManager.color456462
+        var highlightColor = colorManager.color67C18B
         var textFont = UIFont(name: "Raleway-Bold", size: 17)
-        var smallTextFont = UIFont(name: "Raleway", size: 13)
+        var smallTextFont = UIFont(name: "Raleway-Regular", size: 14)
         
         destinationLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
         destinationLocationLabel.text = "Sharon park Dr 350, United States"
@@ -40,13 +41,13 @@ extension LocationVC {
         destLabel = UILabel(frame: CGRectZero)
         destLabel.text = "Dropoff"
         destLabel.font = textFont
-        destLabel.textColor = textColor
+        destLabel.textColor = highlightColor
         destLabel.sizeToFit()
         
         startLabel = UILabel(frame: CGRectMake(0, 0, 100, 30))
-        startLabel.text = "Pickup&\nDropoff"
+        startLabel.text = "Pickup & \nDropoff"
         startLabel.font = textFont
-        startLabel.textColor = textColor
+        startLabel.textColor = highlightColor
         startLabel.numberOfLines = 0
         startLabel.textAlignment = .Center
         startLabel.sizeToFit()
@@ -54,7 +55,7 @@ extension LocationVC {
         eventLabel = UILabel(frame: CGRectZero)
         eventLabel.text = "Event"
         eventLabel.font = textFont
-        eventLabel.textColor = textColor
+        eventLabel.textColor = highlightColor
         eventLabel.sizeToFit()
     }
     
@@ -124,7 +125,7 @@ extension LocationVC {
     }
     
     func layoutSubviewSame() {
-        startLabel.text = "Pickup&\nDropoff"
+        startLabel.text = "Pickup & \nDropoff"
         startLabel.frame = CGRectMake(0, 0, 100, 30)
         startLabel.sizeToFit()
         

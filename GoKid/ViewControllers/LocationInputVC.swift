@@ -13,6 +13,8 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
 
     @IBOutlet weak var locationInputTextField: PaddingTextField!
     @IBOutlet weak var locationInputButton: UIButton!
+    @IBOutlet weak var homeButton: UIButton!
+    @IBOutlet weak var homeAddress: UILabel!
     @IBOutlet weak var recentTableView: UITableView!
     
     var donePickingWithAddress: ((String)->())?
@@ -21,43 +23,40 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
-        setupTableView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         recentTableView.reloadData()
+        self.toggleHomeButton()
     }
     
-    func setupTableView() {
-        recentTableView.dataSource = self
-        recentTableView.delegate = self
-    }
-    
-    func setupNavigationBar() {
-        setNavBarTitle("Location")
-        setNavBarLeftButtonTitle("Cancel", action: "cancleButtonClick")
-        setNavBarRightButtonTitle("Done", action: "doneButtonClick")
-    }
-    
-    // MARK: IBAction Method
-    // --------------------------------------------------------------------------------------------
-    
-    func cancleButtonClick() {
+    override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
-    
-    func doneButtonClick() {
-        if userManager.userLoggedIn && userManager.userHomeAdress == "" && locationInputTextField.text != "" {
-            showHomeAdreeAlertView()
+
+    func toggleHomeButton() {
+        if userManager.userHomeAdress != "" {
+            self.homeButton.hidden = false
+            self.homeButton.enabled = true
+            self.homeAddress.text = userManager.userHomeAdress
         } else {
-            navigationController?.popViewControllerAnimated(true)
-            donePickingWithAddress?(locationInputTextField.text)
+            self.homeButton.hidden = true
+            self.homeButton.enabled = false
+            self.homeAddress.text = nil
         }
     }
-    
+
+    // MARK: IBAction Method
+    // --------------------------------------------------------------------------------------------
+
+    func chooseAddressDone(addressTitle: String, address: String) {
+        self.userManager.addToRecentAddresses(addressTitle, address: address)
+        self.donePickingWithAddress?("\(addressTitle), \(address)")
+        navigationController?.popViewControllerAnimated(true)
+    }
+
     @IBAction func currentLocationButtonClick(sender: AnyObject) {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -68,32 +67,26 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     @IBAction func locationInputButtonClick(sender: AnyObject) {
         var vc = vcWithID("PlacePickerVC") as! PlacePickerVC
         vc.locationVC = self
-        self.presentViewController(vc, animated: true, completion: nil)
+        self.navigationController?.presentViewController(vc, animated: true, completion: nil)
     }
     
-    @IBAction func textfieldEditing(sender: UITextField) {
-        
+    @IBAction func homeButtonClick(sender: AnyObject) {
+        self.chooseAddressDone("Home", address: userManager.userHomeAdress)
     }
-    
+
     // MARK: CLLocationManagerDelegate
     // --------------------------------------------------------------------------------------------
     
     func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        self.locationManager.stopUpdatingLocation()
         var geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(newLocation) { (placemarks, error) in
             if error == nil && placemarks.count > 0 {
                 var pms = placemarks as! [CLPlacemark]
                 var pm = pms.last!
-                var add1 = NSString(format: "%@", pm.name) as String
-                var add2 = self.add2FromPlaceMark(pm)
-                var full = add1 + add2
-                self.userManager.recentAddressTitles.insert(add1, atIndex: 0)
-                self.userManager.recentAddress.insert(add2, atIndex: 0)
-                self.userManager.saveUserInfo()
-                self.locationInputTextField.text = full
-                self.donePickingWithAddress?(full)
-                self.locationManager.stopUpdatingLocation()
-                
+                let addressTitle = NSString(format: "%@", pm.name) as String
+                let address = self.add2FromPlaceMark(pm)
+                self.chooseAddressDone(addressTitle, address: address)
             } else {
                 println(error.debugDescription)
             }
@@ -140,9 +133,9 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var cell = tableView.cellForRowAtIndexPath(indexPath) as! RecentAddressCell
         var row = indexPath.row
-        locationInputTextField.text = userManager.recentAddressTitles[row] + " " + userManager.recentAddress[row]
+        self.chooseAddressDone(userManager.recentAddressTitles[row], address: userManager.recentAddress[row])
     }
-    
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 65.0
     }
@@ -175,12 +168,3 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
         }
     }
 }
-
-
-
-
-
-
-
-
-

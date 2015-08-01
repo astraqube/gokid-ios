@@ -95,6 +95,12 @@ class UserManager: NSObject {
         info.phoneNumber = user["phone_number"].stringValue
         info.userID = user["id"].intValue
         info.cellType = .EditUser
+
+        let homeAddress1 = json["teams"][0]["address"].stringValue
+        let homeAddress2 = json["teams"][0]["address2"].stringValue
+        if homeAddress1 != "" && homeAddress2 != "" {
+            userHomeAdress = "\(homeAddress1), \(homeAddress2)"
+        }
         
         if let arr = user["recentAddress"].arrayObject as? [String] {
             recentAddress = arr
@@ -171,7 +177,15 @@ class UserManager: NSObject {
             setWithJsonReponse(json)
         }
     }
-    
+
+    func addToRecentAddresses(addressTitle: String, address: String) {
+        if !contains(recentAddressTitles, addressTitle) && !contains(recentAddress, address) {
+            recentAddressTitles.insert(addressTitle, atIndex: 0)
+            recentAddress.insert(address, atIndex: 0)
+            saveUserInfo()
+        }
+    }
+
     func controlRecentAddressSize() {
         if recentAddress.count > 15 {
             var data = [String]()

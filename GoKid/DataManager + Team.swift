@@ -19,7 +19,6 @@ extension DataManager {
             println(json)
             var members =  TeamMemberModel.arrayOfMembers(json["permissions"])
             self.userManager.teamMembers = members
-            self.userManager.userHomeAdress = json["teams"][0]["address"].stringValue
             comp(true, "")
         }) { (op, error) in
             println("getTeamMembersOfTeam failed")
@@ -39,6 +38,7 @@ extension DataManager {
         var manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
             println("updateTeamAddress success")
+            self.userManager.userHomeAdress = "\(address1), \(address2)"
             comp(true, "")
         }) { (op, error) in
             println("updateTeamAddress failed")
