@@ -233,10 +233,15 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
         var stops = self.navigation.pickups + self.navigation.dropoffs
         var recipeints = [NSString]()
         for stop in stops {
-            if stop.phoneNumber != nil {
+            if stop.phoneNumber != nil && stop.phoneNumber?.length > 0 {
                 recipeints.append(stop.phoneNumber!)
             }
         }
+        
+        if recipeints.count == 0 {
+            UIAlertView(title: "No phone numbers!", message: "No riders have shared their numbers", delegate: nil, cancelButtonTitle: "OK").show()
+        }
+        
         messageVC.recipients = recipeints
         presentViewController(messageVC, animated: true) {
              sender.enabled = true
