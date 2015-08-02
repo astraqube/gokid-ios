@@ -13,6 +13,11 @@ enum CalendarCellType {
     case Notification, Time, Normal, Add, None
 }
 
+enum OccurenceType: String {
+    case Pickup = "Pickup"
+    case Dropoff = "Drop-off"
+}
+
 class OccurenceModel: NSObject {
     var taken = false
     var poolDriverName = ""

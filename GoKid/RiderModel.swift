@@ -23,7 +23,11 @@ class RiderModel: NSObject {
     var thumURL: String = ""
     var pickupLocation = Location()
     var dropoffLocation = Location()
-    
+
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
+
     static var ridersByID = [ Int : RiderModel]()
     
     class func ridersForRiderIDs(riderIDs : [Int]) -> ([RiderModel]){
@@ -66,4 +70,16 @@ class RiderModel: NSObject {
         pickupLocation = Location(json: json["pickup_address"])
         dropoffLocation = Location(json: json["dropoff_address"])
     }
+
+    func toJson() -> NSDictionary {
+        var json: [String: AnyObject] = ["id": riderID]
+        if pickupLocation.name != "" {
+            json["pickup_address"] = pickupLocation.toJson()
+        }
+        if dropoffLocation.name != "" {
+            json["dropoff_address"] = dropoffLocation.toJson()
+        }
+        return json
+    }
+
 }

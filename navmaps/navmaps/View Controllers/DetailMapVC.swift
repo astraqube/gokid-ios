@@ -10,11 +10,6 @@ import UIKit
 import MapKit
 import MessageUI
 
-enum OccurenceType {
-    case Pickup
-    case Dropoff
-}
-
 struct MapMetadata {
     var name : String
     var thumbnailImage : UIImage?

@@ -203,7 +203,27 @@ extension DataManager {
                 self.handleRequestError(op, error: error, comp: comp)
         }
     }
-    
+
+    func updateRiderInCarpool(rider: RiderModel, carpoolID: Int, comp: ObjectCompletion) {
+        var url = "\(baseURL)/api/carpools/\(carpoolID)/riders/\(rider.riderID)"
+        var map = ["rider": rider.toJson()]
+
+        println(url)
+        println(map)
+
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: map, success: { (op, obj) in
+            println("updateRiderInCarpool success")
+            println(obj)
+            var json = JSON(obj)
+            var rider = RiderModel(json: json["rider"])
+            comp(true, "", rider)
+        }) { (op, error) in
+            println("updateRiderInCarpool failed")
+            self.handleUserResuestError(op, error: error, comp: comp)
+        }
+    }
+
     func deleteFromOccurenceRiders(rider: RiderModel , occ: OccurenceModel, comp: completion) {
         var url = baseURL + "/api/carpools/" + String(occ.carpoolID) + "/occurrences/" + String(occ.occurenceID) + "/riders/" + String(rider.riderID)
         var manager = managerWithToken()
