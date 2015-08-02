@@ -107,6 +107,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func nextDrivingOccurrence() -> OccurenceModel? {
         for model in self.dataSource {
             if model.cellType != .Normal { continue }
+            if model.occursAt == nil || model.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -1 * 60 * 5)) { continue } //ignore older than 5 mins
             if model.volunteer?.id == userManager.info.userID {
                 return model
             }
@@ -121,7 +122,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             if onlyShowOurDrives && event.volunteer?.id != userManager.info.userID{
                 continue
             }
-            if event.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -8 * 60 * 60)) {
+            if event.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -8 * 60 * 60)) { //ignore older than 8 hours
                 continue
             }
             if event.occursAtStr != lastDateStr {
@@ -192,17 +193,26 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         var cell : CalendarCell!
         if model == nextDrivingOccurrence() {
             var gCell = tableView.cellWithID("CalendarTimeToGoCell", ip) as! CalendarTimeToGoCell
-            gCell.timeToGoTitleLabel.text = "It's time to go!"
-            
-            var stops = model.riders.map { return $0.stopValue(model.occurrenceType) } + [model.stopValue(model.occurrenceType)]
-            if stops.count > 0 {
-                stops = ETACalculator.superSortStops(stops, beginningAt: stops.first!, endingAt: stops.last!)
-                var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: model.occursAt!)
-                if let (departDate, stop) = etaDates.first {
-                    if departDate.isLessThanDate(NSDate(timeIntervalSinceNow: 300)) {
-                        gCell.timeToGoTimeLabel.text = "It's time to go!"
-                    } else {
-                        gCell.timeToGoTimeLabel.text = "We gotta go at \(departDate.timeString())!"
+            gCell.timeToGoTitleLabel.text = "Driving advice loading!"
+            gCell.timeToGoTimeLabel.text = ""
+            gCell.updatedLabel.text = "Updating riders…"
+            dataManager.updateOccurenceRiders(model) { (success, errorStr) -> () in
+                gCell.updatedLabel.text = "Updated just now"
+                if !success { gCell.timeToGoTitleLabel.text = "Failed to update!"; return }
+                var kidName = "kids"
+                if let theKidName = model.riders.first?.firstName { kidName = theKidName }
+                gCell.timeToGoTitleLabel.text = "Can't keep \(kidName) waiting!"
+                var stops = model.riders.map { return $0.stopValue(model.occurrenceType) } + [model.stopValue(model.occurrenceType)]
+                if stops.count > 0 {
+                    //need to mode for take to event and return from event?
+                    stops = ETACalculator.superSortStops(stops, beginningAt: stops.first!, endingAt: stops.last!)
+                    var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: model.occursAt!)
+                    if let (departDate, stop) = etaDates.first {
+                        if departDate.isLessThanDate(NSDate(timeIntervalSinceNow: 300)) {
+                            gCell.timeToGoTimeLabel.text = "It's go time!"
+                        } else {
+                            gCell.timeToGoTimeLabel.text = "Go time is \(departDate.timeString())!"
+                        }
                     }
                 }
             }

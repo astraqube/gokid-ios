@@ -16,6 +16,9 @@
 
 ## Changelog
 AHL Aug 1:
+now gives real departure advice on 'can't keep kids waiting'
+improves copy on 'can't keep kids waiting'
+stop ‘can’t keep kids waiting’ from showing for occurrences after occursat
 You can now volunteer for carpools from the map itself
 Added check-circ to calView and mapview
 Made message button feel more responsive
