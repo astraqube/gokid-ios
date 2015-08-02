@@ -374,9 +374,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func showOccurenceVCWithModel(model: OccurenceModel) {
         var vc = vcWithID("DetailMapVC") as! DetailMapVC
         vc.onEditButtonPressed = { (vc: DetailMapVC) in
-            UserManager.sharedInstance.currentCarpoolModel = CarpoolModel()
-            UserManager.sharedInstance.currentCarpoolModel.id = model.carpoolID
-            UserManager.sharedInstance.currentCarpoolModel.name = model.poolname
+            UserManager.sharedInstance.currentCarpoolModel = model.carpool
             UserManager.sharedInstance.currentCarpoolModel.kidName = model.riders[0].firstName
             var carpoolEditVC = vcWithID("CarpoolEditVC") as! CarpoolEditVC
             carpoolEditVC.occurrence = model

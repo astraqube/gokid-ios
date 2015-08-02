@@ -24,7 +24,8 @@ class OccurenceModel: NSObject {
     var poolDriverImageUrl = ""
     var poolDriverPhoneNum = ""
     var volunteer : VolunteerModel?
-    
+    var carpool : CarpoolModel!
+
     var poolType = ""
     var poolname = ""
     var occursAt: NSDate?
@@ -39,9 +40,11 @@ class OccurenceModel: NSObject {
     var notification = ""
    
     var riders = [RiderModel]()
-    
+
     var occurenceID = 0
-    var carpoolID = 0
+    var carpoolID : Int {
+        return carpool.id
+    }
     
     override init() {
         super.init()
@@ -53,7 +56,11 @@ class OccurenceModel: NSObject {
         cellType = .Normal
         occurenceID = occurence["id"].intValue
         poolType = occurence["kind"].stringValue
-        carpoolID = occurence["carpool"]["id"].intValue
+
+        if let carpoolJSON = occurence["carpool"] as JSON? {
+            carpool = CarpoolModel(json: carpoolJSON)
+        }
+
         poolname = occurence["carpool"]["name"].stringValue
         poolDriverName = occurence["volunteer"]["first_name"].stringValue
         if let volunteerJSON = occurence["volunteer"] as JSON? {
