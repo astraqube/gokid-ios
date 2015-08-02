@@ -13,10 +13,16 @@ class CarpoolEditVC: BaseFormVC {
     var occurrence : OccurenceModel!
 
     private enum Tags : String {
+        case Unauthorized = "You are not authorized to make changes"
         case EventLocation = "Event Location"
         case InvitePanel = "Invite Parents via SMS or Email"
         case DeleteRide = "Delete this Ride"
         case DeleteCarpool = "Delete this Carpool"
+    }
+
+    var isCurrentUserAuthorized : Bool {
+        // TODO: Waiting on backend to point how Carpool Ownership is determined
+        return false
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -35,6 +41,18 @@ class CarpoolEditVC: BaseFormVC {
         let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
         let colorLabel = colorManager.color507573
 
+        if !self.isCurrentUserAuthorized {
+            section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+            row = XLFormRowDescriptor(tag: Tags.Unauthorized.rawValue, rowType: XLFormRowDescriptorTypeInfo, title: Tags.Unauthorized.rawValue)
+            row.cellConfigAtConfigure["backgroundColor"] = colorManager.color2EB56A
+            row.cellConfig["textLabel.font"] = fontLabel
+            row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
+            section.addFormRow(row)
+
+            form.addFormSection(section)
+        }
+
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
         row = XLFormRowDescriptor(tag: Tags.InvitePanel.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.InvitePanel.rawValue)
@@ -52,6 +70,7 @@ class CarpoolEditVC: BaseFormVC {
         row.cellConfig["detailTextLabel.color"] = colorLabel
         row.action.viewControllerStoryboardId = "LocationInputVC"
         row.value = self.occurrence.eventLocation.name
+        row.disabled = !self.isCurrentUserAuthorized
         section.addFormRow(row)
 
         form.addFormSection(section)
@@ -75,6 +94,7 @@ class CarpoolEditVC: BaseFormVC {
                     row.value = rider.dropoffLocation.name
                 }
 
+                row.disabled = !self.isCurrentUserAuthorized
                 section.addFormRow(row)
             }
 
@@ -88,6 +108,7 @@ class CarpoolEditVC: BaseFormVC {
         row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
         row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorWarningRed
         row.action.formSelector = "deleteRide:"
+        row.disabled = !self.isCurrentUserAuthorized
         section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: Tags.DeleteCarpool.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.DeleteCarpool.rawValue)
@@ -95,6 +116,7 @@ class CarpoolEditVC: BaseFormVC {
         row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
         row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
         row.action.formSelector = "deleteCarpool:"
+        row.disabled = !self.isCurrentUserAuthorized
         section.addFormRow(row)
 
         form.addFormSection(section)
