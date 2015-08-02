@@ -24,7 +24,12 @@ class CarpoolModel: NSObject {
     var kidName = ""
     var name = ""
     var id = 0
-    
+
+    private var _isOwner = false
+    var isOwner : Bool {
+        return _isOwner
+    }
+
     override init() {
         super.init()
     }
@@ -33,6 +38,9 @@ class CarpoolModel: NSObject {
         super.init()
         name = json["name"].stringValue
         id = json["id"].intValue
+
+        _isOwner = json["is_owner"].boolValue
+
         var schedule = json["schedule"]
         startDate = parseDate(schedule, key: "starts_at")
         endDate = parseDate(schedule, key: "ends_at")

@@ -22,7 +22,7 @@ class CarpoolEditVC: BaseFormVC {
 
     var isCurrentUserAuthorized : Bool {
         // TODO: Waiting on backend to point how Carpool Ownership is determined
-        return true
+        return userManager.currentCarpoolModel.isOwner
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -101,25 +101,27 @@ class CarpoolEditVC: BaseFormVC {
             form.addFormSection(section)
         }
 
-        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+        if self.isCurrentUserAuthorized {
+            section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
-        row = XLFormRowDescriptor(tag: Tags.DeleteRide.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.DeleteRide.rawValue)
-        row.cellConfig["textLabel.font"] = fontValue
-        row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
-        row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorWarningRed
-        row.action.formSelector = "deleteRide:"
-        row.disabled = !self.isCurrentUserAuthorized
-        section.addFormRow(row)
+            row = XLFormRowDescriptor(tag: Tags.DeleteRide.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.DeleteRide.rawValue)
+            row.cellConfig["textLabel.font"] = fontValue
+            row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
+            row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorWarningRed
+            row.action.formSelector = "deleteRide:"
+            row.disabled = !self.isCurrentUserAuthorized
+            section.addFormRow(row)
 
-        row = XLFormRowDescriptor(tag: Tags.DeleteCarpool.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.DeleteCarpool.rawValue)
-        row.cellConfig["textLabel.font"] = fontValue
-        row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
-        row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
-        row.action.formSelector = "deleteCarpool:"
-        row.disabled = !self.isCurrentUserAuthorized
-        section.addFormRow(row)
+            row = XLFormRowDescriptor(tag: Tags.DeleteCarpool.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.DeleteCarpool.rawValue)
+            row.cellConfig["textLabel.font"] = fontValue
+            row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
+            row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
+            row.action.formSelector = "deleteCarpool:"
+            row.disabled = !self.isCurrentUserAuthorized
+            section.addFormRow(row)
 
-        form.addFormSection(section)
+            form.addFormSection(section)
+        }
 
         self.form = form
         self.form.delegate = self
