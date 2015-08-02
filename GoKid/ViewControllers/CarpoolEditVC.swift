@@ -22,7 +22,7 @@ class CarpoolEditVC: BaseFormVC {
 
     var isCurrentUserAuthorized : Bool {
         // TODO: Waiting on backend to point how Carpool Ownership is determined
-        return false
+        return true
     }
 
     override func viewWillAppear(animated: Bool) {
