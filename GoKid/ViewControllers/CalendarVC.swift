@@ -377,8 +377,10 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             UserManager.sharedInstance.currentCarpoolModel = CarpoolModel()
             UserManager.sharedInstance.currentCarpoolModel.id = model.carpoolID
             UserManager.sharedInstance.currentCarpoolModel.name = model.poolname
-            var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
-            vc.navigationController?.pushViewController(inviteVC, animated: true)
+            UserManager.sharedInstance.currentCarpoolModel.kidName = model.riders[0].firstName
+            var carpoolEditVC = vcWithID("CarpoolEditVC") as! CarpoolEditVC
+            carpoolEditVC.occurrence = model
+            vc.navigationController?.pushViewController(carpoolEditVC, animated: true)
         }
         vc.onDriverImagePressed = { (vc: DetailMapVC) in
             self.presentVolunteerForOccurrence(model, then: { (error) -> () in
