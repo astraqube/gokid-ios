@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+typealias GeoCompletion = ((CLLocationDegrees, CLLocationDegrees)->())
+
 class Location: NSObject {
     var name: String = ""
     var long: CLLocationDegrees = 0.0
@@ -43,4 +45,19 @@ class Location: NSObject {
         ]
         return json
     }
+
+    class func geoCodeAddress(address: String, comp: GeoCompletion) {
+        var geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) { (obj, err)  in
+            if let pms = obj as? [CLPlacemark] {
+                if pms.count >= 1 {
+                    var coor = pms[0].location.coordinate
+                    comp(coor.longitude, coor.latitude)
+                    return
+                }
+            }
+            println("Unable to geocode address: \(address). Error: \(err.description)")
+        }
+    }
+
 }

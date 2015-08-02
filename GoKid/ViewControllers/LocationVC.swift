@@ -13,7 +13,6 @@ class LocationVC: BaseVC {
     @IBOutlet weak var switchBackgroundView: UIView!
     @IBOutlet weak var taponLabel: UILabel!
     @IBOutlet weak var segmentControl: GKSegmentControl!
-    typealias GeoCompltion = ((CLLocationDegrees, CLLocationDegrees)->())
     
     var destLocationButton: UIButton!
     var startLocationButton: UIButton!
@@ -98,7 +97,7 @@ class LocationVC: BaseVC {
     }
     
     func donePickingStartLocationWithAddress(address: String) {
-        geoCodeAddress(address) { (long, lati) in
+        Location.geoCodeAddress(address) { (long, lati) in
             var i = self.segmentControl.selectedSegmentIndex
             var location = Location(name: address, long: long, lati: lati)
             self.dataSource[i].0.defaultLocation = location.makeCopy()
@@ -110,7 +109,7 @@ class LocationVC: BaseVC {
     }
     
     func donePickingEndLocationWithAddress(address: String) {
-        geoCodeAddress(address) { (long, lati) in
+        Location.geoCodeAddress(address) { (long, lati) in
             var i = self.segmentControl.selectedSegmentIndex
             var location = Location(name: address, long: long, lati: lati)
             self.dataSource[i].1.defaultLocation = location.makeCopy()
@@ -119,7 +118,7 @@ class LocationVC: BaseVC {
     }
     
     func donePickingEventLocationWithAddress(address: String) {
-        geoCodeAddress(address) { (long, lati) in
+        Location.geoCodeAddress(address) { (long, lati) in
             var i = self.segmentControl.selectedSegmentIndex
             var location = Location(name: address, long: long, lati: lati)
             self.dataSource[i].0.eventLocation = location.makeCopy()
@@ -189,18 +188,4 @@ class LocationVC: BaseVC {
         }
     }
     
-    func geoCodeAddress(address: String, comp: GeoCompltion) {
-        var geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address) { (obj, err)  in
-            if let pms = obj as? [CLPlacemark] {
-                if pms.count >= 1 {
-                    var coor = pms[0].location.coordinate
-                    comp(coor.longitude, coor.latitude)
-                    return
-                }
-            }
-            self.showAlert("Cannot geocode address", messege: address, cancleTitle: "OK")
-        }
-    }
-
 }
