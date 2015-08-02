@@ -33,7 +33,8 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     // --------------------------------------------------------------------------------------------
     
     override func rightNavButtonTapped() {
-        var vc = vcWithID("InviteParentsVC")
+        var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
+        vc.hideForwardNavigationButtons = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -110,15 +111,16 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     // --------------------------------------------------------------------------------------------
     
     func createCarpool() {
-      var model = userManager.currentCarpoolModel
-      dataManager.createCarpool(model) { (success, errorStr) in
-        if success {
-          var vc = vcWithID("InviteParentsVC")
-          self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-          self.showAlert("Alert", messege: "Cannot create Carpool " + errorStr, cancleTitle: "OK")
+        var model = userManager.currentCarpoolModel
+        dataManager.createCarpool(model) { (success, errorStr) in
+            if success {
+                var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
+                vc.hideForwardNavigationButtons = false
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.showAlert("Alert", messege: "Cannot create Carpool " + errorStr, cancleTitle: "OK")
+            }
         }
-      }
     }
     
     func tryLoadTableData() {

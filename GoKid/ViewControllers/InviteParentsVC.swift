@@ -11,9 +11,8 @@ import MessageUI
 import AddressBookUI
 
 class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
-    ///In case someone wants to hit Edit button from DetailMapVC, set true
-    var hideForwardNavigationButtons = false
-    @IBOutlet weak var illDoItLaterButton: UIButton!
+    ///In case someone wants to hit Edit button from DetailMapVC, default: true
+    var hideForwardNavigationButtons = true
     @IBOutlet weak var carpoolNameLabel: UILabel!
     
     override func viewDidLoad() {
@@ -33,8 +32,8 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     
     func refreshUI() {
         carpoolNameLabel.text = "\"" + userManager.currentCarpoolModel.name + "\""
-        illDoItLaterButton.hidden = hideForwardNavigationButtons
         rightButton.hidden = hideForwardNavigationButtons
+        rightButton.enabled = !hideForwardNavigationButtons
     }
     
     // MARK: IBAction Method
@@ -48,17 +47,13 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         showMailVC()
     }
 
-    @IBAction func doItLaterButtonClicker(sender: AnyObject) {
-        var vc = vcWithID("CarpoolSucceedVC")
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
     
     override func rightNavButtonTapped() {
-        doItLaterButtonClicker(UIButton())
+        var vc = vcWithID("CarpoolSucceedVC")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: Choose From Contact

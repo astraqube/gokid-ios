@@ -75,7 +75,6 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
             let carpool = carpoolsDataSource[indexPath.row]
             UserManager.sharedInstance.currentCarpoolModel = carpool
             var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
-            inviteVC.hideForwardNavigationButtons = true
             navigationController?.pushViewController(inviteVC, animated: true)
         }
     }

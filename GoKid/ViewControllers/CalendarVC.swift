@@ -378,7 +378,6 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             UserManager.sharedInstance.currentCarpoolModel.id = model.carpoolID
             UserManager.sharedInstance.currentCarpoolModel.name = model.poolname
             var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
-            inviteVC.hideForwardNavigationButtons = true
             vc.navigationController?.pushViewController(inviteVC, animated: true)
         }
         vc.onDriverImagePressed = { (vc: DetailMapVC) in
