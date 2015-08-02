@@ -197,9 +197,13 @@ class CarpoolEditVC: BaseFormVC {
         confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction!) in
             if let textField = confirmPrompt.textFields?.first as? UITextField{
                 if textField.text == "DELETE" {
-                    // TODO: DELETE /api/carpools/:carpool_id/:occurrences/:occurrence_id
-                    // ...
-                    self.showAlert("Oops", messege: "This is not implemented yet...", cancleTitle: "OK")
+                    self.dataManager.deleteOccurrence(self.occurrence) { (success, error) in
+                        if !success && error != "" {
+                            self.showAlert("There was a problem", messege: error, cancleTitle: "OK")
+                        } else {
+                            self.navigationController?.popToRootViewControllerAnimated(true)
+                        }
+                    }
                 }
             }
         }))
