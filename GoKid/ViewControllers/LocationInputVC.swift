@@ -9,8 +9,10 @@
 import UIKit
 import CoreLocation
 
-class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, CLLocationManagerDelegate {
+class LocationInputVC: BaseVC, XLFormRowDescriptorViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, CLLocationManagerDelegate {
 
+    var rowDescriptor: XLFormRowDescriptor!
+    
     @IBOutlet weak var locationInputTextField: PaddingTextField!
     @IBOutlet weak var locationInputButton: UIButton!
     @IBOutlet weak var homeButton: UIButton!
@@ -30,6 +32,10 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
         navigationController?.setNavigationBarHidden(true, animated: false)
         recentTableView.reloadData()
         self.toggleHomeButton()
+
+        if self.rowDescriptor != nil && self.rowDescriptor.title != "" {
+            self.titleLabel.text = self.rowDescriptor.title
+        }
     }
     
     override func leftNavButtonTapped() {
@@ -53,10 +59,21 @@ class LocationInputVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UIAle
 
     func chooseAddressDone(addressTitle: String, address: String) {
         self.askToSaveAsHomeAddress(addressTitle, address2: address) {
+            var addressString: String!
+
             if addressTitle != "Home" {
                 self.userManager.addToRecentAddresses(addressTitle, address: address)
+                addressString = "\(addressTitle), \(address)"
+            } else {
+                addressString = address
             }
-            self.donePickingWithAddress?("\(addressTitle), \(address)")
+
+            if self.rowDescriptor != nil {
+                self.rowDescriptor.value = addressString
+            } else {
+                self.donePickingWithAddress?(addressString)
+            }
+
             self.navigationController?.popViewControllerAnimated(true)
         }
     }
