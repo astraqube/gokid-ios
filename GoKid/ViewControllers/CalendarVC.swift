@@ -212,13 +212,14 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         }
         cell.nameLabel.text = model.poolname
         cell.timeLabel.text = model.pooltimeStr
-        cell.typeLabel.text = model.poolType
-        if model.poolType == "dropoff" {
+        if model.occurrenceType == .Dropoff {
             cell.pickupIcon.hidden = true
             cell.dropoffIcon.hidden = false
+            cell.typeLabel.text = "dropoff"
         }else {
             cell.pickupIcon.hidden = false
             cell.dropoffIcon.hidden = true
+            cell.typeLabel.text = "pickup"
         }
         for (index, riderImageView) in enumerate(cell.pickupImageCollection) {
             let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
