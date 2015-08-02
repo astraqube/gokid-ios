@@ -114,7 +114,31 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
-    
+
+    func updateOccurrenceLocation(occurrenceID: Int, location: Location, comp: completion) {
+        var url = baseURL + "/api/occurrences/\(occurrenceID)"
+
+        var map = [
+            "occurrence": [
+                "event_location": location.toJson()
+            ]
+        ]
+
+        println(url)
+        println(map)
+
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: map, success: { (op, obj) in
+            println("updateOccurrenceLocation success")
+            var json = JSON(obj)
+            println(json)
+            comp(true, "")
+        }) { (op, error) in
+            println("updateOccurrenceLocation failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+
     func updateOccurencesLocation(occs: [(OccurenceModel, OccurenceModel)], comp: completion) {
         var url = baseURL + "/api/carpools/" + String(userManager.currentCarpoolModel.id) + "/occurrences"
         
