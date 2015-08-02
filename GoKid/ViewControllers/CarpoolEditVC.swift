@@ -14,6 +14,7 @@ class CarpoolEditVC: BaseFormVC {
 
     private enum Tags : String {
         case EventLocation = "Event Location"
+        case InvitePanel = "Invite Parents"
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -35,6 +36,16 @@ class CarpoolEditVC: BaseFormVC {
         let carpoolModel = userManager.currentCarpoolModel
 
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: Tags.InvitePanel.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.InvitePanel.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["detailTextLabel.font"] = fontValue
+        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.action.viewControllerStoryboardId = "InviteParentsVC"
+        row.value = self.occurrence.eventLocation.name
+        row.required = true
+        section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: Tags.EventLocation.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.EventLocation.rawValue)
         row.cellConfig["textLabel.font"] = fontLabel
