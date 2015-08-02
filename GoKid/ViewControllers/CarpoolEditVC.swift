@@ -14,7 +14,9 @@ class CarpoolEditVC: BaseFormVC {
 
     private enum Tags : String {
         case EventLocation = "Event Location"
-        case InvitePanel = "Invite Parents"
+        case InvitePanel = "Invite Parents via SMS or Email"
+        case DeleteRide = "Delete this Ride"
+        case DeleteCarpool = "Delete this Carpool"
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -79,6 +81,24 @@ class CarpoolEditVC: BaseFormVC {
             form.addFormSection(section)
         }
 
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: Tags.DeleteRide.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.DeleteRide.rawValue)
+        row.cellConfig["textLabel.font"] = fontValue
+        row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
+        row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorWarningRed
+        row.action.formSelector = "deleteRide:"
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.DeleteCarpool.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.DeleteCarpool.rawValue)
+        row.cellConfig["textLabel.font"] = fontValue
+        row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
+        row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
+        row.action.formSelector = "deleteCarpool:"
+        section.addFormRow(row)
+
+        form.addFormSection(section)
+
         self.form = form
         self.form.delegate = self
     }
@@ -90,13 +110,14 @@ class CarpoolEditVC: BaseFormVC {
             self.updateEventLocation(newValue as! String)
 
         } else if formRow.tag.toInt() != nil {
-            // FIXME: If the form supports fields other than event_location, pickup_address, and dropoff_address
-            // this may have to be changed to something better targeted
+            // FIXME: This assumes form tag that is Int-based only applies to Rider fields
             self.updateRiderLocation(formRow.tag.toInt(), address: newValue as! String)
         }
     }
 
-    private func updateEventLocation(address: String) {
+    // MARK: Methods that make server calls
+
+    func updateEventLocation(address: String) {
         LoadingView.showWithMaskType(.Black)
         Location.geoCodeAddress(address) { (lon, lat) in
             let location = Location(name: address, long: lon, lati: lat)
@@ -112,7 +133,7 @@ class CarpoolEditVC: BaseFormVC {
         }
     }
 
-    private func updateRiderLocation(riderID: Int!, address: String) {
+    func updateRiderLocation(riderID: Int!, address: String) {
         LoadingView.showWithMaskType(.Black)
         Location.geoCodeAddress(address) { (lon, lat) in
             let location = Location(name: address, long: lon, lati: lat)
@@ -139,6 +160,54 @@ class CarpoolEditVC: BaseFormVC {
                 }
             }
         }
+    }
+
+    func deleteRide(sender: XLFormRowDescriptor) {
+        let confirmPrompt = UIAlertController(title: "BE CAREFUL", message: "Are you sure you want to delete this Ride?", preferredStyle: .Alert)
+        confirmPrompt.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+            textField.placeholder = "Type DELETE to confirm"
+        }
+
+        confirmPrompt.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+
+        confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction!) in
+            if let textField = confirmPrompt.textFields?.first as? UITextField{
+                if textField.text == "DELETE" {
+                    // TODO: DELETE /api/carpools/:carpool_id/:occurrences/:occurrence_id
+                    // ...
+                    self.showAlert("Oops", messege: "This is not implemented yet...", cancleTitle: "OK")
+                }
+            }
+        }))
+
+        presentViewController(confirmPrompt, animated: true, completion: nil)
+        self.deselectFormRow(sender)
+    }
+    
+    func deleteCarpool(sender: XLFormRowDescriptor) {
+        let confirmPrompt = UIAlertController(title: "BE CAREFUL", message: "Are you sure you want to delete this Carpool?", preferredStyle: .Alert)
+        confirmPrompt.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+            textField.placeholder = "Type DELETE to confirm"
+        }
+
+        confirmPrompt.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+
+        confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction!) in
+            if let textField = confirmPrompt.textFields?.first as? UITextField{
+                if textField.text == "DELETE" {
+                    self.dataManager.deleteCarpool(self.userManager.currentCarpoolModel) { (success, error) in
+                        if !success && error != "" {
+                            self.showAlert("There was a problem", messege: error, cancleTitle: "OK")
+                        } else {
+                            self.navigationController?.popToRootViewControllerAnimated(true)
+                        }
+                    }
+                }
+            }
+        }))
+
+        presentViewController(confirmPrompt, animated: true, completion: nil)
+        self.deselectFormRow(sender)
     }
 
 }

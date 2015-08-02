@@ -34,7 +34,21 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
-    
+
+    func deleteCarpool(model: CarpoolModel, comp: completion) {
+        var url = baseURL + "/api/carpools/\(model.id)"
+        var manager = managerWithToken()
+        manager.DELETE(url, parameters: nil, success: { (op, obj) in
+            println("deleteCarpool success")
+            println(obj)
+            self.userManager.currentCarpoolModel = CarpoolModel()
+            comp(true, "")
+        }) { (op, error) in
+            println("deleteCarpool failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+
     func getAllUserOccurrences(comp: completion) {
         var url = baseURL + "/api/occurrences"
         var manager = managerWithToken()
