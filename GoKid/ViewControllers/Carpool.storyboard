@@ -1291,7 +1291,7 @@
                                     <outlet property="delegate" destination="vqw-xD-vLi" id="9BN-Zp-Z33"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faF-9I-VZQ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faF-9I-VZQ">
                                 <rect key="frame" x="12" y="36" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="AOF-bF-EBy"/>
@@ -1328,6 +1328,7 @@
                             <constraint firstAttribute="trailing" secondItem="cic-3v-IFW" secondAttribute="trailing" id="EQY-rG-E2A"/>
                             <constraint firstAttribute="centerX" secondItem="3MZ-cU-AsZ" secondAttribute="centerX" id="K7v-K0-LCf"/>
                             <constraint firstItem="SlT-yF-N3u" firstAttribute="top" secondItem="cic-3v-IFW" secondAttribute="bottom" id="Qw5-4l-YfZ"/>
+                            <constraint firstItem="faF-9I-VZQ" firstAttribute="top" secondItem="wH4-9a-djD" secondAttribute="bottom" constant="16" id="SPh-nP-NBn"/>
                             <constraint firstItem="cic-3v-IFW" firstAttribute="top" secondItem="NC8-ys-m15" secondAttribute="bottom" id="lei-W7-8hI"/>
                             <constraint firstItem="NC8-ys-m15" firstAttribute="top" secondItem="3MZ-cU-AsZ" secondAttribute="bottom" id="pP7-dt-qbt"/>
                             <constraint firstItem="cic-3v-IFW" firstAttribute="leading" secondItem="MSN-73-8Rg" secondAttribute="leading" id="pWn-Y5-0Bf"/>
