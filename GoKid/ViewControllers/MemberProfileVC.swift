@@ -61,7 +61,6 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        setStatusBarColorDark()
     }
 
     override func viewDidAppear(animated: Bool) {

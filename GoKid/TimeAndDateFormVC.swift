@@ -25,7 +25,6 @@ class TimeAndDateFormVC: BaseFormVC {
         self.titleLabel.text = "Date & Time"
         self.title = userManager.currentCarpoolDescription()
         self.subtitleLabel.text = userManager.currentCarpoolDescription()
-        setStatusBarColorDark()
     }
     
     private func updateCarpoolModel() {

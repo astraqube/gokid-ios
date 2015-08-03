@@ -78,6 +78,8 @@ class BaseFormVC: XLFormViewController {
     }
 
     func setUpNavigationBar() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
         // For the actual navbar
         navigationController?.navigationBar.translucent = false
         navigationController?.navigationBar.barTintColor = colorManager.colorEBF7EB

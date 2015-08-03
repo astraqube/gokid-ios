@@ -67,8 +67,6 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-
         self.rowDescriptor.value = self.convertFormToValues(self.currentValues as [AnyObject])
     }
 
