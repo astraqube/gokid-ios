@@ -44,7 +44,8 @@ extension DataManager {
         var login = [
             "InviteInfoVC": true,
             "SignUpVC": true,
-            "SignInVC": true
+            "SignInVC": true,
+            "PhoneNumberVC": true
         ]
         var onboard = [
             "LastOnboardVC": true

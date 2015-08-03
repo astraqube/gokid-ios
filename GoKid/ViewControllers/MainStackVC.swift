@@ -17,6 +17,7 @@ class MainStackVC: IIViewDeckController {
 
         self.registerForNotification("requestForUserToken", action: "popUpSignInView")
         self.registerForNotification("gotInvited", action: "presentInvitationView")
+        self.registerForNotification("requestForPhoneNumber", action: "popUpPhoneNumberView")
 
         self.determineStateForViews()
     }
@@ -84,6 +85,20 @@ class MainStackVC: IIViewDeckController {
 
     func popUpSignUpView() {
         var signUpVC = vcWithID("SignUpVC") as! SignUpVC
+        signUpVC.parentVC = self
+        signUpVC.modalTransitionStyle = .CrossDissolve
+        signUpVC.modalPresentationStyle = .OverCurrentContext
+        if self.presentedViewController != nil {
+            self.dismissViewControllerAnimated(true) {
+                self.presentViewController(signUpVC, animated: true, completion: nil)
+            }
+        } else {
+            self.presentViewController(signUpVC, animated: true, completion: nil)
+        }
+    }
+
+    func popUpPhoneNumberView() {
+        var signUpVC = vcWithID("PhoneNumberVC") as! PhoneNumberVC
         signUpVC.parentVC = self
         signUpVC.modalTransitionStyle = .CrossDissolve
         signUpVC.modalPresentationStyle = .OverCurrentContext
