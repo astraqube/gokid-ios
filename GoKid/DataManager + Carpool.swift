@@ -24,9 +24,12 @@ extension DataManager {
         println(map)
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            var json = JSON(obj)["carpool"]
-            var carpool = CarpoolModel(json: json)
-            self.userManager.currentCarpoolModel.id = carpool.id
+            var json = JSON(obj)
+            var carpool = CarpoolModel(json: json["carpool"])
+            carpool.riders = RiderModel.arrayOfRidersWithJSON(json["riders"])
+
+            self.userManager.currentCarpoolModel = carpool
+
             println("create carpool success")
             comp(true, "")
         }) { (op, error) in
@@ -259,9 +262,9 @@ extension DataManager {
             println(obj)
             occ.riders.removeAtIndex(find(occ.riders, rider)!)
             comp(true, "")
-            }) { (op, error) in
-                println("updateOccurenceRiders failed")
-                self.handleRequestError(op, error: error, comp: comp)
+        }) { (op, error) in
+            println("updateOccurenceRiders failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
