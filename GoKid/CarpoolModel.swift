@@ -20,8 +20,19 @@ class CarpoolModel: NSObject {
     var endLocation: String?
     
     var riders = [RiderModel]()
-    
-    var kidName = ""
+
+    var _kidName = ""
+    var kidName : String {
+        set { _kidName = newValue }
+        get {
+            if riders.count > 0 {
+                return riders.first!.firstName
+            } else {
+                return _kidName
+            }
+        }
+    }
+
     var name = ""
     var id = 0
 
