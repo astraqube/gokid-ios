@@ -44,11 +44,17 @@ class CarpoolModel: NSObject {
         var schedule = json["schedule"]
         startDate = parseDate(schedule, key: "starts_at")
         endDate = parseDate(schedule, key: "ends_at")
-        var riderIDs = [Int]()
-        for (index: String, value: JSON) in json["rider_ids"] {
-            riderIDs.append(value.intValue)
+
+        if json["rider_ids"] {
+            var riderIDs = [Int]()
+            for (index: String, value: JSON) in json["rider_ids"] {
+                riderIDs.append(value.intValue)
+            }
+            riders = RiderModel.ridersForRiderIDs(riderIDs)
+            
+        } else if json["riders"] {
+            riders = RiderModel.arrayOfRidersWithJSON(json["riders"])
         }
-        riders = RiderModel.ridersForRiderIDs(riderIDs)
     }
 
     func parseDate(json: JSON, key: String) -> NSDate? {

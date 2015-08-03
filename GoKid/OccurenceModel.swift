@@ -67,11 +67,18 @@ class OccurenceModel: NSObject {
             volunteer = VolunteerModel(json: volunteerJSON)
         }
         poolDriverImageUrl = occurence["volunteer"]["avatar"]["thumb_url"].stringValue
-        var riderIDs = [Int]()
-        for (index: String, value: JSON) in occurence["rider_ids"] {
-            riderIDs.append(value.intValue)
+
+        if occurence["rider_ids"] {
+            var riderIDs = [Int]()
+            for (index: String, value: JSON) in occurence["rider_ids"] {
+                riderIDs.append(value.intValue)
+            }
+            riders = RiderModel.ridersForRiderIDs(riderIDs)
+            
+        } else if occurence["riders"] {
+            riders = RiderModel.arrayOfRidersWithJSON(occurence["riders"])
         }
-        riders = RiderModel.ridersForRiderIDs(riderIDs)
+
         eventLocation = Location(json: occurence["event_location"])
         defaultLocation = Location(json: occurence["default_address"])
         generateOtherField()
