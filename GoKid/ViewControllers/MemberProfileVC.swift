@@ -182,7 +182,10 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         row.cellConfig["textField.font"] = fontValue
         row.cellConfig["textField.textColor"] = colorLabel
         row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
-        row.cellConfig["textField.enabled"] = false
+        if sourceCellType == .EditUser {
+            // ensure phone verification flow
+            row.cellConfig["textField.enabled"] = false
+        }
         row.value = model.phoneNumber
         section.addFormRow(row)
 
@@ -270,7 +273,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 
         var formRow = self.form.formRowAtIndex(indexPath)
 
-        if formRow.tag == Tags.Phone.rawValue {
+        if formRow.tag == Tags.Phone.rawValue && sourceCellType == .EditUser {
             self.alertPhoneEdit(formRow)
         }
     }
