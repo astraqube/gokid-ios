@@ -58,7 +58,7 @@ extension DataManager {
     }
     
     func updateNotificationToken(token: String, comp: completion) {
-        var url = baseURL + "/api_ios_device_token"
+        var url = baseURL + "/api/ios_device_token"
         var map = ["device_token": token]
         var manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
