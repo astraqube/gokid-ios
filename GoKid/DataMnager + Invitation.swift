@@ -112,4 +112,18 @@ extension DataManager {
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
+
+    func getInvitationByCode(code: String, comp: ObjectCompletion) {
+        var url = baseURL + "/api/invites/\(code)"
+        var manager = managerWithToken()
+        manager.GET(url, parameters: nil, success: { (op, obj) in
+            var json = JSON(obj)
+            var invitation = InvitationModel(json: json)
+            comp(true, "", invitation)
+        }) { (op, error) in
+            println("getFirstInvitation failed")
+            self.handleUserResuestError(op, error: error, comp: comp)
+        }
+    }
+
 }
