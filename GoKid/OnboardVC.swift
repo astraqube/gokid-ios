@@ -51,6 +51,10 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
         self.postNotification("requestForUserToken")
     }
     
+    func invitedButtonClicked(button: UIButton) {
+        self.postNotification("gotInvited")
+    }
+
     func goNowButtonHandler() {
         showAlertView()
     }
@@ -130,11 +134,24 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
         signinButton.setTitle("   Sign in   ", forState: .Normal)
         signinButton.addTarget(self, action: "signInButtonClicked:", forControlEvents: .TouchUpInside)
         signinButton.layer.borderColor = colorManager.appDarkGreen.CGColor
-        signinButton.layer.borderWidth = 2.0
+        signinButton.layer.borderWidth = 1.0
         signinButton.layer.cornerRadius = 3.0
         onboardingVC.view.addSubview(signinButton)
         signinButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 20)
         signinButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
+
+        var invitedButton = UIButton(frame: rect)
+        invitedButton.backgroundColor = UIColor.clearColor()
+        invitedButton.setTitleColor(colorManager.appDarkGreen, forState: .Normal)
+        invitedButton.titleLabel?.font = UIFont.systemFontOfSize(14)
+        invitedButton.setTitle("   Got Invited?   ", forState: .Normal)
+        invitedButton.addTarget(self, action: "invitedButtonClicked:", forControlEvents: .TouchUpInside)
+        invitedButton.layer.borderColor = colorManager.appDarkGreen.CGColor
+        invitedButton.layer.borderWidth = 1.0
+        invitedButton.layer.cornerRadius = 3.0
+        onboardingVC.view.addSubview(invitedButton)
+        invitedButton.autoPinEdgeToSuperviewEdge(.Left, withInset: 20)
+        invitedButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
 
         var s = onboardingVC.pageControl.frame.size
         var o = onboardingVC.pageControl.frame.origin
