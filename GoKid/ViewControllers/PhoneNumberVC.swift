@@ -17,6 +17,7 @@ class PhoneNumberVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerForKeyBoardNotification()
+        self.phoneNumber.keyboardType = .PhonePad
     }
 
     func afterSignIn() {
