@@ -119,6 +119,7 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             var json = JSON(obj)
             var invitation = InvitationModel(json: json["invite"])
+            self.userManager.currentCarpoolModel = invitation.carpool
             comp(true, "", invitation)
         }) { (op, error) in
             println("getFirstInvitation failed")
