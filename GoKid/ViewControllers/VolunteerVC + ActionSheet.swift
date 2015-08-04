@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
 
+/* DEPRECATED
 extension VolunteerVC {
     
     // MARK: Handle Action Sheet
     // --------------------------------------------------------------------------------------------
-    
+
     func showActionSheet(cell: VolunteerCell) {
         var row = self.tableView.indexPathForCell(cell)!.row
         var model = self.dataSource[row]
@@ -20,7 +21,7 @@ extension VolunteerVC {
             self.registerVolunteerForCell(cell, model: model)
         }
     }
-/* DEPRECATED
+
     func showTakenActionSheet(cell: VolunteerCell, model: OccurenceModel) {
         let button1 = UIAlertAction(title: "Unvolunteer", style: .Default) { (alert) in
             self.unRegisterVolunteerForCell(cell, model: model)
@@ -56,7 +57,7 @@ extension VolunteerVC {
         alert.addAction(button6)
         self.presentViewController(alert, animated: true, completion: nil)
     }
-*/
+
     func unRegisterVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
         LoadingView.showWithMaskType(.Black)
         self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
@@ -88,3 +89,4 @@ extension VolunteerVC {
         }
     }
 }
+*/

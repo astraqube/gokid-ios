@@ -875,6 +875,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="UHP-9x-bQu" id="IMk-1e-LxL"/>
+                                    <outlet property="delegate" destination="UHP-9x-bQu" id="sRw-78-uzf"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volunteer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFg-3e-i5Z">
                                 <rect key="frame" x="118" y="20" width="85" height="24"/>

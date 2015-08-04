@@ -15,18 +15,8 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
-        setupTableView()
-    }
-    
-    func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tryLoadTableData()
-    }
-    
-    func setupNavigationBar() {
         self.subtitleLabel?.text = userManager.currentCarpoolDescription()
+        tryLoadTableData()
     }
     
     // MARK: IBAction Method
@@ -44,7 +34,12 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func checkButtonClickHandler(cell: VolunteerCell, button: UIButton) {
         if let row = tableView.indexPathForCell(cell)?.row {
-            showActionSheet(cell)
+            let model = self.dataSource[row]
+            if model.taken {
+                self.unRegisterVolunteerForCell(cell, model: model)
+            } else{
+                self.registerVolunteerForCell(cell, model: model)
+            }
         }
     }
     
@@ -107,38 +102,16 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    // MARK: NetWork Create Carpool
-    // --------------------------------------------------------------------------------------------
-    
-    func createCarpool() {
-        var model = userManager.currentCarpoolModel
-        dataManager.createCarpool(model) { (success, errorStr) in
-            if success {
-                var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
-                vc.hideForwardNavigationButtons = false
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                self.showAlert("Alert", messege: "Cannot create Carpool " + errorStr, cancleTitle: "OK")
-            }
-        }
-    }
-    
     func tryLoadTableData() {
-        if userManager.userLoggedIn {
-            LoadingView.showWithMaskType(.Black)
-            dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, comp: handleGetVolunteerList)
-        } else {
-            showAlert("Cannot fetch data", messege: "You are not logged in", cancleTitle: "OK")
-        }
-    }
-    
-    func handleGetVolunteerList(success: Bool, errorStr: String) {
-        LoadingView.dismiss()
-        if success {
-            dataSource = processRawCalendarEvents(userManager.volunteerEvents)
-            reloadWithDataSourceOnMainThread()
-        } else {
-            self.showAlert("Fail to fetch vlounteer list", messege: errorStr, cancleTitle: "OK")
+        LoadingView.showWithMaskType(.Black)
+        dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id) { (success: Bool, errorStr: String) in
+            LoadingView.dismiss()
+            if success {
+                self.dataSource = self.processRawCalendarEvents(self.userManager.volunteerEvents)
+                self.tableView.reloadData()
+            } else {
+                self.showAlert("Error", messege: errorStr, cancleTitle: "OK")
+            }
         }
     }
     
@@ -157,11 +130,36 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
         return data
     }
-    
-    func reloadWithDataSourceOnMainThread() {
-        onMainThread() {
-            self.tableView.reloadData()
+
+    func unRegisterVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
+        LoadingView.showWithMaskType(.Black)
+        self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
+            LoadingView.dismiss()
+            onMainThread() {
+                if success {
+                    cell.driverImageView.image = UIImage(named: "checkCirc")
+                    model.taken = !model.taken
+                } else {
+                    self.showAlert("Error", messege: errStr, cancleTitle: "OK")
+                }
+            }
         }
     }
-}
 
+    func registerVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
+        LoadingView.showWithMaskType(.Black)
+        self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
+            LoadingView.dismiss()
+            onMainThread() {
+                if success {
+                    self.imageManager.setImageToView(cell.driverImageView, urlStr: self.userManager.info.thumURL)
+                    model.taken = !model.taken
+                    model.poolDriverImageUrl = self.userManager.info.thumURL
+                } else {
+                    self.showAlert("Error", messege: errStr, cancleTitle: "OK")
+                }
+            }
+        }
+    }
+
+}
