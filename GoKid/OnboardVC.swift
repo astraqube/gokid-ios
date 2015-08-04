@@ -137,7 +137,7 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
         signinButton.layer.borderWidth = 1.0
         signinButton.layer.cornerRadius = 3.0
         onboardingVC.view.addSubview(signinButton)
-        signinButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 20)
+        signinButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 120)
         signinButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
 
         var invitedButton = UIButton(frame: rect)
@@ -150,7 +150,7 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
         invitedButton.layer.borderWidth = 1.0
         invitedButton.layer.cornerRadius = 3.0
         onboardingVC.view.addSubview(invitedButton)
-        invitedButton.autoPinEdgeToSuperviewEdge(.Left, withInset: 20)
+        invitedButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 8)
         invitedButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
 
         var s = onboardingVC.pageControl.frame.size
