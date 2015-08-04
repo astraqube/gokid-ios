@@ -79,7 +79,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Five!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Yr-Dy-5sM">
-                                <rect key="frame" x="107" y="228" width="106" height="28"/>
+                                <rect key="frame" x="109" y="229" width="103" height="27"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="23"/>
                                 <color key="textColor" red="0.20784313725490197" green="0.32156862745098042" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -109,7 +109,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="highFive" translatesAutoresizingMaskIntoConstraints="NO" id="ZIJ-HC-LRz">
-                                <rect key="frame" x="104" y="86" width="112" height="110"/>
+                                <rect key="frame" x="104" y="87" width="112" height="110"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="112" id="FF5-Tu-WNq"/>
@@ -130,13 +130,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carpool is confirmed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyI-gb-cjM">
-                                <rect key="frame" x="71" y="20" width="179" height="22"/>
+                                <rect key="frame" x="76" y="20" width="169" height="21"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaV-T1-bgw">
-                                <rect key="frame" x="89" y="42" width="143" height="16"/>
+                                <rect key="frame" x="91" y="41" width="140" height="16"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -226,13 +226,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzi-z3-xvL">
-                                <rect key="frame" x="89" y="44" width="143" height="16"/>
+                                <rect key="frame" x="91" y="44" width="140" height="16"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date &amp; Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06J-j4-2Zt">
-                                <rect key="frame" x="108" y="20" width="105" height="24"/>
+                                <rect key="frame" x="111" y="20" width="99" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="fPs-0t-w1r"/>
                                 </constraints>
@@ -283,7 +283,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite other parents to" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjQ-Al-KrZ">
-                                <rect key="frame" x="44" y="242" width="232" height="28"/>
+                                <rect key="frame" x="48" y="244" width="225" height="27"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="23"/>
                                 <color key="textColor" red="0.35686274509803922" green="0.52549019607843139" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -325,13 +325,13 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Socer Prctice&quot;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8R-AK-vEe">
-                                <rect key="frame" x="83" y="270" width="154" height="28"/>
+                                <rect key="frame" x="81" y="271" width="159" height="27"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="23"/>
                                 <color key="textColor" red="0.35686274509803922" green="0.52549019607843139" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airplane" translatesAutoresizingMaskIntoConstraints="NO" id="vPT-Dv-vNe">
-                                <rect key="frame" x="102" y="116" width="116" height="94"/>
+                                <rect key="frame" x="102" y="118" width="116" height="94"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="116" id="Cdw-at-UEn"/>
                                     <constraint firstAttribute="height" constant="94" id="Kau-fw-zCW"/>
@@ -351,7 +351,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Parents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeF-Ge-WxQ">
-                                <rect key="frame" x="101" y="20" width="118" height="24"/>
+                                <rect key="frame" x="105" y="20" width="110" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="CsD-aM-kvw"/>
                                 </constraints>
@@ -360,7 +360,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwO-Zy-Jdy">
-                                <rect key="frame" x="89" y="44" width="143" height="16"/>
+                                <rect key="frame" x="90" y="44" width="140" height="16"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -430,7 +430,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QN3-JY-SRg">
-                                <rect key="frame" x="97" y="33" width="126" height="26"/>
+                                <rect key="frame" x="101" y="33" width="119" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="rfq-s2-yUK"/>
                                 </constraints>
@@ -479,7 +479,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekM-Lu-ajN">
-                                <rect key="frame" x="16" y="220" width="58" height="20"/>
+                                <rect key="frame" x="16" y="220" width="54" height="20"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="17"/>
                                 <color key="textColor" red="0.28235294117647058" green="0.37254901960784315" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -636,7 +636,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-Ew-p5T">
-                                <rect key="frame" x="123" y="20" width="75" height="24"/>
+                                <rect key="frame" x="125" y="20" width="70" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="zEs-rh-lNg"/>
                                 </constraints>
@@ -665,7 +665,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FD-YB-Iwp">
-                                <rect key="frame" x="89" y="44" width="143" height="16"/>
+                                <rect key="frame" x="90" y="44" width="140" height="16"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -767,7 +767,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="April 24, Fri" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irr-Cj-HaY">
-                                                    <rect key="frame" x="115" y="9" width="90" height="20"/>
+                                                    <rect key="frame" x="117" y="9" width="87" height="20"/>
                                                     <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="17"/>
                                                     <color key="textColor" red="0.34509803919999998" green="0.72156862749999995" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -881,7 +881,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volunteer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFg-3e-i5Z">
-                                <rect key="frame" x="118" y="20" width="85" height="24"/>
+                                <rect key="frame" x="122" y="20" width="76" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="lFI-2J-Fwa"/>
                                 </constraints>
@@ -910,7 +910,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg2-JE-pAb">
-                                <rect key="frame" x="89" y="44" width="143" height="16"/>
+                                <rect key="frame" x="90" y="44" width="140" height="16"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1172,13 +1172,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ImU-yY-PAh">
-                                <rect key="frame" x="109" y="20" width="103" height="22"/>
+                                <rect key="frame" x="111" y="20" width="98" height="21"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpO-ln-zLt">
-                                <rect key="frame" x="89" y="42" width="143" height="16"/>
+                                <rect key="frame" x="90" y="41" width="140" height="16"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1204,7 +1204,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgW-0I-RqV">
-                                                    <rect key="frame" x="8" y="15" width="47" height="20"/>
+                                                    <rect key="frame" x="8" y="15" width="42" height="20"/>
                                                     <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="17"/>
                                                     <color key="textColor" red="0.2784313725" green="0.67843137249999996" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1308,13 +1308,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC8-ys-m15">
-                                <rect key="frame" x="89" y="44" width="143" height="16"/>
+                                <rect key="frame" x="91" y="44" width="140" height="16"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Carpool" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MZ-cU-AsZ">
-                                <rect key="frame" x="107" y="20" width="107" height="24"/>
+                                <rect key="frame" x="110" y="20" width="101" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="GZ9-qj-Lmq"/>
                                 </constraints>
