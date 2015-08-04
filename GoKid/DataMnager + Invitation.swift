@@ -118,7 +118,7 @@ extension DataManager {
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
             var json = JSON(obj)
-            var invitation = InvitationModel(json: json)
+            var invitation = InvitationModel(json: json["invite"])
             comp(true, "", invitation)
         }) { (op, error) in
             println("getFirstInvitation failed")

@@ -13,6 +13,7 @@ class InviteInfoVC: BaseFormVC {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.requireSignup()
+        self.requirePhoneNumber()
     }
 
     override func initForm() {
@@ -27,7 +28,7 @@ class InviteInfoVC: BaseFormVC {
 
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
-        row = XLFormRowDescriptor(tag: "phone", rowType: XLFormRowDescriptorTypePhone, title: "Phone Number")
+        row = XLFormRowDescriptor(tag: "code", rowType: XLFormRowDescriptorTypePhone, title: "Invitation Code")
         row.cellConfig["textLabel.font"] = fontLabel
         row.cellConfig["textLabel.color"] = colorLabel
         row.cellConfig["textField.font"] = fontValue
@@ -35,7 +36,7 @@ class InviteInfoVC: BaseFormVC {
         row.required = true
         section.addFormRow(row)
 
-        section.footerTitle = "Enter the phone number in which you received the invitation"
+        section.footerTitle = "Enter the invitation code you received"
 
         form.addFormSection(section)
         form.assignFirstResponderOnShow = true
@@ -72,19 +73,26 @@ class InviteInfoVC: BaseFormVC {
         }
     }
 
+    func requirePhoneNumber() {
+        // require user session and phone number
+        if self.userManager.userLoggedIn == true && self.userManager.info.phoneNumber == "" {
+            self.postNotification("requestForPhoneNumber")
+        }
+    }
+
     private func proceed() {
         let formData = self.form.formValues()
-        var phoneNumber = formData["phone"] as? String
+        var verificationCode = formData["code"] as? String
 
         LoadingView.showWithMaskType(.Black)
-        dataManager.requestVerificationCode(phoneNumber!) { (success, errorStr) in
+        dataManager.getInvitationByCode(verificationCode!) { (success, errorStr, invitation) in
             LoadingView.dismiss()
             if success {
-                var vc = vcWithID("PhoneVerifyVC") as! PhoneVerifyVC
-                vc.phoneNumberString = phoneNumber!
+                var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
+                vc.invitation = invitation as! InvitationModel
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                self.showAlert("Can't find that Invitation", messege: errorStr, cancleTitle: "OK")
+                self.showAlert("Invitation Problem", messege: errorStr, cancleTitle: "OK")
             }
         }
     }
