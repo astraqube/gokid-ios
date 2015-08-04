@@ -63,7 +63,6 @@ class BaseFormVC: XLFormViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.becomeFirstResponder()
         self.toggleRightNavButtonState()
     }
     

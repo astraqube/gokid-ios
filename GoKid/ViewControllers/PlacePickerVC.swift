@@ -27,11 +27,6 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         self.searchTextField.becomeFirstResponder()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.searchTextField.resignFirstResponder()
-    }
-    
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self

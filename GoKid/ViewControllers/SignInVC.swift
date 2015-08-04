@@ -98,7 +98,6 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
         }
 
         if textField == self.passwordTextField {
-            self.passwordTextField.resignFirstResponder()
             self.rightNavButtonTapped()
             return false
         }

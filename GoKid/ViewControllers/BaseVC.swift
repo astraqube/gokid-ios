@@ -37,6 +37,12 @@ class BaseVC: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.resignFirstResponder()
+        self.view.endEditing(true)
+    }
+
     func addLargeNavigationButton() {
         var buttonW: CGFloat = 40
         var buttonH: CGFloat = 36

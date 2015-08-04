@@ -30,13 +30,6 @@ class BasicInfoVC: BaseVC, UITextFieldDelegate {
         self.carpoolTitleTextField.becomeFirstResponder()
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        self.resignFirstResponder()
-        self.view.endEditing(true)
-    }
-
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
@@ -80,7 +73,6 @@ class BasicInfoVC: BaseVC, UITextFieldDelegate {
         }
 
         if textField == self.kidsNameTextField {
-            self.kidsNameTextField.resignFirstResponder()
             self.rightNavButtonTapped()
             return false
         }

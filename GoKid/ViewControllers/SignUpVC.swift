@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FBSDKLoginButtonDelegate {
+class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var lastNameTextField: PaddingTextField!
@@ -128,19 +128,28 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     // MARK: TextField Delegate
     // --------------------------------------------------------------------------------------------
     
-    @IBAction func lastNameTextFieldReturn(sender: AnyObject) {
-        firstNameTextField.becomeFirstResponder()
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.firstNameTextField {
+            self.lastNameTextField.becomeFirstResponder()
+            return false
+        }
+
+        if textField == self.lastNameTextField {
+            self.emailTextField.becomeFirstResponder()
+            return false
+        }
+
+        if textField == self.emailTextField {
+            self.passwordTextField.becomeFirstResponder()
+            return false
+        }
+
+        if textField == self.passwordTextField {
+            self.rightNavButtonTapped()
+            return false
+        }
+
+        return true
     }
-    
-    @IBAction func firstNameTextFieldReturn(sender: AnyObject) {
-        emailTextField.becomeFirstResponder()
-    }
-    
-    @IBAction func emailTextFieldReturn(sender: AnyObject) {
-        passwordTextField.becomeFirstResponder()
-    }
-    
-    @IBAction func passwordTextFieldReturn(sender: AnyObject) {
-        passwordTextField.resignFirstResponder()
-    }
+
 }

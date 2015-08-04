@@ -20,6 +20,11 @@ class PhoneNumberVC: BaseVC {
         self.phoneNumber.keyboardType = .PhonePad
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.phoneNumber.becomeFirstResponder()
+    }
+
     func afterSignIn() {
         (self.parentVC as! MainStackVC).refreshCurrentVC(false)
     }
