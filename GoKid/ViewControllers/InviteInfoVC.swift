@@ -28,7 +28,7 @@ class InviteInfoVC: BaseFormVC {
 
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
-        row = XLFormRowDescriptor(tag: "code", rowType: XLFormRowDescriptorTypePhone, title: "Invitation Code")
+        row = XLFormRowDescriptor(tag: "code", rowType: XLFormRowDescriptorTypeText, title: "Invitation Code")
         row.cellConfig["textLabel.font"] = fontLabel
         row.cellConfig["textLabel.color"] = colorLabel
         row.cellConfig["textField.font"] = fontValue
