@@ -132,7 +132,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         row.cellConfig["detailTextLabel.font"] = fontValue
         row.cellConfig["detailTextLabel.color"] = colorLabel
         row.required = true
-        row.selectorOptions = [RoleTypeParent, RoleTypeChild, RoleTypeCareTaker]
+        row.selectorOptions = [RoleTypeParent, RoleTypeMommy, RoleTypeDaddy, RoleTypeChild, RoleTypeCareTaker]
         row.value = model.role
         section.addFormRow(row)
 
