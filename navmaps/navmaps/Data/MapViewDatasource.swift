@@ -60,6 +60,8 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         self.type = type
         self.navigation = navigation
         self.mapView = mapView
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.removeOverlays(mapView.overlays)
     }
     
     ///adds navigation's annotations, sets initially visible pins, starts getting route

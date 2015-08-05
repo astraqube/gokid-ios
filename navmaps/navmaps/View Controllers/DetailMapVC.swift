@@ -68,13 +68,14 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapDataSource = MapViewDatasource(type: .Detail, navigation: navigation, mapView: mapView)
-        mapView.delegate = mapDataSource
-        mapDataSource.setup()
         setupView()
     }
     
     func setupView() {
+        mapDataSource = MapViewDatasource(type: .Detail, navigation: navigation, mapView: mapView)
+        mapView.delegate = mapDataSource
+        mapDataSource.setup()
+
         //if pickups == 1 && dropoffs.count > 1, riders = dropoffs
         //else riders = pickups
         var riders : [Stop]

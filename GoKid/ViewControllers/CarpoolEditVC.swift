@@ -8,10 +8,14 @@
 
 import UIKit
 
+///Allows editing of Occurrences.
+///Deleteion of the Carpool or Occurrence pops to root VC of NavController.
+///A callback function alerts  changes of the model.
 class CarpoolEditVC: BaseFormVC {
-
     var occurrence : OccurenceModel!
-
+    ///This method is called on each update of occurrence but NOT deletion
+    var onOccurrenceEdited : ((occurrence: OccurenceModel)->())?
+    
     private enum Tags : String {
         case Unauthorized = "You are not authorized to make changes"
         case EventLocation = "Event Location"
@@ -152,6 +156,7 @@ class CarpoolEditVC: BaseFormVC {
                 } else {
                     self.occurrence.eventLocation = location
                     self.tableView.reloadData()
+                    self.onOccurrenceEdited?(occurrence: self.occurrence)
                 }
             }
         }
@@ -181,6 +186,7 @@ class CarpoolEditVC: BaseFormVC {
                     self.occurrence.riders.removeAtIndex(index!)
                     self.occurrence.riders.insert(_rider, atIndex: index!)
                     self.tableView.reloadData()
+                    self.onOccurrenceEdited?(occurrence: self.occurrence)
                 }
             }
         }
