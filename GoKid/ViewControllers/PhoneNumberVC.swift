@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhoneNumberVC: BaseVC {
+class PhoneNumberVC: BaseVC, UITextFieldDelegate {
 
     @IBOutlet weak var phoneNumber: PaddingTextField!
 
@@ -88,6 +88,18 @@ class PhoneNumberVC: BaseVC {
                 self.showAlert("Verification Failed", messege: errorStr, cancleTitle: "OK")
             }
         }
+    }
+
+    // MARK: TextField Delegate
+    // --------------------------------------------------------------------------------------------
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.phoneNumber {
+            self.rightNavButtonTapped()
+            return false
+        }
+
+        return true
     }
 
 }

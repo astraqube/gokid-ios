@@ -20,9 +20,6 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
         super.viewDidLoad()
         setupLoginButton()
         self.registerForKeyBoardNotification()
-
-        self.emailTextField.delegate = self
-        self.passwordTextField.delegate = self
     }
 
     func afterSignIn() {

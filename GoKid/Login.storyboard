@@ -267,7 +267,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="firstNameTextFieldReturn:" destination="Vno-EF-vFD" eventType="editingDidEndOnExit" id="0tP-dV-MR9"/>
+                                                    <outlet property="delegate" destination="Vno-EF-vFD" id="6CC-Js-F42"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MFB-9J-IvI" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
@@ -286,7 +286,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="lastNameTextFieldReturn:" destination="Vno-EF-vFD" eventType="editingDidEndOnExit" id="kHT-by-RhJ"/>
+                                                    <outlet property="delegate" destination="Vno-EF-vFD" id="h4R-VQ-pit"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6o-h6-gZd" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
@@ -305,7 +305,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="emailTextFieldReturn:" destination="Vno-EF-vFD" eventType="editingDidEndOnExit" id="3od-e2-fG2"/>
+                                                    <outlet property="delegate" destination="Vno-EF-vFD" id="MFV-hI-Psd"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Create Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ndm-3O-FhG" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
@@ -324,7 +324,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="passwordTextFieldReturn:" destination="Vno-EF-vFD" eventType="editingDidEndOnExit" id="IKB-AD-dxQ"/>
+                                                    <outlet property="delegate" destination="Vno-EF-vFD" id="eCP-R9-VBl"/>
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ete-Y5-XQS">
@@ -514,6 +514,9 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="yAs-G3-djZ" id="eVb-aF-tGS"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pWV-f0-y4s" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="24" y="218" width="240" height="44"/>
@@ -533,6 +536,9 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="yAs-G3-djZ" id="WA2-eJ-8mp"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kr8-Jd-UQl">
                                         <rect key="frame" x="260" y="8" width="20" height="20"/>
@@ -701,7 +707,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="emailTextFieldReturn:" destination="Vno-EF-vFD" eventType="editingDidEndOnExit" id="5wZ-EC-oX7"/>
+                                                    <outlet property="delegate" destination="Xak-Z6-TjE" id="Ffe-fn-rk5"/>
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPI-6e-jI3">

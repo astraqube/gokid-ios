@@ -984,6 +984,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="carpoolTitleChanged:" destination="m5G-xI-nfN" eventType="editingChanged" id="ZEP-PN-pNC"/>
+                                    <outlet property="delegate" destination="m5G-xI-nfN" id="BAl-Vb-EG2"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Your Kid's Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7r0-1o-gkM" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
@@ -1001,6 +1002,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="kidsNameChanged:" destination="m5G-xI-nfN" eventType="editingChanged" id="W0z-t5-nZC"/>
+                                    <outlet property="delegate" destination="m5G-xI-nfN" id="73t-Ot-ghj"/>
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_name_selected" translatesAutoresizingMaskIntoConstraints="NO" id="W7x-E9-6az">

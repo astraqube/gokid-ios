@@ -18,9 +18,6 @@ class BasicInfoVC: BaseVC, UITextFieldDelegate {
 
         userManager.currentCarpoolModel = CarpoolModel()
 
-        self.carpoolTitleTextField.delegate = self
-        self.kidsNameTextField.delegate = self
-
         self.rightButton.enabled = self.canProceed()
     }
 
