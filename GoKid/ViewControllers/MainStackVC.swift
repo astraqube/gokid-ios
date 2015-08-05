@@ -45,11 +45,15 @@ class MainStackVC: IIViewDeckController {
     }
 
     func setSignedInView() {
+        self.setSignedInView("CalendarVC")
+    }
+
+    func setSignedInView(mainVCName: String) {
         let menuVC = vcWithID("MenuVC") as! MenuVC
         self.leftController = menuVC
         self.leftSize = 100
 
-        self.rootVC = vcWithID("CalendarVC")
+        self.rootVC = vcWithID(mainVCName)
         self.centerController = UINavigationController(rootViewController: self.rootVC)
     }
 

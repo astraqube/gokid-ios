@@ -28,13 +28,15 @@ class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
     }
     
     override func rightNavButtonTapped() {
-        var vc = vcWithID("CalendarVC")
-        navigationController?.setViewControllers([vc], animated: true)
+        let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+        let mainController = appDelegate.window!.rootViewController as! MainStackVC
+        mainController.setSignedInView("CalendarVC")
     }
     
     @IBAction func addTeamMemberButtonClick(sender: AnyObject) {
-        var vc = vcWithID("TeamAccountVC")
-        navigationController?.setViewControllers([vc], animated: true)
+        let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+        let mainController = appDelegate.window!.rootViewController as! MainStackVC
+        mainController.setSignedInView("TeamAccountVC")
     }
     
     // MARK: Register Notification For App
