@@ -282,7 +282,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             }))
             volunteerActionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             self.navigationController?.topViewController.presentViewController(volunteerActionSheet, animated: true, completion: nil)
-        } else {
+        } else if model.volunteerable {
             LoadingView.showWithMaskType(.Black)
             self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
                 LoadingView.dismiss()
