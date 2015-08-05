@@ -28,8 +28,9 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
+        // Empty table treatment
+        let backgroundView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = backgroundView
     }
     
     // MARK: TableView DataSource
