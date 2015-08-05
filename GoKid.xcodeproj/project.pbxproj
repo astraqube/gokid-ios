@@ -26,7 +26,6 @@
 		1D1228DE1B424AC6001CA6A4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1228DD1B424AC6001CA6A4 /* Login.storyboard */; };
 		1D1228E01B424AD9001CA6A4 /* TeamAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1228DF1B424AD9001CA6A4 /* TeamAccount.storyboard */; };
 		1D1228E21B42635D001CA6A4 /* DataMnager + Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1228E11B42635D001CA6A4 /* DataMnager + Invitation.swift */; };
-		1D19D5231B3FF569007A716A /* FrequencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D19D5221B3FF569007A716A /* FrequencyCell.swift */; };
 		1D1FD6651B1BFC4A00287FA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6641B1BFC4A00287FA0 /* AppDelegate.swift */; };
 		1D1FD66A1B1BFC4A00287FA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1FD6681B1BFC4A00287FA0 /* Main.storyboard */; };
 		1D1FD66C1B1BFC4A00287FA0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D1FD66B1B1BFC4A00287FA0 /* Images.xcassets */; };
@@ -38,9 +37,6 @@
 		1D1FD6951B1C103500287FA0 /* UIView+Pop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */; };
 		1D1FD6981B1C11C100287FA0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1FD6971B1C11C100287FA0 /* UserManager.swift */; };
 		1D3554591B3FD14200044A3F /* DataMnager + Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3554581B3FD14200044A3F /* DataMnager + Notification.swift */; };
-		1D368F161B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D368F151B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift */; };
-		1D39AAB01B3FFD7C00215D6E /* FrequencyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D39AAAF1B3FFD7C00215D6E /* FrequencyHeader.swift */; };
-		1D39AAB31B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D39AAB21B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift */; };
 		1D3F65141B2005D500CCF6A1 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65131B2005D500CCF6A1 /* LocationVC.swift */; };
 		1D3F65161B2005EC00CCF6A1 /* LocationInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65151B2005EC00CCF6A1 /* LocationInputVC.swift */; };
 		1D3F65181B2073D700CCF6A1 /* RecentAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65171B2073D700CCF6A1 /* RecentAddressCell.swift */; };
@@ -68,7 +64,6 @@
 		1D891F251B24635A006FD961 /* ContactNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F241B246359006FD961 /* ContactNameCell.swift */; };
 		1D891F271B2734C2006FD961 /* TeamMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F261B2734C2006FD961 /* TeamMemberModel.swift */; };
 		1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F281B273535006FD961 /* AddTeamMemberCell.swift */; };
-		1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F2A1B273C2E006FD961 /* AddTeamMemberVC.swift */; };
 		1D8F78EE1B3672D300C78CAF /* BaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F78ED1B3672D300C78CAF /* BaseTVC.swift */; };
 		1D8F78F91B36A07F00C78CAF /* CalendarNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F78F51B36A07F00C78CAF /* CalendarNotificationCell.swift */; };
 		1D8F78FA1B36A07F00C78CAF /* CalendarAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F78F61B36A07F00C78CAF /* CalendarAddCell.swift */; };
@@ -79,17 +74,10 @@
 		1D8F79021B36A64D00C78CAF /* DataManager + Fake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F79011B36A64D00C78CAF /* DataManager + Fake.swift */; };
 		1D975A381B1F40D500CD4D89 /* InviteInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */; };
 		1D975A3A1B1F40E500CD4D89 /* InviteConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */; };
-		1D975A3C1B1F7C4E00CD4D89 /* TimeAndDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A3B1B1F7C4E00CD4D89 /* TimeAndDateVC.swift */; };
-		1D975A3E1B1F7FF700CD4D89 /* FrequencyPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A3D1B1F7FF700CD4D89 /* FrequencyPickerVC.swift */; };
-		1D975A431B1F94B500CD4D89 /* TDTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A421B1F94B500CD4D89 /* TDTextCell.swift */; };
-		1D975A451B1F9EB800CD4D89 /* TDSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A441B1F9EB800CD4D89 /* TDSwitchCell.swift */; };
-		1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A461B1FA09100CD4D89 /* TDCellModel.swift */; };
 		1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D975A481B1FA72500CD4D89 /* TDEmptyCell.swift */; };
 		1DA789441B23962200B391E8 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789431B23962200B391E8 /* ColorManager.swift */; };
 		1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA789451B23C42700B391E8 /* OnboardVC.swift */; };
 		1DB5CC7F1B51F8B6004F6ECB /* FackCarpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC7E1B51F8B6004F6ECB /* FackCarpool.swift */; };
-		1DB5CC811B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC801B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift */; };
-		1DB5CC831B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC821B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift */; };
 		1DB5CC851B521DCF004F6ECB /* LocationVC + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC841B521DCF004F6ECB /* LocationVC + Layout.swift */; };
 		1DB5CC871B5244FC004F6ECB /* GKSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB5CC861B5244FC004F6ECB /* GKSegmentControl.swift */; };
 		1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC765C11B3274E800D9D306 /* DataManager + Sign.swift */; };
@@ -110,8 +98,6 @@
 		1DEFF1851B4A8B620094B54E /* LastOnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1841B4A8B620094B54E /* LastOnboardVC.swift */; };
 		1DF771FD1B3D2899003BA938 /* DataMnager + Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF771FC1B3D2899003BA938 /* DataMnager + Verification.swift */; };
 		1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE951B1C5A6200630440 /* MemberProfileVC.swift */; };
-		1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE971B1C6DF500630440 /* Phone#VC.swift */; };
-		1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE991B1C6E1400630440 /* PhoneVerifyVC.swift */; };
 		1DFBBE9C1B1C78DC00630440 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */; };
 		1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */; };
 		1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */; };
@@ -853,7 +839,7 @@
 				1D1FD65C1B1BFC4A00287FA0 /* Frameworks */,
 				1D1FD65D1B1BFC4A00287FA0 /* Resources */,
 				09818E3E01C63C9CBB504CD2 /* Copy Pods Resources */,
-				1D533D1A1B2951BF00F848B8 /* ShellScript */,
+				1D533D1A1B2951BF00F848B8 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -969,13 +955,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1D533D1A1B2951BF00F848B8 /* ShellScript */ = {
+		1D533D1A1B2951BF00F848B8 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1010,7 +997,6 @@
 				1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */,
 				796ABA551B5D72DE0037F840 /* Navigation + Directions.swift in Sources */,
 				1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */,
-				1D39AAB31B40C2DD00215D6E /* VolunteerVC + ActionSheet.swift in Sources */,
 				1D8F78FB1B36A07F00C78CAF /* CalendarDateCell.swift in Sources */,
 				7984A32A1B4F7277006621B5 /* CalendarTimeToGoCell.swift in Sources */,
 				1DD6A4DC1B3BD32B006A97ED /* ZGNavigationTitleView.m in Sources */,
@@ -1024,46 +1010,36 @@
 				1D8F79021B36A64D00C78CAF /* DataManager + Fake.swift in Sources */,
 				1D975A381B1F40D500CD4D89 /* InviteInfoVC.swift in Sources */,
 				1D1FD6951B1C103500287FA0 /* UIView+Pop.swift in Sources */,
-				1D19D5231B3FF569007A716A /* FrequencyCell.swift in Sources */,
 				1D3F651F1B207D6B00CCF6A1 /* VolunteerTimeCell.swift in Sources */,
 				796E69C41B4A6E5600DF8D43 /* BorderedBarishButton.swift in Sources */,
 				1DFBBE961B1C5A6300630440 /* MemberProfileVC.swift in Sources */,
 				1DD1BAAC1B2AAF2100D1BBA3 /* CarpoolModel.swift in Sources */,
 				796E69C51B4A6E5600DF8D43 /* BorderedView.swift in Sources */,
-				1D975A431B1F94B500CD4D89 /* TDTextCell.swift in Sources */,
 				7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */,
 				1D891F141B23FDD8006FD961 /* SwiftAddressBookSource.swift in Sources */,
 				7943CF451B55DC1D007F6F8A /* CarpoolInviteCell.swift in Sources */,
-				1D975A471B1FA09100CD4D89 /* TDCellModel.swift in Sources */,
 				1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */,
 				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
 				1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */,
 				1D3554591B3FD14200044A3F /* DataMnager + Notification.swift in Sources */,
 				1DB5CC7F1B51F8B6004F6ECB /* FackCarpool.swift in Sources */,
 				1D3F651A1B2079E400CCF6A1 /* VolunteerVC.swift in Sources */,
-				1D368F161B40FFCD00FB4D2D /* TimeAndDateVC + Picker.swift in Sources */,
-				1D891F2B1B273C2E006FD961 /* AddTeamMemberVC.swift in Sources */,
 				79C229D91B4EF6FD0051F148 /* MapViewDatasource.swift in Sources */,
 				04FB80971B530E1B00F73C74 /* BaseFormVC.swift in Sources */,
-				1DFBBE9A1B1C6E1400630440 /* PhoneVerifyVC.swift in Sources */,
 				04D16E211B70128300B0C0DF /* PhoneNumberVC.swift in Sources */,
 				1DEFF16D1B49E3160094B54E /* YourKidVC.swift in Sources */,
 				796E69C61B4A6E5600DF8D43 /* MapUserImageView.swift in Sources */,
 				1D8F78FC1B36A07F00C78CAF /* CalendarCell.swift in Sources */,
 				1D1228E21B42635D001CA6A4 /* DataMnager + Invitation.swift in Sources */,
-				1DB5CC831B5200D7004F6ECB /* TimeAndDateVC + Carpool.swift.swift in Sources */,
 				1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */,
 				1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */,
 				1D10D7AA1B1C38FE007CDB66 /* BasicInfoVC.swift in Sources */,
 				1DB5CC871B5244FC004F6ECB /* GKSegmentControl.swift in Sources */,
 				796E69C31B4A6E5600DF8D43 /* DrivingModeVC.swift in Sources */,
-				1DFBBE981B1C6DF500630440 /* Phone#VC.swift in Sources */,
 				1D1FD6881B1C001E00287FA0 /* HelperFunction.swift in Sources */,
 				1D891F251B24635A006FD961 /* ContactNameCell.swift in Sources */,
-				1DB5CC811B51FF9A004F6ECB /* TimeAndDateVC + Signup.swift in Sources */,
 				7943CF471B55DC2E007F6F8A /* CarpoolListCell.swift in Sources */,
 				1D891F171B23FFA0006FD961 /* ContactPickerVC.swift in Sources */,
-				1D39AAB01B3FFD7C00215D6E /* FrequencyHeader.swift in Sources */,
 				1D891F111B23FDD8006FD961 /* SwiftAddressBookHelperMethods.swift in Sources */,
 				1D1FD6651B1BFC4A00287FA0 /* AppDelegate.swift in Sources */,
 				1D3F65251B208A9600CCF6A1 /* InviteParentsVC.swift in Sources */,
@@ -1086,7 +1062,6 @@
 				1D1FD6931B1C04D100287FA0 /* MainStackVC.swift in Sources */,
 				1D8F78EE1B3672D300C78CAF /* BaseTVC.swift in Sources */,
 				796ABA621B5D8A0E0037F840 /* ETACalculator.swift in Sources */,
-				1D975A451B1F9EB800CD4D89 /* TDSwitchCell.swift in Sources */,
 				1D891F121B23FDD8006FD961 /* SwiftAddressBookPerson.swift in Sources */,
 				1D891F0F1B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift in Sources */,
 				1D3F65141B2005D500CCF6A1 /* LocationVC.swift in Sources */,
@@ -1113,9 +1088,7 @@
 				1D891F131B23FDD8006FD961 /* SwiftAddressBookRecord.swift in Sources */,
 				1D891F231B244536006FD961 /* DataManager.swift in Sources */,
 				1D1FD6911B1C048600287FA0 /* MenuVC.swift in Sources */,
-				1D975A3E1B1F7FF700CD4D89 /* FrequencyPickerVC.swift in Sources */,
 				1D8F78F91B36A07F00C78CAF /* CalendarNotificationCell.swift in Sources */,
-				1D975A3C1B1F7C4E00CD4D89 /* TimeAndDateVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
