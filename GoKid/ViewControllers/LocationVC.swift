@@ -170,7 +170,8 @@ class LocationVC: BaseVC {
             onMainThread() {
                 LoadingView.dismiss()
                 if success {
-                    var vc = vcWithID("VolunteerVC")
+                    var vc = vcWithID("VolunteerVC") as! VolunteerVC
+                    vc.carpool = self.userManager.currentCarpoolModel
                     self.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     self.showAlert("Fail to update location", messege: errStr, cancleTitle: "OK")

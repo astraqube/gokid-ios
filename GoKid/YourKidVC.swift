@@ -23,6 +23,7 @@ class YourKidVC: BaseVC {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.setStatusBarColorDark()
         carpoolNameLabel.text = carpoolNameLabel.text?.replace("XXX", invitation.carpool.name)
         kidNameLabel.text = kidNameLabel.text?.replace("XXX", invitation.rider.firstName)
     }
@@ -53,7 +54,8 @@ class YourKidVC: BaseVC {
     
     func moveToVolunteerVC() {
         onMainThread() {
-            var vc = vcWithID("VolunteerVC")
+            var vc = vcWithID("VolunteerVC") as! VolunteerVC
+            vc.carpool = self.invitation.carpool
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

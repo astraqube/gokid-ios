@@ -20,6 +20,7 @@ class InviteRelationshipVC: BaseVC {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.setStatusBarColorDark()
         connectionLabel.text = connectionLabel.text?.replace("XXX", invitation.rider.firstName)
     }
     
@@ -55,7 +56,8 @@ class InviteRelationshipVC: BaseVC {
             LoadingView.dismiss()
             if success {
                 onMainThread() {
-                    var vc = vcWithID("VolunteerVC")
+                    var vc = vcWithID("VolunteerVC") as! VolunteerVC
+                    vc.carpool = self.invitation.carpool
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else {

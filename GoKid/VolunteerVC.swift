@@ -10,12 +10,14 @@ import UIKit
 
 class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 
+    var carpool: CarpoolModel!
+
     @IBOutlet weak var tableView: UITableView!
     var dataSource = [OccurenceModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.subtitleLabel?.text = userManager.currentCarpoolDescription()
+        self.subtitleLabel?.text = carpool.descriptionString
         tryLoadTableData()
     }
     
@@ -80,7 +82,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         } else if model.cellType == .Time {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
             cell.timeLabel.text = model.occursAtStr
-            cell.locationLabel.text = userManager.currentCarpoolModel.startLocation
+            cell.locationLabel.text = carpool.startLocation
             return cell
         } else {
             println("unknown tableview cell type")
@@ -104,7 +106,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tryLoadTableData() {
         LoadingView.showWithMaskType(.Black)
-        dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id) { (success: Bool, errorStr: String) in
+        dataManager.getOccurenceOfCarpool(carpool.id) { (success: Bool, errorStr: String) in
             LoadingView.dismiss()
             if success {
                 self.dataSource = self.processRawCalendarEvents(self.userManager.volunteerEvents)
