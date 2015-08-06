@@ -10,6 +10,8 @@ import UIKit
 
 class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
 
+    var carpool: CarpoolModel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -17,7 +19,7 @@ class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
     }
     
     func setupNavBar() {
-        self.subtitleLabel?.text = userManager.currentCarpoolDescription()
+        self.subtitleLabel?.text = carpool.descriptionString
     }
     
     // MARK: IBAction Method

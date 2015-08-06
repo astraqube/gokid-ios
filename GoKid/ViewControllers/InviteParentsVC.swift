@@ -60,7 +60,8 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     // --------------------------------------------------------------------------------------------
     
     func showContactPicker() {
-        var vc = vcWithID("ContactPickerVC")
+        var vc = vcWithID("ContactPickerVC") as! ContactPickerVC
+        vc.carpool = userManager.currentCarpoolModel
         navigationController?.pushViewController(vc, animated: true)
     }
     

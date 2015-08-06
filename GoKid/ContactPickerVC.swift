@@ -25,7 +25,9 @@ class Person {
 }
 
 class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+
+    var carpool: CarpoolModel!
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -41,7 +43,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func setUpNavigationBar() {
-        self.subtitleLabel.text = userManager.currentCarpoolDescription()
+        self.subtitleLabel.text = carpool.descriptionString
     }
     
     func setupSubViews() {
@@ -64,13 +66,10 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     override func rightNavButtonTapped() {
-        var dm = DataManager.sharedInstance
-        var um = UserManager.sharedInstance
-        var carpoolID = um.currentCarpoolModel.id
         var phoneNumbers = getCurrentSelectedPhoneNumber()
         
         LoadingView.showWithMaskType(.Black)
-        dm.invite(phoneNumbers, carpoolID: carpoolID) { (success, errorStr) in
+        dataManager.invite(phoneNumbers, carpoolID: carpool.id) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
                 self.showAlert("Success", messege: "Message Sent", cancleTitle: "OK")
@@ -83,7 +82,8 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         var title = alertView.buttonTitleAtIndex(buttonIndex)
         if title == "OK" {
-            var vc = vcWithID("CarpoolSucceedVC")
+            var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
+            vc.carpool = self.carpool
             navigationController?.pushViewController(vc, animated: true)
         }
     }
