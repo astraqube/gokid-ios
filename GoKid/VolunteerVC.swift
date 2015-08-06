@@ -26,6 +26,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     override func rightNavButtonTapped() {
         var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
+        vc.carpool = self.carpool
         vc.hideForwardNavigationButtons = false
         self.navigationController?.pushViewController(vc, animated: true)
     }

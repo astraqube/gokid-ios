@@ -11,27 +11,27 @@ import MessageUI
 import AddressBookUI
 
 class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePickerNavigationControllerDelegate {
+
+    var carpool: CarpoolModel!
+
     ///In case someone wants to hit Edit button from DetailMapVC, default: true
     var hideForwardNavigationButtons = true
     @IBOutlet weak var carpoolNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNacBar()
-        refreshUI()
+
+        // FIXME: temporary support for CarpoolEditVC's invocation
+        if carpool == nil {
+            carpool = userManager.currentCarpoolModel
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    func setupNacBar() {
-        self.subtitleLabel?.text = userManager.currentCarpoolDescription()
-    }
-    
-    func refreshUI() {
-        carpoolNameLabel.text = "\"" + userManager.currentCarpoolModel.name + "\""
+        self.subtitleLabel?.text = carpool.descriptionString
+        carpoolNameLabel.text = "\"\(carpool.name)\""
         rightButton.hidden = hideForwardNavigationButtons
         rightButton.enabled = !hideForwardNavigationButtons
     }
@@ -40,35 +40,12 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     // --------------------------------------------------------------------------------------------
     
     @IBAction func chooseFromContactListButtonClick(sender: AnyObject) {
-        showContactPicker()
+        var vc = vcWithID("ContactPickerVC") as! ContactPickerVC
+        vc.carpool = self.carpool
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func InviteViaEmailButtomClick(sender: AnyObject) {
-        showMailVC()
-    }
-
-    override func leftNavButtonTapped() {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
-    override func rightNavButtonTapped() {
-        var vc = vcWithID("CarpoolSucceedVC")
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    // MARK: Choose From Contact
-    // --------------------------------------------------------------------------------------------
-    
-    func showContactPicker() {
-        var vc = vcWithID("ContactPickerVC") as! ContactPickerVC
-        vc.carpool = userManager.currentCarpoolModel
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    // MARK: Send Mail
-    // --------------------------------------------------------------------------------------------
-    
-    func showMailVC() {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
             self.presentViewController(mailComposeViewController, animated: true, completion: nil)
@@ -76,6 +53,19 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
             self.showCannotSendMailErrorAlert()
         }
     }
+
+    override func leftNavButtonTapped() {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func rightNavButtonTapped() {
+        var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
+        vc.carpool = self.carpool
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // MARK: Send Mail
+    // --------------------------------------------------------------------------------------------
     
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
@@ -104,4 +94,5 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         }
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
+
 }

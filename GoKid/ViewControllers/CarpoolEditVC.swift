@@ -26,13 +26,19 @@ class CarpoolEditVC: BaseFormVC {
 
     var isCurrentUserAuthorized : Bool {
         // TODO: Waiting on backend to point how Carpool Ownership is determined
-        return userManager.currentCarpoolModel.isOwner
+        return occurrence.carpool.isOwner
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // FIXME: temporarily using singleton to pass CarpoolModel
+        userManager.currentCarpoolModel = occurrence.carpool
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = userManager.currentCarpoolDescription()
-        self.subtitleLabel.text = userManager.currentCarpoolDescription()
+        self.subtitleLabel.text = occurrence.carpool.descriptionString
     }
 
     override func initForm() {
@@ -229,7 +235,7 @@ class CarpoolEditVC: BaseFormVC {
         confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction!) in
             if let textField = confirmPrompt.textFields?.first as? UITextField{
                 if textField.text == "DELETE" {
-                    self.dataManager.deleteCarpool(self.userManager.currentCarpoolModel) { (success, error) in
+                    self.dataManager.deleteCarpool(self.occurrence.carpool) { (success, error) in
                         if !success && error != "" {
                             self.showAlert("There was a problem", messege: error, cancleTitle: "OK")
                         } else {

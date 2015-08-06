@@ -75,9 +75,8 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == ListSection.Carpools.rawValue {
-            let carpool = carpoolsDataSource[indexPath.row]
-            UserManager.sharedInstance.currentCarpoolModel = carpool
             var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
+            inviteVC.carpool = carpoolsDataSource[indexPath.row]
             navigationController?.pushViewController(inviteVC, animated: true)
         }
     }
