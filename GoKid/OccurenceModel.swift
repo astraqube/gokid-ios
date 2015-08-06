@@ -75,7 +75,7 @@ class OccurenceModel: NSObject {
             }
             riders = RiderModel.ridersForRiderIDs(riderIDs)
             
-        } else if occurence["riders"] {
+        } else if occurence["riders"] != nil {
             riders = RiderModel.arrayOfRidersWithJSON(occurence["riders"])
         }
 
