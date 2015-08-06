@@ -75,41 +75,37 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         var row: XLFormRowDescriptor!
         var section: XLFormSectionDescriptor!
 
-        let now = NSDate()
-        let fontLabel = UIFont(name: "Raleway-Light", size: 17)!
-        let colorLabel = colorManager.color507573
-
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
         row = XLFormRowDescriptor(tag: GKFrequency.JustOnce.rawValue,
                                   rowType: XLFormRowDescriptorTypeBooleanCheck,
                                   title: GKFrequency.JustOnce.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
         row.value = self.isChecked(GKFrequency.JustOnce.rawValue)
         section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: GKFrequency.Daily.rawValue,
             rowType: XLFormRowDescriptorTypeBooleanCheck,
             title: GKFrequency.Daily.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
         row.value = self.isChecked(GKFrequency.Daily.rawValue)
         section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: GKFrequency.EveryWeek.rawValue,
                                   rowType: XLFormRowDescriptorTypeBooleanCheck,
                                   title: GKFrequency.EveryWeek.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
         section.addFormRow(row)
 
         for day in GKDays.allValues {
             row = XLFormRowDescriptor(tag: day,
                 rowType: XLFormRowDescriptorTypeBooleanCheck,
                 title: "      "+day)
-            row.cellConfig["textLabel.font"] = fontLabel
-            row.cellConfig["textLabel.color"] = colorLabel
+            row.cellConfig["textLabel.font"] = labelFont
+            row.cellConfig["textLabel.color"] = labelColor
             row.value = self.isChecked(day)
             row.hidden = true
             section.addFormRow(row)

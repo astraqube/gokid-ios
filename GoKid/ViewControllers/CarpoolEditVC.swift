@@ -46,17 +46,12 @@ class CarpoolEditVC: BaseFormVC {
         var row: XLFormRowDescriptor!
         var section: XLFormSectionDescriptor!
 
-        let now = NSDate()
-        let fontLabel = UIFont(name: "Raleway-Light", size: 17)!
-        let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
-        let colorLabel = colorManager.color507573
-
         if !self.isCurrentUserAuthorized {
             section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
             row = XLFormRowDescriptor(tag: Tags.Unauthorized.rawValue, rowType: XLFormRowDescriptorTypeInfo, title: Tags.Unauthorized.rawValue)
             row.cellConfigAtConfigure["backgroundColor"] = colorManager.color2EB56A
-            row.cellConfig["textLabel.font"] = fontLabel
+            row.cellConfig["textLabel.font"] = labelFont
             row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
             section.addFormRow(row)
 
@@ -66,18 +61,18 @@ class CarpoolEditVC: BaseFormVC {
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
         row = XLFormRowDescriptor(tag: Tags.InvitePanel.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.InvitePanel.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["detailTextLabel.font"] = fontValue
-        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
         row.action.viewControllerStoryboardId = "InviteParentsVC"
         section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: Tags.EventLocation.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.EventLocation.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["detailTextLabel.font"] = fontValue
-        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
         row.action.viewControllerStoryboardId = "LocationInputVC"
         row.value = self.occurrence.eventLocation.name
         row.disabled = !self.isCurrentUserAuthorized
@@ -92,10 +87,10 @@ class CarpoolEditVC: BaseFormVC {
             for rider in self.occurrence.riders {
 
                 row = XLFormRowDescriptor(tag: rider.riderID.description, rowType: XLFormRowDescriptorTypeSelectorPush, title: rider.fullName)
-                row.cellConfig["textLabel.font"] = fontLabel
-                row.cellConfig["textLabel.color"] = colorLabel
-                row.cellConfig["detailTextLabel.font"] = fontValue
-                row.cellConfig["detailTextLabel.color"] = colorLabel
+                row.cellConfig["textLabel.font"] = labelFont
+                row.cellConfig["textLabel.color"] = labelColor
+                row.cellConfig["detailTextLabel.font"] = valueFont
+                row.cellConfig["detailTextLabel.color"] = labelColor
                 row.action.viewControllerStoryboardId = "LocationInputVC"
 
                 if self.occurrence.occurrenceType == .Pickup {
@@ -115,7 +110,7 @@ class CarpoolEditVC: BaseFormVC {
             section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
             row = XLFormRowDescriptor(tag: Tags.DeleteRide.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.DeleteRide.rawValue)
-            row.cellConfig["textLabel.font"] = fontValue
+            row.cellConfig["textLabel.font"] = valueFont
             row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
             row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorWarningRed
             row.action.formSelector = "deleteRide:"
@@ -123,7 +118,7 @@ class CarpoolEditVC: BaseFormVC {
             section.addFormRow(row)
 
             row = XLFormRowDescriptor(tag: Tags.DeleteCarpool.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.DeleteCarpool.rawValue)
-            row.cellConfig["textLabel.font"] = fontValue
+            row.cellConfig["textLabel.font"] = valueFont
             row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
             row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
             row.action.formSelector = "deleteCarpool:"

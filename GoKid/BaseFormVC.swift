@@ -14,7 +14,11 @@ class BaseFormVC: XLFormViewController {
     var userManager = UserManager.sharedInstance
     var colorManager = ColorManager.sharedInstance
     var imageManager = ImageManager.sharedInstance
-    
+
+    let labelFont = UIFont(name: "Raleway-Light", size: 17)!
+    let valueFont = UIFont(name: "Raleway-Bold", size: 17)!
+    let labelColor = ColorManager.sharedInstance.color507573
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var leftButton: UIButton!

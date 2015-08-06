@@ -64,19 +64,16 @@ class TimeAndDateFormVC: BaseFormVC {
         var section: XLFormSectionDescriptor!
         
         let now = NSDate()
-        let fontLabel = UIFont(name: "Raleway-Light", size: 17)!
-        let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
-        let colorLabel = colorManager.color507573
         
         let carpoolModel = userManager.currentCarpoolModel
 
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         
         row = XLFormRowDescriptor(tag: Tags.StartDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.StartDate.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["detailTextLabel.font"] = fontValue
-        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
         row.cellConfig["minimumDate"] = now
         row.required = true
         row.value = carpoolModel.startDate
@@ -84,10 +81,10 @@ class TimeAndDateFormVC: BaseFormVC {
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.EndDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.EndDate.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["detailTextLabel.font"] = fontValue
-        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
         row.cellConfig["minimumDate"] = now
         row.hidden = true
         row.value = carpoolModel.endDate
@@ -95,9 +92,9 @@ class TimeAndDateFormVC: BaseFormVC {
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.Frequency.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.Frequency.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["detailTextLabel.font"] = fontValue
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
         row.action.viewControllerClass = FrequencyPickerFormVC.self
         row.valueTransformer = FrequencyTransformer.self
         row.hidden = true
@@ -105,8 +102,8 @@ class TimeAndDateFormVC: BaseFormVC {
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Repeat.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
         row.value = (carpoolModel.occurence != nil && carpoolModel.occurence?.isEmpty == false)
         section.addFormRow(row)
         
@@ -115,28 +112,28 @@ class TimeAndDateFormVC: BaseFormVC {
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         
         row = XLFormRowDescriptor(tag: Tags.StartTime.rawValue, rowType: XLFormRowDescriptorTypeTime, title: Tags.StartTime.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["detailTextLabel.font"] = fontValue
-        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
         row.required = true
         row.value = carpoolModel.pickUpTime
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.EndTime.rawValue, rowType: XLFormRowDescriptorTypeTime, title: Tags.EndTime.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["detailTextLabel.font"] = fontValue
-        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
         row.required = true
         row.value = carpoolModel.dropOffTime
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.OneWay.rawValue, rowType: XLFormRowDescriptorTypeSelectorPickerView, title: Tags.OneWay.rawValue)
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["detailTextLabel.font"] = fontValue
-        row.cellConfig["detailTextLabel.color"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
         row.selectorOptions = ["", "Pickup Only", "Dropoff Only"]
         row.value = ""
         section.addFormRow(row)

@@ -21,18 +21,13 @@ class InviteInfoVC: BaseFormVC {
         var row: XLFormRowDescriptor!
         var section: XLFormSectionDescriptor!
 
-        let now = NSDate()
-        let fontLabel = UIFont(name: "Raleway-Light", size: 17)!
-        let fontValue = UIFont(name: "Raleway-Bold", size: 17)!
-        let colorLabel = colorManager.color507573
-
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
         row = XLFormRowDescriptor(tag: "code", rowType: XLFormRowDescriptorTypeText, title: "Invitation Code")
-        row.cellConfig["textLabel.font"] = fontLabel
-        row.cellConfig["textLabel.color"] = colorLabel
-        row.cellConfig["textField.font"] = fontValue
-        row.cellConfig["textField.tintColor"] = colorLabel
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["textField.font"] = valueFont
+        row.cellConfig["textField.tintColor"] = labelColor
         row.required = true
         section.addFormRow(row)
 
