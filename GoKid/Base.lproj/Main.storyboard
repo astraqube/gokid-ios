@@ -575,7 +575,7 @@ invited you to
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Join XXX" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-Bk-6YE">
-                                <rect key="frame" x="16" y="108" width="288" height="30"/>
+                                <rect key="frame" x="16" y="64" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Lje-Ag-0e3"/>
                                 </constraints>
@@ -584,7 +584,7 @@ invited you to
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your kid's name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tbf-aa-f5G" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                <rect key="frame" x="32" y="190" width="256" height="44"/>
+                                <rect key="frame" x="32" y="146" width="256" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="9mL-c4-sVl"/>
@@ -598,7 +598,7 @@ invited you to
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="with XXX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGm-n3-O4s">
-                                <rect key="frame" x="125" y="138" width="70" height="20"/>
+                                <rect key="frame" x="125" y="94" width="70" height="20"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                 <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -614,7 +614,7 @@ invited you to
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMb-u6-H37">
-                                <rect key="frame" x="32" y="250" width="256" height="44"/>
+                                <rect key="frame" x="32" y="206" width="256" height="44"/>
                                 <color key="backgroundColor" red="0.4039215686" green="0.75686274509999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="3g5-gY-54I"/>
@@ -637,7 +637,7 @@ invited you to
                             <constraint firstItem="cmX-Aj-6DT" firstAttribute="top" secondItem="WYM-5e-mr9" secondAttribute="bottom" constant="16" id="2r8-Ix-Y6B"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dAe-Bk-6YE" secondAttribute="trailing" id="2ra-ks-lid"/>
                             <constraint firstItem="Tbf-aa-f5G" firstAttribute="centerX" secondItem="kMb-u6-H37" secondAttribute="centerX" id="7fD-5t-6rA"/>
-                            <constraint firstItem="dAe-Bk-6YE" firstAttribute="top" secondItem="WYM-5e-mr9" secondAttribute="bottom" constant="88" id="BgR-XT-hdY"/>
+                            <constraint firstItem="dAe-Bk-6YE" firstAttribute="top" secondItem="WYM-5e-mr9" secondAttribute="bottom" constant="44" id="BgR-XT-hdY"/>
                             <constraint firstItem="cmX-Aj-6DT" firstAttribute="leading" secondItem="rKe-jh-3Se" secondAttribute="leadingMargin" constant="-4" id="DM9-by-yAu"/>
                             <constraint firstItem="gGm-n3-O4s" firstAttribute="top" secondItem="dAe-Bk-6YE" secondAttribute="bottom" id="KCF-US-k90"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Tbf-aa-f5G" secondAttribute="trailing" constant="16" id="eof-jW-BwF"/>
@@ -691,13 +691,13 @@ invited you to
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tom's Kid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27I-z3-7q6">
-                                                    <rect key="frame" x="46" y="20" width="75" height="20"/>
+                                                    <rect key="frame" x="46" y="20" width="76" height="20"/>
                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accpted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Md0-im-uhg">
-                                                    <rect key="frame" x="245" y="20" width="67" height="20"/>
+                                                    <rect key="frame" x="248" y="20" width="64" height="20"/>
                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -976,7 +976,7 @@ invited you to
                                         </constraints>
                                     </imageView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Drives" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p98-w3-nl7">
-                                        <rect key="frame" x="118" y="36" width="84" height="22"/>
+                                        <rect key="frame" x="120" y="37" width="81" height="21"/>
                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
                                         <color key="textColor" red="0.93725490199999995" green="0.96470588239999999" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1725,7 +1725,7 @@ invited you to
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Carpool List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Iu-LS-1wZ">
-                                        <rect key="frame" x="95" y="36" width="131" height="22"/>
+                                        <rect key="frame" x="99" y="37" width="123" height="21"/>
                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
                                         <color key="textColor" red="0.93725490196078431" green="0.96470588235294119" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
