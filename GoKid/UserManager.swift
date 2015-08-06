@@ -35,7 +35,8 @@ class UserManager: NSObject {
     var volunteerEvents = [OccurenceModel]()
     var fakeVolunteerEvents = [OccurenceModel]()
     var carpools = [CarpoolModel]()
-    
+    var invitations = [InvitationModel]()
+
     var updatedMember = TeamMemberModel()
     
     var currentChoosenDate: String?
@@ -286,9 +287,5 @@ class UserManager: NSObject {
         }
         return data
     }
+
 }
-
-
-
-
-

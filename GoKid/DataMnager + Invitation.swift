@@ -94,22 +94,24 @@ extension DataManager {
         }
     }
 
-    // FIXME: This is temporary until we sort out Invitations
-    func getFirstInvitation(comp: ObjectCompletion) {
+    func getInvitations(comp: completion) {
         var url = baseURL + "/api/invites/"
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getFirstInvitation success")
+            println("getInvitations success")
             var json = JSON(obj)
-            if json["invites"].count > 0 {
-                let invitation = InvitationModel(json: json["invites"][0])
-                comp(true, "", invitation)
-            } else {
-                comp(false, "We're unable to find an invitation", nil)
+            var invitations: [InvitationModel]!
+
+            if let _invitations = json["invites"].array as [JSON]? {
+                self.userManager.invitations = _invitations.map {
+                    return InvitationModel(json: $0)
+                }
             }
+
+            comp(true, "")
         }) { (op, error) in
-            println("getFirstInvitation failed")
-            self.handleUserResuestError(op, error: error, comp: comp)
+            println("getInvitations failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
