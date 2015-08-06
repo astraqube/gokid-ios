@@ -177,7 +177,7 @@ extension CarpoolListVC {
             LoadingView.dismiss()
             if success {
                 onMainThread() {
-                    self.tableView.reloadData()
+                    self.fetchInvitations()
                     var vc = vcWithID("InviteRelationshipVC") as! InviteRelationshipVC
                     vc.invitation = invitation
                     self.navigationController?.pushViewController(vc, animated: true)
@@ -194,7 +194,7 @@ extension CarpoolListVC {
             LoadingView.dismiss()
             if success {
                 onMainThread() {
-                    self.tableView.reloadData()
+                    self.fetchInvitations()
                 }
             } else {
                 self.showAlert("Failed to decline carpool", messege: errorStr, cancleTitle: "OK")
