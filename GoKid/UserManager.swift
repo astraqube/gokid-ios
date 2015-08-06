@@ -81,7 +81,7 @@ class UserManager: NSObject {
     }
     
     func currentCarpoolDescription() -> String {
-        return currentCarpoolModel.name + " for " + currentCarpoolModel.kidName
+        return currentCarpoolModel.descriptionString
     }
     
     // use the info get from all team members

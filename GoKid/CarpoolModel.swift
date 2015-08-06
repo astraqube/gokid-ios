@@ -36,6 +36,11 @@ class CarpoolModel: NSObject {
     var name = ""
     var id = 0
 
+    var descriptionString : String {
+        return "\(name) for \(kidName)"
+    }
+
+
     private var _isOwner = false
     var isOwner : Bool {
         return _isOwner
