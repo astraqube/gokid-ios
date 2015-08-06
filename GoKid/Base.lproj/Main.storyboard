@@ -1749,58 +1749,29 @@ invited you to
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CarpoolInviteCell" rowHeight="91" id="vAt-Zj-TT7" customClass="CarpoolInviteCell" customModule="GoKid" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CarpoolInviteCell" rowHeight="88" id="vAt-Zj-TT7" customClass="CarpoolInviteCell" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="vAt-Zj-TT7" id="pp5-Xf-Rmn">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carpoolInviteCellBG" translatesAutoresizingMaskIntoConstraints="NO" id="kws-Uc-JGw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Helen invited you to join" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQH-o9-CJ4">
-                                                    <rect key="frame" x="27" y="14" width="148" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX invited you to join" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQH-o9-CJ4">
+                                                    <rect key="frame" x="24" y="16" width="136" height="16"/>
                                                     <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="13"/>
                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jenny's Birthday Party" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8q-gk-hOn">
-                                                    <rect key="frame" x="27" y="31" width="154" height="45"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carpool Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8q-gk-hOn">
+                                                    <rect key="frame" x="24" y="32" width="118" height="23"/>
                                                     <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="19"/>
                                                     <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JL-eq-fZe" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
-                                                    <rect key="frame" x="209" y="49" width="98" height="28"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="9MR-2V-UFp"/>
-                                                        <constraint firstAttribute="width" constant="98" id="dyX-4Q-CjW"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="14"/>
-                                                    <state key="normal" title="Edit">
-                                                        <color key="titleColor" red="0.49019607843137253" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" red="0.07193221508" green="0.10898820469999999" blue="0.10898820469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" red="0.70196078429999997" green="0.7843137255" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="2"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oo-jE-4V7" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
-                                                    <rect key="frame" x="209" y="11" width="98" height="28"/>
-                                                    <color key="backgroundColor" red="0.16470588235294117" green="0.66666666666666663" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="224" y="12" width="80" height="28"/>
+                                                    <color key="backgroundColor" red="0.4039215686" green="0.75686274509999996" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="98" id="Rae-Q9-Vcf"/>
+                                                        <constraint firstAttribute="width" constant="80" id="Rae-Q9-Vcf"/>
                                                         <constraint firstAttribute="height" constant="28" id="h6Z-jH-Aa4"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="14"/>
@@ -1822,26 +1793,57 @@ invited you to
                                                             <real key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="acceptButtonClick:" destination="vAt-Zj-TT7" eventType="touchUpInside" id="xQA-Y5-K1G"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JL-eq-fZe" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
+                                                    <rect key="frame" x="224" y="48" width="80" height="28"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="14"/>
+                                                    <state key="normal" title="Decline">
+                                                        <color key="titleColor" red="0.49019607843137253" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" red="0.07193221508" green="0.10898820469999999" blue="0.10898820469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.70196078429999997" green="0.7843137255" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="declineButtonClick:" destination="vAt-Zj-TT7" eventType="touchUpInside" id="p01-Yi-yaa"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="kws-Uc-JGw" firstAttribute="leading" secondItem="pp5-Xf-Rmn" secondAttribute="leading" id="64v-Gn-Uil"/>
-                                                <constraint firstItem="7oo-jE-4V7" firstAttribute="top" secondItem="pp5-Xf-Rmn" secondAttribute="top" constant="11" id="8ec-F0-Ta0"/>
-                                                <constraint firstItem="6JL-eq-fZe" firstAttribute="top" secondItem="7oo-jE-4V7" secondAttribute="bottom" constant="10" id="9Sb-I8-cpd"/>
-                                                <constraint firstItem="mQH-o9-CJ4" firstAttribute="leading" secondItem="pp5-Xf-Rmn" secondAttribute="leading" constant="27" id="Bdd-LQ-zhN"/>
-                                                <constraint firstAttribute="trailing" secondItem="kws-Uc-JGw" secondAttribute="trailing" id="CIG-gO-8Ff"/>
-                                                <constraint firstItem="mQH-o9-CJ4" firstAttribute="top" secondItem="pp5-Xf-Rmn" secondAttribute="top" constant="14" id="D9C-71-VOV"/>
-                                                <constraint firstAttribute="trailing" secondItem="6JL-eq-fZe" secondAttribute="trailing" constant="13" id="KCa-0m-viS"/>
-                                                <constraint firstItem="6JL-eq-fZe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="p8q-gk-hOn" secondAttribute="trailing" constant="15" id="VeR-OE-8Mj"/>
-                                                <constraint firstAttribute="bottom" secondItem="kws-Uc-JGw" secondAttribute="bottom" id="VnS-ZM-FK3"/>
-                                                <constraint firstItem="p8q-gk-hOn" firstAttribute="top" secondItem="mQH-o9-CJ4" secondAttribute="bottom" constant="1" id="gwo-sy-qYs"/>
-                                                <constraint firstAttribute="trailing" secondItem="7oo-jE-4V7" secondAttribute="trailing" constant="13" id="hAo-Wq-zb9"/>
-                                                <constraint firstItem="7oo-jE-4V7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mQH-o9-CJ4" secondAttribute="trailing" constant="15" id="iUM-cl-K7G"/>
+                                                <constraint firstItem="7oo-jE-4V7" firstAttribute="top" secondItem="pp5-Xf-Rmn" secondAttribute="top" constant="12" id="8ec-F0-Ta0"/>
+                                                <constraint firstItem="6JL-eq-fZe" firstAttribute="top" secondItem="7oo-jE-4V7" secondAttribute="bottom" constant="8" id="9Sb-I8-cpd"/>
+                                                <constraint firstItem="mQH-o9-CJ4" firstAttribute="leading" secondItem="pp5-Xf-Rmn" secondAttribute="leading" constant="24" id="Bdd-LQ-zhN"/>
+                                                <constraint firstItem="mQH-o9-CJ4" firstAttribute="top" secondItem="pp5-Xf-Rmn" secondAttribute="top" constant="16" id="D9C-71-VOV"/>
+                                                <constraint firstItem="7oo-jE-4V7" firstAttribute="trailing" secondItem="6JL-eq-fZe" secondAttribute="trailing" id="HSp-5v-uLh"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="6JL-eq-fZe" secondAttribute="bottom" priority="750" constant="8" id="Kf7-x5-amQ"/>
+                                                <constraint firstItem="6JL-eq-fZe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="p8q-gk-hOn" secondAttribute="trailing" constant="16" id="VeR-OE-8Mj"/>
+                                                <constraint firstItem="7oo-jE-4V7" firstAttribute="height" secondItem="6JL-eq-fZe" secondAttribute="height" id="Yze-VC-zHx"/>
+                                                <constraint firstItem="7oo-jE-4V7" firstAttribute="width" secondItem="6JL-eq-fZe" secondAttribute="width" id="cpu-IZ-R40"/>
+                                                <constraint firstItem="p8q-gk-hOn" firstAttribute="top" secondItem="mQH-o9-CJ4" secondAttribute="bottom" id="gwo-sy-qYs"/>
+                                                <constraint firstAttribute="trailing" secondItem="7oo-jE-4V7" secondAttribute="trailing" constant="16" id="hAo-Wq-zb9"/>
+                                                <constraint firstItem="7oo-jE-4V7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mQH-o9-CJ4" secondAttribute="trailing" constant="16" id="iUM-cl-K7G"/>
                                                 <constraint firstItem="mQH-o9-CJ4" firstAttribute="leading" secondItem="p8q-gk-hOn" secondAttribute="leading" id="iar-eo-WQb"/>
-                                                <constraint firstItem="kws-Uc-JGw" firstAttribute="top" secondItem="pp5-Xf-Rmn" secondAttribute="top" id="rD3-ot-2fY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.97647058819999999" green="0.99215686270000003" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="inviteInfoLabel" destination="mQH-o9-CJ4" id="BVF-GT-4Mc"/>
+                                            <outlet property="inviteTitleLabel" destination="p8q-gk-hOn" id="Vkn-XF-fB0"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CarpoolListCell" rowHeight="71" id="p17-aW-Yaf" customClass="CarpoolListCell" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2050,7 +2052,6 @@ invited you to
         <image name="carpoolCellLeft" width="19" height="71"/>
         <image name="carpoolCellMiddle" width="1" height="71"/>
         <image name="carpoolCellRight" width="16" height="71"/>
-        <image name="carpoolInviteCellBG" width="1" height="91"/>
         <image name="checkCirc" width="51" height="52"/>
         <image name="disclosureIcon" width="8" height="13"/>
         <image name="emma" width="220" height="233"/>

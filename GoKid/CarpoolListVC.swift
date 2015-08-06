@@ -17,7 +17,7 @@ enum ListSection : Int {
 class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var carpoolsDataSource = [CarpoolModel]()
-    var invitesDataSource = [AnyObject]()
+    var invitesDataSource = [InvitationModel]()
     let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -27,8 +27,6 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         tableView.estimatedRowHeight = 130
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        fetchDataAndReloadTableView()
-        
         refreshControl.addTarget(self, action: "asyncFetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
     }
@@ -37,6 +35,12 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         super.viewWillAppear(animated)
         setStatusBarColorLight()
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchDataAndReloadTableView()
+        fetchInvitations()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,9 +67,8 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
             return configCarpoolCell(indexPath, model)
         }
         if indexPath.section == ListSection.Invites.rawValue {
-            var model: AnyObject = invitesDataSource[indexPath.row]
-            var cell = tableView.cellWithID("CarpoolInviteCell", indexPath) as! CarpoolInviteCell
-            return cell
+            var model = invitesDataSource[indexPath.row]
+            return configCarpoolInviteCell(indexPath, model)
         }
         return UITableViewCell()
     }
@@ -131,7 +134,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
-    
+
     func generateTableDataAndReload() {
         carpoolsDataSource = userManager.carpools.sorted { (left : CarpoolModel, right : CarpoolModel) -> Bool in
             if left.startDate == nil || right.startDate == nil { return false}
@@ -141,4 +144,62 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
             self.tableView.reloadData()
         }
     }
+}
+
+
+// MARK: Invitations
+
+extension CarpoolListVC {
+
+    func fetchInvitations() {
+        dataManager.getInvitations() { (success, error) in
+            if success {
+                self.invitesDataSource = self.userManager.invitations
+                onMainThread() {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+
+    func configCarpoolInviteCell(ip: NSIndexPath, _ model: InvitationModel) -> CarpoolInviteCell {
+        var cell = tableView.cellWithID("CarpoolInviteCell", ip) as! CarpoolInviteCell
+        cell.invitation = model
+        cell.onAccept = self.onAcceptInvitation
+        cell.onDecline = self.onDeclineInvitation
+        cell.refreshContent()
+        return cell
+   }
+
+    func onAcceptInvitation(invitation: InvitationModel) {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.acceptInvite(invitation.inviteID) { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                onMainThread() {
+                    self.tableView.reloadData()
+                    var vc = vcWithID("InviteRelationshipVC") as! InviteRelationshipVC
+                    vc.invitation = invitation
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            } else {
+                self.showAlert("Failed to accept carpool", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+
+    func onDeclineInvitation(invitation: InvitationModel) {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.declineInvite(invitation.inviteID) { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                onMainThread() {
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.showAlert("Failed to decline carpool", messege: errorStr, cancleTitle: "OK")
+            }
+        }
+    }
+
 }
