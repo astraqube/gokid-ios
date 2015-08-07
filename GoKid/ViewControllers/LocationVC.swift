@@ -52,7 +52,7 @@ class LocationVC: BaseVC {
     }
     
     func setUpNavigationBar() {
-        subtitleLabel?.text = userManager.currentCarpoolDescription()
+        subtitleLabel?.text = carpool.descriptionString
     }
     
     // MARK: IBAction Method
@@ -136,7 +136,7 @@ class LocationVC: BaseVC {
     
     func tryRefreshUI() {
         LoadingView.showWithMaskType(.Black)
-        dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, rider: rider) { success, errStr in
+        dataManager.getOccurenceOfCarpool(carpool.id, rider: rider) { success, errStr in
             onMainThread() {
                 LoadingView.dismiss()
                 self.handleGetOccurenceOfCarpool(success, errStr)
@@ -175,7 +175,7 @@ class LocationVC: BaseVC {
                 LoadingView.dismiss()
                 if success {
                     var vc = vcWithID("VolunteerVC") as! VolunteerVC
-                    vc.carpool = self.userManager.currentCarpoolModel
+                    vc.carpool = self.carpool
                     self.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     self.showAlert("Fail to update location", messege: errStr, cancleTitle: "OK")
