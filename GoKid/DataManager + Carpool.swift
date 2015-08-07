@@ -270,7 +270,7 @@ extension DataManager {
             println("deleteFromOccurenceRiders success")
             comp(true, "")
         }) { (op, error) in
-            println("updateOccurenceRiders failed")
+            println("deleteFromOccurenceRiders failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
