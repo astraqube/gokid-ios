@@ -11,6 +11,7 @@ import UIKit
 class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 
     var carpool: CarpoolModel!
+    var rider: RiderModel?
 
     @IBOutlet weak var tableView: UITableView!
     var dataSource = [OccurenceModel]()
@@ -107,7 +108,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tryLoadTableData() {
         LoadingView.showWithMaskType(.Black)
-        dataManager.getOccurenceOfCarpool(carpool.id) { (success: Bool, errorStr: String) in
+        dataManager.getOccurenceOfCarpool(carpool.id, rider: rider) { (success: Bool, errorStr: String) in
             LoadingView.dismiss()
             if success {
                 self.dataSource = self.processRawCalendarEvents(self.userManager.volunteerEvents)

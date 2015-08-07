@@ -53,7 +53,7 @@ class YourKidVC: BaseVC {
     }
 
     func moveToConfirmTimes(rider: RiderModel) {
-        dataManager.getOccurenceOfCarpool(invitation.carpool.id) { (success, error) in
+        dataManager.getOccurenceOfCarpool(invitation.carpool.id, rider: rider) { (success, error) in
             if success {
                 var vc = vcWithID("InviteConfirmTimesVC") as! InviteConfirmTimesVC
                 vc.rider = rider

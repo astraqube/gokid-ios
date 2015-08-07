@@ -10,6 +10,10 @@ import UIKit
 import MapKit
 
 class LocationVC: BaseVC {
+
+    var carpool: CarpoolModel!
+    var rider: RiderModel?
+
     @IBOutlet weak var switchBackgroundView: UIView!
     @IBOutlet weak var taponLabel: UILabel!
     @IBOutlet weak var segmentControl: GKSegmentControl!
@@ -132,7 +136,7 @@ class LocationVC: BaseVC {
     
     func tryRefreshUI() {
         LoadingView.showWithMaskType(.Black)
-        dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id) { success, errStr in
+        dataManager.getOccurenceOfCarpool(userManager.currentCarpoolModel.id, rider: rider) { success, errStr in
             onMainThread() {
                 LoadingView.dismiss()
                 self.handleGetOccurenceOfCarpool(success, errStr)

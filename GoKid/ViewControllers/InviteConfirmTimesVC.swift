@@ -40,6 +40,7 @@ class InviteConfirmTimesVC: BaseFormVC {
         // TODO: submitting the changes...
         var vc = vcWithID("VolunteerVC") as! VolunteerVC
         vc.carpool = self.invitation.carpool
+        vc.rider = rider
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
