@@ -52,6 +52,7 @@ class TimeAndDateFormVC: BaseFormVC {
             if success {
                 var vc = vcWithID("LocationVC") as! LocationVC
                 vc.carpool = self.userManager.currentCarpoolModel
+                vc.rider = self.userManager.currentCarpoolModel.riders.first
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 self.showAlert("Fail to create carpool", messege: errorMessage, cancleTitle: "OK")

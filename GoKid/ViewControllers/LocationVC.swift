@@ -12,7 +12,7 @@ import MapKit
 class LocationVC: BaseVC {
 
     var carpool: CarpoolModel!
-    var rider: RiderModel?
+    var rider: RiderModel!
 
     @IBOutlet weak var switchBackgroundView: UIView!
     @IBOutlet weak var taponLabel: UILabel!
@@ -52,7 +52,7 @@ class LocationVC: BaseVC {
     }
     
     func setUpNavigationBar() {
-        subtitleLabel?.text = carpool.descriptionString
+        subtitleLabel?.text = "\(carpool.name) for \(rider.firstName)"
     }
     
     // MARK: IBAction Method
