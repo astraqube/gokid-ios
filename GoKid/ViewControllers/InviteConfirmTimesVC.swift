@@ -37,8 +37,7 @@ class InviteConfirmTimesVC: BaseFormVC {
     }
 
     override func rightNavButtonTapped() {
-        // TODO: submitting the changes...
-        var vc = vcWithID("VolunteerVC") as! VolunteerVC
+        var vc = vcWithID("LocationVC") as! LocationVC
         vc.carpool = self.invitation.carpool
         vc.rider = rider
         self.navigationController?.pushViewController(vc, animated: true)
