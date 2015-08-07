@@ -42,21 +42,28 @@ class YourKidVC: BaseVC {
         }
         
         LoadingView.showWithMaskType(.Black)
-        dataManager.addKidsNameToCarpool(invitation.carpool.id, name: kidsNameTextField.text) { (success, errStr) in
+        dataManager.addKidsNameToCarpool(invitation.carpool.id, name: kidsNameTextField.text) { (success, errStr, riderObj) in
             LoadingView.dismiss()
             if success {
-                self.moveToVolunteerVC()
+                self.moveToConfirmTimes(riderObj as! RiderModel)
             } else {
                 self.showAlert("Failed to add your kid's name", messege: errStr, cancleTitle: "OK")
             }
         }
     }
-    
-    func moveToVolunteerVC() {
-        onMainThread() {
-            var vc = vcWithID("VolunteerVC") as! VolunteerVC
-            vc.carpool = self.invitation.carpool
-            self.navigationController?.pushViewController(vc, animated: true)
+
+    func moveToConfirmTimes(rider: RiderModel) {
+        dataManager.getOccurenceOfCarpool(invitation.carpool.id) { (success, error) in
+            if success {
+                var vc = vcWithID("InviteConfirmTimesVC") as! InviteConfirmTimesVC
+                vc.rider = rider
+                vc.invitation = self.invitation
+                vc.occurrences = self.userManager.volunteerEvents
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.showAlert("Failed to load carpool times", messege: error, cancleTitle: "OK")
+            }
         }
     }
+
 }

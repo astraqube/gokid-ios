@@ -10,6 +10,7 @@ extension DataManager {
     
     func sbViewControllerList() -> [String:[String:Bool]] {
         var carpool = [
+            "InviteConfirmTimesVC": true,
             "CarpoolEditVC": true,
             "CarpoolSucceedVC": true,
             "ContactPickerVC": true,

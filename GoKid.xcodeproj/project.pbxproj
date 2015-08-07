@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041CA0511B740BEC0018F2DE /* InviteConfirmTimesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CA0501B740BEC0018F2DE /* InviteConfirmTimesVC.swift */; };
 		0455A2291B5CB6D700F007E6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0455A2281B5CB6D700F007E6 /* Localizable.strings */; };
 		04587D041B6D628000D00AE0 /* CarpoolEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04587D031B6D628000D00AE0 /* CarpoolEditVC.swift */; };
 		0472B41D1B69E5F300D94610 /* InvitationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472B41C1B69E5F300D94610 /* InvitationModel.swift */; };
@@ -91,7 +92,6 @@
 		1DEFF16D1B49E3160094B54E /* YourKidVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16C1B49E3160094B54E /* YourKidVC.swift */; };
 		1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */; };
 		1DEFF1711B49EE4B0094B54E /* InviteeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */; };
-		1DEFF1741B4A1A760094B54E /* InviteTimeConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */; };
 		1DEFF1801B4A87D70094B54E /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */; };
 		1DEFF1811B4A87D70094B54E /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF17F1B4A87D70094B54E /* OnboardingViewController.m */; };
 		1DEFF1831B4A8ACB0094B54E /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEFF1821B4A8ACB0094B54E /* Onboard.storyboard */; };
@@ -140,6 +140,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041CA0501B740BEC0018F2DE /* InviteConfirmTimesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteConfirmTimesVC.swift; path = ViewControllers/InviteConfirmTimesVC.swift; sourceTree = "<group>"; };
 		0455A2281B5CB6D700F007E6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		04587D031B6D628000D00AE0 /* CarpoolEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarpoolEditVC.swift; path = ViewControllers/CarpoolEditVC.swift; sourceTree = "<group>"; };
 		0472B41C1B69E5F300D94610 /* InvitationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationModel.swift; sourceTree = "<group>"; };
@@ -244,7 +245,6 @@
 		1DEFF16C1B49E3160094B54E /* YourKidVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourKidVC.swift; sourceTree = "<group>"; };
 		1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteeListVC.swift; sourceTree = "<group>"; };
 		1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteeCell.swift; path = Cells/InviteeCell.swift; sourceTree = "<group>"; };
-		1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteTimeConfirmVC.swift; path = ViewControllers/InviteTimeConfirmVC.swift; sourceTree = "<group>"; };
 		1DEFF17C1B4A87D70094B54E /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingContentViewController.h; sourceTree = "<group>"; };
 		1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingContentViewController.m; sourceTree = "<group>"; };
 		1DEFF17E1B4A87D70094B54E /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
@@ -642,7 +642,7 @@
 			children = (
 				1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */,
 				1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */,
-				1DEFF1731B4A1A760094B54E /* InviteTimeConfirmVC.swift */,
+				041CA0501B740BEC0018F2DE /* InviteConfirmTimesVC.swift */,
 				1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */,
 				1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */,
 				1DEFF16C1B49E3160094B54E /* YourKidVC.swift */,
@@ -1058,9 +1058,9 @@
 				1DEFF1851B4A8B620094B54E /* LastOnboardVC.swift in Sources */,
 				1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */,
 				04FB809B1B530E4F00F73C74 /* TimeAndDateTransformer.swift in Sources */,
-				1DEFF1741B4A1A760094B54E /* InviteTimeConfirmVC.swift in Sources */,
 				1D1FD6931B1C04D100287FA0 /* MainStackVC.swift in Sources */,
 				1D8F78EE1B3672D300C78CAF /* BaseTVC.swift in Sources */,
+				041CA0511B740BEC0018F2DE /* InviteConfirmTimesVC.swift in Sources */,
 				796ABA621B5D8A0E0037F840 /* ETACalculator.swift in Sources */,
 				1D891F121B23FDD8006FD961 /* SwiftAddressBookPerson.swift in Sources */,
 				1D891F0F1B23FDD8006FD961 /* SwiftAddressBookDataStructures.swift in Sources */,

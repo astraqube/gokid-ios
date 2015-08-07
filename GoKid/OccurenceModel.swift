@@ -45,7 +45,11 @@ class OccurenceModel: NSObject {
     var carpoolID : Int {
         return carpool.id
     }
-    
+
+    var rideString : String {
+        return "\(poolType) at \(pooltimeStr)"
+    }
+
     override init() {
         super.init()
     }

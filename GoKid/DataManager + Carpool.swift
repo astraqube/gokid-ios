@@ -255,7 +255,7 @@ extension DataManager {
     }
 
     func deleteFromOccurenceRiders(rider: RiderModel , occ: OccurenceModel, comp: completion) {
-        var url = baseURL + "/api/carpools/" + String(occ.carpoolID) + "/occurrences/" + String(occ.occurenceID) + "/riders/" + String(rider.riderID)
+        var url = baseURL + "/api/occurrences/\(occ.occurenceID)/riders/\(rider.riderID)"
         var manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
             println("deleteFromOccurenceRiders success")
@@ -266,8 +266,20 @@ extension DataManager {
         }
     }
     
-    func addKidsNameToCarpool(carpoolID: Int, name: String, comp: completion) {
-        var url = baseURL + "/api/carpools/" + String(carpoolID) + "/riders"
+    func addRiderToOccurrence(rider: RiderModel, occ: OccurenceModel, comp: completion) {
+        var url = baseURL + "/api/occurrences/\(occ.occurenceID)/riders/\(rider.riderID)"
+        var manager = managerWithToken()
+        manager.POST(url, parameters: nil, success: { (op, obj) in
+            println("addRiderToOccurrence success")
+            comp(true, "")
+        }) { (op, error) in
+            println("addRiderToOccurrence failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+    
+    func addKidsNameToCarpool(carpoolID: Int, name: String, comp: ObjectCompletion) {
+        var url = baseURL + "/api/carpools/\(carpoolID)/riders"
         var map = [
             "rider" : [
                 "first_name": name,
@@ -277,10 +289,12 @@ extension DataManager {
         var manager = managerWithToken()
         manager.POST(url, parameters:map, success: { (op, obj) in
             println("addKidsNameToCarpool success")
-            comp(true, "")
+            let json = JSON(obj)
+            let rider = RiderModel(json: json["rider"])
+            comp(true, "", rider)
         }) { (op, error) in
             println("addKidsNameToCarpool failed")
-            self.handleRequestError(op, error: error, comp: comp)
+            self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 
