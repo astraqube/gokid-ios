@@ -418,6 +418,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                 self.dataManager.deleteFromOccurenceRiders(optOutRider!, occ: model, comp: { (success, errorStr) -> () in
                     LoadingView.dismiss()
                     if success {
+                        model.riders.removeAtIndex(find(model.riders, optOutRider!)!)
                         self.fetchDataAndReloadTableView()
                     } else {
                         self.showAlert("Failed to opt out rider", messege: errorStr, cancleTitle: "OK")

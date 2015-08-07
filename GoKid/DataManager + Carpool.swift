@@ -259,8 +259,6 @@ extension DataManager {
         var manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
             println("deleteFromOccurenceRiders success")
-            println(obj)
-            occ.riders.removeAtIndex(find(occ.riders, rider)!)
             comp(true, "")
         }) { (op, error) in
             println("updateOccurenceRiders failed")
