@@ -72,8 +72,12 @@ extension LocationVC {
         eventButton = UIButton(frame: CGRectMake(0, 0, 55, 55))
         eventButton.setImage(image, forState: .Normal)
         eventButton.addTarget(self, action: "eventButtonTapped:", forControlEvents: .TouchUpInside)
+
+        if rider != nil {
+            eventButton.enabled = false
+        }
     }
-    
+
     func setupImageViews() {
         doubleArrow = UIImageView(frame: CGRectMake(0, 0, 35, 39))
         doubleArrow.image = UIImage(named: "roundTrip")
