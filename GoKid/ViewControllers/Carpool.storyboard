@@ -127,9 +127,6 @@
                                 <state key="normal" image="back_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="backButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="mVU-Ka-flY"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carpool is confirmed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyI-gb-cjM">
                                 <rect key="frame" x="71" y="20" width="179" height="22"/>
@@ -210,9 +207,6 @@
                                 <state key="normal" image="next_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="nextButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="XfW-7E-zQg"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7r1-TV-6di">
                                 <rect key="frame" x="12" y="36" width="20" height="20"/>
@@ -223,9 +217,6 @@
                                 <state key="normal" image="back_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="backButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="cYB-Aj-y8c"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzi-z3-xvL">
                                 <rect key="frame" x="89" y="44" width="143" height="16"/>
@@ -348,9 +339,6 @@
                                 <state key="normal" image="back_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="backButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="WmH-GU-lsr"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Parents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeF-Ge-WxQ">
                                 <rect key="frame" x="101" y="20" width="118" height="24"/>
@@ -728,7 +716,6 @@
                         <outlet property="segmentControl" destination="C92-A1-L4w" id="9jU-36-LCO"/>
                         <outlet property="subtitleLabel" destination="6FD-YB-Iwp" id="yqm-9U-NcE"/>
                         <outlet property="switchBackgroundView" destination="yuU-tp-NbT" id="xkk-lh-Ks5"/>
-                        <outlet property="taponLabel" destination="J2R-hM-Rvp" id="6iH-jS-se0"/>
                         <outlet property="titleLabel" destination="kwE-Ew-p5T" id="Szc-bk-PVA"/>
                     </connections>
                 </viewController>
@@ -1023,9 +1010,6 @@
                                 <state key="normal" image="next_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="nextButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="Kge-ZT-dsd"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAy-HL-HQq">
                                 <rect key="frame" x="12" y="36" width="20" height="20"/>
@@ -1036,9 +1020,6 @@
                                 <state key="normal" image="top_x_up">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="backButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="Twq-n3-8OL"/>
-                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carpool_name_selected" translatesAutoresizingMaskIntoConstraints="NO" id="2cG-yU-zdO">
                                 <rect key="frame" x="12" y="262" width="25" height="25"/>
@@ -1158,9 +1139,6 @@
                                 <state key="normal" image="next_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="nextButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="jTh-iX-2EC"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IG-yj-YoZ">
                                 <rect key="frame" x="12" y="36" width="20" height="20"/>
@@ -1171,9 +1149,6 @@
                                 <state key="normal" image="back_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="backButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="dkr-N1-FBE"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ImU-yY-PAh">
                                 <rect key="frame" x="109" y="20" width="103" height="22"/>
@@ -1307,9 +1282,6 @@
                                 <state key="normal" image="back_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="backButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="AwI-q3-H9Q"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC8-ys-m15">
                                 <rect key="frame" x="89" y="44" width="143" height="16"/>
@@ -1383,9 +1355,6 @@
                                 <state key="normal" image="back_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="backButtonTapped:" destination="LG2-du-YDZ" eventType="touchUpInside" id="x6S-ue-y3u"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For when XXX needs a ride" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dQ-VE-4tf">
                                 <rect key="frame" x="80" y="44" width="161" height="16"/>
