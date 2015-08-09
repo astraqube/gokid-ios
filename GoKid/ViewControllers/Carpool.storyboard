@@ -440,7 +440,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="currentLocationButtonClick:" destination="b92-Ac-8n0" eventType="touchUpInside" id="LgZ-cb-q7X"/>
                                     <action selector="locationInputButtonClick:" destination="b92-Ac-8n0" eventType="touchUpInside" id="sIE-O4-ifS"/>
                                 </connections>
                             </button>
