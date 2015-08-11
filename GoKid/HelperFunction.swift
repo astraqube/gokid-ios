@@ -178,7 +178,7 @@ extension Array {
         }
     }
 }
-
+/* DEPRECATED
 extension SwiftAddressBookPerson {
  
     func firstNameStr() -> String {
@@ -221,7 +221,7 @@ extension SwiftAddressBookPerson {
         return nil
     }
 }
-
+*/
 
 @IBDesignable
 class PaddingTextField: UITextField {
