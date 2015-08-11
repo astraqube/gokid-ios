@@ -135,6 +135,7 @@ class TeamAccountVC: BaseVC {
             vc.sourceCellType = cellType
             vc.sourceCellIndex = indexPath.row
             vc.doneButtonHandler = memberProfileEditDone
+            vc.removeButtonHandler = removeMember
             navigationController?.pushViewController(vc, animated: true)
         } else {
             println("Unknow Cell Type")
@@ -172,7 +173,9 @@ class TeamAccountVC: BaseVC {
         var row = vc.sourceCellIndex
         var model = dataSource[row]
         dataManager.deleteTeamMember(model.permissionID) { (success, errorStr) in
-            if !success {
+            if success {
+                vc.navigationController?.popViewControllerAnimated(true)
+            } else {
                 self.showAlert("Failed to delete member", messege: errorStr, cancleTitle: "OK")
             }
         }

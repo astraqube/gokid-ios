@@ -25,6 +25,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         case AllTeamNotification = "All Team Notification"
         case IllBeDrivingNotification = "I'll be driving Notification"
         case Logout = "Logout"
+        case RemoveMember = "Remove Member"
     }
 
 //    @IBOutlet weak var emailLogoutButton: UIButton!
@@ -254,10 +255,23 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
             row.cellConfig["textLabel.font"] = fontValue
             row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
             row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
-            row.action.formSelector = "logout"
+            row.action.formSelector = "logout:"
             section.addFormRow(row)
 
             form.addFormSection(section)
+
+        } else {
+            section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+            row = XLFormRowDescriptor(tag: Tags.RemoveMember.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.RemoveMember.rawValue)
+            row.cellConfig["textLabel.font"] = fontValue
+            row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
+            row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
+            row.action.formSelector = "removeMember:"
+            section.addFormRow(row)
+
+            form.addFormSection(section)
+
         }
 
         self.form = form
@@ -450,7 +464,8 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         logout()
     }
 */
-    func logout() {
+    func logout(sender: XLFormRowDescriptor) {
+        self.deselectFormRow(sender)
         FBSDKLoginManager().logOut()
         UserManager.sharedInstance.logoutUser()
 
@@ -458,6 +473,12 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         let mainController = appDelegate.window!.rootViewController as! MainStackVC
         mainController.setWelcomeView()
     }
+
+    func removeMember(sender: XLFormRowDescriptor) {
+        self.deselectFormRow(sender)
+        removeButtonHandler!(self)
+    }
+
 /* DEPRECATED
     func handleLoginResult(success: Bool, errorStr: String) {
         LoadingView.dismiss()
