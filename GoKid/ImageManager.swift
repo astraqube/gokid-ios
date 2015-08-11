@@ -326,7 +326,20 @@ class ImageManager: NSObject {
         onGlobalThread() {
             var id = self.imgIDForURL(urlStr)
             var path = self.imageDirPath + id
-            var data = UIImagePNGRepresentation(img)
+            var picture: UIImage!
+
+            // image redraws to its intended orientation
+            if !(img.imageOrientation == .Up || img.imageOrientation == .UpMirrored) {
+                let imgsize = img.size
+                UIGraphicsBeginImageContext(imgsize)
+                img.drawInRect(CGRectMake(0.0, 0.0, imgsize.width, imgsize.height))
+                picture = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+            } else {
+                picture = img
+            }
+
+            var data = UIImagePNGRepresentation(picture)
             data.writeToFile(path, atomically: true)
             self.diskCached[id] = id
         }
