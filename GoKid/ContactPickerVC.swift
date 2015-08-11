@@ -73,7 +73,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
 
     func setUpAddressBook() {
-        addressBook.fieldsMask = .All
+        addressBook.fieldsMask = .Default | .PhonesWithLabels
         addressBook.sortDescriptors = [
             NSSortDescriptor(key: "firstName", ascending: true),
             NSSortDescriptor(key: "lastName", ascending: true)
