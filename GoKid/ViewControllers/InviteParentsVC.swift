@@ -29,6 +29,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        setStatusBarColorDark()
         navigationController?.setNavigationBarHidden(true, animated: false)
         self.subtitleLabel?.text = carpool.descriptionString
         carpoolNameLabel.text = "\"\(carpool.name)\""
