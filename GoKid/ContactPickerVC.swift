@@ -180,7 +180,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var person = collectionDataSource[indexPath.row]
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactNameCell", forIndexPath: indexPath) as? ContactNameCell
-        cell?.nameLabel.text = person.firstName
+        cell?.nameLabel.text = person.fullName
         cell?.cancleButtonHandler = cancleButtonClick
         return cell!
     }
@@ -189,7 +189,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         var person = collectionDataSource[indexPath.row]
         var font = UIFont.boldSystemFontOfSize(15)
         var attributes = [NSFontAttributeName : font]
-        var width = NSAttributedString(string: person.firstName!, attributes: attributes).size().width
+        var width = NSAttributedString(string: person.fullName, attributes: attributes).size().width
         return CGSizeMake(width+40, 20)
     }
     
