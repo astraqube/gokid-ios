@@ -10,23 +10,31 @@ import UIKit
 
 class Person {
     var firstName: String
-    var fullName: String
+    var lastName: String
     var selected: Bool
-    var phoneNum: String
-    var rawPhoneNum: String
-    
-    init(firstName: String, fullName: String, selected: Bool, phoneNum: String, rawPhoneNum: String) {
-        self.fullName = fullName
+    var phoneNum: APPhoneWithLabel
+
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
+
+    var phoneDisplay: String {
+        return "\(phoneNum.localizedLabel): \(phoneNum.phone)"
+    }
+
+    init(firstName: String, lastName: String, selected: Bool, phoneNum: APPhoneWithLabel) {
         self.firstName = firstName
+        self.lastName = lastName
         self.selected = selected
         self.phoneNum = phoneNum
-        self.rawPhoneNum = rawPhoneNum
     }
 }
 
 class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     var carpool: CarpoolModel!
+
+    let addressBook = APAddressBook()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -36,28 +44,33 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpNavigationBar()
-        setupSubViews()
+        setUpAddressBook()
         setUpDataSourceAndDelegate()
         tryUpdateTableView()
-    }
-    
-    func setUpNavigationBar() {
+
         self.subtitleLabel.text = carpool.descriptionString
     }
-    
-    func setupSubViews() {
-        collectionView.layer.borderColor = rgb(197, 200, 199).CGColor
-        collectionView.layer.borderWidth = 1.0
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        setStatusBarColorDark()
     }
-    
+
     func setUpDataSourceAndDelegate() {
         tableView.dataSource = self
         tableView.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
     }
-    
+
+    func setUpAddressBook() {
+        addressBook.fieldsMask = .Default | .PhonesWithLabels
+        addressBook.sortDescriptors = [
+            NSSortDescriptor(key: "firstName", ascending: true),
+            NSSortDescriptor(key: "lastName", ascending: true)
+        ]
+    }
+
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
@@ -126,7 +139,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         var cell = tableView.cellWithID("ContactCell", indexPath) as! ContactCell
         var person = tableDataSource[indexPath.section][indexPath.row]
         cell.nameLabel.text = person.fullName
-        cell.phoneNumLabel.text = person.rawPhoneNum
+        cell.phoneNumLabel.text = person.phoneDisplay
         cell.setSelection(person.selected)
         return cell
     }
@@ -165,46 +178,43 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         var person = collectionDataSource[indexPath.row]
-        var font = UIFont.boldSystemFontOfSize(17)
+        var font = UIFont.boldSystemFontOfSize(15)
         var attributes = [NSFontAttributeName : font]
         var width = NSAttributedString(string: person.firstName, attributes: attributes).size().width
-        return CGSizeMake(width+50, 50)
+        return CGSizeMake(width+40, 20)
     }
     
     // MARK: Address Book Method
     // --------------------------------------------------------------------------------------------
     
     func tryUpdateTableView() {
-        swiftAddressBook?.requestAccessWithCompletion() { (success, error) in
-            if success { self.fetchDataUpdateTableView() }
-            else {
-                var title = "Cannot access contacts"
-                var messege = "Please allow access to Contacts in order to invite"
-                self.showAlert(title, messege: messege, cancleTitle: "OK")
+        switch(APAddressBook.access())
+        {
+        case .Unknown:
+            APAddressBook.requestAccess { (success: Bool, error: NSError!) in
+                self.tryUpdateTableView()
             }
+            break;
+
+        case .Granted:
+            self.fetchDataUpdateTableView()
+            break;
+
+        case .Denied:
+            self.showAlert("Unable to access your contacts", messege: "Please allow access to Contacts", cancleTitle: "OK")
+            break;
         }
     }
     
     func fetchDataUpdateTableView() {
-        var data = [Person]()
-        if let people = swiftAddressBook?.allPeople {
-            for addressBookPerson in people {
-                var fullName = addressBookPerson.fullName()
-                var firstName = addressBookPerson.firstNameStr()
-                var phoneNum = addressBookPerson.proccessedPhoneNum()
-                var rawNum = addressBookPerson.rawPhoneNumber()
-                var person = Person(firstName: firstName, fullName: fullName, selected: false, phoneNum: phoneNum, rawPhoneNum: rawNum)
-                data.append(person)
-            }
-        }
-        data.sort({ $0.firstName < $1.firstName })
-        constructTableDataAndUpdate(data)
+        searchForContact("")
     }
     
     func constructTableDataAndUpdate(data: [Person]) {
         tableDataSource = [[Person]]()
         var sections = [Person]()
-        var last = data[0].firstName.firstCharacter()
+        var last: String!
+
         for person in data {
             if person.firstName.firstCharacter() != last {
                 tableDataSource.append(sections)
@@ -214,9 +224,8 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
             last = person.firstName.firstCharacter()
         }
         tableDataSource.append(sections)
-        
-        tableView.reloadData()
-        withDelay(0.5) {
+
+        onMainThread {
             self.tableView.reloadData()
         }
     }
@@ -231,7 +240,9 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
             }
         }
         collectionDataSource = data
-        collectionView.reloadData()
+        onMainThread {
+            self.collectionView.reloadData()
+        }
     }
     
     func cancleButtonClick(cell :ContactNameCell) {
@@ -242,7 +253,9 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         tableView.reloadData()
         
         collectionDataSource.removeAtIndex(row)
-        collectionView.reloadData()
+        onMainThread {
+            self.collectionView.reloadData()
+        }
     }
     
     func getCurrentSelectedPhoneNumber() -> [String] {
@@ -250,7 +263,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         for section in tableDataSource {
             for person in section {
                 if person.selected {
-                    phoneNumbers.append(person.phoneNum)
+                    phoneNumbers.append(person.phoneNum.phone)
                 }
             }
         }
@@ -258,5 +271,56 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
 }
 
+extension ContactPickerVC: UISearchBarDelegate {
 
+    func searchForContact(query: String) {
+        var data = [Person]()
 
+        self.addressBook.filterBlock = { (contact: APContact!) -> Bool in
+            if query != "" {
+                let name = "\(contact.firstName) \(contact.lastName)"
+                let number = " ".join(contact.phones as! [String])
+
+                if name.lowercaseString.rangeOfString(query.lowercaseString) != nil {
+                    return true
+                }
+
+                if number.rangeOfString(query) != nil {
+                    return true
+                }
+
+                return false
+
+            } else {
+                return contact.phones.count > 0
+            }
+        }
+
+        self.addressBook.loadContacts { (contacts: [AnyObject]!, error: NSError!) in
+                if (contacts != nil) {
+                    for addressBookPerson in contacts {
+                        let c = addressBookPerson as! APContact
+                        for phone in c.phonesWithLabels {
+                            let person = Person(firstName: c.firstName,
+                                lastName: c.lastName,
+                                selected: false,
+                                phoneNum: phone as! APPhoneWithLabel)
+                            data.append(person)
+                        }
+                    }
+                    self.constructTableDataAndUpdate(data)
+                } else if (error != nil) {
+                    self.showAlert("Error", messege: error.localizedDescription, cancleTitle: "OK")
+                }
+        }
+
+    }
+
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchForContact(searchBar.text)
+    }
+
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchForContact(searchText)
+    }
+}
