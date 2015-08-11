@@ -29,8 +29,10 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         
         refreshControl.addTarget(self, action: "asyncFetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
+
+        fetchDataAndReloadTableView()
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBarColorLight()
@@ -39,7 +41,6 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        fetchDataAndReloadTableView()
         fetchInvitations()
     }
 
