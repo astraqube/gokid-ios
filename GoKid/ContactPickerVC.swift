@@ -9,20 +9,29 @@
 import UIKit
 
 class Person {
-    var firstName: String
-    var lastName: String
+    var firstName: String?
+    var lastName: String?
     var selected: Bool
     var phoneNum: APPhoneWithLabel
 
     var fullName: String {
-        return "\(firstName) \(lastName)"
+        if firstName != nil && lastName != nil {
+            return "\(firstName!) \(lastName!)"
+        }
+        if firstName != nil {
+            return firstName!
+        }
+        if lastName != nil {
+            return lastName!
+        }
+        return "(No Name)"
     }
 
     var phoneDisplay: String {
         return "\(phoneNum.localizedLabel): \(phoneNum.phone)"
     }
 
-    init(firstName: String, lastName: String, selected: Bool, phoneNum: APPhoneWithLabel) {
+    init(firstName: String?, lastName: String?, selected: Bool, phoneNum: APPhoneWithLabel) {
         self.firstName = firstName
         self.lastName = lastName
         self.selected = selected
@@ -64,7 +73,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
 
     func setUpAddressBook() {
-        addressBook.fieldsMask = .Default | .PhonesWithLabels
+        addressBook.fieldsMask = .All
         addressBook.sortDescriptors = [
             NSSortDescriptor(key: "firstName", ascending: true),
             NSSortDescriptor(key: "lastName", ascending: true)
@@ -116,7 +125,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         var people = tableDataSource[section]
         if people.count > 0 {
             var person = people[0]
-            return person.firstName.firstCharacter()
+            return person.fullName.firstCharacter()
         } else {
             return ""
         }
@@ -180,7 +189,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         var person = collectionDataSource[indexPath.row]
         var font = UIFont.boldSystemFontOfSize(15)
         var attributes = [NSFontAttributeName : font]
-        var width = NSAttributedString(string: person.firstName, attributes: attributes).size().width
+        var width = NSAttributedString(string: person.firstName!, attributes: attributes).size().width
         return CGSizeMake(width+40, 20)
     }
     
@@ -216,12 +225,12 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         var last: String!
 
         for person in data {
-            if person.firstName.firstCharacter() != last {
+            if person.fullName.firstCharacter() != last {
                 tableDataSource.append(sections)
                 sections = [Person]()
             }
             sections.append(person)
-            last = person.firstName.firstCharacter()
+            last = person.fullName.firstCharacter()
         }
         tableDataSource.append(sections)
 
@@ -299,13 +308,14 @@ extension ContactPickerVC: UISearchBarDelegate {
         self.addressBook.loadContacts { (contacts: [AnyObject]!, error: NSError!) in
                 if (contacts != nil) {
                     for addressBookPerson in contacts {
-                        let c = addressBookPerson as! APContact
-                        for phone in c.phonesWithLabels {
-                            let person = Person(firstName: c.firstName,
-                                lastName: c.lastName,
-                                selected: false,
-                                phoneNum: phone as! APPhoneWithLabel)
-                            data.append(person)
+                        if let c = addressBookPerson as? APContact {
+                            for phone in c.phonesWithLabels {
+                                let person = Person(firstName: c.firstName,
+                                    lastName: c.lastName,
+                                    selected: false,
+                                    phoneNum: phone as! APPhoneWithLabel)
+                                data.append(person)
+                            }
                         }
                     }
                     self.constructTableDataAndUpdate(data)
