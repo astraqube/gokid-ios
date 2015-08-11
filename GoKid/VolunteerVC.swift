@@ -26,10 +26,16 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     // --------------------------------------------------------------------------------------------
     
     override func rightNavButtonTapped() {
-        var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
-        vc.carpool = self.carpool
-        vc.hideForwardNavigationButtons = false
-        self.navigationController?.pushViewController(vc, animated: true)
+        if carpool.isOwner {
+            var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
+            vc.carpool = self.carpool
+            vc.hideForwardNavigationButtons = false
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
+            vc.carpool = self.carpool
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     override func leftNavButtonTapped() {
