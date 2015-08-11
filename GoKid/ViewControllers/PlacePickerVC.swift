@@ -16,9 +16,11 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     var dataSource = [GMSAutocompletePrediction]()
     var teamVC : TeamAccountVC?
     var locationVC : LocationInputVC?
+    var proximity: CLLocationCoordinate2D = CLLocationCoordinate2DMake(37.4528, 122.1833)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupProximity()
         setupTableView()
     }
     
@@ -32,7 +34,17 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView(frame: CGRectZero)
         tableView.tableFooterView = backgroundView
     }
-    
+
+    func setupProximity() {
+        let placesClient = GMSPlacesClient()
+        placesClient.currentPlaceWithCallback { (places: GMSPlaceLikelihoodList?, error: NSError?) in
+            if error == nil && places != nil {
+                let location = places!.likelihoods[0] as! GMSPlaceLikelihood
+                self.proximity = location.place.coordinate
+            }r
+        }
+    }
+
     // MARK: TableView DataSource
     // --------------------------------------------------------------------------------------------
     
@@ -84,9 +96,8 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func searchPlacesAndReloadTable(input: String) {
         // MARK: TODO Change the place?
-        let menlo = CLLocationCoordinate2DMake(37.4528, 122.1833)
-        let northEast = CLLocationCoordinate2DMake(menlo.latitude + 1, menlo.longitude + 1)
-        let southWest = CLLocationCoordinate2DMake(menlo.latitude - 1, menlo.longitude - 1)
+        let northEast = CLLocationCoordinate2DMake(proximity.latitude + 1, proximity.longitude + 1)
+        let southWest = CLLocationCoordinate2DMake(proximity.latitude - 1, proximity.longitude - 1)
         let bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
         
         let filter = GMSAutocompleteFilter()
