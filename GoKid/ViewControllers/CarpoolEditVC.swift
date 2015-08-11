@@ -66,6 +66,7 @@ class CarpoolEditVC: BaseFormVC {
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.action.viewControllerStoryboardId = "InviteParentsVC"
+        row.disabled = !self.isCurrentUserAuthorized
         section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: Tags.EventLocation.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.EventLocation.rawValue)
