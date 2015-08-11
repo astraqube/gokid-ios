@@ -14,3 +14,4 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <XLForm/XLForm.h>
+#import <APAddressBook/APAddressBook-Bridging.h>
