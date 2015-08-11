@@ -41,7 +41,7 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             if error == nil && places != nil {
                 let location = places!.likelihoods[0] as! GMSPlaceLikelihood
                 self.proximity = location.place.coordinate
-            }r
+            }
         }
     }
 
