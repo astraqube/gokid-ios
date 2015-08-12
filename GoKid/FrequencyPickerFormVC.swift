@@ -141,19 +141,19 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         var formRow = self.form.formRowAtIndex(indexPath)
 
         // Top-level acts as radio buttons
-        if contains(GKFrequency.allValues, formRow.tag) {
+        if contains(GKFrequency.allValues, formRow!.tag!) {
             self.currentValues.removeAllObjects()
         }
 
-        if formRow.tag != GKFrequency.JustOnce.rawValue {
-            if formRow.value as! Bool {
-                self.currentValues.addObject(formRow.tag)
+        if formRow!.tag != GKFrequency.JustOnce.rawValue {
+            if formRow!.value as! Bool {
+                self.currentValues.addObject(formRow!.tag!)
             } else {
-                self.currentValues.removeObject(formRow.tag)
+                self.currentValues.removeObject(formRow!.tag!)
             }
         }
 
-        if formRow.tag == GKFrequency.Daily.rawValue {
+        if formRow!.tag == GKFrequency.Daily.rawValue {
             self.currentValues.addObjectsFromArray(GKDays.asKeys.keys.array)
         }
 
@@ -181,14 +181,14 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
     func updateFormFields() {
         for tag in (GKFrequency.allValues) {
             let fieldCell = self.form.formRowWithTag(tag)
-            fieldCell.value = self.isChecked(tag)
+            fieldCell!.value = self.isChecked(tag)
             self.updateFormRow(fieldCell)
         }
 
         for tag in (GKDays.allValues) {
             let fieldCell = self.form.formRowWithTag(tag)
-            fieldCell.value = self.isChecked(tag)
-            fieldCell.hidden = !self.isChecked(GKFrequency.EveryWeek.rawValue)
+            fieldCell!.value = self.isChecked(tag)
+            fieldCell!.hidden = !self.isChecked(GKFrequency.EveryWeek.rawValue)
             self.updateFormRow(fieldCell)
         }
     }

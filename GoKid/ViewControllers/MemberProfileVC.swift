@@ -287,7 +287,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 
         var formRow = self.form.formRowAtIndex(indexPath)
 
-        if formRow.tag == Tags.Phone.rawValue && sourceCellType == .EditUser {
+        if formRow!.tag == Tags.Phone.rawValue && sourceCellType == .EditUser {
             self.alertPhoneEdit(formRow)
         }
     }
@@ -308,11 +308,11 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         let emailCell = self.form.formRowWithTag(Tags.Email.rawValue)
         let passwordCell = self.form.formRowWithTag(Tags.Password.rawValue)
 
-        emailCell.required = !condition
-        emailCell.hidden = condition
+        emailCell!.required = !condition
+        emailCell!.hidden = condition
 
-        passwordCell.required = !condition
-        passwordCell.hidden = condition
+        passwordCell!.required = !condition
+        passwordCell!.hidden = condition
 
         self.updateFormRow(emailCell)
         self.updateFormRow(passwordCell)
@@ -329,9 +329,9 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         let driverCell = self.form.formRowWithTag(Tags.Driver.rawValue)
         let illBeDrivingCell = self.form.formRowWithTag(Tags.IllBeDrivingNotification.rawValue)
 
-        canManageCell.hidden = condition
-        driverCell.hidden = condition
-        illBeDrivingCell.hidden = condition
+        canManageCell!.hidden = condition
+        driverCell!.hidden = condition
+        illBeDrivingCell!.hidden = condition
 
         self.updateFormRow(canManageCell)
         self.updateFormRow(driverCell)
@@ -688,9 +688,9 @@ extension MemberProfileVC {
         let phoneCell = self.form.formRowWithTag(Tags.Phone.rawValue)
 
         if newNumber != nil {
-            phoneCell.value = newNumber!
+            phoneCell!.value = newNumber!
         } else {
-            phoneCell.value = self.model.phoneNumber
+            phoneCell!.value = self.model.phoneNumber
         }
 
         self.tableView.reloadData()

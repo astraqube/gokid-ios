@@ -139,9 +139,9 @@ class CarpoolEditVC: BaseFormVC {
         if formRow.tag == Tags.EventLocation.rawValue {
             self.updateEventLocation(newValue as! String)
 
-        } else if formRow.tag.toInt() != nil {
+        } else if formRow.tag!.toInt() != nil {
             // FIXME: This assumes form tag that is Int-based only applies to Rider fields
-            self.updateRiderLocation(formRow.tag.toInt(), address: newValue as! String)
+            self.updateRiderLocation(formRow.tag!.toInt(), address: newValue as! String)
         }
     }
 

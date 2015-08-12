@@ -154,11 +154,11 @@ class TimeAndDateFormVC: BaseFormVC {
             let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
             let frequencyCell = self.form.formRowWithTag(Tags.Frequency.rawValue)
             
-            endDateCell.hidden = !(newValue as! Bool)
-            endDateCell.required = newValue as! Bool
+            endDateCell!.hidden = !(newValue as! Bool)
+            endDateCell!.required = newValue as! Bool
             self.updateFormRow(endDateCell)
             
-            frequencyCell.hidden = !(newValue as! Bool)
+            frequencyCell!.hidden = !(newValue as! Bool)
             self.updateFormRow(frequencyCell)
         }
 
@@ -170,9 +170,9 @@ class TimeAndDateFormVC: BaseFormVC {
 
         var formRow = self.form.formRowAtIndex(indexPath)
 
-        if contains([XLFormRowDescriptorTypeDate, XLFormRowDescriptorTypeTime], formRow.rowType) {
-            if formRow.value == nil {
-                formRow.value = NSDate()
+        if contains([XLFormRowDescriptorTypeDate, XLFormRowDescriptorTypeTime], formRow!.rowType) {
+            if formRow!.value == nil {
+                formRow!.value = NSDate()
                 self.updateFormRow(formRow)
             }
         }
@@ -229,14 +229,14 @@ extension TimeAndDateFormVC {
         let startDateCell = self.form.formRowWithTag(Tags.StartDate.rawValue)
         let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
 
-        let startDate = startDateCell.value as? NSDate
-        let endDate = endDateCell.value as? NSDate
+        let startDate = startDateCell!.value as? NSDate
+        let endDate = endDateCell!.value as? NSDate
 
         let startTimeCell = self.form.formRowWithTag(Tags.StartTime.rawValue)
         let endTimeCell = self.form.formRowWithTag(Tags.EndTime.rawValue)
 
-        let startTime = startTimeCell.value as? NSDate
-        let endTime = endTimeCell.value as? NSDate
+        let startTime = startTimeCell!.value as? NSDate
+        let endTime = endTimeCell!.value as? NSDate
 
         if startDate != nil && endDate != nil {
             if startDate!.isGreaterThanDate(endDate!) {
