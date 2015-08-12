@@ -35,8 +35,8 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(
             self,
-            selector: "deleteCarpool:",
-            name:"deleteCarpool",
+            selector: "deleteRideOrCarpool:",
+            name:"deleteRideOrCarpool",
             object: nil
         )
     }
@@ -52,8 +52,8 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         fetchInvitations()
     }
     
-    func deleteCarpool(sender: AnyObject?) {
-        self.tableView.reloadData()
+    func deleteRideOrCarpool(sender: AnyObject?) {
+        self.asyncFetchDataAndReloadTableView()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

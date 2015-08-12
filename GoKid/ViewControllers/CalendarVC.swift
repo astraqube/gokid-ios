@@ -32,13 +32,13 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(
             self,
-            selector: "deleteCarpool:",
-            name:"deleteCarpool",
+            selector: "deleteRideOrCarpool:",
+            name:"deleteRideOrCarpool",
             object: nil
         )
     }
     
-    func deleteCarpool(sender: AnyObject?) {
+    func deleteRideOrCarpool(sender: AnyObject?) {
         self.asyncFetchDataAndReloadTableView()
     }
     
