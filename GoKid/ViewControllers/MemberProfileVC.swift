@@ -260,7 +260,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 
             form.addFormSection(section)
 
-        } else {
+        } else if sourceCellType == .EditMember {
             section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
             row = XLFormRowDescriptor(tag: Tags.RemoveMember.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.RemoveMember.rawValue)
