@@ -209,6 +209,7 @@ class CarpoolEditVC: BaseFormVC {
                         if !success && error != "" {
                             self.showAlert("There was a problem", messege: error, cancleTitle: "OK")
                         } else {
+                            NSNotificationCenter.defaultCenter().postNotificationName("deleteRide", object: nil, userInfo: nil)
                             self.navigationController?.popToRootViewControllerAnimated(true)
                         }
                     }
@@ -235,6 +236,7 @@ class CarpoolEditVC: BaseFormVC {
                         if !success && error != "" {
                             self.showAlert("There was a problem", messege: error, cancleTitle: "OK")
                         } else {
+                            NSNotificationCenter.defaultCenter().postNotificationName("deleteCarpool", object: nil, userInfo: nil)
                             self.navigationController?.popToRootViewControllerAnimated(true)
                         }
                     }

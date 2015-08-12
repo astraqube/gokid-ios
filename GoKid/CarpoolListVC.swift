@@ -31,6 +31,14 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         tableView.addSubview(refreshControl)
 
         fetchDataAndReloadTableView()
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(
+            self,
+            selector: "deleteCarpool:",
+            name:"deleteCarpool",
+            object: nil
+        )
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -42,6 +50,10 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         fetchInvitations()
+    }
+    
+    func deleteCarpool(sender: AnyObject?) {
+        self.tableView.reloadData()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

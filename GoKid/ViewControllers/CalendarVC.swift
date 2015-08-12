@@ -28,6 +28,18 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         
         refreshControl.addTarget(self, action: "asyncFetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(
+            self,
+            selector: "deleteCarpool:",
+            name:"deleteCarpool",
+            object: nil
+        )
+    }
+    
+    func deleteCarpool(sender: AnyObject?) {
+        self.asyncFetchDataAndReloadTableView()
     }
     
     override func viewWillAppear(animated: Bool) {
