@@ -237,11 +237,11 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         if model.occurrenceType == .Dropoff {
             cell.pickupIcon.hidden = true
             cell.dropoffIcon.hidden = false
-            cell.typeLabel.text = "dropoff"
+            cell.typeLabel.text = kGKDropoff
         }else {
             cell.pickupIcon.hidden = false
             cell.dropoffIcon.hidden = true
-            cell.typeLabel.text = "pickup"
+            cell.typeLabel.text = kGKPickup
         }
         for (index, riderImageView) in enumerate(cell.pickupImageCollection) {
             let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil

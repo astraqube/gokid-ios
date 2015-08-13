@@ -38,9 +38,9 @@ class DrivingModeVC: UIViewController {
                 switch stop.state {
                 case .Pending:
                     nextState = .Arrived
-                    stopTitle = "Arrive at " + (stop.name as String)
+                    stopTitle = kGKPickup + (stop.name as String)
                     if (self.navigation.dropoffs as NSArray).containsObject(stop) == true {
-                        stopTitle = "Dropoff " + (stop.name as String)
+                        stopTitle = kGKDropoff + (stop.name as String)
                         nextState = .Completed
                     }                    
                 case .Arrived:
@@ -48,9 +48,9 @@ class DrivingModeVC: UIViewController {
                     stopTitle = "Pickup " + (stop.name as String)
                 case .Completed:
                     nextState = .Pending
-                    stopTitle = "Undo Pickup of " + (stop.name as String)
+                    stopTitle = "Undo " + kGKPickup + (stop.name as String)
                     if (self.navigation.dropoffs as NSArray).containsObject(stop) == true {
-                        stopTitle = "Undo Dropoff of " + (stop.name as String)
+                        stopTitle = "Undo " + kGKDropoff + (stop.name as String)
                     }
                 }
                 stopActionSheet.addAction(UIAlertAction(title: stopTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in

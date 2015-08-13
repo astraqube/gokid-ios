@@ -10,6 +10,9 @@ import UIKit
 import Fabric
 import Crashlytics
 
+let kGKPickup = "Arrive at "
+let kGKDropoff = "Depart from "
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
