@@ -1,51 +1,73 @@
 //
-//  VolunteerVC.swift
+//  CarpoolOccurrenceListVC.swift
 //  GoKid
 //
-//  Created by Bingwen Fu on 6/4/15.
+//  Created by Hoan Ton-That on 8/12/15.
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
-
-    var carpool: CarpoolModel!
-    var rider: RiderModel?
-
+class CarpoolOccurrenceListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-    var dataSource = [OccurenceModel]()
+
+    var occurrenceDataSource = [OccurenceModel]()
+    var carpool: CarpoolModel!
+    
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setStatusBarColorDark()
-        self.subtitleLabel?.text = carpool.descriptionString
-        tryLoadTableData()
-    }
-    
-    // MARK: IBAction Method
-    // --------------------------------------------------------------------------------------------
-    
-    override func rightNavButtonTapped() {
-        if carpool.isOwner {
-            var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
-            vc.carpool = self.carpool
-            vc.hideForwardNavigationButtons = false
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
-            vc.carpool = self.carpool
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 130
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        refreshControl.addTarget(self, action: "asyncFetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
+        
+        titleLabel.text = carpool.name
+        subtitleLabel.text = carpool.kidName
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(
+            self,
+            selector: "deleteRideOrCarpool:",
+            name:"deleteRideOrCarpool",
+            object: nil
+        )
     }
     
     override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setStatusBarColorLight()
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.asyncFetchDataAndReloadTableView()
+    }
+    
+    func deleteRideOrCarpool(sender: AnyObject?) {
+        self.asyncFetchDataAndReloadTableView()
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return occurrenceDataSource.count
+    }
+    
     func checkButtonClickHandler(cell: VolunteerCell, button: UIButton) {
         if let row = tableView.indexPathForCell(cell)?.row {
-            let model = self.dataSource[row]
+            let model = self.occurrenceDataSource[row]
             if model.taken {
                 self.unRegisterVolunteerForCell(cell, model: model)
             } else{
@@ -53,20 +75,34 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    
-    // MARK: TableView DataSource Method
-    // --------------------------------------------------------------------------------------------
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
-    }
+
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        //var cell = UITableViewCell()
+//        //cell.textLabel?.text = "test"
+//        //return cell
+//
+//        var model = occurrenceDataSource[indexPath.row]
+//        
+//        let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
+//        cell.timeLabel.text = model.occursAtStr
+//        cell.locationLabel.text = carpool.startLocation
+//        return cell
+//
+//    }
+//    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//            //var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
+//            //inviteVC.carpool = carpoolsDataSource[indexPath.row]
+//            //navigationController?.pushViewController(inviteVC, animated: true)
+//            
+//            //var carpoolVC = vcWithID("CarpoolOccurrenceListVC") as! CarpoolOccurrenceListVC
+//            //carpoolVC.carpool = carpoolsDataSource[indexPath.row]
+//            //navigationController?.pushViewController(carpoolVC, animated: true)
+//            NSLog("hello hello")
+//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var model = dataSource[indexPath.row]
+        var model = occurrenceDataSource[indexPath.row]
         if model.cellType == .None {
             let cell = tableView.cellWithID("TDEmptyCell", indexPath) as! TDEmptyCell
             return cell
@@ -75,6 +111,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             cell.timeLabel.text = model.poolTimeStringWithSpace()
             cell.poolTypeLabel.text = model.poolType
             cell.checkButtonHandler = checkButtonClickHandler
+            
             // setup cell image
             if model.poolDriverImageUrl != "" {
                 imageManager.setImageToView(cell.driverImageView, urlStr: model.poolDriverImageUrl)
@@ -100,7 +137,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    var model = dataSource[indexPath.row]
+        var model = occurrenceDataSource[indexPath.row]
         switch model.cellType {
         case .None:
             return 20.0
@@ -113,17 +150,18 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tryLoadTableData() {
-        LoadingView.showWithMaskType(.Black)
-        dataManager.getOccurenceOfCarpool(carpool.id, rider: rider) { (success: Bool, errorStr: String) in
-            LoadingView.dismiss()
+    func asyncFetchDataAndReloadTableView() {
+        dataManager.getOccurenceOfCarpool(carpool.id, comp: { (success, errorStr) -> () in
             if success {
-                self.dataSource = self.processRawCalendarEvents(self.userManager.volunteerEvents)
+                self.occurrenceDataSource = self.processRawCalendarEvents(self.userManager.volunteerEvents)
+//                self.occurrenceDataSource = self.userManager.volunteerEvents
                 self.tableView.reloadData()
+//                self.showAlert("wow", messege: "works", cancleTitle: "OK")
             } else {
-                self.showAlert("Error", messege: errorStr, cancleTitle: "OK")
+                self.showAlert("Failed to load", messege: errorStr, cancleTitle: "OK")
             }
-        }
+        })
+
     }
     
     func processRawCalendarEvents(events: [OccurenceModel]) -> [OccurenceModel] {
@@ -141,7 +179,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
         return data
     }
-
+    
     func unRegisterVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
         LoadingView.showWithMaskType(.Black)
         self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
@@ -156,7 +194,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-
+    
     func registerVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
         LoadingView.showWithMaskType(.Black)
         self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
@@ -172,5 +210,18 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+
+    
+//
+//    func generateTableDataAndReload() {
+//        carpoolsDataSource = userManager.carpools.sorted { (left : CarpoolModel, right : CarpoolModel) -> Bool in
+//            if left.startDate == nil || right.startDate == nil { return false}
+//            return left.startDate!.isLessThanDate(right.startDate!)
+//        }
+//        onMainThread() {
+//            self.tableView.reloadData()
+//        }
+//    }
+
 
 }

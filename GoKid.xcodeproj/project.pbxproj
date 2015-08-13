@@ -94,6 +94,7 @@
 		1DFBBE9C1B1C78DC00630440 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */; };
 		1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */; };
 		1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */; };
+		405451B81B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405451B71B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift */; };
 		7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */; };
 		793374D01B558D820072FA13 /* RiderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374CF1B558D820072FA13 /* RiderModel.swift */; };
 		793374D41B558FB50072FA13 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374D31B558FB50072FA13 /* Location.swift */; };
@@ -244,6 +245,7 @@
 		1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpVC.swift; path = ViewControllers/SignUpVC.swift; sourceTree = "<group>"; };
 		1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamAccountVC.swift; path = ViewControllers/TeamAccountVC.swift; sourceTree = "<group>"; };
 		1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAccountCell.swift; sourceTree = "<group>"; };
+		405451B71B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolOccurrenceListVC.swift; sourceTree = "<group>"; };
 		7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapItineraryItemView.swift; sourceTree = "<group>"; };
 		793374CF1B558D820072FA13 /* RiderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderModel.swift; sourceTree = "<group>"; };
 		793374D31B558FB50072FA13 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -719,6 +721,7 @@
 			children = (
 				793374D71B55CEFA0072FA13 /* CarpoolListVC.swift */,
 				04587D031B6D628000D00AE0 /* CarpoolEditVC.swift */,
+				405451B71B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift */,
 			);
 			name = CarpoolList;
 			sourceTree = "<group>";
@@ -851,7 +854,7 @@
 				TargetAttributes = {
 					1D1FD65E1B1BFC4A00287FA0 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = CM6PMSRH33;
+						DevelopmentTeam = 4K6NZVTH9W;
 					};
 					1D1FD6731B1BFC4A00287FA0 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -988,6 +991,7 @@
 				7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */,
 				7943CF451B55DC1D007F6F8A /* CarpoolInviteCell.swift in Sources */,
 				1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */,
+				405451B81B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift in Sources */,
 				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
 				1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */,
 				1D3554591B3FD14200044A3F /* DataMnager + Notification.swift in Sources */,
@@ -1191,7 +1195,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "36fb45c2-3495-4d41-87f0-33bbb3ebdb1e";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoKid/GoKid-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1203,8 +1207,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gbadebowale Olaosebikan (5Y73L6V5UD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gbadebowale Olaosebikan (5Y73L6V5UD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1213,7 +1217,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "36fb45c2-3495-4d41-87f0-33bbb3ebdb1e";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoKid/GoKid-Bridging-Header.h";
 			};
 			name = Release;

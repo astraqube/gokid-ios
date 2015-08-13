@@ -13,6 +13,7 @@ extension DataManager {
             "InviteConfirmTimesVC": true,
             "CarpoolEditVC": true,
             "CarpoolSucceedVC": true,
+            "CarpoolOccurrenceListVC": true,
             "ContactPickerVC": true,
             "InviteParentsVC": true,
             "VolunteerVC": true,

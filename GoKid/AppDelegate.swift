@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         
         // for google places api
-        GMSServices.provideAPIKey("AIzaSyBMXf4Qv9_SYYX3PEW0zF0M2oBBjxqq6kw")
+        GMSServices.provideAPIKey("AIzaSyBHRdk9v9JyWbzLclg9tTET17eWeYXk5MU")
         
         // for facebook login
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

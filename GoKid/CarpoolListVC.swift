@@ -88,9 +88,16 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == ListSection.Carpools.rawValue {
-            var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
-            inviteVC.carpool = carpoolsDataSource[indexPath.row]
-            navigationController?.pushViewController(inviteVC, animated: true)
+            //var inviteVC = vcWithID("InviteParentsVC") as! InviteParentsVC
+            //inviteVC.carpool = carpoolsDataSource[indexPath.row]
+            //navigationController?.pushViewController(inviteVC, animated: true)
+            
+            //var carpoolVC = vcWithID("CarpoolOccurrenceListVC") as! CarpoolOccurrenceListVC
+            //carpoolVC.carpool = carpoolsDataSource[indexPath.row]
+            //navigationController?.pushViewController(carpoolVC, animated: true)
+            var vc = vcWithID("VolunteerVC") as! VolunteerVC
+            vc.carpool = carpoolsDataSource[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
