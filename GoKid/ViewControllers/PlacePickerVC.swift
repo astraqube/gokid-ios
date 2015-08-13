@@ -43,9 +43,11 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
     }
 
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        let myLocation = locations.last as! CLLocation
-        self.proximity = myLocation.coordinate
-        self.locator.stopUpdatingLocation()
+        debounce(NSTimeInterval(1.5), queue: dispatch_get_main_queue()) {
+            let myLocation = locations.last as! CLLocation
+            self.proximity = myLocation.coordinate
+            self.locator.stopUpdatingLocation()
+        }()
     }
 
     // MARK: TableView DataSource
