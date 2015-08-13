@@ -99,8 +99,17 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var model = dataSource[indexPath.row]
+        if model.cellType == .Normal {
+            var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
+            vc.occurrence = model
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    var model = dataSource[indexPath.row]
+        var model = dataSource[indexPath.row]
         switch model.cellType {
         case .None:
             return 20.0
