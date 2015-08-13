@@ -13,6 +13,8 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     var carpool: CarpoolModel!
     var rider: RiderModel?
 
+    var fromCarpoolList = false
+
     @IBOutlet weak var tableView: UITableView!
     var dataSource = [OccurenceModel]()
     
@@ -29,6 +31,10 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             name:"deleteRideOrCarpool",
             object: nil
         )
+
+        if !fromCarpoolList {
+            rightButton.setImage(UIImage(named: "next_arrow"), forState: UIControlState.Normal)
+        }
     }
     
     func deleteRideOrCarpool(sender: AnyObject?) {
@@ -39,19 +45,22 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     // --------------------------------------------------------------------------------------------
     
     override func rightNavButtonTapped() {
-//        if carpool.isOwner {
-//            var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
-//            vc.carpool = self.carpool
-//            vc.hideForwardNavigationButtons = false
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        } else {
-//            var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
-//            vc.carpool = self.carpool
-//            navigationController?.pushViewController(vc, animated: true)
-//        }
-        var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
-        vc.occurrence = dataSource[1]
-        navigationController?.pushViewController(vc, animated: true)
+        if fromCarpoolList {
+            var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
+            vc.occurrence = dataSource[1]
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            if carpool.isOwner {
+                var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
+                vc.carpool = self.carpool
+                vc.hideForwardNavigationButtons = false
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
+                vc.carpool = self.carpool
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     override func leftNavButtonTapped() {
