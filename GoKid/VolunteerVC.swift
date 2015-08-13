@@ -39,16 +39,19 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     // --------------------------------------------------------------------------------------------
     
     override func rightNavButtonTapped() {
-        if carpool.isOwner {
-            var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
-            vc.carpool = self.carpool
-            vc.hideForwardNavigationButtons = false
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
-            vc.carpool = self.carpool
-            navigationController?.pushViewController(vc, animated: true)
-        }
+//        if carpool.isOwner {
+//            var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
+//            vc.carpool = self.carpool
+//            vc.hideForwardNavigationButtons = false
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        } else {
+//            var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
+//            vc.carpool = self.carpool
+//            navigationController?.pushViewController(vc, animated: true)
+//        }
+        var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
+        vc.occurrence = dataSource[1]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func leftNavButtonTapped() {
@@ -119,8 +122,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
         } else if model.cellType == .Time {
             var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
-            vc.occurrence = dataSource[indexPath.row + 1
-            ]  // hardcode first occurrence
+            vc.occurrence = dataSource[indexPath.row + 1]  // hardcode first occurrence
             navigationController?.pushViewController(vc, animated: true)
         }
 
