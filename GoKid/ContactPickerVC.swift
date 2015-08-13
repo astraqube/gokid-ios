@@ -125,7 +125,12 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         var people = tableDataSource[section]
         if people.count > 0 {
             var person = people[0]
-            return person.fullName.firstCharacter()
+            var char = person.fullName.firstCharacter()
+            if char == "(" {
+                return "No Name"
+            } else {
+                return char
+            }
         } else {
             return ""
         }
