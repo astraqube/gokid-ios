@@ -21,8 +21,20 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         setStatusBarColorDark()
         self.subtitleLabel?.text = carpool.descriptionString
         tryLoadTableData()
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(
+            self,
+            selector: "deleteRideOrCarpool:",
+            name:"deleteRideOrCarpool",
+            object: nil
+        )
     }
     
+    func deleteRideOrCarpool(sender: AnyObject?) {
+        tryLoadTableData()
+    }
+
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
