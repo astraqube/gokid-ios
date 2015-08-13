@@ -88,7 +88,13 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         } else if model.cellType == .Normal {
             let cell = tableView.cellWithID("VolunteerCell", indexPath) as! VolunteerCell
             cell.timeLabel.text = model.poolTimeStringWithSpace()
-            cell.poolTypeLabel.text = model.poolType
+
+            if model.poolType == "pickup" {
+                cell.poolTypeLabel.text = kGKPickup
+            } else {
+                cell.poolTypeLabel.text = kGKDropoff
+            }
+
             cell.checkButtonHandler = checkButtonClickHandler
             // setup cell image
             if model.poolDriverImageUrl != "" {
