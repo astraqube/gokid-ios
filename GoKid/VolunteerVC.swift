@@ -139,6 +139,12 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         dataManager.getOccurenceOfCarpool(carpool.id, rider: rider) { (success: Bool, errorStr: String) in
             LoadingView.dismiss()
             if success {
+                if self.userManager.volunteerEvents.count == 0 {
+                    // we were deleted
+                    self.navigationController?.popViewControllerAnimated(false)
+                    return
+                }
+                
                 self.dataSource = self.processRawCalendarEvents(self.userManager.volunteerEvents)
                 self.tableView.reloadData()
             } else {
