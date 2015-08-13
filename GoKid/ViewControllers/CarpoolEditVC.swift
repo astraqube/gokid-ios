@@ -17,6 +17,7 @@ class CarpoolEditVC: BaseFormVC {
     var onOccurrenceEdited : ((occurrence: OccurenceModel)->())?
     
     private enum Tags : String {
+        case CarpoolName = "Carpool Name"
         case Unauthorized = "You are not authorized to make changes"
         case EventLocation = "Event Location"
         case InvitePanel = "Invite Parents via SMS or Email"
@@ -59,6 +60,17 @@ class CarpoolEditVC: BaseFormVC {
         }
 
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: Tags.CarpoolName.rawValue, rowType: XLFormRowDescriptorTypeText, title: Tags.CarpoolName.rawValue)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["textField.font"] = valueFont
+        row.cellConfig["textField.textColor"] = labelColor
+        row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
+        row.cellConfig["textField.enabled"] = false
+        row.value = occurrence.carpool.name
+        row.disabled = !self.isCurrentUserAuthorized
+        section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: Tags.InvitePanel.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.InvitePanel.rawValue)
         row.cellConfig["textLabel.font"] = labelFont
@@ -145,7 +157,65 @@ class CarpoolEditVC: BaseFormVC {
         }
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+
+        var formRow = self.form.formRowAtIndex(indexPath)
+
+        if formRow!.tag == Tags.CarpoolName.rawValue {
+            self.editCarpoolName(formRow)
+        }
+    }
+    
+    func editCarpoolName(fieldCell: XLFormRowDescriptor!) {
+        let confirmPrompt = UIAlertController(title: Tags.CarpoolName.rawValue, message: nil, preferredStyle: .Alert)
+        confirmPrompt.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+            textField.text = fieldCell.value as! String
+            textField.placeholder = "Enter a new name"
+        }
+
+        confirmPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+
+        confirmPrompt.addAction(UIAlertAction(title: "Submit", style: .Default, handler: { (alert: UIAlertAction!) in
+            if let textField = confirmPrompt.textFields?.first as? UITextField{
+                self.updateCarpoolName(textField.text)
+            }
+        }))
+
+        presentViewController(confirmPrompt, animated: true, completion: nil)
+    }
+
+    private func setCarpoolName(newName: String?) {
+        let carpoolNameCell = self.form.formRowWithTag(Tags.CarpoolName.rawValue)
+        self.occurrence.carpool.name = newName!
+
+        if newName != nil {
+            carpoolNameCell!.value = newName!
+        } else {
+            carpoolNameCell!.value = self.occurrence.carpool.name
+        }
+        self.viewDidAppear(false)
+        self.tableView.reloadData()
+        self.onOccurrenceEdited?(occurrence: self.occurrence)
+    }
+
     // MARK: Methods that make server calls
+
+    func updateCarpoolName(name: String) {
+        LoadingView.showWithMaskType(.Black)
+        let origName = self.occurrence.carpool.name
+        self.occurrence.carpool.name = name
+        dataManager.updateCarpool(self.occurrence.carpool) { (success, error, carpoolObj) in
+            LoadingView.dismiss()
+            if !success && error != "" {
+                self.occurrence.carpool.name = origName
+                self.showAlert("There was a problem", messege: error, cancleTitle: "OK")
+            } else {
+                let carpool = carpoolObj as! CarpoolModel
+                self.setCarpoolName(carpool.name)
+            }
+        }
+    }
 
     func updateEventLocation(address: String) {
         LoadingView.showWithMaskType(.Black)
