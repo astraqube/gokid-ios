@@ -8,15 +8,17 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
-class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
+class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    var dataSource = [GMSAutocompletePrediction]()
+    var dataSource = []
     var teamVC : TeamAccountVC?
     var locationVC : LocationInputVC?
     var proximity: CLLocationCoordinate2D = CLLocationCoordinate2DMake(37.4528, 122.1833)
+    var locator = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +38,14 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
 
     func setupProximity() {
-        let placesClient = GMSPlacesClient()
-        placesClient.currentPlaceWithCallback { (places: GMSPlaceLikelihoodList?, error: NSError?) in
-            if error == nil && places != nil {
-                let location = places!.likelihoods[0] as! GMSPlaceLikelihood
-                self.proximity = location.place.coordinate
-            }
-        }
+        locator.delegate = self
+        locator.startUpdatingLocation()
+    }
+
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        let myLocation = locations.last as! CLLocation
+        self.proximity = myLocation.coordinate
+        self.locator.stopUpdatingLocation()
     }
 
     // MARK: TableView DataSource
@@ -53,20 +56,23 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var prediction = dataSource[indexPath.row]
         var cell = tableView.cellWithID("PlaceResultCell", indexPath) as! PlaceResultCell
-        var description = descriptionFromPrediction(prediction)
-        cell.titleLabel.text = description.title
-        cell.subtitleLabel.text = description.subtitle
+
+        if let place = self.dataSource.objectAtIndex(indexPath.row) as? MKMapItem {
+            var description = descriptionFromPrediction(place)
+            cell.titleLabel.text = description.title
+            cell.subtitleLabel.text = description.subtitle
+        }
+
         return cell
     }
-    
+
     // MARK: UITableView Delegate
     // --------------------------------------------------------------------------------------------
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var prediction = dataSource[indexPath.row]
-        var description = descriptionFromPrediction(prediction)
+        var place = self.dataSource.objectAtIndex(indexPath.row) as? MKMapItem
+        var description = descriptionFromPrediction(place!)
 
         self.dismissViewControllerAnimated(true) {
             self.teamVC?.setHomeAddress(description.title, address2: description.subtitle)
@@ -83,10 +89,10 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func searchChanges(sender: AnyObject) {
         var searchText = searchTextField.text
-        if count(searchText) > 0 {
+        if count(searchText) > 3 {
             searchPlacesAndReloadTable(searchText)
         } else {
-            dataSource = [GMSAutocompletePrediction]()
+            dataSource = []
             tableView.reloadData()
         }
     }
@@ -94,43 +100,40 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     // MARK: Search Method
     // --------------------------------------------------------------------------------------------
     
-    func searchPlacesAndReloadTable(input: String) {
-        // MARK: TODO Change the place?
-        let northEast = CLLocationCoordinate2DMake(proximity.latitude + 1, proximity.longitude + 1)
-        let southWest = CLLocationCoordinate2DMake(proximity.latitude - 1, proximity.longitude - 1)
-        let bounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
-        
-        let filter = GMSAutocompleteFilter()
-        filter.type = GMSPlacesAutocompleteTypeFilter.NoFilter
-        
-        var placesClient = GMSPlacesClient()
-        placesClient.autocompleteQuery(input, bounds: bounds, filter: filter, callback: { (results, error) in
-            if error != nil {
-                println("Autocomplete error \(error) for query '\(input)'")
-                return
-            }
-            println(results)
-            self.dataSource = [GMSAutocompletePrediction]()
-            if let predictions = results as? [GMSAutocompletePrediction] {
-                for result in predictions {
-                    self.dataSource.append(result)
-                }
+    func searchPlacesAndReloadTable(query: String) {
+        let distance = 1000
+        let diameter = CLLocationDistance(distance)
+        let region = MKCoordinateRegionMakeWithDistance(self.proximity, diameter, diameter)
+
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = query
+        request.region = region
+
+        let search = MKLocalSearch(request: request)
+        search.startWithCompletionHandler {
+            (response: MKLocalSearchResponse!, error: NSError!) in
+            if error == nil {
+                self.dataSource = response.mapItems
             }
             self.tableView.reloadData()
-        })
-    }
-    
-    func descriptionFromPrediction(prediction: GMSAutocompletePrediction) -> (title: String, subtitle: String) {
-        var names = prediction.attributedFullText.string.componentsSeparatedByString(", ")
-        var title = names[0]
-        names.removeAtIndex(0)
-        var subtitle = ""
-        for i in 0..<names.count {
-            subtitle += names[i]
-            if i != names.count-1 {
-                subtitle += ", "
-            }
         }
+    }
+
+    func descriptionFromPrediction(place: MKMapItem) -> (title: String, subtitle: String) {
+        let title = place.name
+        var subtitle: String!
+
+        if let pd = place.placemark.subThoroughfare {
+            subtitle = String(format: "%@ %@, %@, %@ %@",
+                place.placemark.subThoroughfare,
+                place.placemark.thoroughfare,
+                place.placemark.locality,
+                place.placemark.administrativeArea,
+                place.placemark.postalCode)
+        } else {
+            subtitle = ""
+        }
+
         return (title, subtitle)
     }
     
