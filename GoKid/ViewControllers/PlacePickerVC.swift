@@ -88,13 +88,15 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
     }
     
     @IBAction func searchChanges(sender: AnyObject) {
-        var searchText = searchTextField.text
-        if count(searchText) > 3 {
-            searchPlacesAndReloadTable(searchText)
-        } else {
-            dataSource = []
-            tableView.reloadData()
-        }
+        debounce(NSTimeInterval(1.5), queue: dispatch_get_main_queue()) {
+            var searchText = self.searchTextField.text
+            if count(searchText) > 3 {
+                self.searchPlacesAndReloadTable(searchText)
+            } else {
+                self.dataSource = []
+                self.tableView.reloadData()
+            }
+        }()
     }
     
     // MARK: Search Method
