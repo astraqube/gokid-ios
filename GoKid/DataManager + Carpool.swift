@@ -182,6 +182,9 @@ extension DataManager {
 
         println(url)
         var manager = managerWithToken()
+        println(userManager.userToken)
+        manager.requestSerializer.setValue("no-cache", forHTTPHeaderField: "Pragma")
+        manager.requestSerializer.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getOccurenceOfCarpool success")
             var json = JSON(obj)["occurrences"]
@@ -193,6 +196,34 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
+    
+    func getOccurenceOfCarpool2(carpoolID: Int, comp: ObjectCompletion) {
+        getOccurenceOfCarpool2(carpoolID, rider: nil, comp: comp)
+    }
+    
+    func getOccurenceOfCarpool2(carpoolID: Int, rider: RiderModel?, comp: ObjectCompletion) {
+        var url = baseURL + "/api/carpools/\(carpoolID)/occurrences"
+        
+        if rider != nil {
+            url = url + "?only_rider=\(rider!.riderID)"
+        }
+        
+        println(url)
+        var manager = managerWithToken()
+        println(userManager.userToken)
+        manager.requestSerializer.setValue("no-cache", forHTTPHeaderField: "Pragma")
+        manager.requestSerializer.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
+        manager.GET(url, parameters: nil, success: { (op, obj) in
+            println("getOccurenceOfCarpool success")
+            var json = JSON(obj)["occurrences"]
+            var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
+            comp(true, "", events)
+        }) { (op, error) in
+            println("getOccurenceOfCarpool failed")
+            self.handleUserResuestError(op, error: error, comp: comp)
+        }
+    }
+
 
     func updateOccurrenceLocation(occurrenceID: Int, location: Location, comp: completion) {
         var url = baseURL + "/api/occurrences/\(occurrenceID)"

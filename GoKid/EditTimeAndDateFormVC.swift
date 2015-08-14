@@ -96,7 +96,7 @@ class EditTimeAndDateFormVC : BaseFormVC {
             let _id = String(o.occurenceID)
             let date = formData[_id] as! NSDate
             
-            updates[_id] = ["occursAt": date.iso8601String()]
+            updates[_id] = ["occurs_at": date.iso8601String()]
         }
         
         NSLog("updates %@", updates)

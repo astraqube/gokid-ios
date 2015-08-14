@@ -178,12 +178,15 @@ class CarpoolEditVC: BaseFormVC {
             // Fetch carpool again to get times
             dataManager.getCarpool(self.occurrence.carpoolID, comp: { (success, errorString, model) -> () in
                 if success {
-                    self.dataManager.getOccurenceOfCarpool(self.occurrence.carpoolID, comp: { (success2, errorString2) -> () in
+                    self.dataManager.getOccurenceOfCarpool2(self.occurrence.carpoolID, comp: { (success2, errorString2, obj2) -> () in
                         if success2 {
                             var carpoolModel = model as! CarpoolModel
                             var vc = vcWithID("EditTimeAndDateFormVC") as! EditTimeAndDateFormVC
                             vc.carpoolModel = carpoolModel
-                            vc.occurrences = self.userManager.volunteerEvents
+                            vc.occurrences = obj2 as! [OccurenceModel]
+                            
+                            NSLog("occ = %@", vc.occurrences[0].occursAt!)
+                            NSLog("occ = %@", vc.occurrences[1].occursAt!)
                             
                             self.navigationController!.pushViewController(vc, animated: true)
                         }
