@@ -49,7 +49,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     @IBOutlet weak var collectionView: UICollectionView!
 
     var tableDataSource = [[Person]]()
-    var collectionDataSource = [Person]()
+    var collectionDataSource = NSMutableArray.new() //[Person]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,17 +154,56 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         var person = tableDataSource[indexPath.section][indexPath.row]
         cell.nameLabel.text = person.fullName
         cell.phoneNumLabel.text = person.phoneDisplay
-        cell.setSelection(person.selected)
+
+        var selected = containsPerson(person)
+        cell.setSelection(selected)
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var person = tableDataSource[indexPath.section][indexPath.row]
-        person.selected = !person.selected
         
         var cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
-        cell.setSelection(person.selected)
-        tryUpdateCollectionView()
+        var selected = containsPerson(person)
+        
+        if selected {
+            removePerson(person)
+            cell.setSelection(false)
+        } else {
+            addPerson(person)
+            cell.setSelection(true)
+        }
+        collectionView.reloadData()
+        tableView.reloadData()
+    }
+    
+    // terrible
+    func containsPerson(p2: Person) -> Bool {
+        for o in collectionDataSource {
+            var p = o as! Person
+            if p.firstName == p2.firstName && p.lastName == p2.lastName && p.phoneNum.phone == p2.phoneNum.phone {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func removePerson(p2: Person) {
+        var newArray = NSMutableArray.new()
+        for o in collectionDataSource {
+            var p = o as! Person
+            if p.firstName == p2.firstName && p.lastName == p2.lastName && p.phoneNum.phone == p2.phoneNum.phone {
+                // don't append
+            } else {
+                newArray.addObject(p)
+            }
+        }
+        collectionDataSource = newArray
+    }
+    
+    func addPerson(p2: Person) {
+        collectionDataSource.addObject(p2)
     }
     
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
@@ -183,7 +222,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var person = collectionDataSource[indexPath.row]
+        var person = collectionDataSource[indexPath.row] as! Person
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactNameCell", forIndexPath: indexPath) as? ContactNameCell
         cell?.nameLabel.text = person.fullName
         cell?.cancleButtonHandler = cancleButtonClick
@@ -191,7 +230,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        var person = collectionDataSource[indexPath.row]
+        var person = collectionDataSource[indexPath.row] as! Person
         var font = UIFont.boldSystemFontOfSize(15)
         var attributes = [NSFontAttributeName : font]
         var width = NSAttributedString(string: person.fullName, attributes: attributes).size().width
@@ -240,47 +279,33 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         tableDataSource.append(sections)
 
         onMainThread {
-            self.tableView.reloadData()
-        }
-    }
-    
-    func tryUpdateCollectionView() {
-        var data = [Person]()
-        for section in tableDataSource {
-            for person in section {
-                if person.selected {
-                    data.append(person)
-                }
-            }
-        }
-        collectionDataSource = data
-        onMainThread {
             self.collectionView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
     func cancleButtonClick(cell :ContactNameCell) {
         var row = collectionView.indexPathForCell(cell)!.row
-        var person = collectionDataSource[row]
+        var person = collectionDataSource[row] as! Person
         
         person.selected = false
         tableView.reloadData()
         
-        collectionDataSource.removeAtIndex(row)
+        collectionDataSource.removeObject(person)
+        
         onMainThread {
             self.collectionView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
     func getCurrentSelectedPhoneNumber() -> [String] {
         var phoneNumbers = [String]()
-        for section in tableDataSource {
-            for person in section {
-                if person.selected {
-                    phoneNumbers.append(person.phoneNum.phone)
-                }
-            }
+        for obj in collectionDataSource {
+            var person = obj as! Person
+            phoneNumbers.append(person.phoneNum.phone)
         }
+        
         return phoneNumbers
     }
 }
