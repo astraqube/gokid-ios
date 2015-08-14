@@ -16,7 +16,7 @@ class EditTimeAndDateFormVC : BaseFormVC {
         self.titleLabel.text = "Edit Date & Time"
         self.subtitleLabel.text = carpoolModel.descriptionString//userManager.currentCarpoolDescription()
         
-        occurrences = self.processRawCalendarEvents(occurrences)
+        //  occurrences = self.processRawCalendarEvents(occurrences)
     }
     
     override func initForm() {
@@ -45,7 +45,7 @@ class EditTimeAndDateFormVC : BaseFormVC {
 
                 section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
                 
-                row = XLFormRowDescriptor(tag: "asdf", rowType: XLFormRowDescriptorTypeInfo, title: occurrence.occursAtStr)
+                row = XLFormRowDescriptor(tag: "heading", rowType: XLFormRowDescriptorTypeInfo, title: occurrence.occursAtStr)
                 row.cellConfig["textLabel.font"] = labelFont
                 row.cellConfig["textLabel.color"] = labelColor
                 row.cellConfig["detailTextLabel.font"] = valueFont
@@ -55,7 +55,7 @@ class EditTimeAndDateFormVC : BaseFormVC {
                 lastDateStr = occurrence.occursAtStr
             }
 
-            row = XLFormRowDescriptor(tag: "occurrence", rowType: XLFormRowDescriptorTypeTime, title: occurrence.poolType)
+            row = XLFormRowDescriptor(tag: String(occurrence.occurenceID), rowType: XLFormRowDescriptorTypeTime, title: occurrence.poolType)
             row.cellConfig["textLabel.font"] = labelFont
             row.cellConfig["textLabel.color"] = labelColor
             row.cellConfig["detailTextLabel.font"] = valueFont
@@ -87,20 +87,28 @@ class EditTimeAndDateFormVC : BaseFormVC {
         }
     }
     
-    func processRawCalendarEvents(events: [OccurenceModel]) -> [OccurenceModel] {
-        var data = [OccurenceModel]()
-        var lastDateStr = ""
-        for event in events {
-            if event.occursAtStr != lastDateStr {
-                var dateCell = OccurenceModel()
-                dateCell.cellType = .Time
-                dateCell.occursAtStr = event.occursAtStr
-                data.append(dateCell)
-                lastDateStr = event.occursAtStr
-            }
-            data.append(event)
+    override func rightNavButtonTapped() {
+        let formData = self.form.formValues()
+        
+        let updates = NSMutableDictionary.new()
+        
+        for o in occurrences {
+            let _id = String(o.occurenceID)
+            let date = formData[_id] as! NSDate
+            
+            updates[_id] = ["occursAt": date.iso8601String()]
         }
-        return data
+        
+        NSLog("updates %@", updates)
+        
+        dataManager.updateOccurencesTimes2(updates, comp: { (success, error) -> () in
+            if success {
+                self.navigationController?.popViewControllerAnimated(true)
+            } else {
+                self.showAlert("Error", messege: "Couldn't save times", cancleTitle: "Ok")
+            }
+        })
+        
     }
 
 }

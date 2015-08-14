@@ -243,6 +243,57 @@ extension DataManager {
         }
     }
     
+    func updateOccurencesTimes(occs: [OccurenceModel], comp: completion) {
+        var url = baseURL + "/api/occurrences"
+        
+        var map = NSMutableDictionary.new()
+        
+        for o in occs {
+            var id = String(o.occurenceID)
+            var updates = ["occursAt": o.occursAt!.iso8601String()]
+            map[id] = updates
+        }
+        
+        var payload = ["occurrences": map]
+        
+        println(url)
+        println(payload)
+        
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: payload, success: { (op, obj) in
+            println("updateOccurencesTimes success")
+            var json = JSON(obj)
+            println(json)
+            comp(true, "")
+        }) { (op, error) in
+            println(error)
+            println("updateOccurenceLocation failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+    
+    func updateOccurencesTimes2(updates: NSMutableDictionary, comp: completion) {
+        var url = baseURL + "/api/occurrences"
+        
+        var payload = ["occurrences": updates]
+        
+        println(url)
+        println(payload)
+        
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: payload, success: { (op, obj) in
+            println("updateOccurencesTimes success")
+            var json = JSON(obj)
+            println(json)
+            comp(true, "")
+            }) { (op, error) in
+                println(error)
+                println("updateOccurenceLocation failed")
+                self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+
+    
     func putOccurrenceCurrentLocation(location: CLLocation, occurrence: OccurenceModel, comp: completion){
         var url = baseURL + "/api/occurrences/" + String(occurrence.occurenceID) + "/location"
         let map = ["location" : [ "latitude" : location.coordinate.latitude,
