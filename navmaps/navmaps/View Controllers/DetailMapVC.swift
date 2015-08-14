@@ -27,6 +27,7 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     @IBOutlet weak var trayBlackCoverView: UIView!
     @IBOutlet weak var bottomTrayAngleUp: UIImageView!
     @IBOutlet weak var navigateButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     
     @IBOutlet weak var tripThumbnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -43,6 +44,9 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     var onOptOutButtonPressed : ((vc: DetailMapVC)-> Void)?
     ///Use this to manage opt in/out being driver. You'll need to redisplay the VC for changes to take effect.
     var onDriverImagePressed : ((vc: DetailMapVC)-> Void)?
+
+    // edit privileges
+    var canEdit: Bool!
     
     @IBOutlet var riderImageViews : [CalendarUserImageView]!
     @IBOutlet var riderLabelViews : [UILabel]!
@@ -72,6 +76,9 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     }
     
     func setupView() {
+        editButton.enabled = canEdit
+        editButton.hidden = !canEdit
+
         mapDataSource = MapViewDatasource(type: .Detail, navigation: navigation, mapView: mapView)
         mapView.delegate = mapDataSource
         mapDataSource.setup()

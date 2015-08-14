@@ -1288,6 +1288,7 @@ Greenwich, CT.</string>
                         <outlet property="bottomTrayView" destination="hdt-TA-ZWy" id="G8W-vt-43A"/>
                         <outlet property="dateLabel" destination="cmV-10-HOB" id="o7w-LA-KvB"/>
                         <outlet property="dropoffIcon" destination="NSD-ve-o1h" id="MQA-lq-bcQ"/>
+                        <outlet property="editButton" destination="Ssp-Sr-fTb" id="RiY-mh-SyG"/>
                         <outlet property="itineraryScrollView" destination="VZi-un-xGy" id="vQD-Mn-eVJ"/>
                         <outlet property="mapView" destination="eAd-9y-yff" id="BcG-ml-TLi"/>
                         <outlet property="nameLabel" destination="RNX-Ky-EdS" id="jeB-WZ-wl7"/>
