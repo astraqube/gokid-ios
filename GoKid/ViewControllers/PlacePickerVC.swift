@@ -39,6 +39,7 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
 
     func setupProximity() {
         locator.delegate = self
+        locator.requestWhenInUseAuthorization()
         locator.startUpdatingLocation()
     }
 
