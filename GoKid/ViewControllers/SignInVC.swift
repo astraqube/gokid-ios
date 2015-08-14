@@ -20,6 +20,8 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
         super.viewDidLoad()
         setupLoginButton()
         self.registerForKeyBoardNotification()
+
+        emailTextField.keyboardType = .EmailAddress
     }
 
     func afterSignIn() {

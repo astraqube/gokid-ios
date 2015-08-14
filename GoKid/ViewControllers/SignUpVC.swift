@@ -24,6 +24,10 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         super.viewDidLoad()
         setupLoginButton()
         self.registerForKeyBoardNotification()
+
+        firstNameTextField.keyboardType = .ASCIICapable
+        lastNameTextField.keyboardType = .ASCIICapable
+        emailTextField.keyboardType = .EmailAddress
     }
 
     func afterSignUp() {
