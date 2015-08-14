@@ -9,6 +9,25 @@
 import UIKit
 
 extension DataManager {
+    func getCarpool(id: Int, comp: ObjectCompletion) {
+        var url = baseURL + "/api/carpools/" + String(id)
+        
+        var manager = managerWithToken()
+        manager.GET(url, parameters: nil, success: { (op, obj) in
+            var json = JSON(obj)
+            var carpool = CarpoolModel(json: json["carpool"])
+            
+            println("get carpool success")
+            
+            comp(true, "", carpool)
+        }) { (op, error) in
+            println("get carpool failed")
+            self.handleUserResuestError(op, error: error, comp: comp)
+        }
+        
+        
+    }
+    
     func createCarpool(model: CarpoolModel, comp: completion) {
         var url = baseURL + "/api/carpools"
         var map = [

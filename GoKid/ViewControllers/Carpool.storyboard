@@ -35,8 +35,10 @@
             <string>Raleway-Bold</string>
             <string>Raleway-Bold</string>
             <string>Raleway-Bold</string>
+            <string>Raleway-Bold</string>
         </mutableArray>
         <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
@@ -1616,6 +1618,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ace-do-JX9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1090" y="1169"/>
+        </scene>
+        <!--Edit Time And Date FormVC-->
+        <scene sceneID="l5O-ST-ltB">
+            <objects>
+                <viewController storyboardIdentifier="EditTimeAndDateFormVC" id="oZ0-G5-UN4" customClass="EditTimeAndDateFormVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="beX-pe-iFY"/>
+                        <viewControllerLayoutGuide type="bottom" id="EBS-hb-ad2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lci-ss-Flf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKv-wR-iY6">
+                                <rect key="frame" x="288" y="36" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="0fI-xc-2Gl"/>
+                                    <constraint firstAttribute="height" constant="20" id="3Rl-cf-5o1"/>
+                                </constraints>
+                                <state key="normal" image="next_arrow">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Soccor practice for Tom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xs7-Bt-nab">
+                                <rect key="frame" x="89" y="44" width="143" height="16"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
+                                <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="mUp-0T-WvL">
+                                <rect key="frame" x="0.0" y="60" width="320" height="740"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="oZ0-G5-UN4" id="Nhd-U5-kGt"/>
+                                    <outlet property="delegate" destination="oZ0-G5-UN4" id="N41-NK-Pne"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Date &amp; Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yaX-Jx-qaQ">
+                                <rect key="frame" x="108" y="20" width="105" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="lsD-bD-RwY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
+                                <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Af3-WB-se9">
+                                <rect key="frame" x="12" y="36" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="0fw-sL-CLK"/>
+                                    <constraint firstAttribute="height" constant="20" id="eZC-5V-8li"/>
+                                </constraints>
+                                <state key="normal" image="back_arrow">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.98039215690000003" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Xs7-Bt-nab" firstAttribute="centerX" secondItem="yaX-Jx-qaQ" secondAttribute="centerX" id="4wo-bh-na9"/>
+                            <constraint firstItem="Xs7-Bt-nab" firstAttribute="top" secondItem="yaX-Jx-qaQ" secondAttribute="bottom" id="VRu-w7-rvs"/>
+                            <constraint firstItem="SKv-wR-iY6" firstAttribute="centerY" secondItem="Af3-WB-se9" secondAttribute="centerY" id="eBr-eO-vbQ"/>
+                            <constraint firstItem="mUp-0T-WvL" firstAttribute="top" secondItem="Xs7-Bt-nab" secondAttribute="bottom" id="p7t-Lz-gNh"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="800"/>
+                    <connections>
+                        <outlet property="leftButton" destination="Af3-WB-se9" id="xt4-A1-5HD"/>
+                        <outlet property="rightButton" destination="SKv-wR-iY6" id="RhF-Db-ENE"/>
+                        <outlet property="subtitleLabel" destination="Xs7-Bt-nab" id="jgo-Mt-BxY"/>
+                        <outlet property="tableView" destination="mUp-0T-WvL" id="Fu8-xK-U7G"/>
+                        <outlet property="titleLabel" destination="yaX-Jx-qaQ" id="tIh-tE-dbx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ho2-Tr-gRw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-777" y="1027"/>
         </scene>
     </scenes>
     <resources>

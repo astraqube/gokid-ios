@@ -21,6 +21,7 @@ extension DataManager {
             "LocationVC": true,
             "FrequencyPickerFormVC": true,
             "TimeAndDateFormVC": true,
+            "EditTimeAndDateFormVC": true,
             "BasicInfoVC": true,
         ]
         var main = [

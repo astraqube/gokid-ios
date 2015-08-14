@@ -389,6 +389,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             UserManager.sharedInstance.currentCarpoolModel = model.carpool
             UserManager.sharedInstance.currentCarpoolModel.kidName = model.riders[0].firstName
             var carpoolEditVC = vcWithID("CarpoolEditVC") as! CarpoolEditVC
+            //carpoolEditVC.carpool = model.carpool
             carpoolEditVC.occurrence = model
             carpoolEditVC.onOccurrenceEdited = { (newOccurrence) in
                 vc.navigation = self.navigationForModel(newOccurrence)

@@ -13,12 +13,14 @@ import UIKit
 ///A callback function alerts  changes of the model.
 class CarpoolEditVC: BaseFormVC {
     var occurrence : OccurenceModel!
+    
     ///This method is called on each update of occurrence but NOT deletion
     var onOccurrenceEdited : ((occurrence: OccurenceModel)->())?
     
     private enum Tags : String {
         case CarpoolName = "Carpool Name"
         case Unauthorized = "You are not authorized to make changes"
+        case ChangeTimes = "Change Times"
         case EventLocation = "Event Location"
         case InvitePanel = "Invite Parents via SMS or Email"
         case DeleteRide = "Delete this Ride"
@@ -72,15 +74,6 @@ class CarpoolEditVC: BaseFormVC {
         row.disabled = !self.isCurrentUserAuthorized
         section.addFormRow(row)
 
-        row = XLFormRowDescriptor(tag: Tags.InvitePanel.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.InvitePanel.rawValue)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.cellConfig["detailTextLabel.font"] = valueFont
-        row.cellConfig["detailTextLabel.color"] = labelColor
-        row.action.viewControllerStoryboardId = "InviteParentsVC"
-        row.disabled = !self.isCurrentUserAuthorized
-        section.addFormRow(row)
-
         row = XLFormRowDescriptor(tag: Tags.EventLocation.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.EventLocation.rawValue)
         row.cellConfig["textLabel.font"] = labelFont
         row.cellConfig["textLabel.color"] = labelColor
@@ -88,6 +81,23 @@ class CarpoolEditVC: BaseFormVC {
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.action.viewControllerStoryboardId = "LocationInputVC"
         row.value = self.occurrence.eventLocation.name
+        row.disabled = !self.isCurrentUserAuthorized
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.ChangeTimes.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.ChangeTimes.rawValue)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
+        row.disabled = !self.isCurrentUserAuthorized
+        section.addFormRow(row)
+        
+        row = XLFormRowDescriptor(tag: Tags.InvitePanel.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.InvitePanel.rawValue)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
+        row.action.viewControllerStoryboardId = "InviteParentsVC"
         row.disabled = !self.isCurrentUserAuthorized
         section.addFormRow(row)
 
@@ -164,6 +174,24 @@ class CarpoolEditVC: BaseFormVC {
 
         if formRow!.tag == Tags.CarpoolName.rawValue {
             self.editCarpoolName(formRow)
+        } else if formRow!.tag == Tags.ChangeTimes.rawValue {
+            // Fetch carpool again to get times
+            dataManager.getCarpool(self.occurrence.carpoolID, comp: { (success, errorString, model) -> () in
+                if success {
+                    self.dataManager.getOccurenceOfCarpool(self.occurrence.carpoolID, comp: { (success2, errorString2) -> () in
+                        if success2 {
+                            var carpoolModel = model as! CarpoolModel
+                            var vc = vcWithID("EditTimeAndDateFormVC") as! EditTimeAndDateFormVC
+                            vc.carpoolModel = carpoolModel
+                            vc.occurrences = self.userManager.volunteerEvents
+                            
+                            self.navigationController!.pushViewController(vc, animated: true)
+                        }
+                    })
+                    
+                    
+                }
+            })
         }
     }
     
