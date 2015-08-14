@@ -29,6 +29,9 @@ class CalendarUserImageView: UIView {
                 abbreviation = self.nameString.substringToIndex(self.nameString.length)
             }
             var words = self.nameString.componentsSeparatedByString(" ")
+            words = words.filter { (word: AnyObject) -> Bool in
+                return (word as! String) != ""
+            }
             if words.count > 1 {
                 abbreviation = words[0].substringToIndex(1) + words[1].substringToIndex(1)
             }

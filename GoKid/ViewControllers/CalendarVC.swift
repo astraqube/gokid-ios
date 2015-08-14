@@ -246,7 +246,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         for (index, riderImageView) in enumerate(cell.pickupImageCollection) {
             let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
             if rider != nil {
-                riderImageView.nameString = "\(rider!.firstName) \(rider!.lastName)"
+                riderImageView.nameString = rider!.fullName
                 //riderImageView.image = rider.thumURL //gotta get images
                 riderImageView.hidden = false
             } else {
