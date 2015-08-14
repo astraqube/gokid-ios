@@ -215,17 +215,7 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
             iconImageView.center = pinImageView.center
             iconImageView.center.y -= 3
         } else {
-            var abbreviation : String?
-            if stop.name.length >= 2 {
-                abbreviation = stop.name.substringToIndex(2)
-            }else{
-                abbreviation = stop.name.substringToIndex(stop.name.length)
-            }
-            var words = stop.name.componentsSeparatedByString(" ")
-            if words.count > 1 {
-                abbreviation = words[0].substringToIndex(1) + words[1].substringToIndex(1)
-            }
-            
+            let abbreviation = (stop.name as! String).twoLetterAcronym()
             var iconLabel = UILabel(frame: CGRectMake(0, 0, 38, 38))
             iconLabel.text = abbreviation
             iconLabel.textAlignment = .Center

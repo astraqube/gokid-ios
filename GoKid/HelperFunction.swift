@@ -180,7 +180,27 @@ extension String {
             return ""
         }
     }
-    
+
+    func twoLetterAcronym() -> String {
+        var acronym : String!
+        if count(self) >= 2 {
+            let index: String.Index = advance(self.startIndex, 2)
+            acronym = self.substringToIndex(index)
+        } else {
+            acronym = self
+        }
+
+        var words = self.componentsSeparatedByString(" ")
+        words = words.filter { (word: String) -> Bool in
+            return word != ""
+        }
+        if words.count > 1 {
+            acronym = words[0].firstCharacter() + words[1].firstCharacter()
+        }
+
+        return acronym
+    }
+
     mutating func captialName() -> String {
         if count(self) < 1 { return "" }
         var index = self.startIndex

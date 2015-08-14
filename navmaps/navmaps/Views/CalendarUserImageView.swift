@@ -22,20 +22,7 @@ class CalendarUserImageView: UIView {
     ///Set this guy to have letters made when no image
     @IBInspectable var nameString : NSString = "?" {
         didSet{
-            var abbreviation : String?
-            if self.nameString.length >= 2 {
-                abbreviation = self.nameString.substringToIndex(2)
-            }else{
-                abbreviation = self.nameString.substringToIndex(self.nameString.length)
-            }
-            var words = self.nameString.componentsSeparatedByString(" ")
-            words = words.filter { (word: AnyObject) -> Bool in
-                return (word as! String) != ""
-            }
-            if words.count > 1 {
-                abbreviation = words[0].substringToIndex(1) + words[1].substringToIndex(1)
-            }
-            nameLabel.text = abbreviation
+            nameLabel.text = (self.nameString as! String).twoLetterAcronym()
         }
     }
     
