@@ -1,4 +1,4 @@
-//
+`//
 //  DataManager + Notification.swift
 //  
 //
@@ -61,7 +61,7 @@ extension DataManager {
         var url = baseURL + "/api/ios_device_token"
         var map = ["device_token": token]
         var manager = managerWithToken()
-        manager.POST(url, parameters: nil, success: { (op, obj) in
+        manager.POST(url, parameters: map, success: { (op, obj) in
             println("updateNotificationToken success")
             println(obj)
             comp(true, "")
