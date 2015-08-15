@@ -857,7 +857,7 @@
 				TargetAttributes = {
 					1D1FD65E1B1BFC4A00287FA0 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 4K6NZVTH9W;
+						DevelopmentTeam = YDUSK55DEM;
 					};
 					1D1FD6731B1BFC4A00287FA0 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -1199,7 +1199,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "36fb45c2-3495-4d41-87f0-33bbb3ebdb1e";
+				PROVISIONING_PROFILE = "c575c2fd-66ea-4f6e-8a56-ce9864b1fd65";
 				SWIFT_OBJC_BRIDGING_HEADER = "GoKid/GoKid-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
