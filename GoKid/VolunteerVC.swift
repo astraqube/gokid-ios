@@ -131,7 +131,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
             cell.timeLabel.text = model.occursAtStr
             cell.locationLabel.text = model.eventLocation.name
-            cell.selectionStyle = .None
             return cell
         } else {
             println("unknown tableview cell type")
