@@ -34,6 +34,9 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 
         if !fromCarpoolList {
             rightButton.setImage(UIImage(named: "next_arrow"), forState: UIControlState.Normal)
+        } else {
+            rightButton.enabled = carpool.isOwner
+            rightButton.hidden = !carpool.isOwner
         }
     }
     
@@ -131,13 +134,9 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var model = dataSource[indexPath.row]
-        if model.cellType == .Normal {
+        if model.cellType == .Normal && carpool.isOwner {
             var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
             vc.occurrence = model
-            navigationController?.pushViewController(vc, animated: true)
-        } else if model.cellType == .Time {
-            var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
-            vc.occurrence = dataSource[indexPath.row + 1]  // hardcode first occurrence
             navigationController?.pushViewController(vc, animated: true)
         }
 
