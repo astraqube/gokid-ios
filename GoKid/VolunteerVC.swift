@@ -99,9 +99,9 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             cell.timeLabel.text = model.poolTimeStringWithSpace()
 
             if model.poolType == "pickup" {
-                cell.poolTypeLabel.text = kGKPickup
+                cell.poolTypeLabel.text = "Drive to Event"
             } else {
-                cell.poolTypeLabel.text = kGKDropoff
+                cell.poolTypeLabel.text = "Return from Event"
             }
 
             cell.checkButtonHandler = checkButtonClickHandler
