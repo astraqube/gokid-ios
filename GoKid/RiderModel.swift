@@ -23,9 +23,15 @@ class RiderModel: NSObject {
     var thumURL: String = ""
     var pickupLocation = Location()
     var dropoffLocation = Location()
+    var teams: [Int]?
 
     var fullName: String {
         return "\(firstName) \(lastName)"
+    }
+
+    var isInMyTeam: Bool {
+        let currentUser = UserManager.sharedInstance
+        return contains(teams!, currentUser.info.teamID)
     }
 
     static var ridersByID = [ Int : RiderModel]()
@@ -66,6 +72,7 @@ class RiderModel: NSObject {
         email = json["email"].stringValue
         role = json["role"].stringValue
         phoneNumber = json["phone_number"].stringValue
+        teams = json["team_ids"].arrayObject as? [Int]
 
         pickupLocation = Location(json: json["pickup_address"])
         dropoffLocation = Location(json: json["dropoff_address"])

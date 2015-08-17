@@ -422,7 +422,10 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             })
         }
         vc.onOptOutButtonPressed = { (vc: DetailMapVC) in
-            var optOutRider = model.riders.first
+            let myRiders = model.riders.filter { (r: RiderModel) -> Bool in
+                return r.isInMyTeam
+            }
+            var optOutRider = myRiders.first
             if optOutRider == nil { return }
             var optOutSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
             let optOutString = "Opt Out \(optOutRider!.firstName)"
