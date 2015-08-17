@@ -38,8 +38,14 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             rightButton.enabled = carpool.isOwner
             rightButton.hidden = !carpool.isOwner
         }
+
     }
-    
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        reloadTableData()
+    }
+
     func deleteRideOrCarpool(sender: AnyObject?) {
         tryLoadTableData()
     }
@@ -124,7 +130,8 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         } else if model.cellType == .Time {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
             cell.timeLabel.text = model.occursAtStr
-            cell.locationLabel.text = carpool.startLocation
+            cell.locationLabel.text = model.eventLocation.name
+            cell.selectionStyle = .None
             return cell
         } else {
             println("unknown tableview cell type")
@@ -175,7 +182,14 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    
+
+    func reloadTableData() {
+        if dataSource.count > 0 {
+            dataSource = processRawCalendarEvents(self.userManager.volunteerEvents)
+            tableView.reloadData()
+        }
+    }
+
     func processRawCalendarEvents(events: [OccurenceModel]) -> [OccurenceModel] {
         var data = [OccurenceModel]()
         var lastDateStr = ""
@@ -184,6 +198,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
                 var dateCell = OccurenceModel()
                 dateCell.cellType = .Time
                 dateCell.occursAtStr = event.occursAtStr
+                dateCell.eventLocation = event.eventLocation
                 data.append(dateCell)
                 lastDateStr = event.occursAtStr
             }
