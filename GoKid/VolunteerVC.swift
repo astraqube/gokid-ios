@@ -140,7 +140,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var model = dataSource[indexPath.row]
-        if model.cellType == .Normal && carpool.isOwner {
+        if model.cellType == .Normal && carpool.isOwner && fromCarpoolList {
             var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
             vc.occurrence = model
             navigationController?.pushViewController(vc, animated: true)
