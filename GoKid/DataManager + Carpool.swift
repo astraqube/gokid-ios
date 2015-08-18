@@ -44,11 +44,8 @@ extension DataManager {
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             var json = JSON(obj)
-            var carpool = CarpoolModel(json: json["carpool"])
-            carpool.riders = RiderModel.arrayOfRidersWithJSON(json["riders"])
-
-            self.userManager.currentCarpoolModel = carpool
-
+            model.reflect(json["carpool"])
+            model.riders = RiderModel.arrayOfRidersWithJSON(json["riders"])
             println("create carpool success")
             comp(true, "")
         }) { (op, error) in

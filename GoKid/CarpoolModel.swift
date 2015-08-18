@@ -52,6 +52,10 @@ class CarpoolModel: NSObject {
     
     init(json: JSON) {
         super.init()
+        reflect(json)
+    }
+
+    func reflect(json: JSON) {
         name = json["name"].stringValue
         id = json["id"].intValue
 
@@ -67,7 +71,7 @@ class CarpoolModel: NSObject {
                 riderIDs.append(value.intValue)
             }
             riders = RiderModel.ridersForRiderIDs(riderIDs)
-            
+
         } else if json["riders"] != nil {
             riders = RiderModel.arrayOfRidersWithJSON(json["riders"])
         }

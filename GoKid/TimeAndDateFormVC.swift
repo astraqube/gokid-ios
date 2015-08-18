@@ -9,7 +9,9 @@
 import UIKit
 
 class TimeAndDateFormVC: BaseFormVC {
-    
+
+    var carpool: CarpoolModel!
+
     private enum Tags : String {
         case StartDate = "Start Date"
         case EndDate = "End Date"
@@ -23,35 +25,34 @@ class TimeAndDateFormVC: BaseFormVC {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.titleLabel.text = "Date & Time"
-        self.title = userManager.currentCarpoolDescription()
-        self.subtitleLabel.text = userManager.currentCarpoolDescription()
+        self.title = carpool.descriptionString
+        self.subtitleLabel.text = carpool.descriptionString
     }
     
     private func updateCarpoolModel() {
         let formData = self.form.formValues()
-        let carpoolModel = userManager.currentCarpoolModel
-        
-        carpoolModel.startDate = formData[Tags.StartDate.rawValue] as? NSDate
+
+        carpool.startDate = formData[Tags.StartDate.rawValue] as? NSDate
 
         if formData[Tags.Repeat.rawValue] as! Bool {
-            carpoolModel.endDate = formData[Tags.EndDate.rawValue] as? NSDate
-            carpoolModel.occurence = formData[Tags.Frequency.rawValue] as? [Int]
+            carpool.endDate = formData[Tags.EndDate.rawValue] as? NSDate
+            carpool.occurence = formData[Tags.Frequency.rawValue] as? [Int]
         } else {
-            carpoolModel.endDate = nil
-            carpoolModel.occurence = nil
+            carpool.endDate = nil
+            carpool.occurence = nil
         }
 
-        carpoolModel.pickUpTime = formData[Tags.StartTime.rawValue] as? NSDate
-        carpoolModel.dropOffTime = formData[Tags.EndTime.rawValue] as? NSDate
+        carpool.pickUpTime = formData[Tags.StartTime.rawValue] as? NSDate
+        carpool.dropOffTime = formData[Tags.EndTime.rawValue] as? NSDate
     }
 
     private func createCarpoolData() {
         LoadingView.showWithMaskType(.Black)
-        dataManager.createCarpool(userManager.currentCarpoolModel) { (success, errorMessage) -> () in
+        dataManager.createCarpool(carpool) { (success, errorMessage) -> () in
             LoadingView.dismiss()
             if success {
                 var vc = vcWithID("LocationVC") as! LocationVC
-                vc.carpool = self.userManager.currentCarpoolModel
+                vc.carpool = self.carpool
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 self.showAlert("Fail to create carpool", messege: errorMessage, cancleTitle: "OK")
@@ -66,8 +67,6 @@ class TimeAndDateFormVC: BaseFormVC {
         
         let now = NSDate()
         
-        let carpoolModel = userManager.currentCarpoolModel
-
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         
         row = XLFormRowDescriptor(tag: Tags.StartDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.StartDate.rawValue)
@@ -77,7 +76,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.cellConfig["minimumDate"] = now
         row.required = true
-        row.value = carpoolModel.startDate
+        row.value = carpool.startDate
         row.valueTransformer = DateTransformer.self
         section.addFormRow(row)
         
@@ -88,7 +87,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.cellConfig["minimumDate"] = now
         row.hidden = true
-        row.value = carpoolModel.endDate
+        row.value = carpool.endDate
         row.valueTransformer = DateTransformer.self
         section.addFormRow(row)
         
@@ -99,13 +98,13 @@ class TimeAndDateFormVC: BaseFormVC {
         row.action.viewControllerClass = FrequencyPickerFormVC.self
         row.valueTransformer = FrequencyTransformer.self
         row.hidden = true
-        row.value = carpoolModel.occurence
+        row.value = carpool.occurence
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Repeat.rawValue)
         row.cellConfig["textLabel.font"] = labelFont
         row.cellConfig["textLabel.color"] = labelColor
-        row.value = (carpoolModel.occurence != nil && carpoolModel.occurence?.isEmpty == false)
+        row.value = (carpool.occurence != nil && carpool.occurence?.isEmpty == false)
         section.addFormRow(row)
         
         form.addFormSection(section)
@@ -118,7 +117,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.required = true
-        row.value = carpoolModel.pickUpTime
+        row.value = carpool.pickUpTime
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.EndTime.rawValue, rowType: XLFormRowDescriptorTypeTime, title: Tags.EndTime.rawValue)
@@ -127,7 +126,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.required = true
-        row.value = carpoolModel.dropOffTime
+        row.value = carpool.dropOffTime
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.OneWay.rawValue, rowType: XLFormRowDescriptorTypeSelectorPickerView, title: Tags.OneWay.rawValue)

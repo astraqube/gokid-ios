@@ -9,14 +9,16 @@
 import UIKit
 
 class BasicInfoVC: BaseVC, UITextFieldDelegate {
-    
+
+    var carpool: CarpoolModel!
+
     @IBOutlet weak var carpoolTitleTextField: PaddingTextField!
     @IBOutlet weak var kidsNameTextField: PaddingTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        userManager.currentCarpoolModel = CarpoolModel()
+        carpool = CarpoolModel()
 
         self.rightButton.enabled = self.canProceed()
     }
@@ -32,9 +34,10 @@ class BasicInfoVC: BaseVC, UITextFieldDelegate {
     
     override func rightNavButtonTapped() {
         if self.canProceed() {
-            userManager.currentCarpoolModel.kidName = kidsNameTextField.text!
-            userManager.currentCarpoolModel.name = carpoolTitleTextField.text!
-            var vc = vcWithID("TimeAndDateFormVC")
+            carpool.kidName = kidsNameTextField.text!
+            carpool.name = carpoolTitleTextField.text!
+            var vc = vcWithID("TimeAndDateFormVC") as! TimeAndDateFormVC
+            vc.carpool = carpool
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
