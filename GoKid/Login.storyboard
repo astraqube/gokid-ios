@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49H-12-bSL">
-                                <rect key="frame" x="12" y="36" width="20" height="20"/>
+                                <rect key="frame" x="16" y="36" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="RqX-a2-mH9"/>
                                     <constraint firstAttribute="height" constant="20" id="fIT-ac-YJk"/>
@@ -67,7 +67,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-49-DBs">
-                                <rect key="frame" x="288" y="36" width="20" height="20"/>
+                                <rect key="frame" x="284" y="36" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Tmo-az-l0Z"/>
                                     <constraint firstAttribute="width" constant="20" id="UrD-xe-eXi"/>
@@ -104,9 +104,9 @@
                         <constraints>
                             <constraint firstItem="SYQ-49-DBs" firstAttribute="top" secondItem="mBO-qu-ix0" secondAttribute="bottom" constant="16" id="3YN-A5-tUu"/>
                             <constraint firstItem="ZCz-08-jom" firstAttribute="leading" secondItem="2Df-IP-sBd" secondAttribute="leadingMargin" constant="-16" id="3ul-SG-oTc"/>
-                            <constraint firstItem="49H-12-bSL" firstAttribute="leading" secondItem="2Df-IP-sBd" secondAttribute="leadingMargin" constant="-4" id="5dE-FZ-Jfi"/>
+                            <constraint firstItem="49H-12-bSL" firstAttribute="leading" secondItem="2Df-IP-sBd" secondAttribute="leadingMargin" id="5dE-FZ-Jfi"/>
                             <constraint firstItem="ZCz-08-jom" firstAttribute="top" secondItem="mBO-qu-ix0" secondAttribute="bottom" constant="43" id="818-cG-GyH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="SYQ-49-DBs" secondAttribute="trailing" constant="-4" id="D8P-eK-gJA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SYQ-49-DBs" secondAttribute="trailing" id="D8P-eK-gJA"/>
                             <constraint firstItem="l0k-EW-hrY" firstAttribute="top" secondItem="ZCz-08-jom" secondAttribute="bottom" id="VYT-tg-YEx"/>
                             <constraint firstItem="SYQ-49-DBs" firstAttribute="centerY" secondItem="49H-12-bSL" secondAttribute="centerY" id="djl-8L-mxV"/>
                             <constraint firstAttribute="centerX" secondItem="Pee-Eo-5ha" secondAttribute="centerX" id="dtr-FW-m3K"/>

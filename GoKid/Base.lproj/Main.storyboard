@@ -606,7 +606,7 @@ invited you to
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmX-Aj-6DT">
-                                <rect key="frame" x="12" y="36" width="20" height="20"/>
+                                <rect key="frame" x="16" y="36" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="Svm-ei-nAx"/>
                                     <constraint firstAttribute="height" constant="20" id="Tqv-Gy-wX5"/>
@@ -640,7 +640,7 @@ invited you to
                             <constraint firstAttribute="trailingMargin" secondItem="dAe-Bk-6YE" secondAttribute="trailing" id="2ra-ks-lid"/>
                             <constraint firstItem="Tbf-aa-f5G" firstAttribute="centerX" secondItem="kMb-u6-H37" secondAttribute="centerX" id="7fD-5t-6rA"/>
                             <constraint firstItem="dAe-Bk-6YE" firstAttribute="top" secondItem="WYM-5e-mr9" secondAttribute="bottom" constant="44" id="BgR-XT-hdY"/>
-                            <constraint firstItem="cmX-Aj-6DT" firstAttribute="leading" secondItem="rKe-jh-3Se" secondAttribute="leadingMargin" constant="-4" id="DM9-by-yAu"/>
+                            <constraint firstItem="cmX-Aj-6DT" firstAttribute="leading" secondItem="rKe-jh-3Se" secondAttribute="leadingMargin" id="DM9-by-yAu"/>
                             <constraint firstItem="gGm-n3-O4s" firstAttribute="top" secondItem="dAe-Bk-6YE" secondAttribute="bottom" id="KCF-US-k90"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Tbf-aa-f5G" secondAttribute="trailing" constant="16" id="eof-jW-BwF"/>
                             <constraint firstItem="Tbf-aa-f5G" firstAttribute="width" secondItem="kMb-u6-H37" secondAttribute="width" id="pkK-Wp-1Y1"/>
