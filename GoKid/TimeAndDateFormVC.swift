@@ -29,37 +29,6 @@ class TimeAndDateFormVC: BaseFormVC {
         self.subtitleLabel.text = carpool.descriptionString
     }
     
-    private func updateCarpoolModel() {
-        let formData = self.form.formValues()
-
-        carpool.startDate = formData[Tags.StartDate.rawValue] as? NSDate
-
-        if formData[Tags.Repeat.rawValue] as! Bool {
-            carpool.endDate = formData[Tags.EndDate.rawValue] as? NSDate
-            carpool.occurence = formData[Tags.Frequency.rawValue] as? [Int]
-        } else {
-            carpool.endDate = nil
-            carpool.occurence = nil
-        }
-
-        carpool.pickUpTime = formData[Tags.StartTime.rawValue] as? NSDate
-        carpool.dropOffTime = formData[Tags.EndTime.rawValue] as? NSDate
-    }
-
-    private func createCarpoolData() {
-        LoadingView.showWithMaskType(.Black)
-        dataManager.createCarpool(carpool) { (success, errorMessage) -> () in
-            LoadingView.dismiss()
-            if success {
-                var vc = vcWithID("LocationVC") as! LocationVC
-                vc.carpool = self.carpool
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                self.showAlert("Fail to create carpool", messege: errorMessage, cancleTitle: "OK")
-            }
-        }
-    }
-
     override func initForm() {
         let form = XLFormDescriptor()
         var row: XLFormRowDescriptor!
@@ -134,7 +103,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.cellConfig["textLabel.color"] = labelColor
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
-        row.selectorOptions = ["", "Pickup Only", "Dropoff Only"]
+        row.selectorOptions = CarpoolMode.allValues
         row.value = ""
         section.addFormRow(row)
         
@@ -193,11 +162,70 @@ class TimeAndDateFormVC: BaseFormVC {
         self.tableView.endEditing(true)
 
         self.updateCarpoolModel()
-        self.createCarpoolData()
+        self.saveCarpoolData()
     }
 
 }
 
+// MARK: Form Submission
+extension TimeAndDateFormVC {
+
+    private func updateCarpoolModel() {
+        let formData = self.form.formValues()
+
+        carpool.startDate = formData[Tags.StartDate.rawValue] as? NSDate
+
+        if formData[Tags.Repeat.rawValue] as! Bool {
+            carpool.endDate = formData[Tags.EndDate.rawValue] as? NSDate
+            carpool.occurence = formData[Tags.Frequency.rawValue] as? [Int]
+        } else {
+            carpool.endDate = nil
+            carpool.occurence = nil
+        }
+
+        carpool.pickUpTime = formData[Tags.StartTime.rawValue] as? NSDate
+        carpool.dropOffTime = formData[Tags.EndTime.rawValue] as? NSDate
+
+        carpool.oneWay = CarpoolMode(rawValue: (formData[Tags.OneWay.rawValue] as? String)!)
+    }
+
+    private func saveCarpoolData() {
+        if carpool.id > 0 {
+            updateCarpoolData()
+        } else {
+            createCarpoolData()
+        }
+    }
+
+    private func createCarpoolData() {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.createCarpool(carpool) { (success, errorMessage, carpoolObj) -> () in
+            LoadingView.dismiss()
+            self.proceedToNextStep(success, errorMessage: errorMessage, carpoolObj: carpoolObj)
+        }
+    }
+
+    private func updateCarpoolData() {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.updateCarpool(carpool) { (success, errorMessage, carpoolObj) -> () in
+            LoadingView.dismiss()
+            self.proceedToNextStep(success, errorMessage: errorMessage, carpoolObj: carpoolObj)
+        }
+    }
+
+    private func proceedToNextStep(success: Bool, errorMessage: String, carpoolObj: AnyObject?) {
+        if success {
+            var vc = vcWithID("LocationVC") as! LocationVC
+            vc.carpool = carpoolObj as! CarpoolModel
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            if errorMessage != "Access Denied" {
+                self.showAlert("Failed to create carpool", messege: errorMessage, cancleTitle: "OK")
+            }
+        }
+    }
+
+}
 
 // MARK: Table header icons
 extension TimeAndDateFormVC {

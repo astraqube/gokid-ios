@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum CarpoolMode: String {
+    case None = ""
+    case PickupOnly = "pickup"
+    case DropoffOnly = "dropoff"
+
+    static let allValues = [None.rawValue, PickupOnly.rawValue, DropoffOnly.rawValue]
+}
+
 class CarpoolModel: NSObject {
     
     var occurence: [Int]?
@@ -18,7 +26,9 @@ class CarpoolModel: NSObject {
     
     var startLocation: String?
     var endLocation: String?
-    
+
+    var oneWay: CarpoolMode! = .None
+
     var riders = [RiderModel]()
 
     var _kidName = ""
@@ -94,7 +104,27 @@ class CarpoolModel: NSObject {
         }
         return arr
     }
-    
+
+    func toJson() -> NSDictionary {
+        var json = [
+            "name": name,
+            "schedule": toSchedule()
+        ]
+
+        if oneWay.rawValue != "" {
+            json["one_way"] = oneWay.rawValue
+        }
+
+        if _kidName != "" {
+            json["kids"] = [[
+                "first_name": _kidName,
+                "last_name": UserManager.sharedInstance.info.lastName
+            ]]
+        }
+
+        return ["carpool": json]
+    }
+
     func toSchedule() -> NSDictionary {
         var schedule: NSMutableDictionary = [
             "dropoff_at": dropOffTime!.iso8601String(),

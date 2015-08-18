@@ -24,22 +24,11 @@ extension DataManager {
             println("get carpool failed")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
-        
-        
     }
     
-    func createCarpool(model: CarpoolModel, comp: completion) {
+    func createCarpool(model: CarpoolModel, comp: ObjectCompletion) {
         var url = baseURL + "/api/carpools"
-        var map = [
-            "carpool": [
-                "name": model.name,
-                "schedule": model.toSchedule(),
-                "kids": [[
-                    "first_name": model.kidName,
-                    "last_name": UserManager.sharedInstance.info.lastName
-                ]]
-            ]
-        ]
+        var map = model.toJson()
         println(map)
         var manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
@@ -47,27 +36,23 @@ extension DataManager {
             model.reflect(json["carpool"])
             model.riders = RiderModel.arrayOfRidersWithJSON(json["riders"])
             println("create carpool success")
-            comp(true, "")
+            comp(true, "", model)
         }) { (op, error) in
             println("create carpool failed")
-            self.handleRequestError(op, error: error, comp: comp)
+            self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 
     func updateCarpool(model: CarpoolModel, comp: ObjectCompletion) {
         var url = baseURL + "/api/carpools/\(model.id)"
-        var map = [
-            "carpool": [
-                "name": model.name
-            ]
-        ]
+        var map = model.toJson()
         println(map)
         var manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
             var json = JSON(obj)
             model.reflect(json["carpool"])
             println("updateCarpool success")
-            comp(true, "", carpool)
+            comp(true, "", model)
         }) { (op, error) in
             println("updateCarpool failed")
             self.handleUserResuestError(op, error: error, comp: comp)
