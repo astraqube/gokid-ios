@@ -65,8 +65,7 @@ extension DataManager {
         var manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
             var json = JSON(obj)
-            var carpool = CarpoolModel(json: json["carpool"])
-            self.userManager.currentCarpoolModel = carpool
+            model.reflect(json["carpool"])
             println("updateCarpool success")
             comp(true, "", carpool)
         }) { (op, error) in
@@ -94,7 +93,6 @@ extension DataManager {
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
             println("deleteCarpool success")
             println(obj)
-            self.userManager.currentCarpoolModel = CarpoolModel()
             comp(true, "")
         }) { (op, error) in
             println("deleteCarpool failed")
