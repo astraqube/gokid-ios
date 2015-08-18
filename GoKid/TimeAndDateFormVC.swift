@@ -139,7 +139,7 @@ class TimeAndDateFormVC: BaseFormVC {
         row.value = ""
         section.addFormRow(row)
         
-        section.footerTitle = "E.g. When the kids are walking to soccer practice after school but need a ride home"
+        section.footerTitle = "E.g. When kids are walking to soccer practice from school and only need a ride home."
         
         form.addFormSection(section)
         
