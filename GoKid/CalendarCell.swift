@@ -16,7 +16,9 @@ class CalendarCell: UITableViewCell {
     
     @IBOutlet weak var pickupIcon: UILabel!
     @IBOutlet weak var dropoffIcon: UILabel!
-    
+
+    @IBOutlet weak var optedOutLabel: UILabel!
+
     /**
     Callback called when someone taps on `profileImageView`. Set to recieve callbacks.
     

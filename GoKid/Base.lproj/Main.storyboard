@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -14,6 +14,8 @@
             <string>FontAwesome</string>
         </mutableArray>
         <mutableArray key="Raleway-Bold.ttf">
+            <string>Raleway-Bold</string>
+            <string>Raleway-Bold</string>
             <string>Raleway-Bold</string>
             <string>Raleway-Bold</string>
             <string>Raleway-Bold</string>
@@ -1256,6 +1258,13 @@ invited you to
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarCellLeft" translatesAutoresizingMaskIntoConstraints="NO" id="jsZ-y2-4rn">
                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="134"/>
                                                         </imageView>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You opted out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3k-fH-FSU">
+                                                            <rect key="frame" x="13" y="66" width="292" height="44"/>
+                                                            <color key="backgroundColor" red="0.69803921568627447" green="0.78431372549019607" blue="0.72549019607843135" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1263,16 +1272,19 @@ invited you to
                                                         <constraint firstItem="fRQ-bf-UrQ" firstAttribute="trailing" secondItem="Rth-og-fFs" secondAttribute="leading" constant="79" id="BN5-aw-aCX"/>
                                                         <constraint firstAttribute="bottom" secondItem="5mo-XU-ywY" secondAttribute="bottom" id="Bdb-0e-a1h"/>
                                                         <constraint firstAttribute="height" constant="134" id="BzQ-dr-XCx"/>
+                                                        <constraint firstItem="h3k-fH-FSU" firstAttribute="leading" secondItem="vpy-Z9-an7" secondAttribute="leading" constant="13" id="EvG-xC-0na"/>
                                                         <constraint firstAttribute="centerY" secondItem="2Cl-4f-vdy" secondAttribute="centerY" id="FHu-Cv-Tvf"/>
                                                         <constraint firstItem="KeU-qy-Uir" firstAttribute="centerY" secondItem="VFH-cs-zQl" secondAttribute="centerY" id="Fan-8Y-jVo"/>
                                                         <constraint firstItem="KeU-qy-Uir" firstAttribute="centerY" secondItem="Rth-og-fFs" secondAttribute="centerY" id="HGa-uM-975"/>
                                                         <constraint firstAttribute="bottom" secondItem="LoW-zx-eYE" secondAttribute="bottom" id="ODY-PN-pLL"/>
+                                                        <constraint firstItem="h3k-fH-FSU" firstAttribute="centerY" secondItem="VFH-cs-zQl" secondAttribute="centerY" id="OUU-7k-yak"/>
                                                         <constraint firstItem="Flx-JH-oVl" firstAttribute="top" secondItem="vpy-Z9-an7" secondAttribute="top" constant="17" id="QVc-33-2n0"/>
                                                         <constraint firstItem="KeU-qy-Uir" firstAttribute="leading" secondItem="VFH-cs-zQl" secondAttribute="trailing" constant="5" id="QYv-m4-RGq"/>
                                                         <constraint firstAttribute="bottom" secondItem="jsZ-y2-4rn" secondAttribute="bottom" id="Rn8-0L-Ajp"/>
                                                         <constraint firstItem="2Cl-4f-vdy" firstAttribute="leading" secondItem="vpy-Z9-an7" secondAttribute="leading" constant="26" id="UVn-9z-mPI"/>
                                                         <constraint firstItem="5mo-XU-ywY" firstAttribute="leading" secondItem="E8H-W2-9p1" secondAttribute="trailing" constant="6" id="Uul-jz-ePc"/>
                                                         <constraint firstItem="jsZ-y2-4rn" firstAttribute="top" secondItem="vpy-Z9-an7" secondAttribute="top" id="Uyb-K7-Jan"/>
+                                                        <constraint firstAttribute="trailing" secondItem="h3k-fH-FSU" secondAttribute="trailing" constant="15" id="VKB-42-3b6"/>
                                                         <constraint firstItem="jsZ-y2-4rn" firstAttribute="leading" secondItem="vpy-Z9-an7" secondAttribute="leading" id="VTd-oR-MFf"/>
                                                         <constraint firstItem="fRQ-bf-UrQ" firstAttribute="centerY" secondItem="Rth-og-fFs" secondAttribute="centerY" id="Ywz-Cx-CUR"/>
                                                         <constraint firstAttribute="bottom" secondItem="VFH-cs-zQl" secondAttribute="bottom" constant="24" id="abJ-pq-e8f"/>
@@ -1282,6 +1294,7 @@ invited you to
                                                         <constraint firstItem="LoW-zx-eYE" firstAttribute="top" secondItem="vpy-Z9-an7" secondAttribute="top" id="jUF-si-4c3"/>
                                                         <constraint firstItem="Rth-og-fFs" firstAttribute="width" secondItem="Rth-og-fFs" secondAttribute="height" multiplier="1:1" id="mJk-XY-s5R"/>
                                                         <constraint firstItem="Flx-JH-oVl" firstAttribute="leading" secondItem="2Cl-4f-vdy" secondAttribute="trailing" constant="11" id="mUJ-zL-8EU"/>
+                                                        <constraint firstItem="h3k-fH-FSU" firstAttribute="height" secondItem="VFH-cs-zQl" secondAttribute="height" id="mrR-kk-fQc"/>
                                                         <constraint firstItem="5mo-XU-ywY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Flx-JH-oVl" secondAttribute="trailing" id="q4S-0I-ve7"/>
                                                         <constraint firstItem="E8H-W2-9p1" firstAttribute="centerY" secondItem="LoW-zx-eYE" secondAttribute="centerY" id="rWq-3L-32i"/>
                                                         <constraint firstItem="5mo-XU-ywY" firstAttribute="leading" secondItem="LoW-zx-eYE" secondAttribute="trailing" id="so4-lr-STG"/>
@@ -1301,6 +1314,7 @@ invited you to
                                         <connections>
                                             <outlet property="dropoffIcon" destination="7Y2-55-5Pf" id="OOh-hI-NIX"/>
                                             <outlet property="nameLabel" destination="LgA-qe-nVL" id="05I-T4-bbx"/>
+                                            <outlet property="optedOutLabel" destination="h3k-fH-FSU" id="Bbn-fx-WAw"/>
                                             <outlet property="pickupIcon" destination="88w-Bo-ce2" id="Tpy-c3-s1n"/>
                                             <outlet property="profileImageView" destination="iiC-nf-6oh" id="FKg-Gg-1MK"/>
                                             <outlet property="timeLabel" destination="OLz-kz-mpp" id="lZe-Im-S00"/>
@@ -1444,19 +1458,19 @@ invited you to
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't keep Joshua waiting!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68u-MH-iiF">
-                                                            <rect key="frame" x="25" y="136" width="171" height="17"/>
+                                                            <rect key="frame" x="25" y="139" width="171" height="17"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="It's time to go!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8R-vk-JV9">
-                                                            <rect key="frame" x="200" y="136" width="96" height="17"/>
+                                                            <rect key="frame" x="200" y="139" width="96" height="17"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated just now" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vye-yD-bMA">
-                                                            <rect key="frame" x="25" y="152" width="99" height="15"/>
+                                                            <rect key="frame" x="25" y="155" width="99" height="15"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                             <color key="textColor" red="0.15686274509803921" green="0.44313725490196076" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1540,26 +1554,36 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You opted out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSo-A0-S1S">
+                                                            <rect key="frame" x="13" y="66" width="292" height="44"/>
+                                                            <color key="backgroundColor" red="0.69803921570000005" green="0.7843137255" blue="0.72549019609999998" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="E0o-VV-108" firstAttribute="top" secondItem="rWt-bc-KtB" secondAttribute="top" id="2en-HR-HvZ"/>
-                                                        <constraint firstItem="68u-MH-iiF" firstAttribute="top" secondItem="cqg-B9-maS" secondAttribute="bottom" constant="2" id="3tX-VS-oIt"/>
                                                         <constraint firstAttribute="trailing" secondItem="E0o-VV-108" secondAttribute="trailing" id="48I-jc-eAP"/>
                                                         <constraint firstItem="nUZ-cC-VMP" firstAttribute="trailing" secondItem="ILk-Ua-md9" secondAttribute="leading" constant="79" id="5Nv-Kh-Zfg"/>
                                                         <constraint firstItem="OTJ-ff-hUM" firstAttribute="leading" secondItem="bcR-hk-Z3T" secondAttribute="trailing" id="7JG-OZ-48G"/>
                                                         <constraint firstItem="b8R-vk-JV9" firstAttribute="centerY" secondItem="68u-MH-iiF" secondAttribute="centerY" id="9yH-mO-DDe"/>
                                                         <constraint firstItem="tKR-Rn-Pt6" firstAttribute="width" secondItem="tKR-Rn-Pt6" secondAttribute="height" multiplier="1:1" id="Dca-qr-IyF"/>
+                                                        <constraint firstItem="fSo-A0-S1S" firstAttribute="centerY" secondItem="U8k-rb-o3e" secondAttribute="centerY" id="Ewj-Zd-PTF"/>
                                                         <constraint firstItem="nUZ-cC-VMP" firstAttribute="width" secondItem="nUZ-cC-VMP" secondAttribute="height" multiplier="1:1" id="FUJ-5Y-th6"/>
+                                                        <constraint firstAttribute="trailing" secondItem="fSo-A0-S1S" secondAttribute="trailing" constant="15" id="GjR-k9-MOg"/>
                                                         <constraint firstAttribute="height" constant="190" id="JOp-Yw-sD9"/>
                                                         <constraint firstAttribute="bottom" secondItem="bcR-hk-Z3T" secondAttribute="bottom" id="L08-9Z-fDU"/>
                                                         <constraint firstItem="yOg-ty-71F" firstAttribute="top" secondItem="rWt-bc-KtB" secondAttribute="top" id="NEH-oR-5pd"/>
+                                                        <constraint firstAttribute="bottom" secondItem="vye-yD-bMA" secondAttribute="bottom" constant="20" id="NkF-kk-ZxV"/>
                                                         <constraint firstItem="ILk-Ua-md9" firstAttribute="width" secondItem="ILk-Ua-md9" secondAttribute="height" multiplier="1:1" id="RoR-5e-Ikx"/>
                                                         <constraint firstItem="cqg-B9-maS" firstAttribute="leading" secondItem="yOg-ty-71F" secondAttribute="trailing" id="Sac-ts-87y"/>
                                                         <constraint firstItem="ihI-RP-Q1v" firstAttribute="top" secondItem="rWt-bc-KtB" secondAttribute="top" constant="17" id="UnL-DO-XAB"/>
                                                         <constraint firstItem="E0o-VV-108" firstAttribute="leading" secondItem="ydc-Gg-vcF" secondAttribute="trailing" constant="6" id="WNG-Qu-hK8"/>
                                                         <constraint firstItem="U8k-rb-o3e" firstAttribute="width" secondItem="U8k-rb-o3e" secondAttribute="height" multiplier="1:1" id="WcT-df-o6S"/>
                                                         <constraint firstItem="ILk-Ua-md9" firstAttribute="trailing" secondItem="tKR-Rn-Pt6" secondAttribute="leading" constant="79" id="ZV8-yk-NZr"/>
+                                                        <constraint firstItem="fSo-A0-S1S" firstAttribute="height" secondItem="U8k-rb-o3e" secondAttribute="height" id="aUA-mp-obZ"/>
                                                         <constraint firstItem="U2P-qt-zGC" firstAttribute="leading" secondItem="OTJ-ff-hUM" secondAttribute="trailing" id="bwV-qm-2vO"/>
                                                         <constraint firstItem="bcR-hk-Z3T" firstAttribute="leading" secondItem="rWt-bc-KtB" secondAttribute="leading" id="cub-y3-aVM"/>
                                                         <constraint firstItem="vye-yD-bMA" firstAttribute="leading" secondItem="68u-MH-iiF" secondAttribute="leading" id="efz-TS-s6w"/>
@@ -1578,6 +1602,7 @@ invited you to
                                                         <constraint firstItem="yOg-ty-71F" firstAttribute="centerY" secondItem="e1s-mF-Os7" secondAttribute="centerY" id="nUI-RM-Fe4"/>
                                                         <constraint firstItem="e1s-mF-Os7" firstAttribute="leading" secondItem="rWt-bc-KtB" secondAttribute="leading" constant="26" id="qBg-tU-jPb"/>
                                                         <constraint firstItem="nUZ-cC-VMP" firstAttribute="centerY" secondItem="ILk-Ua-md9" secondAttribute="centerY" id="rN1-6m-DVr"/>
+                                                        <constraint firstItem="fSo-A0-S1S" firstAttribute="leading" secondItem="rWt-bc-KtB" secondAttribute="leading" constant="13" id="rW3-2R-w78"/>
                                                         <constraint firstItem="vye-yD-bMA" firstAttribute="top" secondItem="68u-MH-iiF" secondAttribute="bottom" constant="-1" id="rlq-75-5Cq"/>
                                                         <constraint firstItem="E0o-VV-108" firstAttribute="leading" secondItem="cqg-B9-maS" secondAttribute="trailing" id="sNf-IZ-uoL"/>
                                                         <constraint firstAttribute="trailing" secondItem="U2P-qt-zGC" secondAttribute="trailing" id="sV9-aP-5BW"/>
@@ -1597,6 +1622,7 @@ invited you to
                                         <connections>
                                             <outlet property="dropoffIcon" destination="krx-eI-brN" id="xCX-gc-x41"/>
                                             <outlet property="nameLabel" destination="7ff-KH-Qru" id="F0d-bw-ovP"/>
+                                            <outlet property="optedOutLabel" destination="fSo-A0-S1S" id="Vt1-6I-kxH"/>
                                             <outlet property="pickupIcon" destination="1gG-x9-2hd" id="pUf-kh-Cy7"/>
                                             <outlet property="profileImageView" destination="f0H-ih-E8P" id="1bQ-wC-Vd8"/>
                                             <outlet property="timeLabel" destination="wmU-lX-SHK" id="Wed-iO-Vfi"/>

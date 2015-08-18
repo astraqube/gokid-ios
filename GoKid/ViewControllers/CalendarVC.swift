@@ -37,7 +37,15 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             object: nil
         )
     }
-    
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        processRawCalendarEvents()
+        onMainThread() {
+            self.tableView.reloadData()
+        }
+    }
+
     func deleteRideOrCarpool(sender: AnyObject?) {
         self.asyncFetchDataAndReloadTableView()
     }
@@ -276,6 +284,13 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                 }
             })
         }
+
+        let myRiders = model.riders.filter { (r: RiderModel) -> Bool in
+            return r.isInMyTeam
+        }
+
+        cell.optedOutLabel.hidden = myRiders.count > 0
+
         return cell
     }
     
@@ -421,10 +436,14 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                 })
             })
         }
+
+        let myRiders = model.riders.filter { (r: RiderModel) -> Bool in
+            return r.isInMyTeam
+        }
+
+        vc.canOptOut = myRiders.count > 0
+
         vc.onOptOutButtonPressed = { (vc: DetailMapVC) in
-            let myRiders = model.riders.filter { (r: RiderModel) -> Bool in
-                return r.isInMyTeam
-            }
             var optOutRider = myRiders.first
             if optOutRider == nil { return }
             var optOutSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)

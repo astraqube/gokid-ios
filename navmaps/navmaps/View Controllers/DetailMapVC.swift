@@ -36,6 +36,8 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
     @IBOutlet weak var shortDateLabel: UILabel!
     @IBOutlet weak var pickupIcon: UILabel!
     @IBOutlet weak var dropoffIcon: UILabel!
+    @IBOutlet weak var optOutButton: UIButton!
+
     ///Use this to set extra data about the trip!
     var metadata : MapMetadata!
     ///Use this to get a callback when users presses Edit
@@ -47,6 +49,7 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
 
     // edit privileges
     var canEdit: Bool!
+    var canOptOut: Bool!
     
     @IBOutlet var riderImageViews : [CalendarUserImageView]!
     @IBOutlet var riderLabelViews : [UILabel]!
@@ -79,6 +82,14 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
         editButton.enabled = canEdit
         editButton.hidden = !canEdit
 
+        optOutButton.enabled = canOptOut
+
+        if optOutButton.enabled {
+            optOutButton.alpha = 1.0
+        } else {
+            optOutButton.alpha = 0.3
+        }
+        
         mapDataSource = MapViewDatasource(type: .Detail, navigation: navigation, mapView: mapView)
         mapView.delegate = mapDataSource
         mapDataSource.setup()

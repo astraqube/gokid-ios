@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h81-NN-g8A">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h81-NN-g8A">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -21,6 +21,7 @@
             <string>Raleway-Bold</string>
         </mutableArray>
         <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
@@ -562,17 +563,20 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="b6A-6W-Bb1"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                 <state key="normal" title="Opt Out">
                                                     <color key="titleColor" red="0.28627450980392155" green="0.70196078431372544" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="disabled">
+                                                    <color key="titleColor" red="0.70196078429999997" green="0.7843137255" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <state key="highlighted">
                                                     <color key="titleColor" red="0.1897084968923263" green="0.47203776041666667" blue="0.29682970615884902" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.27843137254901962" green="0.69803921568627447" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="value" red="0.4039215686" green="0.75686274509999996" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="2"/>
@@ -1293,6 +1297,7 @@ Greenwich, CT.</string>
                         <outlet property="mapView" destination="eAd-9y-yff" id="BcG-ml-TLi"/>
                         <outlet property="nameLabel" destination="RNX-Ky-EdS" id="jeB-WZ-wl7"/>
                         <outlet property="navigateButton" destination="fBs-F5-lkT" id="Igu-8m-IvY"/>
+                        <outlet property="optOutButton" destination="XiD-qa-azg" id="yrb-ZG-3Xd"/>
                         <outlet property="pickupIcon" destination="t1l-sa-PDc" id="dd6-gR-btB"/>
                         <outlet property="shortDateLabel" destination="fVc-1P-Bgj" id="b5t-bW-EIF"/>
                         <outlet property="timeLabel" destination="PM7-rD-ZXE" id="6tA-pF-zjq"/>
