@@ -40,10 +40,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        processRawCalendarEvents()
-        onMainThread() {
-            self.tableView.reloadData()
-        }
+        generateTableDataAndReload()
     }
 
     func deleteRideOrCarpool(sender: AnyObject?) {
