@@ -207,7 +207,7 @@ extension LocationVC {
     }
 
     func toggleForOneWayView() {
-        if carpool.oneWay.rawValue != "" {
+        if isOneWay {
             arrow1.hidden = currentPickupOccurrence == nil
             startLocationButton.hidden = currentPickupOccurrence == nil
             startLocationLabel.hidden = currentPickupOccurrence == nil

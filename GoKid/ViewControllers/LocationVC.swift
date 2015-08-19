@@ -101,10 +101,17 @@ class LocationVC: BaseVC {
         }
     }
 
+    var isOneWay: Bool {
+        if carpool.oneWay?.rawValue != "" {
+            return true
+        } else {
+            return false
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let isOneWay = carpool.oneWay.rawValue != ""
         originDestSame = !isOneWay
         switchBackgroundView.hidden = isOneWay
 
@@ -247,7 +254,7 @@ class LocationVC: BaseVC {
                     self.segmentWithDataSource()
                     self.displayWithDataSource()
                 } else {
-                    self.showAlert("Fail to fetch carpools", messege: errStr, cancleTitle: "OK")
+                    self.showAlert("Failed to fetch carpools", messege: errStr, cancleTitle: "OK")
                 }
             }
         }

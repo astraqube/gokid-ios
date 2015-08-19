@@ -27,7 +27,7 @@ class CarpoolModel: NSObject {
     var startLocation: String?
     var endLocation: String?
 
-    var oneWay: CarpoolMode! = .None
+    var oneWay: CarpoolMode?
 
     var riders = [RiderModel]()
 
@@ -111,8 +111,8 @@ class CarpoolModel: NSObject {
             "schedule": toSchedule()
         ]
 
-        if oneWay.rawValue != "" {
-            json["one_way"] = oneWay.rawValue
+        if oneWay?.rawValue != "" {
+            json["one_way"] = oneWay!.rawValue
         }
 
         if _kidName != "" {
