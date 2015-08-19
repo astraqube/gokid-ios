@@ -22,7 +22,9 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         setStatusBarColorDark()
         self.subtitleLabel?.text = carpool.descriptionString
-        tryLoadTableData()
+        if dataSource.count < 1 {
+            tryLoadTableData()
+        }
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(

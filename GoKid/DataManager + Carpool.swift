@@ -169,7 +169,10 @@ extension DataManager {
             println("getOccurenceOfCarpool success")
             var json = JSON(obj)["occurrences"]
             var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
-            self.userManager.volunteerEvents = events
+            self.userManager.volunteerEvents = events.sorted { (left : OccurenceModel, right : OccurenceModel) -> Bool in
+                if left.occursAt == nil || right.occursAt == nil { return false}
+                return left.occursAt!.isLessThanDate(right.occursAt!)
+            }
             comp(true, "")
         }) { (op, error) in
             println("getOccurenceOfCarpool failed")
@@ -204,6 +207,32 @@ extension DataManager {
         }
     }
 
+    func updateOccurrencesInBulk(occurrences: [OccurenceModel], comp: ObjectCompletion) {
+        let url = baseURL + "/api/occurrences"
+        var map = NSDictionary() as! [Int : NSDictionary]
+
+        for occ in occurrences {
+            map[occ.occurenceID] = [
+                "event_location": occ.eventLocation.toJson(),
+                "default_address": occ.defaultLocation.toJson()
+            ]
+        }
+
+        println(url)
+        println(map)
+
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: ["occurrences": map], success: { (op, obj) in
+            println("updateOccurrencesInBulk success")
+            let json = JSON(obj)
+            println(json)
+            let occurrences = OccurenceModel.arrayOfEventsFromOccurrences(json["occurrences"])
+            comp(true, "", occurrences)
+        }) { (op, error) in
+            println("updateOccurrencesInBulk failed")
+            self.handleUserResuestError(op, error: error, comp: comp)
+        }
+    }
 
     func updateOccurrenceLocation(occurrenceID: Int, location: Location, comp: completion) {
         var url = baseURL + "/api/occurrences/\(occurrenceID)"

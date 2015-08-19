@@ -36,17 +36,82 @@ class LocationVC: BaseVC {
     var originDestSame = true
     var heightRatio: CGFloat = 0.40
     var dataSource: [OccurenceModel]!
+    var dataSourceCollated: [String: [OccurenceModel]] = Dictionary()
 
-    var eventLocation: Location?
-    var pickupLocation: Location?
-    var dropoffLocation: Location?
+    var currentPickupOccurrence: OccurenceModel?
+    var currentDropoffOccurrence: OccurenceModel?
+
+    var eventLocation: Location? {
+        get {
+            if currentPickupOccurrence != nil {
+                return currentPickupOccurrence?.eventLocation
+            }
+            if currentDropoffOccurrence != nil {
+                return currentDropoffOccurrence?.eventLocation
+            }
+            return nil
+        }
+        set {
+            if currentPickupOccurrence != nil {
+                currentPickupOccurrence?.eventLocation = newValue!
+            }
+            if currentDropoffOccurrence != nil {
+                currentDropoffOccurrence?.eventLocation = newValue!
+            }
+            dataSource.map { (o: OccurenceModel) -> (OccurenceModel) in
+                if o.eventLocation.name == "" {
+                    o.eventLocation = newValue!
+                }
+                return o
+            }
+        }
+    }
+
+    var pickupLocation: Location? {
+        get {
+            return currentPickupOccurrence?.defaultLocation
+        }
+        set {
+            if currentPickupOccurrence != nil {
+                currentPickupOccurrence?.defaultLocation = newValue!
+            }
+            dataSource.map { (o: OccurenceModel) -> (OccurenceModel) in
+                if o.poolType == "pickup" && o.defaultLocation.name == "" {
+                    o.defaultLocation = newValue!
+                }
+                return o
+            }
+        }
+    }
+
+    var dropoffLocation: Location? {
+        get {
+            return currentDropoffOccurrence?.defaultLocation
+        }
+        set {
+            if currentDropoffOccurrence != nil {
+                currentDropoffOccurrence?.defaultLocation = newValue!
+            }
+            dataSource.map { (o: OccurenceModel) -> (OccurenceModel) in
+                if o.poolType == "dropoff" && o.defaultLocation.name == "" {
+                    o.defaultLocation = newValue!
+                }
+                return o
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let isOneWay = carpool.oneWay.rawValue != ""
+        originDestSame = !isOneWay
+        switchBackgroundView.hidden = isOneWay
+
         setUpNavigationBar()
         setupSubviews()
         relayout()
-        tryRefreshUI()
+        getOccurrences()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -78,18 +143,15 @@ class LocationVC: BaseVC {
     }
     
     func updateOccurrences() {
-        // FIXME: support one-way carpools
-        dataSource[0].eventLocation = self.eventLocation!
-        dataSource[0].defaultLocation = self.pickupLocation!
-
         LoadingView.showWithMaskType(.Black)
-        dataManager.updateOccurencesLocation(dataSource) { success, errStr in
+        dataManager.updateOccurrencesInBulk(dataSource) { (success, errStr, objects) in
             onMainThread() {
                 LoadingView.dismiss()
                 if success {
                     var vc = vcWithID("VolunteerVC") as! VolunteerVC
                     vc.carpool = self.carpool
                     vc.rider = self.rider
+                    vc.dataSource = objects as! [OccurenceModel]
                     self.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     self.showAlert("Fail to update location", messege: errStr, cancleTitle: "OK")
@@ -110,6 +172,7 @@ class LocationVC: BaseVC {
                     var vc = vcWithID("VolunteerVC") as! VolunteerVC
                     vc.carpool = self.carpool
                     vc.rider = riderObj as? RiderModel
+                    vc.dataSource = self.dataSource
                     self.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     self.showAlert("Fail to update rider", messege: error, cancleTitle: "OK")
@@ -139,20 +202,18 @@ class LocationVC: BaseVC {
     @IBAction func OriginDestinationSame(sender: UISwitch) {
         originDestSame = (sender.on == true)
         relayout()
-        updateEventViewOnMainThread()
+        displayWithDataSource()
     }
     
     @IBAction func segmentControlTapped(sender: UISegmentedControl) {
-        updateEventViewOnMainThread()
+        displayWithDataSource()
     }
 
     func donePickingStartLocationWithAddress(address: String) {
         Location.geoCodeAddress(address) { (long, lati) in
-//            var i = self.segmentControl.selectedSegmentIndex
             self.pickupLocation = Location(name: address, long: long, lati: lati)
-//            self.dataSource[i].0.defaultLocation = location.makeCopy()
             if self.originDestSame {
-                self.dropoffLocation = self.pickupLocation
+                self.donePickingEndLocationWithAddress(address)
             }
             self.updateEventViewOnMainThread()
         }
@@ -160,71 +221,90 @@ class LocationVC: BaseVC {
     
     func donePickingEndLocationWithAddress(address: String) {
         Location.geoCodeAddress(address) { (long, lati) in
-//            var i = self.segmentControl.selectedSegmentIndex
             self.dropoffLocation = Location(name: address, long: long, lati: lati)
-//            self.dataSource[i].1.defaultLocation = location.makeCopy()
             self.updateEventViewOnMainThread()
         }
     }
     
     func donePickingEventLocationWithAddress(address: String) {
         Location.geoCodeAddress(address) { (long, lati) in
-//            var i = self.segmentControl.selectedSegmentIndex
             self.eventLocation = Location(name: address, long: long, lati: lati)
-//            self.dataSource[i].0.eventLocation = location.makeCopy()
-//            self.dataSource[i].1.eventLocation = location.makeCopy()
             self.updateEventViewOnMainThread()
         }
     }
     
-    // MARK: Network Fetch
+    // MARK: Dataset Display & Management
     // --------------------------------------------------------------------------------------------
     
-    func tryRefreshUI() {
+    func getOccurrences() {
         LoadingView.showWithMaskType(.Black)
         dataManager.getOccurenceOfCarpool(carpool.id, rider: rider) { success, errStr in
             onMainThread() {
                 LoadingView.dismiss()
-                self.handleGetOccurenceOfCarpool(success, errStr)
+                if success {
+                    self.dataSource = self.userManager.volunteerEvents
+                    self.collateWithDataSource()
+                    self.segmentWithDataSource()
+                    self.displayWithDataSource()
+                } else {
+                    self.showAlert("Fail to fetch carpools", messege: errStr, cancleTitle: "OK")
+                }
             }
         }
     }
     
-    func handleGetOccurenceOfCarpool(success: Bool, _ errStr: String) {
-        if success {
-            dataSource = userManager.volunteerEvents
-            displayWithDataSource()
-        } else {
-            showAlert("Fail to fetch carpools", messege: errStr, cancleTitle: "OK")
+    func collateWithDataSource() {
+        for occ in dataSource {
+            let dayKey = occ.occursAt?.weekDayString()
+            let index = dataSourceCollated.indexForKey(dayKey!)
+            if index != nil {
+                dataSourceCollated[dayKey!]?.append(occ)
+            } else {
+                dataSourceCollated[dayKey!] = [occ]
+            }
         }
     }
-    
-    func displayWithDataSource() {
-//        FIXME: Disabled until we can fix the one-way carpool blocker
-//        if dataSource.count <= 1 {
+
+    func segmentWithDataSource() {
+        segmentControl.removeAllSegments()
+        var i = 0
+        for title in dataSourceCollated.keys.array {
+            segmentControl.insertSegmentWithTitle(title as String, atIndex: i, animated: false)
+            i += 1
+        }
+
+        if segmentControl.numberOfSegments <= 1 {
             segmentControl.alpha = 0.0
             segmentControl.userInteractionEnabled = false
-//        } else {
-//            segmentControl.removeAllSegments()
-//            for (i, data) in enumerate(dataSource) {
-//                var title = data.0.occursAt?.weekDayString()
-//                segmentControl.insertSegmentWithTitle(title, atIndex: i, animated: false)
-//            }
-//        }
-//        segmentControl.selectedSegmentIndex = 0
+        } else {
+            segmentControl.selectedSegmentIndex = 0
+        }
+    }
 
+    func displayWithDataSource() {
         if rider != nil {
             self.pickupLocation = rider!.pickupLocation
             self.dropoffLocation = rider!.dropoffLocation
+
         }
 
-        self.eventLocation = dataSource[0].eventLocation
+        let day = segmentControl.titleForSegmentAtIndex(segmentControl.selectedSegmentIndex)
+        if let dayCollection = dataSourceCollated[day!] as [OccurenceModel]? {
+            let pickups = dayCollection.filter { (o: OccurenceModel) -> Bool in
+                return o.poolType == "pickup"
+            }
+            currentPickupOccurrence = pickups.first
+
+            let dropoffs = dayCollection.filter { (o: OccurenceModel) -> Bool in
+                return o.poolType == "dropoff"
+            }
+            currentDropoffOccurrence = dropoffs.first
+        }
 
         updateEventViewOnMainThread()
     }
-    
+
     func updateEventViewOnMainThread() {
-//        var i = segmentControl.selectedSegmentIndex
         onMainThread() {
             self.eventLocationLabel.text = self.eventLocation?.name
             self.startLocationLabel.text = self.pickupLocation?.name
@@ -234,6 +314,8 @@ class LocationVC: BaseVC {
             } else {
                 self.destinationLocationLabel.text = self.dropoffLocation?.name
             }
+
+            self.toggleForOneWayView()
         }
     }
     

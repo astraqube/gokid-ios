@@ -185,7 +185,6 @@ extension LocationVC {
         eventLocationLabel.y = eventLabel.y + eventLabel.h + insets
     }
 
-    
     func showOptionalViews(show: Bool) {
         var vs = [destLocationButton, destinationLocationLabel, arrow1, arrow2, destLabel]
         for v in vs {
@@ -206,4 +205,19 @@ extension LocationVC {
             doubleArrow.alpha = 1.0
         }
     }
+
+    func toggleForOneWayView() {
+        if carpool.oneWay.rawValue != "" {
+            arrow1.hidden = currentPickupOccurrence == nil
+            startLocationButton.hidden = currentPickupOccurrence == nil
+            startLocationLabel.hidden = currentPickupOccurrence == nil
+            startLabel.hidden = currentPickupOccurrence == nil
+
+            arrow2.hidden = currentDropoffOccurrence == nil
+            destLocationButton.hidden = currentDropoffOccurrence == nil
+            destinationLocationLabel.hidden = currentDropoffOccurrence == nil
+            destLabel.hidden = currentDropoffOccurrence == nil
+        }
+    }
+
 }
