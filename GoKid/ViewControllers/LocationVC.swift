@@ -276,9 +276,9 @@ class LocationVC: BaseVC {
         if segmentControl.numberOfSegments <= 1 {
             segmentControl.alpha = 0.0
             segmentControl.userInteractionEnabled = false
-        } else {
-            segmentControl.selectedSegmentIndex = 0
         }
+
+        segmentControl.selectedSegmentIndex = 0
     }
 
     func displayWithDataSource() {
@@ -288,7 +288,9 @@ class LocationVC: BaseVC {
 
         }
 
-        let day = segmentControl.titleForSegmentAtIndex(segmentControl.selectedSegmentIndex)
+        let index = segmentControl.selectedSegmentIndex
+        let day = segmentControl.titleForSegmentAtIndex(index)
+
         if let dayCollection = dataSourceCollated[day!] as [OccurenceModel]? {
             let pickups = dayCollection.filter { (o: OccurenceModel) -> Bool in
                 return o.poolType == "pickup"
