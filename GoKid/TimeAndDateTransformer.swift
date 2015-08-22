@@ -76,9 +76,8 @@ class FrequencyTransformer: NSValueTransformer {
                     var converted: [String] = []
                     for num in occurrence {
                         let val = num as! Int
-                        if contains(GKDays.asKeys.values, val) {
-                            let day: String = GKDays.asKeys.keys[find(GKDays.asKeys.values, val)!]
-                            converted.append(day)
+                        if let day = GKDays.dayFromInt(val) as String? {
+                            converted.append(day.truncateToCharacters(3))
                         }
                     }
                     return ", ".join(converted)

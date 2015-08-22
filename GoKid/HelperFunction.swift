@@ -181,6 +181,11 @@ extension String {
         }
     }
 
+    func truncateToCharacters(num: Int) -> String {
+        let index: String.Index = advance(self.startIndex, num)
+        return self.substringToIndex(index)
+    }
+
     func twoLetterAcronym() -> String {
         var acronym : String!
         if count(self) >= 2 {

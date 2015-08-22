@@ -40,6 +40,15 @@ enum GKDays : String {
         Sunday.rawValue:0, Monday.rawValue:1, Tuesday.rawValue:2, Wednesday.rawValue:3,
         Thursday.rawValue:4, Friday.rawValue:5, Saturday.rawValue:6
     ]
+
+    static func dayFromInt(num: Int) -> String {
+        let list = self.asKeys
+        if contains(list.values, num) {
+            return list.keys[find(list.values, num)!]
+        } else {
+            return ""
+        }
+    }
 }
 
 
