@@ -8,14 +8,14 @@
 
 import UIKit
 
-class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
+class CarpoolSucceedVC: BaseVC {
 
     var carpool: CarpoolModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        showAlertView()
+        promptForPushNotification()
     }
     
     func setupNavBar() {
@@ -44,22 +44,22 @@ class CarpoolSucceedVC: BaseVC, UIAlertViewDelegate {
     // MARK: Register Notification For App
     // --------------------------------------------------------------------------------------------
     
-    func registerForPushNotification() {
-        var setting = UIUserNotificationSettings(forTypes: .Badge | .Alert | .Sound, categories: nil);
-        UIApplication.sharedApplication().registerUserNotificationSettings(setting);
-    }
-    
-    // MARK: Alert View
-    // --------------------------------------------------------------------------------------------
-    
-    func showAlertView() {
-        var alertView = UIAlertView(title: "", message: "Do you want to know when your kids have safely arrived at their destinations?", delegate: self, cancelButtonTitle: "Yes", otherButtonTitles: "No")
-        alertView.show()
-    }
-    
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        if buttonIndex == 0 {
-            registerForPushNotification()
+    func promptForPushNotification() {
+        let app = UIApplication.sharedApplication()
+        let notifications = app.currentUserNotificationSettings()
+
+        if notifications.types == .None {
+            let confirmPrompt = UIAlertController(title: "", message: "Do you want to know when your kids have safely arrived at their destinations?", preferredStyle: .Alert)
+
+            confirmPrompt.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+
+            confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction!) in
+                var setting = UIUserNotificationSettings(forTypes: .Badge | .Alert | .Sound, categories: nil);
+                app.registerUserNotificationSettings(setting)
+            }))
+
+            presentViewController(confirmPrompt, animated: true, completion: nil)
         }
     }
+
 }
