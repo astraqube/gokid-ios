@@ -174,8 +174,11 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
             addPerson(person)
             cell.setSelection(true)
         }
-        collectionView.reloadData()
-        tableView.reloadData()
+
+        onMainThread {
+            self.collectionView.reloadData()
+            self.tableView.reloadData()
+        }
     }
     
     // terrible
