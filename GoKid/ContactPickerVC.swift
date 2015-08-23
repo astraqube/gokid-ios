@@ -8,11 +8,19 @@
 
 import UIKit
 
-class Person {
+class Person: NSObject {
     var firstName: String?
     var lastName: String?
-    var selected: Bool
+    var selected: Bool = false
     var phoneNum: APPhoneWithLabel
+
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let person = object as? Person {
+            return person.phoneNum.phone == self.phoneNum.phone
+        } else {
+            return false
+        }
+    }
 
     var fullName: String {
         if firstName != nil && lastName != nil {
@@ -24,20 +32,21 @@ class Person {
         if lastName != nil {
             return lastName!
         }
-        return "(No Name)"
+        return phoneNum.phone
     }
 
     var phoneDisplay: String {
         return "\(phoneNum.localizedLabel): \(phoneNum.phone)"
     }
 
-    init(firstName: String?, lastName: String?, selected: Bool, phoneNum: APPhoneWithLabel) {
+    init(firstName: String?, lastName: String?, phoneNum: APPhoneWithLabel) {
         self.firstName = firstName
         self.lastName = lastName
-        self.selected = selected
         self.phoneNum = phoneNum
     }
+
 }
+
 
 class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -47,8 +56,9 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
 
-    var tableDataSource = [[Person]]()
-    var collectionDataSource = NSMutableArray.new() //[Person]()
+    var tableHeaderSource = NSMutableArray()
+    var tableDataSource = NSMutableDictionary()
+    var collectionDataSource = NSMutableSet()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,28 +112,18 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     
     // MARK: TableView DataSource
     // --------------------------------------------------------------------------------------------
-    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return tableDataSource.count
+        return tableHeaderSource.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableDataSource[section].count
+        let letter = tableHeaderSource.objectAtIndex(section) as! String
+        return (tableDataSource.objectForKey(letter) as! NSArray).count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var people = tableDataSource[section]
-        if people.count > 0 {
-            var person = people[0]
-            var char = person.fullName.firstCharacter()
-            if char == "(" {
-                return "No Name"
-            } else {
-                return char
-            }
-        } else {
-            return ""
-        }
+        return tableHeaderSource.objectAtIndex(section) as? String
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -141,28 +141,29 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.cellWithID("ContactCell", indexPath) as! ContactCell
-        var person = tableDataSource[indexPath.section][indexPath.row]
-        cell.nameLabel.text = person.fullName
-        cell.phoneNumLabel.text = person.phoneDisplay
+        let letter = tableHeaderSource.objectAtIndex(indexPath.section) as! String
+        var person = tableDataSource[letter]?.objectAtIndex(indexPath.row) as! Person
 
-        var selected = containsPerson(person)
-        cell.setSelection(selected)
-        
+        person.selected = self.collectionDataSource.containsObject(person)
+        cell.loadPerson(person)
+
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var person = tableDataSource[indexPath.section][indexPath.row]
-        
         var cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
-        var selected = containsPerson(person)
-        
-        if selected {
-            removePerson(person)
-            cell.setSelection(false)
+        let letter = tableHeaderSource.objectAtIndex(indexPath.section) as! String
+        var person = tableDataSource[letter]?.objectAtIndex(indexPath.row) as! Person
+
+        person.selected = self.collectionDataSource.containsObject(person)
+        cell.loadPerson(person)
+
+        if person.selected {
+            person.selected = false
+            collectionDataSource.removeObject(person)
         } else {
-            addPerson(person)
-            cell.setSelection(true)
+            person.selected = true
+            collectionDataSource.addObject(person)
         }
 
         onMainThread {
@@ -171,36 +172,8 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         }
     }
     
-    // terrible
-    func containsPerson(p2: Person) -> Bool {
-        for o in collectionDataSource {
-            var p = o as! Person
-            if p.firstName == p2.firstName && p.lastName == p2.lastName && p.phoneNum.phone == p2.phoneNum.phone {
-                return true
-            }
-        }
-        return false
-    }
-    
-    func removePerson(p2: Person) {
-        var newArray = NSMutableArray.new()
-        for o in collectionDataSource {
-            var p = o as! Person
-            if p.firstName == p2.firstName && p.lastName == p2.lastName && p.phoneNum.phone == p2.phoneNum.phone {
-                // don't append
-            } else {
-                newArray.addObject(p)
-            }
-        }
-        collectionDataSource = newArray
-    }
-    
-    func addPerson(p2: Person) {
-        collectionDataSource.addObject(p2)
-    }
-    
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
-        return ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        return tableHeaderSource as [AnyObject]
     }
     
     // MARK: UICollectionView DataSource
@@ -215,7 +188,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var person = collectionDataSource[indexPath.row] as! Person
+        var person = collectionDataSource.allObjects[indexPath.row] as! Person
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactNameCell", forIndexPath: indexPath) as? ContactNameCell
         cell?.nameLabel.text = person.fullName
         cell?.cancleButtonHandler = cancelButtonClick
@@ -223,7 +196,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        var person = collectionDataSource[indexPath.row] as! Person
+        var person = collectionDataSource.allObjects[indexPath.row] as! Person
         var font = UIFont.boldSystemFontOfSize(15)
         var attributes = [NSFontAttributeName : font]
         var width = NSAttributedString(string: person.fullName, attributes: attributes).size().width
@@ -257,19 +230,26 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func constructTableDataAndUpdate(data: [Person]) {
-        tableDataSource = [[Person]]()
-        var sections = [Person]()
-        var last: String!
+        tableDataSource.removeAllObjects()
+        tableHeaderSource.removeAllObjects()
+
+        let letters = NSCharacterSet.letterCharacterSet()
 
         for person in data {
-            if person.fullName.firstCharacter() != last {
-                tableDataSource.append(sections)
-                sections = [Person]()
+            var char = person.fullName.firstCharacter()
+            let letter = !letters.characterIsMember(first(char.utf16)!) ? "#" : char
+            var section: NSMutableArray!
+
+            if let _section = tableDataSource.objectForKey(letter) as? NSMutableArray {
+                section = _section
+            } else {
+                tableHeaderSource.addObject(letter)
+                tableDataSource.setObject(NSMutableArray(), forKey: letter)
+                section = tableDataSource.objectForKey(letter) as! NSMutableArray
             }
-            sections.append(person)
-            last = person.fullName.firstCharacter()
+
+            section.addObject(person)
         }
-        tableDataSource.append(sections)
 
         onMainThread {
             self.collectionView.reloadData()
@@ -279,11 +259,9 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     
     func cancelButtonClick(cell :ContactNameCell) {
         var row = collectionView.indexPathForCell(cell)!.row
-        var person = collectionDataSource[row] as! Person
-        
+        var person = collectionDataSource.allObjects[row] as! Person
+
         person.selected = false
-        tableView.reloadData()
-        
         collectionDataSource.removeObject(person)
         
         onMainThread {
@@ -341,10 +319,11 @@ extension ContactPickerVC: UISearchBarDelegate {
                     for addressBookPerson in contacts {
                         if let c = addressBookPerson as? APContact {
                             for phone in c.phonesWithLabels {
-                                let person = Person(firstName: c.firstName,
+                                var person = Person(
+                                    firstName: c.firstName,
                                     lastName: c.lastName,
-                                    selected: false,
                                     phoneNum: phone as! APPhoneWithLabel)
+                                person.selected = self.collectionDataSource.containsObject(person)
                                 data.append(person)
                             }
                         }
