@@ -313,29 +313,31 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
 extension ContactPickerVC: UISearchBarDelegate {
 
     func searchForContact(query: String) {
-        var data = [Person]()
+        debounce(NSTimeInterval(0.5), queue: dispatch_get_main_queue()) {
 
-        self.addressBook.filterBlock = { (contact: APContact!) -> Bool in
-            if query != "" {
-                let name = "\(contact.firstName) \(contact.lastName)"
-                let number = " ".join(contact.phones as! [String])
+            var data = [Person]()
 
-                if name.lowercaseString.rangeOfString(query.lowercaseString) != nil {
-                    return true
+            self.addressBook.filterBlock = { (contact: APContact!) -> Bool in
+                if query != "" {
+                    let name = "\(contact.firstName) \(contact.lastName)"
+                    let number = " ".join(contact.phones as! [String])
+
+                    if name.lowercaseString.rangeOfString(query.lowercaseString) != nil {
+                        return true
+                    }
+
+                    if number.rangeOfString(query) != nil {
+                        return true
+                    }
+
+                    return false
+
+                } else {
+                    return contact.phones.count > 0
                 }
-
-                if number.rangeOfString(query) != nil {
-                    return true
-                }
-
-                return false
-
-            } else {
-                return contact.phones.count > 0
             }
-        }
-
-        self.addressBook.loadContacts { (contacts: [AnyObject]!, error: NSError!) in
+            
+            self.addressBook.loadContacts { (contacts: [AnyObject]!, error: NSError!) in
                 if (contacts != nil) {
                     for addressBookPerson in contacts {
                         if let c = addressBookPerson as? APContact {
@@ -352,8 +354,8 @@ extension ContactPickerVC: UISearchBarDelegate {
                 } else if (error != nil) {
                     self.showAlert("Error", messege: error.localizedDescription, cancleTitle: "OK")
                 }
-        }
-
+            }
+        }()
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
