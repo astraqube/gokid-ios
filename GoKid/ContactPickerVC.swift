@@ -43,7 +43,6 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
 
     var carpool: CarpoolModel!
 
-    let addressBook = APAddressBook()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -53,7 +52,6 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpAddressBook()
         setUpDataSourceAndDelegate()
         tryUpdateTableView()
 
@@ -70,14 +68,6 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         tableView.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
-    }
-
-    func setUpAddressBook() {
-        addressBook.fieldsMask = .Default | .PhonesWithLabels
-        addressBook.sortDescriptors = [
-            NSSortDescriptor(key: "firstName", ascending: true),
-            NSSortDescriptor(key: "lastName", ascending: true)
-        ]
     }
 
     // MARK: IBAction Method
@@ -319,8 +309,14 @@ extension ContactPickerVC: UISearchBarDelegate {
         debounce(NSTimeInterval(0.5), queue: dispatch_get_main_queue()) {
 
             var data = [Person]()
+            let addressBook = APAddressBook()
 
-            self.addressBook.filterBlock = { (contact: APContact!) -> Bool in
+            addressBook.fieldsMask = .Default | .PhonesWithLabels
+            addressBook.sortDescriptors = [
+                NSSortDescriptor(key: "firstName", ascending: true),
+                NSSortDescriptor(key: "lastName", ascending: true)
+            ]
+            addressBook.filterBlock = { (contact: APContact!) -> Bool in
                 if query != "" {
                     let name = "\(contact.firstName) \(contact.lastName)"
                     let number = " ".join(contact.phones as! [String])
@@ -340,7 +336,7 @@ extension ContactPickerVC: UISearchBarDelegate {
                 }
             }
             
-            self.addressBook.loadContacts { (contacts: [AnyObject]!, error: NSError!) in
+            addressBook.loadContacts { (contacts: [AnyObject]!, error: NSError!) in
                 if (contacts != nil) {
                     for addressBookPerson in contacts {
                         if let c = addressBookPerson as? APContact {
