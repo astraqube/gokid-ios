@@ -102,18 +102,11 @@ class LocationVC: BaseVC {
     }
 
     var isOneWay: Bool {
-        if carpool.oneWay?.rawValue != "" {
-            return true
-        } else {
-            return false
-        }
+        return currentPickupOccurrence == nil || currentDropoffOccurrence == nil
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        originDestSame = !isOneWay
-        switchBackgroundView.hidden = isOneWay
 
         setUpNavigationBar()
         setupSubviews()
@@ -168,8 +161,13 @@ class LocationVC: BaseVC {
     }
 
     func updateRider() {
-        rider?.pickupLocation = self.pickupLocation!
-        rider?.dropoffLocation = self.dropoffLocation!
+        if self.pickupLocation != nil {
+            rider?.pickupLocation = self.pickupLocation!
+        }
+
+        if self.dropoffLocation != nil {
+            rider?.dropoffLocation = self.dropoffLocation!
+        }
 
         LoadingView.showWithMaskType(.Black)
         dataManager.updateRiderInCarpool(rider!, carpoolID: carpool.id) { (success, error, riderObj) in
@@ -309,6 +307,9 @@ class LocationVC: BaseVC {
             }
             currentDropoffOccurrence = dropoffs.first
         }
+
+        self.originDestSame = !self.isOneWay
+        self.switchBackgroundView.hidden = self.isOneWay
 
         updateEventViewOnMainThread()
     }
