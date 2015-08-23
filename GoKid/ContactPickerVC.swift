@@ -228,7 +228,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         var person = collectionDataSource[indexPath.row] as! Person
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactNameCell", forIndexPath: indexPath) as? ContactNameCell
         cell?.nameLabel.text = person.fullName
-        cell?.cancleButtonHandler = cancleButtonClick
+        cell?.cancleButtonHandler = cancelButtonClick
         return cell!
     }
     
@@ -287,7 +287,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         }
     }
     
-    func cancleButtonClick(cell :ContactNameCell) {
+    func cancelButtonClick(cell :ContactNameCell) {
         var row = collectionView.indexPathForCell(cell)!.row
         var person = collectionDataSource[row] as! Person
         
