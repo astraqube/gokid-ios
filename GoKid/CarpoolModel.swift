@@ -16,18 +16,49 @@ enum CarpoolMode: String {
     static let allValues = [None.rawValue, PickupOnly.rawValue, DropoffOnly.rawValue]
 }
 
+struct DaySchedule {
+    var dayNum: Int!
+    var oneWay: CarpoolMode?
+    var pickUpTime: NSDate?
+    var dropOffTime: NSDate?
+    var endDate: NSDate?
+    var startDate: NSDate?
+
+    func toJson() -> NSDictionary {
+        var json: [String: AnyObject] = [
+            "starts_at": startDate!.iso8601String(),
+            "ends_at": endDate!.iso8601String(),
+            "time_zone": "Pacific Time (US & Canada)"
+        ]
+
+        if oneWay?.rawValue != "" {
+            json["one_way"] = oneWay!.rawValue
+        }
+
+        if pickUpTime != nil {
+            json["pickup_at"] = pickUpTime!.iso8601String()
+        }
+
+        if dropOffTime != nil {
+            json["dropoff_at"] = dropOffTime!.iso8601String()
+        }
+
+        return json
+    }
+}
+
 class CarpoolModel: NSObject {
     
-    var occurence: [Int]?
     var endDate: NSDate?
     var startDate: NSDate?
     var pickUpTime: NSDate?
     var dropOffTime: NSDate?
-    
+    var oneWay: CarpoolMode?
+
     var startLocation: String?
     var endLocation: String?
 
-    var oneWay: CarpoolMode?
+    var schedules: [DaySchedule]!
 
     var riders = [RiderModel]()
 
@@ -106,14 +137,9 @@ class CarpoolModel: NSObject {
     }
 
     func toJson() -> NSDictionary {
-        var json = [
-            "name": name,
-            "schedule": toSchedule()
+        var json: [String: AnyObject] = [
+            "name": name
         ]
-
-        if oneWay?.rawValue != "" {
-            json["one_way"] = oneWay!.rawValue
-        }
 
         if _kidName != "" {
             json["kids"] = [[
@@ -122,27 +148,34 @@ class CarpoolModel: NSObject {
             ]]
         }
 
+        if schedules != nil && !schedules.isEmpty {
+            var scheduleDict = [String: NSDictionary]()
+            for sched in schedules {
+                scheduleDict[sched.dayNum.description] = sched.toJson()
+            }
+            json["schedules"] = scheduleDict
+        } else {
+            json["schedule"] = toSchedule()
+            if oneWay?.rawValue != "" {
+                json["one_way"] = oneWay!.rawValue
+            }
+        }
+
         return ["carpool": json]
     }
 
     func toSchedule() -> NSDictionary {
-        var schedule: NSMutableDictionary = [
+        var schedule: [String: AnyObject] = [
             "dropoff_at": dropOffTime!.iso8601String(),
             "pickup_at": pickUpTime!.iso8601String(),
             "starts_at": startDate!.iso8601String(),
+            "ends_at": endDate!.iso8601String(),
             "time_zone": "Pacific Time (US & Canada)",
         ]
 
-        if occurence != nil && occurence?.isEmpty == false {
-            schedule.setValue(endDate!.iso8601String(), forKey: "ends_at")
-            schedule.setValue(occurence!, forKey: "days_occurring")
-        } else {
-            schedule.setValue(startDate!.iso8601String(), forKey: "ends_at")
-        }
-
         return schedule
     }
-
+/* DEPRECATED
     func isValidForTime() -> Bool {
         if occurence != nil && endDate != nil && startDate != nil &&
         pickUpTime != nil && dropOffTime != nil {
@@ -158,4 +191,5 @@ class CarpoolModel: NSObject {
         }
         return false
     }
+*/
 }

@@ -11,6 +11,9 @@ import UIKit
 class TimeAndDateFormVC: BaseFormVC {
 
     var carpool: CarpoolModel!
+    var occurrences: [OccurenceModel]?
+    var daySchedules: [DaySchedule]!
+    var timeSections: [XLFormSectionDescriptor]!
 
     private enum Tags : String {
         case StartDate = "Start Date"
@@ -67,67 +70,47 @@ class TimeAndDateFormVC: BaseFormVC {
         row.action.viewControllerClass = FrequencyPickerFormVC.self
         row.valueTransformer = FrequencyTransformer.self
         row.hidden = true
-        row.value = carpool.occurence
+        row.value = []
         section.addFormRow(row)
         
         row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Repeat.rawValue)
         row.cellConfig["textLabel.font"] = labelFont
         row.cellConfig["textLabel.color"] = labelColor
-        row.value = (carpool.occurence != nil && carpool.occurence?.isEmpty == false)
+        row.value = false
         section.addFormRow(row)
         
         form.addFormSection(section)
-        
-        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
-        
-        row = XLFormRowDescriptor(tag: Tags.StartTime.rawValue, rowType: XLFormRowDescriptorTypeTime, title: Tags.StartTime.rawValue)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.cellConfig["detailTextLabel.font"] = valueFont
-        row.cellConfig["detailTextLabel.color"] = labelColor
-        row.required = true
-        row.value = carpool.pickUpTime
-        section.addFormRow(row)
-        
-        row = XLFormRowDescriptor(tag: Tags.EndTime.rawValue, rowType: XLFormRowDescriptorTypeTime, title: Tags.EndTime.rawValue)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.cellConfig["detailTextLabel.font"] = valueFont
-        row.cellConfig["detailTextLabel.color"] = labelColor
-        row.required = true
-        row.value = carpool.dropOffTime
-        section.addFormRow(row)
-        
-        row = XLFormRowDescriptor(tag: Tags.OneWay.rawValue, rowType: XLFormRowDescriptorTypeSelectorPickerView, title: Tags.OneWay.rawValue)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.cellConfig["detailTextLabel.font"] = valueFont
-        row.cellConfig["detailTextLabel.color"] = labelColor
-        row.selectorOptions = CarpoolMode.allValues
-        row.value = ""
-        section.addFormRow(row)
-        
-        section.footerTitle = "E.g. When kids are walking to soccer practice from school and only need a ride home."
-        
-        form.addFormSection(section)
-        
+
         self.form = form
         self.form.delegate = self
+
+        self.showTimeSectionsForFrequency(nil)
     }
-    
+
     override func formRowDescriptorValueHasChanged(formRow: XLFormRowDescriptor!, oldValue: AnyObject!, newValue: AnyObject!) {
         super.formRowDescriptorValueHasChanged(formRow, oldValue: oldValue, newValue: newValue)
 
+        let startDateCell = self.form.formRowWithTag(Tags.StartDate.rawValue)
+        let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
+        let frequencyCell = self.form.formRowWithTag(Tags.Frequency.rawValue)
+
         if formRow.tag == Tags.Repeat.rawValue {
-            let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
-            let frequencyCell = self.form.formRowWithTag(Tags.Frequency.rawValue)
+            let isOn = newValue as! Bool
             
-            endDateCell!.hidden = !(newValue as! Bool)
-            endDateCell!.required = newValue as! Bool
+            endDateCell!.hidden = !(isOn)
+            endDateCell!.required = isOn
+            endDateCell.value = isOn ? startDateCell.value : nil
             self.updateFormRow(endDateCell)
-            
-            frequencyCell!.hidden = !(newValue as! Bool)
+
+            frequencyCell!.hidden = !(isOn)
+            if !isOn {
+                frequencyCell!.value = []
+            }
             self.updateFormRow(frequencyCell)
+        }
+
+        if formRow.tag == Tags.Frequency.rawValue {
+            self.showTimeSectionsForFrequency(newValue as! [Int]?)
         }
 
         self.toggleRightNavButtonState()
@@ -167,26 +150,125 @@ class TimeAndDateFormVC: BaseFormVC {
 
 }
 
+// MARK: Dynamic Time sections
+extension TimeAndDateFormVC {
+
+    private func showTimeSectionsForFrequency(frequency: [Int]?) {
+        var sections: [XLFormSectionDescriptor]!
+
+        if frequency == nil || frequency!.isEmpty {
+            sections = [createTimeSectionForDay(nil)]
+        } else {
+            sections = frequency?.map { (s: Int) -> XLFormSectionDescriptor in
+                return self.createTimeSectionForDay(s)
+            }
+        }
+
+        insertTimeSections(sections)
+    }
+    
+    private func createTimeSectionForDay(occurrenceDay: Int?) -> XLFormSectionDescriptor {
+        var startTag: String!
+        var endTag: String!
+        var onewayTag: String!
+
+        if occurrenceDay == nil {
+            startTag = Tags.StartTime.rawValue
+            endTag = Tags.EndTime.rawValue
+            onewayTag = Tags.OneWay.rawValue
+        } else {
+            let day = GKDays.dayFromInt(occurrenceDay!).truncateToCharacters(3)
+            startTag = "\(Tags.StartTime.rawValue) on \(day)"
+            endTag = "\(Tags.EndTime.rawValue) on \(day)"
+            onewayTag = "\(Tags.OneWay.rawValue) on \(day)"
+        }
+
+        var row: XLFormRowDescriptor!
+        var section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: startTag, rowType: XLFormRowDescriptorTypeTime, title: startTag)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
+        row.required = true
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: endTag, rowType: XLFormRowDescriptorTypeTime, title: endTag)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
+        row.required = true
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: onewayTag, rowType: XLFormRowDescriptorTypeSelectorPickerView, title: Tags.OneWay.rawValue)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
+        row.selectorOptions = CarpoolMode.allValues
+        row.value = ""
+        section.addFormRow(row)
+
+        if occurrenceDay == nil {
+            section.footerTitle = "E.g. When kids are walking to soccer practice from school and only need a ride home."
+        }
+
+        return section
+    }
+
+    private func insertTimeSections(sections: [XLFormSectionDescriptor]!) {
+        if timeSections != nil && !timeSections.isEmpty {
+            for _section in timeSections {
+                form.removeFormSection(_section)
+            }
+        }
+
+        for section in sections {
+            form.addFormSection(section)
+        }
+
+        timeSections = sections
+        tableView.reloadData()
+    }
+}
+
 // MARK: Form Submission
 extension TimeAndDateFormVC {
 
     private func updateCarpoolModel() {
         let formData = self.form.formValues()
+        let frequency = formData[Tags.Frequency.rawValue] as! [Int]?
+        let startDate = formData[Tags.StartDate.rawValue] as? NSDate
+        let endDate = formData[Tags.EndDate.rawValue] as? NSDate
+        let isRepeating = formData[Tags.Repeat.rawValue] as! Bool
 
-        carpool.startDate = formData[Tags.StartDate.rawValue] as? NSDate
+        if frequency != nil && !frequency!.isEmpty {
+            carpool.schedules = frequency?.map { (key: Int) -> DaySchedule in
+                let day = GKDays.dayFromInt(key).truncateToCharacters(3)
+                let startTag = "\(Tags.StartTime.rawValue) on \(day)"
+                let endTag = "\(Tags.EndTime.rawValue) on \(day)"
+                let onewayTag = "\(Tags.OneWay.rawValue) on \(day)"
 
-        if formData[Tags.Repeat.rawValue] as! Bool {
-            carpool.endDate = formData[Tags.EndDate.rawValue] as? NSDate
-            carpool.occurence = formData[Tags.Frequency.rawValue] as? [Int]
+                var ds = DaySchedule()
+                ds.dayNum = key
+                ds.startDate = startDate
+                ds.endDate = endDate
+                ds.pickUpTime = formData[startTag] as! NSDate?
+                ds.dropOffTime = formData[endTag] as! NSDate?
+                ds.oneWay = CarpoolMode(rawValue: formData[onewayTag] as! String)
+                
+                return ds
+            }
+
         } else {
-            carpool.endDate = nil
-            carpool.occurence = nil
+            carpool.startDate = startDate
+            carpool.endDate = isRepeating ? endDate : startDate
+            carpool.pickUpTime = formData[Tags.StartTime.rawValue] as? NSDate
+            carpool.dropOffTime = formData[Tags.EndTime.rawValue] as? NSDate
+            carpool.oneWay = CarpoolMode(rawValue: formData[Tags.OneWay.rawValue] as! String)
         }
-
-        carpool.pickUpTime = formData[Tags.StartTime.rawValue] as? NSDate
-        carpool.dropOffTime = formData[Tags.EndTime.rawValue] as? NSDate
-
-        carpool.oneWay = CarpoolMode(rawValue: (formData[Tags.OneWay.rawValue] as? String)!)
     }
 
     private func saveCarpoolData() {
@@ -231,13 +313,13 @@ extension TimeAndDateFormVC {
 extension TimeAndDateFormVC {
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
+        return 40.0
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var imageIcon = UIImage(named: section == 0 ? "date" : "time")
         var imageView = UIImageView(image: imageIcon)
-        var header = UIView(frame: CGRectMake(0,0, tableView.bounds.size.width, 50))
+        var header = UIView(frame: CGRectMake(0,0, tableView.bounds.size.width, 40))
         
         imageView.center = CGPointMake(header.bounds.size.width/2, header.bounds.size.height/2)
         
