@@ -211,7 +211,7 @@ class LocationVC: BaseVC {
     }
     
     @IBAction func segmentControlTapped(sender: UISegmentedControl) {
-        displayWithDataSource()
+        segmentSelected(sender.selectedSegmentIndex)
     }
 
     func donePickingStartLocationWithAddress(address: String) {
@@ -284,16 +284,10 @@ class LocationVC: BaseVC {
         }
 
         segmentControl.selectedSegmentIndex = 0
+        segmentSelected(0)
     }
 
-    func displayWithDataSource() {
-        if rider != nil {
-            self.pickupLocation = rider!.pickupLocation
-            self.dropoffLocation = rider!.dropoffLocation
-
-        }
-
-        let index = segmentControl.selectedSegmentIndex
+    func segmentSelected(index: Int) {
         let day = segmentControl.titleForSegmentAtIndex(index)
 
         if let dayCollection = dataSourceCollated[day!] as [OccurenceModel]? {
@@ -308,8 +302,19 @@ class LocationVC: BaseVC {
             currentDropoffOccurrence = dropoffs.first
         }
 
-        self.originDestSame = !self.isOneWay
-        self.switchBackgroundView.hidden = self.isOneWay
+        originDestSame = !isOneWay
+        toggleForOneWayView()
+        relayout()
+
+        displayWithDataSource()
+    }
+
+    func displayWithDataSource() {
+        if rider != nil {
+            self.pickupLocation = rider!.pickupLocation
+            self.dropoffLocation = rider!.dropoffLocation
+
+        }
 
         updateEventViewOnMainThread()
     }
@@ -324,8 +329,6 @@ class LocationVC: BaseVC {
             } else {
                 self.destinationLocationLabel.text = self.dropoffLocation?.name
             }
-
-            self.toggleForOneWayView()
         }
     }
     
