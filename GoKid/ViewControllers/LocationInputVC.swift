@@ -63,7 +63,11 @@ class LocationInputVC: BaseVC, XLFormRowDescriptorViewController, UITableViewDel
 
             if addressTitle != "Home" {
                 self.userManager.addToRecentAddresses(addressTitle, address: address)
-                addressString = "\(addressTitle), \(address)"
+                if address.rangeOfString(addressTitle) != nil {
+                    addressString = address
+                } else {
+                    addressString = "\(addressTitle), \(address)"
+                }
             } else {
                 addressString = address
             }
