@@ -156,9 +156,6 @@ class CarpoolModel: NSObject {
             json["schedules"] = scheduleDict
         } else {
             json["schedule"] = toSchedule()
-            if oneWay?.rawValue != "" {
-                json["one_way"] = oneWay!.rawValue
-            }
         }
 
         return ["carpool": json]
@@ -172,6 +169,10 @@ class CarpoolModel: NSObject {
             "ends_at": endDate!.iso8601String(),
             "time_zone": "Pacific Time (US & Canada)",
         ]
+
+        if oneWay?.rawValue != "" {
+            schedule["one_way"] = oneWay!.rawValue
+        }
 
         return schedule
     }
