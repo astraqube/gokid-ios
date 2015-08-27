@@ -90,11 +90,15 @@ class InviteConfirmTimesVC: BaseFormVC {
 
         if formRow.tag == Tags.ChangeAll.rawValue {
         } else {
+            let occ = occurrences.filter({ (record: OccurenceModel) -> Bool in
+                return record.occurenceID == formRow.tag!.toInt()
+            })
             if (formRow.value as! Bool) == false {
-                let occ = occurrences.filter({ (record: OccurenceModel) -> Bool in
-                    return record.occurenceID == formRow.tag!.toInt()
-                })
                 dataManager.deleteFromOccurenceRiders(rider, occ: occ.first!) { (success, error) in
+                    //... do nothing
+                }
+            } else {
+                dataManager.addRiderToOccurrence(rider, occ: occ.first!) { (success, error) in
                     //... do nothing
                 }
             }
