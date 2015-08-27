@@ -24,6 +24,7 @@ class TeamMemberModel: NSObject {
     var teamID: Int = 0
     var userID: Int = 0
     var permissionID: Int = 0
+    var isCurrentUser: Bool = false
     
     override init() {
         super.init()
@@ -38,19 +39,21 @@ class TeamMemberModel: NSObject {
         email = user["email"].stringValue
         role = user["role"].stringValue
         userID = user["id"].intValue
+        isCurrentUser = user["is_current_user"].boolValue
     }
 
     class func arrayOfMembers(json: JSON) -> [TeamMemberModel] {
         var arr = [TeamMemberModel]()
         for (index: String, subJson: JSON) in json {
-            if index == "0" { // user info
+            var member = TeamMemberModel(json: subJson)
+
+            if member.isCurrentUser {
                 var um = UserManager.sharedInstance
                 um.updateUserWithTeamMembersInfo(subJson["user"])
-                continue
+            } else {
+                member.cellType = .EditMember
+                arr.append(member)
             }
-            var member = TeamMemberModel(json: subJson)
-            member.cellType = .EditMember
-            arr.append(member)
         }
         return arr
     }
