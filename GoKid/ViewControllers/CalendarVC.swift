@@ -297,7 +297,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             var volunteerTitle = "Unvolunteer \(model.poolType)"
             volunteerActionSheet.addAction(UIAlertAction(title: volunteerTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
                 LoadingView.showWithMaskType(.Black)
-                self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
+                self.dataManager.unregisterForOccurence(model) { (success, errStr) in
                     LoadingView.dismiss()
                     onMainThread() {
                         then(error: success ? nil : errStr)
@@ -308,7 +308,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             self.navigationController?.topViewController.presentViewController(volunteerActionSheet, animated: true, completion: nil)
         } else if model.volunteerable {
             LoadingView.showWithMaskType(.Black)
-            self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
+            self.dataManager.registerForOccurence(model) { (success, errStr) in
                 LoadingView.dismiss()
                 onMainThread() {
                         then(error: success ? nil : errStr)

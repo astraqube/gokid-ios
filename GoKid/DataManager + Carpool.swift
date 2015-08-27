@@ -123,12 +123,14 @@ extension DataManager {
         }
     }
     
-    func registerForOccurence(carpoolID: Int, occurID: Int, comp: completion) {
-        var url = baseURL + "/api/carpools/\(carpoolID)/occurrences/\(occurID)/claim"
+    func registerForOccurence(occ: OccurenceModel, comp: completion) {
+        var url = baseURL + "/api/carpools/\(occ.carpool.id)/occurrences/\(occ.occurenceID)/claim"
         var manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
             println("registerForOccurence success")
             println(obj)
+            var json = JSON(obj)
+            occ.reflect(json["occurrence"])
             comp(true, "")
         }) { (op, error) in
             println("registerForOccurence failed")
@@ -136,12 +138,14 @@ extension DataManager {
         }
     }
     
-    func unregisterForOccurence(carpoolID: Int, occurID: Int, comp: completion) {
-        var url = baseURL + "/api/carpools/\(carpoolID)/occurrences/\(occurID)/claim"
+    func unregisterForOccurence(occ: OccurenceModel, comp: completion) {
+        var url = baseURL + "/api/carpools/\(occ.carpool.id)/occurrences/\(occ.occurenceID)/claim"
         var manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
             println("registerForOccurence success")
             println(obj)
+            var json = JSON(obj)
+            occ.reflect(json["occurrence"])
             comp(true, "")
         }) { (op, error) in
             println("registerForOccurence failed")

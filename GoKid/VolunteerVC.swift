@@ -78,17 +78,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    func checkButtonClickHandler(cell: VolunteerCell, button: UIButton) {
-        if let row = tableView.indexPathForCell(cell)?.row {
-            let model = self.dataSource[row]
-            if model.taken {
-                self.unRegisterVolunteerForCell(cell, model: model)
-            } else{
-                self.registerVolunteerForCell(cell, model: model)
-            }
-        }
-    }
-    
     // MARK: TableView DataSource Method
     // --------------------------------------------------------------------------------------------
     
@@ -107,27 +96,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if model.cellType == .Normal {
             let cell = tableView.cellWithID("VolunteerCell", indexPath) as! VolunteerCell
-            cell.timeLabel.text = model.poolTimeStringWithSpace()
-
-            if model.poolType == "pickup" {
-                cell.poolTypeLabel.text = "Drive to Event"
-            } else {
-                cell.poolTypeLabel.text = "Return from Event"
-            }
-
-            cell.checkButtonHandler = checkButtonClickHandler
-            // setup cell image
-            if model.poolDriverImageUrl != "" {
-                imageManager.setImageToView(cell.driverImageView, urlStr: model.poolDriverImageUrl)
-            } else {
-                cell.driverImageView.image = UIImage(named: "checkCirc")
-            }
-            // setup driver name
-            if model.poolDriverName == "No Driver yet" {
-                cell.driverTitleLabel.text = "Volunteer to Drive"
-            } else {
-                cell.driverTitleLabel.text = model.poolDriverName
-            }
+            cell.loadModel(model)
             return cell
         } else if model.cellType == .Time {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
@@ -206,37 +175,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             data.append(event)
         }
         return data
-    }
-
-    func unRegisterVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
-        LoadingView.showWithMaskType(.Black)
-        self.dataManager.unregisterForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
-            LoadingView.dismiss()
-            onMainThread() {
-                if success {
-                    cell.driverImageView.image = UIImage(named: "checkCirc")
-                    model.taken = !model.taken
-                } else {
-                    self.showAlert("Error", messege: errStr, cancleTitle: "OK")
-                }
-            }
-        }
-    }
-
-    func registerVolunteerForCell(cell: VolunteerCell, model: OccurenceModel) {
-        LoadingView.showWithMaskType(.Black)
-        self.dataManager.registerForOccurence(model.carpoolID, occurID: model.occurenceID) { (success, errStr) in
-            LoadingView.dismiss()
-            onMainThread() {
-                if success {
-                    self.imageManager.setImageToView(cell.driverImageView, urlStr: self.userManager.info.thumURL)
-                    model.taken = !model.taken
-                    model.poolDriverImageUrl = self.userManager.info.thumURL
-                } else {
-                    self.showAlert("Error", messege: errStr, cancleTitle: "OK")
-                }
-            }
-        }
     }
 
 }

@@ -19,15 +19,23 @@ enum OccurenceType: String {
 }
 
 class OccurenceModel: NSObject {
-    var taken = false
-    var poolDriverName = ""
-    var poolDriverImageUrl = ""
+    var taken: Bool {
+        return volunteer != nil
+    }
+    var poolDriverName: String {
+        return volunteer != nil ? volunteer!.firstName : "No Driver yet"
+    }
+    var poolDriverImageUrl: String {
+        return volunteer != nil ? volunteer!.imageURL : ""
+    }
     var poolDriverPhoneNum = ""
     var volunteer : VolunteerModel?
     var carpool : CarpoolModel!
 
     var poolType = ""
-    var poolname = ""
+    var poolname: String {
+        return carpool.name
+    }
     var occursAt: NSDate?
     
     var eventLocation = Location()
@@ -56,6 +64,10 @@ class OccurenceModel: NSObject {
 
     init(occurence: JSON) {
         super.init()
+        reflect(occurence)
+    }
+
+    func reflect(occurence: JSON) {
         occursAt = parseDate(occurence, key: "occurs_at")
         cellType = .Normal
         occurenceID = occurence["id"].intValue
@@ -65,12 +77,7 @@ class OccurenceModel: NSObject {
             carpool = CarpoolModel(json: carpoolJSON)
         }
 
-        poolname = occurence["carpool"]["name"].stringValue
-        poolDriverName = occurence["volunteer"]["first_name"].stringValue
-        if let volunteerJSON = occurence["volunteer"] as JSON? {
-            volunteer = VolunteerModel(json: volunteerJSON)
-        }
-        poolDriverImageUrl = occurence["volunteer"]["avatar"]["thumb_url"].stringValue
+        volunteer = occurence["volunteer"] != nil ? VolunteerModel(json: occurence["volunteer"]) : nil
 
         if occurence["rider_ids"] != nil {
             var riderIDs = [Int]()
@@ -106,9 +113,6 @@ class OccurenceModel: NSObject {
     }
     
     func generateOtherField() {
-        if poolDriverName == "" {
-            poolDriverName = "No Driver yet"
-        }
         if let date = occursAt {
             occursAtStr = date.dateString()
             pooltimeStr = date.timeString()
