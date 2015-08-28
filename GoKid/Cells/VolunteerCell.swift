@@ -19,19 +19,17 @@ class VolunteerCell: UITableViewCell {
 
     var occurrenceModel: OccurenceModel!
 
+    var holdTime: NSTimer!
+
+    var presenter: UIViewController?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         checkButton.setRounded()
+        checkButton.addTarget(self, action: Selector("holdRelease:"), forControlEvents: UIControlEvents.TouchUpInside);
+        checkButton.addTarget(self, action: Selector("holdDown:"), forControlEvents: UIControlEvents.TouchDown)
     }
     
-    @IBAction func checkButtonClick(sender: UIButton) {
-        if occurrenceModel.taken {
-            unRegisterVolunteerForCell()
-        } else{
-            registerVolunteerForCell()
-        }
-    }
-
     func loadModel(model: OccurenceModel!) {
         occurrenceModel = model
         timeLabel.text = model.poolTimeStringWithSpace()
@@ -48,6 +46,25 @@ class VolunteerCell: UITableViewCell {
         } else {
             driverImageView.image = UIImage(named: "checkCirc")
             driverTitleLabel.text = "Volunteer to Drive"
+        }
+    }
+
+    func holdDown(sender: UIButton) {
+        holdTime = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "showButtonActionList", userInfo: nil, repeats: false)
+    }
+
+    func holdRelease(sender: UIButton) {
+        if holdTime.valid {
+            checkButtonClick()
+        }
+    }
+
+    func checkButtonClick() {
+        holdTime.invalidate()
+        if occurrenceModel.taken {
+            unRegisterVolunteerForCell()
+        } else{
+            registerVolunteerForCell()
         }
     }
 
@@ -73,6 +90,28 @@ class VolunteerCell: UITableViewCell {
                 }
             }
         }
+    }
+
+    func showButtonActionList() {
+        holdTime.invalidate()
+
+        let menu = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let actionStr = occurrenceModel.taken ? "Unvolunteer" : "Volunteer"
+
+        let actionOnce = UIAlertAction(title: actionStr, style: .Default) { (_) in }
+        let actionDay = UIAlertAction(title: "\(actionStr) Every \(occurrenceModel.occursAt!.weekDayFullString())", style: .Default) { (_) in }
+        let actionAllType = UIAlertAction(title: "\(actionStr) All \(occurrenceModel.poolType.capitalizedString)", style: .Default) { (_) in }
+        let actionEveryday = UIAlertAction(title: "\(actionStr) Everyday", style: .Default) { (_) in }
+
+        let actionCancel = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+
+        menu.addAction(actionOnce)
+        menu.addAction(actionDay)
+        menu.addAction(actionAllType)
+        menu.addAction(actionEveryday)
+        menu.addAction(actionCancel)
+
+        presenter?.presentViewController(menu, animated: true, completion: nil)
     }
 
 }

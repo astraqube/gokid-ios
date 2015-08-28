@@ -820,9 +820,6 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="checkButtonClick:" destination="yDF-Tx-rSK" eventType="touchUpInside" id="Gpj-Ww-U9o"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12.00 pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKz-YF-Xww">
                                                     <rect key="frame" x="8" y="35" width="130" height="18"/>
@@ -1516,9 +1513,6 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="checkButtonClick:" destination="bCM-9F-rhX" eventType="touchUpInside" id="fUa-5D-rjh"/>
-                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kiq-ci-107">
                                                     <rect key="frame" x="146" y="22" width="29" height="26"/>

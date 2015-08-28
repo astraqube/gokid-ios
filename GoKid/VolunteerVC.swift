@@ -97,6 +97,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         } else if model.cellType == .Normal {
             let cell = tableView.cellWithID("VolunteerCell", indexPath) as! VolunteerCell
             cell.loadModel(model)
+            cell.presenter = self
             return cell
         } else if model.cellType == .Time {
             let cell = tableView.cellWithID("VolunteerTimeCell", indexPath) as! VolunteerTimeCell
