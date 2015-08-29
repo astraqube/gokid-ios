@@ -54,6 +54,12 @@ extension NSDate {
         return df.stringFromDate(self)
     }
     
+    func weekDayFullString() -> String {
+        var df = NSDateFormatter()
+        df.dateFormat = "EEEE"
+        return df.stringFromDate(self)
+    }
+
     func isGreaterThanDate(dateToCompare : NSDate) -> Bool {
         return self.compare(dateToCompare) == NSComparisonResult.OrderedDescending
     }
