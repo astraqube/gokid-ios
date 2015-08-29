@@ -98,7 +98,10 @@ class VolunteerCell: UITableViewCell {
         let menu = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         let actionStr = occurrenceModel.taken ? "Unvolunteer" : "Volunteer"
 
-        let actionOnce = UIAlertAction(title: actionStr, style: .Default) { (_) in }
+        let actionOnce = UIAlertAction(title: actionStr, style: .Default) { (_) in
+            self.checkButtonClick()
+        }
+        
         let actionDay = UIAlertAction(title: "\(actionStr) Every \(occurrenceModel.occursAt!.weekDayFullString())", style: .Default) { (_) in }
         let actionAllType = UIAlertAction(title: "\(actionStr) All \(occurrenceModel.poolType.capitalizedString)", style: .Default) { (_) in }
         let actionEveryday = UIAlertAction(title: "\(actionStr) Everyday", style: .Default) { (_) in }
