@@ -69,12 +69,14 @@ class VolunteerCell: UITableViewCell {
     }
 
     func unRegisterVolunteerForCell() {
-        LoadingView.showWithMaskType(.Black)
-        DataManager.sharedInstance.unregisterForOccurence(occurrenceModel) { (success, errStr) in
-            LoadingView.dismiss()
-            onMainThread() {
-                if success {
-                    self.loadModel(self.occurrenceModel)
+        if occurrenceModel.volunteer!.id == UserManager.sharedInstance.info.userID {
+            LoadingView.showWithMaskType(.Black)
+            DataManager.sharedInstance.unregisterForOccurence(occurrenceModel) { (success, errStr) in
+                LoadingView.dismiss()
+                onMainThread() {
+                    if success {
+                        self.loadModel(self.occurrenceModel)
+                    }
                 }
             }
         }
@@ -94,7 +96,10 @@ class VolunteerCell: UITableViewCell {
 
     func showButtonActionList() {
         holdTime.invalidate()
-
+        if occurrenceModel.taken && occurrenceModel.volunteer!.id != UserManager.sharedInstance.info.userID {
+            return
+        }
+        
         let menu = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         let actionStr = occurrenceModel.taken ? "Unvolunteer" : "Volunteer"
 
