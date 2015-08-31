@@ -22,10 +22,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         setStatusBarColorDark()
         self.subtitleLabel?.text = carpool.descriptionString
-        if dataSource.count < 1 {
-            tryLoadTableData()
-        }
-        
+
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(
             self,
@@ -40,12 +37,11 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             rightButton.enabled = carpool.isOwner
             rightButton.hidden = !carpool.isOwner
         }
-
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        reloadTableData()
+        tryLoadTableData()
     }
 
     func deleteRideOrCarpool(sender: AnyObject?) {

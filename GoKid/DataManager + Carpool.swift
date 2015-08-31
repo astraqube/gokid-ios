@@ -122,6 +122,30 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
+
+    func registerForCarpool(carpool: CarpoolModel, type: String, comp: completion) {
+        var url = baseURL + "/api/carpools/\(carpool.id)/claim"
+        var manager = managerWithToken()
+        manager.POST(url, parameters: ["occurrences": type], success: { (op, obj) in
+            println("registerForCarpool success")
+            comp(true, "")
+        }) { (op, error) in
+            println("registerForCarpool failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+
+    func unregisterForCarpool(carpool: CarpoolModel, type: String, comp: completion) {
+        var url = baseURL + "/api/carpools/\(carpool.id)/claim"
+        var manager = managerWithToken()
+        manager.DELETE(url, parameters: ["occurrences": type], success: { (op, obj) in
+            println("registerForCarpool success")
+            comp(true, "")
+        }) { (op, error) in
+            println("registerForCarpool failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
     
     func registerForOccurence(occ: OccurenceModel, comp: completion) {
         var url = baseURL + "/api/carpools/\(occ.carpool.id)/occurrences/\(occ.occurenceID)/claim"

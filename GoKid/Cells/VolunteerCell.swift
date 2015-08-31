@@ -94,6 +94,15 @@ class VolunteerCell: UITableViewCell {
         }
     }
 
+    func batchAction(type: String!) {
+        let call = occurrenceModel.taken ? DataManager.sharedInstance.unregisterForCarpool : DataManager.sharedInstance.registerForCarpool
+        call(occurrenceModel.carpool, type: type) { (success, error) -> () in
+            if success {
+                self.presenter?.viewDidAppear(false)
+            }
+        }
+    }
+
     func showButtonActionList() {
         holdTime.invalidate()
         if occurrenceModel.taken && occurrenceModel.volunteer!.id != UserManager.sharedInstance.info.userID {
@@ -106,12 +115,21 @@ class VolunteerCell: UITableViewCell {
         let actionOnce = UIAlertAction(title: actionStr, style: .Default) { (_) in
             self.checkButtonClick()
         }
-        
-        let actionDay = UIAlertAction(title: "\(actionStr) Every \(occurrenceModel.occursAt!.weekDayFullString())", style: .Default) { (_) in }
-        let actionAllType = UIAlertAction(title: "\(actionStr) All \(occurrenceModel.poolType.capitalizedString)", style: .Default) { (_) in }
-        let actionEveryday = UIAlertAction(title: "\(actionStr) Everyday", style: .Default) { (_) in }
 
-        let actionCancel = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+        let day = occurrenceModel.occursAt!.weekDayFullString()
+        let actionDay = UIAlertAction(title: "\(actionStr) Every \(day)", style: .Default) { (_) in
+            self.batchAction("all_\(day.lowercaseString)")
+        }
+
+        let actionAllType = UIAlertAction(title: "\(actionStr) All \(occurrenceModel.poolType.capitalizedString)", style: .Default) { (_) in
+            self.batchAction("all_\(self.occurrenceModel.poolType.lowercaseString)")
+        }
+
+        let actionEveryday = UIAlertAction(title: "\(actionStr) Everyday", style: .Default) { (_) in
+            self.batchAction("all")
+        }
+
+        let actionCancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
 
         menu.addAction(actionOnce)
         menu.addAction(actionDay)
