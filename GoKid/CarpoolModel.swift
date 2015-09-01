@@ -176,21 +176,5 @@ class CarpoolModel: NSObject {
 
         return schedule
     }
-/* DEPRECATED
-    func isValidForTime() -> Bool {
-        if occurence != nil && endDate != nil && startDate != nil &&
-        pickUpTime != nil && dropOffTime != nil {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func isValidForLocation() -> Bool {
-        if startLocation != nil && endLocation != nil {
-            return true
-        }
-        return false
-    }
-*/
+
 }

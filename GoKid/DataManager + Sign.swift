@@ -96,25 +96,7 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
-/* DEPRECATED
-    func fbSignup(fbtoken: String, comp: completion) {
-        var url = baseURL + "/api/users"
-        var map = ["fb_token": fbtoken]
-        var manager = AFHTTPRequestOperationManager()
-        manager.POST(url, parameters: map, success: { (op, obj) in
-            println("fbSignup user success")
-            self.userManager.setWithJsonReponse(JSON(obj))
-            self.userManager.useFBLogIn = true
-            onMainThread() {
-                self.postNotification("SignupFinished")
-            }
-            comp(true, "")
-        }) { (op, error) in
-            println("fbSignup user fail")
-            self.handleRequestError(op, error: error, comp: comp)
-        }
-    }
-*/  
+
     func fbUploadProfileImage(comp: completion) {
         let fbUserID = FBSDKAccessToken.currentAccessToken().userID
         let url = "http://graph.facebook.com/\(fbUserID)/picture?type=large"

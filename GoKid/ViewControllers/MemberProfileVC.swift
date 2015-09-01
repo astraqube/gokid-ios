@@ -87,35 +87,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         }
         setNavBarRightButtonTitle("Save", action: "rightNavButtonTapped")
     }
-/* DEPRECATED
-    func setupLoginButton() {
-        fbloginButton.readPermissions = ["public_profile", "email", "user_friends"];
-        fbloginButton.delegate = self
-    }
 
-    func setUpLogoutButton() {
-        fblogoutButton.delegate = self
-        if userManager.useFBLogIn {
-            emailLogoutButton.removeFromSuperview()
-        } else {
-            fblogoutButton.removeFromSuperview()
-        }
-    }
-
-    func setupTableView() {
-        tableView.delegate = self
-    }
-
-    func refreshUIIfNeeded() {
-        self.firstNameTextField.text = model.firstName
-        self.lastNameTextField.text = model.lastName
-        self.phoneNumberLabel.text = model.phoneNumber
-        self.emailTextField.text = model.email
-        self.roleButton.setTitle(model.role, forState: .Normal)
-        self.passwordTextField.text = model.passWord
-        ImageManager.sharedInstance.setImageToView(profileImageView, urlStr: model.thumURL)
-    }
-*/
     override func initForm() {
         let form = XLFormDescriptor()
         var row: XLFormRowDescriptor!
@@ -337,26 +309,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         self.updateFormRow(driverCell)
         self.updateFormRow(illBeDrivingCell)
     }
-/* DEPRECATED
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var um = UserManager.sharedInstance
-        var section = indexPath.section
-        var row = indexPath.row
-        // optionally show FBLoginButton
-        if section == 0 && row == 0 {
-            if um.userLoggedIn { return 0 }
-            else { return 70 }
-        }
-        if section == 0 && row == 1 { return 86.0 }
-        // optionally show logout
-        if section == 4 {
-            if um.userLoggedIn { return 75 }
-            else { return 0 }
-        }
-        return 44.0
-    }
-*/
-    
+
     // MARK: UIImagePickerControllerDelegate
     // --------------------------------------------------------------------------------------------
     
@@ -375,12 +328,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
-/* DEPRECATED
-    @IBAction func emailLogoutButtonClick(sender: AnyObject) {
-        logout()
-    }
-*/
-    
+
     @IBAction func imageProfileButtonClick(sender: AnyObject) {
         setStatusBarColorDark()
         var picker = UIImagePickerController()
@@ -388,31 +336,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         picker.delegate = self
         self.presentViewController(picker, animated: true, completion: nil)
     }
-    
-/* DEPRECATED
-    @IBAction func roleButtonClicked(sender: AnyObject) {
-        let button1 = UIAlertAction(title: RoleTypeMommy, style: .Default) { (alert) in
-            self.roleButton.setTitle(RoleTypeMommy, forState: .Normal)
-        }
-        let button2 = UIAlertAction(title: RoleTypeDaddy, style: .Default) { (alert) in
-            self.roleButton.setTitle(RoleTypeDaddy, forState: .Normal)
-        }
-        let button3 = UIAlertAction(title: RoleTypeChild, style: .Default) { (alert) in
-            self.roleButton.setTitle(RoleTypeChild, forState: .Normal)
-        }
-        let button4 = UIAlertAction(title: RoleTypeCareTaker, style: .Default) { (alert) in
-            self.roleButton.setTitle(RoleTypeCareTaker, forState: .Normal)
-        }
-        let button5 = UIAlertAction(title: "Cancle", style: .Cancel) { (alert) in }
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        alert.addAction(button1)
-        alert.addAction(button2)
-        alert.addAction(button3)
-        alert.addAction(button4)
-        alert.addAction(button5)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-*/
+
     override func rightNavButtonTapped() {
         let validationErrors: Array<NSError> = self.formValidationErrors() as! Array<NSError>
 
@@ -435,35 +359,10 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
             self.updateUser()
         }
     }
-/* DEPRECATED
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "PhoneVerification" {
-            var des = segue.destinationViewController as! Phone_VC
-            des.memberProfileVC = self
-        }
-    }
-*/
+
     // MARK: Facebook Login
     // --------------------------------------------------------------------------------------------
-/* DEPRECATED
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        if error != nil {
-            self.showAlert("Falied to user FB Signup", messege:error.localizedDescription , cancleTitle: "OK")
-        } else if (result.isCancelled) {
-            self.showAlert("Falied to user FB Signup", messege:"You cancled login" , cancleTitle: "OK")
-        } else {
-            if result.grantedPermissions.contains("email") {
-                println("success")
-                LoadingView.showWithMaskType(.Black)
-                dataManager.fbSignin(handleLoginResult)
-            }
-        }
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        logout()
-    }
-*/
+
     func logout(sender: XLFormRowDescriptor) {
         self.deselectFormRow(sender)
         FBSDKLoginManager().logOut()
@@ -479,20 +378,6 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         removeButtonHandler!(self)
     }
 
-/* DEPRECATED
-    func handleLoginResult(success: Bool, errorStr: String) {
-        LoadingView.dismiss()
-        onMainThread() {
-            if success {
-                self.doneButtonHandler?(self)
-                self.navigationController?.popViewControllerAnimated(true)
-            } else {
-                self.showAlert("Falied to use FB Signup", messege:errorStr , cancleTitle: "OK")
-            }
-        }
-    }
-*/
-    
     // MARK: Helper Method
     // --------------------------------------------------------------------------------------------
     
@@ -513,21 +398,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         let memberForm = getMemberForm()
         dataManager.updateTeamMember(memberForm, comp: handleUpdateOrCreateMemberSuccess)
     }
-/* DEPRECATED
-    func createUser(signupForm: SignupForm) {
-        LoadingView.showWithMaskType(.Black)
-        dataManager.signup(signupForm) { (success, errorStr) in
-            if success {
-                self.handleUpdateOrCreateUserSuccess()
-            } else {
-                onMainThread() {
-                    LoadingView.dismiss()
-                    self.showAlert("Alert", messege: errorStr, cancleTitle: "OK")
-                }
-            }
-        }
-    }
-*/
+
     func handleUpdateOrCreateUserSuccess(success: Bool, errorStr: String) {
         if success {
             if self.pickedNewImage {
