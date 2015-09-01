@@ -29,13 +29,11 @@ class CarpoolOccurrenceListVC : BaseVC, UITableViewDataSource, UITableViewDelega
         titleLabel.text = carpool.name
         subtitleLabel.text = carpool.kidName
         
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(
-            self,
-            selector: "deleteRideOrCarpool:",
-            name:"deleteRideOrCarpool",
-            object: nil
-        )
+        registerForNotification("deleteRideOrCarpool", action: "asyncFetchDataAndReloadTableView")
+    }
+
+    deinit {
+        removeNotification(self)
     }
     
     override func leftNavButtonTapped() {
@@ -51,10 +49,12 @@ class CarpoolOccurrenceListVC : BaseVC, UITableViewDataSource, UITableViewDelega
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.asyncFetchDataAndReloadTableView()
+        registerForNotification("refreshVolunteerCells", action: "asyncFetchDataAndReloadTableView")
     }
-    
-    func deleteRideOrCarpool(sender: AnyObject?) {
-        self.asyncFetchDataAndReloadTableView()
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeNotification(self, name: "refreshVolunteerCells")
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

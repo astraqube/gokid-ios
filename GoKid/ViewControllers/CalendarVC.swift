@@ -19,8 +19,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        setupTableViewContent()
+
         if onlyShowOurDrives {
             goKidLogo.hidden = true
             myDrivesLabel.hidden = false
@@ -28,23 +27,25 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         
         refreshControl.addTarget(self, action: "asyncFetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
-        
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(
-            self,
-            selector: "deleteRideOrCarpool:",
-            name:"deleteRideOrCarpool",
-            object: nil
-        )
+
+        setupTableViewContent()
+
+        registerForNotification("deleteRideOrCarpool", action: "asyncFetchDataAndReloadTableView")
     }
 
+    deinit {
+        removeNotification(self)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         generateTableDataAndReload()
+        registerForNotification("refreshVolunteerCells", action: "asyncFetchDataAndReloadTableView")
     }
 
-    func deleteRideOrCarpool(sender: AnyObject?) {
-        self.asyncFetchDataAndReloadTableView()
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeNotification(self, name: "refreshVolunteerCells")
     }
     
     override func viewWillAppear(animated: Bool) {

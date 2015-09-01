@@ -23,29 +23,29 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         setStatusBarColorDark()
         self.subtitleLabel?.text = carpool.descriptionString
 
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(
-            self,
-            selector: "deleteRideOrCarpool:",
-            name:"deleteRideOrCarpool",
-            object: nil
-        )
-
         if !fromCarpoolList {
             rightButton.setImage(UIImage(named: "next_arrow"), forState: UIControlState.Normal)
         } else {
             rightButton.enabled = carpool.isOwner
             rightButton.hidden = !carpool.isOwner
         }
+
+        registerForNotification("deleteRideOrCarpool", action: "tryLoadTableData")
+    }
+
+    deinit {
+        removeNotification(self)
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         tryLoadTableData()
+        registerForNotification("refreshVolunteerCells", action: "tryLoadTableData")
     }
 
-    func deleteRideOrCarpool(sender: AnyObject?) {
-        tryLoadTableData()
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeNotification(self, name: "refreshVolunteerCells")
     }
 
     // MARK: IBAction Method

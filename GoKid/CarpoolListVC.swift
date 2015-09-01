@@ -32,13 +32,11 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
 
         fetchDataAndReloadTableView()
         
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(
-            self,
-            selector: "deleteRideOrCarpool:",
-            name:"deleteRideOrCarpool",
-            object: nil
-        )
+        registerForNotification("deleteRideOrCarpool", action: "asyncFetchDataAndReloadTableView")
+    }
+
+    deinit {
+        removeNotification(self)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -52,10 +50,6 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         fetchInvitations()
     }
     
-    func deleteRideOrCarpool(sender: AnyObject?) {
-        self.asyncFetchDataAndReloadTableView()
-    }
-
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3 //invites carpools newCarpool
     }

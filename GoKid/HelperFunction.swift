@@ -160,6 +160,14 @@ extension NSObject {
     func registerForNotification(name: String, action: Selector) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: action, name: name, object: nil)
     }
+
+    func removeNotification(observer: AnyObject) {
+        NSNotificationCenter.defaultCenter().removeObserver(observer)
+    }
+
+    func removeNotification(observer: AnyObject, name: String) {
+        NSNotificationCenter.defaultCenter().removeObserver(observer, name: name, object: nil)
+    }
 }
 
 extension String {
