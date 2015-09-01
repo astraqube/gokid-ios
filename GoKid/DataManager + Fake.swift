@@ -26,20 +26,15 @@ extension DataManager {
         ]
         var main = [
             "InviteConfirmVC": true,
-            // "PhoneVerifyVC": true,
-            // "Phone_VC": true,
             "PlacePickerVC": true,
-            "KidAboutYouVC": true,
             "CalendarVC": true,
             "CarpoolListVC": true,
             "MenuVC": true,
             "MainStackVC": true,
             "InviteRelationshipVC": true,
-            "InviteeListVC": true,
             "YourKidVC": true
         ]
         var teamAccount = [
-            // "AddTeamMemberVC": true,
             "MemberProfileVC": true,
             "TeamAccountVC": true
         ]

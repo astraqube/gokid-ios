@@ -56,11 +56,6 @@ class InviteConfirmVC: BaseVC {
         }
     }
     
-    @IBAction func viewInviteeListButtonClick(sender: AnyObject) {
-        var vc = vcWithID("InviteeListVC")
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func moveToInviteRelationVC() {
         onMainThread() {
             var vc = vcWithID("InviteRelationshipVC") as! InviteRelationshipVC

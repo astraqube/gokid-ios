@@ -82,7 +82,7 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
         } else { // no
             // TODO: Removed this flow until needed (in the future)
             // um.over18 = false
-            // presentVC = vcWithID("KidAboutYouVC")
+            // presentVC = ...
             return
         }
 

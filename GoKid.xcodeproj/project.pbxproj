@@ -19,7 +19,6 @@
 		04FB809F1B5311AA00F73C74 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04FB809C1B53113900F73C74 /* Raleway-Light.ttf */; };
 		04FB80A01B5311AA00F73C74 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04FB809D1B53113900F73C74 /* Raleway-Medium.ttf */; };
 		04FB80A11B5311AA00F73C74 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04FB809E1B53113900F73C74 /* Raleway-SemiBold.ttf */; };
-		1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */; };
 		1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A51B1C2C33007CDB66 /* SignInVC.swift */; };
 		1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */; };
 		1D10D7AA1B1C38FE007CDB66 /* BasicInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */; };
@@ -82,7 +81,6 @@
 		1DD6A4DD1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6A4DA1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.m */; };
 		1DEFF16B1B4937EA0094B54E /* InviteRelationshipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */; };
 		1DEFF16D1B49E3160094B54E /* YourKidVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16C1B49E3160094B54E /* YourKidVC.swift */; };
-		1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */; };
 		1DEFF1711B49EE4B0094B54E /* InviteeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */; };
 		1DEFF1801B4A87D70094B54E /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */; };
 		1DEFF1811B4A87D70094B54E /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFF17F1B4A87D70094B54E /* OnboardingViewController.m */; };
@@ -146,7 +144,6 @@
 		04FB809C1B53113900F73C74 /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 		04FB809D1B53113900F73C74 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		04FB809E1B53113900F73C74 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
-		1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KidAboutYouVC.swift; path = ViewControllers/KidAboutYouVC.swift; sourceTree = "<group>"; };
 		1D10D7A51B1C2C33007CDB66 /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInVC.swift; path = ViewControllers/SignInVC.swift; sourceTree = "<group>"; };
 		1D10D7A71B1C33CF007CDB66 /* CalendarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarVC.swift; path = ViewControllers/CalendarVC.swift; sourceTree = "<group>"; };
 		1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicInfoVC.swift; path = ViewControllers/BasicInfoVC.swift; sourceTree = "<group>"; };
@@ -217,7 +214,6 @@
 		1DD6A4DB1B3BD32B006A97ED /* ZGNavigationBarTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGNavigationBarTitleViewController.h; sourceTree = "<group>"; };
 		1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteRelationshipVC.swift; path = ViewControllers/InviteRelationshipVC.swift; sourceTree = "<group>"; };
 		1DEFF16C1B49E3160094B54E /* YourKidVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourKidVC.swift; sourceTree = "<group>"; };
-		1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteeListVC.swift; sourceTree = "<group>"; };
 		1DEFF1701B49EE4B0094B54E /* InviteeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteeCell.swift; path = Cells/InviteeCell.swift; sourceTree = "<group>"; };
 		1DEFF17C1B4A87D70094B54E /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingContentViewController.h; sourceTree = "<group>"; };
 		1DEFF17D1B4A87D70094B54E /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingContentViewController.m; sourceTree = "<group>"; };
@@ -526,7 +522,6 @@
 				1DEFF1841B4A8B620094B54E /* LastOnboardVC.swift */,
 				1DA789451B23C42700B391E8 /* OnboardVC.swift */,
 				1D10D7A91B1C38FE007CDB66 /* BasicInfoVC.swift */,
-				1D10D7A31B1C1BB7007CDB66 /* KidAboutYouVC.swift */,
 			);
 			name = Onboard;
 			sourceTree = "<group>";
@@ -585,7 +580,6 @@
 				1D975A371B1F40D500CD4D89 /* InviteInfoVC.swift */,
 				1D975A391B1F40E500CD4D89 /* InviteConfirmVC.swift */,
 				041CA0501B740BEC0018F2DE /* InviteConfirmTimesVC.swift */,
-				1DEFF16E1B49ED8C0094B54E /* InviteeListVC.swift */,
 				1DEFF16A1B4937EA0094B54E /* InviteRelationshipVC.swift */,
 				1DEFF16C1B49E3160094B54E /* YourKidVC.swift */,
 				1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */,
@@ -954,11 +948,9 @@
 				796E69C51B4A6E5600DF8D43 /* BorderedView.swift in Sources */,
 				7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */,
 				7943CF451B55DC1D007F6F8A /* CarpoolInviteCell.swift in Sources */,
-				1DEFF16F1B49ED8C0094B54E /* InviteeListVC.swift in Sources */,
 				405451B81B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift in Sources */,
 				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
 				405451BA1B7D30FD0023DEC4 /* EditTimeAndDateFormVC.swift in Sources */,
-				1D10D7A41B1C1BB7007CDB66 /* KidAboutYouVC.swift in Sources */,
 				1D3554591B3FD14200044A3F /* DataMnager + Notification.swift in Sources */,
 				1D3F651A1B2079E400CCF6A1 /* VolunteerVC.swift in Sources */,
 				79C229D91B4EF6FD0051F148 /* MapViewDatasource.swift in Sources */,

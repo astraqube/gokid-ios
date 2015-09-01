@@ -61,9 +61,6 @@
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
-            <string>Raleway-Regular</string>
-            <string>Raleway-Regular</string>
-            <string>Raleway-Regular</string>
         </mutableArray>
         <mutableArray key="Raleway-SemiBold.ttf">
             <string>Raleway-SemiBold</string>
@@ -405,17 +402,6 @@ invited you to
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59V-ui-fSu">
-                                <rect key="frame" x="104" y="390" width="112" height="30"/>
-                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
-                                <state key="normal" title="View Invitee List">
-                                    <color key="titleColor" red="0.28235294117647058" green="0.37254901960784315" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="viewInviteeListButtonClick:" destination="Yex-pZ-DEK" eventType="touchUpInside" id="ZbC-wr-Tga"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.97254901960784312" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
@@ -430,9 +416,7 @@ invited you to
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="leading" secondItem="qcF-1h-jow" secondAttribute="leadingMargin" constant="56" id="Nab-Bm-gSz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Oa9-rN-mdS" secondAttribute="trailing" id="Oxp-fc-yXZ"/>
                             <constraint firstAttribute="centerX" secondItem="ysD-Rq-w8m" secondAttribute="centerX" id="PYq-1A-zP2"/>
-                            <constraint firstAttribute="centerX" secondItem="59V-ui-fSu" secondAttribute="centerX" id="Qqm-xB-EQb"/>
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="height" secondItem="dKJ-ib-WQA" secondAttribute="height" id="o77-tL-apd"/>
-                            <constraint firstItem="59V-ui-fSu" firstAttribute="top" secondItem="dKJ-ib-WQA" secondAttribute="bottom" constant="24" id="pyU-Wa-dur"/>
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="top" secondItem="ysD-Rq-w8m" secondAttribute="bottom" constant="32" id="yvC-S5-4CU"/>
                         </constraints>
                     </view>
@@ -626,9 +610,6 @@ invited you to
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="acceptButtonClick:" destination="Yex-pZ-DEK" eventType="touchUpInside" id="okD-vi-Yrh"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -661,84 +642,6 @@ invited you to
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2F-Ca-eyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1081" y="2452"/>
-        </scene>
-        <!--Invitee ListVC-->
-        <scene sceneID="XMd-yv-8Dq">
-            <objects>
-                <viewController storyboardIdentifier="InviteeListVC" id="bzJ-OM-bdf" customClass="InviteeListVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="g7I-r4-Bb4"/>
-                        <viewControllerLayoutGuide type="bottom" id="XWI-0j-Fj8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cl1-vu-eBl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="O7b-cO-7j6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="InviteeCell" rowHeight="60" id="BEX-fA-wG1" customClass="InviteeCell" customModule="GoKid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BEX-fA-wG1" id="OYm-rJ-Nuc">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jGY-Is-IX9">
-                                                    <rect key="frame" x="8" y="15" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="5lh-Mn-oUf"/>
-                                                        <constraint firstAttribute="width" constant="30" id="lya-3P-Ggn"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tom's Kid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27I-z3-7q6">
-                                                    <rect key="frame" x="46" y="20" width="75" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accpted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Md0-im-uhg">
-                                                    <rect key="frame" x="245" y="20" width="67" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Md0-im-uhg" firstAttribute="trailing" secondItem="OYm-rJ-Nuc" secondAttribute="trailingMargin" id="1CK-iE-823"/>
-                                                <constraint firstAttribute="centerY" secondItem="Md0-im-uhg" secondAttribute="centerY" constant="0.25" id="Jw7-1h-Ekh"/>
-                                                <constraint firstItem="jGY-Is-IX9" firstAttribute="leading" secondItem="OYm-rJ-Nuc" secondAttribute="leadingMargin" id="RwU-U4-Nyz"/>
-                                                <constraint firstItem="27I-z3-7q6" firstAttribute="leading" secondItem="jGY-Is-IX9" secondAttribute="trailing" constant="8" id="g2V-3G-tj2"/>
-                                                <constraint firstAttribute="centerY" secondItem="jGY-Is-IX9" secondAttribute="centerY" constant="-0.25" id="m74-8r-sSc"/>
-                                                <constraint firstAttribute="centerY" secondItem="27I-z3-7q6" secondAttribute="centerY" constant="0.25" id="tF6-yB-4aE"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.98431372549999996" green="0.99215686270000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="contentLabel" destination="27I-z3-7q6" id="GP8-zP-GRA"/>
-                                            <outlet property="profileImageView" destination="jGY-Is-IX9" id="BoZ-Z0-Xac"/>
-                                            <outlet property="statusLabel" destination="Md0-im-uhg" id="D4E-fq-9sw"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="O7b-cO-7j6" firstAttribute="top" secondItem="cl1-vu-eBl" secondAttribute="topMargin" id="1Lt-FR-9np"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="O7b-cO-7j6" secondAttribute="trailing" constant="-16" id="YcX-iU-sor"/>
-                            <constraint firstItem="XWI-0j-Fj8" firstAttribute="top" secondItem="O7b-cO-7j6" secondAttribute="bottom" id="oNg-4F-yun"/>
-                            <constraint firstItem="O7b-cO-7j6" firstAttribute="leading" secondItem="cl1-vu-eBl" secondAttribute="leadingMargin" constant="-16" id="uLp-H5-Xv3"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="O7b-cO-7j6" id="i6E-wV-6h5"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7G8-S6-SXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1482" y="2452"/>
         </scene>
         <!--Place PickerVC-->
         <scene sceneID="IDW-Xl-kMD">
@@ -855,81 +758,6 @@ invited you to
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUR-h9-qpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-62" y="1785"/>
-        </scene>
-        <!--Kid About YouVC-->
-        <scene sceneID="WQw-ro-quA">
-            <objects>
-                <viewController storyboardIdentifier="KidAboutYouVC" id="d0u-25-fqx" customClass="KidAboutYouVC" customModule="GoKid" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="doP-wb-NUS"/>
-                        <viewControllerLayoutGuide type="bottom" id="KtP-d7-tcd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SyX-f5-bRb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Parent's phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MeK-0I-g9O" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="194" width="325" height="38"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="f9L-ZP-fr7"/>
-                                    <constraint firstAttribute="width" constant="325" id="rhk-Qy-HEx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="inset">
-                                        <real key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite your parents so you can use this app?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csR-bw-CDA">
-                                <rect key="frame" x="47" y="124" width="226" height="55"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="226" id="Idb-fR-NzK"/>
-                                    <constraint firstAttribute="height" constant="55" id="Zkx-5X-5DS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdH-u4-jqj">
-                                <rect key="frame" x="66" y="250" width="189" height="33"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="189" id="VG1-Tg-hjK"/>
-                                    <constraint firstAttribute="height" constant="33" id="t7z-bW-Z1x"/>
-                                </constraints>
-                                <state key="normal" title="Choose from Contacts">
-                                    <color key="titleColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="chooseFromContactButtonClicked:" destination="d0u-25-fqx" eventType="touchUpInside" id="wSE-lE-P1L"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="MeK-0I-g9O" secondAttribute="centerX" constant="-2.5" id="2TN-hP-e5Y"/>
-                            <constraint firstAttribute="centerX" secondItem="TdH-u4-jqj" secondAttribute="centerX" constant="-0.5" id="E7G-Ad-APw"/>
-                            <constraint firstItem="TdH-u4-jqj" firstAttribute="top" secondItem="MeK-0I-g9O" secondAttribute="bottom" constant="18" id="Ega-Sa-2cu"/>
-                            <constraint firstItem="MeK-0I-g9O" firstAttribute="top" secondItem="csR-bw-CDA" secondAttribute="bottom" constant="15" id="K45-5E-yA5"/>
-                            <constraint firstItem="csR-bw-CDA" firstAttribute="top" secondItem="doP-wb-NUS" secondAttribute="bottom" constant="104" id="dC6-3S-O8E"/>
-                            <constraint firstAttribute="centerX" secondItem="csR-bw-CDA" secondAttribute="centerX" id="lpF-57-dVO"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="phoneNumbertextField" destination="MeK-0I-g9O" id="98D-NS-xXu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZMk-sf-hHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-450" y="1785"/>
         </scene>
         <!--CalendarVC-->
         <scene sceneID="hcy-fD-AUA">
@@ -1086,7 +914,7 @@ invited you to
                                                             <rect key="frame" x="80" y="17" width="213" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="dropoff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8p-Dk-dRL">
-                                                                    <rect key="frame" x="19" y="0.0" width="44" height="16"/>
+                                                                    <rect key="frame" x="19" y="0.0" width="45" height="16"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="13"/>
                                                                     <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1104,7 +932,7 @@ invited you to
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="10:00 am" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLz-kz-mpp">
-                                                                    <rect key="frame" x="83" y="-1" width="61" height="17"/>
+                                                                    <rect key="frame" x="84" y="-1" width="61" height="17"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1116,7 +944,7 @@ invited you to
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soa-6j-3jm">
-                                                                    <rect key="frame" x="67" y="0.0" width="12" height="16"/>
+                                                                    <rect key="frame" x="68" y="0.0" width="12" height="16"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                                                     <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1364,7 +1192,7 @@ invited you to
                                                             <rect key="frame" x="80" y="17" width="213" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="dropoff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faF-bq-hCR">
-                                                                    <rect key="frame" x="19" y="0.0" width="44" height="16"/>
+                                                                    <rect key="frame" x="19" y="0.0" width="45" height="16"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="13"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1388,13 +1216,13 @@ invited you to
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="10:00 am" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmU-lX-SHK">
-                                                                    <rect key="frame" x="83" y="-1" width="61" height="17"/>
+                                                                    <rect key="frame" x="84" y="-1" width="61" height="17"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
                                                                     <color key="textColor" red="0.36862745099999999" green="0.52156862749999999" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txJ-EI-QNK">
-                                                                    <rect key="frame" x="67" y="0.0" width="12" height="16"/>
+                                                                    <rect key="frame" x="68" y="0.0" width="12" height="16"/>
                                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                                                     <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
