@@ -8,24 +8,14 @@
 
 import UIKit
 
-class CalendarCell: UITableViewCell {
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var typeLabel: UILabel!
+class CalendarCell: VolunteerCell {
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    
+
     @IBOutlet weak var pickupIcon: UILabel!
     @IBOutlet weak var dropoffIcon: UILabel!
 
     @IBOutlet weak var optedOutLabel: UILabel!
 
-    /**
-    Callback called when someone taps on `profileImageView`. Set to recieve callbacks.
-    
-    Ensure all variables captured are weak.
-    */
-    var onProfileImageViewTapped : (()->(Void))?
-    
     /**
     The in-order collection of `CallendarUserImageView`
 
@@ -35,12 +25,35 @@ class CalendarCell: UITableViewCell {
     */
     @IBOutlet var pickupImageCollection : [CalendarUserImageView]!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "profileImageViewTappped"))
+    override func loadModel(model: OccurenceModel!) {
+        super.loadModel(model)
+
+        nameLabel.text = model.poolname
+
+        if model.occurrenceType == .Dropoff {
+            pickupIcon.hidden = true
+            dropoffIcon.hidden = false
+        } else {
+            pickupIcon.hidden = false
+            dropoffIcon.hidden = true
+        }
+
+        for (index, riderImageView) in enumerate(pickupImageCollection) {
+            let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
+            if rider != nil {
+                riderImageView.nameString = rider!.fullName
+                //riderImageView.image = rider.thumURL //gotta get images
+                riderImageView.hidden = false
+            } else {
+                riderImageView.hidden = true
+            }
+        }
+
+        let myRiders = model.riders.filter { (r: RiderModel) -> Bool in
+            return r.isInMyTeam
+        }
+
+        optedOutLabel.hidden = myRiders.count > 0
     }
-    
-    func profileImageViewTappped() {
-        onProfileImageViewTapped?()
-    }
+
 }

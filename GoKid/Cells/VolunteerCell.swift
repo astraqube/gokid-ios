@@ -10,9 +10,9 @@ import UIKit
 
 class VolunteerCell: UITableViewCell {
     
-    @IBOutlet weak var driverTitleLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var poolTypeLabel: UILabel!
+    @IBOutlet weak var driverTitleLabel: UILabel?
+    @IBOutlet weak var timeLabel: UILabel?
+    @IBOutlet weak var poolTypeLabel: UILabel?
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var driverImageView: UIImageView!
     var checkButtonHandler: ((VolunteerCell, UIButton)->(Void))?
@@ -32,20 +32,20 @@ class VolunteerCell: UITableViewCell {
     
     func loadModel(model: OccurenceModel!) {
         occurrenceModel = model
-        timeLabel.text = model.poolTimeStringWithSpace()
+        timeLabel?.text = model.poolTimeStringWithSpace()
 
         if model.poolType == "pickup" {
-            poolTypeLabel.text = "Drive to Event"
+            poolTypeLabel?.text = "Drive to Event"
         } else {
-            poolTypeLabel.text = "Return from Event"
+            poolTypeLabel?.text = "Return from Event"
         }
 
         if model.taken {
             ImageManager.sharedInstance.setImageToView(driverImageView, urlStr: model.poolDriverImageUrl)
-            driverTitleLabel.text = model.poolDriverName
+            driverTitleLabel?.text = model.poolDriverName
         } else {
             driverImageView.image = UIImage(named: "checkCirc")
-            driverTitleLabel.text = "Volunteer to Drive"
+            driverTitleLabel?.text = "Volunteer to Drive"
         }
     }
 
@@ -95,10 +95,12 @@ class VolunteerCell: UITableViewCell {
     }
 
     func batchAction(type: String!) {
+        LoadingView.showWithMaskType(.Black)
         let call = occurrenceModel.taken ? DataManager.sharedInstance.unregisterForCarpool : DataManager.sharedInstance.registerForCarpool
         call(occurrenceModel.carpool, type: type) { (success, error) -> () in
+            LoadingView.dismiss()
             if success {
-                self.presenter?.viewDidAppear(false)
+                self.postNotification("refreshVolunteerCells")
             }
         }
     }

@@ -54,17 +54,11 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
     func setupTableViewContent() {
         if userManager.userLoggedIn {
             fetchDataAndReloadTableView()
         } else {
             addCreateCarpoolCellToDataSource()
-            tableView.reloadData()
         }
     }
 
@@ -79,7 +73,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func fetchDataAndReloadTableView(then : ((success: Bool)->())?){
+    func fetchDataAndReloadTableView() {
         LoadingView.showWithMaskType(.Black)
         dataManager.getAllUserOccurrences { (success, errorStr) -> () in
             LoadingView.dismiss()
@@ -88,20 +82,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             } else {
                 self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
             }
-            then?(success: success)
         }
-    }
-    
-    func fetchDataAndReloadTableView() {
-        fetchDataAndReloadTableView(nil)
     }
     
     func generateTableDataAndReload() {
         processRawCalendarEvents()
         addCreateCarpoolCellToDataSource()
-        onMainThread() {
-            self.tableView.reloadData()
-        }
     }
     
     func tryAddNotificationHeader() {
@@ -160,8 +146,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         var c = OccurenceModel()
         c.cellType = .Add
         dataSource.append(c)
+
+        onMainThread() {
+            self.tableView.reloadData()
+        }
     }
-    
+
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
@@ -238,86 +228,11 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         } else {
             cell = tableView.cellWithID("CalendarCell", ip) as! CalendarCell
         }
-        cell.nameLabel.text = model.poolname
-        cell.timeLabel.text = model.pooltimeStr
-        if model.occurrenceType == .Dropoff {
-            cell.pickupIcon.hidden = true
-            cell.dropoffIcon.hidden = false
-            cell.typeLabel.text = kGKDropoff
-        }else {
-            cell.pickupIcon.hidden = false
-            cell.dropoffIcon.hidden = true
-            cell.typeLabel.text = kGKPickup
-        }
-        for (index, riderImageView) in enumerate(cell.pickupImageCollection) {
-            let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
-            if rider != nil {
-                riderImageView.nameString = rider!.fullName
-                //riderImageView.image = rider.thumURL //gotta get images
-                riderImageView.hidden = false
-            } else {
-                riderImageView.hidden = true
-            }
-        }
-        cell.profileImageView.image = nil
-        imageManager.setImageToView(cell.profileImageView, urlStr: model.poolDriverImageUrl)
         
-        weak var wModel = model
-        cell.onProfileImageViewTapped = { () -> (Void) in
-            if wModel == nil { return }
-            self.presentVolunteerForOccurrence(wModel!, then: { (error) -> () in
-                self.fetchDataAndReloadTableView()
-                if wModel!.alreadyVolunteered {
-                    if error == nil {
-                        cell.profileImageView.image = nil
-                    } else {
-                        self.showAlert("Failed to unvolunteer", messege: error!, cancleTitle: "OK")
-                    }
-                }else {
-                    if error == nil {
-                        self.imageManager.setImageToView(cell.profileImageView, urlStr: self.userManager.info.thumURL)
-                    } else {
-                        self.showAlert("Failed to volunteer", messege: error!, cancleTitle: "OK")
-                    }
-                }
-            })
-        }
-
-        let myRiders = model.riders.filter { (r: RiderModel) -> Bool in
-            return r.isInMyTeam
-        }
-
-        cell.optedOutLabel.hidden = myRiders.count > 0
-
+        cell.loadModel(model)
+        cell.presenter = self
         return cell
     }
-    
-    func presentVolunteerForOccurrence(model : OccurenceModel, then: ((error: String?)->())) {
-        if model.alreadyVolunteered {
-            var volunteerActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            var volunteerTitle = "Unvolunteer \(model.poolType)"
-            volunteerActionSheet.addAction(UIAlertAction(title: volunteerTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
-                LoadingView.showWithMaskType(.Black)
-                self.dataManager.unregisterForOccurence(model) { (success, errStr) in
-                    LoadingView.dismiss()
-                    onMainThread() {
-                        then(error: success ? nil : errStr)
-                    }
-                }
-            }))
-            volunteerActionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-            self.navigationController?.topViewController.presentViewController(volunteerActionSheet, animated: true, completion: nil)
-        } else if model.volunteerable {
-            LoadingView.showWithMaskType(.Black)
-            self.dataManager.registerForOccurence(model) { (success, errStr) in
-                LoadingView.dismiss()
-                onMainThread() {
-                        then(error: success ? nil : errStr)
-                }
-            }
-        }
-    }
-    
     
     func configCalendarDateCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarDateCell {
         var cell = tableView.cellWithID("CalendarDateCell", ip) as! CalendarDateCell
@@ -413,26 +328,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             vc.navigationController?.pushViewController(carpoolEditVC, animated: true)
         }
         vc.onDriverImagePressed = { (vc: DetailMapVC) in
-            self.presentVolunteerForOccurrence(model, then: { (error) -> () in
-                self.navigationController?.popToViewController(self, animated: true)
-                self.fetchDataAndReloadTableView({ (success) -> () in
-                    //match old model to new fetch
-                    var newModel : OccurenceModel?
-                    for obj in self.dataSource {
-                        if obj.occurenceID == model.occurenceID {
-                            newModel = obj
-                            break
-                        }
-                    }
-                    if newModel == nil { return }
-                    self.updateOccurrenceAndGetImages(newModel!) { (success) -> () in
-                        LoadingView.dismiss()
-                        if success {
-                            self.showOccurenceVCWithModel(newModel!)
-                        }
-                    }
-                })
-            })
+            // FIXME: integrate this back to VolunteerCell
         }
 
         let myRiders = model.riders.filter { (r: RiderModel) -> Bool in
