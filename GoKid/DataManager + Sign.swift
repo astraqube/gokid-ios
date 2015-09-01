@@ -202,11 +202,16 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
+
+    func resetPassword(email: String, comp: completion) {
+        let url = "\(baseURL)/users/password"
+        let manager = managerWithToken()
+        manager.POST(url, parameters: ["email": email], success: { (op, obj) in
+            println("resetPassword success")
+            comp(true, "")
+        }) { (op, error) in
+            println("resetPassword failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
 }
-
-
-
-
-
-
-

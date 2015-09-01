@@ -54,6 +54,30 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
         (self.parentVC as! MainStackVC).popUpSignUpView()
     }
 
+    @IBAction func forgotClicked(sender: AnyObject) {
+        let emailPrompt = UIAlertController(title: "Need help?", message: "If you forgot your password, we can send you a link to reset it.", preferredStyle: .Alert)
+        emailPrompt.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+            textField.placeholder = "enter email address"
+            textField.keyboardType = .EmailAddress
+        }
+
+        emailPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+
+        emailPrompt.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (alert: UIAlertAction!) in
+            if let textField = emailPrompt.textFields?.first as? UITextField{
+                self.dataManager.resetPassword(textField.text) { (success, error) -> () in
+                    if success {
+                        self.showAlert("Instructions Sent!", messege: "Please check your email and follow the instructions there.", cancleTitle: "OK")
+                    } else {
+                        self.showAlert("There was a problem", messege: error, cancleTitle: "OK")
+                    }
+                }
+            }
+        }))
+
+        presentViewController(emailPrompt, animated: true, completion: nil)
+    }
+    
     // MARK: Facebook Login
     // --------------------------------------------------------------------------------------------
     
