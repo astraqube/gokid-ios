@@ -400,7 +400,6 @@
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="22"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="test_userImage"/>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </userDefinedRuntimeAttribute>
@@ -408,6 +407,7 @@
                                                                 <color key="value" red="0.54117647059999996" green="0.78823529410000004" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-Ac-6Oc" userLabel="userImage 2" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -427,6 +427,7 @@
                                                                 <color key="value" red="0.46274509800000002" green="0.6705882353" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little Wayne"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-N4-wcM" userLabel="userImage 3" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -446,6 +447,7 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                 <color key="value" red="0.36078431370000003" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uJ-kG-NLO" userLabel="userImage 4" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -458,7 +460,6 @@
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="22"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="test_userImage"/>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </userDefinedRuntimeAttribute>
@@ -466,6 +467,7 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                 <color key="value" red="0.36470588240000001" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffb-4Z-rUf">
@@ -696,6 +698,9 @@
                                                                     </label>
                                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" image="smLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="BeO-vo-8dY">
                                                                         <rect key="frame" x="0.0" y="23" width="8" height="11"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="8" id="rPv-3f-N2P"/>
+                                                                        </constraints>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -751,7 +756,6 @@
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                                 <real key="value" value="22"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="test_userImage"/>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
@@ -762,6 +766,7 @@
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                                 <color key="value" red="0.46274509800000002" green="0.6705882353" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
@@ -807,6 +812,9 @@
                                                                     </label>
                                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" image="smLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="XSV-ci-o5A">
                                                                         <rect key="frame" x="0.0" y="23" width="8" height="11"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="8" id="P2s-4k-Gdo"/>
+                                                                        </constraints>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -869,7 +877,6 @@
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                                 <real key="value" value="22"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="test_userImage"/>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
@@ -880,6 +887,7 @@
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                                 <color key="value" red="0.36078431370000003" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
@@ -925,6 +933,9 @@
                                                                     </label>
                                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" image="smLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ZBJ-Rb-7Ql">
                                                                         <rect key="frame" x="0.0" y="23" width="8" height="11"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="8" id="88f-o9-1at"/>
+                                                                        </constraints>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -987,7 +998,6 @@
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                                 <real key="value" value="22"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="test_userImage"/>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
@@ -998,6 +1008,7 @@
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                                 <color key="value" red="0.36078431370000003" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
@@ -1045,6 +1056,9 @@ Greenwich, CT.</string>
                                                                     </label>
                                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" image="smLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="UMM-NY-Guh">
                                                                         <rect key="frame" x="0.0" y="30" width="8" height="11"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="8" id="vsh-jy-Pjf"/>
+                                                                        </constraints>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1163,6 +1177,9 @@ Greenwich, CT.</string>
                                                                     </label>
                                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1000" image="smLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Bpd-qU-Adh">
                                                                         <rect key="frame" x="0.0" y="23" width="8" height="11"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="8" id="xVE-qY-kGt"/>
+                                                                        </constraints>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1464,6 +1481,7 @@ Greenwich, CT.</string>
         <image name="checkCirc" width="51" height="52"/>
         <image name="dot" width="22" height="22"/>
         <image name="dots" width="2" height="18"/>
+        <image name="emma" width="220" height="233"/>
         <image name="envelope" width="32" height="25"/>
         <image name="greenButton" width="357" height="53"/>
         <image name="locationWhite" width="18" height="24"/>
@@ -1474,7 +1492,6 @@ Greenwich, CT.</string>
         <image name="map_userImageBG" width="1" height="87"/>
         <image name="map_x" width="17" height="18"/>
         <image name="smLocationIcon" width="8" height="11"/>
-        <image name="test_userImage" width="110" height="116"/>
     </resources>
     <color key="tintColor" red="0.4039215686" green="0.75686274509999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
 </document>
