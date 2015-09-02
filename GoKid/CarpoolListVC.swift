@@ -179,36 +179,25 @@ extension CarpoolListVC {
     func configCarpoolInviteCell(ip: NSIndexPath, _ model: InvitationModel) -> CarpoolInviteCell {
         var cell = tableView.cellWithID("CarpoolInviteCell", ip) as! CarpoolInviteCell
         cell.invitation = model
-        cell.onAccept = self.onAcceptInvitation
+        cell.onAccept = self.onViewInvitation
         cell.onDecline = self.onDeclineInvitation
         cell.refreshContent()
         return cell
    }
 
-    func onAcceptInvitation(invitation: InvitationModel) {
-        LoadingView.showWithMaskType(.Black)
-        dataManager.acceptInvite(invitation.inviteID) { (success, errorStr) in
-            LoadingView.dismiss()
-            if success {
-                onMainThread() {
-                    self.fetchInvitations()
-                    var vc = vcWithID("InviteRelationshipVC") as! InviteRelationshipVC
-                    vc.invitation = invitation
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            } else {
-                self.showAlert("Failed to accept carpool", messege: errorStr, cancleTitle: "OK")
-            }
-        }
+    func onViewInvitation(invitation: InvitationModel) {
+        var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
+        vc.invitation = invitation
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func onDeclineInvitation(invitation: InvitationModel) {
         LoadingView.showWithMaskType(.Black)
-        dataManager.declineInvite(invitation.inviteID) { (success, errorStr) in
+        invitation.decline() { (success, errorStr) in
             LoadingView.dismiss()
             if success {
                 onMainThread() {
-                    self.fetchInvitations()
+                    self.generateTableDataAndReload()
                 }
             } else {
                 self.showAlert("Failed to decline carpool", messege: errorStr, cancleTitle: "OK")

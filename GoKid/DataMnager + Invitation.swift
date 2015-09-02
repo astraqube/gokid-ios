@@ -36,8 +36,8 @@ extension DataManager {
         }
     }
     
-    func acceptInvite(inviteID: Int, comp: completion) {
-        var url = baseURL + "/api/invites/" + String(inviteID) + "/accept"
+    func acceptInvite(invite: InvitationModel, comp: completion) {
+        var url = baseURL + "/api/invites/\(invite.inviteID)/accept"
         var manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
             println("acceptInvite success")
@@ -49,8 +49,8 @@ extension DataManager {
         }
     }
     
-    func declineInvite(inviteID: Int, comp: completion) {
-        var url = baseURL + "/api/invites/" + String(inviteID) + "/reject"
+    func declineInvite(invite: InvitationModel, comp: completion) {
+        var url = baseURL + "/api/invites/\(invite.inviteID)/reject"
         var manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
             println("declineInvite success")

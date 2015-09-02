@@ -27,6 +27,7 @@ class InviteConfirmVC: BaseVC {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+        setStatusBarColorDark()
     }
 
     // MARK: IBAction Method
@@ -34,7 +35,7 @@ class InviteConfirmVC: BaseVC {
     
     @IBAction func acceptButtonClick(sender: AnyObject) {
         LoadingView.showWithMaskType(.Black)
-        dataManager.acceptInvite(invitation.inviteID) { (success, errorStr) in
+        invitation.accept() { (success, errorStr) in
             LoadingView.dismiss()
             if success {
                 self.moveToInviteRelationVC()
@@ -46,7 +47,7 @@ class InviteConfirmVC: BaseVC {
     
     @IBAction func declineButtonClick(sender: AnyObject) {
         LoadingView.showWithMaskType(.Black)
-        dataManager.declineInvite(invitation.inviteID) { (success, errorStr) in
+        invitation.decline() { (success, errorStr) in
             LoadingView.dismiss()
             if success {
                 self.moveToTeamAccountVC()

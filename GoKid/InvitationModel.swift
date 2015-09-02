@@ -24,4 +24,26 @@ class InvitationModel: NSObject {
         carpool = CarpoolModel(json: json["carpool"])
         rider = RiderModel(json: json["carpool"]["riders"][0])
     }
+
+    func accept(comp: completion) {
+        DataManager.sharedInstance.acceptInvite(self) { (success, error) in
+            if success {
+                let index = find(UserManager.sharedInstance.invitations, self)
+                UserManager.sharedInstance.invitations.removeAtIndex(index!)
+                InvitationModel.InvitationCount = UserManager.sharedInstance.invitations.count
+            }
+            comp(success, error)
+        }
+    }
+
+    func decline(comp: completion) {
+        DataManager.sharedInstance.declineInvite(self) { (success, error) in
+            if success {
+                let index = find(UserManager.sharedInstance.invitations, self)
+                UserManager.sharedInstance.invitations.removeAtIndex(index!)
+                InvitationModel.InvitationCount = UserManager.sharedInstance.invitations.count
+            }
+            comp(success, error)
+        }
+    }
 }

@@ -8,14 +8,14 @@
 
 import UIKit
 
+typealias completion = ((Bool, String)->())
+typealias ObjectCompletion = ((Bool, String, AnyObject?)->())
+
 class DataManager: NSObject {
     
     var baseURL = "https://gokid.devon.io"
     var userManager = UserManager.sharedInstance
     var imageManager = ImageManager.sharedInstance
-    typealias completion = ((Bool, String)->())
-    typealias ObjectCompletion = ((Bool, String, AnyObject?)->())
-    
     
     // MARK: Singleton
     class var sharedInstance : DataManager {
