@@ -774,11 +774,11 @@ invited you to
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6di-HY-5Xi" userLabel="headerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4d-GO-gv5">
-                                        <rect key="frame" x="14" y="24" width="34" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4d-GO-gv5">
+                                        <rect key="frame" x="16" y="35" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Y4d-GO-gv5" secondAttribute="height" multiplier="1:1" id="6w5-PT-SY0"/>
-                                            <constraint firstAttribute="width" constant="34" id="T7K-Qz-9bn"/>
+                                            <constraint firstAttribute="width" constant="24" id="T7K-Qz-9bn"/>
                                         </constraints>
                                         <state key="normal" image="menuIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -787,10 +787,10 @@ invited you to
                                             <action selector="menuButtonClick:" destination="lb0-Um-B3J" eventType="touchUpInside" id="TcG-Eu-gQg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBk-wz-dPX">
-                                        <rect key="frame" x="272" y="24" width="34" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBk-wz-dPX">
+                                        <rect key="frame" x="280" y="35" width="24" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="34" id="tUu-5f-qDM"/>
+                                            <constraint firstAttribute="width" constant="24" id="tUu-5f-qDM"/>
                                         </constraints>
                                         <state key="normal" image="plusButtonIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -800,7 +800,7 @@ invited you to
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goKidLogo" translatesAutoresizingMaskIntoConstraints="NO" id="gk6-ZH-KpO">
-                                        <rect key="frame" x="115" y="25" width="91" height="48"/>
+                                        <rect key="frame" x="115" y="23" width="91" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="PB9-Do-UB7"/>
                                         </constraints>
@@ -814,16 +814,16 @@ invited you to
                                 </subviews>
                                 <color key="backgroundColor" red="0.21568627450980393" green="0.32156862745098042" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Y4d-GO-gv5" secondAttribute="bottom" constant="18" id="Mz2-SV-eEf"/>
+                                    <constraint firstItem="Y4d-GO-gv5" firstAttribute="centerY" secondItem="gk6-ZH-KpO" secondAttribute="centerY" id="9bN-YC-A39"/>
+                                    <constraint firstItem="gk6-ZH-KpO" firstAttribute="centerY" secondItem="p98-w3-nl7" secondAttribute="centerY" id="G54-TH-OoC"/>
                                     <constraint firstAttribute="height" constant="76" id="QEf-1f-qoL"/>
                                     <constraint firstItem="nBk-wz-dPX" firstAttribute="width" secondItem="nBk-wz-dPX" secondAttribute="height" multiplier="1:1" id="Qh3-Wl-RMP"/>
-                                    <constraint firstAttribute="bottom" secondItem="p98-w3-nl7" secondAttribute="bottom" constant="18" id="U6N-2S-Sun"/>
-                                    <constraint firstAttribute="bottom" secondItem="gk6-ZH-KpO" secondAttribute="bottom" constant="3" id="UKn-j3-z5o"/>
+                                    <constraint firstAttribute="bottom" secondItem="gk6-ZH-KpO" secondAttribute="bottom" constant="5" id="UKn-j3-z5o"/>
                                     <constraint firstAttribute="centerX" secondItem="gk6-ZH-KpO" secondAttribute="centerX" id="Whh-72-E1y"/>
-                                    <constraint firstItem="Y4d-GO-gv5" firstAttribute="leading" secondItem="6di-HY-5Xi" secondAttribute="leading" constant="14" id="bjV-ac-lnE"/>
-                                    <constraint firstAttribute="bottom" secondItem="nBk-wz-dPX" secondAttribute="bottom" constant="18" id="cyY-Qf-g15"/>
+                                    <constraint firstItem="Y4d-GO-gv5" firstAttribute="leading" secondItem="6di-HY-5Xi" secondAttribute="leading" constant="16" id="bjV-ac-lnE"/>
+                                    <constraint firstItem="nBk-wz-dPX" firstAttribute="centerY" secondItem="gk6-ZH-KpO" secondAttribute="centerY" id="hX3-wd-uuo"/>
                                     <constraint firstAttribute="centerX" secondItem="p98-w3-nl7" secondAttribute="centerX" id="l04-MN-p5J"/>
-                                    <constraint firstAttribute="trailing" secondItem="nBk-wz-dPX" secondAttribute="trailing" constant="14" id="y9L-2F-2Bc"/>
+                                    <constraint firstAttribute="trailing" secondItem="nBk-wz-dPX" secondAttribute="trailing" constant="16" id="y9L-2F-2Bc"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="128" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EXg-6c-kkS">
@@ -1556,6 +1556,7 @@ invited you to
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
                         <outlet property="goKidLogo" destination="gk6-ZH-KpO" id="bb4-U1-xrK"/>
+                        <outlet property="menuButton" destination="Y4d-GO-gv5" id="Y4Y-sP-Y8O"/>
                         <outlet property="myDrivesLabel" destination="p98-w3-nl7" id="pVv-6v-QwV"/>
                         <outlet property="tableView" destination="EXg-6c-kkS" id="MTL-07-8Dc"/>
                     </connections>
@@ -1579,10 +1580,10 @@ invited you to
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHA-o3-dfJ" userLabel="headerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSA-Qv-1Jp">
-                                        <rect key="frame" x="14" y="24" width="34" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSA-Qv-1Jp">
+                                        <rect key="frame" x="16" y="35" width="24" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="34" id="2Wd-e4-HUH"/>
+                                            <constraint firstAttribute="width" constant="24" id="2Wd-e4-HUH"/>
                                             <constraint firstAttribute="width" secondItem="dSA-Qv-1Jp" secondAttribute="height" multiplier="1:1" id="Pe6-U5-11w"/>
                                         </constraints>
                                         <state key="normal" image="menuIcon">
@@ -1598,10 +1599,10 @@ invited you to
                                         <color key="textColor" red="0.93725490196078431" green="0.96470588235294119" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ooc-0Y-RL4">
-                                        <rect key="frame" x="272" y="24" width="34" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ooc-0Y-RL4">
+                                        <rect key="frame" x="280" y="35" width="24" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="34" id="3yS-KD-RSw"/>
+                                            <constraint firstAttribute="width" constant="24" id="3yS-KD-RSw"/>
                                         </constraints>
                                         <state key="normal" image="plusButtonIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1615,12 +1616,12 @@ invited you to
                                 <constraints>
                                     <constraint firstAttribute="height" constant="76" id="6GC-vE-9G1"/>
                                     <constraint firstAttribute="bottom" secondItem="4Iu-LS-1wZ" secondAttribute="bottom" constant="18" id="C2K-mj-4gQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="dSA-Qv-1Jp" secondAttribute="bottom" constant="18" id="NyV-NP-ORD"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ooc-0Y-RL4" secondAttribute="trailing" constant="14" id="R61-FY-rJy"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ooc-0Y-RL4" secondAttribute="trailing" constant="16" id="R61-FY-rJy"/>
+                                    <constraint firstItem="Ooc-0Y-RL4" firstAttribute="centerY" secondItem="4Iu-LS-1wZ" secondAttribute="centerY" id="SH7-kI-uH5"/>
+                                    <constraint firstItem="4Iu-LS-1wZ" firstAttribute="centerY" secondItem="dSA-Qv-1Jp" secondAttribute="centerY" id="XUv-25-wSf"/>
                                     <constraint firstItem="Ooc-0Y-RL4" firstAttribute="width" secondItem="Ooc-0Y-RL4" secondAttribute="height" multiplier="1:1" id="cEC-99-rfH"/>
-                                    <constraint firstItem="dSA-Qv-1Jp" firstAttribute="leading" secondItem="UHA-o3-dfJ" secondAttribute="leading" constant="14" id="stg-LY-2qI"/>
+                                    <constraint firstItem="dSA-Qv-1Jp" firstAttribute="leading" secondItem="UHA-o3-dfJ" secondAttribute="leading" constant="16" id="stg-LY-2qI"/>
                                     <constraint firstAttribute="centerX" secondItem="4Iu-LS-1wZ" secondAttribute="centerX" id="vUt-6O-XSc"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ooc-0Y-RL4" secondAttribute="bottom" constant="18" id="z7a-k9-BbW"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="128" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NWL-yF-eop">
@@ -1909,6 +1910,7 @@ invited you to
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
+                        <outlet property="menuButton" destination="dSA-Qv-1Jp" id="ceV-43-SqZ"/>
                         <outlet property="tableView" destination="NWL-yF-eop" id="2Us-Uc-NNJ"/>
                     </connections>
                 </viewController>

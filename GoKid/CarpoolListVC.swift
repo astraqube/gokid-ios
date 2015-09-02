@@ -15,6 +15,7 @@ enum ListSection : Int {
 }
 
 class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     var carpoolsDataSource = [CarpoolModel]()
     var invitesDataSource = [InvitationModel]()
