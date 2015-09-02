@@ -12,6 +12,7 @@ import Crashlytics
 
 let kGKPickup = "Arrive at "
 let kGKDropoff = "Depart from "
+let kGKInvitationsKey = "kGKInvitationsKey"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

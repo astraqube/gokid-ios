@@ -62,7 +62,7 @@ extension DataManager {
         }
     }
 
-    func getInvitations(comp: completion) {
+    func getInvitations(comp: ObjectCompletion) {
         var url = baseURL + "/api/invites/"
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
@@ -71,15 +71,15 @@ extension DataManager {
             var invitations: [InvitationModel]!
 
             if let _invitations = json["invites"].array as [JSON]? {
-                self.userManager.invitations = _invitations.map {
+                invitations = _invitations.map {
                     return InvitationModel(json: $0)
                 }
             }
 
-            comp(true, "")
+            comp(true, "", invitations)
         }) { (op, error) in
             println("getInvitations failed")
-            self.handleRequestError(op, error: error, comp: comp)
+            self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 

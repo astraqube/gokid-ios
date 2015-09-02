@@ -25,6 +25,33 @@ class InvitationModel: NSObject {
         rider = RiderModel(json: json["carpool"]["riders"][0])
     }
 
+    class var InvitationCount: Int? {
+        set {
+            let prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setValue(newValue!, forKey: kGKInvitationsKey)
+            prefs.synchronize()
+
+            let app = UIApplication.sharedApplication()
+            app.applicationIconBadgeNumber = newValue!
+        
+            app.postNotification("invitationsUpdated")
+        }
+        get {
+            let prefs = NSUserDefaults.standardUserDefaults()
+            let badge = prefs.valueForKey(kGKInvitationsKey) as? Int
+            return badge
+        }
+    }
+
+    class func checkInvitations() {
+        DataManager.sharedInstance.getInvitations() { (success, error, invitations) in
+            if success {
+                UserManager.sharedInstance.invitations = invitations as! [InvitationModel]
+                InvitationModel.InvitationCount = UserManager.sharedInstance.invitations.count
+            }
+        }
+    }
+
     func accept(comp: completion) {
         DataManager.sharedInstance.acceptInvite(self) { (success, error) in
             if success {

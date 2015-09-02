@@ -48,7 +48,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        fetchInvitations()
+        generateTableDataAndReload()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -155,9 +155,8 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
             if left.startDate == nil || right.startDate == nil { return false}
             return left.startDate!.isLessThanDate(right.startDate!)
         }
-        onMainThread() {
-            self.tableView.reloadData()
-        }
+        invitesDataSource = UserManager.sharedInstance.invitations
+        tableView.reloadData()
     }
 }
 
@@ -165,17 +164,6 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
 // MARK: Invitations
 
 extension CarpoolListVC {
-
-    func fetchInvitations() {
-        dataManager.getInvitations() { (success, error) in
-            if success {
-                self.invitesDataSource = self.userManager.invitations
-                onMainThread() {
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
 
     func configCarpoolInviteCell(ip: NSIndexPath, _ model: InvitationModel) -> CarpoolInviteCell {
         var cell = tableView.cellWithID("CarpoolInviteCell", ip) as! CarpoolInviteCell
