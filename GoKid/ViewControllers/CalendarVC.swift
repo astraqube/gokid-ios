@@ -32,6 +32,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         setupTableViewContent()
 
         registerForNotification("deleteRideOrCarpool", action: "asyncFetchDataAndReloadTableView")
+        registerForNotification("invitationsUpdated", action: "setNotificationsBadge")
     }
 
     deinit {
@@ -53,8 +54,13 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         super.viewWillAppear(animated)
         setStatusBarColorLight()
         navigationController?.setNavigationBarHidden(true, animated: true)
+        setNotificationsBadge()
     }
-    
+
+    func setNotificationsBadge() {
+        menuButton.setBadge(InvitationModel.InvitationCount)
+    }
+
     func setupTableViewContent() {
         if userManager.userLoggedIn {
             fetchDataAndReloadTableView()

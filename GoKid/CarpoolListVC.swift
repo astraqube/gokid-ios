@@ -34,6 +34,8 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         fetchDataAndReloadTableView()
         
         registerForNotification("deleteRideOrCarpool", action: "asyncFetchDataAndReloadTableView")
+        registerForNotification("invitationsUpdated", action: "setNotificationsBadge")
+        registerForNotification(UIApplicationDidBecomeActiveNotification, action: "setNotificationsBadge")
     }
 
     deinit {
@@ -44,13 +46,19 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         super.viewWillAppear(animated)
         setStatusBarColorLight()
         navigationController?.setNavigationBarHidden(true, animated: true)
+        setNotificationsBadge()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         generateTableDataAndReload()
     }
-    
+
+    func setNotificationsBadge() {
+        menuButton.setBadge(InvitationModel.InvitationCount)
+        generateTableDataAndReload()
+    }
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3 //invites carpools newCarpool
     }

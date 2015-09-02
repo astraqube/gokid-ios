@@ -39,13 +39,25 @@ class MenuVC: BaseVC {
         if (navVC?.topViewController is CalendarVC) {
             selectButtons(allButtons, select: [calendarIconButton, calendarButton])   
         }
+
+        registerForNotification("invitationsUpdated", action: "setNotificationsBadge")
+        InvitationModel.checkInvitations()
     }
     
+    deinit {
+        removeNotification(self)
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         refreshUI()
+        setNotificationsBadge()
     }
-    
+
+    func setNotificationsBadge() {
+        listButton.setBadge(InvitationModel.InvitationCount)
+    }
+
     func registerForNotification() {
         NSNotificationCenter.defaultCenter().addObserverForName("SignupFinished", object: nil, queue: nil) { (noti) in
             self.nameLabel.setTitle(self.userManager.info.firstName, forState: .Normal)

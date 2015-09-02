@@ -44,6 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.tintColor = ColorManager.sharedInstance.color67C18B
         self.window?.backgroundColor = ColorManager.sharedInstance.colorEBF7EB
 
+        if launchOptions != nil {
+            if let remoteNotification = launchOptions![UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject : AnyObject] {
+                self.application(application, didReceiveRemoteNotification: remoteNotification)
+            }
+        }
+
         return true
     }
     
@@ -117,12 +123,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         FBSDKAppEvents.activateApp()
+
+        if UserManager.sharedInstance.userLoggedIn {
+            InvitationModel.checkInvitations()
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        if UserManager.sharedInstance.userLoggedIn {
+            InvitationModel.checkInvitations()
+        }
+    }
 }
 

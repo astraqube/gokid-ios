@@ -222,6 +222,13 @@ class UserManager: NSObject {
         self.userLoggedIn = false
         self.useFBLogIn = false
         self.userFirstTimeLogin = true
+
+        for key in NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys {
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(key.description)
+        }
+
+        let app = UIApplication.sharedApplication()
+        app.applicationIconBadgeNumber = 0
     }
 
     var over18: Bool {

@@ -19,14 +19,24 @@ class TeamAccountVC: BaseVC {
         setupNavBar()
         registerNotification()
         prepareAndLoadTeamMemberCollectionView()
+        registerForNotification("invitationsUpdated", action: "setNotificationsBadge")
     }
     
+    deinit {
+        removeNotification(self)
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBarColorLight()
         navigationController?.setNavigationBarHidden(true, animated: true)
+        setNotificationsBadge()
     }
-    
+
+    func setNotificationsBadge() {
+        menuButton.setBadge(InvitationModel.InvitationCount)
+    }
+
     func setupNavBar() {
         var gr = UITapGestureRecognizer(target: self, action: "navBarTapped")
         subtitleLabel.addGestureRecognizer(gr)
