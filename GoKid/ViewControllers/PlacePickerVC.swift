@@ -29,6 +29,7 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.searchTextField.becomeFirstResponder()
+        setStatusBarColorDark()
     }
     
     func setupTableView() {
