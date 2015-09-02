@@ -65,7 +65,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3F-Te-6XF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3F-Te-6XF" customClass="UIButtonBadged" customModule="GoKid" customModuleProvider="target">
                                 <rect key="frame" x="16" y="31" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="U3F-Te-6XF" secondAttribute="height" multiplier="1:1" id="ZIG-IT-TjI"/>

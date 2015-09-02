@@ -10,7 +10,7 @@ import UIKit
 
 class TeamAccountVC: BaseVC {
     
-    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var menuButton: UIButtonBadged!
     @IBOutlet weak var collectionView: UICollectionView!
     var dataSource = [TeamMemberModel]()
     

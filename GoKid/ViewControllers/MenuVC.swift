@@ -17,7 +17,7 @@ class MenuVC: BaseVC {
     @IBOutlet weak var calendarIconButton: UIButton!
     @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var listIconButton: UIButton!
-    @IBOutlet weak var listButton: UIButton!
+    @IBOutlet weak var listButton: UIButtonBadged!
     @IBOutlet weak var myDrivesIconButton: UIButton!
     @IBOutlet weak var myDrivesButton: UIButton!
     @IBOutlet weak var settingsIconButton: UIButton!

@@ -267,7 +267,7 @@
                                     <constraint firstAttribute="centerY" secondItem="Guj-3M-nFL" secondAttribute="centerY" constant="0.5" id="lw8-Ub-6C1"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBx-hG-xJ2">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBx-hG-xJ2" customClass="UIButtonBadged" customModule="GoKid" customModuleProvider="target">
                                 <rect key="frame" x="85" y="311" width="140" height="36"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="20"/>
@@ -774,7 +774,7 @@ invited you to
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6di-HY-5Xi" userLabel="headerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4d-GO-gv5">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4d-GO-gv5" customClass="UIButtonBadged" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="16" y="35" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Y4d-GO-gv5" secondAttribute="height" multiplier="1:1" id="6w5-PT-SY0"/>
@@ -1580,7 +1580,7 @@ invited you to
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHA-o3-dfJ" userLabel="headerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSA-Qv-1Jp">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSA-Qv-1Jp" customClass="UIButtonBadged" customModule="GoKid" customModuleProvider="target">
                                         <rect key="frame" x="16" y="35" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="2Wd-e4-HUH"/>

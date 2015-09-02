@@ -13,7 +13,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var dataSource = [OccurenceModel]()
     var onlyShowOurDrives = false //set true before viewDidLoad to only see our drives
-    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var menuButton: UIButtonBadged!
     @IBOutlet weak var myDrivesLabel: UILabel!
     @IBOutlet weak var goKidLogo: UIImageView!
     let refreshControl = UIRefreshControl()

@@ -12,6 +12,7 @@
 		04587D041B6D628000D00AE0 /* CarpoolEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04587D031B6D628000D00AE0 /* CarpoolEditVC.swift */; };
 		0472B41D1B69E5F300D94610 /* InvitationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472B41C1B69E5F300D94610 /* InvitationModel.swift */; };
 		047AADA71B542F18006628EF /* FrequencyPickerFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */; };
+		04B4C0D21B96F0A700DC465C /* UIButtonBadged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4C0D11B96F0A700DC465C /* UIButtonBadged.swift */; };
 		04D16E211B70128300B0C0DF /* PhoneNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D16E201B70128300B0C0DF /* PhoneNumberVC.swift */; };
 		04FB80971B530E1B00F73C74 /* BaseFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80961B530E1B00F73C74 /* BaseFormVC.swift */; };
 		04FB80991B530E3A00F73C74 /* TimeAndDateFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */; };
@@ -137,6 +138,7 @@
 		04587D031B6D628000D00AE0 /* CarpoolEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarpoolEditVC.swift; path = ViewControllers/CarpoolEditVC.swift; sourceTree = "<group>"; };
 		0472B41C1B69E5F300D94610 /* InvitationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationModel.swift; sourceTree = "<group>"; };
 		047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyPickerFormVC.swift; sourceTree = "<group>"; };
+		04B4C0D11B96F0A700DC465C /* UIButtonBadged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonBadged.swift; sourceTree = "<group>"; };
 		04D16E201B70128300B0C0DF /* PhoneNumberVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneNumberVC.swift; path = ViewControllers/PhoneNumberVC.swift; sourceTree = "<group>"; };
 		04FB80961B530E1B00F73C74 /* BaseFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFormVC.swift; sourceTree = "<group>"; };
 		04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDateFormVC.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				1D1FD6861B1C001E00287FA0 /* HelperFunction.swift */,
 				1D1FD6941B1C103500287FA0 /* UIView+Pop.swift */,
 				796ABA5B1B5D82CF0037F840 /* HelperFunction + NSDate.swift */,
+				04B4C0D11B96F0A700DC465C /* UIButtonBadged.swift */,
 			);
 			name = "Helper Functions";
 			sourceTree = "<group>";
@@ -959,6 +962,7 @@
 				1DEFF16D1B49E3160094B54E /* YourKidVC.swift in Sources */,
 				796E69C61B4A6E5600DF8D43 /* MapUserImageView.swift in Sources */,
 				1D8F78FC1B36A07F00C78CAF /* CalendarCell.swift in Sources */,
+				04B4C0D21B96F0A700DC465C /* UIButtonBadged.swift in Sources */,
 				1D1228E21B42635D001CA6A4 /* DataMnager + Invitation.swift in Sources */,
 				1DC765C21B3274E800D9D306 /* DataManager + Sign.swift in Sources */,
 				1D10D7A61B1C2C33007CDB66 /* SignInVC.swift in Sources */,
