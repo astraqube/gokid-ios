@@ -211,7 +211,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             gCell.timeToGoTitleLabel.text = "Driving advice loading!"
             gCell.timeToGoTimeLabel.text = ""
             gCell.updatedLabel.text = "Updating riders…"
-            dataManager.updateOccurenceRiders(model) { (success, errorStr) -> () in
+            dataManager.getOccurenceRiders(model) { (success, errorStr) -> () in
                 gCell.updatedLabel.text = "Updated just now"
                 if !success { gCell.timeToGoTitleLabel.text = "Failed to update!"; return }
                 var kidName = "kids"
@@ -306,7 +306,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func updateOccurrenceAndGetImages(occurrence: OccurenceModel, then: ((success: Bool)->())){
-        dataManager.updateOccurenceRiders(occurrence) { (occ, errorStr) -> () in
+        dataManager.getOccurenceRiders(occurrence) { (occ, errorStr) -> () in
             if occ {
                 self.getImagesForOccurrence(occurrence) { () -> () in
                     then(success: true)

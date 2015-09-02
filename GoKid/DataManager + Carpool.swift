@@ -380,19 +380,19 @@ extension DataManager {
         }
     }
     
-    func updateOccurenceRiders(occ: OccurenceModel, comp: completion) {
+    func getOccurenceRiders(occ: OccurenceModel, comp: completion) {
         var url = baseURL + "/api/carpools/" + String(occ.carpoolID) + "/occurrences/" + String(occ.occurenceID) + "/riders"
         var manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("updateOccurenceRiders success")
+            println("getOccurenceRiders success")
             println(obj)
             var ridersJson = JSON(obj)["riders"]
             var riders = RiderModel.arrayOfRidersWithJSON(ridersJson)
             occ.riders = riders
             comp(true, "")
-            }) { (op, error) in
-                println("updateOccurenceRiders failed")
-                self.handleRequestError(op, error: error, comp: comp)
+        }) { (op, error) in
+            println("getOccurenceRiders failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
