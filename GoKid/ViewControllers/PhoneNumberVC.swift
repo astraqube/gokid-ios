@@ -82,6 +82,9 @@ class PhoneNumberVC: BaseVC, UITextFieldDelegate {
                 LoadingView.showSuccessWithStatus("Success")
                 self.userManager.info.phoneNumber = self.phoneNumber.text
                 self.userManager.saveUserInfo()
+
+                InvitationModel.checkInvitations()
+                
                 self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignIn)
             } else {
                 LoadingView.dismiss()
