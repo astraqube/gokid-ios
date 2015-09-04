@@ -60,7 +60,6 @@
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
-            <string>Raleway-Regular</string>
         </mutableArray>
         <mutableArray key="Raleway-SemiBold.ttf">
             <string>Raleway-SemiBold</string>
@@ -466,31 +465,19 @@ invited you to
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="md4-Va-zts">
-                                <rect key="frame" x="32" y="209" width="256" height="44"/>
+                                <rect key="frame" x="32" y="213" width="256" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
-                                <state key="normal" title="     Mommy">
+                                <state key="normal" title="     Parent">
                                     <color key="titleColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="mommyClick:" destination="pV6-ka-V7I" eventType="touchUpInside" id="0fC-ge-YcY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpZ-BE-sp1">
-                                <rect key="frame" x="32" y="257" width="256" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
-                                <state key="normal" title="     Daddy">
-                                    <color key="titleColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="daddyClick:" destination="pV6-ka-V7I" eventType="touchUpInside" id="c4a-9r-2aj"/>
+                                    <action selector="parentClick:" destination="pV6-ka-V7I" eventType="touchUpInside" id="wzt-IR-pOO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLQ-0y-QLZ">
-                                <rect key="frame" x="32" y="305" width="256" height="44"/>
+                                <rect key="frame" x="32" y="265" width="256" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                 <state key="normal" title="     Sitter">
@@ -502,7 +489,7 @@ invited you to
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f17-Wb-R7A">
-                                <rect key="frame" x="32" y="353" width="256" height="44"/>
+                                <rect key="frame" x="32" y="317" width="256" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                 <state key="normal" title="     Other">
@@ -519,24 +506,20 @@ invited you to
                             <constraint firstItem="md4-Va-zts" firstAttribute="centerX" secondItem="mf5-QN-5bc" secondAttribute="centerX" id="1Rl-AM-Yfg"/>
                             <constraint firstItem="cLQ-0y-QLZ" firstAttribute="width" secondItem="mf5-QN-5bc" secondAttribute="width" id="2Xm-DZ-mCb"/>
                             <constraint firstItem="cLQ-0y-QLZ" firstAttribute="centerX" secondItem="mf5-QN-5bc" secondAttribute="centerX" id="2c2-N3-Agt"/>
-                            <constraint firstItem="f17-Wb-R7A" firstAttribute="top" secondItem="cLQ-0y-QLZ" secondAttribute="bottom" constant="4" id="5Iv-hZ-bMN"/>
+                            <constraint firstItem="f17-Wb-R7A" firstAttribute="top" secondItem="cLQ-0y-QLZ" secondAttribute="bottom" constant="8" id="5Iv-hZ-bMN"/>
                             <constraint firstItem="lOC-yX-Oui" firstAttribute="top" secondItem="fsc-xC-aDC" secondAttribute="bottom" constant="44" id="6QO-lK-xuj"/>
                             <constraint firstItem="md4-Va-zts" firstAttribute="width" secondItem="mf5-QN-5bc" secondAttribute="width" id="7kX-e7-Bqi"/>
-                            <constraint firstItem="cLQ-0y-QLZ" firstAttribute="top" secondItem="MpZ-BE-sp1" secondAttribute="bottom" constant="4" id="BMW-Ov-FQy"/>
-                            <constraint firstItem="MpZ-BE-sp1" firstAttribute="centerX" secondItem="mf5-QN-5bc" secondAttribute="centerX" id="GRn-Gb-w5h"/>
+                            <constraint firstItem="cLQ-0y-QLZ" firstAttribute="top" secondItem="md4-Va-zts" secondAttribute="bottom" constant="8" id="8ek-sp-EpH"/>
                             <constraint firstItem="f17-Wb-R7A" firstAttribute="height" secondItem="mf5-QN-5bc" secondAttribute="height" id="HFh-iG-hgU"/>
                             <constraint firstItem="f17-Wb-R7A" firstAttribute="width" secondItem="mf5-QN-5bc" secondAttribute="width" id="SGG-FW-Zkb"/>
-                            <constraint firstItem="MpZ-BE-sp1" firstAttribute="height" secondItem="mf5-QN-5bc" secondAttribute="height" id="Tl0-0q-dgA"/>
                             <constraint firstItem="lOC-yX-Oui" firstAttribute="leading" secondItem="mbb-QY-WQ2" secondAttribute="leadingMargin" id="U4L-wJ-sVQ"/>
-                            <constraint firstItem="MpZ-BE-sp1" firstAttribute="top" secondItem="md4-Va-zts" secondAttribute="bottom" constant="4" id="VZ9-gw-W31"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lOC-yX-Oui" secondAttribute="trailing" id="Y5c-c9-V96"/>
                             <constraint firstItem="f17-Wb-R7A" firstAttribute="centerX" secondItem="mf5-QN-5bc" secondAttribute="centerX" id="Ybj-4F-SPS"/>
                             <constraint firstItem="cLQ-0y-QLZ" firstAttribute="height" secondItem="mf5-QN-5bc" secondAttribute="height" id="bEP-Ow-eTW"/>
-                            <constraint firstItem="MpZ-BE-sp1" firstAttribute="width" secondItem="mf5-QN-5bc" secondAttribute="width" id="bh5-pw-mTJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mf5-QN-5bc" secondAttribute="trailing" constant="16" id="jLn-Cc-0jB"/>
                             <constraint firstItem="mf5-QN-5bc" firstAttribute="top" secondItem="lOC-yX-Oui" secondAttribute="bottom" constant="32" id="je2-Da-AMf"/>
                             <constraint firstItem="md4-Va-zts" firstAttribute="height" secondItem="mf5-QN-5bc" secondAttribute="height" id="jgy-92-WuH"/>
-                            <constraint firstItem="md4-Va-zts" firstAttribute="top" secondItem="mf5-QN-5bc" secondAttribute="bottom" constant="4" id="kaD-Pi-NFD"/>
+                            <constraint firstItem="md4-Va-zts" firstAttribute="top" secondItem="mf5-QN-5bc" secondAttribute="bottom" constant="8" id="kaD-Pi-NFD"/>
                             <constraint firstItem="mf5-QN-5bc" firstAttribute="leading" secondItem="mbb-QY-WQ2" secondAttribute="leadingMargin" constant="16" id="xtH-1D-fwa"/>
                         </constraints>
                     </view>
