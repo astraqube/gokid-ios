@@ -191,6 +191,7 @@ extension TimeAndDateFormVC {
         row.cellConfig["textLabel.color"] = labelColor
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
+        row.cellConfig["minuteInterval"] = 5
         row.required = true
         section.addFormRow(row)
 
@@ -199,6 +200,7 @@ extension TimeAndDateFormVC {
         row.cellConfig["textLabel.color"] = labelColor
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
+        row.cellConfig["minuteInterval"] = 5
         row.required = true
         section.addFormRow(row)
 
