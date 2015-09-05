@@ -406,8 +406,6 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                 <color key="value" red="0.54117647059999996" green="0.78823529410000004" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-Ac-6Oc" userLabel="userImage 2" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -426,8 +424,6 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                 <color key="value" red="0.46274509800000002" green="0.6705882353" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little Wayne"/>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-N4-wcM" userLabel="userImage 3" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -443,11 +439,9 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="John Doe"/>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                 <color key="value" red="0.36078431370000003" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uJ-kG-NLO" userLabel="userImage 4" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -463,11 +457,9 @@
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Junior Mafia"/>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                 <color key="value" red="0.36470588240000001" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffb-4Z-rUf">
@@ -649,7 +641,6 @@
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                                 <color key="value" red="0.54117647059999996" green="0.78823529410000004" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                                 <real key="value" value="0.0"/>
                                                                             </userDefinedRuntimeAttribute>
@@ -759,14 +750,12 @@
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little John"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                                 <real key="value" value="0.0"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                                 <color key="value" red="0.46274509800000002" green="0.6705882353" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
@@ -880,14 +869,12 @@
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little John"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                                 <real key="value" value="0.0"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                                 <color key="value" red="0.36078431370000003" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
@@ -1001,14 +988,12 @@
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little John"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                                 <real key="value" value="0.0"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                                 <color key="value" red="0.36078431370000003" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="emma"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
@@ -1125,7 +1110,6 @@ Greenwich, CT.</string>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little John"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                                 <real key="value" value="0.0"/>
                                                                             </userDefinedRuntimeAttribute>

@@ -968,7 +968,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.36470588235294116" green="0.51764705882352946" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Junior Mafia"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rth-og-fFs" userLabel="userImage 3" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -987,7 +986,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.36078431372549019" green="0.51764705882352946" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="John Doe"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KeU-qy-Uir" userLabel="userImage 2" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -1007,7 +1005,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.46274509803921571" green="0.6705882352941176" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little Wayne"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFH-cs-zQl" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -1027,7 +1024,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.54117647058823526" green="0.78823529411764703" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarCellLeft" translatesAutoresizingMaskIntoConstraints="NO" id="jsZ-y2-4rn">
@@ -1279,7 +1275,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.36470588240000001" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Junior Mafia"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILk-Ua-md9" userLabel="userImage 3" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -1298,7 +1293,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.36078431370000003" green="0.51764705879999995" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="John Doe"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKR-Rn-Pt6" userLabel="userImage 2" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -1318,7 +1312,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.46274509800000002" green="0.6705882353" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little Wayne"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8k-rb-o3e" userLabel="userImage 1" customClass="CalendarUserImageView" customModule="GoKid" customModuleProvider="target">
@@ -1338,7 +1331,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.54117647059999996" green="0.78823529410000004" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You opted out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSo-A0-S1S">
@@ -1744,7 +1736,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.46274509800000002" green="0.6705882353" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Little Wayne"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                     <real key="value" value="0.0"/>
                                                                 </userDefinedRuntimeAttribute>
@@ -1779,7 +1770,6 @@ invited you to
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="noImageColor">
                                                                     <color key="value" red="0.54117647059999996" green="0.78823529410000004" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameString" value="Big Boi"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                     <real key="value" value="0.0"/>
                                                                 </userDefinedRuntimeAttribute>

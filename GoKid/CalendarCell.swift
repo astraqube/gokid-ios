@@ -40,12 +40,9 @@ class CalendarCell: VolunteerCell {
 
         for (index, riderImageView) in enumerate(pickupImageCollection) {
             let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
+            riderImageView.hidden = rider == nil
             if rider != nil {
-                riderImageView.nameString = rider!.fullName
-                //riderImageView.image = rider.thumURL //gotta get images
-                riderImageView.hidden = false
-            } else {
-                riderImageView.hidden = true
+                riderImageView.setAvatar(rider!.fullName, imageURL: rider!.thumURL)
             }
         }
 

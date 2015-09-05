@@ -12,15 +12,19 @@ import UIKit
 class CalendarUserImageView: UIView {
     lazy var imageView = UIImageView()
     ///Set this guy to display the image
-    @IBInspectable var image : UIImage? {
+    var image : UIImage? {
         didSet{
             imageView.image = self.image
-            update()
+            if self.image == nil {
+                nameLabel.hidden = false
+            } else {
+                nameLabel.hidden = true
+            }
         }
     }
     lazy var nameLabel = UILabel()
     ///Set this guy to have letters made when no image
-    @IBInspectable var nameString : NSString = "?" {
+    var nameString : NSString = "?" {
         didSet{
             nameLabel.text = (self.nameString as! String).twoLetterAcronym()
         }
@@ -87,14 +91,15 @@ class CalendarUserImageView: UIView {
         nameLabel.font = UIFont(name: "Raleway-Regular", size: 16)
         self.addSubview(nameLabel)
         nameLabel.frame = self.bounds
-        update()
     }
     
-    func update() {
-        if image == nil{
-            nameLabel.hidden = false
-        } else {
+    func setAvatar(fullName: String!, imageURL: String!) {
+        if imageURL != "" && imageURL.rangeOfString("thumb_default") == nil {
+            ImageManager.sharedInstance.setImageToViewWithCrop(imageView, urlStr: imageURL)
             nameLabel.hidden = true
+        } else {
+            nameString = fullName
+            nameLabel.hidden = false
         }
     }
 }

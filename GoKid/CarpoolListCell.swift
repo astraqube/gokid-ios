@@ -20,4 +20,24 @@ class CarpoolListCell: UITableViewCell {
     Set hidden the ones there are no riders for.
     */
     @IBOutlet var pickupImageCollection : [CalendarUserImageView]!
+
+    func loadModel(model: CarpoolModel) {
+        if model.startDate != nil && model.endDate != nil {
+            timeLabel.text = "\(model.startDate!.shortDateString()) - \(model.endDate!.shortDateString())"
+        } else {
+            // FIXME: wtf is this?
+            timeLabel.text = "loading…"
+        }
+
+        for (index, riderImageView) in enumerate(pickupImageCollection) {
+            let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
+            riderImageView.hidden = rider == nil
+            if rider != nil {
+                riderImageView.setAvatar(rider!.fullName, imageURL: rider!.thumURL)
+            }
+        }
+
+        nameLabel.text = model.name
+    }
+
 }

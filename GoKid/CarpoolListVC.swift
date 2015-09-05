@@ -107,22 +107,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func configCarpoolCell(ip: NSIndexPath, _ model: CarpoolModel) -> CarpoolListCell {
         var cell = tableView.cellWithID("CarpoolListCell", ip) as! CarpoolListCell
-        if model.startDate != nil && model.endDate != nil {
-            cell.timeLabel.text = "\(model.startDate!.shortDateString()) - \(model.endDate!.shortDateString())"
-        } else {
-            cell.timeLabel.text = "loading…"
-        }
-        for (index, riderImageView) in enumerate(cell.pickupImageCollection) {
-            let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
-            if rider != nil {
-                riderImageView.nameString = rider!.fullName
-                //riderImageView.image = rider.thumURL //gotta get images
-                riderImageView.hidden = false
-            } else {
-                riderImageView.hidden = true
-            }
-        }
-        cell.nameLabel.text = model.name
+        cell.loadModel(model)
         return cell
     }
     
