@@ -22,6 +22,7 @@ class TeamMemberModel: NSObject {
     var role: String = ""
     var thumURL: String = ""
     var teamID: Int = 0
+    var teams: [Int]?
     var userID: Int = 0
     var permissionID: Int = 0
     var isCurrentUser: Bool = false
@@ -37,9 +38,11 @@ class TeamMemberModel: NSObject {
         lastName = user["last_name"].stringValue
         permissionID = json["id"].intValue
         email = user["email"].stringValue
+        phoneNumber = user["phone_number"].stringValue
         role = user["role"].stringValue
         userID = user["id"].intValue
         isCurrentUser = user["is_current_user"].boolValue
+        teams = json["team_ids"].arrayObject as? [Int]
     }
 
     class func arrayOfMembers(json: JSON) -> [TeamMemberModel] {

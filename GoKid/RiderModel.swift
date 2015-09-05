@@ -15,7 +15,20 @@ extension RiderModel : Equatable {}
 
 class RiderModel: NSObject {
     var riderID = 0
-    var phoneNumber: String = ""
+    var _phoneNumber: String!
+    var phoneNumber: String {
+        set { _phoneNumber = newValue }
+        get {
+            if _phoneNumber != "" {
+                return _phoneNumber
+            }
+            if let parent = adults.first {
+                return parent.phoneNumber
+            }
+            return ""
+        }
+    }
+
     var firstName: String = ""
     var lastName: String = ""
     var email: String = ""
@@ -24,6 +37,7 @@ class RiderModel: NSObject {
     var pickupLocation = Location()
     var dropoffLocation = Location()
     var teams: [Int]?
+    var adults: [TeamMemberModel]!
 
     var fullName: String {
         return "\(firstName) \(lastName)"
@@ -63,8 +77,13 @@ class RiderModel: NSObject {
     override init() {
         super.init()
     }
-    
+
     init(json: JSON) {
+        super.init()
+        reflect(json)
+    }
+    
+    func reflect(json: JSON) {
         thumURL = json["avatar"]["thumb_url"].stringValue
         firstName = json["first_name"].stringValue
         lastName = json["last_name"].stringValue
@@ -73,6 +92,7 @@ class RiderModel: NSObject {
         role = json["role"].stringValue
         phoneNumber = json["phone_number"].stringValue
         teams = json["team_ids"].arrayObject as? [Int]
+        adults = TeamMemberModel.arrayOfMembers(json["adults"])
 
         pickupLocation = Location(json: json["pickup_address"])
         dropoffLocation = Location(json: json["dropoff_address"])

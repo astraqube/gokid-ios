@@ -19,7 +19,7 @@ struct MapMetadata {
     var type : OccurenceType
 }
 
-class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
+class DetailMapVC: BaseVC, MFMessageComposeViewControllerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var trayOffsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomTrayNavView: UIView!
@@ -247,7 +247,7 @@ class DetailMapVC: UIViewController, MFMessageComposeViewControllerDelegate {
         var stops = self.navigation.pickups + self.navigation.dropoffs
         var recipeints = [NSString]()
         for stop in stops {
-            if stop.phoneNumber != nil && stop.phoneNumber?.length > 0 {
+            if stop.phoneNumber != nil && stop.phoneNumber?.length > 0 && stop.phoneNumber != self.userManager.info.phoneNumber {
                 recipeints.append(stop.phoneNumber!)
             }
         }
