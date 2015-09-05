@@ -163,13 +163,19 @@ class CarpoolModel: NSObject {
 
     func toSchedule() -> NSDictionary {
         var schedule: [String: AnyObject] = [
-            "dropoff_at": dropOffTime!.iso8601String(),
-            "pickup_at": pickUpTime!.iso8601String(),
             "starts_at": startDate!.iso8601String(),
             "ends_at": endDate!.iso8601String(),
             "time_zone": "Pacific Time (US & Canada)",
         ]
 
+        if pickUpTime != nil {
+            schedule["pickup_at"] = pickUpTime!.iso8601String()
+        }
+
+        if dropOffTime != nil {
+            schedule["dropoff_at"] = dropOffTime!.iso8601String()
+        }
+        
         if oneWay?.rawValue != "" {
             schedule["one_way"] = oneWay!.rawValue
         }

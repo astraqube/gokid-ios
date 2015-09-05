@@ -22,7 +22,8 @@ class TimeAndDateFormVC: BaseFormVC {
         case Repeat = "Repeat"
         case StartTime = "Drive to Event"
         case EndTime = "Return from Event"
-        case OneWay = "One-way Carpool"
+        case OneWay = "oneWay"
+        case OneWayStr = "Carpool Trip"
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,8 +41,16 @@ class TimeAndDateFormVC: BaseFormVC {
         let now = NSDate()
         
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
-        
+        form.addFormSection(section)
+
+        row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Repeat.rawValue)
+        section.addFormRow(row)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.value = false
+
         row = XLFormRowDescriptor(tag: Tags.StartDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.StartDate.rawValue)
+        section.addFormRow(row)
         row.cellConfig["textLabel.font"] = labelFont
         row.cellConfig["textLabel.color"] = labelColor
         row.cellConfig["detailTextLabel.font"] = valueFont
@@ -50,36 +59,27 @@ class TimeAndDateFormVC: BaseFormVC {
         row.required = true
         row.value = carpool.startDate
         row.valueTransformer = DateTransformer.self
-        section.addFormRow(row)
-        
+
         row = XLFormRowDescriptor(tag: Tags.EndDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.EndDate.rawValue)
+        section.addFormRow(row)
         row.cellConfig["textLabel.font"] = labelFont
         row.cellConfig["textLabel.color"] = labelColor
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.cellConfig["minimumDate"] = now
-        row.hidden = true
         row.value = carpool.endDate
         row.valueTransformer = DateTransformer.self
-        section.addFormRow(row)
-        
+        row.hidden = "NOT $\(Tags.Repeat.rawValue).value==true"
+
         row = XLFormRowDescriptor(tag: Tags.Frequency.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.Frequency.rawValue)
+        section.addFormRow(row)
         row.cellConfig["textLabel.font"] = labelFont
         row.cellConfig["textLabel.color"] = labelColor
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.action.viewControllerClass = FrequencyPickerFormVC.self
-        row.valueTransformer = FrequencyTransformer.self
-        row.hidden = true
         row.value = []
-        section.addFormRow(row)
-        
-        row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Repeat.rawValue)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.value = false
-        section.addFormRow(row)
-        
-        form.addFormSection(section)
+        row.valueTransformer = FrequencyTransformer.self
+        row.hidden = "NOT $\(Tags.Repeat.rawValue).value==true"
 
         self.form = form
         self.form.delegate = self
@@ -97,12 +97,10 @@ class TimeAndDateFormVC: BaseFormVC {
         if formRow.tag == Tags.Repeat.rawValue {
             let isOn = newValue as! Bool
             
-            endDateCell!.hidden = !(isOn)
             endDateCell!.required = isOn
             endDateCell.value = isOn ? startDateCell.value : nil
             self.updateFormRow(endDateCell)
 
-            frequencyCell!.hidden = !(isOn)
             if !isOn {
                 frequencyCell!.value = []
             }
@@ -138,7 +136,12 @@ class TimeAndDateFormVC: BaseFormVC {
         }
 
         if let errorMsg = self.isValidDateSequence() as String? {
-            self.showAlert("Invalid Schedule", messege: errorMsg, cancleTitle: "OK")
+            self.showAlert("Invalid Date", messege: errorMsg, cancleTitle: "OK")
+            return
+        }
+
+        if let errorMsg = self.isValidTimeSequence() as String? {
+            self.showAlert("Invalid Time", messege: errorMsg, cancleTitle: "OK")
             return
         }
 
@@ -154,6 +157,12 @@ class TimeAndDateFormVC: BaseFormVC {
 extension TimeAndDateFormVC {
 
     private func showTimeSectionsForFrequency(frequency: [Int]?) {
+        if timeSections != nil && !timeSections.isEmpty {
+            for _section in timeSections {
+                form.removeFormSection(_section)
+            }
+        }
+
         var sections: [XLFormSectionDescriptor]!
 
         if frequency == nil || frequency!.isEmpty {
@@ -164,54 +173,60 @@ extension TimeAndDateFormVC {
             }
         }
 
-        insertTimeSections(sections)
+        timeSections = sections
+        tableView.reloadData()
     }
-    
+
     private func createTimeSectionForDay(occurrenceDay: Int?) -> XLFormSectionDescriptor {
         var startTag: String!
         var endTag: String!
         var onewayTag: String!
+        var onewayStr: String!
 
         if occurrenceDay == nil {
             startTag = Tags.StartTime.rawValue
             endTag = Tags.EndTime.rawValue
             onewayTag = Tags.OneWay.rawValue
+            onewayStr = Tags.OneWayStr.rawValue
         } else {
             let day = GKDays.dayFromInt(occurrenceDay!).truncateToCharacters(3)
             startTag = "\(Tags.StartTime.rawValue) on \(day)"
             endTag = "\(Tags.EndTime.rawValue) on \(day)"
-            onewayTag = "\(Tags.OneWay.rawValue) on \(day)"
+            onewayTag = "\(Tags.OneWay.rawValue)\(day)"
+            onewayStr = "\(Tags.OneWayStr.rawValue) on \(day)"
         }
 
         var row: XLFormRowDescriptor!
         var section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+        form.addFormSection(section)
 
-        row = XLFormRowDescriptor(tag: startTag, rowType: XLFormRowDescriptorTypeTime, title: startTag)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.cellConfig["detailTextLabel.font"] = valueFont
-        row.cellConfig["detailTextLabel.color"] = labelColor
-        row.cellConfig["minuteInterval"] = 5
-        row.required = true
-        section.addFormRow(row)
-
-        row = XLFormRowDescriptor(tag: endTag, rowType: XLFormRowDescriptorTypeTime, title: endTag)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.cellConfig["detailTextLabel.font"] = valueFont
-        row.cellConfig["detailTextLabel.color"] = labelColor
-        row.cellConfig["minuteInterval"] = 5
-        row.required = true
-        section.addFormRow(row)
-
-        row = XLFormRowDescriptor(tag: onewayTag, rowType: XLFormRowDescriptorTypeSelectorPickerView, title: Tags.OneWay.rawValue)
+        row = XLFormRowDescriptor(tag: onewayTag, rowType: XLFormRowDescriptorTypeSelectorPickerView, title: onewayStr)
         row.cellConfig["textLabel.font"] = labelFont
         row.cellConfig["textLabel.color"] = labelColor
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.selectorOptions = CarpoolMode.allValues
         row.value = ""
+        row.valueTransformer = OneWayTransformer.self
         section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: startTag, rowType: XLFormRowDescriptorTypeTime, title: startTag)
+        section.addFormRow(row)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
+        row.cellConfig["minuteInterval"] = 5
+        row.hidden = "$\(onewayTag).value=='\(CarpoolMode.DropoffOnly.rawValue)'"
+
+        row = XLFormRowDescriptor(tag: endTag, rowType: XLFormRowDescriptorTypeTime, title: endTag)
+        section.addFormRow(row)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
+        row.cellConfig["minuteInterval"] = 5
+        row.hidden = "$\(onewayTag).value=='\(CarpoolMode.PickupOnly.rawValue)'"
 
         if occurrenceDay == nil {
             section.footerTitle = "E.g. When kids are walking to soccer practice from school and only need a ride home."
@@ -220,20 +235,6 @@ extension TimeAndDateFormVC {
         return section
     }
 
-    private func insertTimeSections(sections: [XLFormSectionDescriptor]!) {
-        if timeSections != nil && !timeSections.isEmpty {
-            for _section in timeSections {
-                form.removeFormSection(_section)
-            }
-        }
-
-        for section in sections {
-            form.addFormSection(section)
-        }
-
-        timeSections = sections
-        tableView.reloadData()
-    }
 }
 
 // MARK: Form Submission
@@ -251,7 +252,7 @@ extension TimeAndDateFormVC {
                 let day = GKDays.dayFromInt(key).truncateToCharacters(3)
                 let startTag = "\(Tags.StartTime.rawValue) on \(day)"
                 let endTag = "\(Tags.EndTime.rawValue) on \(day)"
-                let onewayTag = "\(Tags.OneWay.rawValue) on \(day)"
+                let onewayTag = "\(Tags.OneWay.rawValue)\(day)"
 
                 var ds = DaySchedule()
                 ds.dayNum = key
@@ -343,25 +344,38 @@ extension TimeAndDateFormVC {
         let startDate = startDateCell!.value as? NSDate
         let endDate = endDateCell!.value as? NSDate
 
-        let startTimeCell = self.form.formRowWithTag(Tags.StartTime.rawValue)
-        let endTimeCell = self.form.formRowWithTag(Tags.EndTime.rawValue)
-
-        let startTime = startTimeCell!.value as? NSDate
-        let endTime = endTimeCell!.value as? NSDate
-
         if startDate != nil && endDate != nil {
             if startDate!.isGreaterThanDate(endDate!) {
                 return "These dates are out of order!"
             }
         }
 
-        if startDate != nil && endDate == nil {
-            if startTime!.isGreaterThanDate(endTime!) {
-                return "These times are out of order!"
-            }
-        }
-
         return nil
     }
 
+    func isValidTimeSequence() -> String? {
+        let formData = self.form.formValues()
+        let frequency = formData[Tags.Frequency.rawValue] as! [Int]?
+
+        if frequency != nil && frequency!.isEmpty {
+            let startTimeCell = self.form.formRowWithTag(Tags.StartTime.rawValue)
+            let endTimeCell = self.form.formRowWithTag(Tags.EndTime.rawValue)
+
+            let startTime = startTimeCell!.value as? NSDate
+            let endTime = endTimeCell!.value as? NSDate
+
+            if startTime == nil && endTime == nil {
+                return "There's no scheduled time!"
+            }
+
+            if startTime != nil && endTime != nil {
+                if startTime!.isGreaterThanDate(endTime!) {
+                    return "These times are out of order!"
+                }
+            }
+        }
+        
+        return nil
+    }
+    
 }
