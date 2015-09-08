@@ -98,7 +98,7 @@ class TimeAndDateFormVC: BaseFormVC {
             let isOn = newValue as! Bool
             
             endDateCell!.required = isOn
-            endDateCell.value = isOn ? startDateCell.value : nil
+            endDateCell!.value = isOn ? startDateCell!.value : nil
             self.updateFormRow(endDateCell)
 
             if !isOn {

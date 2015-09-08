@@ -174,7 +174,9 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     }
     
     func updateLocation() {
-        onLocationUpdate?(error: nil, location: lastLocation)
+        if lastLocation != nil {
+            onLocationUpdate?(error: nil, location: lastLocation)
+        }
     }
     
     func stopUpdatingLocation() {
