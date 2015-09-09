@@ -43,43 +43,45 @@ class TimeAndDateFormVC: BaseFormVC {
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         form.addFormSection(section)
 
-        row = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Repeat.rawValue)
-        section.addFormRow(row)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.value = false
+        var startDateRow = XLFormRowDescriptor(tag: Tags.StartDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.StartDate.rawValue)
+        var endDateRow = XLFormRowDescriptor(tag: Tags.EndDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.EndDate.rawValue)
+        var frequencyRow = XLFormRowDescriptor(tag: Tags.Frequency.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.Frequency.rawValue)
+        var repeatRow = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Repeat.rawValue)
 
-        row = XLFormRowDescriptor(tag: Tags.StartDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.StartDate.rawValue)
-        section.addFormRow(row)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.cellConfig["detailTextLabel.font"] = valueFont
-        row.cellConfig["detailTextLabel.color"] = labelColor
-        row.cellConfig["minimumDate"] = now
-        row.required = true
-        row.value = carpool.startDate
-        row.valueTransformer = DateTransformer.self
+        section.addFormRow(startDateRow)
+        section.addFormRow(endDateRow)
+        section.addFormRow(frequencyRow)
+        section.addFormRow(repeatRow)
 
-        row = XLFormRowDescriptor(tag: Tags.EndDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.EndDate.rawValue)
-        section.addFormRow(row)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.cellConfig["detailTextLabel.font"] = valueFont
-        row.cellConfig["detailTextLabel.color"] = labelColor
-        row.cellConfig["minimumDate"] = now
-        row.value = carpool.endDate
-        row.valueTransformer = DateTransformer.self
-        row.hidden = "NOT $\(Tags.Repeat.rawValue).value==true"
+        startDateRow.cellConfig["textLabel.font"] = labelFont
+        startDateRow.cellConfig["textLabel.color"] = labelColor
+        startDateRow.cellConfig["detailTextLabel.font"] = valueFont
+        startDateRow.cellConfig["detailTextLabel.color"] = labelColor
+        startDateRow.cellConfig["minimumDate"] = now
+        startDateRow.required = true
+        startDateRow.value = carpool.startDate
+        startDateRow.valueTransformer = DateTransformer.self
 
-        row = XLFormRowDescriptor(tag: Tags.Frequency.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.Frequency.rawValue)
-        section.addFormRow(row)
-        row.cellConfig["textLabel.font"] = labelFont
-        row.cellConfig["textLabel.color"] = labelColor
-        row.cellConfig["detailTextLabel.font"] = valueFont
-        row.action.viewControllerClass = FrequencyPickerFormVC.self
-        row.value = []
-        row.valueTransformer = FrequencyTransformer.self
-        row.hidden = "NOT $\(Tags.Repeat.rawValue).value==true"
+        endDateRow.cellConfig["textLabel.font"] = labelFont
+        endDateRow.cellConfig["textLabel.color"] = labelColor
+        endDateRow.cellConfig["detailTextLabel.font"] = valueFont
+        endDateRow.cellConfig["detailTextLabel.color"] = labelColor
+        endDateRow.cellConfig["minimumDate"] = now
+        endDateRow.value = carpool.endDate
+        endDateRow.valueTransformer = DateTransformer.self
+        endDateRow.hidden = "NOT $\(Tags.Repeat.rawValue).value==true"
+
+        frequencyRow.cellConfig["textLabel.font"] = labelFont
+        frequencyRow.cellConfig["textLabel.color"] = labelColor
+        frequencyRow.cellConfig["detailTextLabel.font"] = valueFont
+        frequencyRow.action.viewControllerClass = FrequencyPickerFormVC.self
+        frequencyRow.value = []
+        frequencyRow.valueTransformer = FrequencyTransformer.self
+        frequencyRow.hidden = "NOT $\(Tags.Repeat.rawValue).value==true"
+
+        repeatRow.cellConfig["textLabel.font"] = labelFont
+        repeatRow.cellConfig["textLabel.color"] = labelColor
+        repeatRow.value = false
 
         self.form = form
         self.form.delegate = self
