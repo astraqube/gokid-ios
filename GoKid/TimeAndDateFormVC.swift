@@ -75,7 +75,7 @@ class TimeAndDateFormVC: BaseFormVC {
         frequencyRow.cellConfig["textLabel.color"] = labelColor
         frequencyRow.cellConfig["detailTextLabel.font"] = valueFont
         frequencyRow.action.viewControllerClass = FrequencyPickerFormVC.self
-        frequencyRow.value = []
+        frequencyRow.value = GKDays.asKeys.values.array
         frequencyRow.valueTransformer = FrequencyTransformer.self
         frequencyRow.hidden = "NOT $\(Tags.Repeat.rawValue).value==true"
 
