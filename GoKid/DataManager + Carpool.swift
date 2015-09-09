@@ -64,7 +64,6 @@ extension DataManager {
         var manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
             println("deleteOccurrence success")
-            println(obj)
             comp(true, "")
         }) { (op, error) in
             println("deleteOccurrence failed")
@@ -77,7 +76,6 @@ extension DataManager {
         var manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
             println("deleteCarpool success")
-            println(obj)
             comp(true, "")
         }) { (op, error) in
             println("deleteCarpool failed")
@@ -277,8 +275,6 @@ extension DataManager {
         var manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
             println("updateOccurrenceLocation success")
-            var json = JSON(obj)
-            println(json)
             comp(true, "")
         }) { (op, error) in
             println("updateOccurrenceLocation failed")
@@ -330,8 +326,6 @@ extension DataManager {
         var manager = managerWithToken()
         manager.PUT(url, parameters: payload, success: { (op, obj) in
             println("updateOccurencesTimes success")
-            var json = JSON(obj)
-            println(json)
             comp(true, "")
         }) { (op, error) in
             println(error)
@@ -351,13 +345,11 @@ extension DataManager {
         var manager = managerWithToken()
         manager.PUT(url, parameters: payload, success: { (op, obj) in
             println("updateOccurencesTimes success")
-            var json = JSON(obj)
-            println(json)
             comp(true, "")
-            }) { (op, error) in
-                println(error)
-                println("updateOccurenceLocation failed")
-                self.handleRequestError(op, error: error, comp: comp)
+        }) { (op, error) in
+            println(error)
+            println("updateOccurenceLocation failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
@@ -374,9 +366,9 @@ extension DataManager {
         manager.PUT(url, parameters: map, success: { (op, obj) in
             println("putOccurrenceCurrentLocation success")
             comp(true, "")
-            }) { (op, error) in
-                println("putOccurrenceCurrentLocation failed")
-                self.handleRequestError(op, error: error, comp: comp)
+        }) { (op, error) in
+            println("putOccurrenceCurrentLocation failed")
+            self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
