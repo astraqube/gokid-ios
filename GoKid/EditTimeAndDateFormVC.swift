@@ -14,7 +14,7 @@ class EditTimeAndDateFormVC : BaseFormVC {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.titleLabel.text = "Edit Date & Time"
-        self.subtitleLabel.text = carpoolModel.descriptionString//userManager.currentCarpoolDescription()
+        self.subtitleLabel.text = carpoolModel.descriptionString
         
         //  occurrences = self.processRawCalendarEvents(occurrences)
     }
@@ -25,8 +25,6 @@ class EditTimeAndDateFormVC : BaseFormVC {
         var section: XLFormSectionDescriptor!
         
         let now = NSDate()
-        
-        //let carpoolModel = userManager.currentCarpoolModel
         
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         
