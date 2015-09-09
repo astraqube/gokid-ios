@@ -145,6 +145,11 @@ class TimeAndDateFormVC: BaseFormVC {
             return
         }
 
+        if let errorMsg = self.isValidFrequentTimeSequence() as String? {
+            self.showAlert("Invalid Schedules", messege: errorMsg, cancleTitle: "OK")
+            return
+        }
+
         self.tableView.endEditing(true)
 
         self.updateCarpoolModel()
@@ -338,11 +343,9 @@ extension TimeAndDateFormVC {
 extension TimeAndDateFormVC {
 
     func isValidDateSequence() -> String? {
-        let startDateCell = self.form.formRowWithTag(Tags.StartDate.rawValue)
-        let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
-
-        let startDate = startDateCell!.value as? NSDate
-        let endDate = endDateCell!.value as? NSDate
+        let formData = self.form.formValues()
+        let startDate = formData[Tags.StartDate.rawValue] as? NSDate
+        let endDate = formData[Tags.StartDate.rawValue] as? NSDate
 
         if startDate != nil && endDate != nil {
             if startDate!.isGreaterThanDate(endDate!) {
@@ -356,26 +359,61 @@ extension TimeAndDateFormVC {
     func isValidTimeSequence() -> String? {
         let formData = self.form.formValues()
         let frequency = formData[Tags.Frequency.rawValue] as! [Int]?
+        let startTime = formData[Tags.StartTime.rawValue] as? NSDate
+        let endTime = formData[Tags.EndTime.rawValue] as? NSDate
 
-        if frequency != nil && frequency!.isEmpty {
-            let startTimeCell = self.form.formRowWithTag(Tags.StartTime.rawValue)
-            let endTimeCell = self.form.formRowWithTag(Tags.EndTime.rawValue)
-
-            let startTime = startTimeCell!.value as? NSDate
-            let endTime = endTimeCell!.value as? NSDate
-
+        if frequency == nil || frequency!.isEmpty {
             if startTime == nil && endTime == nil {
                 return "There's no scheduled time!"
             }
 
             if startTime != nil && endTime != nil {
-                if startTime!.isGreaterThanDate(endTime!) {
+                if startTime!.timeString() == endTime!.timeString() || startTime!.isGreaterThanDate(endTime!) {
                     return "These times are out of order!"
                 }
             }
         }
-        
+
         return nil
     }
-    
+
+    func isValidFrequentTimeSequence() -> String? {
+        let formData = self.form.formValues()
+        let frequency = formData[Tags.Frequency.rawValue] as! [Int]?
+
+        if frequency != nil && !frequency!.isEmpty {
+            for f in frequency!.generate() {
+                let day = GKDays.dayFromInt(f).truncateToCharacters(3)
+
+                let startTag = "\(Tags.StartTime.rawValue) on \(day)"
+                let startTime = formData[startTag] as? NSDate
+
+                let endTag = "\(Tags.EndTime.rawValue) on \(day)"
+                let endTime = formData[endTag] as? NSDate
+
+                let onewayTag = "\(Tags.OneWay.rawValue)\(day)"
+                let oneway = formData[onewayTag] as? String
+
+                if oneway == "" {
+                    if (startTime == nil || endTime == nil) {
+                        return "Scheduled times are required!"
+                    }
+
+                    if startTime!.timeString() == endTime!.timeString() || startTime!.isGreaterThanDate(endTime!) {
+                        return "These times are out of order!"
+                    }
+                }
+
+                if oneway == CarpoolMode.PickupOnly.rawValue && startTime == nil {
+                    return "A scheduled time is required!"
+                }
+
+                if oneway == CarpoolMode.DropoffOnly.rawValue && endTime == nil {
+                    return "A scheduled time is required!"
+                }
+            }
+        }
+
+        return nil
+    }
 }
