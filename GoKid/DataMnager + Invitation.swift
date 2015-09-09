@@ -41,7 +41,6 @@ extension DataManager {
         var manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
             println("acceptInvite success")
-            var json = JSON(obj)
             comp(true, "")
         }) { (op, error) in
             println("acceptInvite failed")
@@ -54,7 +53,6 @@ extension DataManager {
         var manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
             println("declineInvite success")
-            var json = JSON(obj)
             comp(true, "")
         }) { (op, error) in
             println("declineInvite failed")
@@ -89,7 +87,6 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             var json = JSON(obj)
             var invitation = InvitationModel(json: json["invite"])
-            self.userManager.currentCarpoolModel = invitation.carpool
             comp(true, "", invitation)
         }) { (op, error) in
             println("getFirstInvitation failed")
