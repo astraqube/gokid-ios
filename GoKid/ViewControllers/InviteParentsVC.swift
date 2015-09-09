@@ -72,8 +72,8 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
         mailComposerVC.setToRecipients([""])
-        mailComposerVC.setSubject("Let's carpool for Soccer Practice")
-        mailComposerVC.setMessageBody("Hey there, \n\nI made a carpool on go kids For Tom's Soccer Practice. Can you guys join?\n Use this link to get the app itunes.apple.com/a1831jal029\n\n Love,\nLiz", isHTML: false)
+        mailComposerVC.setSubject("Let's carpool for \(carpool.name)")
+        mailComposerVC.setMessageBody("Hey there, \n\nI made a carpool on GoKid: \(carpool.descriptionString). Can you guys join?\n Use this link to get the app itunes.apple.com/a1831jal029\n\n Love,\n\(userManager.info.firstName)", isHTML: false)
         return mailComposerVC
     }
     
