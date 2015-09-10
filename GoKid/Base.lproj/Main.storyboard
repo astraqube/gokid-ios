@@ -543,15 +543,6 @@ invited you to
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Join XXX" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-Bk-6YE">
-                                <rect key="frame" x="16" y="64" width="288" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Lje-Ag-0e3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="21"/>
-                                <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your kid's name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tbf-aa-f5G" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
                                 <rect key="frame" x="32" y="146" width="256" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -573,10 +564,10 @@ invited you to
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmX-Aj-6DT">
-                                <rect key="frame" x="16" y="36" width="20" height="20"/>
+                                <rect key="frame" x="16" y="36" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="Svm-ei-nAx"/>
-                                    <constraint firstAttribute="height" constant="20" id="Tqv-Gy-wX5"/>
+                                    <constraint firstAttribute="width" secondItem="cmX-Aj-6DT" secondAttribute="height" multiplier="1:1" id="8EW-Bn-fox"/>
+                                    <constraint firstAttribute="width" constant="24" id="Svm-ei-nAx"/>
                                 </constraints>
                                 <state key="normal" image="back_arrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -594,6 +585,15 @@ invited you to
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Join XXX" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-Bk-6YE">
+                                <rect key="frame" x="16" y="64" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Lje-Ag-0e3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="21"/>
+                                <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -757,11 +757,11 @@ invited you to
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6di-HY-5Xi" userLabel="headerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4d-GO-gv5" customClass="UIButtonBadged" customModule="GoKid" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="35" width="24" height="24"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4d-GO-gv5" customClass="UIButtonBadged" customModule="GoKid" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="27" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Y4d-GO-gv5" secondAttribute="height" multiplier="1:1" id="6w5-PT-SY0"/>
-                                            <constraint firstAttribute="width" constant="24" id="T7K-Qz-9bn"/>
+                                            <constraint firstAttribute="width" constant="40" id="T7K-Qz-9bn"/>
                                         </constraints>
                                         <state key="normal" image="menuIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -770,10 +770,10 @@ invited you to
                                             <action selector="menuButtonClick:" destination="lb0-Um-B3J" eventType="touchUpInside" id="TcG-Eu-gQg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBk-wz-dPX">
-                                        <rect key="frame" x="280" y="35" width="24" height="24"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBk-wz-dPX">
+                                        <rect key="frame" x="264" y="27" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="24" id="tUu-5f-qDM"/>
+                                            <constraint firstAttribute="width" constant="40" id="tUu-5f-qDM"/>
                                         </constraints>
                                         <state key="normal" image="plusButtonIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1555,10 +1555,10 @@ invited you to
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHA-o3-dfJ" userLabel="headerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSA-Qv-1Jp" customClass="UIButtonBadged" customModule="GoKid" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="35" width="24" height="24"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSA-Qv-1Jp" customClass="UIButtonBadged" customModule="GoKid" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="27" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="24" id="2Wd-e4-HUH"/>
+                                            <constraint firstAttribute="width" constant="40" id="2Wd-e4-HUH"/>
                                             <constraint firstAttribute="width" secondItem="dSA-Qv-1Jp" secondAttribute="height" multiplier="1:1" id="Pe6-U5-11w"/>
                                         </constraints>
                                         <state key="normal" image="menuIcon">
@@ -1574,10 +1574,10 @@ invited you to
                                         <color key="textColor" red="0.93725490196078431" green="0.96470588235294119" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ooc-0Y-RL4">
-                                        <rect key="frame" x="280" y="35" width="24" height="24"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ooc-0Y-RL4">
+                                        <rect key="frame" x="264" y="27" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="24" id="3yS-KD-RSw"/>
+                                            <constraint firstAttribute="width" constant="40" id="3yS-KD-RSw"/>
                                         </constraints>
                                         <state key="normal" image="plusButtonIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1893,7 +1893,7 @@ invited you to
         </scene>
     </scenes>
     <resources>
-        <image name="back_arrow" width="138" height="126"/>
+        <image name="back_arrow" width="23" height="21"/>
         <image name="cal" width="29" height="28"/>
         <image name="calSelected" width="28" height="28"/>
         <image name="calendarCellLeft" width="16" height="134"/>
