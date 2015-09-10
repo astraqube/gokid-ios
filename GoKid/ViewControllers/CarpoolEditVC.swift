@@ -311,8 +311,7 @@ class CarpoolEditVC: BaseFormVC {
                             self.showAlert("There was a problem", messege: error, cancleTitle: "OK")
                         } else {
                             NSNotificationCenter.defaultCenter().postNotificationName("deleteRideOrCarpool", object: nil, userInfo: nil)
-                            //self.navigationController?.popToRootViewControllerAnimated(true)
-                            self.navigationController?.popViewControllerAnimated(true)
+                            self.navigationController?.popToRootViewControllerAnimated(true)
                         }
                     }
                 }
@@ -340,7 +339,6 @@ class CarpoolEditVC: BaseFormVC {
                         } else {
                             NSNotificationCenter.defaultCenter().postNotificationName("deleteRideOrCarpool", object: nil, userInfo: nil)
                             self.navigationController?.popToRootViewControllerAnimated(true)
-                            //self.navigationController?.popViewControllerAnimated(true)
                         }
                     }
                 }

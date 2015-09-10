@@ -28,12 +28,12 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         tableView.estimatedRowHeight = 130
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        refreshControl.addTarget(self, action: "asyncFetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "fetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
 
         fetchDataAndReloadTableView()
         
-        registerForNotification("deleteRideOrCarpool", action: "asyncFetchDataAndReloadTableView")
+        registerForNotification("deleteRideOrCarpool", action: "fetchDataAndReloadTableView")
         registerForNotification("invitationsUpdated", action: "setNotificationsBadge")
         registerForNotification(UIApplicationDidBecomeActiveNotification, action: "setNotificationsBadge")
     }
@@ -120,22 +120,12 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func asyncFetchDataAndReloadTableView() {
-        dataManager.getAllUserOccurrences { (success, errorStr) -> () in
-            self.refreshControl.endRefreshing()
-            if success {
-                self.generateTableDataAndReload()
-            } else {
-                self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
-            }
-        }
-    }
-    
     func fetchDataAndReloadTableView() {
         LoadingView.showWithMaskType(.Black)
         dataManager.getCarpools { (success, errorStr) -> () in
             LoadingView.dismiss()
             if success {
+                InvitationModel.checkInvitations()
                 self.generateTableDataAndReload()
             } else {
                 self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")

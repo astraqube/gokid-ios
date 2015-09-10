@@ -26,12 +26,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             myDrivesLabel.hidden = false
         }
         
-        refreshControl.addTarget(self, action: "asyncFetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "fetchDataAndReloadTableView", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
 
         setupTableViewContent()
 
-        registerForNotification("deleteRideOrCarpool", action: "asyncFetchDataAndReloadTableView")
+        registerForNotification("deleteRideOrCarpool", action: "fetchDataAndReloadTableView")
         registerForNotification("invitationsUpdated", action: "setNotificationsBadge")
     }
 
@@ -42,12 +42,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         generateTableDataAndReload()
-        registerForNotification("refreshVolunteerCells", action: "asyncFetchDataAndReloadTableView")
+//        registerForNotification("refreshVolunteerCells", action: "fetchDataAndReloadTableView")
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        removeNotification(self, name: "refreshVolunteerCells")
+//        removeNotification(self, name: "refreshVolunteerCells")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -69,21 +69,11 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    func asyncFetchDataAndReloadTableView() {
-        dataManager.getAllUserOccurrences { (success, errorStr) -> () in
-            self.refreshControl.endRefreshing()
-            if success {
-                self.generateTableDataAndReload()
-            } else {
-                self.showAlert("Failed to update carpools", messege: errorStr, cancleTitle: "OK")
-            }
-        }
-    }
-    
     func fetchDataAndReloadTableView() {
         LoadingView.showWithMaskType(.Black)
         dataManager.getAllUserOccurrences { (success, errorStr) -> () in
             LoadingView.dismiss()
+            self.refreshControl.endRefreshing()
             if success {
                 self.generateTableDataAndReload()
             } else {
