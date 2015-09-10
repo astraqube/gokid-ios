@@ -73,4 +73,8 @@ class InvitationModel: NSObject {
             comp(success, error)
         }
     }
+
+    func joinTeam(comp: completion) {
+        DataManager.sharedInstance.joinInvitersTeam(self, comp: comp)
+    }
 }

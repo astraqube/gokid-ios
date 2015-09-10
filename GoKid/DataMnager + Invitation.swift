@@ -94,4 +94,16 @@ extension DataManager {
         }
     }
 
+    func joinInvitersTeam(invite: InvitationModel, comp: completion) {
+        var url = baseURL + "/api/invites/\(invite.inviteID)/add_to_team"
+        var manager = managerWithToken()
+        manager.POST(url, parameters: nil, success: { (op, obj) in
+            println("joinInvitersTeam success")
+            comp(true, "")
+        }) { (op, error) in
+            println("joinInvitersTeam failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+
 }

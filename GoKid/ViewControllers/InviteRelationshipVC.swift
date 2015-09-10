@@ -48,16 +48,20 @@ class InviteRelationshipVC: BaseVC {
     
     func setRoleAndMoveToVolunteerVC(role: String) {
         LoadingView.showWithMaskType(.Black)
-        dataManager.updateUserRole(role) { (success, errStr) in
+        invitation.joinTeam { (success, error) in
             LoadingView.dismiss()
             if success {
-                onMainThread() {
-                    var vc = vcWithID("VolunteerVC") as! VolunteerVC
-                    vc.carpool = self.invitation.carpool
-                    self.navigationController?.pushViewController(vc, animated: true)
+                self.dataManager.updateUserRole(role) { (success, errStr) in
+                    if success {
+                        onMainThread() {
+                            var vc = vcWithID("VolunteerVC") as! VolunteerVC
+                            vc.carpool = self.invitation.carpool
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    } else {
+                        self.showAlert("Failed to update role", messege: errStr, cancleTitle: "OK")
+                    }
                 }
-            } else {
-                self.showAlert("Fail to update role", messege: errStr, cancleTitle: "OK")
             }
         }
     }
