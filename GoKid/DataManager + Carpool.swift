@@ -252,7 +252,7 @@ extension DataManager {
             println("updateOccurrencesInBulk success")
             let json = JSON(obj)
             println(json)
-            let occurrences = OccurenceModel.arrayOfEventsFromOccurrences(json["occurrences"])
+            let occurrences = OccurenceModel.arrayOfEventsFromOccurrences(json["bulk_occurrences"])
             comp(true, "", occurrences)
         }) { (op, error) in
             println("updateOccurrencesInBulk failed")
