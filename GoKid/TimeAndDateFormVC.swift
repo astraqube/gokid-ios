@@ -347,7 +347,7 @@ extension TimeAndDateFormVC {
     func isValidDateSequence() -> String? {
         let formData = self.form.formValues()
         let startDate = formData[Tags.StartDate.rawValue] as? NSDate
-        let endDate = formData[Tags.StartDate.rawValue] as? NSDate
+        let endDate = formData[Tags.EndDate.rawValue] as? NSDate
 
         if startDate != nil && endDate != nil {
             if startDate!.isGreaterThanDate(endDate!) {
