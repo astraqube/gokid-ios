@@ -55,9 +55,10 @@ class InvitationModel: NSObject {
     func accept(comp: completion) {
         DataManager.sharedInstance.acceptInvite(self) { (success, error) in
             if success {
-                let index = find(UserManager.sharedInstance.invitations, self)
-                UserManager.sharedInstance.invitations.removeAtIndex(index!)
-                InvitationModel.InvitationCount = UserManager.sharedInstance.invitations.count
+                if let index = find(UserManager.sharedInstance.invitations, self) {
+                    UserManager.sharedInstance.invitations.removeAtIndex(index)
+                    InvitationModel.InvitationCount = UserManager.sharedInstance.invitations.count
+                }
             }
             comp(success, error)
         }
@@ -66,9 +67,10 @@ class InvitationModel: NSObject {
     func decline(comp: completion) {
         DataManager.sharedInstance.declineInvite(self) { (success, error) in
             if success {
-                let index = find(UserManager.sharedInstance.invitations, self)
-                UserManager.sharedInstance.invitations.removeAtIndex(index!)
-                InvitationModel.InvitationCount = UserManager.sharedInstance.invitations.count
+                if let index = find(UserManager.sharedInstance.invitations, self) {
+                    UserManager.sharedInstance.invitations.removeAtIndex(index)
+                    InvitationModel.InvitationCount = UserManager.sharedInstance.invitations.count
+                }
             }
             comp(success, error)
         }
