@@ -212,8 +212,7 @@ extension TimeAndDateFormVC {
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.selectorOptions = CarpoolMode.allValues
-        row.value = ""
-        row.valueTransformer = OneWayTransformer.self
+        row.value = CarpoolMode.None.rawValue
         section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: startTag, rowType: XLFormRowDescriptorTypeTime, title: startTag)
@@ -395,7 +394,7 @@ extension TimeAndDateFormVC {
                 let onewayTag = "\(Tags.OneWay.rawValue)\(day)"
                 let oneway = formData[onewayTag] as? String
 
-                if oneway == "" {
+                if oneway == CarpoolMode.None.rawValue {
                     if (startTime == nil || endTime == nil) {
                         return "Scheduled times are required!"
                     }

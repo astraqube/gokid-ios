@@ -87,30 +87,3 @@ class FrequencyTransformer: NSValueTransformer {
         return nil
     }
 }
-
-
-class OneWayTransformer: NSValueTransformer {
-
-    override class func transformedValueClass() -> AnyClass {
-        return NSString.self
-    }
-
-    override class func allowsReverseTransformation() -> Bool {
-        return false
-    }
-
-    override func transformedValue(value: AnyObject?) -> AnyObject? {
-        if let valueData: AnyObject = value {
-            if valueData.isKindOfClass(NSString) {
-                var onewayValue = valueData as! String
-
-                if onewayValue == CarpoolMode.None.rawValue {
-                    return "Round Trip"
-                } else {
-                    return "\(onewayValue.captialName()) only"
-                }
-            }
-        }
-        return nil
-    }
-}

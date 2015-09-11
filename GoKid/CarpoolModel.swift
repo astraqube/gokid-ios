@@ -9,9 +9,9 @@
 import UIKit
 
 enum CarpoolMode: String {
-    case None = ""
-    case PickupOnly = "pickup"
-    case DropoffOnly = "dropoff"
+    case None = "Round Trip"
+    case PickupOnly = "Drive to Event Only"
+    case DropoffOnly = "Return from Event Only"
 
     static let allValues = [None.rawValue, PickupOnly.rawValue, DropoffOnly.rawValue]
 }
@@ -31,8 +31,10 @@ struct DaySchedule {
             "time_zone": "Pacific Time (US & Canada)"
         ]
 
-        if oneWay?.rawValue != "" {
-            json["one_way"] = oneWay!.rawValue
+        if oneWay?.rawValue == CarpoolMode.PickupOnly.rawValue {
+            json["one_way"] = "pickup"
+        } else if oneWay?.rawValue == CarpoolMode.DropoffOnly.rawValue {
+            json["one_way"] = "dropoff"
         }
 
         if pickUpTime != nil {
