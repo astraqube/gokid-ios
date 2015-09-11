@@ -18,6 +18,7 @@ class VolunteerCell: UITableViewCell {
     var checkButtonHandler: ((VolunteerCell, UIButton)->(Void))?
 
     var occurrenceModel: OccurenceModel!
+    var poolType: String!
 
     var holdTime: NSTimer!
 
@@ -34,11 +35,8 @@ class VolunteerCell: UITableViewCell {
         occurrenceModel = model
         timeLabel?.text = model.poolTimeStringWithSpace()
 
-        if model.poolType == "pickup" {
-            poolTypeLabel?.text = "Drive to Event"
-        } else {
-            poolTypeLabel?.text = "Return from Event"
-        }
+        poolType = model.poolType == "pickup" ? "Drive to Event" : "Return from Event"
+        poolTypeLabel?.text = poolType
 
         if model.taken {
             ImageManager.sharedInstance.setImageToView(driverImageView, urlStr: model.poolDriverImageUrl)
@@ -123,7 +121,7 @@ class VolunteerCell: UITableViewCell {
             self.batchAction("all_\(day.lowercaseString)")
         }
 
-        let actionAllType = UIAlertAction(title: "\(actionStr) All \(occurrenceModel.poolType.capitalizedString)", style: .Default) { (_) in
+        let actionAllType = UIAlertAction(title: "\(actionStr) All \(poolType)", style: .Default) { (_) in
             self.batchAction("all_\(self.occurrenceModel.poolType.lowercaseString)")
         }
 
