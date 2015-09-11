@@ -104,14 +104,6 @@ class OccurenceModel: NSObject {
         return arr
     }
     
-    init(fakeList: JSON) {
-        super.init()
-        cellType = .Normal
-        occursAt = parseDate(fakeList, key: "occurs_at")
-        poolType = fakeList["kind"].stringValue
-        generateOtherField()
-    }
-    
     func generateOtherField() {
         if let date = occursAt {
             occursAtStr = date.dateString()
