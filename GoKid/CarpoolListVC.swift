@@ -123,6 +123,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     func fetchDataAndReloadTableView() {
         LoadingView.showWithMaskType(.Black)
         dataManager.getCarpools { (success, errorStr) -> () in
+            self.refreshControl.endRefreshing()
             LoadingView.dismiss()
             if success {
                 InvitationModel.checkInvitations()
