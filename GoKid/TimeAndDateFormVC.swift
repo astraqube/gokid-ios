@@ -103,9 +103,8 @@ class TimeAndDateFormVC: BaseFormVC {
             endDateCell!.value = isOn ? startDateCell!.value : nil
             self.updateFormRow(endDateCell)
 
-            if !isOn {
-                frequencyCell!.value = []
-            }
+            frequencyCell!.value = isOn ? GKDays.asKeys.values.array : []
+            self.showTimeSectionsForFrequency(frequencyCell!.value as! [Int]?)
             self.updateFormRow(frequencyCell)
         }
 
