@@ -31,8 +31,9 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 
         setupTableViewContent()
 
-        registerForNotification("deleteRideOrCarpool", action: "fetchDataAndReloadTableView")
         registerForNotification("invitationsUpdated", action: "setNotificationsBadge")
+        registerForNotification("deleteRideOrCarpool", action: "fetchDataAndReloadTableView")
+        registerForNotification("refreshVolunteerCells", action: "fetchDataAndReloadTableView")
     }
 
     deinit {
@@ -42,14 +43,8 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         generateTableDataAndReload()
-//        registerForNotification("refreshVolunteerCells", action: "fetchDataAndReloadTableView")
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-//        removeNotification(self, name: "refreshVolunteerCells")
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBarColorLight()
