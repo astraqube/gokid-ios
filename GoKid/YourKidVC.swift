@@ -26,6 +26,7 @@ class YourKidVC: BaseVC {
         self.setStatusBarColorDark()
         carpoolNameLabel.text = carpoolNameLabel.text?.replace("XXX", invitation.carpool.name)
         kidNameLabel.text = kidNameLabel.text?.replace("XXX", invitation.rider.firstName)
+        kidsNameTextField.keyboardType = .NamePhonePad
     }
     
     // MARK: IBAction Method

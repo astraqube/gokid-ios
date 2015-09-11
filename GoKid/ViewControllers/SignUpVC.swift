@@ -25,8 +25,8 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         setupLoginButton()
         self.registerForKeyBoardNotification()
 
-        firstNameTextField.keyboardType = .ASCIICapable
-        lastNameTextField.keyboardType = .ASCIICapable
+        firstNameTextField.keyboardType = .NamePhonePad
+        lastNameTextField.keyboardType = .NamePhonePad
         emailTextField.keyboardType = .EmailAddress
     }
 
