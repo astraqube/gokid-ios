@@ -33,7 +33,6 @@ class UserManager: NSObject {
     var teamMembers = [TeamMemberModel]()
     var calendarEvents = [OccurenceModel]()
     var volunteerEvents = [OccurenceModel]()
-    var fakeVolunteerEvents = [OccurenceModel]()
     var carpools = [CarpoolModel]()
     var invitations = [InvitationModel]()
 
@@ -78,10 +77,6 @@ class UserManager: NSObject {
     
     func initForTeamMembers() {
         teamMembers = [TeamMemberModel()]
-    }
-    
-    func currentCarpoolDescription() -> String {
-        return currentCarpoolModel.descriptionString
     }
     
     // use the info get from all team members
@@ -276,23 +271,6 @@ class UserManager: NSObject {
                 return v!
             }
         }
-    }
-
-    
-    // this is very bad but devon insist we grop occrence by time
-    // as a reault this cause weak connction between pickup and drop off
-    // might be a bug in the future
-    func groupedVolunteerEvents() -> [(OccurenceModel, OccurenceModel)] {
-        var lastEvent = OccurenceModel()
-        var data = [(OccurenceModel, OccurenceModel)]()
-        for event in volunteerEvents {
-            if event.occursAtStr == lastEvent.occursAtStr {
-                data.append((lastEvent, event))
-                continue
-            }
-            lastEvent = event
-        }
-        return data
     }
 
 }
