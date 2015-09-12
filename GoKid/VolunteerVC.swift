@@ -30,22 +30,17 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             rightButton.hidden = !carpool.isOwner
         }
 
-        registerForNotification("deleteRideOrCarpool", action: "tryLoadTableData")
+        registerForNotification("refreshVolunteerCells", action: "tryLoadTableData")
+
+        if dataSource.isEmpty {
+            tryLoadTableData()
+        } else {
+            dataSource = processRawCalendarEvents(dataSource)
+        }
     }
 
     deinit {
         removeNotification(self)
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        tryLoadTableData()
-        registerForNotification("refreshVolunteerCells", action: "tryLoadTableData")
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeNotification(self, name: "refreshVolunteerCells")
     }
 
     // MARK: IBAction Method
