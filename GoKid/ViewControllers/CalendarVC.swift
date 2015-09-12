@@ -418,7 +418,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func mapMetadataForModel(model : OccurenceModel) -> MapMetadata {
-        var canNavigate =  model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID
+        var canNavigate = model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID && model.occursAt!.isGreaterThanDate(NSDate(timeIntervalSinceNow: -1 * 60 * 15))
         var driverImage = currentOccurrenceImagesByURL?[model.poolDriverImageUrl]
         return MapMetadata(name: model.poolname, thumbnailImage: driverImage, date: model.occursAt!, canNavigate: canNavigate, id: model.occurenceID, type: model.occurrenceType )
     }
