@@ -30,8 +30,6 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             rightButton.hidden = !carpool.isOwner
         }
 
-        registerForNotification("refreshVolunteerCells", action: "tryLoadTableData")
-
         if dataSource.isEmpty {
             tryLoadTableData()
         } else {
@@ -39,10 +37,16 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    deinit {
-        removeNotification(self)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        registerForNotification("refreshVolunteerCells", action: "tryLoadTableData")
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeNotification(self)
+    }
+    
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
