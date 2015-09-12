@@ -103,9 +103,15 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func nextDrivingOccurrence() -> OccurenceModel? {
         for model in self.dataSource {
             if model.cellType != .Normal { continue }
-            if model.occursAt == nil || model.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -1 * 60 * 5)) { continue } //ignore older than 5 mins
-            if model.volunteer?.id == userManager.info.userID {
-                return model
+            if model.occursAt != nil {
+                if model.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -1 * 60 * 5)) {
+                    continue // ignore older than 5 mins
+                }
+                if model.volunteer?.id == userManager.info.userID {
+                    if model.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: 60 * 16)) {
+                        return model
+                    }
+                }
             }
         }
         return nil
@@ -118,7 +124,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             if onlyShowOurDrives && event.volunteer?.id != userManager.info.userID{
                 continue
             }
-            if event.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -8 * 60 * 60)) { //ignore older than 8 hours
+            if event.occursAt!.isLessThanDate(NSDate(timeIntervalSinceNow: -1 * 60 * 60)) { //ignore older than 1 hour
                 continue
             }
             if event.occursAtStr != lastDateStr {
