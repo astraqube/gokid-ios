@@ -178,8 +178,10 @@ class CarpoolModel: NSObject {
             schedule["dropoff_at"] = dropOffTime!.iso8601String()
         }
         
-        if oneWay?.rawValue != "" {
-            schedule["one_way"] = oneWay!.rawValue
+        if oneWay?.rawValue == CarpoolMode.PickupOnly.rawValue {
+            schedule["one_way"] = "pickup"
+        } else if oneWay?.rawValue == CarpoolMode.DropoffOnly.rawValue {
+            schedule["one_way"] = "dropoff"
         }
 
         return schedule
