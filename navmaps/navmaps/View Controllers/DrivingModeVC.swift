@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class DrivingModeVC: UIViewController {
+class DrivingModeVC: BaseVC {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var directionsLabel: UILabel!
     var mapDataSource : MapViewDatasource!
@@ -85,6 +85,11 @@ class DrivingModeVC: UIViewController {
             }))
             presentViewController(alert, animated: true, completion: nil)
         }
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setStatusBarColorLight()
     }
     
     override func viewDidDisappear(animated: Bool) {

@@ -78,6 +78,11 @@ class DetailMapVC: BaseVC, MFMessageComposeViewControllerDelegate {
         setupView()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setStatusBarColorDark()
+    }
+
     func setupView() {
         editButton.enabled = canEdit
         editButton.hidden = !canEdit
