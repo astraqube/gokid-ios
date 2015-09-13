@@ -52,7 +52,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
 
     var carpool: CarpoolModel!
 
-
+    @IBOutlet weak var searchBarInput: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -62,7 +62,6 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpDataSourceAndDelegate()
         tryUpdateTableView()
 
         self.subtitleLabel.text = carpool.descriptionString
@@ -71,13 +70,6 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         setStatusBarColorDark()
-    }
-
-    func setUpDataSourceAndDelegate() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        collectionView.dataSource = self
-        collectionView.delegate = self
     }
 
     // MARK: IBAction Method
@@ -164,6 +156,8 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         } else {
             person.selected = true
             collectionDataSource.addObject(person)
+            searchBarInput.text = ""
+            searchForContact(searchBarInput.text)
         }
 
         onMainThread {
@@ -216,17 +210,13 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
             break;
 
         case .Granted:
-            self.fetchDataUpdateTableView()
+            self.searchForContact("")
             break;
 
         case .Denied:
             self.showAlert("Unable to access your contacts", messege: "Please allow access to Contacts", cancleTitle: "OK")
             break;
         }
-    }
-    
-    func fetchDataUpdateTableView() {
-        searchForContact("")
     }
     
     func constructTableDataAndUpdate(data: [Person]) {
