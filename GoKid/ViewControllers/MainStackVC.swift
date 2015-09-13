@@ -51,7 +51,7 @@ class MainStackVC: IIViewDeckController {
     func setSignedInView(mainVCName: String) {
         let menuVC = vcWithID("MenuVC") as! MenuVC
         self.leftController = menuVC
-        self.leftSize = 100
+        self.leftSize = 52
 
         self.rootVC = vcWithID(mainVCName)
         self.centerController = UINavigationController(rootViewController: self.rootVC)
