@@ -306,13 +306,27 @@ extension ContactPickerVC: UISearchBarDelegate {
             
             addressBook.loadContacts { (contacts: [AnyObject]!, error: NSError!) in
                 if (contacts != nil) {
-                    for addressBookPerson in contacts {
-                        if let c = addressBookPerson as? APContact {
-                            for phone in c.phonesWithLabels {
+                    if !contacts.isEmpty {
+                        for addressBookPerson in contacts {
+                            if let c = addressBookPerson as? APContact {
+                                for phone in c.phonesWithLabels {
+                                    var person = Person(
+                                        firstName: c.firstName,
+                                        lastName: c.lastName,
+                                        phoneNum: phone as! APPhoneWithLabel)
+                                    person.selected = self.collectionDataSource.containsObject(person)
+                                    data.append(person)
+                                }
+                            }
+                        }
+                    } else {
+                        if query != "" {
+                            let phoneNumber = query.extractNumbers()
+                            if count(phoneNumber) >= 10 {
                                 var person = Person(
-                                    firstName: c.firstName,
-                                    lastName: c.lastName,
-                                    phoneNum: phone as! APPhoneWithLabel)
+                                    firstName: nil,
+                                    lastName: nil,
+                                    phoneNum: APPhoneWithLabel(phone: query, originalLabel: "Number", localizedLabel: "Number"))
                                 person.selected = self.collectionDataSource.containsObject(person)
                                 data.append(person)
                             }

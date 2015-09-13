@@ -224,6 +224,11 @@ extension String {
     static func fromData(data: NSData) -> String {
         return NSString(data: data, encoding: NSUTF8StringEncoding) as! String
     }
+
+    func extractNumbers() -> String {
+        let strArr = self.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+        return "".join(strArr)
+    }
 }
 
 extension Array {
