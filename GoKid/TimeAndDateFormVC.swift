@@ -306,6 +306,7 @@ extension TimeAndDateFormVC {
     private func proceedToNextStep(success: Bool, errorMessage: String, carpoolObj: AnyObject?) {
         if success {
             var vc = vcWithID("LocationVC") as! LocationVC
+            vc.hideBackButton = true
             vc.carpool = carpoolObj as! CarpoolModel
             self.navigationController?.pushViewController(vc, animated: true)
         } else {

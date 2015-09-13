@@ -41,6 +41,8 @@ class LocationVC: BaseVC {
     var currentPickupOccurrence: OccurenceModel?
     var currentDropoffOccurrence: OccurenceModel?
 
+    var hideBackButton = false
+
     var eventLocation: Location? {
         get {
             if currentPickupOccurrence != nil {
@@ -125,13 +127,20 @@ class LocationVC: BaseVC {
         } else {
             subtitleLabel?.text = carpool.descriptionString
         }
+
+        if hideBackButton {
+            leftButton.hidden = true
+            leftButton.enabled = false
+        }
     }
     
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
     override func leftNavButtonTapped() {
-        navigationController?.popViewControllerAnimated(true)
+        if leftButton.enabled {
+            navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     override func rightNavButtonTapped() {
