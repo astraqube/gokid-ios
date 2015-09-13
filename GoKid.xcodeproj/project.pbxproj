@@ -92,7 +92,6 @@
 		1DFBBE9C1B1C78DC00630440 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */; };
 		1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */; };
 		1DFBBEA21B1C8CC900630440 /* TeamAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */; };
-		405451B81B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405451B71B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift */; };
 		405451BA1B7D30FD0023DEC4 /* EditTimeAndDateFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405451B91B7D30FD0023DEC4 /* EditTimeAndDateFormVC.swift */; };
 		7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */; };
 		793374D01B558D820072FA13 /* RiderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793374CF1B558D820072FA13 /* RiderModel.swift */; };
@@ -228,7 +227,6 @@
 		1DFBBE9B1B1C78DC00630440 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpVC.swift; path = ViewControllers/SignUpVC.swift; sourceTree = "<group>"; };
 		1DFBBE9F1B1C8B5700630440 /* TeamAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamAccountVC.swift; path = ViewControllers/TeamAccountVC.swift; sourceTree = "<group>"; };
 		1DFBBEA11B1C8CC900630440 /* TeamAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAccountCell.swift; sourceTree = "<group>"; };
-		405451B71B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolOccurrenceListVC.swift; sourceTree = "<group>"; };
 		405451B91B7D30FD0023DEC4 /* EditTimeAndDateFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimeAndDateFormVC.swift; sourceTree = "<group>"; };
 		7903CA4F1B51F7D6000D9EE6 /* MapItineraryItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapItineraryItemView.swift; sourceTree = "<group>"; };
 		793374CF1B558D820072FA13 /* RiderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderModel.swift; sourceTree = "<group>"; };
@@ -682,7 +680,6 @@
 			children = (
 				793374D71B55CEFA0072FA13 /* CarpoolListVC.swift */,
 				04587D031B6D628000D00AE0 /* CarpoolEditVC.swift */,
-				405451B71B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift */,
 			);
 			name = CarpoolList;
 			sourceTree = "<group>";
@@ -951,7 +948,6 @@
 				796E69C51B4A6E5600DF8D43 /* BorderedView.swift in Sources */,
 				7903CA501B51F7D6000D9EE6 /* MapItineraryItemView.swift in Sources */,
 				7943CF451B55DC1D007F6F8A /* CarpoolInviteCell.swift in Sources */,
-				405451B81B7C4C830023DEC4 /* CarpoolOccurrenceListVC.swift in Sources */,
 				1DA789461B23C42700B391E8 /* OnboardVC.swift in Sources */,
 				405451BA1B7D30FD0023DEC4 /* EditTimeAndDateFormVC.swift in Sources */,
 				1D3554591B3FD14200044A3F /* DataMnager + Notification.swift in Sources */,

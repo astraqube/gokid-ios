@@ -95,9 +95,6 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
             //inviteVC.carpool = carpoolsDataSource[indexPath.row]
             //navigationController?.pushViewController(inviteVC, animated: true)
             
-            //var carpoolVC = vcWithID("CarpoolOccurrenceListVC") as! CarpoolOccurrenceListVC
-            //carpoolVC.carpool = carpoolsDataSource[indexPath.row]
-            //navigationController?.pushViewController(carpoolVC, animated: true)
             var vc = vcWithID("VolunteerVC") as! VolunteerVC
             vc.carpool = carpoolsDataSource[indexPath.row]
             vc.fromCarpoolList = true
