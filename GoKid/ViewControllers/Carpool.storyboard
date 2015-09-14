@@ -28,9 +28,9 @@
             <string>Raleway-Bold</string>
             <string>Raleway-Bold</string>
             <string>Raleway-Bold</string>
-            <string>Raleway-Bold</string>
         </mutableArray>
         <mutableArray key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
@@ -308,7 +308,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ID8-RD-3JP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
-                                <state key="normal" title="Send invites via text">
+                                <state key="normal" title="Send invites via text or email">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -316,20 +316,8 @@
                                     <action selector="chooseFromContactListButtonClick:" destination="8ha-wN-a1Z" eventType="touchUpInside" id="5Ti-eT-F5j"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="435-6I-WTU">
-                                <rect key="frame" x="44" y="390" width="232" height="44"/>
-                                <color key="backgroundColor" red="0.33333333333333331" green="0.72156862745098038" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
-                                <state key="normal" title="Send invites via email">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="InviteViaEmailButtomClick:" destination="8ha-wN-a1Z" eventType="touchUpInside" id="gGR-4m-6PM"/>
-                                </connections>
-                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EN-XQ-5KM">
-                                <rect key="frame" x="44" y="450" width="232" height="44"/>
+                                <rect key="frame" x="44" y="390" width="232" height="44"/>
                                 <color key="backgroundColor" red="0.69803921568627447" green="0.78431372549019607" blue="0.72549019607843135" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                                 <state key="normal" title="I'll do it later">
@@ -378,31 +366,25 @@
                         </subviews>
                         <color key="backgroundColor" red="0.89803921568627454" green="0.96470588235294119" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="7EN-XQ-5KM" firstAttribute="top" secondItem="435-6I-WTU" secondAttribute="bottom" constant="16" id="0XD-Fw-r1a"/>
                             <constraint firstItem="TwO-Zy-Jdy" firstAttribute="top" secondItem="zeF-Ge-WxQ" secondAttribute="bottom" id="0zd-SV-Mjd"/>
                             <constraint firstAttribute="centerX" secondItem="vPT-Dv-vNe" secondAttribute="centerX" id="4y6-os-LoF"/>
-                            <constraint firstItem="435-6I-WTU" firstAttribute="height" secondItem="lbb-15-oe2" secondAttribute="height" id="BCh-Cl-bSt"/>
-                            <constraint firstItem="435-6I-WTU" firstAttribute="top" secondItem="lbb-15-oe2" secondAttribute="bottom" constant="16" id="BNi-gz-alU"/>
+                            <constraint firstItem="7EN-XQ-5KM" firstAttribute="top" secondItem="lbb-15-oe2" secondAttribute="bottom" constant="16" id="DoK-6t-Ph9"/>
                             <constraint firstAttribute="centerX" secondItem="7EN-XQ-5KM" secondAttribute="centerX" id="E50-GI-VKC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lbb-15-oe2" secondAttribute="trailing" constant="28" id="ESu-J8-d0m"/>
                             <constraint firstItem="TwO-Zy-Jdy" firstAttribute="centerX" secondItem="zeF-Ge-WxQ" secondAttribute="centerX" id="I38-xY-clP"/>
+                            <constraint firstItem="7EN-XQ-5KM" firstAttribute="width" secondItem="lbb-15-oe2" secondAttribute="width" id="IWZ-bV-hsu"/>
                             <constraint firstAttribute="centerX" secondItem="F8R-AK-vEe" secondAttribute="centerX" id="Ler-tL-joq"/>
                             <constraint firstAttribute="centerX" secondItem="KjQ-Al-KrZ" secondAttribute="centerX" id="PeA-PP-aQp"/>
-                            <constraint firstItem="7EN-XQ-5KM" firstAttribute="height" secondItem="435-6I-WTU" secondAttribute="height" id="U3V-7g-sPt"/>
                             <constraint firstItem="T1y-kP-cgC" firstAttribute="leading" secondItem="9W8-Yu-FaE" secondAttribute="leadingMargin" id="UwI-5Z-b3d"/>
                             <constraint firstAttribute="centerX" secondItem="zeF-Ge-WxQ" secondAttribute="centerX" id="YCK-7h-nqM"/>
-                            <constraint firstItem="7EN-XQ-5KM" firstAttribute="width" secondItem="435-6I-WTU" secondAttribute="width" id="b0c-Z2-AND"/>
+                            <constraint firstItem="7EN-XQ-5KM" firstAttribute="height" secondItem="lbb-15-oe2" secondAttribute="height" id="YdY-QN-5dr"/>
                             <constraint firstItem="F8R-AK-vEe" firstAttribute="top" secondItem="KjQ-Al-KrZ" secondAttribute="bottom" id="bPM-ee-yBJ"/>
-                            <constraint firstItem="435-6I-WTU" firstAttribute="centerX" secondItem="lbb-15-oe2" secondAttribute="centerX" id="fem-tP-B2C"/>
-                            <constraint firstItem="435-6I-WTU" firstAttribute="width" secondItem="lbb-15-oe2" secondAttribute="width" id="gzR-RY-7NI"/>
                             <constraint firstAttribute="centerY" secondItem="F8R-AK-vEe" secondAttribute="centerY" id="iHR-6l-VjE"/>
                             <constraint firstItem="T1y-kP-cgC" firstAttribute="top" secondItem="fJ7-zl-HIy" secondAttribute="bottom" id="iyg-Ex-DK1"/>
                             <constraint firstItem="zeF-Ge-WxQ" firstAttribute="top" secondItem="fJ7-zl-HIy" secondAttribute="bottom" id="qAo-os-vNq"/>
-                            <constraint firstItem="435-6I-WTU" firstAttribute="width" secondItem="lbb-15-oe2" secondAttribute="width" id="rBI-1D-FpB"/>
                             <constraint firstItem="lbb-15-oe2" firstAttribute="top" secondItem="F8R-AK-vEe" secondAttribute="bottom" constant="32" id="sr3-EA-7b0"/>
                             <constraint firstItem="lbb-15-oe2" firstAttribute="leading" secondItem="9W8-Yu-FaE" secondAttribute="leadingMargin" constant="28" id="vNh-M6-fKb"/>
                             <constraint firstItem="KjQ-Al-KrZ" firstAttribute="top" secondItem="vPT-Dv-vNe" secondAttribute="bottom" constant="32" id="wdK-bn-BYk"/>
-                            <constraint firstItem="435-6I-WTU" firstAttribute="height" secondItem="lbb-15-oe2" secondAttribute="height" id="ySO-Wg-H71"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1137,12 +1119,6 @@
                                     <outlet property="delegate" destination="WDl-BW-E5k" id="WOd-yl-A0v"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqz-hX-7QP">
-                                <rect key="frame" x="264" y="20" width="40" height="40"/>
-                                <state key="normal" image="next_arrow">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IG-yj-YoZ">
                                 <rect key="frame" x="16" y="20" width="40" height="40"/>
                                 <constraints>
@@ -1233,36 +1209,60 @@
                                     <outlet property="delegate" destination="WDl-BW-E5k" id="RLK-2P-32C"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcD-2Q-xLc" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
+                                <rect key="frame" x="252" y="27" width="52" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="2lx-xk-sI7"/>
+                                    <constraint firstAttribute="width" constant="52" id="Aol-Sy-5TJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.07193221508" green="0.10898820469999999" blue="0.10898820469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.70196078429999997" green="0.7843137255" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.97254901959999995" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="u8g-on-OR9" firstAttribute="leading" secondItem="C97-ql-gLd" secondAttribute="leadingMargin" constant="-8" id="0qr-k6-bH1"/>
                             <constraint firstItem="7IG-yj-YoZ" firstAttribute="leading" secondItem="C97-ql-gLd" secondAttribute="leadingMargin" id="4D0-11-rru"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xcD-2Q-xLc" secondAttribute="trailing" id="5x8-kM-Idh"/>
                             <constraint firstItem="lpO-ln-zLt" firstAttribute="centerX" secondItem="ImU-yY-PAh" secondAttribute="centerX" id="6vZ-3Q-p4h"/>
                             <constraint firstItem="u8g-on-OR9" firstAttribute="top" secondItem="lpO-ln-zLt" secondAttribute="bottom" id="8UY-71-fHA"/>
-                            <constraint firstItem="rqz-hX-7QP" firstAttribute="centerY" secondItem="7IG-yj-YoZ" secondAttribute="centerY" id="8vS-sE-WTK"/>
                             <constraint firstItem="ImU-yY-PAh" firstAttribute="top" secondItem="1OO-lJ-oAG" secondAttribute="bottom" id="HSh-Uo-RDj"/>
                             <constraint firstItem="saY-N1-l3u" firstAttribute="top" secondItem="u8g-on-OR9" secondAttribute="bottom" id="Jg3-eD-Eld"/>
                             <constraint firstAttribute="centerX" secondItem="ImU-yY-PAh" secondAttribute="centerX" id="K1i-dG-Gaw"/>
-                            <constraint firstItem="rqz-hX-7QP" firstAttribute="top" secondItem="1OO-lJ-oAG" secondAttribute="bottom" id="LFu-VN-Wqa"/>
+                            <constraint firstItem="7IG-yj-YoZ" firstAttribute="top" secondItem="1OO-lJ-oAG" secondAttribute="bottom" id="Lm3-z8-0qU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u8g-on-OR9" secondAttribute="trailing" constant="-8" id="VjF-x7-xu4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="saY-N1-l3u" secondAttribute="trailing" id="Vk4-bt-ZYg"/>
+                            <constraint firstItem="xcD-2Q-xLc" firstAttribute="centerY" secondItem="7IG-yj-YoZ" secondAttribute="centerY" id="Xfr-fC-vBD"/>
                             <constraint firstItem="saY-N1-l3u" firstAttribute="leading" secondItem="C97-ql-gLd" secondAttribute="leadingMargin" id="Z3G-Y2-L5t"/>
                             <constraint firstItem="lpO-ln-zLt" firstAttribute="top" secondItem="ImU-yY-PAh" secondAttribute="bottom" id="c4L-wd-kGv"/>
                             <constraint firstItem="Jhz-Fb-BX6" firstAttribute="leading" secondItem="C97-ql-gLd" secondAttribute="leadingMargin" constant="-16" id="e0G-bw-BXU"/>
                             <constraint firstItem="Jhz-Fb-BX6" firstAttribute="top" secondItem="saY-N1-l3u" secondAttribute="bottom" constant="8" id="f0m-0D-Qxp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rqz-hX-7QP" secondAttribute="trailing" id="lta-ul-tqR"/>
                             <constraint firstItem="jtd-sa-Shm" firstAttribute="top" secondItem="Jhz-Fb-BX6" secondAttribute="bottom" id="mdU-bW-38e"/>
-                            <constraint firstItem="7IG-yj-YoZ" firstAttribute="width" secondItem="rqz-hX-7QP" secondAttribute="width" id="pMt-Yu-kFl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jhz-Fb-BX6" secondAttribute="trailing" constant="-16" id="v1y-K2-ZFu"/>
-                            <constraint firstItem="7IG-yj-YoZ" firstAttribute="height" secondItem="rqz-hX-7QP" secondAttribute="height" id="vqW-vx-32c"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="collectionView" destination="saY-N1-l3u" id="Xlp-IL-bUr"/>
                         <outlet property="leftButton" destination="7IG-yj-YoZ" id="36Z-Ak-o5t"/>
-                        <outlet property="rightButton" destination="rqz-hX-7QP" id="5D4-s8-2bu"/>
+                        <outlet property="rightButton" destination="xcD-2Q-xLc" id="gAI-Dv-xmd"/>
                         <outlet property="searchBarInput" destination="u8g-on-OR9" id="CQH-75-Zfp"/>
                         <outlet property="subtitleLabel" destination="lpO-ln-zLt" id="d8J-i0-hez"/>
                         <outlet property="tableView" destination="Jhz-Fb-BX6" id="jxD-RO-8Xd"/>

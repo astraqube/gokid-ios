@@ -26,7 +26,7 @@ class ContactCell: UITableViewCell {
     func loadPerson(p: Person) {
         person = p
 
-        phoneNumLabel.text = person.phoneDisplay
+        phoneNumLabel.text = person.contactDisplay
         nameLabel.text = person.fullName
 
         if person.selected {

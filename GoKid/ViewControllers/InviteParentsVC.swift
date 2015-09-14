@@ -45,7 +45,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         vc.carpool = self.carpool
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+/* DEPRECATED
     @IBAction func InviteViaEmailButtomClick(sender: AnyObject) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
@@ -54,7 +54,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
             self.showCannotSendMailErrorAlert()
         }
     }
-
+*/
     override func leftNavButtonTapped() {
         navigationController?.popViewControllerAnimated(true)
     }
@@ -64,7 +64,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         vc.carpool = self.carpool
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+/* DEPRECATED
     // MARK: Send Mail
     // --------------------------------------------------------------------------------------------
     
@@ -95,5 +95,5 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
         }
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
-
+*/
 }

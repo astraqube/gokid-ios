@@ -12,14 +12,19 @@ class Person: NSObject {
     var firstName: String?
     var lastName: String?
     var selected: Bool = false
-    var phoneNum: APPhoneWithLabel
+    var phoneNum: APPhoneWithLabel?
+    var email: String?
 
     override func isEqual(object: AnyObject?) -> Bool {
         if let person = object as? Person {
-            return person.phoneNum.phone == self.phoneNum.phone
-        } else {
-            return false
+            if person.phoneNum != nil && self.phoneNum != nil {
+                return person.phoneNum!.phone == self.phoneNum!.phone
+            }
+            if person.email != nil && self.email != nil {
+                return person.email! == self.email!
+            }
         }
+        return false
     }
 
     var fullName: String {
@@ -32,17 +37,30 @@ class Person: NSObject {
         if lastName != nil {
             return lastName!
         }
-        return phoneNum.phone
+        if phoneNum != nil {
+            return phoneNum!.phone
+        }
+        if email != nil {
+            return email!
+        }
+        return ""
     }
 
-    var phoneDisplay: String {
-        return "\(phoneNum.localizedLabel): \(phoneNum.phone)"
+    var contactDisplay: String {
+        if phoneNum != nil {
+            return "\(phoneNum!.localizedLabel): \(phoneNum!.phone)"
+        }
+        if email != nil {
+            return "email: \(email!)"
+        }
+        return ""
     }
 
-    init(firstName: String?, lastName: String?, phoneNum: APPhoneWithLabel) {
+    init(firstName: String?, lastName: String?, phoneNum: APPhoneWithLabel?, email: String?) {
         self.firstName = firstName
         self.lastName = lastName
         self.phoneNum = phoneNum
+        self.email = email
     }
 
 }
@@ -261,13 +279,17 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func getCurrentSelectedPhoneNumber() -> [String] {
-        var phoneNumbers = [String]()
+        var contacts = [String]()
         for obj in collectionDataSource {
             var person = obj as! Person
-            phoneNumbers.append(person.phoneNum.phone)
+            if person.phoneNum != nil {
+                contacts.append(person.phoneNum!.phone)
+            } else if person.email != nil {
+                contacts.append(person.email!)
+            }
         }
         
-        return phoneNumbers
+        return contacts
     }
 }
 
@@ -279,7 +301,7 @@ extension ContactPickerVC: UISearchBarDelegate {
             var data = [Person]()
             let addressBook = APAddressBook()
 
-            addressBook.fieldsMask = .Default | .PhonesWithLabels
+            addressBook.fieldsMask = .Default | .PhonesWithLabels | .Emails
             addressBook.sortDescriptors = [
                 NSSortDescriptor(key: "firstName", ascending: true),
                 NSSortDescriptor(key: "lastName", ascending: true)
@@ -288,6 +310,7 @@ extension ContactPickerVC: UISearchBarDelegate {
                 if query != "" {
                     let name = "\(contact.firstName) \(contact.lastName)"
                     let number = " ".join(contact.phones as! [String])
+                    let email = " ".join(contact.emails as! [String])
 
                     if name.lowercaseString.rangeOfString(query.lowercaseString) != nil {
                         return true
@@ -297,10 +320,14 @@ extension ContactPickerVC: UISearchBarDelegate {
                         return true
                     }
 
+                    if email.rangeOfString(query) != nil {
+                        return true
+                    }
+
                     return false
 
                 } else {
-                    return contact.phones.count > 0
+                    return contact.phones.count > 0 || contact.emails.count > 0
                 }
             }
             
@@ -313,7 +340,17 @@ extension ContactPickerVC: UISearchBarDelegate {
                                     var person = Person(
                                         firstName: c.firstName,
                                         lastName: c.lastName,
-                                        phoneNum: phone as! APPhoneWithLabel)
+                                        phoneNum: phone as? APPhoneWithLabel,
+                                        email: nil)
+                                    person.selected = self.collectionDataSource.containsObject(person)
+                                    data.append(person)
+                                }
+                                for email in c.emails {
+                                    var person = Person(
+                                        firstName: c.firstName,
+                                        lastName: c.lastName,
+                                        phoneNum: nil,
+                                        email: email as? String)
                                     person.selected = self.collectionDataSource.containsObject(person)
                                     data.append(person)
                                 }
@@ -321,12 +358,23 @@ extension ContactPickerVC: UISearchBarDelegate {
                         }
                     } else {
                         if query != "" {
-                            let phoneNumber = query.extractNumbers()
-                            if count(phoneNumber) >= 10 {
+                            if let phoneNumber = query.extractNumbers() {
+                                if count(phoneNumber) >= 10 {
+                                    var person = Person(
+                                        firstName: nil,
+                                        lastName: nil,
+                                        phoneNum: APPhoneWithLabel(phone: query, originalLabel: "Number", localizedLabel: "Number"),
+                                        email: nil)
+                                    person.selected = self.collectionDataSource.containsObject(person)
+                                    data.append(person)
+                                }
+                            }
+                            if query.isValidEmail() {
                                 var person = Person(
                                     firstName: nil,
                                     lastName: nil,
-                                    phoneNum: APPhoneWithLabel(phone: query, originalLabel: "Number", localizedLabel: "Number"))
+                                    phoneNum: nil,
+                                    email: query)
                                 person.selected = self.collectionDataSource.containsObject(person)
                                 data.append(person)
                             }

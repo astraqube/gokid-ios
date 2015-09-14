@@ -225,9 +225,17 @@ extension String {
         return NSString(data: data, encoding: NSUTF8StringEncoding) as! String
     }
 
-    func extractNumbers() -> String {
+    func extractNumbers() -> String? {
         let strArr = self.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
-        return "".join(strArr)
+        let numbers = "".join(strArr)
+        return numbers != "" ? numbers : nil
+    }
+
+    func isValidEmail() -> Bool {
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(self)
     }
 }
 
