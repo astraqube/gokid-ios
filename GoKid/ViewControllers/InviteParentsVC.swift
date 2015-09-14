@@ -20,11 +20,6 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // FIXME: temporary support for CarpoolEditVC's invocation
-        if carpool == nil {
-            carpool = userManager.currentCarpoolModel
-        }
     }
     
     override func viewWillAppear(animated: Bool) {

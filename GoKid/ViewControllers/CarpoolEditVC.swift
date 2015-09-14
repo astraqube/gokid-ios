@@ -97,7 +97,7 @@ class CarpoolEditVC: BaseFormVC {
         row.cellConfig["textLabel.color"] = labelColor
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
-        row.action.viewControllerStoryboardId = "InviteParentsVC"
+        row.action.viewControllerStoryboardId = "ContactPickerVC"
         row.disabled = !self.isCurrentUserAuthorized
         section.addFormRow(row)
 

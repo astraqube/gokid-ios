@@ -63,6 +63,11 @@ class Person: NSObject {
         self.email = email
     }
 
+    func matches(keywords: String) -> Bool {
+        if keywords == "" { return true }
+        let stack = "\(fullName) \(contactDisplay)"
+        return stack.lowercaseString.rangeOfString(keywords.lowercaseString) != nil
+    }
 }
 
 
@@ -81,6 +86,11 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     override func viewDidLoad() {
         super.viewDidLoad()
         tryUpdateTableView()
+
+        // FIXME: temporary support for CarpoolEditVC's invocation
+        if carpool == nil {
+            carpool = userManager.currentCarpoolModel
+        }
 
         self.subtitleLabel.text = carpool.descriptionString
     }
@@ -183,11 +193,15 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
             self.tableView.reloadData()
         }
     }
-    
+
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
         return tableHeaderSource as [AnyObject]
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+
     // MARK: UICollectionView DataSource
     // --------------------------------------------------------------------------------------------
     
@@ -296,7 +310,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
 extension ContactPickerVC: UISearchBarDelegate {
 
     func searchForContact(query: String) {
-        debounce(NSTimeInterval(0.5), queue: dispatch_get_main_queue()) {
+        debounce(NSTimeInterval(0.3), queue: dispatch_get_main_queue()) {
 
             var data = [Person]()
             let addressBook = APAddressBook()
@@ -320,7 +334,7 @@ extension ContactPickerVC: UISearchBarDelegate {
                         return true
                     }
 
-                    if email.rangeOfString(query) != nil {
+                    if email.lowercaseString.rangeOfString(query.lowercaseString) != nil {
                         return true
                     }
 
@@ -343,7 +357,9 @@ extension ContactPickerVC: UISearchBarDelegate {
                                         phoneNum: phone as? APPhoneWithLabel,
                                         email: nil)
                                     person.selected = self.collectionDataSource.containsObject(person)
-                                    data.append(person)
+                                    if person.matches(query) {
+                                        data.append(person)
+                                    }
                                 }
                                 for email in c.emails {
                                     var person = Person(
@@ -352,7 +368,9 @@ extension ContactPickerVC: UISearchBarDelegate {
                                         phoneNum: nil,
                                         email: email as? String)
                                     person.selected = self.collectionDataSource.containsObject(person)
-                                    data.append(person)
+                                    if person.matches(query) {
+                                        data.append(person)
+                                    }
                                 }
                             }
                         }
