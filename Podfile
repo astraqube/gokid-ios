@@ -1,6 +1,8 @@
 platform :ios, '8.0'
 
 # pod 'Onboard'
+pod 'Fabric'
+pod 'Crashlytics'
 pod 'GoogleMaps'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'

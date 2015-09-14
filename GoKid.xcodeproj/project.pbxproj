@@ -48,8 +48,6 @@
 		1D3F65251B208A9600CCF6A1 /* InviteParentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */; };
 		1D3F65271B20986C00CCF6A1 /* CarpoolSucceedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */; };
 		1D3F652D1B237F9E00CCF6A1 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */; };
-		1D533D1D1B29533600F848B8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D533D1B1B29533600F848B8 /* Fabric.framework */; };
-		1D533D1E1B29533600F848B8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D533D1C1B29533600F848B8 /* Crashlytics.framework */; };
 		1D7D8DF31B3A76D8002D29A5 /* DataManager + Carpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D8DF21B3A76D8002D29A5 /* DataManager + Carpool.swift */; };
 		1D891F171B23FFA0006FD961 /* ContactPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */; };
 		1D891F191B240051006FD961 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D891F181B240051006FD961 /* ContactCell.swift */; };
@@ -178,8 +176,6 @@
 		1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteParentsVC.swift; path = ViewControllers/InviteParentsVC.swift; sourceTree = "<group>"; };
 		1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarpoolSucceedVC.swift; path = ViewControllers/CarpoolSucceedVC.swift; sourceTree = "<group>"; };
 		1D3F652C1B237F9E00CCF6A1 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseVC.swift; path = ViewControllers/BaseVC.swift; sourceTree = "<group>"; };
-		1D533D1B1B29533600F848B8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		1D533D1C1B29533600F848B8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		1D7D8DF21B3A76D8002D29A5 /* DataManager + Carpool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataManager + Carpool.swift"; sourceTree = "<group>"; };
 		1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerVC.swift; sourceTree = "<group>"; };
 		1D891F181B240051006FD961 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -267,8 +263,6 @@
 				796E69CA1B4A6F1200DF8D43 /* CoreLocation.framework in Frameworks */,
 				796E69C81B4A6F0B00DF8D43 /* MapKit.framework in Frameworks */,
 				ECE57027C4889A619FFDC703 /* libPods.a in Frameworks */,
-				1D533D1E1B29533600F848B8 /* Crashlytics.framework in Frameworks */,
-				1D533D1D1B29533600F848B8 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,8 +660,6 @@
 			isa = PBXGroup;
 			children = (
 				794121E71B5B64F80012732A /* MessageUI.framework */,
-				1D533D1B1B29533600F848B8 /* Fabric.framework */,
-				1D533D1C1B29533600F848B8 /* Crashlytics.framework */,
 				796E69C91B4A6F1200DF8D43 /* CoreLocation.framework */,
 				796E69C71B4A6F0B00DF8D43 /* MapKit.framework */,
 				EF40D0E37CF42771C6294E4C /* libPods.a */,
@@ -899,7 +891,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
 		};
 		CD65D8EC25723919ABB980C6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
