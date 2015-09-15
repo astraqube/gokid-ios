@@ -15,7 +15,7 @@ class MainStackVC: IIViewDeckController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.registerForNotification("requestForUserToken", action: "popUpSignInView")
+        self.registerForNotification("requestForUserToken", action: "popUpLoginDigitsView")
         self.registerForNotification("gotInvited", action: "presentInvitationView")
         self.registerForNotification("requestForPhoneNumber", action: "popUpPhoneNumberView")
 
@@ -70,6 +70,20 @@ class MainStackVC: IIViewDeckController {
                 println(errorStr)
                 self.setWelcomeView()
             }
+        }
+    }
+
+    func popUpLoginDigitsView() {
+        var loginDigitsVC = vcWithID("LoginDigitsVC") as! LoginDigitsVC
+        loginDigitsVC.parentVC = self
+        loginDigitsVC.modalTransitionStyle = .CrossDissolve
+        loginDigitsVC.modalPresentationStyle = .OverCurrentContext
+        if self.presentedViewController != nil {
+            self.dismissViewControllerAnimated(true) {
+                self.presentViewController(loginDigitsVC, animated: true, completion: nil)
+            }
+        } else {
+            self.presentViewController(loginDigitsVC, animated: true, completion: nil)
         }
     }
 

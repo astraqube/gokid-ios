@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import DigitsKit
 
 let kGKPickup = "Arrive at "
 let kGKDropoff = "Depart from "
@@ -38,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKLoginButton.self
         
         // for fabric
-        Fabric.with([Crashlytics()])
+        Fabric.with([Crashlytics.self(), Digits.self()])
 
         // Default colors
         self.window?.tintColor = ColorManager.sharedInstance.color67C18B

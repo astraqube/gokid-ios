@@ -42,6 +42,7 @@ extension DataManager {
             "InviteInfoVC": true,
             "SignUpVC": true,
             "SignInVC": true,
+            "LoginDigitsVC": true,
             "PhoneNumberVC": true
         ]
         var onboard = [
