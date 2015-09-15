@@ -39,6 +39,7 @@
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
         </mutableArray>
         <mutableArray key="Raleway-SemiBold.ttf">
             <string>Raleway-SemiBold</string>
@@ -140,7 +141,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBg-5B-w7X" userLabel="Container View">
-                                <rect key="frame" x="16" y="45" width="288" height="479"/>
+                                <rect key="frame" x="16" y="27" width="288" height="482"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDF-kj-OMG">
                                         <rect key="frame" x="260" y="8" width="20" height="20"/>
@@ -199,10 +200,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdI-pv-oLX" userLabel="Form View">
-                                        <rect key="frame" x="24" y="223" width="240" height="216"/>
+                                        <rect key="frame" x="24" y="223" width="240" height="235"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRl-DH-fTd" userLabel="Photo View">
-                                                <rect key="frame" x="0.0" y="0.0" width="80" height="86"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="78"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="rUH-vq-aSI">
                                                         <rect key="frame" x="30" y="22" width="21" height="21"/>
@@ -212,16 +213,16 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXq-HB-fIH">
-                                                        <rect key="frame" x="10" y="63" width="60" height="15"/>
+                                                        <rect key="frame" x="10" y="55" width="60" height="15"/>
                                                         <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f0d-5t-iJR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="86"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="78"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfg-di-3nH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="86"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="78"/>
                                                         <state key="normal">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -248,9 +249,9 @@
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="foF-P1-b1I" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                                <rect key="frame" x="80" y="0.0" width="160" height="44"/>
+                                                <rect key="frame" x="80" y="0.0" width="160" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="MlE-B1-J1m"/>
+                                                    <constraint firstAttribute="height" constant="40" id="MlE-B1-J1m"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -270,7 +271,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MFB-9J-IvI" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                                <rect key="frame" x="80" y="43" width="160" height="44"/>
+                                                <rect key="frame" x="80" y="39" width="160" height="40"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <userDefinedRuntimeAttributes>
@@ -288,8 +289,8 @@
                                                     <outlet property="delegate" destination="Vno-EF-vFD" id="h4R-VQ-pit"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6o-h6-gZd" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="86" width="240" height="44"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6o-h6-gZd" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="78" width="240" height="40"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <userDefinedRuntimeAttributes>
@@ -308,7 +309,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Create Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ndm-3O-FhG" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="129" width="240" height="44"/>
+                                                <rect key="frame" x="0.0" y="156" width="240" height="40"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                 <userDefinedRuntimeAttributes>
@@ -327,7 +328,7 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ete-Y5-XQS">
-                                                <rect key="frame" x="0.0" y="172" width="240" height="44"/>
+                                                <rect key="frame" x="0.0" y="195" width="240" height="40"/>
                                                 <color key="backgroundColor" red="0.60392156862745094" green="0.71764705882352942" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                                                 <state key="normal" title="I'm Done">
@@ -335,17 +336,38 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C46-mH-jev" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="117" width="240" height="40"/>
+                                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.60392156860000001" green="0.71764705880000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Vno-EF-vFD" id="yA8-93-Ejn"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="C46-mH-jev" firstAttribute="top" secondItem="E6o-h6-gZd" secondAttribute="bottom" constant="-1" id="3Cf-mD-egU"/>
                                             <constraint firstItem="E6o-h6-gZd" firstAttribute="height" secondItem="foF-P1-b1I" secondAttribute="height" id="5i4-N2-6rr"/>
+                                            <constraint firstItem="C46-mH-jev" firstAttribute="width" secondItem="UdI-pv-oLX" secondAttribute="width" id="7EG-bg-JSw"/>
                                             <constraint firstItem="Ete-Y5-XQS" firstAttribute="width" secondItem="UdI-pv-oLX" secondAttribute="width" id="7hK-gA-GM0"/>
                                             <constraint firstItem="MFB-9J-IvI" firstAttribute="height" secondItem="foF-P1-b1I" secondAttribute="height" id="85s-tG-gHn"/>
                                             <constraint firstAttribute="centerX" secondItem="Ndm-3O-FhG" secondAttribute="centerX" id="ASI-Gb-cbB"/>
-                                            <constraint firstItem="Ndm-3O-FhG" firstAttribute="top" secondItem="E6o-h6-gZd" secondAttribute="bottom" constant="-1" id="EDg-li-Z7E"/>
                                             <constraint firstItem="Ete-Y5-XQS" firstAttribute="top" secondItem="Ndm-3O-FhG" secondAttribute="bottom" constant="-1" id="Ex2-id-7Ah"/>
                                             <constraint firstItem="MFB-9J-IvI" firstAttribute="top" secondItem="foF-P1-b1I" secondAttribute="bottom" constant="-1" id="HsD-O5-G7r"/>
                                             <constraint firstAttribute="centerX" secondItem="E6o-h6-gZd" secondAttribute="centerX" id="KHs-Y2-3RJ"/>
                                             <constraint firstItem="E6o-h6-gZd" firstAttribute="width" secondItem="UdI-pv-oLX" secondAttribute="width" id="Kim-gK-LH9"/>
+                                            <constraint firstItem="C46-mH-jev" firstAttribute="height" secondItem="foF-P1-b1I" secondAttribute="height" id="RiG-JI-Q58"/>
                                             <constraint firstAttribute="trailing" secondItem="MFB-9J-IvI" secondAttribute="trailing" id="UmE-5U-Q0a"/>
                                             <constraint firstItem="NRl-DH-fTd" firstAttribute="leading" secondItem="UdI-pv-oLX" secondAttribute="leading" id="Vf7-Ak-tP2"/>
                                             <constraint firstItem="E6o-h6-gZd" firstAttribute="top" secondItem="NRl-DH-fTd" secondAttribute="bottom" id="aUk-h4-7L6"/>
@@ -354,7 +376,9 @@
                                             <constraint firstAttribute="trailing" secondItem="foF-P1-b1I" secondAttribute="trailing" id="fIU-1A-bvg"/>
                                             <constraint firstItem="foF-P1-b1I" firstAttribute="leading" secondItem="NRl-DH-fTd" secondAttribute="trailing" id="h0y-GI-6CY"/>
                                             <constraint firstItem="Ete-Y5-XQS" firstAttribute="height" secondItem="foF-P1-b1I" secondAttribute="height" id="jOB-NT-trc"/>
+                                            <constraint firstItem="Ndm-3O-FhG" firstAttribute="top" secondItem="C46-mH-jev" secondAttribute="bottom" constant="-1" id="kue-uJ-onh"/>
                                             <constraint firstItem="foF-P1-b1I" firstAttribute="width" secondItem="MFB-9J-IvI" secondAttribute="width" id="oPW-xG-sKj"/>
+                                            <constraint firstAttribute="centerX" secondItem="C46-mH-jev" secondAttribute="centerX" id="qWs-cU-73y"/>
                                             <constraint firstItem="Ndm-3O-FhG" firstAttribute="width" secondItem="UdI-pv-oLX" secondAttribute="width" id="tkh-CV-Vtn"/>
                                             <constraint firstAttribute="bottom" secondItem="Ete-Y5-XQS" secondAttribute="bottom" id="vN5-gt-JxK"/>
                                             <constraint firstItem="E6o-h6-gZd" firstAttribute="top" secondItem="MFB-9J-IvI" secondAttribute="bottom" constant="-1" id="xFp-I8-W3x"/>
@@ -378,7 +402,7 @@
                                     <constraint firstItem="PMj-ko-cCA" firstAttribute="top" secondItem="bj4-o8-EGc" secondAttribute="bottom" constant="16" id="ZbJ-zK-KqL"/>
                                     <constraint firstItem="bj4-o8-EGc" firstAttribute="top" secondItem="WRO-Kt-nX3" secondAttribute="bottom" constant="16" id="Zet-JW-eoU"/>
                                     <constraint firstItem="PMj-ko-cCA" firstAttribute="width" secondItem="bj4-o8-EGc" secondAttribute="width" id="Zzw-IO-vhX"/>
-                                    <constraint firstAttribute="bottom" secondItem="UdI-pv-oLX" secondAttribute="bottom" constant="40" id="atH-da-JqL"/>
+                                    <constraint firstAttribute="bottom" secondItem="UdI-pv-oLX" secondAttribute="bottom" constant="24" id="atH-da-JqL"/>
                                     <constraint firstItem="bj4-o8-EGc" firstAttribute="leading" secondItem="FBg-5B-w7X" secondAttribute="leading" constant="24" id="dkR-DZ-T4G"/>
                                     <constraint firstItem="Vsz-aJ-nLp" firstAttribute="leading" secondItem="1h8-c2-pwj" secondAttribute="trailing" constant="4" id="igh-5b-udD"/>
                                     <constraint firstItem="RPz-dq-EWX" firstAttribute="centerY" secondItem="Vsz-aJ-nLp" secondAttribute="centerY" id="l4C-lU-RHa"/>
@@ -391,7 +415,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcf-Ww-BsP">
-                                <rect key="frame" x="69" y="538" width="125" height="17"/>
+                                <rect key="frame" x="69" y="523" width="125" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="KRd-9x-k5x"/>
                                 </constraints>
@@ -400,7 +424,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sh6-Fk-LeK">
-                                <rect key="frame" x="202" y="532" width="49" height="30"/>
+                                <rect key="frame" x="202" y="517" width="49" height="30"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -414,7 +438,7 @@
                         <constraints>
                             <constraint firstItem="FBg-5B-w7X" firstAttribute="leading" secondItem="J16-Md-aeY" secondAttribute="leadingMargin" id="1RD-z4-yrp"/>
                             <constraint firstItem="jcf-Ww-BsP" firstAttribute="centerY" secondItem="Sh6-Fk-LeK" secondAttribute="centerY" id="9MW-TQ-DxJ"/>
-                            <constraint firstAttribute="centerY" secondItem="FBg-5B-w7X" secondAttribute="centerY" id="Gcf-HU-fjF"/>
+                            <constraint firstAttribute="centerY" secondItem="FBg-5B-w7X" secondAttribute="centerY" constant="16" id="Gcf-HU-fjF"/>
                             <constraint firstItem="jcf-Ww-BsP" firstAttribute="centerX" secondItem="FBg-5B-w7X" secondAttribute="centerX" constant="-28.5" id="UP4-c7-8fV"/>
                             <constraint firstItem="jcf-Ww-BsP" firstAttribute="top" secondItem="FBg-5B-w7X" secondAttribute="bottom" constant="14" id="Zvi-OP-BJR"/>
                             <constraint firstItem="Sh6-Fk-LeK" firstAttribute="leading" secondItem="jcf-Ww-BsP" secondAttribute="trailing" constant="8" id="aJX-sD-U7F"/>
@@ -423,12 +447,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="E6o-h6-gZd" id="lGW-FY-0NO"/>
+                        <outlet property="emailTextField" destination="C46-mH-jev" id="sHQ-Ck-arW"/>
                         <outlet property="fbloginButton" destination="PMj-ko-cCA" id="Xtt-Cv-APq"/>
                         <outlet property="firstNameTextField" destination="foF-P1-b1I" id="yYB-5j-Axf"/>
                         <outlet property="lastNameTextField" destination="MFB-9J-IvI" id="UNz-Uh-O4U"/>
                         <outlet property="leftButton" destination="eDF-kj-OMG" id="Wwc-X6-Yfa"/>
                         <outlet property="passwordTextField" destination="Ndm-3O-FhG" id="AbN-hZ-8JM"/>
+                        <outlet property="phoneTextField" destination="E6o-h6-gZd" id="H6u-NV-s9Q"/>
                         <outlet property="profileImageView" destination="f0d-5t-iJR" id="GBa-og-Lzi"/>
                         <outlet property="rightButton" destination="Ete-Y5-XQS" id="J4K-UJ-vYi"/>
                     </connections>
@@ -450,7 +475,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="07C-7C-CQd" userLabel="Container View">
-                                <rect key="frame" x="16" y="83" width="288" height="402"/>
+                                <rect key="frame" x="16" y="81" width="288" height="374"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dV4-yc-fSm">
                                         <rect key="frame" x="115" y="40" width="59" height="26"/>
@@ -496,9 +521,9 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9kG-eV-I0f" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                        <rect key="frame" x="24" y="175" width="240" height="44"/>
+                                        <rect key="frame" x="24" y="175" width="240" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="c6H-TX-har"/>
+                                            <constraint firstAttribute="height" constant="40" id="c6H-TX-har"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -518,10 +543,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pWV-f0-y4s" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                        <rect key="frame" x="24" y="218" width="240" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="Fwt-jn-UTp"/>
-                                        </constraints>
+                                        <rect key="frame" x="24" y="214" width="240" height="40"/>
                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
@@ -550,11 +572,8 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwV-Ke-6dt">
-                                        <rect key="frame" x="24" y="318" width="240" height="44"/>
+                                        <rect key="frame" x="24" y="310" width="240" height="40"/>
                                         <color key="backgroundColor" red="0.60392156860000001" green="0.71764705880000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="AAI-oA-WJd"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                                         <state key="normal" title="I'm Done">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -562,7 +581,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8u-i4-Jfl">
-                                        <rect key="frame" x="24" y="278" width="80" height="24"/>
+                                        <rect key="frame" x="24" y="270" width="80" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="qHn-WK-rrH"/>
                                         </constraints>
@@ -588,12 +607,14 @@
                                     <constraint firstItem="viT-A0-80s" firstAttribute="leading" secondItem="07C-7C-CQd" secondAttribute="leading" constant="24" id="FUj-Qb-JWF"/>
                                     <constraint firstAttribute="centerX" secondItem="o5g-U5-qOd" secondAttribute="centerX" id="Fb6-Z6-Zb5"/>
                                     <constraint firstItem="o5g-U5-qOd" firstAttribute="leading" secondItem="07C-7C-CQd" secondAttribute="leading" constant="24" id="FdP-Dp-SdV"/>
+                                    <constraint firstItem="XwV-Ke-6dt" firstAttribute="height" secondItem="9kG-eV-I0f" secondAttribute="height" id="GLY-3m-NBg"/>
                                     <constraint firstItem="9kG-eV-I0f" firstAttribute="width" secondItem="o5g-U5-qOd" secondAttribute="width" id="H9a-8b-P5e"/>
+                                    <constraint firstItem="9kG-eV-I0f" firstAttribute="height" secondItem="pWV-f0-y4s" secondAttribute="height" id="NzH-7F-nV3"/>
                                     <constraint firstItem="4cW-F2-2el" firstAttribute="top" secondItem="o5g-U5-qOd" secondAttribute="bottom" constant="16" id="SIu-0k-oYt"/>
                                     <constraint firstItem="kr8-Jd-UQl" firstAttribute="top" secondItem="07C-7C-CQd" secondAttribute="top" constant="8" id="VKt-G8-adN"/>
                                     <constraint firstItem="j8u-i4-Jfl" firstAttribute="top" secondItem="pWV-f0-y4s" secondAttribute="bottom" constant="16" id="YOD-12-KYe"/>
                                     <constraint firstItem="j8u-i4-Jfl" firstAttribute="leading" secondItem="pWV-f0-y4s" secondAttribute="leading" id="aT4-1u-EaZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="XwV-Ke-6dt" secondAttribute="bottom" constant="40" id="dL6-Bg-bLO"/>
+                                    <constraint firstAttribute="bottom" secondItem="XwV-Ke-6dt" secondAttribute="bottom" constant="24" id="dL6-Bg-bLO"/>
                                     <constraint firstItem="viT-A0-80s" firstAttribute="centerY" secondItem="4cW-F2-2el" secondAttribute="centerY" id="fNB-sY-bLg"/>
                                     <constraint firstAttribute="trailing" secondItem="o5g-U5-qOd" secondAttribute="trailing" constant="24" id="frw-9r-93Y"/>
                                     <constraint firstAttribute="centerX" secondItem="pWV-f0-y4s" secondAttribute="centerX" id="gd9-S4-X0V"/>
@@ -609,7 +630,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wht-uP-zah">
-                                <rect key="frame" x="47" y="500" width="163" height="17"/>
+                                <rect key="frame" x="47" y="470" width="163" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="T5r-j8-NEY"/>
                                 </constraints>
@@ -618,7 +639,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LW4-Mh-LRL">
-                                <rect key="frame" x="218" y="493" width="56" height="30"/>
+                                <rect key="frame" x="218" y="463" width="56" height="30"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -635,7 +656,7 @@
                             <constraint firstItem="Wht-uP-zah" firstAttribute="top" secondItem="07C-7C-CQd" secondAttribute="bottom" constant="15" id="9Pd-Cm-fVN"/>
                             <constraint firstItem="Wht-uP-zah" firstAttribute="centerY" secondItem="LW4-Mh-LRL" secondAttribute="centerY" id="IWm-Qf-FFI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="07C-7C-CQd" secondAttribute="trailing" id="NuE-zU-yOh"/>
-                            <constraint firstAttribute="centerY" secondItem="07C-7C-CQd" secondAttribute="centerY" id="f9O-tc-Vsf"/>
+                            <constraint firstAttribute="centerY" secondItem="07C-7C-CQd" secondAttribute="centerY" constant="16" id="f9O-tc-Vsf"/>
                             <constraint firstAttribute="centerX" secondItem="07C-7C-CQd" secondAttribute="centerX" id="ggG-NY-Fti"/>
                             <constraint firstItem="LW4-Mh-LRL" firstAttribute="leading" secondItem="Wht-uP-zah" secondAttribute="trailing" constant="8" id="j38-Id-InU"/>
                         </constraints>
@@ -665,7 +686,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxL-XA-BpY" userLabel="Container View">
-                                <rect key="frame" x="16" y="156" width="288" height="257"/>
+                                <rect key="frame" x="16" y="152" width="288" height="233"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBj-X8-nUi">
                                         <rect key="frame" x="260" y="8" width="20" height="20"/>
@@ -690,12 +711,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nx1-xB-iYt" userLabel="Form View">
-                                        <rect key="frame" x="24" y="130" width="240" height="87"/>
+                                        <rect key="frame" x="24" y="130" width="240" height="79"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bue-Ij-qII" customClass="PaddingTextField" customModule="GoKid" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="99B-hf-l4K"/>
+                                                    <constraint firstAttribute="height" constant="40" id="99B-hf-l4K"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -715,10 +736,10 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPI-6e-jI3">
-                                                <rect key="frame" x="0.0" y="43" width="240" height="44"/>
+                                                <rect key="frame" x="0.0" y="39" width="240" height="40"/>
                                                 <color key="backgroundColor" red="0.60392156860000001" green="0.71764705880000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
-                                                <state key="normal" title="Send Verification Code">
+                                                <state key="normal" title="Save">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -746,7 +767,7 @@
                                     <constraint firstAttribute="trailing" secondItem="8nI-QT-Lig" secondAttribute="trailing" constant="24" id="TNp-qc-kQK"/>
                                     <constraint firstItem="8nI-QT-Lig" firstAttribute="width" secondItem="Nx1-xB-iYt" secondAttribute="width" id="Tms-E8-e0i"/>
                                     <constraint firstAttribute="centerX" secondItem="ntB-4j-Bo9" secondAttribute="centerX" id="XUd-Bd-a0s"/>
-                                    <constraint firstAttribute="bottom" secondItem="Nx1-xB-iYt" secondAttribute="bottom" constant="40" id="cI5-Yx-K7o"/>
+                                    <constraint firstAttribute="bottom" secondItem="Nx1-xB-iYt" secondAttribute="bottom" constant="24" id="cI5-Yx-K7o"/>
                                     <constraint firstItem="Nx1-xB-iYt" firstAttribute="width" secondItem="8nI-QT-Lig" secondAttribute="width" id="h3D-tM-u2J"/>
                                     <constraint firstAttribute="trailing" secondItem="DBj-X8-nUi" secondAttribute="trailing" constant="8" id="jrM-ed-J6s"/>
                                     <constraint firstItem="DBj-X8-nUi" firstAttribute="top" secondItem="gxL-XA-BpY" secondAttribute="top" constant="8" id="qFA-KA-1OQ"/>
@@ -759,7 +780,7 @@
                             <constraint firstItem="gxL-XA-BpY" firstAttribute="leading" secondItem="AU6-QP-aNL" secondAttribute="leadingMargin" id="K7f-og-eyF"/>
                             <constraint firstAttribute="centerX" secondItem="gxL-XA-BpY" secondAttribute="centerX" id="PXx-TX-E9s"/>
                             <constraint firstItem="gxL-XA-BpY" firstAttribute="trailing" secondItem="AU6-QP-aNL" secondAttribute="trailingMargin" id="cRp-oF-SRA"/>
-                            <constraint firstAttribute="centerY" secondItem="gxL-XA-BpY" secondAttribute="centerY" id="cy8-4S-sEo"/>
+                            <constraint firstAttribute="centerY" secondItem="gxL-XA-BpY" secondAttribute="centerY" constant="16" id="cy8-4S-sEo"/>
                         </constraints>
                     </view>
                     <connections>

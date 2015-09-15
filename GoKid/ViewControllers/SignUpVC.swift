@@ -14,6 +14,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var lastNameTextField: PaddingTextField!
     @IBOutlet weak var firstNameTextField: PaddingTextField!
+    @IBOutlet weak var phoneTextField: PaddingTextField!
     @IBOutlet weak var emailTextField: PaddingTextField!
     @IBOutlet weak var passwordTextField: PaddingTextField!
     @IBOutlet weak var fbloginButton: FBSDKLoginButton!
@@ -27,6 +28,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
 
         firstNameTextField.keyboardType = .NamePhonePad
         lastNameTextField.keyboardType = .NamePhonePad
+        phoneTextField.keyboardType = .PhonePad
         emailTextField.keyboardType = .EmailAddress
     }
 
@@ -45,6 +47,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
 
     override func rightNavButtonTapped() {
         var signupForm = SignupForm()
+        signupForm.phoneNum = phoneTextField.text
         signupForm.email = emailTextField.text
         signupForm.firstName = firstNameTextField.text
         signupForm.lastName = lastNameTextField.text
@@ -139,6 +142,11 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         }
 
         if textField == self.lastNameTextField {
+            self.phoneTextField.becomeFirstResponder()
+            return false
+        }
+
+        if textField == self.phoneTextField {
             self.emailTextField.becomeFirstResponder()
             return false
         }
