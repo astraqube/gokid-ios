@@ -23,8 +23,6 @@ class BaseVC: UIViewController {
     var largeLeftButton: UIButton?
     var largeRightButton: UIButton?
     
-    var keyBoardMoveUp : CGFloat = 100
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,11 +77,15 @@ class BaseVC: UIViewController {
     }
     
     func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= keyBoardMoveUp
+        if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y -= keyboardSize.height
+        }
     }
     
     func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += keyBoardMoveUp
+        if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+        }
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
