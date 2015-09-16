@@ -53,12 +53,12 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-//        setupTableView()
-//        setupLoginButton()
-//        setUpLogoutButton()
-//        refreshUIIfNeeded()
+
+        if model.thumURL != "" && profileImageView.image == nil {
+            ImageManager.sharedInstance.setImageToView(profileImageView, urlStr: model.thumURL)
+        }
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -135,8 +135,9 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         row.cellConfig["textField.font"] = fontValue
         row.cellConfig["textField.textColor"] = colorLabel
         row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
-        row.required = true
         row.value = model.email
+        row.required = sourceCellType == .EditUser
+        row.hidden = sourceCellType != .EditUser
         section.addFormRow(row)
 
         row = XLFormRowDescriptor(tag: Tags.Password.rawValue, rowType: XLFormRowDescriptorTypePassword, title: Tags.Password.rawValue)
@@ -145,115 +146,107 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         row.cellConfig["textField.font"] = fontValue
         row.cellConfig["textField.textColor"] = colorLabel
         row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
-        row.required = true
-        row.value = model.passWord
+        row.hidden = sourceCellType != .EditUser
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.Phone.rawValue, rowType: XLFormRowDescriptorTypePhone, title: Tags.Phone.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        row.cellConfig["textField.font"] = fontValue
+        row.cellConfig["textField.textColor"] = colorLabel
+        row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
+        row.value = model.phoneNumber
+        row.hidden = sourceCellType == .EditMember
         section.addFormRow(row)
 
         if sourceCellType == .EditUser {
-            row = XLFormRowDescriptor(tag: Tags.Phone.rawValue, rowType: XLFormRowDescriptorTypePhone, title: Tags.Phone.rawValue)
-            row.cellConfig["textLabel.font"] = fontLabel
-            row.cellConfig["textLabel.color"] = colorLabel
-            row.cellConfig["textField.font"] = fontValue
-            row.cellConfig["textField.textColor"] = colorLabel
-            row.cellConfig["textField.textAlignment"] =  NSTextAlignment.Right.rawValue
-            if sourceCellType == .EditUser {
-                // ensure phone verification flow
-                row.cellConfig["textField.enabled"] = false
-            }
-            row.value = model.phoneNumber
-            section.addFormRow(row)
-
             section.footerTitle = "You'll be notified when it's your turn to drive, your kids have arrived safely and when other parents are talking to you."
         }
 
         form.addFormSection(section)
+/*
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: Tags.CanManage.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.CanManage.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.Driver.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Driver.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        form.addFormSection(section)
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+        
+        row = XLFormRowDescriptor(tag: Tags.EmailNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.EmailNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.SMSNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.SMSNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.PushNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.PushNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        form.addFormSection(section)
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+
+        row = XLFormRowDescriptor(tag: Tags.AllTeamNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.AllTeamNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+        
+        row = XLFormRowDescriptor(tag: Tags.IllBeDrivingNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.IllBeDrivingNotification.rawValue)
+        row.cellConfig["textLabel.font"] = fontLabel
+        row.cellConfig["textLabel.color"] = colorLabel
+        // row.value =
+        section.addFormRow(row)
+
+        form.addFormSection(section)
+*/
+
+        section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
 
         if sourceCellType == .EditUser {
-            section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
-
-            row = XLFormRowDescriptor(tag: Tags.CanManage.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.CanManage.rawValue)
-            row.cellConfig["textLabel.font"] = fontLabel
-            row.cellConfig["textLabel.color"] = colorLabel
-            // row.value =
-            section.addFormRow(row)
-
-            row = XLFormRowDescriptor(tag: Tags.Driver.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Driver.rawValue)
-            row.cellConfig["textLabel.font"] = fontLabel
-            row.cellConfig["textLabel.color"] = colorLabel
-            // row.value =
-            section.addFormRow(row)
-
-            form.addFormSection(section)
-
-            section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
-            
-            row = XLFormRowDescriptor(tag: Tags.EmailNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.EmailNotification.rawValue)
-            row.cellConfig["textLabel.font"] = fontLabel
-            row.cellConfig["textLabel.color"] = colorLabel
-            // row.value =
-            section.addFormRow(row)
-
-            row = XLFormRowDescriptor(tag: Tags.SMSNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.SMSNotification.rawValue)
-            row.cellConfig["textLabel.font"] = fontLabel
-            row.cellConfig["textLabel.color"] = colorLabel
-            // row.value =
-            section.addFormRow(row)
-
-            row = XLFormRowDescriptor(tag: Tags.PushNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.PushNotification.rawValue)
-            row.cellConfig["textLabel.font"] = fontLabel
-            row.cellConfig["textLabel.color"] = colorLabel
-            // row.value =
-            section.addFormRow(row)
-
-            form.addFormSection(section)
-
-            section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
-
-            row = XLFormRowDescriptor(tag: Tags.AllTeamNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.AllTeamNotification.rawValue)
-            row.cellConfig["textLabel.font"] = fontLabel
-            row.cellConfig["textLabel.color"] = colorLabel
-            // row.value =
-            section.addFormRow(row)
-            
-            row = XLFormRowDescriptor(tag: Tags.IllBeDrivingNotification.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.IllBeDrivingNotification.rawValue)
-            row.cellConfig["textLabel.font"] = fontLabel
-            row.cellConfig["textLabel.color"] = colorLabel
-            // row.value =
-            section.addFormRow(row)
-
-            form.addFormSection(section)
-
-            section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
-            
             row = XLFormRowDescriptor(tag: Tags.Logout.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.Logout.rawValue)
             row.cellConfig["textLabel.font"] = fontValue
             row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
             row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
             row.action.formSelector = "logout:"
             section.addFormRow(row)
+        }
 
-            form.addFormSection(section)
-
-        } else if sourceCellType == .EditMember {
-            section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
-
+        if sourceCellType == .EditMember {
             row = XLFormRowDescriptor(tag: Tags.RemoveMember.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.RemoveMember.rawValue)
             row.cellConfig["textLabel.font"] = fontValue
             row.cellConfig["textLabel.color"] = colorManager.colorF9FCF5
             row.cellConfigAtConfigure["backgroundColor"] = colorManager.colorDangerRed
             row.action.formSelector = "removeMember:"
             section.addFormRow(row)
-
-            form.addFormSection(section)
-
         }
+
+        form.addFormSection(section)
 
         self.form = form
         self.form.delegate = self
 
-        self.fieldReactorAvatar()
         self.fieldReactorRole(self.model.role == RoleTypeChild)
-        self.fieldReactorLoginFields(self.sourceCellType == .AddMember || self.sourceCellType == .EditMember)
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -278,27 +271,8 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 
     // MARK: Field Reactors
 
-    func fieldReactorLoginFields(condition: Bool) {
-        let emailCell = self.form.formRowWithTag(Tags.Email.rawValue)
-        let passwordCell = self.form.formRowWithTag(Tags.Password.rawValue)
-
-        emailCell?.required = !condition
-        emailCell?.hidden = condition
-
-        passwordCell?.required = !condition
-        passwordCell?.hidden = condition
-
-        self.updateFormRow(emailCell)
-        self.updateFormRow(passwordCell)
-    }
-
-    func fieldReactorAvatar() {
-        if self.model.thumURL != "" && self.profileImageView.image == nil {
-            ImageManager.sharedInstance.setImageToView(self.profileImageView, urlStr: self.model.thumURL)
-        }
-    }
-
     func fieldReactorRole(condition: Bool) {
+        /*
         let canManageCell = self.form.formRowWithTag(Tags.CanManage.rawValue)
         let driverCell = self.form.formRowWithTag(Tags.Driver.rawValue)
         let illBeDrivingCell = self.form.formRowWithTag(Tags.IllBeDrivingNotification.rawValue)
@@ -310,6 +284,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         self.updateFormRow(canManageCell)
         self.updateFormRow(driverCell)
         self.updateFormRow(illBeDrivingCell)
+        */
     }
 
     // MARK: UIImagePickerControllerDelegate
@@ -464,8 +439,11 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
         let formData = self.form.formValues()
         var signupForm = SignupForm()
 
-        signupForm.passwordConfirm = formData[Tags.Password.rawValue] as! String
-        signupForm.password = formData[Tags.Password.rawValue] as! String
+        if let password = formData[Tags.Password.rawValue] as? String {
+            signupForm.passwordConfirm = password
+            signupForm.password = password
+        }
+
         signupForm.firstName = formData[Tags.FirstName.rawValue] as! String
         signupForm.lastName = formData[Tags.LastName.rawValue] as! String
         signupForm.phoneNum = formData[Tags.Phone.rawValue] as! String
