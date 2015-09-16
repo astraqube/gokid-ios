@@ -24,35 +24,15 @@ class BaseFormVC: XLFormViewController {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     
-    var largeLeftButton: UIButton?
-    var largeRightButton: UIButton?
-    
     override func viewDidLoad() {
         self.initForm()
         super.viewDidLoad()
-        addLargeNavigationButton()
 
         // Get rid of navbar border
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
 
-    func addLargeNavigationButton() {
-        var buttonW: CGFloat = 40
-        var buttonH: CGFloat = 36
-        var windowW = userManager.windowW
-        largeLeftButton = UIButton(frame: CGRectMake(0.0, 20.0, buttonW, buttonH))
-        largeRightButton = UIButton(frame: CGRectMake(windowW-buttonW, 20.0, buttonW, buttonH))
-        largeLeftButton?.addTarget(self, action: "leftNavButtonTapped", forControlEvents: .TouchUpInside)
-        largeRightButton?.addTarget(self, action: "rightNavButtonTapped", forControlEvents: .TouchUpInside)
-        if leftButton != nil {
-            view.insertSubview(largeLeftButton!, belowSubview: leftButton)
-        }
-        if rightButton != nil {
-            view.insertSubview(largeRightButton!, belowSubview: rightButton)
-        }
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
