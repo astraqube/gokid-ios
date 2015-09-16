@@ -60,8 +60,9 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
     }
     
     func joinNowButtonHandler() {
-        var invitedInfoVC = vcWithID("InviteInfoVC")
-        self.navigationController?.pushViewController(invitedInfoVC, animated: true)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let mainController = appDelegate.window!.rootViewController as! MainStackVC
+        mainController.popUpSignUpView()
     }
     
     // MARK: Alert View
@@ -137,21 +138,21 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
         signinButton.layer.borderWidth = 1.0
         signinButton.layer.cornerRadius = 3.0
         onboardingVC.view.addSubview(signinButton)
-        signinButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 120)
+        signinButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 16)
         signinButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
 
-        var invitedButton = UIButton(frame: rect)
-        invitedButton.backgroundColor = UIColor.clearColor()
-        invitedButton.setTitleColor(colorManager.appDarkGreen, forState: .Normal)
-        invitedButton.titleLabel?.font = UIFont.systemFontOfSize(14)
-        invitedButton.setTitle("   Got Invited?   ", forState: .Normal)
-        invitedButton.addTarget(self, action: "invitedButtonClicked:", forControlEvents: .TouchUpInside)
-        invitedButton.layer.borderColor = colorManager.appDarkGreen.CGColor
-        invitedButton.layer.borderWidth = 1.0
-        invitedButton.layer.cornerRadius = 3.0
-        onboardingVC.view.addSubview(invitedButton)
-        invitedButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 8)
-        invitedButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
+//        var invitedButton = UIButton(frame: rect)
+//        invitedButton.backgroundColor = UIColor.clearColor()
+//        invitedButton.setTitleColor(colorManager.appDarkGreen, forState: .Normal)
+//        invitedButton.titleLabel?.font = UIFont.systemFontOfSize(14)
+//        invitedButton.setTitle("   Got Invited?   ", forState: .Normal)
+//        invitedButton.addTarget(self, action: "invitedButtonClicked:", forControlEvents: .TouchUpInside)
+//        invitedButton.layer.borderColor = colorManager.appDarkGreen.CGColor
+//        invitedButton.layer.borderWidth = 1.0
+//        invitedButton.layer.cornerRadius = 3.0
+//        onboardingVC.view.addSubview(invitedButton)
+//        invitedButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 8)
+//        invitedButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
 
         var s = onboardingVC.pageControl.frame.size
         var o = onboardingVC.pageControl.frame.origin
