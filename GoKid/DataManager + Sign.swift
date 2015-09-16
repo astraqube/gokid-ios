@@ -167,7 +167,21 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
-    
+
+    func updatePhoneNumber(phone: String, comp: completion) {
+        var url = baseURL + "/api/me"
+        var map = ["user": ["phone_number": phone]]
+        var manager = managerWithToken()
+        manager.PUT(url, parameters: map, success: { (op, obj) in
+            println("update phone success")
+            self.userManager.setWithJsonReponse(JSON(obj))
+            comp(true, "")
+        }) { (op, error) in
+            println("update phone failed")
+            self.handleRequestError(op, error: error, comp: comp)
+        }
+    }
+
     func updateUserRole(role: String, comp: completion) {
         var url = baseURL + "/api/me"
         var arr = [

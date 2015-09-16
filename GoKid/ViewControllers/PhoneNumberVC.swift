@@ -20,11 +20,6 @@ class PhoneNumberVC: BaseVC, UITextFieldDelegate {
         self.phoneNumber.keyboardType = .PhonePad
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.phoneNumber.becomeFirstResponder()
-    }
-
     func afterSignIn() {
         (self.parentVC as! MainStackVC).refreshCurrentVC(false)
     }
@@ -35,9 +30,22 @@ class PhoneNumberVC: BaseVC, UITextFieldDelegate {
 
     override func rightNavButtonTapped() {
         if phoneNumber.text != "" {
-            checkPhone(phoneNumber.text)
+            // checkPhone(phoneNumber.text)
+            savePhone(phoneNumber.text)
         } else {
             showAlert("Correction", messege: "Please enter a valid phone number", cancleTitle: "OK")
+        }
+    }
+
+    private func savePhone(phone: String) {
+        LoadingView.showWithMaskType(.Black)
+        dataManager.updatePhoneNumber(phone) { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                self.leftNavButtonTapped()
+            } else {
+                self.showAlert("Failed to Submit", messege: errorStr, cancleTitle: "OK")
+            }
         }
     }
 
