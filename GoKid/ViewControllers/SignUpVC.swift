@@ -54,6 +54,11 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
         signupForm.password = passwordTextField.text
         signupForm.passwordConfirm = passwordTextField.text
 
+        if contains([signupForm.phoneNum, signupForm.email, signupForm.firstName, signupForm.lastName, signupForm.password], "") {
+            showAlert("Invalid Fields", messege: "Please fill in the required fields", cancleTitle: "OK")
+            return
+        }
+
         let _self = self
         LoadingView.showWithMaskType(.Black)
         dataManager.signup(signupForm) { (success, errorStr) in
