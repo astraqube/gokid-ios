@@ -346,7 +346,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oa9-rN-mdS">
-                                <rect key="frame" x="16" y="44" width="288" height="74"/>
+                                <rect key="frame" x="16" y="84" width="288" height="74"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="h9D-qN-FwC"/>
@@ -359,7 +359,7 @@ invited you to
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hz-fz-rgs">
-                                <rect key="frame" x="72" y="262" width="176" height="44"/>
+                                <rect key="frame" x="72" y="302" width="176" height="44"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.40392156862745099" green="0.75686274509803919" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -375,7 +375,7 @@ invited you to
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKJ-ib-WQA">
-                                <rect key="frame" x="72" y="322" width="176" height="44"/>
+                                <rect key="frame" x="72" y="362" width="176" height="44"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.60392156862745094" green="0.71764705882352942" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
@@ -388,7 +388,7 @@ invited you to
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ysD-Rq-w8m" customClass="MapUserImageView" customModule="GoKid" customModuleProvider="target">
-                                <rect key="frame" x="120" y="150" width="80" height="80"/>
+                                <rect key="frame" x="120" y="190" width="80" height="80"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -401,6 +401,16 @@ invited you to
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcv-XO-Pz7">
+                                <rect key="frame" x="264" y="20" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wcv-XO-Pz7" secondAttribute="height" multiplier="1:1" id="IHN-Jb-4cH"/>
+                                    <constraint firstAttribute="width" constant="40" id="PWx-Gu-yTX"/>
+                                </constraints>
+                                <state key="normal" image="top_x_up">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.97254901960784312" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
@@ -411,17 +421,20 @@ invited you to
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="centerX" secondItem="dKJ-ib-WQA" secondAttribute="centerX" id="EXQ-j2-uUf"/>
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="width" secondItem="dKJ-ib-WQA" secondAttribute="width" id="ElB-0i-ujW"/>
                             <constraint firstItem="Oa9-rN-mdS" firstAttribute="leading" secondItem="qcF-1h-jow" secondAttribute="leadingMargin" id="I3D-QK-5vH"/>
-                            <constraint firstAttribute="centerY" secondItem="6hz-fz-rgs" secondAttribute="centerY" id="LEt-mV-wYd"/>
+                            <constraint firstAttribute="centerY" secondItem="6hz-fz-rgs" secondAttribute="centerY" constant="-40" id="LEt-mV-wYd"/>
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="leading" secondItem="qcF-1h-jow" secondAttribute="leadingMargin" constant="56" id="Nab-Bm-gSz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Oa9-rN-mdS" secondAttribute="trailing" id="Oxp-fc-yXZ"/>
                             <constraint firstAttribute="centerX" secondItem="ysD-Rq-w8m" secondAttribute="centerX" id="PYq-1A-zP2"/>
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="height" secondItem="dKJ-ib-WQA" secondAttribute="height" id="o77-tL-apd"/>
+                            <constraint firstItem="wcv-XO-Pz7" firstAttribute="trailing" secondItem="qcF-1h-jow" secondAttribute="trailingMargin" id="xaH-VL-xSW"/>
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="top" secondItem="ysD-Rq-w8m" secondAttribute="bottom" constant="32" id="yvC-S5-4CU"/>
+                            <constraint firstItem="wcv-XO-Pz7" firstAttribute="top" secondItem="4i3-3n-xLA" secondAttribute="bottom" id="zh3-9o-Gxr"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="inviteImage" destination="ysD-Rq-w8m" id="E51-ns-cp7"/>
                         <outlet property="inviteLabel" destination="Oa9-rN-mdS" id="elv-qQ-nDQ"/>
+                        <outlet property="leftButton" destination="wcv-XO-Pz7" id="2l5-Kz-pCR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFo-kR-wah" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1920,6 +1933,7 @@ invited you to
         <image name="menuIcon" width="26" height="19"/>
         <image name="plus" width="14" height="14"/>
         <image name="plusButtonIcon" width="22" height="21"/>
+        <image name="top_x_up" width="19" height="19"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

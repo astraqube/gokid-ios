@@ -30,6 +30,10 @@ class InviteConfirmVC: BaseVC {
         setStatusBarColorDark()
     }
 
+    override func leftNavButtonTapped() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
     // MARK: IBAction Method
     // --------------------------------------------------------------------------------------------
     
