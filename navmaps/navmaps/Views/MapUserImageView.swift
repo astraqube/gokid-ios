@@ -10,12 +10,6 @@ import UIKit
 
 @IBDesignable
 class MapUserImageView: UIImageView {
-    override var image : UIImage? { didSet { 
-        if image == nil {
-            image = UIImage(named: "checkCirc")
-        }
-    }}
-    
     @IBInspectable var cornerRadius : CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
