@@ -43,6 +43,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         generateTableDataAndReload()
+        postNotification("requestForPhoneNumber")
     }
 
     override func viewWillAppear(animated: Bool) {

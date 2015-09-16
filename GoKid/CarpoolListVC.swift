@@ -52,6 +52,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         generateTableDataAndReload()
+        postNotification("requestForPhoneNumber")
     }
 
     func setNotificationsBadge() {

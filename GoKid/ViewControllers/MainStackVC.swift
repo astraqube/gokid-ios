@@ -102,16 +102,19 @@ class MainStackVC: IIViewDeckController {
     }
 
     func popUpPhoneNumberView() {
-        var signUpVC = vcWithID("PhoneNumberVC") as! PhoneNumberVC
-        signUpVC.parentVC = self
-        signUpVC.modalTransitionStyle = .CrossDissolve
-        signUpVC.modalPresentationStyle = .OverCurrentContext
-        if self.presentedViewController != nil {
-            self.dismissViewControllerAnimated(true) {
-                self.presentViewController(signUpVC, animated: true, completion: nil)
+        let userManager = UserManager.sharedInstance
+        if userManager.userLoggedIn && userManager.info.phoneNumber == "" {
+            var phoneNumberVC = vcWithID("PhoneNumberVC") as! PhoneNumberVC
+            phoneNumberVC.parentVC = self
+            phoneNumberVC.modalTransitionStyle = .CrossDissolve
+            phoneNumberVC.modalPresentationStyle = .OverCurrentContext
+            if self.presentedViewController != nil {
+                self.dismissViewControllerAnimated(true) {
+                    self.presentViewController(phoneNumberVC, animated: true, completion: nil)
+                }
+            } else {
+                self.presentViewController(phoneNumberVC, animated: true, completion: nil)
             }
-        } else {
-            self.presentViewController(signUpVC, animated: true, completion: nil)
         }
     }
 
