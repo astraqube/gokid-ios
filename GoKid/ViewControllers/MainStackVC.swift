@@ -116,12 +116,21 @@ class MainStackVC: IIViewDeckController {
     }
 
     func presentInvitationView() {
-        // clear the dropoff
         let prefs = NSUserDefaults.standardUserDefaults()
-        prefs.setValue(nil, forKey: "gotInvited")
+        let inviteCode = prefs.valueForKey("gotInvited") as! String?
+        prefs.setValue(nil, forKey: "gotInvited") // clear the dropoff
 
-        var inviteVC = vcWithID("InviteInfoVC")
-        (self.centerController as! UINavigationController).pushViewController(inviteVC, animated: true)
+        LoadingView.showWithMaskType(.Black)
+        DataManager.sharedInstance.getInvitationByCode(inviteCode!) { (success, errorStr, invitation) in
+            LoadingView.dismiss()
+            if success {
+                var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
+                vc.invitation = invitation as! InvitationModel
+                (self.centerController as! UINavigationController).pushViewController(vc, animated: true)
+            } else {
+                self.showAlert("Invitation Problem", messege: errorStr, cancleTitle: "OK")
+            }
+        }
     }
 
     func refreshCurrentVC(animated: Bool) {

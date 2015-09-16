@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if url.host == "invited" {
                 // dropoff for when `gotInvited` observer does not exist
                 let prefs = NSUserDefaults.standardUserDefaults()
-                prefs.setValue(true, forKey: "gotInvited")
+                prefs.setValue(url.path!.delete("/"), forKey: "gotInvited")
 
                 // post when `gotInvited` observer exists
                 self.postNotification("gotInvited")
