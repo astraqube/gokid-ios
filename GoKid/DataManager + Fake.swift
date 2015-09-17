@@ -22,6 +22,7 @@ extension DataManager {
             "TimeAndDateFormVC": true,
             "EditTimeAndDateFormVC": true,
             "BasicInfoVC": true,
+            "InviteesVC": true,
         ]
         var main = [
             "InviteConfirmVC": true,

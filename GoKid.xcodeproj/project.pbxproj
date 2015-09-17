@@ -14,6 +14,7 @@
 		047AADA71B542F18006628EF /* FrequencyPickerFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */; };
 		04B4C0D21B96F0A700DC465C /* UIButtonBadged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4C0D11B96F0A700DC465C /* UIButtonBadged.swift */; };
 		04D16E211B70128300B0C0DF /* PhoneNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D16E201B70128300B0C0DF /* PhoneNumberVC.swift */; };
+		04D30AAB1BAAC716003D85C9 /* InviteesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D30AAA1BAAC716003D85C9 /* InviteesVC.swift */; };
 		04FB80971B530E1B00F73C74 /* BaseFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80961B530E1B00F73C74 /* BaseFormVC.swift */; };
 		04FB80991B530E3A00F73C74 /* TimeAndDateFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */; };
 		04FB809B1B530E4F00F73C74 /* TimeAndDateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB809A1B530E4F00F73C74 /* TimeAndDateTransformer.swift */; };
@@ -137,6 +138,7 @@
 		047AADA61B542F18006628EF /* FrequencyPickerFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyPickerFormVC.swift; sourceTree = "<group>"; };
 		04B4C0D11B96F0A700DC465C /* UIButtonBadged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonBadged.swift; sourceTree = "<group>"; };
 		04D16E201B70128300B0C0DF /* PhoneNumberVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneNumberVC.swift; path = ViewControllers/PhoneNumberVC.swift; sourceTree = "<group>"; };
+		04D30AAA1BAAC716003D85C9 /* InviteesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteesVC.swift; path = ViewControllers/InviteesVC.swift; sourceTree = "<group>"; };
 		04FB80961B530E1B00F73C74 /* BaseFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFormVC.swift; sourceTree = "<group>"; };
 		04FB80981B530E3A00F73C74 /* TimeAndDateFormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDateFormVC.swift; sourceTree = "<group>"; };
 		04FB809A1B530E4F00F73C74 /* TimeAndDateTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAndDateTransformer.swift; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				1D3F65241B208A9600CCF6A1 /* InviteParentsVC.swift */,
 				1D891F161B23FFA0006FD961 /* ContactPickerVC.swift */,
 				1D3F65261B20986C00CCF6A1 /* CarpoolSucceedVC.swift */,
+				04D30AAA1BAAC716003D85C9 /* InviteesVC.swift */,
 			);
 			name = Invitation;
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 				1DFBBEA01B1C8B5700630440 /* TeamAccountVC.swift in Sources */,
 				1D3F651C1B207D3200CCF6A1 /* VolunteerCell.swift in Sources */,
 				1DEFF1851B4A8B620094B54E /* LastOnboardVC.swift in Sources */,
+				04D30AAB1BAAC716003D85C9 /* InviteesVC.swift in Sources */,
 				1D975A491B1FA72500CD4D89 /* TDEmptyCell.swift in Sources */,
 				04FB809B1B530E4F00F73C74 /* TimeAndDateTransformer.swift in Sources */,
 				1D1FD6931B1C04D100287FA0 /* MainStackVC.swift in Sources */,

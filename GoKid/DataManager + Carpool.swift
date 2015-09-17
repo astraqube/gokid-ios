@@ -462,4 +462,21 @@ extension DataManager {
         }
     }
 
+    func getCarpoolInvites(carpool: CarpoolModel, comp: ObjectCompletion) {
+        let url = baseURL + "/api/carpools/\(carpool.id)/invites"
+        let manager = managerWithToken()
+        manager.GET(url, parameters: nil, success: { (op, obj) in
+            println("getCarpoolInvites success")
+            let json = JSON(obj)
+            let invitations = json["invites"].arrayValue
+            let invites = invitations.map {
+                return InvitationModel(json: $0)
+            }
+            comp(true, "", invites)
+        }) { (op, error) in
+            println("getCarpoolInvites failed")
+            self.handleUserResuestError(op, error: error, comp: comp)
+        }
+    }
+
 }
