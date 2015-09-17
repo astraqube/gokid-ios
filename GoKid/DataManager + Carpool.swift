@@ -146,9 +146,19 @@ extension DataManager {
     }
     
     func registerForOccurence(occ: OccurenceModel, comp: completion) {
+        registerForOccurence(occ, member: nil, comp: comp)
+    }
+
+    func registerForOccurence(occ: OccurenceModel, member: TeamMemberModel?, comp: completion) {
         var url = baseURL + "/api/carpools/\(occ.carpool.id)/occurrences/\(occ.occurenceID)/claim"
+        var map: NSDictionary!
+
+        if member != nil {
+            map = ["user_id": member!.userID]
+        }
+
         var manager = managerWithToken()
-        manager.POST(url, parameters: nil, success: { (op, obj) in
+        manager.POST(url, parameters: map, success: { (op, obj) in
             println("registerForOccurence success")
             println(obj)
             var json = JSON(obj)
@@ -174,7 +184,7 @@ extension DataManager {
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
-    
+
     func getOccurenceOfCarpool(carpoolID: Int, comp: completion) {
         getOccurenceOfCarpool(carpoolID, rider: nil, comp: comp)
     }

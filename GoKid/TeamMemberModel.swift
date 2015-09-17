@@ -26,7 +26,11 @@ class TeamMemberModel: NSObject {
     var userID: Int = 0
     var permissionID: Int = 0
     var isCurrentUser: Bool = false
-    
+
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
+
     override init() {
         super.init()
     }
