@@ -60,6 +60,7 @@
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
+            <string>Raleway-Regular</string>
         </mutableArray>
         <mutableArray key="Raleway-SemiBold.ttf">
             <string>Raleway-SemiBold</string>
@@ -411,10 +412,22 @@ invited you to
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJ3-bc-Jjh">
+                                <rect key="frame" x="72" y="438" width="176" height="44"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                <state key="normal" title="View Invitee List">
+                                    <color key="titleColor" red="0.4039215686" green="0.75686274509999996" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="inviteeListButtonClick:" destination="Yex-pZ-DEK" eventType="touchUpInside" id="KCy-MP-hsI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.97254901960784312" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="dKJ-ib-WQA" firstAttribute="centerX" secondItem="dJ3-bc-Jjh" secondAttribute="centerX" id="5el-CL-cEK"/>
                             <constraint firstItem="dKJ-ib-WQA" firstAttribute="top" secondItem="6hz-fz-rgs" secondAttribute="bottom" constant="16" id="5f5-pZ-skr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6hz-fz-rgs" secondAttribute="trailing" constant="56" id="6oJ-ad-rGq"/>
                             <constraint firstItem="ysD-Rq-w8m" firstAttribute="top" secondItem="Oa9-rN-mdS" secondAttribute="bottom" constant="32" id="8rX-7Q-4jd"/>
@@ -425,7 +438,10 @@ invited you to
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="leading" secondItem="qcF-1h-jow" secondAttribute="leadingMargin" constant="56" id="Nab-Bm-gSz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Oa9-rN-mdS" secondAttribute="trailing" id="Oxp-fc-yXZ"/>
                             <constraint firstAttribute="centerX" secondItem="ysD-Rq-w8m" secondAttribute="centerX" id="PYq-1A-zP2"/>
+                            <constraint firstItem="dJ3-bc-Jjh" firstAttribute="top" secondItem="dKJ-ib-WQA" secondAttribute="bottom" constant="32" id="STX-Ll-1kP"/>
+                            <constraint firstItem="dKJ-ib-WQA" firstAttribute="width" secondItem="dJ3-bc-Jjh" secondAttribute="width" id="cOH-cO-5vg"/>
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="height" secondItem="dKJ-ib-WQA" secondAttribute="height" id="o77-tL-apd"/>
+                            <constraint firstItem="dKJ-ib-WQA" firstAttribute="height" secondItem="dJ3-bc-Jjh" secondAttribute="height" id="wqh-fe-AeV"/>
                             <constraint firstItem="wcv-XO-Pz7" firstAttribute="trailing" secondItem="qcF-1h-jow" secondAttribute="trailingMargin" id="xaH-VL-xSW"/>
                             <constraint firstItem="6hz-fz-rgs" firstAttribute="top" secondItem="ysD-Rq-w8m" secondAttribute="bottom" constant="32" id="yvC-S5-4CU"/>
                             <constraint firstItem="wcv-XO-Pz7" firstAttribute="top" secondItem="4i3-3n-xLA" secondAttribute="bottom" id="zh3-9o-Gxr"/>

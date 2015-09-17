@@ -37,12 +37,6 @@ class InviteesVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         dataManager.getCarpoolInvites(carpool) { (success, error, invites) in
             LoadingView.dismiss()
             if success {
-                if self.userManager.volunteerEvents.count == 0 {
-                    // we were deleted
-                    self.navigationController?.popViewControllerAnimated(false)
-                    return
-                }
-
                 self.dataSource = invites as! [InvitationModel]
                 self.tableView.reloadData()
             } else {

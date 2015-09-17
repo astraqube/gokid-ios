@@ -22,6 +22,7 @@ class CarpoolEditVC: BaseFormVC {
         case Unauthorized = "You are not authorized to make changes"
         case ChangeTimes = "Change Times"
         case EventLocation = "Event Location"
+        case InviteeList = "Invitee List"
         case InvitePanel = "Invite Parents via SMS or Email"
         case DeleteRide = "Delete this Ride"
         case DeleteCarpool = "Delete this Carpool"
@@ -98,6 +99,15 @@ class CarpoolEditVC: BaseFormVC {
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.action.viewControllerStoryboardId = "ContactPickerVC"
+        row.disabled = !self.isCurrentUserAuthorized
+        section.addFormRow(row)
+
+        row = XLFormRowDescriptor(tag: Tags.InviteeList.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.InviteeList.rawValue)
+        row.cellConfig["textLabel.font"] = labelFont
+        row.cellConfig["textLabel.color"] = labelColor
+        row.cellConfig["detailTextLabel.font"] = valueFont
+        row.cellConfig["detailTextLabel.color"] = labelColor
+        row.action.viewControllerStoryboardId = "InviteesVC"
         row.disabled = !self.isCurrentUserAuthorized
         section.addFormRow(row)
 
