@@ -16,6 +16,7 @@ class MainStackVC: IIViewDeckController {
         super.viewDidLoad()
 
         self.registerForNotification("requestForUserToken", action: "popUpSignInView")
+        self.registerForNotification("gotInvitedNotify", action: "notifyInvitationView")
         self.registerForNotification("gotInvited", action: "presentInvitationView")
         self.registerForNotification("requestForPhoneNumber", action: "popUpPhoneNumberView")
 
@@ -129,6 +130,15 @@ class MainStackVC: IIViewDeckController {
                 self.presentViewController(phoneNumberVC, animated: true, completion: nil)
             }
         }
+    }
+
+    func notifyInvitationView() {
+        var alertView = UIAlertController(title: "Incoming", message: "You have just received a new Carpool Invitation.", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Open It", style: .Default, handler: { (action: UIAlertAction!) in
+            self.presentInvitationView()
+        }))
+        alertView.addAction(UIAlertAction(title: "Later", style: .Cancel, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
     }
 
     func presentInvitationView() {

@@ -131,6 +131,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         if UserManager.sharedInstance.userLoggedIn {
             InvitationModel.checkInvitations()
+
+            if let inviteCode = userInfo["code"] as? String {
+                // dropoff for when `gotInvited`
+                let prefs = NSUserDefaults.standardUserDefaults()
+                prefs.setValue(inviteCode, forKey: "gotInvited")
+
+                if application.applicationState == .Active {
+                    prefs.postNotification("gotInvitedNotify")
+                } else {
+                    prefs.postNotification("gotInvited")
+                }
+            }
         }
     }
 }
