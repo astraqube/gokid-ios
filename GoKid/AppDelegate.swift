@@ -74,15 +74,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for var i = 0; i < 32; i++ {
             str.appendFormat("%02.2hhX", ptr[i])
         }
-        
-        var dm = DataManager.sharedInstance
-        if UserManager.sharedInstance.userLoggedIn {
-            dm.updateNotificationToken(String(str)) { (success, errorStr) in
-                if !success {
-                    // do nothing here for now
-                }
-            }
-        }
+
+        // dropoff for deviceToken
+        let prefs = NSUserDefaults.standardUserDefaults()
+        prefs.setValue(String(str), forKey: "deviceToken")
     }
     
     // MARK: Facebook Deep Link

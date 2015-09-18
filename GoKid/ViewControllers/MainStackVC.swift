@@ -44,7 +44,20 @@ class MainStackVC: IIViewDeckController {
         }
     }
 
+    func registerDeviceToken() {
+        // pickup for deviceToken
+        let prefs = NSUserDefaults.standardUserDefaults()
+        if let token = prefs.valueForKey("deviceToken") as? String {
+            if UserManager.sharedInstance.userLoggedIn {
+                DataManager.sharedInstance.updateNotificationToken(token) { (success, errorStr) in
+                    // do nothing here for now
+                }
+            }
+        }
+    }
+
     func setSignedInView() {
+        self.registerDeviceToken()
         self.setSignedInView("CalendarVC")
     }
 
