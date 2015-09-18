@@ -139,7 +139,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let letter = tableHeaderSource.objectAtIndex(section) as! String
-        return (tableDataSource.objectForKey(letter) as! NSArray).count
+        return (tableDataSource.objectForKey(letter.capitalizedString) as! NSArray).count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -259,7 +259,8 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
 
         for person in data {
             var char = person.fullName.firstCharacter()
-            let letter = !letters.characterIsMember(first(char.utf16)!) ? "#" : char
+            let _letter = !letters.characterIsMember(first(char.utf16)!) ? "#" : char
+            let letter = _letter.capitalizedString
             var section: NSMutableArray!
 
             if let _section = tableDataSource.objectForKey(letter) as? NSMutableArray {
