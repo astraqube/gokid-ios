@@ -58,13 +58,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         println("didRegisterUserNotificationSettings")
-        println(notificationSettings)
         application.registerForRemoteNotifications()
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         println("fail to register remote notification")
-        println(error)
+        NSLog(error.localizedDescription)
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -85,15 +84,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
 
-        if url.scheme == "gokid" {
-            if url.host == "invited" {
-                // dropoff for when `gotInvited` observer does not exist
-                let prefs = NSUserDefaults.standardUserDefaults()
-                prefs.setValue(url.path!.delete("/"), forKey: "gotInvited")
+        if url.scheme == "gokid" && url.host == "invited" {
+            // dropoff for when `gotInvited` observer does not exist
+            let prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setValue(url.path!.delete("/"), forKey: "gotInvited")
 
-                // post when `gotInvited` observer exists
-                self.postNotification("gotInvited")
-            }
+            // post when `gotInvited` observer exists
+            prefs.postNotification("gotInvited")
         }
 
         // for facebook login
