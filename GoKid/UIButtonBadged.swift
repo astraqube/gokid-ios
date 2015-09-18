@@ -20,9 +20,7 @@ class UIButtonBadged: UIButton {
         }
 
         badgeView.badgeText = num?.description
-        if num < 1 {
-            badgeView.hidden = true
-        }
+        badgeView.hidden = num < 1
     }
 
 }
