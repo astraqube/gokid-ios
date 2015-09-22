@@ -6,65 +6,67 @@
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
 
+import SwiftyJSON
+
 extension DataManager {
     
     func verifyCarPoolInvitation(phoneNum: String, comp: completion) {
-        var url = baseURL + "/api/invites/verify"
-        var map = ["phone_number": phoneNum]
-        var manager = managerWithToken()
+        let url = baseURL + "/api/invites/verify"
+        let map = ["phone_number": phoneNum]
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("verifyCarPoolInvitation success")
+            print("verifyCarPoolInvitation success", terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("verifyCarPoolInvitation failed")
+            print("verifyCarPoolInvitation failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     func invite(phoneNumbers: [String], carpoolID: Int, comp: completion) {
-        var url = baseURL + "/api/invites"
-        var invite = ["carpool_id": String(carpoolID), "phone_numbers": phoneNumbers]
-        var map = ["invite": invite]
-        println(map)
-        var manager = managerWithToken()
+        let url = baseURL + "/api/invites"
+        let invite = ["carpool_id": String(carpoolID), "phone_numbers": phoneNumbers]
+        let map = ["invite": invite]
+        print(map, terminator: "")
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("invite success")
+            print("invite success", terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("invite failed")
+            print("invite failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func acceptInvite(invite: InvitationModel, comp: completion) {
-        var url = baseURL + "/api/invites/\(invite.inviteID)/accept"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/invites/\(invite.inviteID)/accept"
+        let manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
-            println("acceptInvite success")
+            print("acceptInvite success", terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("acceptInvite failed")
+            print("acceptInvite failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func declineInvite(invite: InvitationModel, comp: completion) {
-        var url = baseURL + "/api/invites/\(invite.inviteID)/reject"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/invites/\(invite.inviteID)/reject"
+        let manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
-            println("declineInvite success")
+            print("declineInvite success", terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("declineInvite failed")
+            print("declineInvite failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     func getInvitations(comp: ObjectCompletion) {
-        var url = baseURL + "/api/invites/"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/invites/"
+        let manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getInvitations success")
+            print("getInvitations success", terminator: "")
             var json = JSON(obj)
             var invitations: [InvitationModel]!
 
@@ -76,32 +78,32 @@ extension DataManager {
 
             comp(true, "", invitations)
         }) { (op, error) in
-            println("getInvitations failed")
+            print("getInvitations failed", terminator: "")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 
     func getInvitationByCode(code: String, comp: ObjectCompletion) {
-        var url = baseURL + "/api/invites/\(code)"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/invites/\(code)"
+        let manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
             var json = JSON(obj)
-            var invitation = InvitationModel(json: json["invite"])
+            let invitation = InvitationModel(json: json["invite"])
             comp(true, "", invitation)
         }) { (op, error) in
-            println("getFirstInvitation failed")
+            print("getFirstInvitation failed", terminator: "")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 
     func joinInvitersTeam(invite: InvitationModel, comp: completion) {
-        var url = baseURL + "/api/invites/\(invite.inviteID)/add_to_team"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/invites/\(invite.inviteID)/add_to_team"
+        let manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
-            println("joinInvitersTeam success")
+            print("joinInvitersTeam success", terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("joinInvitersTeam failed")
+            print("joinInvitersTeam failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }

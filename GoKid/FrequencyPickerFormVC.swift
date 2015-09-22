@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XLForm
 
 enum GKFrequency : String {
     case JustOnce = "Just Once"
@@ -43,8 +44,9 @@ enum GKDays : String {
 
     static func dayFromInt(num: Int) -> String {
         let list = self.asKeys
-        if contains(list.values, num) {
-            return list.keys[find(list.values, num)!]
+        if list.values.contains(num) {
+            let keys = Array(list.keys)
+            return keys[Array(list.values).indexOf(num)!]
         } else {
             return ""
         }
@@ -147,10 +149,10 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
 
-        var formRow = self.form.formRowAtIndex(indexPath)
+        let formRow = self.form.formRowAtIndex(indexPath)
 
         // Top-level acts as radio buttons
-        if contains(GKFrequency.allValues, formRow!.tag!) {
+        if GKFrequency.allValues.contains(formRow!.tag!) {
             self.currentValues.removeAllObjects()
         }
 
@@ -163,7 +165,7 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         }
 
         if formRow!.tag == GKFrequency.Daily.rawValue {
-            self.currentValues.addObjectsFromArray(GKDays.asKeys.keys.array)
+            self.currentValues.addObjectsFromArray(Array(GKDays.asKeys.keys))
         }
 
         self.updateFormFields()
@@ -174,7 +176,7 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
             var collection: [Int] = []
             for val in self.currentValues {
                 let valStr = val as! String
-                if contains(GKDays.asKeys.keys, valStr) {
+                if GKDays.asKeys.keys.contains(valStr) {
                     if let num = GKDays.asKeys[valStr] as Int? {
                         collection.append(num)
                     }
@@ -207,7 +209,7 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
             return self.currentValues.count == 0
         }
 
-        if self.currentValues.count > 0 && contains(GKDays.asKeys.keys, self.currentValues.firstObject as! String) {
+        if self.currentValues.count > 0 && GKDays.asKeys.keys.contains(self.currentValues.firstObject as! String) {
             if val == GKFrequency.Daily.rawValue && self.currentValues.count == 7 {
                 return true
             }
@@ -222,11 +224,13 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
 
     func convertValuesToForm(data: [AnyObject]) -> [String] {
         var converted: [String]! = []
+        let keys = Array(GKDays.asKeys.keys)
+        let values = Array(GKDays.asKeys.values)
 
         for _val in data {
             let val = _val as! Int
-            if contains(GKDays.asKeys.values, val) {
-                let day: String = GKDays.asKeys.keys[find(GKDays.asKeys.values, val)!]
+            if GKDays.asKeys.values.contains(val) {
+                let day: String = keys[values.indexOf(val)!]
                 converted.append(day)
             }
         }
@@ -239,13 +243,13 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
 
         for _field in data {
             let field = _field as! String
-            if contains(GKDays.asKeys.keys, field) {
+            if GKDays.asKeys.keys.contains(field) {
                 let dayNum: Int = GKDays.asKeys[field]!
                 converted.append(dayNum)
             }
         }
 
-        converted.sort {
+        converted.sortInPlace {
             return $0 < $1
         }
 

@@ -44,10 +44,10 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
         locator.startUpdatingLocation()
     }
 
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         debounce(NSTimeInterval(1.5), queue: dispatch_get_main_queue()) {
-            let myLocation = locations.last as! CLLocation
-            self.proximity = myLocation.coordinate
+            let myLocation = locations.last
+            self.proximity = myLocation!.coordinate
             self.locator.stopUpdatingLocation()
         }()
     }
@@ -60,10 +60,10 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.cellWithID("PlaceResultCell", indexPath) as! PlaceResultCell
+        let cell = tableView.cellWithID("PlaceResultCell", indexPath) as! PlaceResultCell
 
         if let place = self.dataSource.objectAtIndex(indexPath.row) as? MKMapItem {
-            var description = descriptionFromPrediction(place)
+            let description = descriptionFromPrediction(place)
             cell.titleLabel.text = description.title
             cell.subtitleLabel.text = description.subtitle
         }
@@ -75,8 +75,8 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
     // --------------------------------------------------------------------------------------------
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var place = self.dataSource.objectAtIndex(indexPath.row) as? MKMapItem
-        var description = descriptionFromPrediction(place!)
+        let place = self.dataSource.objectAtIndex(indexPath.row) as? MKMapItem
+        let description = descriptionFromPrediction(place!)
 
         self.dismissViewControllerAnimated(true) {
             self.teamVC?.setHomeAddress(description.title, address2: description.subtitle)
@@ -93,9 +93,9 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
     
     @IBAction func searchChanges(sender: AnyObject) {
         debounce(NSTimeInterval(1.5), queue: dispatch_get_main_queue()) {
-            var searchText = self.searchTextField.text
-            if count(searchText) > 3 {
-                self.searchPlacesAndReloadTable(searchText)
+            let searchText = self.searchTextField.text
+            if searchText?.characters.count > 3 {
+                self.searchPlacesAndReloadTable(searchText!)
             } else {
                 self.dataSource = []
                 self.tableView.reloadData()
@@ -117,9 +117,9 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
 
         let search = MKLocalSearch(request: request)
         search.startWithCompletionHandler {
-            (response: MKLocalSearchResponse!, error: NSError!) in
+            (response: MKLocalSearchResponse?, error: NSError?) in
             if error == nil {
-                self.dataSource = response.mapItems
+                self.dataSource = response!.mapItems
             }
             self.tableView.reloadData()
         }
@@ -129,18 +129,18 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
         let title = place.name
         var subtitle: String!
 
-        if let pd = place.placemark.subThoroughfare {
+        if let _ = place.placemark.subThoroughfare {
             subtitle = String(format: "%@ %@, %@, %@ %@",
-                place.placemark.subThoroughfare,
-                place.placemark.thoroughfare,
-                place.placemark.locality,
-                place.placemark.administrativeArea,
-                place.placemark.postalCode)
+                place.placemark.subThoroughfare!,
+                place.placemark.thoroughfare!,
+                place.placemark.locality!,
+                place.placemark.administrativeArea!,
+                place.placemark.postalCode!)
         } else {
             subtitle = ""
         }
 
-        return (title, subtitle)
+        return (title!, subtitle)
     }
     
 }

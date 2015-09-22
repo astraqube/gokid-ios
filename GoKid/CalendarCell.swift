@@ -38,7 +38,7 @@ class CalendarCell: VolunteerCell {
             dropoffIcon.hidden = true
         }
 
-        for (index, riderImageView) in enumerate(pickupImageCollection) {
+        for (index, riderImageView) in pickupImageCollection.enumerate() {
             let rider : RiderModel? = (model.riders.count > index) ? model.riders[index] : nil
             riderImageView.hidden = rider == nil
             if rider != nil {

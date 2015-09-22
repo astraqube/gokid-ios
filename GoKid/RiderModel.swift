@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 func ==(lhs: RiderModel, rhs: RiderModel) -> Bool {
     return lhs.riderID == rhs.riderID
 }
-extension RiderModel : Equatable {}
 
 class RiderModel: NSObject {
     var riderID = 0
@@ -45,7 +45,7 @@ class RiderModel: NSObject {
 
     var isInMyTeam: Bool {
         let currentUser = UserManager.sharedInstance
-        return contains(teams!, currentUser.info.teamID)
+        return (teams?.contains(currentUser.info.teamID))!
     }
 
     static var ridersByID = [ Int : RiderModel]()
@@ -67,8 +67,8 @@ class RiderModel: NSObject {
 
     class func arrayOfRidersWithJSON(json: JSON) -> [RiderModel] {
         var arr = [RiderModel]()
-        for (index: String, subJson: JSON) in json {
-            var rider = RiderModel(json: subJson)
+        for (_, subJson) in json {
+            let rider = RiderModel(json: subJson)
             arr.append(rider)
         }
         return arr

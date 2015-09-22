@@ -62,14 +62,14 @@ class InviteConfirmVC: BaseVC {
     }
     
     @IBAction func inviteeListButtonClick(sender: AnyObject) {
-        var vc = vcWithID("InviteesVC") as! InviteesVC
+        let vc = vcWithID("InviteesVC") as! InviteesVC
         vc.carpool = self.invitation.carpool
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func moveToInviteRelationVC() {
         onMainThread() {
-            var vc = vcWithID("InviteRelationshipVC") as! InviteRelationshipVC
+            let vc = vcWithID("InviteRelationshipVC") as! InviteRelationshipVC
             vc.invitation = self.invitation
             self.navigationController?.pushViewController(vc, animated: true)
         }

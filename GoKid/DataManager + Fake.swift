@@ -9,7 +9,7 @@
 extension DataManager {
     
     func sbViewControllerList() -> [String:[String:Bool]] {
-        var carpool = [
+        let carpool = [
             "InviteConfirmTimesVC": true,
             "CarpoolEditVC": true,
             "CarpoolSucceedVC": true,
@@ -24,7 +24,7 @@ extension DataManager {
             "BasicInfoVC": true,
             "InviteesVC": true,
         ]
-        var main = [
+        let main = [
             "InviteConfirmVC": true,
             "PlacePickerVC": true,
             "CalendarVC": true,
@@ -34,24 +34,24 @@ extension DataManager {
             "InviteRelationshipVC": true,
             "YourKidVC": true
         ]
-        var teamAccount = [
+        let teamAccount = [
             "MemberProfileVC": true,
             "TeamAccountVC": true
         ]
         
-        var login = [
+        let login = [
             "InviteInfoVC": true,
             "SignUpVC": true,
             "SignInVC": true,
             "PhoneNumberVC": true
         ]
-        var onboard = [
+        let onboard = [
             "LastOnboardVC": true
         ]        
-        var navMap = [
+        let navMap = [
             "DetailMapVC": true
         ]
-        var map = [
+        let map = [
             "Carpool" : carpool,
             "Main" : main,
             "TeamAccount": teamAccount,

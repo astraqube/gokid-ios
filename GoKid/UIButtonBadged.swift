@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JSBadgeView
 
 class UIButtonBadged: UIButton {
 

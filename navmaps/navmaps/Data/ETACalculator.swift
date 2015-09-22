@@ -14,7 +14,7 @@ class ETACalculator {
     ///returns tuples of minutes from first stop -- stops are not sorted here
     class func estimateArrivalTimeForStops(stops: [Stop]) -> [(Double, Stop)]{
         var travelTimes = [(Double, Stop)]()
-        for (index, stop) in enumerate(stops) {
+        for (index, stop) in stops.enumerate() {
             if index == 0 {
                 travelTimes.append((0, stop))
                 continue
@@ -38,7 +38,7 @@ class ETACalculator {
         if target != nil && NSDate(timeIntervalSinceNow: etas.last!.0).timeIntervalSince1970 <= target!.timeIntervalSince1970 {
             startAtNow = false
         }
-        var etaDates = [NSDate]()
+        _ = [NSDate]()
         if startAtNow {
             return etas.map { (tuple: (Double, Stop)) -> (NSDate, Stop) in
                 return (NSDate(timeIntervalSinceNow: tuple.0), tuple.1)
@@ -57,7 +57,7 @@ class ETACalculator {
         if stops.count == 0 || beginningAt == nil { return }
         let firstCoord = beginningAt?.coordinate
         let firstLocation = CLLocation(latitude: firstCoord!.latitude, longitude: firstCoord!.longitude)
-        stops.sort({ (stopA, stopB) -> Bool in
+        stops.sortInPlace({ (stopA, stopB) -> Bool in
             let distanceA = firstLocation.distanceFromLocation(CLLocation(latitude: stopA.coordinate.latitude, longitude: stopA.coordinate.longitude))
             let distanceB = firstLocation.distanceFromLocation(CLLocation(latitude: stopB.coordinate.latitude, longitude: stopB.coordinate.longitude))
             return distanceA < distanceB
@@ -76,8 +76,8 @@ class ETACalculator {
                 bestPath = next
                 continue
             }
-            exploreQueue.extend(next.nextPathStates())
-            exploreQueue.sort { (left, right) -> Bool in
+            exploreQueue.appendContentsOf(next.nextPathStates())
+            exploreQueue.sortInPlace { (left, right) -> Bool in
                 return left.weight > right.weight //is ordered before
             }
         }
@@ -90,7 +90,7 @@ class ETACalculator {
                 path.append(prev!.edgeDestination)
                 prev = prev!.previous
             }
-            return path.reverse()
+            return Array(path.reverse())
         }
 
         //fallback in case of two stops

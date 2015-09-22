@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import SwiftyJSON
 
 enum CalendarCellType {
     case Notification, Time, Normal, Add, None
@@ -81,7 +82,7 @@ class OccurenceModel: NSObject {
 
         if occurence["rider_ids"] != nil {
             var riderIDs = [Int]()
-            for (index: String, value: JSON) in occurence["rider_ids"] {
+            for (_, value): (String, JSON) in occurence["rider_ids"] {
                 riderIDs.append(value.intValue)
             }
             riders = RiderModel.ridersForRiderIDs(riderIDs)
@@ -97,8 +98,8 @@ class OccurenceModel: NSObject {
     
     class func arrayOfEventsFromOccurrences(json: JSON) -> [OccurenceModel] {
         var arr = [OccurenceModel]()
-        for (index: String, subJson: JSON) in json {
-            var carpool = OccurenceModel(occurence: subJson)
+        for (_, subJson): (String, JSON) in json {
+            let carpool = OccurenceModel(occurence: subJson)
             arr.append(carpool)
         }
         return arr
@@ -108,8 +109,8 @@ class OccurenceModel: NSObject {
         if let date = occursAt {
             occursAtStr = date.dateString()
             pooltimeStr = date.timeString()
-            var today = NSDate()
-            var tomorrow = today.dateByAddingTimeInterval(60*60*24)
+            let today = NSDate()
+            let tomorrow = today.dateByAddingTimeInterval(60*60*24)
             if occursAtStr == today.dateString() {
                 occursAtStr = "Today"
             }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Onboard
 
 class OnboardVC: BaseVC, UIAlertViewDelegate {
     
@@ -36,7 +37,7 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
     }
 
     func addOnboardContent() {
-        var vc = generateOnboardVC()
+        let vc = generateOnboardVC()
 
         self.addChildViewController(vc)
         self.view.addSubview(vc.view)
@@ -69,12 +70,12 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func showAlertView() {
-        var alertView = UIAlertView(title: "Are you 18 years old or older?", message: "Only adults over 18 can organize and create carpools", delegate: self, cancelButtonTitle: "Yes", otherButtonTitles: "No")
+        let alertView = UIAlertView(title: "Are you 18 years old or older?", message: "Only adults over 18 can organize and create carpools", delegate: self, cancelButtonTitle: "Yes", otherButtonTitles: "No")
         alertView.show()
     }
     
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        var um = UserManager.sharedInstance
+        let um = UserManager.sharedInstance
         var presentVC: UIViewController!
 
         if buttonIndex == 0 { // yes
@@ -94,10 +95,10 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func generateOnboardContents() -> [OnboardingContentViewController] {
-        var page1 = OVC(title:"", body:"", image:UIImage(named: "OnBoarding_1"), buttonText: "") { }
-        var page2 = OVC(title:"", body:"", image:UIImage(named: "OnBoarding_2"), buttonText: "") { }
-        var page3 = OVC(title:"", body:"", image:UIImage(named: "OnBoarding_3"), buttonText: "") { }
-        var page4 = OVC(title:"", body:"", image:UIImage(named: ""),             buttonText: "") { }
+        let page1 = OVC(title:"", body:"", image:UIImage(named: "OnBoarding_1"), buttonText: "") { }
+        let page2 = OVC(title:"", body:"", image:UIImage(named: "OnBoarding_2"), buttonText: "") { }
+        let page3 = OVC(title:"", body:"", image:UIImage(named: "OnBoarding_3"), buttonText: "") { }
+        let page4 = OVC(title:"", body:"", image:UIImage(named: ""),             buttonText: "") { }
         
         page1.topPadding = 0
         page2.topPadding = 0
@@ -114,21 +115,21 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
     
     
     func generateOnboardVC() -> OnboardingViewController {
-        var dark = UIColor.blackColor()
-        var contents = generateOnboardContents()
+        let dark = UIColor.blackColor()
+        let contents = generateOnboardContents()
         
-        var onboardingVC = OnboardingViewController(backgroundImage: nil, contents: contents)
+        let onboardingVC = OnboardingViewController(backgroundImage: nil, contents: contents)
         onboardingVC.view.backgroundColor = UIColor.whiteColor()
         onboardingVC.shouldFadeTransitions = false
         onboardingVC.fadePageControlOnLastPage = false
                 
-        var h: CGFloat = 50.0
-        var um = UserManager.sharedInstance
-        var vh = um.windowH
-        var vw = um.windowW
-        var rect = CGRectMake(0, vh-h, vw, h)
+        let h: CGFloat = 50.0
+        let um = UserManager.sharedInstance
+        let vh = um.windowH
+        let vw = um.windowW
+        let rect = CGRectMake(0, vh-h, vw, h)
         
-        var signinButton = UIButton(frame: rect)
+        let signinButton = UIButton(frame: rect)
         signinButton.backgroundColor = UIColor.clearColor()
         signinButton.setTitleColor(colorManager.appDarkGreen, forState: .Normal)
         signinButton.titleLabel?.font = UIFont.systemFontOfSize(14)
@@ -154,9 +155,9 @@ class OnboardVC: BaseVC, UIAlertViewDelegate {
 //        invitedButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 8)
 //        invitedButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 25)
 
-        var s = onboardingVC.pageControl.frame.size
-        var o = onboardingVC.pageControl.frame.origin
-        var pageControlRect = CGRectMake(o.x, o.y-50, s.width, s.height)
+        let s = onboardingVC.pageControl.frame.size
+        let o = onboardingVC.pageControl.frame.origin
+        let pageControlRect = CGRectMake(o.x, o.y-50, s.width, s.height)
         onboardingVC.pageControl.frame = pageControlRect
         onboardingVC.pageControl.pageIndicatorTintColor = colorManager.darkGrayColor
         onboardingVC.pageControl.currentPageIndicatorTintColor = dark

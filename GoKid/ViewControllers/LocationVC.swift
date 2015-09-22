@@ -60,11 +60,10 @@ class LocationVC: BaseVC {
             if currentDropoffOccurrence != nil {
                 currentDropoffOccurrence?.eventLocation = newValue!
             }
-            dataSource.map { (o: OccurenceModel) -> (OccurenceModel) in
+            for o: OccurenceModel in dataSource {
                 if o.eventLocation.name == "" {
                     o.eventLocation = newValue!
                 }
-                return o
             }
         }
     }
@@ -77,11 +76,10 @@ class LocationVC: BaseVC {
             if currentPickupOccurrence != nil {
                 currentPickupOccurrence?.defaultLocation = newValue!
             }
-            dataSource.map { (o: OccurenceModel) -> (OccurenceModel) in
+            for o: OccurenceModel in dataSource {
                 if o.poolType == "pickup" && o.defaultLocation.name == "" {
                     o.defaultLocation = newValue!
                 }
-                return o
             }
         }
     }
@@ -94,11 +92,10 @@ class LocationVC: BaseVC {
             if currentDropoffOccurrence != nil {
                 currentDropoffOccurrence?.defaultLocation = newValue!
             }
-            dataSource.map { (o: OccurenceModel) -> (OccurenceModel) in
+            for o: OccurenceModel in dataSource {
                 if o.poolType == "dropoff" && o.defaultLocation.name == "" {
                     o.defaultLocation = newValue!
                 }
-                return o
             }
         }
     }
@@ -157,7 +154,7 @@ class LocationVC: BaseVC {
             onMainThread() {
                 LoadingView.dismiss()
                 if success {
-                    var vc = vcWithID("VolunteerVC") as! VolunteerVC
+                    let vc = vcWithID("VolunteerVC") as! VolunteerVC
                     vc.carpool = self.carpool
                     vc.rider = self.rider
                     vc.dataSource = objects as! [OccurenceModel]
@@ -183,7 +180,7 @@ class LocationVC: BaseVC {
             onMainThread() {
                 LoadingView.dismiss()
                 if success {
-                    var vc = vcWithID("VolunteerVC") as! VolunteerVC
+                    let vc = vcWithID("VolunteerVC") as! VolunteerVC
                     vc.carpool = self.carpool
                     vc.rider = riderObj as? RiderModel
                     vc.dataSource = self.dataSource
@@ -196,19 +193,19 @@ class LocationVC: BaseVC {
     }
 
     func startLocationButtonTapped(sender: AnyObject) {
-        var vc = vcWithID("LocationInputVC") as! LocationInputVC
+        let vc = vcWithID("LocationInputVC") as! LocationInputVC
         vc.donePickingWithAddress = donePickingStartLocationWithAddress
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func destButtonTapped(sender: AnyObject) {
-        var vc = vcWithID("LocationInputVC") as! LocationInputVC
+        let vc = vcWithID("LocationInputVC") as! LocationInputVC
         vc.donePickingWithAddress = donePickingEndLocationWithAddress
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func eventButtonTapped(sender: AnyObject) {
-        var vc = vcWithID("LocationInputVC") as! LocationInputVC
+        let vc = vcWithID("LocationInputVC") as! LocationInputVC
         vc.donePickingWithAddress = donePickingEventLocationWithAddress
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -282,7 +279,7 @@ class LocationVC: BaseVC {
     func segmentWithDataSource() {
         segmentControl.removeAllSegments()
         var i = 0
-        for title in dataSourceCollated.keys.array {
+        for title in Array(dataSourceCollated.keys) {
             segmentControl.insertSegmentWithTitle(title as String, atIndex: i, animated: false)
             i += 1
         }

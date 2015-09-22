@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XLForm
 
 class InviteInfoVC: BaseFormVC {
 
@@ -77,13 +78,13 @@ class InviteInfoVC: BaseFormVC {
 
     private func proceed() {
         let formData = self.form.formValues()
-        var verificationCode = formData["code"] as? String
+        let verificationCode = formData["code"] as? String
 
         LoadingView.showWithMaskType(.Black)
         dataManager.getInvitationByCode(verificationCode!) { (success, errorStr, invitation) in
             LoadingView.dismiss()
             if success {
-                var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
+                let vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
                 vc.invitation = invitation as! InvitationModel
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {

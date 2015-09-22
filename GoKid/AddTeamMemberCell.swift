@@ -14,7 +14,7 @@ class AddTeamMemberCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
-        layer.borderColor = rgb(186, 210, 182).CGColor
+        layer.borderColor = rgb(186, g: 210, b: 182).CGColor
         layer.cornerRadius = 3.0
     }
 }

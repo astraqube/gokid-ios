@@ -76,15 +76,15 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == ListSection.AddNew.rawValue {
-            var cell = tableView.cellWithID("CalendarAddCell", indexPath) as! CalendarAddCell
+            let cell = tableView.cellWithID("CalendarAddCell", indexPath) as! CalendarAddCell
             return cell
         }
         if indexPath.section == ListSection.Carpools.rawValue {
-            var model = carpoolsDataSource[indexPath.row]
+            let model = carpoolsDataSource[indexPath.row]
             return configCarpoolCell(indexPath, model)
         }
         if indexPath.section == ListSection.Invites.rawValue {
-            var model = invitesDataSource[indexPath.row]
+            let model = invitesDataSource[indexPath.row]
             return configCarpoolInviteCell(indexPath, model)
         }
         return UITableViewCell()
@@ -96,7 +96,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
             //inviteVC.carpool = carpoolsDataSource[indexPath.row]
             //navigationController?.pushViewController(inviteVC, animated: true)
             
-            var vc = vcWithID("VolunteerVC") as! VolunteerVC
+            let vc = vcWithID("VolunteerVC") as! VolunteerVC
             vc.carpool = carpoolsDataSource[indexPath.row]
             vc.fromCarpoolList = true
             navigationController?.pushViewController(vc, animated: true)
@@ -104,7 +104,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func configCarpoolCell(ip: NSIndexPath, _ model: CarpoolModel) -> CarpoolListCell {
-        var cell = tableView.cellWithID("CarpoolListCell", ip) as! CarpoolListCell
+        let cell = tableView.cellWithID("CarpoolListCell", ip) as! CarpoolListCell
         cell.loadModel(model)
         return cell
     }
@@ -114,7 +114,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     @IBAction func createButtonClicked(sender: UIButton) {
-        var vc = vcWithID("BasicInfoVC")
+        let vc = vcWithID("BasicInfoVC")
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -133,7 +133,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
 
     func generateTableDataAndReload() {
-        carpoolsDataSource = userManager.carpools.sorted { (left : CarpoolModel, right : CarpoolModel) -> Bool in
+        carpoolsDataSource = userManager.carpools.sort { (left : CarpoolModel, right : CarpoolModel) -> Bool in
             if left.startDate == nil || right.startDate == nil { return false}
             return left.startDate!.isLessThanDate(right.startDate!)
         }
@@ -148,7 +148,7 @@ class CarpoolListVC : BaseVC, UITableViewDataSource, UITableViewDelegate {
 extension CarpoolListVC {
 
     func configCarpoolInviteCell(ip: NSIndexPath, _ model: InvitationModel) -> CarpoolInviteCell {
-        var cell = tableView.cellWithID("CarpoolInviteCell", ip) as! CarpoolInviteCell
+        let cell = tableView.cellWithID("CarpoolInviteCell", ip) as! CarpoolInviteCell
         cell.invitation = model
         cell.onAccept = self.onViewInvitation
         cell.onDecline = self.onDeclineInvitation
@@ -157,7 +157,7 @@ extension CarpoolListVC {
    }
 
     func onViewInvitation(invitation: InvitationModel) {
-        var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
+        let vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
         vc.invitation = invitation
         self.navigationController?.pushViewController(vc, animated: true)
     }

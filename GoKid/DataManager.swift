@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AFNetworking
+import SwiftyJSON
 
 typealias completion = ((Bool, String)->())
 typealias ObjectCompletion = ((Bool, String, AnyObject?)->())
@@ -26,21 +28,21 @@ class DataManager: NSObject {
     }
     
     func managerWithToken() -> AFHTTPRequestOperationManager {
-        var token = userManager.userToken
-        var manager = AFHTTPRequestOperationManager()
+        let token = userManager.userToken
+        let manager = AFHTTPRequestOperationManager()
         manager.requestSerializer.setValue("token " + token, forHTTPHeaderField: "Authorization")
         return manager
     }
     
     func handleRequestError(op: AFHTTPRequestOperation?, error: NSError?, comp: completion) {
-        var errorStr = constructErrorString(op, error: error)
-        println(errorStr)
+        let errorStr = constructErrorString(op, error: error)
+        print(errorStr)
         comp(false, errorStr)
     }
     
     func handleUserResuestError(op: AFHTTPRequestOperation?, error: NSError?, comp: ObjectCompletion) {
-        var errorStr = constructErrorString(op, error: error)
-        println(errorStr)
+        let errorStr = constructErrorString(op, error: error)
+        print(errorStr)
         comp(false, errorStr, nil)
     }
     
@@ -65,8 +67,8 @@ class DataManager: NSObject {
     func constructReleaseErrorStr(op: AFHTTPRequestOperation?, _ error: NSError?) -> String {
         if let data = op?.responseData {
             var json = JSON(data: data)
-            println(json)
-            var message = json["message"].stringValue
+            print(json)
+            let message = json["message"].stringValue
             if message != "" {
                 return message
             }

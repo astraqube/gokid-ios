@@ -36,7 +36,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     // --------------------------------------------------------------------------------------------
     
     @IBAction func chooseFromContactListButtonClick(sender: AnyObject) {
-        var vc = vcWithID("ContactPickerVC") as! ContactPickerVC
+        let vc = vcWithID("ContactPickerVC") as! ContactPickerVC
         vc.carpool = self.carpool
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -55,7 +55,7 @@ class InviteParentsVC: BaseVC, MFMailComposeViewControllerDelegate, ABPeoplePick
     }
     
     override func rightNavButtonTapped() {
-        var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
+        let vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
         vc.carpool = self.carpool
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -18,7 +18,7 @@ class LastOnboardVC: BaseVC {
         super.viewDidLoad()
         joinNowButton.layer.cornerRadius = 2.0
         joinNowButton.layer.borderWidth = 2.0
-        joinNowButton.layer.borderColor = rgb(89,183,123).CGColor
+        joinNowButton.layer.borderColor = rgb(89,g: 183,b: 123).CGColor
     }
     
     @IBAction func goNowButtonTapped(sender: AnyObject) {

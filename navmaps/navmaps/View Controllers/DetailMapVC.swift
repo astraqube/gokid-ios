@@ -63,7 +63,7 @@ class DetailMapVC: BaseVC, MFMessageComposeViewControllerDelegate {
         set(show) {
             let constant = show ? trayShowConstraintOffset : 0
             trayOffsetConstraint.constant = constant
-            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: UIViewAnimationOptions.AllowAnimatedContent | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [UIViewAnimationOptions.AllowAnimatedContent, UIViewAnimationOptions.AllowUserInteraction], animations: { () -> Void in
                 self.view.layoutIfNeeded()
                 self.updateTrayProgress(show ? 1 : 0)
             }, completion: nil)
@@ -107,7 +107,7 @@ class DetailMapVC: BaseVC, MFMessageComposeViewControllerDelegate {
         } else {
             riders = navigation.pickups
         }
-        for (index, riderImageView) in enumerate(riderImageViews) {
+        for (index, riderImageView) in riderImageViews.enumerate() {
             let model : Stop? = (riders.count > index) ? riders[index] : nil
             if model != nil {
                 setupUserImageView(riderImageView, model: model!)
@@ -116,10 +116,10 @@ class DetailMapVC: BaseVC, MFMessageComposeViewControllerDelegate {
                 riderImageView.hidden = true
             }
         }
-        for (index, riderLabelView) in enumerate(riderLabelViews) {
+        for (index, riderLabelView) in riderLabelViews.enumerate() {
             let model : Stop? = (riders.count > index) ? riders[index] : nil
             if model != nil {
-                var firstWord = model!.name.componentsSeparatedByString(" ").first as? NSString
+                let firstWord = model!.name.componentsSeparatedByString(" ").first
                 riderLabelView.text = firstWord as String?
                 riderLabelView.hidden = false
             } else {
@@ -128,7 +128,7 @@ class DetailMapVC: BaseVC, MFMessageComposeViewControllerDelegate {
         }
         var stops = self.navigation.pickups + self.navigation.dropoffs
         var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: metadata?.date)
-        for (index, itineraryItemView) in enumerate(itineraryRows){
+        for (index, itineraryItemView) in itineraryRows.enumerate(){
             let model : Stop? = (stops.count > index) ? stops[index] : nil
             if model != nil {
                 var titleString = model!.name as String
@@ -199,7 +199,7 @@ class DetailMapVC: BaseVC, MFMessageComposeViewControllerDelegate {
     
     /// Step-wise replacement for action of trayShown
     ///
-    /// :param: progress 0 to 1 is the happy range– feel free to send values outside for dramatic effect :)
+    /// - parameter progress: 0 to 1 is the happy range– feel free to send values outside for dramatic effect :)
     func updateTrayProgress(progress: CGFloat){
         bottomTrayAngleUp.transform = CGAffineTransformMakeRotation(CGFloat(M_PI) * progress)
         trayBlackCoverView.alpha = 0.8 * (progress > 1.0 ? progress * progress : progress)
@@ -211,13 +211,13 @@ class DetailMapVC: BaseVC, MFMessageComposeViewControllerDelegate {
     
     var initialOffset : CGFloat = 0
     @IBAction func onTrayPan(sender: UIPanGestureRecognizer) {
-        var translationY = sender.translationInView(view).y * -1
-        var velocityY = sender.velocityInView(view).y * -1
+        let translationY = sender.translationInView(view).y * -1
+        let velocityY = sender.velocityInView(view).y * -1
         if sender.state == .Began {
             initialOffset = trayOffsetConstraint.constant
         } else if sender.state == .Changed {
             var newOffset = initialOffset + translationY
-            var overshoot = newOffset - trayShowConstraintOffset
+            let overshoot = newOffset - trayShowConstraintOffset
             if overshoot > 0 {
                 newOffset = trayShowConstraintOffset + overshoot/6
             }
@@ -247,27 +247,27 @@ class DetailMapVC: BaseVC, MFMessageComposeViewControllerDelegate {
             return UIAlertView(title: "Whoops!", message: "Your device doesn't support messages!", delegate: nil, cancelButtonTitle: "OK").show()
         }
         sender.enabled = false
-        var messageVC = MFMessageComposeViewController()
+        let messageVC = MFMessageComposeViewController()
         messageVC.messageComposeDelegate = self
-        var stops = self.navigation.pickups + self.navigation.dropoffs
-        var recipeints = [NSString]()
+        let stops = self.navigation.pickups + self.navigation.dropoffs
+        var recipients: [String]? = []
         for stop in stops {
             if stop.phoneNumber != nil && stop.phoneNumber?.length > 0 && stop.phoneNumber != self.userManager.info.phoneNumber {
-                recipeints.append(stop.phoneNumber!)
+                recipients!.append(stop.phoneNumber! as String)
             }
         }
         
-        if recipeints.count == 0 {
+        if recipients!.count == 0 {
             UIAlertView(title: "No phone numbers!", message: "No riders have shared their numbers", delegate: nil, cancelButtonTitle: "OK").show()
         }
-        
-        messageVC.recipients = recipeints
+
+        messageVC.recipients = recipients
         presentViewController(messageVC, animated: true) {
              sender.enabled = true
         }
     }
     
-    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult){
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult){
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }

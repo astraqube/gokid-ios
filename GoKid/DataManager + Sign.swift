@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
 
+import AFNetworking
+import SwiftyJSON
+
 struct SignupForm {
     var passwordConfirm = ""
     var password = ""
@@ -20,25 +23,25 @@ struct SignupForm {
 extension DataManager {
     
     func signin(email: String, password: String, comp: completion) {
-        var url = baseURL + "/api/sessions"
-        var map = [
+        let url = baseURL + "/api/sessions"
+        let map = [
             "email": email,
             "password": password
         ]
-        var manager = AFHTTPRequestOperationManager()
+        let manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("signin success")
+            print("signin success", terminator: "")
             self.userManager.setWithJsonReponse(JSON(obj))
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
         }) { (op, error) in
-            println("signin failed")
+            print("signin failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func signup(signupForm:SignupForm, comp: completion) {
-        var url = baseURL + "/api/users"
+        let url = baseURL + "/api/users"
         var arr = [
             "email": signupForm.email,
             "password": signupForm.password,
@@ -51,33 +54,33 @@ extension DataManager {
         } else {
             arr["phone_number"] = nil
         }
-        var map = ["user": arr]
-        var manager = AFHTTPRequestOperationManager()
+        let map = ["user": arr]
+        let manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("signup success")
+            print("signup success", terminator: "")
             self.userManager.setWithJsonReponse(JSON(obj))
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
         }) { (op, error) in
-            println("signup failed")
+            print("signup failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func fbSignin(comp: completion) {
-        var fbtoken = FBSDKAccessToken.currentAccessToken().tokenString
+        let fbtoken = FBSDKAccessToken.currentAccessToken().tokenString
         if fbtoken == nil {
             comp(false, "Cannot find FBToken")
             return
         }
         
-        var url = baseURL + "/api/sessions"
-        var map = ["fb_token": fbtoken]
+        let url = baseURL + "/api/sessions"
+        let map = ["fb_token": fbtoken]
         
-        var manager = AFHTTPRequestOperationManager()
+        let manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("fbSignin user success")
-            println(FBSDKAccessToken.currentAccessToken().tokenString)
+            print("fbSignin user success", terminator: "")
+            print(FBSDKAccessToken.currentAccessToken().tokenString, terminator: "")
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.useFBLogIn = true
             self.fbUploadProfileImage() { (result, error) -> () in
@@ -92,7 +95,7 @@ extension DataManager {
                 comp(true, "")
             }
         }) { (op, error) in
-            println("fbSignin user failed")
+            print("fbSignin user failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
@@ -103,10 +106,10 @@ extension DataManager {
 
         imageManager.getImageAtURL(url) { (image, error) -> () in
             if image != nil {
-                println("fbUploadProfileImage \(url)")
+                print("fbUploadProfileImage \(url)", terminator: "")
                 self.upLoadImage(image!, comp: comp)
             } else {
-                println("fbUploadProfileImage failed")
+                print("fbUploadProfileImage failed", terminator: "")
                 comp(true, "") // do not disturb the process
             }
         }
@@ -114,22 +117,22 @@ extension DataManager {
 
     func upLoadImage(image: UIImage, comp: completion) {
         
-        var urlStr = baseURL + "/api/me/upload"
-        var url = NSURL(string: urlStr)!
-        var imageData = UIImageJPEGRepresentation(image, 1.0)
-        var token = userManager.userToken
+        let urlStr = baseURL + "/api/me/upload"
+        let url = NSURL(string: urlStr)!
+        let imageData = UIImageJPEGRepresentation(image, 1.0)
+        let token = userManager.userToken
         
-        var request = NSMutableURLRequest(URL: url)
+        let request = NSMutableURLRequest(URL: url)
         request.addValue("image/jpeg", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("token " + token, forHTTPHeaderField: "Authorization")
         request.HTTPMethod = "POST"
         request.HTTPBody = imageData
 
-        var op = AFHTTPRequestOperation(request: request)
+        let op = AFHTTPRequestOperation(request: request)
         op.responseSerializer = AFJSONResponseSerializer()
         op.setCompletionBlockWithSuccess({ (op, obj) in
-            println("succeess to upload image")
+            print("succeess to upload image", terminator: "")
             var json = JSON(obj)
             self.userManager.info.thumURL = json["avatar"]["thumb_url"].stringValue
             self.userManager.saveUserInfo()
@@ -142,7 +145,7 @@ extension DataManager {
     }
     
     func updateUser(signupForm:SignupForm, comp: completion) {
-        var url = baseURL + "/api/me"
+        let url = baseURL + "/api/me"
         var arr = [
             "role": signupForm.role.lowercaseString,
             "email": signupForm.email,
@@ -155,46 +158,46 @@ extension DataManager {
         } else {
             arr["phone_number"] = nil
         }
-        var map = ["user": arr]
-        var manager = managerWithToken()
+        let map = ["user": arr]
+        let manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("update user success")
+            print("update user success", terminator: "")
             self.userManager.setWithJsonReponse(JSON(obj))
             onMainThread() { self.postNotification("SignupFinished") }
             comp(true, "")
         }) { (op, error) in
-            println("update user failed")
+            print("update user failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     func updatePhoneNumber(phone: String, comp: completion) {
-        var url = baseURL + "/api/me"
-        var map = ["user": ["phone_number": phone]]
-        var manager = managerWithToken()
+        let url = baseURL + "/api/me"
+        let map = ["user": ["phone_number": phone]]
+        let manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("update phone success")
+            print("update phone success", terminator: "")
             self.userManager.setWithJsonReponse(JSON(obj))
             comp(true, "")
         }) { (op, error) in
-            println("update phone failed")
+            print("update phone failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     func updateUserRole(role: String, comp: completion) {
-        var url = baseURL + "/api/me"
-        var arr = [
+        let url = baseURL + "/api/me"
+        let arr = [
             "role": role.lowercaseString
         ]
-        var map = ["user": arr]
-        var manager = managerWithToken()
+        let map = ["user": arr]
+        let manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("updateUserRole success")
+            print("updateUserRole success", terminator: "")
             self.userManager.setWithJsonReponse(JSON(obj))
             comp(true, "")
         }) { (op, error) in
-            println("updateUserRole failed")
+            print("updateUserRole failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
@@ -203,10 +206,10 @@ extension DataManager {
         let url = "\(baseURL)/users/password"
         let manager = managerWithToken()
         manager.POST(url, parameters: ["email": email], success: { (op, obj) in
-            println("resetPassword success")
+            print("resetPassword success", terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("resetPassword failed")
+            print("resetPassword failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }

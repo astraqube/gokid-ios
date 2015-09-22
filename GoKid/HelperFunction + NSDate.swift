@@ -10,17 +10,17 @@ import Foundation
 
 extension NSDate {
     func iso8601String() -> String {
-        var df = NSDateFormatter()
-        var enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let df = NSDateFormatter()
+        let enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
         df.locale = enUSPosixLocale
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZZZZZ"
-        println(df.stringFromDate(self))
+        print(df.stringFromDate(self))
         return df.stringFromDate(self)
     }
     
     class func dateFromIso8601String(str: String) -> NSDate? {
-        var df = NSDateFormatter()
-        var enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let df = NSDateFormatter()
+        let enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         df.locale = enUSPosixLocale
         if let date = df.dateFromString(str) {
@@ -31,31 +31,31 @@ extension NSDate {
     }
     
     func dateString() -> String {
-        var df = NSDateFormatter()
+        let df = NSDateFormatter()
         df.dateFormat = "EE MMMM d, YYYY"
         return df.stringFromDate(self)
     }
     
     func shortDateString() -> String {
-        var df = NSDateFormatter()
+        let df = NSDateFormatter()
         df.dateFormat = "EE MMMM d"
         return df.stringFromDate(self)
     }
     
     func timeString() -> String {
-        var df = NSDateFormatter()
+        let df = NSDateFormatter()
         df.dateFormat = "hh:mma"
         return df.stringFromDate(self).lowercaseString
     }
     
     func weekDayString() -> String {
-        var df = NSDateFormatter()
+        let df = NSDateFormatter()
         df.dateFormat = "EE"
         return df.stringFromDate(self)
     }
     
     func weekDayFullString() -> String {
-        var df = NSDateFormatter()
+        let df = NSDateFormatter()
         df.dateFormat = "EEEE"
         return df.stringFromDate(self)
     }

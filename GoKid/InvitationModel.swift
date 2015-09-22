@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class InvitationModel: NSObject {
     var inviteID: Int!
@@ -59,7 +60,7 @@ class InvitationModel: NSObject {
     func accept(comp: completion) {
         DataManager.sharedInstance.acceptInvite(self) { (success, error) in
             if success {
-                if let index = find(UserManager.sharedInstance.invitations, self) {
+                if let index = UserManager.sharedInstance.invitations.indexOf(self) {
                     UserManager.sharedInstance.invitations.removeAtIndex(index)
                     InvitationModel.InvitationCount = UserManager.sharedInstance.invitations.count
                 }
@@ -71,7 +72,7 @@ class InvitationModel: NSObject {
     func decline(comp: completion) {
         DataManager.sharedInstance.declineInvite(self) { (success, error) in
             if success {
-                if let index = find(UserManager.sharedInstance.invitations, self) {
+                if let index = UserManager.sharedInstance.invitations.indexOf(self) {
                     UserManager.sharedInstance.invitations.removeAtIndex(index)
                     InvitationModel.InvitationCount = UserManager.sharedInstance.invitations.count
                 }

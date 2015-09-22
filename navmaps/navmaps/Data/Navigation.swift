@@ -71,9 +71,9 @@ class Navigation : NSObject, CLLocationManagerDelegate {
     
     func optomizeRoute() {
         if self.pickups.count == 0 || self.dropoffs.count == 0 { return }
-        var sorted = ETACalculator.superSortStops(self.pickups + self.dropoffs, beginningAt: self.pickups.first!, endingAt: self.dropoffs.last!)
-        dropoffs.sort { (left, right) -> Bool in return find(sorted, left) < find(sorted, right) }
-        pickups.sort { (left, right) -> Bool in return find(sorted, left) < find(sorted, right) }
+        let sorted = ETACalculator.superSortStops(self.pickups + self.dropoffs, beginningAt: self.pickups.first!, endingAt: self.dropoffs.last!)
+        dropoffs.sortInPlace { (left, right) -> Bool in return sorted.indexOf(left) < sorted.indexOf(right) }
+        pickups.sortInPlace { (left, right) -> Bool in return sorted.indexOf(left) < sorted.indexOf(right) }
     }
     
     ///Called directly *AFTER* a change is made to the state of a `Stop` object
@@ -129,7 +129,7 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         locationToCurrentStopResponse = nil
         locationToCurrentStopDirections = nil
         if onDirectionUpdate != nil {
-            println("since on directionUpdate running, we should update this")
+            print("since on directionUpdate running, we should update this")
         }
     }
     
@@ -138,9 +138,9 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         if first == nil || second == nil {
             return nil
         }
-        var request = MKDirectionsRequest()
-        request.setSource(MKMapItem(placemark: MKPlacemark(coordinate: first!.coordinate, addressDictionary: nil)))
-        request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: second!.coordinate, addressDictionary: nil)))
+        let request = MKDirectionsRequest()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: first!.coordinate, addressDictionary: nil))
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: second!.coordinate, addressDictionary: nil))
         return MKDirections(request: request)
     }
 
@@ -149,9 +149,9 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         get {
             if _locationToCurrentStopDirections == nil {
                 if self.currentStop == nil { return nil }
-                var request = MKDirectionsRequest()
-                request.setSource(MKMapItem.mapItemForCurrentLocation())
-                request.setDestination(MKMapItem(placemark: MKPlacemark(coordinate: self.currentStop!.coordinate, addressDictionary: nil)))
+                let request = MKDirectionsRequest()
+                request.source = MKMapItem.mapItemForCurrentLocation()
+                request.destination = MKMapItem(placemark: MKPlacemark(coordinate: self.currentStop!.coordinate, addressDictionary: nil))
                 _locationToCurrentStopDirections = MKDirections(request: request)
             }
             return _locationToCurrentStopDirections
@@ -196,15 +196,17 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         let allStops = pickups + dropoffs
         if allStops.count == 0 { return }
         stopStepResponses = [MKDirectionsResponse?](count: Int(allStops.count-1), repeatedValue: nil)
-        for (index, stop) in enumerate(allStops){
+        for (index, stop) in allStops.enumerate() {
             if (index + 1 < allStops.count){
-                var nextStop = allStops[index+1]
-                stopToStopDirections(stop, second: nextStop)?.calculateDirectionsWithCompletionHandler { (response: MKDirectionsResponse!, error: NSError!) -> Void in
-                    self.stopStepResponses![index] = response
-                    if error != nil {
-                        println("error in calculateRoutePieces: " + error.description)
+                let nextStop = allStops[index+1]
+                if let path = stopToStopDirections(stop, second: nextStop) {
+                    path.calculateDirectionsWithCompletionHandler { (response: MKDirectionsResponse?, error: NSError?) -> Void in
+                        self.stopStepResponses![index] = response
+                        if error != nil {
+                            print("error in calculateRoutePieces: " + error!.description)
+                        }
+                        callback(updatedArray: self.stopStepResponses!, error: error)
                     }
-                    callback(updatedArray: self.stopStepResponses!, error: error)
                 }
             }
         }
@@ -240,20 +242,20 @@ class Navigation : NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status.rawValue < CLAuthorizationStatus.AuthorizedAlways.rawValue {
             return
         }
         if locationToCurrentStopDirections?.calculating == true {
             return
         }
-        locationToCurrentStopDirections?.calculateDirectionsWithCompletionHandler({ (response: MKDirectionsResponse!, error: NSError!) -> Void in
+        locationToCurrentStopDirections?.calculateDirectionsWithCompletionHandler({ (response: MKDirectionsResponse?, error: NSError?) -> Void in
             self.locationToCurrentStopResponse = response
             self.onLocationToCurrentStopRouteDetermined!(response, error);
         })
     }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        lastLocation = locations.first as? CLLocation
+
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        lastLocation = locations.first
     }
 }

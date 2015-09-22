@@ -24,15 +24,15 @@ extension Navigation {
         recalculateRoute()
         
         weak var wSelf = self
-        self.addLocationToCurrentStopRouteCallback { (response: MKDirectionsResponse!, calcError: NSError!) -> Void in
+        self.addLocationToCurrentStopRouteCallback { (response: MKDirectionsResponse?, calcError: NSError?) -> Void in
             var error : NSString?
-            if let stop = wSelf?.currentStop {
+            if let _ = wSelf?.currentStop {
                 if let directionsResponse = response {
-                    if let route = directionsResponse.routes.first as? MKRoute? {
+                    if let route = directionsResponse.routes.first as MKRoute? {
                         wSelf?.currentRoute = route
                         wSelf?.currentRouteStepIndex = -1
                     } else { error = "No route to current stop" }
-                } else { error = "couldn't get directions to stop\n\(calcError.localizedFailureReason != nil ? calcError.localizedFailureReason! : calcError.localizedDescription)" }
+                } else { error = "couldn't get directions to stop\n\(calcError!.localizedFailureReason != nil ? calcError!.localizedFailureReason! : calcError!.localizedDescription)" }
                 
             } else { error = "no current step" }
             if error != nil {
@@ -62,20 +62,20 @@ extension Navigation {
         
         //Navigation next step: currentStep until closer to nextStep.firstPoint than currentStep.lastPoint
         //Navigation off-route: if closest distance from currentStep.path.allPoints > 300 ft, recalculate
-        var currentRouteStep = (currentRoute?.steps.count > currentRouteStepIndex && currentRouteStepIndex >= 0 ? currentRoute?.steps[currentRouteStepIndex] : nil) as! MKRouteStep?
-        var nextRouteStep = (currentRoute?.steps.count > currentRouteStepIndex + 1 ? currentRoute?.steps[currentRouteStepIndex + 1] : nil) as! MKRouteStep?
+        let currentRouteStep = (currentRoute?.steps.count > currentRouteStepIndex && currentRouteStepIndex >= 0 ? currentRoute?.steps[currentRouteStepIndex] : nil) 
+        let nextRouteStep = (currentRoute?.steps.count > currentRouteStepIndex + 1 ? currentRoute?.steps[currentRouteStepIndex + 1] : nil)
         var readyForNextStep = false
         if nextRouteStep != nil && currentRouteStep == nil {
             readyForNextStep = true
         } else if nextRouteStep != nil && currentRouteStep != nil {
-            var currentLastCoordinate = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(1)
-            var nextFirstCoordinate = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(1)
-            var currentPointCount = currentRouteStep!.polyline.pointCount
+            let currentLastCoordinate = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(1)
+            let nextFirstCoordinate = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(1)
+            let currentPointCount = currentRouteStep!.polyline.pointCount
             currentRouteStep?.polyline.getCoordinates(currentLastCoordinate, range: NSMakeRange(currentPointCount - 2, 1))
             nextRouteStep?.polyline.getCoordinates(nextFirstCoordinate, range: NSMakeRange(0, 1))
             
-            var currentDistance = lastLocation?.distanceFromLocation(CLLocation(latitude: currentLastCoordinate[0].latitude, longitude: currentLastCoordinate[0].longitude))
-            var nextDistance = lastLocation?.distanceFromLocation(CLLocation(latitude: nextFirstCoordinate[0].latitude, longitude: nextFirstCoordinate[0].longitude))
+            let currentDistance = lastLocation?.distanceFromLocation(CLLocation(latitude: currentLastCoordinate[0].latitude, longitude: currentLastCoordinate[0].longitude))
+            let nextDistance = lastLocation?.distanceFromLocation(CLLocation(latitude: nextFirstCoordinate[0].latitude, longitude: nextFirstCoordinate[0].longitude))
             
             if nextDistance < currentDistance {
                 readyForNextStep = true
@@ -87,21 +87,21 @@ extension Navigation {
 
         //determine if off route
         if readyForNextStep == false && currentRouteStep != nil {
-            var currentPointCount = currentRouteStep!.polyline.pointCount
-            var currentCoordinates = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(currentPointCount)
+            let currentPointCount = currentRouteStep!.polyline.pointCount
+            let currentCoordinates = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(currentPointCount)
             currentRouteStep?.polyline.getCoordinates(currentCoordinates, range: NSMakeRange(0, currentPointCount))
             
             let recalculateDistance : CGFloat = 150.0
             var minDistance : CGFloat = 999999.9999
             for var i = 0; i < currentPointCount - 1 - 1; i++ {
-                var lp1 = CLLocation(latitude: currentCoordinates[i].latitude, longitude: currentCoordinates[i].longitude)
-                var lp2 = CLLocation(latitude: currentCoordinates[i + 1].latitude, longitude: currentCoordinates[i + 1].longitude)
-                var lp1f = CGPointMake(CGFloat(lp1.coordinate.latitude), CGFloat(lp1.coordinate.longitude))
-                var lp2f = CGPointMake(CGFloat(lp2.coordinate.latitude), CGFloat(lp2.coordinate.longitude))
-                var pf = CGPointMake(CGFloat(lastLocation!.coordinate.latitude), CGFloat(lastLocation!.coordinate.longitude))
+                let lp1 = CLLocation(latitude: currentCoordinates[i].latitude, longitude: currentCoordinates[i].longitude)
+                let lp2 = CLLocation(latitude: currentCoordinates[i + 1].latitude, longitude: currentCoordinates[i + 1].longitude)
+                let lp1f = CGPointMake(CGFloat(lp1.coordinate.latitude), CGFloat(lp1.coordinate.longitude))
+                let lp2f = CGPointMake(CGFloat(lp2.coordinate.latitude), CGFloat(lp2.coordinate.longitude))
+                let pf = CGPointMake(CGFloat(lastLocation!.coordinate.latitude), CGFloat(lastLocation!.coordinate.longitude))
                 
-                var distance = distanceFromLinePoints(lp1f, lp2: lp2f, point: pf)
-                var meterDistance = distance * 111 * 1000  //1 degree of latidude is 111 kilometers, 1000 m/km
+                let distance = distanceFromLinePoints(lp1f, lp2: lp2f, point: pf)
+                let meterDistance = distance * 111 * 1000  //1 degree of latidude is 111 kilometers, 1000 m/km
                 
                 if meterDistance < minDistance {
                     minDistance = meterDistance
@@ -121,7 +121,7 @@ extension Navigation {
         
         //if closer to last point of next step
         if readyForNextStep {
-            var newStep = nextRouteStep
+            _ = nextRouteStep
             currentRouteStepIndex++
             dispatch_async(dispatch_get_main_queue()) {
                 self.onDirectionUpdate!(error: nil, nextDirection : nextRouteStep?.instructions)
@@ -131,12 +131,12 @@ extension Navigation {
     
     ///Gets the Perpandicular Distance from a point to a line specifified by the coordinates
     func distanceFromLinePoints(lp1: CGPoint, lp2: CGPoint, point: CGPoint) -> CGFloat {
-        var numerator =  fabsf(Float((lp2.y - lp1.y) * point.x - (lp2.x - lp1.x) * point.y + lp2.x * lp1.y - lp2.y * lp1.x))
-        var dlp1lp2 = sqrtf(powf(Float(lp2.y - lp1.y),2.0) + powf(Float(lp2.x - lp1.x),2.0) )
-        var lineDistance = numerator / dlp1lp2
+        let numerator =  fabsf(Float((lp2.y - lp1.y) * point.x - (lp2.x - lp1.x) * point.y + lp2.x * lp1.y - lp2.y * lp1.x))
+        let dlp1lp2 = sqrtf(powf(Float(lp2.y - lp1.y),2.0) + powf(Float(lp2.x - lp1.x),2.0) )
+        let lineDistance = numerator / dlp1lp2
         
-        var dpointlp1 = sqrtf(powf(Float(point.y - lp1.y),2.0) + powf(Float(point.x - lp1.x),2.0) )
-        var dpointlp2 = sqrtf(powf(Float(point.y - lp2.y),2.0) + powf(Float(point.x - lp2.x),2.0) )
+        let dpointlp1 = sqrtf(powf(Float(point.y - lp1.y),2.0) + powf(Float(point.x - lp1.x),2.0) )
+        let dpointlp2 = sqrtf(powf(Float(point.y - lp2.y),2.0) + powf(Float(point.x - lp2.x),2.0) )
         
         if dpointlp1 > dlp1lp2 && dpointlp2 > dlp1lp2 {
             return CGFloat(min(dpointlp1, dpointlp2))

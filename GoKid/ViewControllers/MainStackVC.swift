@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ViewDeck
 
 class MainStackVC: IIViewDeckController {
 
@@ -81,14 +82,14 @@ class MainStackVC: IIViewDeckController {
             if success {
                 self.setSignedInView()
             } else {
-                println(errorStr)
+                print(errorStr, terminator: "")
                 self.setWelcomeView()
             }
         }
     }
 
     func popUpSignInView() {
-        var signInVC = vcWithID("SignInVC") as! SignInVC
+        let signInVC = vcWithID("SignInVC") as! SignInVC
         signInVC.parentVC = self
         signInVC.modalTransitionStyle = .CrossDissolve
         signInVC.modalPresentationStyle = .OverCurrentContext
@@ -102,7 +103,7 @@ class MainStackVC: IIViewDeckController {
     }
 
     func popUpSignUpView() {
-        var signUpVC = vcWithID("SignUpVC") as! SignUpVC
+        let signUpVC = vcWithID("SignUpVC") as! SignUpVC
         signUpVC.parentVC = self
         signUpVC.modalTransitionStyle = .CrossDissolve
         signUpVC.modalPresentationStyle = .OverCurrentContext
@@ -118,7 +119,7 @@ class MainStackVC: IIViewDeckController {
     func popUpPhoneNumberView() {
         let userManager = UserManager.sharedInstance
         if userManager.userLoggedIn && userManager.info.phoneNumber == "" {
-            var phoneNumberVC = vcWithID("PhoneNumberVC") as! PhoneNumberVC
+            let phoneNumberVC = vcWithID("PhoneNumberVC") as! PhoneNumberVC
             phoneNumberVC.parentVC = self
             phoneNumberVC.modalTransitionStyle = .CrossDissolve
             phoneNumberVC.modalPresentationStyle = .OverCurrentContext
@@ -133,8 +134,8 @@ class MainStackVC: IIViewDeckController {
     }
 
     func notifyInvitationView() {
-        var alertView = UIAlertController(title: "Incoming", message: "You have just received a new Carpool Invitation.", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "Open It", style: .Default, handler: { (action: UIAlertAction!) in
+        let alertView = UIAlertController(title: "Incoming", message: "You have just received a new Carpool Invitation.", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Open It", style: .Default, handler: { (action: UIAlertAction) in
             self.presentInvitationView()
         }))
         alertView.addAction(UIAlertAction(title: "Later", style: .Cancel, handler: nil))
@@ -150,7 +151,7 @@ class MainStackVC: IIViewDeckController {
         DataManager.sharedInstance.getInvitationByCode(inviteCode!) { (success, errorStr, invitation) in
             LoadingView.dismiss()
             if success {
-                var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
+                let vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
                 vc.invitation = invitation as! InvitationModel
                 (self.centerController as! UINavigationController).pushViewController(vc, animated: true)
             } else {
@@ -160,7 +161,7 @@ class MainStackVC: IIViewDeckController {
     }
 
     func refreshCurrentVC(animated: Bool) {
-        (self.centerController as! UINavigationController).visibleViewController.viewDidAppear(animated)
+        (self.centerController as! UINavigationController).visibleViewController!.viewDidAppear(animated)
     }
 
 }

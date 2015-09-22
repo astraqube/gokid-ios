@@ -80,7 +80,7 @@ class FrequencyTransformer: NSValueTransformer {
                             converted.append(day.truncateToCharacters(3))
                         }
                     }
-                    return ", ".join(converted)
+                    return converted.joinWithSeparator(", ")
                 }
             }
         }

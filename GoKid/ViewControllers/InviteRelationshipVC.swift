@@ -41,7 +41,7 @@ class InviteRelationshipVC: BaseVC {
     }
     
     func moveToYourKidVC() {
-        var vc = vcWithID("YourKidVC") as! YourKidVC
+        let vc = vcWithID("YourKidVC") as! YourKidVC
         vc.invitation = self.invitation
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -54,7 +54,7 @@ class InviteRelationshipVC: BaseVC {
                 self.dataManager.updateUserRole(role) { (success, errStr) in
                     if success {
                         onMainThread() {
-                            var vc = vcWithID("VolunteerVC") as! VolunteerVC
+                            let vc = vcWithID("VolunteerVC") as! VolunteerVC
                             vc.carpool = self.invitation.carpool
                             self.navigationController?.pushViewController(vc, animated: true)
                         }

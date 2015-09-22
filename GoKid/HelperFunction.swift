@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class HelperFunction: NSObject { }
 
-func debounce( delay:NSTimeInterval, #queue:dispatch_queue_t, action: (()->()) ) -> ()->() {
+func debounce( delay:NSTimeInterval, queue:dispatch_queue_t, action: (()->()) ) -> ()->() {
 
     var lastFireTime:dispatch_time_t = 0
     let dispatchDelay = Int64(delay * Double(NSEC_PER_SEC))
@@ -81,10 +82,10 @@ func nib(name: String) -> UINib {
 }
 
 func vcWithID(ID: String) -> UIViewController {
-    var map = DataManager.sharedInstance.sbViewControllerList()
+    let map = DataManager.sharedInstance.sbViewControllerList()
     for (k, v) in map {
         if v[ID] != nil {
-            return vcWithID(ID, k)
+            return vcWithID(ID, StoryBoard: k)
         }
     }
     assertionFailure("View Controller doesn't exsit")
@@ -92,8 +93,8 @@ func vcWithID(ID: String) -> UIViewController {
 }
 
 func vcWithID(ID: String, StoryBoard: String) -> UIViewController {
-    var sb = UIStoryboard(name: StoryBoard, bundle: NSBundle.mainBundle())
-    var vc = sb.instantiateViewControllerWithIdentifier(ID) as! UIViewController
+    let sb = UIStoryboard(name: StoryBoard, bundle: NSBundle.mainBundle())
+    let vc = sb.instantiateViewControllerWithIdentifier(ID) 
     return vc
 }
 
@@ -125,7 +126,7 @@ func onMainThread(function :(() -> Void)) {
 }
 
 func withDelay(delayInSecond: Double, function :(() -> Void)) {
-    var delay = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSecond * Double(NSEC_PER_SEC)))
+    let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSecond * Double(NSEC_PER_SEC)))
     dispatch_after(delay, dispatch_get_main_queue()) {
         function()
     }
@@ -133,22 +134,22 @@ func withDelay(delayInSecond: Double, function :(() -> Void)) {
 
 extension NSString {
     func heightForFont(font: UIFont, fixedWidth: CGFloat) -> CGFloat {
-        var attri = [NSFontAttributeName : font]
-        var attrStr = NSMutableAttributedString(string: self as! String, attributes: attri)
-        var rect = attrStr.boundingRectWithSize(CGSizeMake(fixedWidth, 99999.0), options: .UsesLineFragmentOrigin, context: nil)
+        let attri = [NSFontAttributeName : font]
+        let attrStr = NSMutableAttributedString(string: self as String, attributes: attri)
+        let rect = attrStr.boundingRectWithSize(CGSizeMake(fixedWidth, 99999.0), options: .UsesLineFragmentOrigin, context: nil)
         return CGFloat(rect.size.height)
     }
 }
 
 extension UITableView {
     func cellWithID(id: String, _ indexPath: NSIndexPath) -> UITableViewCell {
-         return self.dequeueReusableCellWithIdentifier(id, forIndexPath: indexPath) as! UITableViewCell
+         return self.dequeueReusableCellWithIdentifier(id, forIndexPath: indexPath)
     }
 }
 
 extension UICollectionView {
   func cellWithID(id: String, _ indexPath: NSIndexPath) -> UICollectionViewCell {
-    return self.dequeueReusableCellWithReuseIdentifier(id, forIndexPath: indexPath) as! UICollectionViewCell
+    return self.dequeueReusableCellWithReuseIdentifier(id, forIndexPath: indexPath)
   }
 }
 
@@ -172,17 +173,17 @@ extension NSObject {
 
 extension String {
     func replace(a: String, _ b: String) -> String {
-        var option = NSStringCompareOptions.LiteralSearch
+        let option = NSStringCompareOptions.LiteralSearch
         return self.stringByReplacingOccurrencesOfString(a, withString: b, options:option , range: nil)
     }
     
     func delete(a: String) -> String {
-        var option = NSStringCompareOptions.LiteralSearch
+        let option = NSStringCompareOptions.LiteralSearch
         return self.stringByReplacingOccurrencesOfString(a, withString: "", options:option , range: nil)
     }
     
     func firstCharacter() ->String {
-        if count(self) > 0 {
+        if self.characters.count > 0 {
             return String(self[self.startIndex])
         } else {
             return ""
@@ -190,14 +191,14 @@ extension String {
     }
 
     func truncateToCharacters(num: Int) -> String {
-        let index: String.Index = advance(self.startIndex, num)
+        let index: String.Index = self.startIndex.advancedBy(num)
         return self.substringToIndex(index)
     }
 
     func twoLetterAcronym() -> String {
         var acronym : String!
-        if count(self) >= 2 {
-            let index: String.Index = advance(self.startIndex, 2)
+        if self.characters.count >= 2 {
+            let index: String.Index = self.startIndex.advancedBy(2)
             acronym = self.substringToIndex(index)
         } else {
             acronym = self
@@ -215,8 +216,8 @@ extension String {
     }
 
     mutating func captialName() -> String {
-        if count(self) < 1 { return "" }
-        var index = self.startIndex
+        if self.characters.count < 1 { return "" }
+        let index = self.startIndex
         self.replaceRange(index...index, with: String(self[index]).capitalizedString)
         return self
     }
@@ -227,7 +228,7 @@ extension String {
 
     func extractNumbers() -> String? {
         let strArr = self.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
-        let numbers = "".join(strArr)
+        let numbers = strArr.joinWithSeparator("")
         return numbers != "" ? numbers : nil
     }
 
@@ -240,7 +241,7 @@ extension String {
 }
 
 extension Array {
-    mutating func appendArr(arr: Array<T>) {
+    mutating func appendArr(arr: Array<Element>) {
         for element in arr {
             self.append(element)
         }

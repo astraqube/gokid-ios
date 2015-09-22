@@ -44,10 +44,10 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         }
     }()
     var locationToCurrentStopRoute : MKRoute? {
-        willSet { mapView.removeOverlay(self.locationToCurrentStopRoute?.polyline) }
+        willSet { mapView.removeOverlay((self.locationToCurrentStopRoute?.polyline)!) }
         didSet {
             if self.locationToCurrentStopRoute?.polyline != nil {
-                mapView.addOverlay(self.locationToCurrentStopRoute?.polyline)
+                mapView.addOverlay((self.locationToCurrentStopRoute?.polyline)!)
             }
         }
     }
@@ -70,11 +70,11 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         mapView.showAnnotations(navigation.pickups + navigation.dropoffs, animated: false)
         updateRoutes()
         weak var wSelf = self
-        navigation.addLocationToCurrentStopRouteCallback { (response: MKDirectionsResponse?, error: NSError!) -> Void in
+        navigation.addLocationToCurrentStopRouteCallback { (response: MKDirectionsResponse?, error: NSError?) -> Void in
             if error != nil {
                 UIAlertView(title: "Problem showing route from your location", message: "Tap a stop to get directions in Maps", delegate: nil, cancelButtonTitle: "Okay").show()
             }
-            wSelf?.locationToCurrentStopRoute = response?.routes!.first as? MKRoute
+            wSelf?.locationToCurrentStopRoute = response?.routes.first 
         }
     }
     
@@ -97,11 +97,11 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         if mapView == nil {return}
         let allStops = navigation.pickups + navigation.dropoffs
         let overlaysSet = (self.mapView?.overlays != nil) ?  NSSet(array: self.mapView.overlays) : NSSet()
-        for (index, response) in enumerate(navigation.stopStepResponses!) {
+        for (index, response) in navigation.stopStepResponses!.enumerate() {
             let stopFor = allStops[index]
             if response != nil {
-                var route : MKRoute? = response!.routes.first as? MKRoute
-                if let poly : MKPolyline = route?.polyline {
+                let route = response!.routes.first
+                if let poly = route?.polyline {
                     if stopFor.state == .Completed {
                         mapView.removeOverlay(poly)
                     } else if overlaysSet.containsObject(poly) == false {
@@ -112,11 +112,11 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         if let siblingViews = view.superview?.subviews as? [MKAnnotationView] {
             var deselect = true
             for sibling in siblingViews {
-                if sibling != view && sibling.annotation.coordinate == view.annotation.coordinate {
+                if sibling != view && sibling.annotation!.coordinate == view.annotation!.coordinate {
                     deselect = false
                 }
             }
@@ -150,9 +150,7 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         switch mapTrackMode {
         case .Everything:
             annotations = navigation.pickups + navigation.dropoffs
-            if mapView.userLocation != nil{
-                annotations.append(mapView.userLocation)
-            }
+            annotations.append(mapView.userLocation)
             mapView.showAnnotations(annotations, animated: true)
         case .User:
             mapView.setUserTrackingMode(MKUserTrackingMode.FollowWithHeading, animated: false)
@@ -168,7 +166,7 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
         if didFitMapOnce {
             return
         }
@@ -176,47 +174,47 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         updateMapTrack()
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isKindOfClass(MKUserLocation) {
             return nil
         }
-        var reuseID = "annotation"
+        let reuseID = "annotation"
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
         if (annotationView == nil) {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
         }
-        annotationView.image = imageForStopAnnotation(annotation as! Stop)
+        annotationView!.image = imageForStopAnnotation(annotation as! Stop)
         return annotationView
     }
     
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if let polyline = overlay as? MKPolyline {
-            var lineRenderer = MKPolylineRenderer(polyline: polyline)
+            let lineRenderer = MKPolylineRenderer(polyline: polyline)
             lineRenderer.strokeColor = polylineColor
             lineRenderer.lineWidth = 5;
             return lineRenderer
         }
-        return nil
+        return MKPolylineRenderer()
     }
     
     func imageForStopAnnotation(stop: Stop) -> UIImage {
-        var pinImageView = UIImageView(frame: CGRectMake(0, 0, 48, 55))
+        let pinImageView = UIImageView(frame: CGRectMake(0, 0, 48, 55))
         pinImageView.image = UIImage(named: "pin")!
         pinImageView.contentMode = UIViewContentMode.ScaleAspectFill
         
-        var renderView = UIView(frame: CGRectMake(0, 0, 48, 110))
+        let renderView = UIView(frame: CGRectMake(0, 0, 48, 110))
         renderView.addSubview(pinImageView)
         
         if stop.thumbnailImage != nil {
-            var iconImageView = MapUserImageView(frame: CGRectMake(0, 0, 38, 38))
+            let iconImageView = MapUserImageView(frame: CGRectMake(0, 0, 38, 38))
             iconImageView.cornerRadius = 19
             iconImageView.image = stop.thumbnailImage
             pinImageView.addSubview(iconImageView)
             iconImageView.center = pinImageView.center
             iconImageView.center.y -= 3
         } else {
-            let abbreviation = (stop.name as! String).twoLetterAcronym()
-            var iconLabel = UILabel(frame: CGRectMake(0, 0, 38, 38))
+            let abbreviation = (stop.name as String).twoLetterAcronym()
+            let iconLabel = UILabel(frame: CGRectMake(0, 0, 38, 38))
             iconLabel.text = abbreviation
             iconLabel.textAlignment = .Center
             iconLabel.textColor = UIColor.whiteColor()
@@ -227,8 +225,8 @@ class MapViewDatasource: NSObject, MKMapViewDelegate {
         }
         
         UIGraphicsBeginImageContextWithOptions(renderView.frame.size, false, 0.0)
-        renderView.layer.renderInContext(UIGraphicsGetCurrentContext())
-        var thumbnail = UIGraphicsGetImageFromCurrentImageContext()
+        renderView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let thumbnail = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return thumbnail
     }

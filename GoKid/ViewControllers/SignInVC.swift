@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     
@@ -37,10 +38,10 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
     override func rightNavButtonTapped() {
         let _self = self
-        var email = emailTextField.text
-        var passw = passwordTextField.text
+        let email = emailTextField.text
+        let passw = passwordTextField.text
         LoadingView.showWithMaskType(.Black)
-        dataManager.signin(email, password: passw) { (success, errorStr) -> () in
+        dataManager.signin(email!, password: passw!) { (success, errorStr) -> () in
             LoadingView.dismiss()
             if success {
                 _self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignIn)
@@ -63,9 +64,9 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
         emailPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
 
-        emailPrompt.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (alert: UIAlertAction!) in
-            if let textField = emailPrompt.textFields?.first as? UITextField{
-                self.dataManager.resetPassword(textField.text) { (success, error) -> () in
+        emailPrompt.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (alert: UIAlertAction) in
+            if let textField = emailPrompt.textFields?.first as UITextField? {
+                self.dataManager.resetPassword(textField.text!) { (success, error) -> () in
                     if success {
                         self.showAlert("Instructions Sent!", messege: "Please check your email and follow the instructions there.", cancleTitle: "OK")
                     } else {
@@ -93,7 +94,7 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
             self.showAlert("Failed to sign in with Facebook", messege:"You cancelled login" , cancleTitle: "OK")
         } else {
             if result.grantedPermissions.contains("email") {
-                println("success")
+                print("success", terminator: "")
                 LoadingView.showWithMaskType(.Black)
                 dataManager.fbSignin() { (success, errorStr) in
                     LoadingView.dismiss()

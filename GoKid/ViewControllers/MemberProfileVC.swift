@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import XLForm
+import FBSDKLoginKit
 
 class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -252,7 +254,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
 
-        var formRow = self.form.formRowAtIndex(indexPath)
+        let formRow = self.form.formRowAtIndex(indexPath)
 
         if formRow!.tag == Tags.Phone.rawValue && sourceCellType == .EditUser {
             self.alertPhoneEdit(formRow)
@@ -289,8 +291,8 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 
     // MARK: UIImagePickerControllerDelegate
     // --------------------------------------------------------------------------------------------
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let mediaType = info[UIImagePickerControllerMediaType] as? String {
             if mediaType == String(kUTTypeImage) {
                 if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -308,7 +310,7 @@ class MemberProfileVC: BaseFormVC, UIImagePickerControllerDelegate, UINavigation
 
     @IBAction func imageProfileButtonClick(sender: AnyObject) {
         setStatusBarColorDark()
-        var picker = UIImagePickerController()
+        let picker = UIImagePickerController()
         picker.sourceType = .PhotoLibrary
         picker.delegate = self
         self.presentViewController(picker, animated: true, completion: nil)
@@ -474,15 +476,15 @@ extension MemberProfileVC {
     private func alertPhoneEdit(fieldCell: XLFormRowDescriptor!) {
         let confirmPrompt = UIAlertController(title: "Enter Your Phone", message: nil, preferredStyle: .Alert)
         confirmPrompt.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
-            textField.text = fieldCell.value as! String
+            textField.text = fieldCell.value as? String
             textField.placeholder = "Phone Number"
         }
 
         confirmPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
 
-        confirmPrompt.addAction(UIAlertAction(title: "Submit", style: .Default, handler: { (alert: UIAlertAction!) in
-            if let textField = confirmPrompt.textFields?.first as? UITextField{
-                self.checkPhone(textField.text)
+        confirmPrompt.addAction(UIAlertAction(title: "Submit", style: .Default, handler: { (alert: UIAlertAction) in
+            if let textField = confirmPrompt.textFields?.first as UITextField? {
+                self.checkPhone(textField.text!)
             }
         }))
 
@@ -500,13 +502,13 @@ extension MemberProfileVC {
             textField.placeholder = "enter code"
         }
 
-        confirmPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (alert: UIAlertAction!) in
+        confirmPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (alert: UIAlertAction) in
             self.setPhoneField(nil)
         }))
 
-        confirmPrompt.addAction(UIAlertAction(title: "Verify", style: .Default, handler: { (alert: UIAlertAction!) in
-            if let textField = confirmPrompt.textFields?.first as? UITextField{
-                self.verifyPhone(textField.text)
+        confirmPrompt.addAction(UIAlertAction(title: "Verify", style: .Default, handler: { (alert: UIAlertAction) in
+            if let textField = confirmPrompt.textFields?.first as UITextField? {
+                self.verifyPhone(textField.text!)
             }
         }))
 

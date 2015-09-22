@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
 
+import XLForm
 
 class EditTimeAndDateFormVC : BaseFormVC {
     var carpoolModel: CarpoolModel = CarpoolModel()
@@ -75,9 +76,9 @@ class EditTimeAndDateFormVC : BaseFormVC {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         
-        var formRow = self.form.formRowAtIndex(indexPath)
+        let formRow = self.form.formRowAtIndex(indexPath)
         
-        if contains([XLFormRowDescriptorTypeDate, XLFormRowDescriptorTypeTime], formRow!.rowType) {
+        if [XLFormRowDescriptorTypeDate, XLFormRowDescriptorTypeTime].contains(formRow!.rowType) {
             if formRow!.value == nil {
                 formRow!.value = NSDate()
                 self.updateFormRow(formRow)
@@ -88,7 +89,7 @@ class EditTimeAndDateFormVC : BaseFormVC {
     override func rightNavButtonTapped() {
         let formData = self.form.formValues()
         
-        let updates = NSMutableDictionary.new()
+        let updates = NSMutableDictionary()
         
         for o in occurrences {
             let _id = String(o.occurenceID)

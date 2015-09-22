@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIView {
+/* Unused
     
     func springScaleTo(scale: CGFloat, bounciness: CGFloat) {
         var anim = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
@@ -45,7 +46,7 @@ extension UIView {
         anim.duration = duration
         self.pop_addAnimation(anim, forKey: "scaleXY_animation")
     }
-    
+*/
     var x: CGFloat {
         get {
             return self.frame.origin.x
@@ -83,7 +84,7 @@ extension UIView {
     }
     
     func removeAllConstraints() {
-        self.removeConstraints(self.constraints())
+        self.removeConstraints(self.constraints)
     }
     
     func setRounded() {
@@ -91,7 +92,7 @@ extension UIView {
         self.clipsToBounds = true
     }
 }
-
+/* Unused
 extension CALayer {
     func opacityAnimation(toValue: CGFloat, duration: CFTimeInterval) {
         var anim = POPBasicAnimation(propertyNamed: kPOPLayerOpacity)
@@ -100,4 +101,4 @@ extension CALayer {
         self.pop_addAnimation(anim, forKey: "opacity_animation")
     }
 }
-
+*/

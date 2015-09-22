@@ -48,13 +48,13 @@ class CarpoolSucceedVC: BaseVC {
         let app = UIApplication.sharedApplication()
         let notifications = app.currentUserNotificationSettings()
 
-        if notifications.types == .None {
+        if notifications!.types == .None {
             let confirmPrompt = UIAlertController(title: "", message: "Do you want to know when your kids have safely arrived at their destinations?", preferredStyle: .Alert)
 
             confirmPrompt.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
 
-            confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction!) in
-                var setting = UIUserNotificationSettings(forTypes: .Badge | .Alert | .Sound, categories: nil);
+            confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction) in
+                let setting = UIUserNotificationSettings(forTypes: [.Badge, .Alert, .Sound], categories: nil);
                 app.registerUserNotificationSettings(setting)
             }))
 

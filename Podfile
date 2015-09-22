@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 
 # pod 'Onboard'
+pod 'SwiftyJSON'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'GoogleMaps'
@@ -14,9 +15,11 @@ pod 'SVProgressHUD'
 pod 'APAddressBook/Swift'
 pod 'JSBadgeView'
 pod 'ViewDeck', '~> 2.2.11'
-
+pod 'Onboard'
 pod 'XLForm'
 
 # pod 'CSStickyHeaderFlowLayout'
 # pod 'CRToast'
 # pod 'MZFormSheetController'
+
+use_frameworks!

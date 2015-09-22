@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import APAddressBook
 
 class Person: NSObject {
     var firstName: String?
@@ -108,7 +109,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     override func rightNavButtonTapped() {
-        var phoneNumbers = getCurrentSelectedPhoneNumber()
+        let phoneNumbers = getCurrentSelectedPhoneNumber()
         
         LoadingView.showWithMaskType(.Black)
         dataManager.invite(phoneNumbers, carpoolID: carpool.id) { (success, errorStr) in
@@ -122,9 +123,9 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        var title = alertView.buttonTitleAtIndex(buttonIndex)
+        let title = alertView.buttonTitleAtIndex(buttonIndex)
         if title == "OK" {
-            var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
+            let vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
             vc.carpool = self.carpool
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -147,22 +148,22 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var id = "customHeader";
-        var vHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier(id) as? UITableViewHeaderFooterView
+        let id = "customHeader";
+        var vHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier(id)
         
         if  vHeader == nil {
             vHeader = UITableViewHeaderFooterView(reuseIdentifier: id)
-            vHeader?.textLabel.font = UIFont(name: "Raleway-Bold", size: 15)
+            vHeader?.textLabel!.font = UIFont(name: "Raleway-Bold", size: 15)
         }
-        vHeader?.textLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
-        vHeader?.contentView.backgroundColor = rgb(246, 253, 243)
+        vHeader?.textLabel!.text = self.tableView(tableView, titleForHeaderInSection: section)
+        vHeader?.contentView.backgroundColor = rgb(246, g: 253, b: 243)
         return vHeader;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.cellWithID("ContactCell", indexPath) as! ContactCell
+        let cell = tableView.cellWithID("ContactCell", indexPath) as! ContactCell
         let letter = tableHeaderSource.objectAtIndex(indexPath.section) as! String
-        var person = tableDataSource[letter]?.objectAtIndex(indexPath.row) as! Person
+        let person = tableDataSource[letter]?.objectAtIndex(indexPath.row) as! Person
 
         person.selected = self.collectionDataSource.containsObject(person)
         cell.loadPerson(person)
@@ -171,9 +172,9 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
         let letter = tableHeaderSource.objectAtIndex(indexPath.section) as! String
-        var person = tableDataSource[letter]?.objectAtIndex(indexPath.row) as! Person
+        let person = tableDataSource[letter]?.objectAtIndex(indexPath.row) as! Person
 
         person.selected = self.collectionDataSource.containsObject(person)
         cell.loadPerson(person)
@@ -185,7 +186,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
             person.selected = true
             collectionDataSource.addObject(person)
             searchBarInput.text = ""
-            searchForContact(searchBarInput.text)
+            searchForContact(searchBarInput.text!)
         }
 
         onMainThread {
@@ -194,8 +195,8 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         }
     }
 
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
-        return tableHeaderSource as [AnyObject]
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return tableHeaderSource as NSArray as? [String]
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -214,18 +215,18 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var person = collectionDataSource.allObjects[indexPath.row] as! Person
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactNameCell", forIndexPath: indexPath) as? ContactNameCell
+        let person = collectionDataSource.allObjects[indexPath.row] as! Person
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactNameCell", forIndexPath: indexPath) as? ContactNameCell
         cell?.nameLabel.text = person.fullName
         cell?.cancleButtonHandler = cancelButtonClick
         return cell!
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        var person = collectionDataSource.allObjects[indexPath.row] as! Person
-        var font = UIFont.boldSystemFontOfSize(15)
-        var attributes = [NSFontAttributeName : font]
-        var width = NSAttributedString(string: person.fullName, attributes: attributes).size().width
+        let person = collectionDataSource.allObjects[indexPath.row] as! Person
+        let font = UIFont.boldSystemFontOfSize(15)
+        let attributes = [NSFontAttributeName : font]
+        let width = NSAttributedString(string: person.fullName, attributes: attributes).size().width
         return CGSizeMake(width+40, 20)
     }
     
@@ -258,8 +259,8 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         let letters = NSCharacterSet.letterCharacterSet()
 
         for person in data {
-            var char = person.fullName.firstCharacter()
-            let _letter = !letters.characterIsMember(first(char.utf16)!) ? "#" : char
+            let char = person.fullName.firstCharacter()
+            let _letter = !letters.characterIsMember(char.utf16.first!) ? "#" : char
             let letter = _letter.capitalizedString
             var section: NSMutableArray!
 
@@ -281,8 +282,8 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     }
     
     func cancelButtonClick(cell :ContactNameCell) {
-        var row = collectionView.indexPathForCell(cell)!.row
-        var person = collectionDataSource.allObjects[row] as! Person
+        let row = collectionView.indexPathForCell(cell)!.row
+        let person = collectionDataSource.allObjects[row] as! Person
 
         person.selected = false
         collectionDataSource.removeObject(person)
@@ -296,7 +297,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
     func getCurrentSelectedPhoneNumber() -> [String] {
         var contacts = [String]()
         for obj in collectionDataSource {
-            var person = obj as! Person
+            let person = obj as! Person
             if person.phoneNum != nil {
                 contacts.append(person.phoneNum!.phone)
             } else if person.email != nil {
@@ -316,7 +317,7 @@ extension ContactPickerVC: UISearchBarDelegate {
             var data = [Person]()
             let addressBook = APAddressBook()
 
-            addressBook.fieldsMask = .Default | .PhonesWithLabels | .Emails
+            addressBook.fieldsMask = [.Default, .PhonesWithLabels, .Emails]
             addressBook.sortDescriptors = [
                 NSSortDescriptor(key: "firstName", ascending: true),
                 NSSortDescriptor(key: "lastName", ascending: true)
@@ -324,8 +325,8 @@ extension ContactPickerVC: UISearchBarDelegate {
             addressBook.filterBlock = { (contact: APContact!) -> Bool in
                 if query != "" {
                     let name = "\(contact.firstName) \(contact.lastName)"
-                    let number = " ".join(contact.phones as! [String])
-                    let email = " ".join(contact.emails as! [String])
+                    let number = (contact.phones as! [String]).joinWithSeparator(" ")
+                    let email = (contact.emails as! [String]).joinWithSeparator(" ")
 
                     if name.lowercaseString.rangeOfString(query.lowercaseString) != nil {
                         return true
@@ -352,7 +353,7 @@ extension ContactPickerVC: UISearchBarDelegate {
                         for addressBookPerson in contacts {
                             if let c = addressBookPerson as? APContact {
                                 for phone in c.phonesWithLabels {
-                                    var person = Person(
+                                    let person = Person(
                                         firstName: c.firstName,
                                         lastName: c.lastName,
                                         phoneNum: phone as? APPhoneWithLabel,
@@ -363,7 +364,7 @@ extension ContactPickerVC: UISearchBarDelegate {
                                     }
                                 }
                                 for email in c.emails {
-                                    var person = Person(
+                                    let person = Person(
                                         firstName: c.firstName,
                                         lastName: c.lastName,
                                         phoneNum: nil,
@@ -378,8 +379,8 @@ extension ContactPickerVC: UISearchBarDelegate {
                     } else {
                         if query != "" {
                             if let phoneNumber = query.extractNumbers() {
-                                if count(phoneNumber) >= 10 {
-                                    var person = Person(
+                                if phoneNumber.characters.count >= 10 {
+                                    let person = Person(
                                         firstName: nil,
                                         lastName: nil,
                                         phoneNum: APPhoneWithLabel(phone: query, originalLabel: "Number", localizedLabel: "Number"),
@@ -389,7 +390,7 @@ extension ContactPickerVC: UISearchBarDelegate {
                                 }
                             }
                             if query.isValidEmail() {
-                                var person = Person(
+                                let person = Person(
                                     firstName: nil,
                                     lastName: nil,
                                     phoneNum: nil,
@@ -408,7 +409,7 @@ extension ContactPickerVC: UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        self.searchForContact(searchBar.text)
+        self.searchForContact(searchBar.text!)
     }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

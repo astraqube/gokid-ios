@@ -43,7 +43,7 @@ class YourKidVC: BaseVC {
         }
         
         LoadingView.showWithMaskType(.Black)
-        dataManager.addKidsNameToCarpool(invitation.carpool.id, name: kidsNameTextField.text) { (success, errStr, riderObj) in
+        dataManager.addKidsNameToCarpool(invitation.carpool.id, name: kidsNameTextField.text!) { (success, errStr, riderObj) in
             LoadingView.dismiss()
             if success {
                 self.moveToConfirmTimes(riderObj as! RiderModel)
@@ -56,7 +56,7 @@ class YourKidVC: BaseVC {
     func moveToConfirmTimes(rider: RiderModel) {
         dataManager.getOccurenceOfCarpool(invitation.carpool.id, rider: rider) { (success, error) in
             if success {
-                var vc = vcWithID("InviteConfirmTimesVC") as! InviteConfirmTimesVC
+                let vc = vcWithID("InviteConfirmTimesVC") as! InviteConfirmTimesVC
                 vc.rider = rider
                 vc.invitation = self.invitation
                 vc.occurrences = self.userManager.volunteerEvents

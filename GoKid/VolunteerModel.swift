@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 enum VOCellType {
     case Normal

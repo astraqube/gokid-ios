@@ -33,12 +33,12 @@ extension DataManager {
         let url = baseURL + "/api/occurrences/" + String(occurrence.occurenceID) + "/riders/" +  String(rider.riderID) + "/notifications"
         let kind = getNotificationKind(type)
         let map = ["notification": ["kind": kind]]
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("notifyRider \(rider.riderID) \(kind) success")
+            print("notifyRider \(rider.riderID) \(kind) success", terminator: "")
             comp(true, "")
             }) { (op, error) in
-                println("notifyRider \(rider.riderID) \(kind) failed")
+                print("notifyRider \(rider.riderID) \(kind) failed", terminator: "")
                 self.handleRequestError(op, error: error, comp: comp)
         }
     }
@@ -47,26 +47,26 @@ extension DataManager {
         let url = baseURL + "/api/occurrences/" + String(occurrence.occurenceID) + "/notifications"
         let kind = getNotificationKind(type)
         let map = ["notification": ["kind": kind]]
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("notifyRiders \(occurrence.occurenceID) \(kind) success")
+            print("notifyRiders \(occurrence.occurenceID) \(kind) success", terminator: "")
             comp(true, "")
             }) { (op, error) in
-                println("notifyRiders \(occurrence.occurenceID) \(kind) failed")
+                print("notifyRiders \(occurrence.occurenceID) \(kind) failed", terminator: "")
                 self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func updateNotificationToken(token: String, comp: completion) {
-        var url = baseURL + "/api/ios_device_token"
-        var map = ["device_token": token]
-        var manager = managerWithToken()
+        let url = baseURL + "/api/ios_device_token"
+        let map = ["device_token": token]
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("updateNotificationToken success")
-            println(obj)
+            print("updateNotificationToken success", terminator: "")
+            print(obj, terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("updateNotificationToken failed")
+            print("updateNotificationToken failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }

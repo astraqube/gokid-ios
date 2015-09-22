@@ -32,7 +32,7 @@ class DrivingModeVC: BaseVC {
 
         mapDataSource.onAnnotationSelect = { (annotationView: MKAnnotationView) -> Void in
             if let stop = annotationView.annotation as? Stop {
-                var stopActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+                let stopActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
                 var nextState = stop.state
                 var stopTitle = ""
                 switch stop.state {
@@ -53,7 +53,7 @@ class DrivingModeVC: BaseVC {
                         stopTitle = "Undo " + kGKDropoff + (stop.name as String)
                     }
                 }
-                stopActionSheet.addAction(UIAlertAction(title: stopTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
+                stopActionSheet.addAction(UIAlertAction(title: stopTitle, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction) -> Void in
                     stop.state = nextState
                     self.navigation.onStopStateChanged?(self.navigation, stop)
                     self.navigation.updateForStopped()
@@ -66,8 +66,8 @@ class DrivingModeVC: BaseVC {
                         UIApplication.sharedApplication().openURL(NSURL(string: "sms:\(stop.phoneNumber!)")!)
                     }))
                 }
-                stopActionSheet.addAction(UIAlertAction(title: "Navigate in Maps", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction!) -> Void in
-                    var mapItem = MKMapItem(placemark: MKPlacemark(coordinate: stop.coordinate, addressDictionary: nil))
+                stopActionSheet.addAction(UIAlertAction(title: "Navigate in Maps", style: UIAlertActionStyle.Default, handler: { (z: UIAlertAction) -> Void in
+                    let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: stop.coordinate, addressDictionary: nil))
                     mapItem.name = stop.name as String
                     MKMapItem.openMapsWithItems([mapItem], launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsMapCenterKey : NSValue(MKCoordinate: self.mapView.region.center), MKLaunchOptionsMapSpanKey : NSValue(MKCoordinateSpan: self.mapView.region.span)])
                 }))
@@ -79,8 +79,8 @@ class DrivingModeVC: BaseVC {
 
     func checkIfDone() {
         if navigation.currentStop == nil {
-            var alert = UIAlertController(title: "Completed!", message: "Nice work, route complete!", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .Default , handler: { (action: UIAlertAction!) -> Void in
+            let alert = UIAlertController(title: "Completed!", message: "Nice work, route complete!", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .Default , handler: { (action: UIAlertAction) -> Void in
                 self.exitPressed(self)
             }))
             presentViewController(alert, animated: true, completion: nil)

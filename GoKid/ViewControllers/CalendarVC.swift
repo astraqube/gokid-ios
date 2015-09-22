@@ -94,7 +94,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                     str = str.replace("#date", "on " + date.shortDateString())
                 }
             }
-            var cell = OccurenceModel()
+            let cell = OccurenceModel()
             cell.cellType = .Notification
             cell.notification = str
             dataSource.insert(cell, atIndex: 0)
@@ -129,7 +129,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                 continue
             }
             if event.occursAtStr != lastDateStr {
-                var dateCell = OccurenceModel()
+                let dateCell = OccurenceModel()
                 dateCell.cellType = .Time
                 dateCell.occursAtStr = event.occursAtStr
                 data.append(dateCell)
@@ -142,7 +142,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func addCreateCarpoolCellToDataSource() {
-        var c = OccurenceModel()
+        let c = OccurenceModel()
         c.cellType = .Add
         dataSource.append(c)
 
@@ -155,7 +155,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     @IBAction func createButtonClicked(sender: UIButton) {
-        var vc = vcWithID("BasicInfoVC")
+        let vc = vcWithID("BasicInfoVC")
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -171,7 +171,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var model = dataSource[indexPath.row]
+        let model = dataSource[indexPath.row]
         switch model.cellType {
         case .Notification:
             return configNotificationCell(indexPath, model)
@@ -182,7 +182,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         case .Normal:
             return configCalendarCell(indexPath, model)
         default:
-            println("Unknown cell")
+            print("Unknown cell", terminator: "")
             return UITableViewCell()
         }
     }
@@ -191,7 +191,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func configNotificationCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarNotificationCell {
-        var cell = tableView.cellWithID("CalendarNotificationCell", ip) as! CalendarNotificationCell
+        let cell = tableView.cellWithID("CalendarNotificationCell", ip) as! CalendarNotificationCell
         cell.notificationLabel.text = model.notification
         return cell
     }
@@ -199,7 +199,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     func configCalendarCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarCell {
         var cell : CalendarCell!
         if model == nextDrivingOccurrence() {
-            var gCell = tableView.cellWithID("CalendarTimeToGoCell", ip) as! CalendarTimeToGoCell
+            let gCell = tableView.cellWithID("CalendarTimeToGoCell", ip) as! CalendarTimeToGoCell
             gCell.timeToGoTitleLabel.text = "Driving advice loading!"
             gCell.timeToGoTimeLabel.text = ""
             gCell.updatedLabel.text = "Updating riders…"
@@ -213,8 +213,8 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                 if stops.count > 0 {
                     //need to mode for take to event and return from event?
                     stops = ETACalculator.superSortStops(stops, beginningAt: stops.first!, endingAt: stops.last!)
-                    var etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: model.occursAt!)
-                    if let (departDate, stop) = etaDates.first {
+                    let etaDates = ETACalculator.stopDatesFromEstimatesAndArrivalTargetDate(ETACalculator.estimateArrivalTimeForStops(stops), target: model.occursAt!)
+                    if let (departDate, _) = etaDates.first {
                         if departDate.isLessThanDate(NSDate(timeIntervalSinceNow: 300)) {
                             gCell.timeToGoTimeLabel.text = "It's go time!"
                         } else {
@@ -234,13 +234,13 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func configCalendarDateCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarDateCell {
-        var cell = tableView.cellWithID("CalendarDateCell", ip) as! CalendarDateCell
+        let cell = tableView.cellWithID("CalendarDateCell", ip) as! CalendarDateCell
         cell.dateLabel.text = model.occursAtStr
         return cell
     }
     
     func configCalendarAddCell(ip: NSIndexPath, _ model: OccurenceModel) -> CalendarAddCell {
-        var cell = tableView.cellWithID("CalendarAddCell", ip) as! CalendarAddCell
+        let cell = tableView.cellWithID("CalendarAddCell", ip) as! CalendarAddCell
         return cell
     }
     
@@ -248,7 +248,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     // --------------------------------------------------------------------------------------------
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var model = dataSource[indexPath.row]
+        let model = dataSource[indexPath.row]
         switch model.cellType {
         case .Notification:
             return 72.0
@@ -311,12 +311,12 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func showOccurenceVCWithModel(model: OccurenceModel) {
-        var vc = vcWithID("DetailMapVC") as! DetailMapVC
+        let vc = vcWithID("DetailMapVC") as! DetailMapVC
         vc.canEdit = model.carpool.isOwner
         vc.onEditButtonPressed = { (vc: DetailMapVC) in
             UserManager.sharedInstance.currentCarpoolModel = model.carpool
             UserManager.sharedInstance.currentCarpoolModel.kidName = model.riders[0].firstName
-            var carpoolEditVC = vcWithID("CarpoolEditVC") as! CarpoolEditVC
+            let carpoolEditVC = vcWithID("CarpoolEditVC") as! CarpoolEditVC
             //carpoolEditVC.carpool = model.carpool
             carpoolEditVC.occurrence = model
             carpoolEditVC.onOccurrenceEdited = { (newOccurrence) in
@@ -337,17 +337,17 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         vc.canOptOut = myRiders.count > 0
 
         vc.onOptOutButtonPressed = { (vc: DetailMapVC) in
-            var optOutRider = myRiders.first
+            let optOutRider = myRiders.first
             if optOutRider == nil { return }
-            var optOutSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            let optOutSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
             let optOutString = "Opt Out \(optOutRider!.firstName)"
-            optOutSheet.addAction(UIAlertAction(title: optOutString, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction!) -> Void in
+            optOutSheet.addAction(UIAlertAction(title: optOutString, style: UIAlertActionStyle.Destructive, handler: { (z: UIAlertAction) -> Void in
                 vc.navigationController?.popViewControllerAnimated(true)
                 LoadingView.showWithMaskType(.Black)
                 self.dataManager.deleteFromOccurenceRiders(optOutRider!, occ: model, comp: { (success, errorStr) -> () in
                     LoadingView.dismiss()
                     if success {
-                        model.riders.removeAtIndex(find(model.riders, optOutRider!)!)
+                        model.riders.removeAtIndex(model.riders.indexOf(optOutRider!)!)
                         self.fetchDataAndReloadTableView()
                     } else {
                         self.showAlert("Failed to opt out rider", messege: errorStr, cancleTitle: "OK")
@@ -364,7 +364,7 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func navigationForModel(model : OccurenceModel) -> Navigation {
-        var eventStop = model.stopValue(model.occurrenceType)
+        let eventStop = model.stopValue(model.occurrenceType)
         var riderStops = [Stop]()
         for rider in model.riders {
             let stop = rider.stopValue(model.occurrenceType)
@@ -383,15 +383,15 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             dropoffs = [eventStop]
         case .Dropoff:
             pickups = [eventStop]
-            dropoffs = riderStops.reverse()
+            dropoffs = Array(riderStops.reverse())
         }
         
-        var navigation = Navigation()
+        let navigation = Navigation()
         navigation.setup(pickups, dropoffs:dropoffs);
         navigation.onStopStateChanged = { (nav : Navigation, stop: Stop) in
             let riderId = stop.stopID as? NSString
             if riderId != nil && stop.state == .Arrived {
-                var rider = RiderModel()
+                let rider = RiderModel()
                 rider.riderID = riderId!.integerValue
                 self.dataManager.notifyRider(RiderNotificationType.Arriving , occurrence: model, rider: rider, comp: { (success, errorString) -> () in
                     if !success {
@@ -408,19 +408,22 @@ class CalendarVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             }
         }
         navigation.onLocationUpdate = { (error: NSError?, location : CLLocation!) in
-            if let error = error { return println("onLocationUpdate error: \(error.description)") }
-            self.dataManager.putOccurrenceCurrentLocation(location, occurrence: model, comp: { (success, errorString) -> () in
-                if !success {
-                    println("failed to onLocationUpdate + putOccurrenceCurrentLocation")
-                }
-            })
+            if error != nil {
+                print("onLocationUpdate error: \(error!.description)", terminator: "")
+            } else {
+                self.dataManager.putOccurrenceCurrentLocation(location, occurrence: model, comp: { (success, errorString) -> () in
+                    if !success {
+                        print("failed to onLocationUpdate + putOccurrenceCurrentLocation", terminator: "")
+                    }
+                })
+            }
         }
         return navigation
     }
     
     func mapMetadataForModel(model : OccurenceModel) -> MapMetadata {
-        var canNavigate = model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID && model.occursAt!.isGreaterThanDate(NSDate(timeIntervalSinceNow: -1 * 60 * 15))
-        var driverImage = currentOccurrenceImagesByURL?[model.poolDriverImageUrl]
+        let canNavigate = model.volunteer?.id != nil && model.volunteer?.id == self.userManager.info.userID && model.occursAt!.isGreaterThanDate(NSDate(timeIntervalSinceNow: -1 * 60 * 15))
+        let driverImage = currentOccurrenceImagesByURL?[model.poolDriverImageUrl]
         return MapMetadata(name: model.poolname, thumbnailImage: driverImage, date: model.occursAt!, canNavigate: canNavigate, id: model.occurenceID, type: model.occurrenceType )
     }
     
@@ -432,7 +435,7 @@ extension OccurenceModel {
         return (self.poolType == "dropoff") ? .Dropoff : .Pickup
     }
     var volunteerable : Bool {
-        var volunteerID = self.volunteer?.id
+        let volunteerID = self.volunteer?.id
         var volunteerable = false;
         if volunteerID == nil || volunteerID == 0 || volunteerID == UserManager.sharedInstance.info.userID {
             volunteerable = true
@@ -440,7 +443,7 @@ extension OccurenceModel {
         return volunteerable
     }
     var alreadyVolunteered : Bool {
-        var volunteerID = self.volunteer?.id
+        let volunteerID = self.volunteer?.id
         let already = volunteerID == UserManager.sharedInstance.info.userID
         return already
     }

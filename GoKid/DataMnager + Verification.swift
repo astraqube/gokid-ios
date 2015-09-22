@@ -11,37 +11,37 @@ import UIKit
 extension DataManager {
     
     func requestVerificationCode(phoneNum: String, comp: completion) {
-        var url = baseURL + "/api/me/challenge"
-        var map = [
+        let url = baseURL + "/api/me/challenge"
+        let map = [
             "challenge" : [
                 "phone_number": phoneNum
             ]
         ]
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("requestingVerificationCode success")
-            println(obj)
+            print("requestingVerificationCode success", terminator: "")
+            print(obj, terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("requestingVerificationCode failed")
+            print("requestingVerificationCode failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func memberPhoneVerification(code: String, comp: completion) {
-        var url = baseURL + "/api/me/verify"
-        var map = [
+        let url = baseURL + "/api/me/verify"
+        let map = [
             "verification": [
                 "code": code
             ]
         ]
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("VerifyCode success")
-            println(obj)
+            print("VerifyCode success", terminator: "")
+            print(obj, terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("VerifyCode failed")
+            print("VerifyCode failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }

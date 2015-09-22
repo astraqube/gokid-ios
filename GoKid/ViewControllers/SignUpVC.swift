@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import FBSDKLoginKit
 
 class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
@@ -47,19 +48,19 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
 
     override func rightNavButtonTapped() {
         var signupForm = SignupForm()
-        signupForm.phoneNum = phoneTextField.text
-        signupForm.email = emailTextField.text
-        signupForm.firstName = firstNameTextField.text
-        signupForm.lastName = lastNameTextField.text
-        signupForm.password = passwordTextField.text
-        signupForm.passwordConfirm = passwordTextField.text
+        signupForm.phoneNum = phoneTextField.text!
+        signupForm.email = emailTextField.text!
+        signupForm.firstName = firstNameTextField.text!
+        signupForm.lastName = lastNameTextField.text!
+        signupForm.password = passwordTextField.text!
+        signupForm.passwordConfirm = passwordTextField.text!
 
-        if contains([signupForm.phoneNum, signupForm.email, signupForm.firstName, signupForm.lastName, signupForm.password], "") {
+        if [signupForm.phoneNum, signupForm.email, signupForm.firstName, signupForm.lastName, signupForm.password].contains("") {
             showAlert("Invalid Fields", messege: "Please fill in the required fields", cancleTitle: "OK")
             return
         }
 
-        let _self = self
+        _ = self
         LoadingView.showWithMaskType(.Black)
         dataManager.signup(signupForm) { (success, errorStr) in
             if success {
@@ -83,7 +84,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     }
 
     @IBAction func imageButtonClicked(sender: AnyObject) {
-        var picker = UIImagePickerController()
+        let picker = UIImagePickerController()
         picker.sourceType = .PhotoLibrary
         picker.delegate = self
         self.presentViewController(picker, animated: true, completion: nil)
@@ -107,7 +108,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
             self.showAlert("Failed to connect with Facebook", messege:"You cancelled login" , cancleTitle: "OK")
         } else {
             if result.grantedPermissions.contains("email") {
-                println("success")
+                print("success")
                 dataManager.fbSignin() { (success, errorStr) in
                     if success {
                         self.afterSignUp()
@@ -126,7 +127,7 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
     // MARK: UIImagePickerControllerDelegate
     // --------------------------------------------------------------------------------------------
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let mediaType = info[UIImagePickerControllerMediaType] as? String {
             if mediaType == String(kUTTypeImage) {
                 if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {

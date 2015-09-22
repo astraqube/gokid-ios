@@ -31,7 +31,7 @@ class PhoneNumberVC: BaseVC, UITextFieldDelegate {
     override func rightNavButtonTapped() {
         if phoneNumber.text != "" {
             // checkPhone(phoneNumber.text)
-            savePhone(phoneNumber.text)
+            savePhone(phoneNumber.text!)
         } else {
             showAlert("Correction", messege: "Please enter a valid phone number", cancleTitle: "OK")
         }
@@ -74,9 +74,9 @@ class PhoneNumberVC: BaseVC, UITextFieldDelegate {
 
         confirmPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
 
-        confirmPrompt.addAction(UIAlertAction(title: "Verify", style: .Default, handler: { (alert: UIAlertAction!) in
-            if let textField = confirmPrompt.textFields?.first as? UITextField{
-                self.verifyPhone(textField.text)
+        confirmPrompt.addAction(UIAlertAction(title: "Verify", style: .Default, handler: { (alert: UIAlertAction) in
+            if let textField = confirmPrompt.textFields?.first as UITextField? {
+                self.verifyPhone(textField.text!)
             }
         }))
 
@@ -88,7 +88,7 @@ class PhoneNumberVC: BaseVC, UITextFieldDelegate {
         self.dataManager.memberPhoneVerification(verification) { (success, errorStr) in
             if success {
                 LoadingView.showSuccessWithStatus("Success")
-                self.userManager.info.phoneNumber = self.phoneNumber.text
+                self.userManager.info.phoneNumber = self.phoneNumber.text!
                 self.userManager.saveUserInfo()
 
                 InvitationModel.checkInvitations()

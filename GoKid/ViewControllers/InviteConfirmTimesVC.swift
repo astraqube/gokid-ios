@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XLForm
 
 class InviteConfirmTimesVC: BaseFormVC {
 
@@ -37,7 +38,7 @@ class InviteConfirmTimesVC: BaseFormVC {
     }
 
     override func rightNavButtonTapped() {
-        var vc = vcWithID("LocationVC") as! LocationVC
+        let vc = vcWithID("LocationVC") as! LocationVC
         vc.carpool = self.invitation.carpool
         vc.rider = rider
         self.navigationController?.pushViewController(vc, animated: true)
@@ -91,7 +92,7 @@ class InviteConfirmTimesVC: BaseFormVC {
         if formRow.tag == Tags.ChangeAll.rawValue {
         } else {
             let occ = occurrences.filter({ (record: OccurenceModel) -> Bool in
-                return record.occurenceID == formRow.tag!.toInt()
+                return record.occurenceID == Int(formRow.tag!)
             })
             if (formRow.value as! Bool) == false {
                 dataManager.deleteFromOccurenceRiders(rider, occ: occ.first!) { (success, error) in

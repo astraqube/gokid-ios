@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XLForm
 
 ///Allows editing of Occurrences.
 ///Deleteion of the Carpool or Occurrence pops to root VC of NavController.
@@ -171,16 +172,16 @@ class CarpoolEditVC: BaseFormVC {
         if formRow.tag == Tags.EventLocation.rawValue {
             self.updateEventLocation(newValue as! String)
 
-        } else if formRow.tag!.toInt() != nil {
+        } else if let tagNum = Int(formRow.tag!) {
             // FIXME: This assumes form tag that is Int-based only applies to Rider fields
-            self.updateRiderLocation(formRow.tag!.toInt(), address: newValue as! String)
+            self.updateRiderLocation(tagNum, address: newValue as! String)
         }
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
 
-        var formRow = self.form.formRowAtIndex(indexPath)
+        let formRow = self.form.formRowAtIndex(indexPath)
 
         if formRow!.tag == Tags.CarpoolName.rawValue {
             self.editCarpoolName(formRow)
@@ -190,8 +191,8 @@ class CarpoolEditVC: BaseFormVC {
                 if success {
                     self.dataManager.getOccurenceOfCarpool2(self.occurrence.carpoolID, comp: { (success2, errorString2, obj2) -> () in
                         if success2 {
-                            var carpoolModel = model as! CarpoolModel
-                            var vc = vcWithID("EditTimeAndDateFormVC") as! EditTimeAndDateFormVC
+                            let carpoolModel = model as! CarpoolModel
+                            let vc = vcWithID("EditTimeAndDateFormVC") as! EditTimeAndDateFormVC
                             vc.carpoolModel = carpoolModel
                             vc.occurrences = obj2 as! [OccurenceModel]
                             
@@ -211,15 +212,15 @@ class CarpoolEditVC: BaseFormVC {
     func editCarpoolName(fieldCell: XLFormRowDescriptor!) {
         let confirmPrompt = UIAlertController(title: Tags.CarpoolName.rawValue, message: nil, preferredStyle: .Alert)
         confirmPrompt.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
-            textField.text = fieldCell.value as! String
+            textField.text = fieldCell.value as? String
             textField.placeholder = "Enter a new name"
         }
 
         confirmPrompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
 
-        confirmPrompt.addAction(UIAlertAction(title: "Submit", style: .Default, handler: { (alert: UIAlertAction!) in
-            if let textField = confirmPrompt.textFields?.first as? UITextField{
-                self.updateCarpoolName(textField.text)
+        confirmPrompt.addAction(UIAlertAction(title: "Submit", style: .Default, handler: { (alert: UIAlertAction) in
+            if let textField = confirmPrompt.textFields?.first as UITextField? {
+                self.updateCarpoolName(textField.text!)
             }
         }))
 
@@ -280,7 +281,7 @@ class CarpoolEditVC: BaseFormVC {
         Location.geoCodeAddress(address) { (lon, lat) in
             let location = Location(name: address, long: lon, lati: lat)
 
-            var rider = RiderModel()
+            let rider = RiderModel()
             rider.riderID = riderID
 
             if self.occurrence.occurrenceType == .Pickup {
@@ -295,7 +296,7 @@ class CarpoolEditVC: BaseFormVC {
                     self.showAlert("There was a problem", messege: error, cancleTitle: "OK")
                 } else {
                     let _rider = riderModel as! RiderModel
-                    let index = find(self.occurrence.riders, _rider)
+                    let index = self.occurrence.riders.indexOf(_rider)
                     self.occurrence.riders.removeAtIndex(index!)
                     self.occurrence.riders.insert(_rider, atIndex: index!)
                     self.tableView.reloadData()
@@ -313,8 +314,8 @@ class CarpoolEditVC: BaseFormVC {
 
         confirmPrompt.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
 
-        confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction!) in
-            if let textField = confirmPrompt.textFields?.first as? UITextField{
+        confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction) in
+            if let textField = confirmPrompt.textFields?.first as UITextField? {
                 if textField.text == "DELETE" {
                     self.dataManager.deleteOccurrence(self.occurrence) { (success, error) in
                         if !success && error != "" {
@@ -340,8 +341,8 @@ class CarpoolEditVC: BaseFormVC {
 
         confirmPrompt.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
 
-        confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction!) in
-            if let textField = confirmPrompt.textFields?.first as? UITextField{
+        confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (alert: UIAlertAction) in
+            if let textField = confirmPrompt.textFields?.first as UITextField? {
                 if textField.text == "DELETE" {
                     self.dataManager.deleteCarpool(self.occurrence.carpool) { (success, error) in
                         if !success && error != "" {

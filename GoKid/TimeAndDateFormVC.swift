@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XLForm
 
 class TimeAndDateFormVC: BaseFormVC {
 
@@ -35,7 +36,6 @@ class TimeAndDateFormVC: BaseFormVC {
     
     override func initForm() {
         let form = XLFormDescriptor()
-        var row: XLFormRowDescriptor!
         var section: XLFormSectionDescriptor!
         
         let now = NSDate()
@@ -43,10 +43,10 @@ class TimeAndDateFormVC: BaseFormVC {
         section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         form.addFormSection(section)
 
-        var startDateRow = XLFormRowDescriptor(tag: Tags.StartDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.StartDate.rawValue)
-        var endDateRow = XLFormRowDescriptor(tag: Tags.EndDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.EndDate.rawValue)
-        var frequencyRow = XLFormRowDescriptor(tag: Tags.Frequency.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.Frequency.rawValue)
-        var repeatRow = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Repeat.rawValue)
+        let startDateRow = XLFormRowDescriptor(tag: Tags.StartDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.StartDate.rawValue)
+        let endDateRow = XLFormRowDescriptor(tag: Tags.EndDate.rawValue, rowType: XLFormRowDescriptorTypeDate, title: Tags.EndDate.rawValue)
+        let frequencyRow = XLFormRowDescriptor(tag: Tags.Frequency.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.Frequency.rawValue)
+        let repeatRow = XLFormRowDescriptor(tag: Tags.Repeat.rawValue, rowType: XLFormRowDescriptorTypeBooleanSwitch, title: Tags.Repeat.rawValue)
 
         section.addFormRow(startDateRow)
         section.addFormRow(endDateRow)
@@ -75,7 +75,7 @@ class TimeAndDateFormVC: BaseFormVC {
         frequencyRow.cellConfig["textLabel.color"] = labelColor
         frequencyRow.cellConfig["detailTextLabel.font"] = valueFont
         frequencyRow.action.viewControllerClass = FrequencyPickerFormVC.self
-        frequencyRow.value = GKDays.asKeys.values.array
+        frequencyRow.value = Array(GKDays.asKeys.values)
         frequencyRow.valueTransformer = FrequencyTransformer.self
         frequencyRow.hidden = "NOT $\(Tags.Repeat.rawValue).value==true"
 
@@ -103,7 +103,7 @@ class TimeAndDateFormVC: BaseFormVC {
             endDateCell!.value = isOn ? startDateCell!.value : nil
             self.updateFormRow(endDateCell)
 
-            frequencyCell!.value = isOn ? GKDays.asKeys.values.array : []
+            frequencyCell!.value = isOn ? Array(GKDays.asKeys.values) : []
             self.showTimeSectionsForFrequency(frequencyCell!.value as! [Int]?)
             self.updateFormRow(frequencyCell)
         }
@@ -118,9 +118,9 @@ class TimeAndDateFormVC: BaseFormVC {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
 
-        var formRow = self.form.formRowAtIndex(indexPath)
+        let formRow = self.form.formRowAtIndex(indexPath)
 
-        if contains([XLFormRowDescriptorTypeDate, XLFormRowDescriptorTypeTime], formRow!.rowType) {
+        if [XLFormRowDescriptorTypeDate, XLFormRowDescriptorTypeTime].contains(formRow!.rowType) {
             if formRow!.value == nil {
                 formRow!.value = NSDate()
                 self.updateFormRow(formRow)
@@ -203,7 +203,7 @@ extension TimeAndDateFormVC {
         }
 
         var row: XLFormRowDescriptor!
-        var section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+        let section = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         form.addFormSection(section)
 
         row = XLFormRowDescriptor(tag: onewayTag, rowType: XLFormRowDescriptorTypeSelectorPickerView, title: onewayStr)
@@ -305,7 +305,7 @@ extension TimeAndDateFormVC {
 
     private func proceedToNextStep(success: Bool, errorMessage: String, carpoolObj: AnyObject?) {
         if success {
-            var vc = vcWithID("LocationVC") as! LocationVC
+            let vc = vcWithID("LocationVC") as! LocationVC
             vc.hideBackButton = true
             vc.carpool = carpoolObj as! CarpoolModel
             self.navigationController?.pushViewController(vc, animated: true)
@@ -326,9 +326,9 @@ extension TimeAndDateFormVC {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var imageIcon = UIImage(named: section == 0 ? "date" : "time")
-        var imageView = UIImageView(image: imageIcon)
-        var header = UIView(frame: CGRectMake(0,0, tableView.bounds.size.width, 40))
+        let imageIcon = UIImage(named: section == 0 ? "date" : "time")
+        let imageView = UIImageView(image: imageIcon)
+        let header = UIView(frame: CGRectMake(0,0, tableView.bounds.size.width, 40))
         
         imageView.center = CGPointMake(header.bounds.size.width/2, header.bounds.size.height/2)
         

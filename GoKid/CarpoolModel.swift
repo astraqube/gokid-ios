@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 enum CarpoolMode: String {
     case None = "Round Trip"
@@ -104,13 +105,13 @@ class CarpoolModel: NSObject {
 
         _isOwner = json["is_owner"].boolValue
 
-        var schedule = json["schedule"]
+        let schedule = json["schedule"]
         startDate = parseDate(schedule, key: "starts_at")
         endDate = parseDate(schedule, key: "ends_at")
 
         if json["rider_ids"] != nil {
             var riderIDs = [Int]()
-            for (index: String, value: JSON) in json["rider_ids"] {
+            for (_, value) in json["rider_ids"] {
                 riderIDs.append(value.intValue)
             }
             riders = RiderModel.ridersForRiderIDs(riderIDs)
@@ -131,8 +132,8 @@ class CarpoolModel: NSObject {
     
     class func arrayOfCarpoolsFromJSON(json: JSON) -> [CarpoolModel] {
         var arr = [CarpoolModel]()
-        for (index: String, subJson: JSON) in json {
-            var carpool = CarpoolModel(json: subJson)
+        for (_, subJson) in json {
+            let carpool = CarpoolModel(json: subJson)
             arr.append(carpool)
         }
         return arr

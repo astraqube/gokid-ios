@@ -38,7 +38,7 @@ class TeamAccountVC: BaseVC {
     }
 
     func setupNavBar() {
-        var gr = UITapGestureRecognizer(target: self, action: "navBarTapped")
+        let gr = UITapGestureRecognizer(target: self, action: "navBarTapped")
         subtitleLabel.addGestureRecognizer(gr)
         subtitleLabel.userInteractionEnabled = true
         refreshHomeAddress()
@@ -65,7 +65,7 @@ class TeamAccountVC: BaseVC {
     
     func navBarTapped() {
         if userManager.userLoggedIn {
-            var vc = vcWithID("PlacePickerVC") as! PlacePickerVC
+            let vc = vcWithID("PlacePickerVC") as! PlacePickerVC
             vc.teamVC = self
             self.presentViewController(vc, animated: true, completion: nil)
         }
@@ -97,30 +97,30 @@ class TeamAccountVC: BaseVC {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cv = collectionView
-        var model = dataSource[indexPath.row]
+        let cv = collectionView
+        let model = dataSource[indexPath.row]
         if model.cellType == .AddMember {
-            var cell = cv.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
+            let cell = cv.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
             cell.contentLabel.text = "add additional team member"
             return cell
         } else if model.cellType == .AddUser {
-            var cell = cv.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
+            let cell = cv.cellWithID("AddTeamMemberCell", indexPath) as! AddTeamMemberCell
             cell.contentLabel.text = "Create your profile"
             return cell
         } else if model.cellType == .EditMember {
-            var cell = cv.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
+            let cell = cv.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
             cell.roleLabel.text = model.role
             cell.nameLabel.text = model.firstName
             imageManager.setImageToView(cell.profileImageView, urlStr: model.thumURL)
             return cell
         } else if model.cellType == .EditUser {
-            var cell = cv.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
+            let cell = cv.cellWithID("TeamAccountCell", indexPath) as! TeamAccountCell
             cell.roleLabel.text = "You"
             cell.nameLabel.text = model.firstName
             imageManager.setImageToView(cell.profileImageView, urlStr: model.thumURL)
             return cell
         } else {
-            println("Unknow Cell Type")
+            print("Unknow Cell Type", terminator: "")
             return UICollectionViewCell()
         }
     }
@@ -129,10 +129,10 @@ class TeamAccountVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var model = dataSource[indexPath.row]
-        var cellType = model.cellType
+        let model = dataSource[indexPath.row]
+        let cellType = model.cellType
         if cellType == .AddMember || cellType == .EditMember {
-            var vc = vcWithID("MemberProfileVC") as! MemberProfileVC
+            let vc = vcWithID("MemberProfileVC") as! MemberProfileVC
             if model.cellType == .AddMember { vc.model = TeamMemberModel() }
             else { vc.model = model }
             vc.sourceCellIndex = indexPath.row
@@ -141,7 +141,7 @@ class TeamAccountVC: BaseVC {
             vc.removeButtonHandler = removeMember
             navigationController?.pushViewController(vc, animated: true)
         } else if cellType == .AddUser || cellType == .EditUser {
-            var vc = vcWithID("MemberProfileVC") as! MemberProfileVC
+            let vc = vcWithID("MemberProfileVC") as! MemberProfileVC
             vc.model = model
             vc.sourceCellType = cellType
             vc.sourceCellIndex = indexPath.row
@@ -149,7 +149,7 @@ class TeamAccountVC: BaseVC {
             vc.removeButtonHandler = removeMember
             navigationController?.pushViewController(vc, animated: true)
         } else {
-            println("Unknow Cell Type")
+            print("Unknow Cell Type", terminator: "")
         }
     }
     
@@ -157,12 +157,12 @@ class TeamAccountVC: BaseVC {
     // --------------------------------------------------------------------------------------------
     
     func addMemberDone(vc: MemberProfileVC) {
-        var model = vc.model
+        let model = vc.model
         if vc.sourceCellType == .AddMember {
             model.cellType = .EditMember
             dataSource.insert(model, atIndex: dataSource.count-1)
         } else if vc.sourceCellType == .EditMember {
-            var row = vc.sourceCellIndex
+            let row = vc.sourceCellIndex
             model.cellType = .EditMember
             dataSource[row] = model
         }
@@ -170,19 +170,19 @@ class TeamAccountVC: BaseVC {
     }
     
     func memberProfileEditDone(vc: MemberProfileVC) {
-        var model = UserManager.sharedInstance.info
+        let model = UserManager.sharedInstance.info
         if vc.sourceCellType == .AddUser {
             prepareAndLoadTeamMemberCollectionView()
         } else if vc.sourceCellType == .EditUser {
-            var row = vc.sourceCellIndex
+            let row = vc.sourceCellIndex
             dataSource[row] = model
         }
         collectionView?.reloadData()
     }
     
     func removeMember(vc: MemberProfileVC) {
-        var row = vc.sourceCellIndex
-        var model = dataSource[row]
+        let row = vc.sourceCellIndex
+        let model = dataSource[row]
         dataManager.deleteTeamMember(model.permissionID) { (success, errorStr) in
             if success {
                 vc.navigationController?.popViewControllerAnimated(true)
@@ -203,7 +203,7 @@ class TeamAccountVC: BaseVC {
             dataSource.append(userManager.info)
             addTeamMembersInfoAndLoadCollectionView()
         } else {
-            var addUser = TeamMemberModel()
+            let addUser = TeamMemberModel()
             addUser.cellType = .AddUser
             dataSource.append(addUser)
             collectionView?.reloadData()
@@ -232,15 +232,15 @@ class TeamAccountVC: BaseVC {
     }
     
     func appendAddMemberCell() {
-        var addMemberCell = TeamMemberModel()
+        let addMemberCell = TeamMemberModel()
         addMemberCell.cellType = .AddMember
         dataSource.append(addMemberCell)
     }
     
     // MARK: End Editing
     // --------------------------------------------------------------------------------------------
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
     }
 }

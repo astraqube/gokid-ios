@@ -26,7 +26,7 @@ class CalendarUserImageView: UIView {
     ///Set this guy to have letters made when no image
     var nameString : NSString = "?" {
         didSet{
-            nameLabel.text = (self.nameString as! String).twoLetterAcronym()
+            nameLabel.text = (self.nameString as String).twoLetterAcronym()
         }
     }
     
@@ -74,7 +74,7 @@ class CalendarUserImageView: UIView {
         setup()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }

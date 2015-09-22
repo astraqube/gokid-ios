@@ -67,8 +67,8 @@ class BaseVC: UIViewController {
             self.view.frame.origin.y += keyboardSize.height
         }
     }
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
 }
@@ -91,12 +91,12 @@ extension UIViewController {
     }
     
     func setNavBarRightButtonTitle(title: String, action: Selector) {
-        var rightButton = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)
+        let rightButton = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)
         navigationItem.rightBarButtonItem = rightButton;
     }
     
     func setNavBarLeftButtonTitle(title: String, action: Selector) {
-        var leftButton = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)
+        let leftButton = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)
         navigationItem.leftBarButtonItem = leftButton;
     }
     
@@ -116,7 +116,7 @@ extension UIViewController {
     
     func showAlert(title: String, messege: String, cancleTitle: String) {
         onMainThread() {
-            var alertView = UIAlertView(title: title, message: messege, delegate: self, cancelButtonTitle: cancleTitle)
+            let alertView = UIAlertView(title: title, message: messege, delegate: self, cancelButtonTitle: cancleTitle)
             alertView.show()
         }
     }

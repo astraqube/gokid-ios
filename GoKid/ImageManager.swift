@@ -44,30 +44,30 @@ class ImageManager: NSObject {
     // MARK: Transformer method
     func cropTransformer(image: UIImage) -> UIImage {
         
-        var sw: CGFloat = 100
-        var sh: CGFloat = 100
-        var iw: CGFloat = image.size.width
-        var ih: CGFloat = image.size.height
+        let sw: CGFloat = 100
+        let sh: CGFloat = 100
+        let iw: CGFloat = image.size.width
+        let ih: CGFloat = image.size.height
         
         //Create the bitmap graphics context
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(sw, sh), false, 0.0);
-        var context = UIGraphicsGetCurrentContext();
+        let context = UIGraphicsGetCurrentContext();
         
         //Get the width and heights
-        var rectWidth = sw;
-        var rectHeight = sh;
+        let rectWidth = sw;
+        let rectHeight = sh;
         
         //Calculate the scale factor
-        var scaleFactorX = rectWidth/iw;
-        var scaleFactorY = rectHeight/ih;
+        let scaleFactorX = rectWidth/iw;
+        let scaleFactorY = rectHeight/ih;
         
         //Calculate the centre of the circle
-        var imageCentreX = rectWidth/2;
-        var imageCentreY = rectHeight/2;
+        let imageCentreX = rectWidth/2;
+        let imageCentreY = rectHeight/2;
         
         // Create and CLIP to a CIRCULAR Path
         // (This could be replaced with any closed path if you want a different shaped clip)
-        var radius = rectWidth/2;
+        let radius = rectWidth/2;
         CGContextBeginPath(context);
         CGContextAddArc(context, imageCentreX, imageCentreY, radius, 0, CGFloat(2*M_PI), 0);
         CGContextClosePath(context);
@@ -78,20 +78,20 @@ class ImageManager: NSObject {
         CGContextScaleCTM (context, scaleFactorX, scaleFactorY);
         
         // Draw the IMAGE
-        var myRect = CGRectMake(0, 0, iw, ih);
+        let myRect = CGRectMake(0, 0, iw, ih);
         image.drawInRect(myRect)
-        var newImage = UIGraphicsGetImageFromCurrentImageContext();
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
         return newImage;
     }
     
     func standerTransformer(image: UIImage) -> UIImage {
-        var iw: CGFloat = image.size.width
-        var ih: CGFloat = image.size.height
-        var cw: CGFloat = 320 * 2
-        var ch: CGFloat = 160 * 2
-        var canvas_size = CGSizeMake(cw, ch)
+        let iw: CGFloat = image.size.width
+        let ih: CGFloat = image.size.height
+        let cw: CGFloat = 320 * 2
+        let ch: CGFloat = 160 * 2
+        let canvas_size = CGSizeMake(cw, ch)
         
         var dx: CGFloat = 0
         var dy: CGFloat = 0
@@ -110,10 +110,10 @@ class ImageManager: NSObject {
             dx = 0
         }
         
-        var rect = CGRectMake(dx, dy, dw, dh)
+        let rect = CGRectMake(dx, dy, dw, dh)
         UIGraphicsBeginImageContext(canvas_size)
         image.drawInRect(rect)
-        var newImage = UIGraphicsGetImageFromCurrentImageContext()
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return newImage
@@ -151,7 +151,7 @@ class ImageManager: NSObject {
         // *******************************
         // try to find disk cached image
         // *******************************
-        var result = findDiskCachedImageByURL(urlStr) { (img: UIImage?) in
+        let result = findDiskCachedImageByURL(urlStr) { (img: UIImage?) in
             if let image = img {
                 // println("get disk cached image \(urlStr)")
                 self.memCached[urlStr] = image
@@ -211,7 +211,7 @@ class ImageManager: NSObject {
             self.executing = true
             ImageManager.sharedInstance.getImageAtURL(url, callback: { (image, error) -> () in
                 self.image = image
-                if let error = error { println("failed ImageFetchOperation of url \(self.url) with error \(error)") }
+                if let error = error { print("failed ImageFetchOperation of url \(self.url) with error \(error)") }
                 self.finished = true
                 self.executing = false
             })
@@ -224,7 +224,7 @@ class ImageManager: NSObject {
         
         var operations = [ImageFetchOperation]()
         
-        var onCompletionOp = NSBlockOperation { () -> Void in
+        let onCompletionOp = NSBlockOperation { () -> Void in
             for operation in operations{
                 if let image = operation.image {
                     dict[operation.url] = image
@@ -255,9 +255,9 @@ class ImageManager: NSObject {
         }){
             return
         } else if let url = NSURL(string: urlStr){
-            var session = NSURLSession.sharedSession()
+            let session = NSURLSession.sharedSession()
             session.dataTaskWithURL(url) { (data, response, error) in
-                if let image = UIImage(data: data) {
+                if let image = UIImage(data: data!) {
                     self.memCached[urlStr] = image
                     self.diskCacheImageWithURLStr(image, urlStr)
                     self.getImageAtURL(urlStr, callback: callback)
@@ -288,11 +288,17 @@ class ImageManager: NSObject {
         // try to find the image on disk
         if urlExistOnDisk(urlStr) {
             onGlobalThread() {
-                var id = self.imgIDForURL(urlStr)
-                var path = self.filePathForImgID(id)
-                var error: NSError?
-                var data  = NSData(contentsOfFile: path, options: .DataReadingUncached, error: &error)
-                var image = UIImage(data: data!)
+                let id = self.imgIDForURL(urlStr)
+                let path = self.filePathForImgID(id)
+                var data: NSData?
+                do {
+                    data = try NSData(contentsOfFile: path, options: .DataReadingUncached)
+                } catch _ as NSError {
+                    data = nil
+                } catch {
+                    fatalError()
+                }
+                let image = UIImage(data: data!)
                 completion(image)
             }
             return true
@@ -302,20 +308,20 @@ class ImageManager: NSObject {
     
     func downloadImageByURLStr(urlStr: String, _ completion: IMCompletion) {
         // check the url is valid
-        var url = NSURL(string: urlStr)
+        let url = NSURL(string: urlStr)
         if url == nil {
-            println(__FUNCTION__ + " url not valid: " + urlStr)
+            print(__FUNCTION__ + " url not valid: " + urlStr)
             return
         }
         // download
-        var session = NSURLSession.sharedSession()
+        let session = NSURLSession.sharedSession()
         session.dataTaskWithURL(url!) { (data, response, error) in
-            if error != nil { println(error); return }
-            if let image = UIImage(data: data) {
-                println("downloaded image \(urlStr)")
+            if error != nil { print(error); return }
+            if let image = UIImage(data: data!) {
+                print("downloaded image \(urlStr)")
                 completion(image)
             } else {
-                println("Invalid image url \(urlStr)")
+                print("Invalid image url \(urlStr)")
                 return
             }
             }.resume()
@@ -324,8 +330,8 @@ class ImageManager: NSObject {
     func diskCacheImageWithURLStr(img: UIImage, _ urlStr: String) {
         // cache it to disk
         onGlobalThread() {
-            var id = self.imgIDForURL(urlStr)
-            var path = self.imageDirPath + id
+            let id = self.imgIDForURL(urlStr)
+            let path = self.imageDirPath + id
             var picture: UIImage!
 
             // image redraws to its intended orientation
@@ -339,39 +345,45 @@ class ImageManager: NSObject {
                 picture = img
             }
 
-            var data = UIImagePNGRepresentation(picture)
-            data.writeToFile(path, atomically: true)
+            let data = UIImagePNGRepresentation(picture)
+            data!.writeToFile(path, atomically: true)
             self.diskCached[id] = id
         }
     }
     
     func removeDiskCacheForURL(urlStr: String) {
         if urlStr == "" { return }
-        var fileManager = NSFileManager.defaultManager()
-        var id = self.imgIDForURL(urlStr)
-        var path = self.imageDirPath + id
+        let fileManager = NSFileManager.defaultManager()
+        let id = self.imgIDForURL(urlStr)
+        let path = self.imageDirPath + id
         diskCached[id] = nil
         memCached[urlStr] = nil
         if fileManager.fileExistsAtPath(path) {
-            fileManager.removeItemAtPath(path, error: nil)
+            do {
+                try fileManager.removeItemAtPath(path)
+            } catch _ {
+            }
         }
     }
     
     // MARK: Initialize disk cached map
     func getDiscCachedMap() {
-        var fileManager = NSFileManager.defaultManager()
+        let fileManager = NSFileManager.defaultManager()
         // if Documents/Image doesn't exsits, we need create one
         if fileManager.fileExistsAtPath(imageDirPath) == false {
             var error: NSError?
-            fileManager.createDirectoryAtPath(imageDirPath,
-                withIntermediateDirectories: true, attributes: nil, error: &error)
+            do {
+                try fileManager.createDirectoryAtPath(imageDirPath,
+                    withIntermediateDirectories: true, attributes: nil)
+            } catch let error1 as NSError {
+                error = error1
+            }
             if error != nil {
-                println(error)
+                print(error)
             }
         }
         // after making sure Documents/Image exsist we construct diskCachedMap
-        var error: NSError?
-        var allImage = fileManager.contentsOfDirectoryAtPath(imageDirPath, error: &error) as! [String]
+        let allImage = (try! fileManager.contentsOfDirectoryAtPath(imageDirPath))
         for imgID in allImage {
             diskCached[imgID] = imgID
         }
@@ -379,7 +391,7 @@ class ImageManager: NSObject {
     
     // MARK: Helper method
     func urlExistOnDisk(urlStr: String) -> Bool {
-        var id = imgIDForURL(urlStr)
+        let id = imgIDForURL(urlStr)
         return (diskCached[id] != nil)
     }
     
@@ -391,7 +403,7 @@ class ImageManager: NSObject {
     }
     
     func filePathForImgID(id: String) -> String {
-        println(imageDirPath + id)
+        print(imageDirPath + id)
         return imageDirPath + id
     }
 }

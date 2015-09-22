@@ -6,71 +6,73 @@
 //  Copyright (c) 2015 GoKid. All rights reserved.
 //
 
+import SwiftyJSON
+import AFNetworking
 
 extension DataManager {
         
     func getTeamMembersOfTeam(comp: completion) {
-        var teamID = String(userManager.info.teamID)
-        var url = baseURL + "/api/teams/\(teamID)/permissions"
-        var manager = managerWithToken()
+        let teamID = String(userManager.info.teamID)
+        let url = baseURL + "/api/teams/\(teamID)/permissions"
+        let manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getTeamMembersOfTeam success")
+            print("getTeamMembersOfTeam success", terminator: "")
             var json = JSON(obj)
-            println(json)
-            var members =  TeamMemberModel.arrayOfMembers(json["permissions"])
+            print(json)
+            let members =  TeamMemberModel.arrayOfMembers(json["permissions"])
             self.userManager.teamMembers = members
             comp(true, "")
         }) { (op, error) in
-            println("getTeamMembersOfTeam failed")
+            print("getTeamMembersOfTeam failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func updateTeamAddress(address: String, address2: String, comp: completion) {
-        var teamID = String(userManager.info.teamID)
-        var url = baseURL + "/api/teams/\(teamID)"
-        var map = [
+        let teamID = String(userManager.info.teamID)
+        let url = baseURL + "/api/teams/\(teamID)"
+        let map = [
             "team": [
                 "address": address,
                 "address2": address2
             ]
         ]
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("updateTeamAddress success")
+            print("updateTeamAddress success", terminator: "")
             self.userManager.address = address
             self.userManager.address2 = address2
             comp(true, "")
         }) { (op, error) in
-            println("updateTeamAddress failed")
+            print("updateTeamAddress failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func upLoadTeamMemberImage(image: UIImage, model: TeamMemberModel, comp: completion) {
         
-        var urlStr = baseURL + "/api/users/" + String(model.userID) + "/upload"
-        var url = NSURL(string: urlStr)!
-        var imageData = UIImageJPEGRepresentation(image, 1.0)
-        var token = userManager.userToken
+        let urlStr = baseURL + "/api/users/" + String(model.userID) + "/upload"
+        let url = NSURL(string: urlStr)!
+        let imageData = UIImageJPEGRepresentation(image, 1.0)
+        let token = userManager.userToken
         
-        var request = NSMutableURLRequest(URL: url)
+        let request = NSMutableURLRequest(URL: url)
         request.addValue("image/jpeg", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("token " + token, forHTTPHeaderField: "Authorization")
         request.HTTPMethod = "POST"
         request.HTTPBody = imageData
         
-        var op = AFHTTPRequestOperation(request: request)
+        let op = AFHTTPRequestOperation(request: request)
         op.responseSerializer = AFJSONResponseSerializer()
         op.setCompletionBlockWithSuccess({ (op, obj) in
-            println("succeess to upload team member image")
+            print("succeess to upload team member image", terminator: "")
             var json = JSON(obj)
             model.thumURL = json["avatar"]["thumb_url"].stringValue
             self.imageManager.removeDiskCacheForURL(model.thumURL)
             comp(true, "")
         }, failure: { (op, error) in
-            println("fail to upload team member image")
+            print("fail to upload team member image", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         })
         NSOperationQueue.mainQueue().addOperation(op)
@@ -78,8 +80,8 @@ extension DataManager {
 
     
     func addTeamMember(model: TeamMemberModel, comp: ObjectCompletion) {
-        var teamID = String(userManager.info.teamID)
-        var url = baseURL + "/api/teams/\(teamID)/permissions"
+        let teamID = String(userManager.info.teamID)
+        let url = baseURL + "/api/teams/\(teamID)/permissions"
         
         var permission = [
             "first_name": model.firstName,
@@ -89,35 +91,35 @@ extension DataManager {
         if model.phoneNumber != "" {
             permission["phone_number"] = model.phoneNumber
         }
-        var map = ["permission" : permission]
-        println(map)
+        let map = ["permission" : permission]
+        print(map, terminator: "")
         
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("addTeamMember success")
-            var newModel = TeamMemberModel(json: JSON(obj)["permission"])
+            print("addTeamMember success", terminator: "")
+            let newModel = TeamMemberModel(json: JSON(obj)["permission"])
             comp(true, "", newModel)
         }) { (op, error) in
-            println("addTeamMember failed")
+            print("addTeamMember failed", terminator: "")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
     
     func deleteTeamMember(id: Int, comp: completion) {
-        var teamID = String(userManager.info.teamID)
-        var url = baseURL + "/api/teams/\(teamID)/permissions/\(id)"
-        var manager = managerWithToken()
+        let teamID = String(userManager.info.teamID)
+        let url = baseURL + "/api/teams/\(teamID)/permissions/\(id)"
+        let manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
-            println("deleteTeamMember success")
+            print("deleteTeamMember success", terminator: "")
             comp(true, "")
         }) { (op, error) in
-            println("deleteTeamMember failed")
+            print("deleteTeamMember failed", terminator: "")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func updateTeamMember(model: TeamMemberModel, comp: ObjectCompletion) {
-        var url = baseURL + "/api/users/" + String(model.userID)
+        let url = baseURL + "/api/users/" + String(model.userID)
         var user = [
             "first_name": model.firstName,
             "last_name" : model.lastName,
@@ -128,13 +130,13 @@ extension DataManager {
         } else {
             user["phone_number"] = nil
         }        
-        var map = ["user" : user]
-        var manager = managerWithToken()
+        let map = ["user" : user]
+        let manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("updateTeamMember success")
+            print("updateTeamMember success", terminator: "")
             comp(true, "", model)
         }) { (op, error) in
-            println("updateTeamMember failed")
+            print("updateTeamMember failed", terminator: "")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }

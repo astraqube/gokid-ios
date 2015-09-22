@@ -9,6 +9,8 @@
 import UIKit
 import Fabric
 import Crashlytics
+import SwiftyJSON
+import FBSDKLoginKit
 
 let kGKPickup = "Arrive at "
 let kGKDropoff = "Depart from "
@@ -21,13 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        var size = self.window!.frame.size
-        var um = UserManager.sharedInstance
-        um.windowH = size.height
-        um.windowW = size.width
-        
         // register notification
-        var settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         application.registerUserNotificationSettings(settings)
         
         // for google places api
@@ -57,19 +54,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // --------------------------------------------------------------------------------------------
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        println("didRegisterUserNotificationSettings")
+        print("didRegisterUserNotificationSettings", terminator: "")
         application.registerForRemoteNotifications()
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println("fail to register remote notification")
+        print("fail to register remote notification", terminator: "")
         NSLog(error.localizedDescription)
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        println("success register for remote notification")
-        var str = NSMutableString()
-        var ptr = UnsafePointer<CChar>(deviceToken.bytes)
+        print("success register for remote notification", terminator: "")
+        let str = NSMutableString()
+        let ptr = UnsafePointer<CChar>(deviceToken.bytes)
         for var i = 0; i < 32; i++ {
             str.appendFormat("%02.2hhX", ptr[i])
         }
@@ -82,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Facebook Deep Link
     // --------------------------------------------------------------------------------------------
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
 
         if url.scheme == "gokid" && url.host == "invited" {
             // dropoff for when `gotInvited` observer does not exist

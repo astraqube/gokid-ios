@@ -7,140 +7,141 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 extension DataManager {
     func getCarpool(id: Int, comp: ObjectCompletion) {
-        var url = baseURL + "/api/carpools/" + String(id)
+        let url = baseURL + "/api/carpools/" + String(id)
         
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
             var json = JSON(obj)
-            var carpool = CarpoolModel(json: json["carpool"])
+            let carpool = CarpoolModel(json: json["carpool"])
             
-            println("get carpool success")
+            print("get carpool success")
             
             comp(true, "", carpool)
         }) { (op, error) in
-            println("get carpool failed")
+            print("get carpool failed")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
     
     func createCarpool(model: CarpoolModel, comp: ObjectCompletion) {
-        var url = baseURL + "/api/carpools"
-        var map = model.toJson()
-        println(map)
-        var manager = managerWithToken()
+        let url = baseURL + "/api/carpools"
+        let map = model.toJson()
+        print(map)
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
             var json = JSON(obj)
             model.reflect(json["carpool"])
             model.riders = RiderModel.arrayOfRidersWithJSON(json["riders"])
-            println("create carpool success")
+            print("create carpool success")
             comp(true, "", model)
         }) { (op, error) in
-            println("create carpool failed")
+            print("create carpool failed")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 
     func updateCarpool(model: CarpoolModel, comp: ObjectCompletion) {
-        var url = baseURL + "/api/carpools/\(model.id)"
-        var map = model.toJson()
-        println(map)
-        var manager = managerWithToken()
+        let url = baseURL + "/api/carpools/\(model.id)"
+        let map = model.toJson()
+        print(map)
+        let manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
             var json = JSON(obj)
             model.reflect(json["carpool"])
-            println("updateCarpool success")
+            print("updateCarpool success")
             comp(true, "", model)
         }) { (op, error) in
-            println("updateCarpool failed")
+            print("updateCarpool failed")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 
     func deleteOccurrence(model: OccurenceModel, comp: completion) {
-        var url = baseURL + "/api/carpools/\(model.carpoolID)/occurrences/\(model.occurenceID)"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/carpools/\(model.carpoolID)/occurrences/\(model.occurenceID)"
+        let manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
-            println("deleteOccurrence success")
+            print("deleteOccurrence success")
             comp(true, "")
         }) { (op, error) in
-            println("deleteOccurrence failed")
+            print("deleteOccurrence failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func deleteCarpool(model: CarpoolModel, comp: completion) {
-        var url = baseURL + "/api/carpools/\(model.id)"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/carpools/\(model.id)"
+        let manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
-            println("deleteCarpool success")
+            print("deleteCarpool success")
             comp(true, "")
         }) { (op, error) in
-            println("deleteCarpool failed")
+            print("deleteCarpool failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     func getAllUserOccurrences(comp: completion) {
-        var url = baseURL + "/api/occurrences"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/occurrences"
+        let manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getAllUserOccurrences success")
+            print("getAllUserOccurrences success")
             var json = JSON(obj)
-            var ridersJ = json["riders"]
-            var riders = RiderModel.arrayOfRidersWithJSON(ridersJ)
+            let ridersJ = json["riders"]
+            let riders = RiderModel.arrayOfRidersWithJSON(ridersJ)
             RiderModel.cacheRiders(riders)
-            var occurrencesJ = json["occurrences"]
-            var events = OccurenceModel.arrayOfEventsFromOccurrences(occurrencesJ)
+            let occurrencesJ = json["occurrences"]
+            let events = OccurenceModel.arrayOfEventsFromOccurrences(occurrencesJ)
             self.userManager.calendarEvents = events
             comp(true, "")
         }) { (op, error) in
-            println("getAllUserOccurrences failed")
+            print("getAllUserOccurrences failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func getCarpools(comp: completion) {
-        var url = baseURL + "/api/carpools"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/carpools"
+        let manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getCarpool success")
-            println(obj)
+            print("getCarpool success")
+            print(obj)
             var json = JSON(obj)
-            var ridersJ = json["riders"]
+            let ridersJ = json["riders"]
             RiderModel.cacheRiders(RiderModel.arrayOfRidersWithJSON(ridersJ))
-            var carpoolsJ = json["carpools"]
-            var carpools = CarpoolModel.arrayOfCarpoolsFromJSON(carpoolsJ)
+            let carpoolsJ = json["carpools"]
+            let carpools = CarpoolModel.arrayOfCarpoolsFromJSON(carpoolsJ)
             self.userManager.carpools = carpools
             comp(true, "")
         }) { (op, error) in
-            println("get carpool failed")
+            print("get carpool failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     func registerForCarpool(carpool: CarpoolModel, type: String, comp: completion) {
-        var url = baseURL + "/api/carpools/\(carpool.id)/claim"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/carpools/\(carpool.id)/claim"
+        let manager = managerWithToken()
         manager.POST(url, parameters: ["occurrences": type], success: { (op, obj) in
-            println("registerForCarpool success")
+            print("registerForCarpool success")
             comp(true, "")
         }) { (op, error) in
-            println("registerForCarpool failed")
+            print("registerForCarpool failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     func unregisterForCarpool(carpool: CarpoolModel, type: String, comp: completion) {
-        var url = baseURL + "/api/carpools/\(carpool.id)/claim"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/carpools/\(carpool.id)/claim"
+        let manager = managerWithToken()
         manager.DELETE(url, parameters: ["occurrences": type], success: { (op, obj) in
-            println("registerForCarpool success")
+            print("registerForCarpool success")
             comp(true, "")
         }) { (op, error) in
-            println("registerForCarpool failed")
+            print("registerForCarpool failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
@@ -150,37 +151,37 @@ extension DataManager {
     }
 
     func registerForOccurence(occ: OccurenceModel, member: TeamMemberModel?, comp: completion) {
-        var url = baseURL + "/api/carpools/\(occ.carpool.id)/occurrences/\(occ.occurenceID)/claim"
+        let url = baseURL + "/api/carpools/\(occ.carpool.id)/occurrences/\(occ.occurenceID)/claim"
         var map: NSDictionary!
 
         if member != nil {
             map = ["user_id": member!.userID]
         }
 
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.POST(url, parameters: map, success: { (op, obj) in
-            println("registerForOccurence success")
-            println(obj)
+            print("registerForOccurence success")
+            print(obj)
             var json = JSON(obj)
             occ.reflect(json["occurrence"])
             comp(true, "")
         }) { (op, error) in
-            println("registerForOccurence failed")
+            print("registerForOccurence failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func unregisterForOccurence(occ: OccurenceModel, comp: completion) {
-        var url = baseURL + "/api/carpools/\(occ.carpool.id)/occurrences/\(occ.occurenceID)/claim"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/carpools/\(occ.carpool.id)/occurrences/\(occ.occurenceID)/claim"
+        let manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
-            println("registerForOccurence success")
-            println(obj)
+            print("registerForOccurence success")
+            print(obj)
             var json = JSON(obj)
             occ.reflect(json["occurrence"])
             comp(true, "")
         }) { (op, error) in
-            println("registerForOccurence failed")
+            print("registerForOccurence failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
@@ -196,22 +197,22 @@ extension DataManager {
             url = url + "?only_rider=\(rider!.riderID)"
         }
 
-        println(url)
-        var manager = managerWithToken()
-        println(userManager.userToken)
+        print(url)
+        let manager = managerWithToken()
+        print(userManager.userToken)
         manager.requestSerializer.setValue("no-cache", forHTTPHeaderField: "Pragma")
         manager.requestSerializer.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getOccurenceOfCarpool success")
-            var json = JSON(obj)["occurrences"]
-            var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
-            self.userManager.volunteerEvents = events.sorted { (left : OccurenceModel, right : OccurenceModel) -> Bool in
+            print("getOccurenceOfCarpool success")
+            let json = JSON(obj)["occurrences"]
+            let events = OccurenceModel.arrayOfEventsFromOccurrences(json)
+            self.userManager.volunteerEvents = events.sort() { (left : OccurenceModel, right : OccurenceModel) -> Bool in
                 if left.occursAt == nil || right.occursAt == nil { return false}
                 return left.occursAt!.isLessThanDate(right.occursAt!)
             }
             comp(true, "")
         }) { (op, error) in
-            println("getOccurenceOfCarpool failed")
+            print("getOccurenceOfCarpool failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
@@ -227,18 +228,18 @@ extension DataManager {
             url = url + "?only_rider=\(rider!.riderID)"
         }
         
-        println(url)
-        var manager = managerWithToken()
-        println(userManager.userToken)
+        print(url)
+        let manager = managerWithToken()
+        print(userManager.userToken)
         manager.requestSerializer.setValue("no-cache", forHTTPHeaderField: "Pragma")
         manager.requestSerializer.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getOccurenceOfCarpool success")
-            var json = JSON(obj)["occurrences"]
-            var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
+            print("getOccurenceOfCarpool success")
+            let json = JSON(obj)["occurrences"]
+            let events = OccurenceModel.arrayOfEventsFromOccurrences(json)
             comp(true, "", events)
         }) { (op, error) in
-            println("getOccurenceOfCarpool failed")
+            print("getOccurenceOfCarpool failed")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
@@ -254,46 +255,46 @@ extension DataManager {
             ]
         }
 
-        println(url)
-        println(map)
+        print(url)
+        print(map)
 
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.PUT(url, parameters: ["occurrences": map], success: { (op, obj) in
-            println("updateOccurrencesInBulk success")
+            print("updateOccurrencesInBulk success")
             let json = JSON(obj)
-            println(json)
+            print(json)
             let occurrences = OccurenceModel.arrayOfEventsFromOccurrences(json["bulk_occurrences"])
             comp(true, "", occurrences)
         }) { (op, error) in
-            println("updateOccurrencesInBulk failed")
+            print("updateOccurrencesInBulk failed")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 
     func updateOccurrenceLocation(occurrenceID: Int, location: Location, comp: completion) {
-        var url = baseURL + "/api/occurrences/\(occurrenceID)"
+        let url = baseURL + "/api/occurrences/\(occurrenceID)"
 
-        var map = [
+        let map = [
             "occurrence": [
                 "event_location": location.toJson()
             ]
         ]
 
-        println(url)
-        println(map)
+        print(url)
+        print(map)
 
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("updateOccurrenceLocation success")
+            print("updateOccurrenceLocation success")
             comp(true, "")
         }) { (op, error) in
-            println("updateOccurrenceLocation failed")
+            print("updateOccurrenceLocation failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     func updateOccurencesLocation(occs: [OccurenceModel], comp: completion) {
-        var url = baseURL + "/api/carpools/" + String(userManager.currentCarpoolModel.id) + "/occurrences"
+        let url = baseURL + "/api/carpools/" + String(userManager.currentCarpoolModel.id) + "/occurrences"
         
         let map = [
             "occurrence_ids": occs.map { return $0.occurenceID },
@@ -303,161 +304,161 @@ extension DataManager {
             ]
         ]
         
-        println(url)
-        println(map)
-        var manager = managerWithToken()
+        print(url)
+        print(map)
+        let manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("updateOccurenceLocation success")
-            var json = JSON(obj)
-            println(json)
+            print("updateOccurenceLocation success")
+            let json = JSON(obj)
+            print(json)
             comp(true, "")
         }) { (op, error) in
-            println("updateOccurenceLocation failed")
+            print("updateOccurenceLocation failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func updateOccurencesTimes(occs: [OccurenceModel], comp: completion) {
-        var url = baseURL + "/api/occurrences"
+        let url = baseURL + "/api/occurrences"
         
-        var map = NSMutableDictionary.new()
+        let map = NSMutableDictionary()
         
         for o in occs {
-            var id = String(o.occurenceID)
-            var updates = ["occursAt": o.occursAt!.iso8601String()]
+            let id = String(o.occurenceID)
+            let updates = ["occursAt": o.occursAt!.iso8601String()]
             map[id] = updates
         }
         
-        var payload = ["occurrences": map]
+        let payload = ["occurrences": map]
         
-        println(url)
-        println(payload)
+        print(url)
+        print(payload)
         
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.PUT(url, parameters: payload, success: { (op, obj) in
-            println("updateOccurencesTimes success")
+            print("updateOccurencesTimes success")
             comp(true, "")
         }) { (op, error) in
-            println(error)
-            println("updateOccurenceLocation failed")
+            print(error)
+            print("updateOccurenceLocation failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func updateOccurencesTimes2(updates: NSMutableDictionary, comp: completion) {
-        var url = baseURL + "/api/occurrences"
+        let url = baseURL + "/api/occurrences"
         
-        var payload = ["occurrences": updates]
+        let payload = ["occurrences": updates]
         
-        println(url)
-        println(payload)
+        print(url)
+        print(payload)
         
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.PUT(url, parameters: payload, success: { (op, obj) in
-            println("updateOccurencesTimes success")
+            print("updateOccurencesTimes success")
             comp(true, "")
         }) { (op, error) in
-            println(error)
-            println("updateOccurenceLocation failed")
+            print(error)
+            print("updateOccurenceLocation failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     
     func putOccurrenceCurrentLocation(location: CLLocation, occurrence: OccurenceModel, comp: completion){
-        var url = baseURL + "/api/occurrences/" + String(occurrence.occurenceID) + "/location"
+        let url = baseURL + "/api/occurrences/" + String(occurrence.occurenceID) + "/location"
         let map = ["location" : [ "latitude" : location.coordinate.latitude,
             "longitude" : location.coordinate.longitude,
             "heading" : location.course
         ]]
-        println(url)
-        var manager = managerWithToken()
+        print(url)
+        let manager = managerWithToken()
         manager.requestSerializer.timeoutInterval = 10 //the same as the request interval– don't want these piling up
         manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("putOccurrenceCurrentLocation success")
+            print("putOccurrenceCurrentLocation success")
             comp(true, "")
         }) { (op, error) in
-            println("putOccurrenceCurrentLocation failed")
+            print("putOccurrenceCurrentLocation failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func getOccurenceRiders(occ: OccurenceModel, comp: completion) {
-        var url = baseURL + "/api/carpools/" + String(occ.carpoolID) + "/occurrences/" + String(occ.occurenceID) + "/riders"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/carpools/" + String(occ.carpoolID) + "/occurrences/" + String(occ.occurenceID) + "/riders"
+        let manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getOccurenceRiders success")
-            println(obj)
-            var ridersJson = JSON(obj)["riders"]
-            var riders = RiderModel.arrayOfRidersWithJSON(ridersJson)
+            print("getOccurenceRiders success")
+            print(obj)
+            let ridersJson = JSON(obj)["riders"]
+            let riders = RiderModel.arrayOfRidersWithJSON(ridersJson)
             occ.riders = riders
             comp(true, "")
         }) { (op, error) in
-            println("getOccurenceRiders failed")
+            print("getOccurenceRiders failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
 
     func updateRiderInCarpool(rider: RiderModel, carpoolID: Int, comp: ObjectCompletion) {
-        var url = "\(baseURL)/api/carpools/\(carpoolID)/riders/\(rider.riderID)"
-        var map = ["rider": rider.toJson()]
+        let url = "\(baseURL)/api/carpools/\(carpoolID)/riders/\(rider.riderID)"
+        let map = ["rider": rider.toJson()]
 
-        println(url)
-        println(map)
+        print(url)
+        print(map)
 
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.PUT(url, parameters: map, success: { (op, obj) in
-            println("updateRiderInCarpool success")
-            println(obj)
+            print("updateRiderInCarpool success")
+            print(obj)
             var json = JSON(obj)
-            var rider = RiderModel(json: json["rider"])
+            let rider = RiderModel(json: json["rider"])
             comp(true, "", rider)
         }) { (op, error) in
-            println("updateRiderInCarpool failed")
+            print("updateRiderInCarpool failed")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
 
     func deleteFromOccurenceRiders(rider: RiderModel , occ: OccurenceModel, comp: completion) {
-        var url = baseURL + "/api/occurrences/\(occ.occurenceID)/riders/\(rider.riderID)"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/occurrences/\(occ.occurenceID)/riders/\(rider.riderID)"
+        let manager = managerWithToken()
         manager.DELETE(url, parameters: nil, success: { (op, obj) in
-            println("deleteFromOccurenceRiders success")
+            print("deleteFromOccurenceRiders success")
             comp(true, "")
         }) { (op, error) in
-            println("deleteFromOccurenceRiders failed")
+            print("deleteFromOccurenceRiders failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func addRiderToOccurrence(rider: RiderModel, occ: OccurenceModel, comp: completion) {
-        var url = baseURL + "/api/occurrences/\(occ.occurenceID)/riders/\(rider.riderID)"
-        var manager = managerWithToken()
+        let url = baseURL + "/api/occurrences/\(occ.occurenceID)/riders/\(rider.riderID)"
+        let manager = managerWithToken()
         manager.POST(url, parameters: nil, success: { (op, obj) in
-            println("addRiderToOccurrence success")
+            print("addRiderToOccurrence success")
             comp(true, "")
         }) { (op, error) in
-            println("addRiderToOccurrence failed")
+            print("addRiderToOccurrence failed")
             self.handleRequestError(op, error: error, comp: comp)
         }
     }
     
     func addKidsNameToCarpool(carpoolID: Int, name: String, comp: ObjectCompletion) {
-        var url = baseURL + "/api/carpools/\(carpoolID)/riders"
-        var map = [
+        let url = baseURL + "/api/carpools/\(carpoolID)/riders"
+        let map = [
             "rider" : [
                 "first_name": name,
                 "last_name": self.userManager.info.lastName
             ]
         ]
-        var manager = managerWithToken()
+        let manager = managerWithToken()
         manager.POST(url, parameters:map, success: { (op, obj) in
-            println("addKidsNameToCarpool success")
+            print("addKidsNameToCarpool success")
             let json = JSON(obj)
             let rider = RiderModel(json: json["rider"])
             comp(true, "", rider)
         }) { (op, error) in
-            println("addKidsNameToCarpool failed")
+            print("addKidsNameToCarpool failed")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }
@@ -466,7 +467,7 @@ extension DataManager {
         let url = baseURL + "/api/carpools/\(carpool.id)/invites"
         let manager = managerWithToken()
         manager.GET(url, parameters: nil, success: { (op, obj) in
-            println("getCarpoolInvites success")
+            print("getCarpoolInvites success")
             let json = JSON(obj)
             let invitations = json["invites"].arrayValue
             let invites = invitations.map {
@@ -474,7 +475,7 @@ extension DataManager {
             }
             comp(true, "", invites)
         }) { (op, error) in
-            println("getCarpoolInvites failed")
+            print("getCarpoolInvites failed")
             self.handleUserResuestError(op, error: error, comp: comp)
         }
     }

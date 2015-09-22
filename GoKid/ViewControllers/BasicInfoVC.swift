@@ -36,7 +36,7 @@ class BasicInfoVC: BaseVC, UITextFieldDelegate {
         if self.canProceed() {
             carpool.kidName = kidsNameTextField.text!
             carpool.name = carpoolTitleTextField.text!
-            var vc = vcWithID("TimeAndDateFormVC") as! TimeAndDateFormVC
+            let vc = vcWithID("TimeAndDateFormVC") as! TimeAndDateFormVC
             vc.carpool = carpool
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -58,9 +58,9 @@ class BasicInfoVC: BaseVC, UITextFieldDelegate {
     // --------------------------------------------------------------------------------------------
     
     func canProceed() -> Bool {
-        var s1 = carpoolTitleTextField.text
-        var s2 = kidsNameTextField.text
-        return count(s1) > 0 && count(s2) > 0
+        let s1 = carpoolTitleTextField.text
+        let s2 = kidsNameTextField.text
+        return s1?.characters.count > 0 && s2?.characters.count > 0
     }
 
     // MARK: TextField Delegate

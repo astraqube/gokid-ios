@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 enum TeamCellType {
     case AddUser, AddMember, EditMember, EditUser, None
@@ -51,11 +52,11 @@ class TeamMemberModel: NSObject {
 
     class func arrayOfMembers(json: JSON) -> [TeamMemberModel] {
         var arr = [TeamMemberModel]()
-        for (index: String, subJson: JSON) in json {
-            var member = TeamMemberModel(json: subJson)
+        for (_, subJson): (String, JSON) in json {
+            let member = TeamMemberModel(json: subJson)
 
             if member.isCurrentUser {
-                var um = UserManager.sharedInstance
+                let um = UserManager.sharedInstance
                 um.updateUserWithTeamMembersInfo(subJson["user"])
             } else {
                 member.cellType = .EditMember

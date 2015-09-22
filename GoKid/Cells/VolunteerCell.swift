@@ -162,7 +162,7 @@ class VolunteerCell: UITableViewCell {
 
     func showAlert(title: String, messege: String) {
         onMainThread() {
-            var alertView = UIAlertView(title: title, message: messege, delegate: self, cancelButtonTitle: "OK")
+            let alertView = UIAlertView(title: title, message: messege, delegate: self, cancelButtonTitle: "OK")
             alertView.show()
         }
     }
@@ -177,12 +177,12 @@ class VolunteerCell: UITableViewCell {
 
                     let menu = UIAlertController(title: "Choose a Driver", message: nil, preferredStyle: .Alert)
 
-                    menu.addAction(UIAlertAction(title: "Myself", style: .Default, handler: { (alert: UIAlertAction!) in
+                    menu.addAction(UIAlertAction(title: "Myself", style: .Default, handler: { (alert: UIAlertAction) in
                         self.registerVolunteerForCell()
                     }))
 
                     for member in members {
-                        menu.addAction(UIAlertAction(title: member.fullName, style: .Default, handler: { (alert: UIAlertAction!) in
+                        menu.addAction(UIAlertAction(title: member.fullName, style: .Default, handler: { (alert: UIAlertAction) in
                             self.assignTeamMember(member)
                         }))
                     }

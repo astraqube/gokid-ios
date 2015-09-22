@@ -9,10 +9,10 @@
 extension LocationVC {
     
     func setupLabels() {
-        var textColor = colorManager.color456462
-        var highlightColor = colorManager.color67C18B
-        var textFont = UIFont(name: "Raleway-Bold", size: 17)
-        var smallTextFont = UIFont(name: "Raleway-Regular", size: 14)
+        let textColor = colorManager.color456462
+        let highlightColor = colorManager.color67C18B
+        let textFont = UIFont(name: "Raleway-Bold", size: 17)
+        let smallTextFont = UIFont(name: "Raleway-Regular", size: 14)
         
         destinationLocationLabel = UILabel(frame: CGRectMake(0, 0, 105, 120))
         destinationLocationLabel.text = "Sharon park Dr 350, United States"
@@ -60,7 +60,7 @@ extension LocationVC {
     }
     
     func setupButtons() {
-        var image = UIImage(named: "location_up")
+        let image = UIImage(named: "location_up")
         destLocationButton = UIButton(frame: CGRectMake(0, 0, 55, 55))
         destLocationButton.setImage(image, forState: .Normal)
         destLocationButton.addTarget(self, action: "destButtonTapped:", forControlEvents: .TouchUpInside)
@@ -102,7 +102,7 @@ extension LocationVC {
         switchBackgroundView.layer.borderColor = UIColor.lightGrayColor().CGColor
         switchBackgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
         
-        var vs = [startLocationButton, startLocationLabel, destLocationButton,
+        let vs = [startLocationButton, startLocationLabel, destLocationButton,
             destinationLocationLabel, eventButton, eventLabel, eventLocationLabel,
             arrow1, arrow2, doubleArrow, startLabel, destLabel]
         for v in vs {
@@ -133,12 +133,12 @@ extension LocationVC {
         startLabel.frame = CGRectMake(0, 0, 100, 30)
         startLabel.sizeToFit()
         
-        var x = view.w / 4.0
+        let x = view.w / 4.0
         startLocationButton.center.x = x * 1.0
         doubleArrow.center.x = x * 2.0
         eventButton.center.x = x * 3.0
         
-        var y = view.h * heightRatio
+        let y = view.h * heightRatio
         startLocationButton.center.y = y
         doubleArrow.center.y = y
         eventButton.center.y = y
@@ -150,14 +150,14 @@ extension LocationVC {
         startLabel.frame = CGRectMake(0, 0, 100, 30)
         startLabel.sizeToFit()
         
-        var x = view.w / 6.0
+        let x = view.w / 6.0
         startLocationButton.center.x = x * 1.0
         arrow1.center.x = x * 2.0
         eventButton.center.x = x * 3.0
         arrow2.center.x = x * 4.0
         destLocationButton.center.x = x * 5.0
         
-        var y = view.h * heightRatio
+        let y = view.h * heightRatio
         startLocationButton.center.y = y
         arrow1.center.y = y
         eventButton.center.y = y
@@ -175,7 +175,7 @@ extension LocationVC {
         destinationLocationLabel.center.x = destLocationButton.center.x
         eventLocationLabel.center.x = eventButton.center.x
         
-        var insets: CGFloat = 12.0
+        let insets: CGFloat = 12.0
         startLabel.y = startLocationButton.y + startLocationButton.h + insets
         eventLabel.y = eventButton.y + eventButton.h + insets
         destLabel.y = destLocationButton.y + destLocationButton.h + insets
@@ -186,7 +186,7 @@ extension LocationVC {
     }
 
     func showOptionalViews(show: Bool) {
-        var vs = [destLocationButton, destinationLocationLabel, arrow1, arrow2, destLabel]
+        let vs = [destLocationButton, destinationLocationLabel, arrow1, arrow2, destLabel]
         for v in vs {
             if show {
                 v.alpha = 1.0

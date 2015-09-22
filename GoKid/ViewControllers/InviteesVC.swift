@@ -57,7 +57,7 @@ class InviteesVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let model = dataSource[indexPath.row] as InvitationModel
-        let cell = tableView.dequeueReusableCellWithIdentifier("InviteeCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("InviteeCell", forIndexPath: indexPath) 
         cell.textLabel?.text = model.phoneNum
         cell.detailTextLabel?.text = model.status.captialName()
         return cell

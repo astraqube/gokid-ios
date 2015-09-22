@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import SwiftyJSON
 
 typealias GeoCompletion = ((CLLocationDegrees, CLLocationDegrees)->())
 
@@ -38,7 +39,7 @@ class Location: NSObject {
     }
     
     func toJson() -> NSDictionary {
-        var json = [
+        let json = [
             "display": name,
             "longitude": long,
             "latitude": lati
@@ -47,16 +48,16 @@ class Location: NSObject {
     }
 
     class func geoCodeAddress(address: String, comp: GeoCompletion) {
-        var geocoder = CLGeocoder()
+        let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (obj, err)  in
-            if let pms = obj as? [CLPlacemark] {
+            if let pms = obj as [CLPlacemark]? {
                 if pms.count >= 1 {
-                    var coor = pms[0].location.coordinate
+                    let coor = pms[0].location!.coordinate
                     comp(coor.longitude, coor.latitude)
                     return
                 }
             }
-            println("Unable to geocode address: \(address). Error: \(err.description)")
+            print("Unable to geocode address: \(address). Error: \(err!.description)")
         }
     }
 

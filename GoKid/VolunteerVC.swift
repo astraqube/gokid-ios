@@ -53,11 +53,11 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     override func rightNavButtonTapped() {
         if carpool.isOwner {
             if fromCarpoolList {
-                var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
+                let vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
                 vc.occurrence = dataSource[1]
                 navigationController?.pushViewController(vc, animated: true)
             } else {
-                var vc = vcWithID("InviteParentsVC") as! InviteParentsVC
+                let vc = vcWithID("InviteParentsVC") as! InviteParentsVC
                 vc.carpool = self.carpool
                 vc.hideForwardNavigationButtons = false
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -85,7 +85,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var model = dataSource[indexPath.row]
+        let model = dataSource[indexPath.row]
         if model.cellType == .None {
             let cell = tableView.cellWithID("TDEmptyCell", indexPath) as! TDEmptyCell
             return cell
@@ -100,15 +100,15 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             cell.locationLabel.text = model.eventLocation.name
             return cell
         } else {
-            println("unknown tableview cell type")
+            print("unknown tableview cell type", terminator: "")
             return UITableViewCell()
         }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var model = dataSource[indexPath.row]
+        let model = dataSource[indexPath.row]
         if model.cellType == .Normal && carpool.isOwner && fromCarpoolList {
-            var vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
+            let vc = vcWithID("CarpoolEditVC") as! CarpoolEditVC
             vc.occurrence = model
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -117,7 +117,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var model = dataSource[indexPath.row]
+        let model = dataSource[indexPath.row]
         switch model.cellType {
         case .None:
             return 20.0
@@ -161,7 +161,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         var lastDateStr = ""
         for event in events {
             if event.occursAtStr != lastDateStr {
-                var dateCell = OccurenceModel()
+                let dateCell = OccurenceModel()
                 dateCell.cellType = .Time
                 dateCell.occursAtStr = event.occursAtStr
                 dateCell.eventLocation = event.eventLocation

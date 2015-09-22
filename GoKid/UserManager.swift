@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 let RoleTypeCareTaker = "caretaker"
 let RoleTypeChild = "child"
@@ -140,17 +141,17 @@ class UserManager: NSObject {
     
     func saveUserInfo() {
         controlRecentAddressSize()
-        var avatar = [
+        let avatar = [
             "thumb_url": info.thumURL
         ]
-        var teams = [
+        let teams = [
             [
                 "id": info.teamID,
                 "address": address,
                 "address2": address2
             ]
         ]
-        var userInfo = [
+        let userInfo = [
             "first_name": info.firstName,
             "password" : info.passWord,
             "last_name": info.lastName,
@@ -163,29 +164,30 @@ class UserManager: NSObject {
             "recentAddressTitle": recentAddressTitles,
             "phone_number": info.phoneNumber
         ]
-        var map = [
+        let map = [
             "user": userInfo,
             "teams": teams
         ]
-        if let data = JSON(map).rawData(options: .PrettyPrinted, error: nil) {
-            var path = documentPath + "user_info"
+        do {
+            let data = try JSON(map).rawData(options: NSJSONWritingOptions.PrettyPrinted)
+            let path = self.documentPath + "user_info"
             data.writeToFile(path, atomically: true)
-        } else {
-            println("\(__FUNCTION__) + cannot save user info + \(map)" )
+        } catch _ {
+            print("\(__FUNCTION__) + cannot save user info + \(map)" )
         }
         ud.synchronize()
     }
     
     func loadUserInfo() {
-        var path = documentPath + "user_info"
+        let path = documentPath + "user_info"
         if let data = NSData(contentsOfFile: path) {
-            var json = JSON(data: data)
+            let json = JSON(data: data)
             setWithJsonReponse(json)
         }
     }
 
     func addToRecentAddresses(addressTitle: String, address: String) {
-        if !contains(recentAddressTitles, addressTitle) && !contains(recentAddress, address) {
+        if !recentAddressTitles.contains(addressTitle) && !recentAddress.contains(address) {
             recentAddressTitles.insert(addressTitle, atIndex: 0)
             recentAddress.insert(address, atIndex: 0)
             saveUserInfo()
@@ -219,7 +221,7 @@ class UserManager: NSObject {
         self.userFirstTimeLogin = true
 
         for key in NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys {
-            NSUserDefaults.standardUserDefaults().removeObjectForKey(key.description)
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(key)
         }
 
         let app = UIApplication.sharedApplication()

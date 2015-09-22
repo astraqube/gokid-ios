@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import XLForm
 
 class LocationInputVC: BaseVC, XLFormRowDescriptorViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, CLLocationManagerDelegate {
 
@@ -90,7 +91,7 @@ class LocationInputVC: BaseVC, XLFormRowDescriptorViewController, UITableViewDel
     }
     
     @IBAction func locationInputButtonClick(sender: AnyObject) {
-        var vc = vcWithID("PlacePickerVC") as! PlacePickerVC
+        let vc = vcWithID("PlacePickerVC") as! PlacePickerVC
         vc.locationVC = self
         self.navigationController?.presentViewController(vc, animated: true, completion: nil)
     }
@@ -102,18 +103,18 @@ class LocationInputVC: BaseVC, XLFormRowDescriptorViewController, UITableViewDel
     // MARK: CLLocationManagerDelegate
     // --------------------------------------------------------------------------------------------
     
-    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         self.locationManager.stopUpdatingLocation()
-        var geocoder = CLGeocoder()
+        let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(newLocation) { (placemarks, error) in
-            if error == nil && placemarks.count > 0 {
-                var pms = placemarks as! [CLPlacemark]
-                var pm = pms.last!
-                let addressTitle = NSString(format: "%@", pm.name) as String
+            if error == nil && placemarks!.count > 0 {
+                let pms = placemarks as [CLPlacemark]?
+                let pm = pms!.last!
+                let addressTitle = NSString(format: "%@", pm.name!) as String
                 let address = self.add2FromPlaceMark(pm)
                 self.chooseAddressDone(addressTitle, address: address)
             } else {
-                println(error.debugDescription)
+                print(error.debugDescription, terminator: "")
             }
         }
     }
@@ -128,8 +129,8 @@ class LocationInputVC: BaseVC, XLFormRowDescriptorViewController, UITableViewDel
         if let s = pm.administrativeArea { add2 += " " + s }
         if let s = pm.postalCode         { add2 += " " + s }
         if let s = pm.country            { add2 += " " + s }
-        if  count(add2) > 0 {
-            if Array(add2)[0] == " " {
+        if add2.characters.count > 0 {
+            if Array(arrayLiteral: add2)[0] == " " {
                 add2.removeAtIndex(add2.startIndex)
             }
         }
@@ -148,16 +149,15 @@ class LocationInputVC: BaseVC, XLFormRowDescriptorViewController, UITableViewDel
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var row = indexPath.row
-        var cell = tableView.cellWithID(TableCellID, indexPath) as! RecentAddressCell
+        let row = indexPath.row
+        let cell = tableView.cellWithID(TableCellID, indexPath) as! RecentAddressCell
         cell.addressTitleLabel.text = userManager.recentAddressTitles[row]
         cell.addressLabel.text = userManager.recentAddress[row]
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell = tableView.cellForRowAtIndexPath(indexPath) as! RecentAddressCell
-        var row = indexPath.row
+        let row = indexPath.row
         self.chooseAddressDone(userManager.recentAddressTitles[row], address: userManager.recentAddress[row])
     }
 
@@ -172,11 +172,11 @@ class LocationInputVC: BaseVC, XLFormRowDescriptorViewController, UITableViewDel
         if userManager.userHomeAdress == "" {
             let confirmPrompt = UIAlertController(title: "Is this your Home address?", message: "\(address1), \(address2)", preferredStyle: .Alert)
 
-            confirmPrompt.addAction(UIAlertAction(title: "No", style: .Cancel) { (alert: UIAlertAction!) -> Void in
+            confirmPrompt.addAction(UIAlertAction(title: "No", style: .Cancel) { (alert: UIAlertAction) -> Void in
                 completion()
             })
 
-            confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default) { (alert: UIAlertAction!) in
+            confirmPrompt.addAction(UIAlertAction(title: "Yes", style: .Default) { (alert: UIAlertAction) in
                 self.dataManager.updateTeamAddress(address1, address2: address2) { (success, errorStr) in
                     completion()
                 }
