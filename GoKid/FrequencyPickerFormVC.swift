@@ -11,7 +11,7 @@ import UIKit
 enum GKFrequency : String {
     case JustOnce = "Just Once"
     case Daily = "Daily"
-    case EveryWeek = "Every Week"
+    case EveryWeek = "Select the days per week"
 //    case EveryMonth = "Every Month"
 //    case EveryYear = "Every Year"
 
@@ -61,7 +61,13 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorStyle = .None
-        self.title = "Frequency"
+        self.title = "Select Frequency"
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: "savePressed:")
+    }
+
+    func savePressed(button: UIBarButtonItem) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
     override func viewWillAppear(animated: Bool) {

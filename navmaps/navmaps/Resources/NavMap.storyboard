@@ -41,7 +41,9 @@
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
-            <string>Raleway-Regular</string>
+        </mutableArray>
+        <mutableArray key="Raleway-SemiBold.ttf">
+            <string>Raleway-SemiBold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -94,31 +96,20 @@
                                                         <color key="textColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssp-Sr-fTb" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
-                                                        <rect key="frame" x="542" y="14" width="46" height="26"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssp-Sr-fTb">
+                                                        <rect key="frame" x="548" y="7" width="40" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="46" id="3yU-dH-azO"/>
                                                             <constraint firstAttribute="height" constant="26" id="PwZ-FH-hdi"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
-                                                        <state key="normal" title="Edit">
-                                                            <color key="titleColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <state key="highlighted">
-                                                            <color key="titleColor" red="0.071932215079999945" green="0.10898820466666659" blue="0.10898820466666659" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                <color key="value" red="0.70196078429999997" green="0.7843137255" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                <real key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
+                                                        <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                                        <state key="normal" title="Edit"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="3yU-dH-azO"/>
+                                                                <exclude reference="PwZ-FH-hdi"/>
+                                                            </mask>
+                                                        </variation>
                                                         <connections>
                                                             <action selector="editButtonTapped:" destination="NC8-s1-hOT" eventType="touchUpInside" id="Mu0-8I-yQZ"/>
                                                         </connections>
@@ -127,8 +118,10 @@
                                                 <constraints>
                                                     <constraint firstItem="RNX-Ky-EdS" firstAttribute="top" secondItem="bbN-Ni-FR3" secondAttribute="top" id="3Rl-wT-kaG"/>
                                                     <constraint firstAttribute="centerX" secondItem="RNX-Ky-EdS" secondAttribute="centerX" id="GJ7-p1-675"/>
+                                                    <constraint firstItem="Iwr-pM-OYu" firstAttribute="height" secondItem="Ssp-Sr-fTb" secondAttribute="height" id="H34-4G-m0V"/>
                                                     <constraint firstItem="fVc-1P-Bgj" firstAttribute="centerX" secondItem="RNX-Ky-EdS" secondAttribute="centerX" id="J5I-cO-pqb"/>
                                                     <constraint firstAttribute="centerY" secondItem="Iwr-pM-OYu" secondAttribute="centerY" constant="1" id="RoT-66-5tG"/>
+                                                    <constraint firstItem="Iwr-pM-OYu" firstAttribute="width" secondItem="Ssp-Sr-fTb" secondAttribute="width" id="d0l-er-E7r"/>
                                                     <constraint firstAttribute="centerY" secondItem="Ssp-Sr-fTb" secondAttribute="centerY" constant="1" id="eWd-xL-Vzp"/>
                                                     <constraint firstItem="Iwr-pM-OYu" firstAttribute="leading" secondItem="bbN-Ni-FR3" secondAttribute="leading" constant="15" id="hTO-cR-9gr"/>
                                                     <constraint firstAttribute="height" constant="55" id="p8j-5I-xFk"/>

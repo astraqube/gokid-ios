@@ -61,8 +61,14 @@
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
             <string>Raleway-Regular</string>
-            <string>Raleway-Regular</string>
-            <string>Raleway-Regular</string>
+        </mutableArray>
+        <mutableArray key="Raleway-SemiBold.ttf">
+            <string>Raleway-SemiBold</string>
+            <string>Raleway-SemiBold</string>
+            <string>Raleway-SemiBold</string>
+            <string>Raleway-SemiBold</string>
+            <string>Raleway-SemiBold</string>
+            <string>Raleway-SemiBold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -231,31 +237,14 @@
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyf-4x-qM4" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyf-4x-qM4">
                                 <rect key="frame" x="248" y="27" width="56" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="R6R-VL-ZYk"/>
                                     <constraint firstAttribute="width" constant="56" id="Rmk-Rv-mlR"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
-                                <state key="normal" title="Create">
-                                    <color key="titleColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" red="0.07193221508" green="0.10898820469999999" blue="0.10898820469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.70196078429999997" green="0.7843137255" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <state key="normal" title="Create"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.97254901959999995" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -639,11 +628,10 @@
                                 <color key="textColor" red="0.31764705882352939" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX2-Dg-Buk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX2-Dg-Buk">
                                 <rect key="frame" x="264" y="20" width="40" height="40"/>
-                                <state key="normal" image="next_arrow">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <state key="normal" title="Save"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKh-NM-kQI">
                                 <rect key="frame" x="16" y="20" width="40" height="40"/>
@@ -871,11 +859,10 @@
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZW-gi-5se">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZW-gi-5se">
                                 <rect key="frame" x="264" y="20" width="40" height="40"/>
-                                <state key="normal" image="gearSelected">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <state key="normal" title="Edit"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tk6-X3-Z60">
                                 <rect key="frame" x="16" y="20" width="40" height="40"/>
@@ -992,10 +979,11 @@
                                     <constraint firstAttribute="width" constant="16" id="k2X-o9-5Tt"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNT-zU-Xq5">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNT-zU-Xq5">
                                 <rect key="frame" x="264" y="20" width="40" height="40"/>
-                                <state key="normal" image="next_arrow">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAy-HL-HQq">
@@ -1213,31 +1201,10 @@
                                     <outlet property="delegate" destination="WDl-BW-E5k" id="RLK-2P-32C"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcD-2Q-xLc" customClass="BorderedBarishButton" customModule="GoKid" customModuleProvider="target">
-                                <rect key="frame" x="252" y="27" width="52" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="2lx-xk-sI7"/>
-                                    <constraint firstAttribute="width" constant="52" id="Aol-Sy-5TJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="14"/>
-                                <state key="normal" title="Send">
-                                    <color key="titleColor" red="0.25490196079999999" green="0.38431372549999998" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" red="0.07193221508" green="0.10898820469999999" blue="0.10898820469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.70196078429999997" green="0.7843137255" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcD-2Q-xLc">
+                                <rect key="frame" x="264" y="20" width="40" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <state key="normal" title="Send"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.97254901959999995" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -1250,7 +1217,9 @@
                             <constraint firstItem="ImU-yY-PAh" firstAttribute="top" secondItem="1OO-lJ-oAG" secondAttribute="bottom" id="HSh-Uo-RDj"/>
                             <constraint firstItem="saY-N1-l3u" firstAttribute="top" secondItem="u8g-on-OR9" secondAttribute="bottom" id="Jg3-eD-Eld"/>
                             <constraint firstAttribute="centerX" secondItem="ImU-yY-PAh" secondAttribute="centerX" id="K1i-dG-Gaw"/>
+                            <constraint firstItem="xcD-2Q-xLc" firstAttribute="height" secondItem="7IG-yj-YoZ" secondAttribute="height" id="K7d-in-b5Z"/>
                             <constraint firstItem="7IG-yj-YoZ" firstAttribute="top" secondItem="1OO-lJ-oAG" secondAttribute="bottom" id="Lm3-z8-0qU"/>
+                            <constraint firstItem="xcD-2Q-xLc" firstAttribute="width" secondItem="7IG-yj-YoZ" secondAttribute="width" id="ORS-lp-lUN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u8g-on-OR9" secondAttribute="trailing" constant="-8" id="VjF-x7-xu4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="saY-N1-l3u" secondAttribute="trailing" id="Vk4-bt-ZYg"/>
                             <constraint firstItem="xcD-2Q-xLc" firstAttribute="centerY" secondItem="7IG-yj-YoZ" secondAttribute="centerY" id="Xfr-fC-vBD"/>
@@ -1396,11 +1365,10 @@
                                 <color key="textColor" red="0.31764705879999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co7-Ep-Gkq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co7-Ep-Gkq">
                                 <rect key="frame" x="264" y="20" width="40" height="40"/>
-                                <state key="normal" image="next_arrow">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <state key="normal" title="Next"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.96862745098039216" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
@@ -1619,7 +1587,6 @@
         <image name="carpool_map" width="375" height="667"/>
         <image name="carpool_name_selected" width="22" height="22"/>
         <image name="checkCirc" width="51" height="52"/>
-        <image name="gearSelected" width="27" height="27"/>
         <image name="highFive" width="113" height="130"/>
         <image name="kid_name_selected" width="14" height="30"/>
         <image name="next_arrow" width="23" height="21"/>
