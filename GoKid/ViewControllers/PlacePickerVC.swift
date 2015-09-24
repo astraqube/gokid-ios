@@ -119,7 +119,11 @@ class PlacePickerVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CLLocat
         search.startWithCompletionHandler {
             (response: MKLocalSearchResponse!, error: NSError!) in
             if error == nil {
-                self.dataSource = response.mapItems
+                self.dataSource = response.mapItems.filter { (p: AnyObject) -> Bool in
+                    let place = p as! MKMapItem
+                    let location = self.descriptionFromPrediction(place)
+                    return location.subtitle != ""
+                }
             }
             self.tableView.reloadData()
         }
