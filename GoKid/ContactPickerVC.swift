@@ -8,69 +8,6 @@
 
 import UIKit
 
-class Person: NSObject {
-    var firstName: String?
-    var lastName: String?
-    var selected: Bool = false
-    var phoneNum: APPhoneWithLabel?
-    var email: String?
-
-    override func isEqual(object: AnyObject?) -> Bool {
-        if let person = object as? Person {
-            if person.phoneNum != nil && self.phoneNum != nil {
-                return person.phoneNum!.phone == self.phoneNum!.phone
-            }
-            if person.email != nil && self.email != nil {
-                return person.email! == self.email!
-            }
-        }
-        return false
-    }
-
-    var fullName: String {
-        if firstName != nil && lastName != nil {
-            return "\(firstName!) \(lastName!)"
-        }
-        if firstName != nil {
-            return firstName!
-        }
-        if lastName != nil {
-            return lastName!
-        }
-        if phoneNum != nil {
-            return phoneNum!.phone
-        }
-        if email != nil {
-            return email!
-        }
-        return ""
-    }
-
-    var contactDisplay: String {
-        if phoneNum != nil {
-            return "\(phoneNum!.localizedLabel): \(phoneNum!.phone)"
-        }
-        if email != nil {
-            return "email: \(email!)"
-        }
-        return ""
-    }
-
-    init(firstName: String?, lastName: String?, phoneNum: APPhoneWithLabel?, email: String?) {
-        self.firstName = firstName
-        self.lastName = lastName
-        self.phoneNum = phoneNum
-        self.email = email
-    }
-
-    func matches(keywords: String) -> Bool {
-        if keywords == "" { return true }
-        let stack = "\(fullName) \(contactDisplay)"
-        return stack.lowercaseString.rangeOfString(keywords.lowercaseString) != nil
-    }
-}
-
-
 class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     var carpool: CarpoolModel!
@@ -185,13 +122,11 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
             person.selected = true
             collectionDataSource.addObject(person)
             searchBarInput.text = ""
-            searchForContact(searchBarInput.text)
+            searchContact(searchBarInput.text)
         }
 
-        onMainThread {
-            self.collectionView.reloadData()
-            self.tableView.reloadData()
-        }
+        self.collectionView.reloadData()
+        self.tableView.reloadData()
     }
 
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
@@ -242,7 +177,7 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
             break;
 
         case .Granted:
-            self.searchForContact("")
+            self.searchContact("")
             break;
 
         case .Denied:
@@ -310,108 +245,26 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
 
 extension ContactPickerVC: UISearchBarDelegate {
 
-    func searchForContact(query: String) {
-        debounce(NSTimeInterval(0.3), queue: dispatch_get_main_queue()) {
-
-            var data = [Person]()
-            let addressBook = APAddressBook()
-
-            addressBook.fieldsMask = .Default | .PhonesWithLabels | .Emails
-            addressBook.sortDescriptors = [
-                NSSortDescriptor(key: "firstName", ascending: true),
-                NSSortDescriptor(key: "lastName", ascending: true)
-            ]
-            addressBook.filterBlock = { (contact: APContact!) -> Bool in
-                if query != "" {
-                    let name = "\(contact.firstName) \(contact.lastName)"
-                    let number = " ".join(contact.phones as! [String])
-                    let email = " ".join(contact.emails as! [String])
-
-                    if name.lowercaseString.rangeOfString(query.lowercaseString) != nil {
-                        return true
-                    }
-
-                    if number.rangeOfString(query) != nil {
-                        return true
-                    }
-
-                    if email.lowercaseString.rangeOfString(query.lowercaseString) != nil {
-                        return true
-                    }
-
-                    return false
-
-                } else {
-                    return contact.phones.count > 0 || contact.emails.count > 0
-                }
+    func searchContact(keywords: String) {
+        Person.searchForContact(keywords) { (contacts: [AnyObject]!, error: NSError!) in
+            if error == nil {
+                self.constructTableDataAndUpdate(contacts.map { (c: AnyObject) -> Person in
+                    let person = c as! Person
+                    person.selected = self.collectionDataSource.containsObject(person)
+                    return person
+                })
+            } else {
+                self.showAlert("Error", messege: error.localizedDescription, cancleTitle: "OK")
             }
-            
-            addressBook.loadContacts { (contacts: [AnyObject]!, error: NSError!) in
-                if (contacts != nil) {
-                    if !contacts.isEmpty {
-                        for addressBookPerson in contacts {
-                            if let c = addressBookPerson as? APContact {
-                                for phone in c.phonesWithLabels {
-                                    var person = Person(
-                                        firstName: c.firstName,
-                                        lastName: c.lastName,
-                                        phoneNum: phone as? APPhoneWithLabel,
-                                        email: nil)
-                                    person.selected = self.collectionDataSource.containsObject(person)
-                                    if person.matches(query) {
-                                        data.append(person)
-                                    }
-                                }
-                                for email in c.emails {
-                                    var person = Person(
-                                        firstName: c.firstName,
-                                        lastName: c.lastName,
-                                        phoneNum: nil,
-                                        email: email as? String)
-                                    person.selected = self.collectionDataSource.containsObject(person)
-                                    if person.matches(query) {
-                                        data.append(person)
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        if query != "" {
-                            if let phoneNumber = query.extractNumbers() {
-                                if count(phoneNumber) >= 10 {
-                                    var person = Person(
-                                        firstName: nil,
-                                        lastName: nil,
-                                        phoneNum: APPhoneWithLabel(phone: query, originalLabel: "Number", localizedLabel: "Number"),
-                                        email: nil)
-                                    person.selected = self.collectionDataSource.containsObject(person)
-                                    data.append(person)
-                                }
-                            }
-                            if query.isValidEmail() {
-                                var person = Person(
-                                    firstName: nil,
-                                    lastName: nil,
-                                    phoneNum: nil,
-                                    email: query)
-                                person.selected = self.collectionDataSource.containsObject(person)
-                                data.append(person)
-                            }
-                        }
-                    }
-                    self.constructTableDataAndUpdate(data)
-                } else if (error != nil) {
-                    self.showAlert("Error", messege: error.localizedDescription, cancleTitle: "OK")
-                }
-            }
-        }()
+        }
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        self.searchForContact(searchBar.text)
+        searchContact(searchBar.text)
     }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchForContact(searchText)
+        searchContact(searchText)
     }
+
 }

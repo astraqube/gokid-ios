@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040313511BB3D6D900ED3842 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040313501BB3D6D900ED3842 /* PersonModel.swift */; };
 		041CA0511B740BEC0018F2DE /* InviteConfirmTimesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CA0501B740BEC0018F2DE /* InviteConfirmTimesVC.swift */; };
 		0455A2291B5CB6D700F007E6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0455A2281B5CB6D700F007E6 /* Localizable.strings */; };
 		04587D041B6D628000D00AE0 /* CarpoolEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04587D031B6D628000D00AE0 /* CarpoolEditVC.swift */; };
@@ -131,6 +132,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040313501BB3D6D900ED3842 /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		041CA0501B740BEC0018F2DE /* InviteConfirmTimesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteConfirmTimesVC.swift; path = ViewControllers/InviteConfirmTimesVC.swift; sourceTree = "<group>"; };
 		0455A2281B5CB6D700F007E6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		04587D031B6D628000D00AE0 /* CarpoolEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarpoolEditVC.swift; path = ViewControllers/CarpoolEditVC.swift; sourceTree = "<group>"; };
@@ -625,6 +627,7 @@
 				1D891F261B2734C2006FD961 /* TeamMemberModel.swift */,
 				1D3F65221B207FBA00CCF6A1 /* VolunteerModel.swift */,
 				0472B41C1B69E5F300D94610 /* InvitationModel.swift */,
+				040313501BB3D6D900ED3842 /* PersonModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -922,6 +925,7 @@
 				1DEFF1811B4A87D70094B54E /* OnboardingViewController.m in Sources */,
 				1D891F291B273535006FD961 /* AddTeamMemberCell.swift in Sources */,
 				796ABA551B5D72DE0037F840 /* Navigation + Directions.swift in Sources */,
+				040313511BB3D6D900ED3842 /* PersonModel.swift in Sources */,
 				1D10D7A81B1C33CF007CDB66 /* CalendarVC.swift in Sources */,
 				1D8F78FB1B36A07F00C78CAF /* CalendarDateCell.swift in Sources */,
 				7984A32A1B4F7277006621B5 /* CalendarTimeToGoCell.swift in Sources */,
