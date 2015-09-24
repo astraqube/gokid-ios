@@ -144,6 +144,16 @@ class LocationVC: BaseVC {
     }
     
     override func rightNavButtonTapped() {
+        if eventLocation?.name == "" {
+            showAlert("Correction", messege: "Please assign an Event Location", cancleTitle: "OK")
+            return
+        }
+
+        if pickupLocation?.name == "" && dropoffLocation?.name == "" {
+            showAlert("Correction", messege: "Please assign a Pickup or Dropoff Location", cancleTitle: "OK")
+            return
+        }
+
         if rider != nil {
             self.updateRider()
         } else {
