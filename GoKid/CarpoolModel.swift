@@ -80,7 +80,7 @@ class CarpoolModel: NSObject {
     var id = 0
 
     var descriptionString : String {
-        return "\(name) for \(kidName)"
+        return name
     }
 
 
