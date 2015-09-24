@@ -14,6 +14,7 @@ class InviteesVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
     var dataSource = [InvitationModel]()
+    var dataIdentities = [String : String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +39,29 @@ class InviteesVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             LoadingView.dismiss()
             if success {
                 self.dataSource = invites as! [InvitationModel]
-                self.tableView.reloadData()
+                self.loadIdentitiesFromDataSource()
             } else {
                 self.showAlert("Error", messege: error, cancleTitle: "OK")
+            }
+        }
+    }
+
+    func loadIdentitiesFromDataSource() {
+        for invite in dataSource {
+            let ident = invite.contactInfo
+            Person.searchForContact(ident) { (contacts: [AnyObject]!, error: NSError!) in
+                if error == nil && !contacts.isEmpty {
+                    println(ident)
+                    onMainThread {
+                        let person = contacts.first as! Person
+                        if person.matches(ident) {
+                            self.dataIdentities[ident] = "\(person.fullName), \(person.contactDisplay)"
+                        } else {
+                            self.dataIdentities[ident] = ident
+                        }
+                        self.tableView.reloadData()
+                    }
+                }
             }
         }
     }
@@ -58,7 +79,7 @@ class InviteesVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let model = dataSource[indexPath.row] as InvitationModel
         let cell = tableView.dequeueReusableCellWithIdentifier("InviteeCell", forIndexPath: indexPath) as! UITableViewCell
-        cell.textLabel?.text = model.phoneNum
+        cell.textLabel?.text = self.dataIdentities[model.contactInfo] != nil ? self.dataIdentities[model.contactInfo] : model.contactInfo
         cell.detailTextLabel?.text = model.status.captialName()
         return cell
     }

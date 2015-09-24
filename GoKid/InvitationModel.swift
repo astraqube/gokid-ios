@@ -15,6 +15,11 @@ class InvitationModel: NSObject {
     var rider: RiderModel!
     var status: String!
     var phoneNum: String!
+    var email: String!
+
+    var contactInfo: String! {
+        return phoneNum != "" ? phoneNum : email
+    }
 
     override init() {
         super.init()
@@ -27,6 +32,7 @@ class InvitationModel: NSObject {
         rider = RiderModel(json: json["carpool"]["riders"][0])
         status = json["status"].stringValue
         phoneNum = json["phone_number"].stringValue
+        email = json["email"].stringValue
     }
 
     class var InvitationCount: Int? {
