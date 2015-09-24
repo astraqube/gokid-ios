@@ -307,20 +307,21 @@ class LocationVC: BaseVC {
     }
 
     func segmentSelected(index: Int) {
-        let day = segmentControl.titleForSegmentAtIndex(index)
+        if !dataSourceCollated.isEmpty {
+            let day = segmentControl.titleForSegmentAtIndex(index)
 
-        if let dayCollection = dataSourceCollated[day!] as [OccurenceModel]? {
-            let pickups = dayCollection.filter { (o: OccurenceModel) -> Bool in
-                return o.poolType == "pickup"
-            }
-            currentPickupOccurrence = pickups.first
+            if let dayCollection = dataSourceCollated[day!] as [OccurenceModel]? {
+                let pickups = dayCollection.filter { (o: OccurenceModel) -> Bool in
+                    return o.poolType == "pickup"
+                }
+                currentPickupOccurrence = pickups.first
 
-            let dropoffs = dayCollection.filter { (o: OccurenceModel) -> Bool in
-                return o.poolType == "dropoff"
+                let dropoffs = dayCollection.filter { (o: OccurenceModel) -> Bool in
+                    return o.poolType == "dropoff"
+                }
+                currentDropoffOccurrence = dropoffs.first
             }
-            currentDropoffOccurrence = dropoffs.first
         }
-
         originDestSame = !isOneWay
         toggleForOneWayView()
         relayout()
