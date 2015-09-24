@@ -55,7 +55,7 @@ class InviteesVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
                     onMainThread {
                         let person = contacts.first as! Person
                         if person.matches(ident) {
-                            self.dataIdentities[ident] = "\(person.fullName), \(person.contactDisplay)"
+                            self.dataIdentities[ident] = "\(person.fullName), \(ident)"
                         } else {
                             self.dataIdentities[ident] = ident
                         }
