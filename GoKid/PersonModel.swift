@@ -64,7 +64,11 @@ class Person: NSObject {
     func matches(keywords: String) -> Bool {
         if keywords == "" { return true }
         let stack = "\(fullName) \(contactDisplay)"
-        return stack.lowercaseString.rangeOfString(keywords.lowercaseString) != nil
+        if keywords.extractNumbers() != nil {
+            return stack.extractNumbers()?.rangeOfString(keywords.extractNumbers()!) != nil
+        } else {
+            return stack.lowercaseString.rangeOfString(keywords.lowercaseString) != nil
+        }
     }
 
     class func searchForContact(query: String, comp: (contacts: [AnyObject]!, error: NSError!) -> ()) {
@@ -80,15 +84,19 @@ class Person: NSObject {
         addressBook.filterBlock = { (contact: APContact!) -> Bool in
             if query != "" {
                 let name = "\(contact.firstName) \(contact.lastName)"
-                let number = " ".join(contact.phones as! [String])
+                let number = " ".join((contact.phones as! [String]).map {
+                        return $0.extractNumbers()!
+                    })
                 let email = " ".join(contact.emails as! [String])
 
                 if name.lowercaseString.rangeOfString(query.lowercaseString) != nil {
                     return true
                 }
 
-                if number.rangeOfString(query) != nil {
-                    return true
+                if let numQuery = query.extractNumbers() as String? {
+                    if number.rangeOfString(numQuery) != nil {
+                        return true
+                    }
                 }
 
                 if email.lowercaseString.rangeOfString(query.lowercaseString) != nil {
@@ -102,11 +110,12 @@ class Person: NSObject {
             }
         }
 
-        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
-        let queue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+        let queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
 
         addressBook.loadContactsOnQueue(queue) { (contacts: [AnyObject]!, error: NSError!) in
-            if (contacts != nil) {
+            if error != nil {
+                print(error.localizedDescription)
+            } else {
                 if !contacts.isEmpty {
                     for addressBookPerson in contacts {
                         if let c = addressBookPerson as? APContact {
