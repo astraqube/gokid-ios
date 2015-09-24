@@ -58,7 +58,6 @@ class MainStackVC: IIViewDeckController {
     }
 
     func setSignedInView() {
-        self.registerDeviceToken()
         self.setSignedInView("CalendarVC")
     }
 
@@ -69,6 +68,9 @@ class MainStackVC: IIViewDeckController {
 
         self.rootVC = vcWithID(mainVCName)
         self.centerController = UINavigationController(rootViewController: self.rootVC)
+
+        self.registerDeviceToken()
+        self.presentInvitationView()
     }
 
     func setWelcomeView() {
@@ -143,18 +145,21 @@ class MainStackVC: IIViewDeckController {
 
     func presentInvitationView() {
         let prefs = NSUserDefaults.standardUserDefaults()
-        let inviteCode = prefs.valueForKey("gotInvited") as! String?
-        prefs.setValue(nil, forKey: "gotInvited") // clear the dropoff
-
-        LoadingView.showWithMaskType(.Black)
-        DataManager.sharedInstance.getInvitationByCode(inviteCode!) { (success, errorStr, invitation) in
-            LoadingView.dismiss()
-            if success {
-                var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
-                vc.invitation = invitation as! InvitationModel
-                (self.centerController as! UINavigationController).pushViewController(vc, animated: true)
-            } else {
-                self.showAlert("Invitation Problem", messege: errorStr, cancleTitle: "OK")
+        if let inviteCode = prefs.valueForKey("gotInvited") as? String {
+            LoadingView.showWithMaskType(.Black)
+            DataManager.sharedInstance.getInvitationByCode(inviteCode) { (success, errorStr, invitation) in
+                LoadingView.dismiss()
+                if success {
+                    prefs.setValue(nil, forKey: "gotInvited") // clear the dropoff
+                    var vc = vcWithID("InviteConfirmVC") as! InviteConfirmVC
+                    vc.invitation = invitation as! InvitationModel
+                    (self.centerController as! UINavigationController).pushViewController(vc, animated: true)
+                } else {
+                    if errorStr != "Access Denied" {
+                        prefs.setValue(nil, forKey: "gotInvited") // clear the dropoff
+                        self.showAlert("Invitation Problem", messege: errorStr, cancleTitle: "OK")
+                    }
+                }
             }
         }
     }
