@@ -24,7 +24,7 @@ class VolunteerVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         self.subtitleLabel?.text = carpool.descriptionString
 
         if !fromCarpoolList {
-            rightButton.setImage(UIImage(named: "next_arrow"), forState: UIControlState.Normal)
+            rightButton.setTitle("Next", forState: UIControlState.Normal)
         } else {
             rightButton.enabled = carpool.isOwner
             rightButton.hidden = !carpool.isOwner
