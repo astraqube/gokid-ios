@@ -688,16 +688,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxL-XA-BpY" userLabel="Container View">
                                 <rect key="frame" x="16" y="152" width="288" height="233"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBj-X8-nUi">
-                                        <rect key="frame" x="260" y="8" width="20" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="eJN-0C-ew7"/>
-                                            <constraint firstAttribute="height" constant="20" id="sve-h0-GcR"/>
-                                        </constraints>
-                                        <state key="normal" image="top_x_up">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May I have your number?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntB-4j-Bo9">
                                         <rect key="frame" x="37" y="40" width="214" height="22"/>
                                         <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
@@ -739,7 +729,7 @@
                                                 <rect key="frame" x="0.0" y="39" width="240" height="40"/>
                                                 <color key="backgroundColor" red="0.60392156860000001" green="0.71764705880000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
-                                                <state key="normal" title="Save">
+                                                <state key="normal" title="Proceed">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -769,8 +759,6 @@
                                     <constraint firstAttribute="centerX" secondItem="ntB-4j-Bo9" secondAttribute="centerX" id="XUd-Bd-a0s"/>
                                     <constraint firstAttribute="bottom" secondItem="Nx1-xB-iYt" secondAttribute="bottom" constant="24" id="cI5-Yx-K7o"/>
                                     <constraint firstItem="Nx1-xB-iYt" firstAttribute="width" secondItem="8nI-QT-Lig" secondAttribute="width" id="h3D-tM-u2J"/>
-                                    <constraint firstAttribute="trailing" secondItem="DBj-X8-nUi" secondAttribute="trailing" constant="8" id="jrM-ed-J6s"/>
-                                    <constraint firstItem="DBj-X8-nUi" firstAttribute="top" secondItem="gxL-XA-BpY" secondAttribute="top" constant="8" id="qFA-KA-1OQ"/>
                                     <constraint firstItem="Nx1-xB-iYt" firstAttribute="top" secondItem="8nI-QT-Lig" secondAttribute="bottom" constant="16" id="vIk-yd-skr"/>
                                 </constraints>
                             </view>
@@ -784,7 +772,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="leftButton" destination="DBj-X8-nUi" id="BMn-Eb-yI0"/>
                         <outlet property="phoneNumber" destination="bue-Ij-qII" id="y9M-yS-HAX"/>
                         <outlet property="rightButton" destination="KPI-6e-jI3" id="9IF-3r-1kc"/>
                     </connections>

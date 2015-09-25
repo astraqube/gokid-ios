@@ -65,6 +65,10 @@ extension DataManager {
     }
     
     func fbSignin(comp: completion) {
+        self.fbSignin(nil, comp: comp)
+    }
+
+    func fbSignin(phone: String?, comp: completion) {
         var fbtoken = FBSDKAccessToken.currentAccessToken().tokenString
         if fbtoken == nil {
             comp(false, "Cannot find FBToken")
@@ -73,11 +77,14 @@ extension DataManager {
         
         var url = baseURL + "/api/sessions"
         var map = ["fb_token": fbtoken]
+
+        if phone != nil {
+            map["phone_number"] = phone
+        }
         
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: map, success: { (op, obj) in
             println("fbSignin user success")
-            println(FBSDKAccessToken.currentAccessToken().tokenString)
             self.userManager.setWithJsonReponse(JSON(obj))
             self.userManager.useFBLogIn = true
             self.fbUploadProfileImage() { (result, error) -> () in
@@ -93,6 +100,15 @@ extension DataManager {
             }
         }) { (op, error) in
             println("fbSignin user failed")
+            if let data = op.responseData {
+                var json = JSON(data: data)
+                if json["no_account"].intValue == 1 {
+                    self.postNotification("requestForPhoneNumber")
+                    comp(false, "")
+                    return
+                }
+            }
+
             self.handleRequestError(op, error: error, comp: comp)
         }
     }

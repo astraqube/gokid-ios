@@ -99,7 +99,8 @@ class SignInVC: BaseVC, FBSDKLoginButtonDelegate, UITextFieldDelegate {
                     LoadingView.dismiss()
                     if success {
                         self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignIn)
-                    } else {
+                    }
+                    if errorStr != "" {
                         self.showAlert("Failed to sign in with Facebook", messege:errorStr , cancleTitle: "OK")
                     }
                 }

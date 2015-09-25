@@ -111,7 +111,8 @@ class SignUpVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerD
                 dataManager.fbSignin() { (success, errorStr) in
                     if success {
                         self.afterSignUp()
-                    } else {
+                    }
+                    if errorStr != "" {
                         self.showAlert("Failed to connect with Facebook", messege:errorStr , cancleTitle: "OK")
                     }
                 }

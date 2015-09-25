@@ -31,9 +31,25 @@ class PhoneNumberVC: BaseVC, UITextFieldDelegate {
     override func rightNavButtonTapped() {
         if phoneNumber.text != "" {
             // checkPhone(phoneNumber.text)
-            savePhone(phoneNumber.text)
+            if userManager.userLoggedIn {
+                savePhone(phoneNumber.text)
+            } else {
+                fbRegistrationWithPhone(phoneNumber.text)
+            }
         } else {
             showAlert("Correction", messege: "Please enter a valid phone number", cancleTitle: "OK")
+        }
+    }
+
+    private func fbRegistrationWithPhone(phone: String) {
+        LoadingView.showWithMaskType(.Black)
+        self.dataManager.fbSignin(phone) { (success, errorStr) in
+            LoadingView.dismiss()
+            if success {
+                self.parentVC.dismissViewControllerAnimated(true, completion: self.afterSignIn)
+            } else {
+                self.showAlert("Failed to sign in with Facebook", messege: errorStr, cancleTitle: "OK")
+            }
         }
     }
 

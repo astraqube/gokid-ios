@@ -119,7 +119,7 @@ class MainStackVC: IIViewDeckController {
 
     func popUpPhoneNumberView() {
         let userManager = UserManager.sharedInstance
-        if userManager.userLoggedIn && userManager.info.phoneNumber == "" {
+        if userManager.info.phoneNumber == "" {
             var phoneNumberVC = vcWithID("PhoneNumberVC") as! PhoneNumberVC
             phoneNumberVC.parentVC = self
             phoneNumberVC.modalTransitionStyle = .CrossDissolve
