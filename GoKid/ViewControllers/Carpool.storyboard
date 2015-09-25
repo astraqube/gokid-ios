@@ -238,12 +238,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyf-4x-qM4">
-                                <rect key="frame" x="248" y="27" width="56" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="R6R-VL-ZYk"/>
-                                    <constraint firstAttribute="width" constant="56" id="Rmk-Rv-mlR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <rect key="frame" x="250" y="20" width="54" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <state key="normal" title="Create"/>
                             </button>
                         </subviews>
@@ -257,6 +253,7 @@
                             <constraint firstItem="7r1-TV-6di" firstAttribute="leading" secondItem="Maz-Ci-uDy" secondAttribute="leadingMargin" id="Inl-xe-tYu"/>
                             <constraint firstItem="Uzi-z3-xvL" firstAttribute="top" secondItem="06J-j4-2Zt" secondAttribute="bottom" id="S6m-0f-9JJ"/>
                             <constraint firstAttribute="trailing" secondItem="pn7-hN-kJi" secondAttribute="trailing" id="TPs-Az-hTF"/>
+                            <constraint firstItem="7r1-TV-6di" firstAttribute="height" secondItem="Fyf-4x-qM4" secondAttribute="height" id="Wcd-ac-qkA"/>
                             <constraint firstItem="pn7-hN-kJi" firstAttribute="leading" secondItem="Maz-Ci-uDy" secondAttribute="leading" id="Yjh-gW-sn8"/>
                             <constraint firstItem="7r1-TV-6di" firstAttribute="top" secondItem="J96-Nh-Bnb" secondAttribute="bottom" id="amw-TN-ch8"/>
                             <constraint firstItem="pn7-hN-kJi" firstAttribute="top" secondItem="Uzi-z3-xvL" secondAttribute="bottom" id="ePe-8U-y0Z"/>
@@ -629,8 +626,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX2-Dg-Buk">
-                                <rect key="frame" x="264" y="20" width="40" height="40"/>
-                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <rect key="frame" x="265" y="20" width="39" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <state key="normal" title="Save"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKh-NM-kQI">
@@ -693,7 +690,6 @@
                             <constraint firstItem="kwE-Ew-p5T" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" id="kx9-07-EZS"/>
                             <constraint firstItem="DX2-Dg-Buk" firstAttribute="top" secondItem="lDc-RH-OgD" secondAttribute="bottom" id="mkR-9Q-FJn"/>
                             <constraint firstAttribute="trailing" secondItem="yuU-tp-NbT" secondAttribute="trailing" id="oNE-0L-ZH3"/>
-                            <constraint firstItem="DX2-Dg-Buk" firstAttribute="width" secondItem="iKh-NM-kQI" secondAttribute="width" id="p12-QP-o5r"/>
                             <constraint firstAttribute="centerX" secondItem="C92-A1-L4w" secondAttribute="centerX" id="qYj-7C-saX"/>
                             <constraint firstItem="DX2-Dg-Buk" firstAttribute="centerY" secondItem="iKh-NM-kQI" secondAttribute="centerY" id="sOi-gz-KPe"/>
                             <constraint firstAttribute="centerX" secondItem="kwE-Ew-p5T" secondAttribute="centerX" id="v7l-3b-fDY"/>
@@ -860,8 +856,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZW-gi-5se">
-                                <rect key="frame" x="264" y="20" width="40" height="40"/>
-                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <rect key="frame" x="272" y="20" width="32" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <state key="normal" title="Edit"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tk6-X3-Z60">
@@ -885,7 +881,6 @@
                         <constraints>
                             <constraint firstItem="7ZW-gi-5se" firstAttribute="top" secondItem="4he-17-K22" secondAttribute="bottom" id="2Uh-pp-XCe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7ZW-gi-5se" secondAttribute="trailing" id="4Fp-hh-rZs"/>
-                            <constraint firstItem="7ZW-gi-5se" firstAttribute="width" secondItem="tk6-X3-Z60" secondAttribute="width" id="4Vz-9h-EQk"/>
                             <constraint firstItem="Ath-V8-TBK" firstAttribute="top" secondItem="9QG-xe-krS" secondAttribute="bottom" id="5qN-hp-rcY"/>
                             <constraint firstItem="Sg2-JE-pAb" firstAttribute="top" secondItem="HFg-3e-i5Z" secondAttribute="bottom" id="Ctl-hM-PJx"/>
                             <constraint firstItem="tk6-X3-Z60" firstAttribute="centerY" secondItem="7ZW-gi-5se" secondAttribute="centerY" id="EkI-Mj-yhU"/>
@@ -980,7 +975,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNT-zU-Xq5">
-                                <rect key="frame" x="264" y="20" width="40" height="40"/>
+                                <rect key="frame" x="266" y="20" width="38" height="40"/>
                                 <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1030,7 +1025,6 @@
                             <constraint firstItem="2cG-yU-zdO" firstAttribute="leading" secondItem="bAy-HL-HQq" secondAttribute="leading" id="uA2-BT-PC0"/>
                             <constraint firstAttribute="trailing" secondItem="CwR-BO-65H" secondAttribute="trailing" id="ute-oD-5D0"/>
                             <constraint firstItem="bAy-HL-HQq" firstAttribute="leading" secondItem="Znx-G0-41b" secondAttribute="leadingMargin" id="vbF-zm-Nwu"/>
-                            <constraint firstItem="bAy-HL-HQq" firstAttribute="width" secondItem="FNT-zU-Xq5" secondAttribute="width" id="yVJ-eg-d3O"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1202,8 +1196,8 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcD-2Q-xLc">
-                                <rect key="frame" x="264" y="20" width="40" height="40"/>
-                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <rect key="frame" x="262" y="20" width="42" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <state key="normal" title="Send"/>
                             </button>
                         </subviews>
@@ -1219,7 +1213,6 @@
                             <constraint firstAttribute="centerX" secondItem="ImU-yY-PAh" secondAttribute="centerX" id="K1i-dG-Gaw"/>
                             <constraint firstItem="xcD-2Q-xLc" firstAttribute="height" secondItem="7IG-yj-YoZ" secondAttribute="height" id="K7d-in-b5Z"/>
                             <constraint firstItem="7IG-yj-YoZ" firstAttribute="top" secondItem="1OO-lJ-oAG" secondAttribute="bottom" id="Lm3-z8-0qU"/>
-                            <constraint firstItem="xcD-2Q-xLc" firstAttribute="width" secondItem="7IG-yj-YoZ" secondAttribute="width" id="ORS-lp-lUN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u8g-on-OR9" secondAttribute="trailing" constant="-8" id="VjF-x7-xu4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="saY-N1-l3u" secondAttribute="trailing" id="Vk4-bt-ZYg"/>
                             <constraint firstItem="xcD-2Q-xLc" firstAttribute="centerY" secondItem="7IG-yj-YoZ" secondAttribute="centerY" id="Xfr-fC-vBD"/>
@@ -1366,15 +1359,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co7-Ep-Gkq">
-                                <rect key="frame" x="264" y="20" width="40" height="40"/>
-                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                <rect key="frame" x="266" y="20" width="38" height="40"/>
+                                <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                 <state key="normal" title="Next"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.96862745098039216" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="t4L-Xw-w9k" firstAttribute="leading" secondItem="gT2-5D-cE3" secondAttribute="leading" id="2vG-Gs-muB"/>
-                            <constraint firstItem="Co7-Ep-Gkq" firstAttribute="width" secondItem="Skf-9h-GRF" secondAttribute="width" id="3bn-I0-vpn"/>
                             <constraint firstItem="FZA-lV-zOh" firstAttribute="top" secondItem="sBi-gv-MWW" secondAttribute="bottom" id="6pX-Aw-ftU"/>
                             <constraint firstItem="hhQ-va-O57" firstAttribute="top" secondItem="t4L-Xw-w9k" secondAttribute="bottom" id="AIQ-iy-hUy"/>
                             <constraint firstItem="Co7-Ep-Gkq" firstAttribute="trailing" secondItem="gT2-5D-cE3" secondAttribute="trailingMargin" id="NxV-J1-jDn"/>

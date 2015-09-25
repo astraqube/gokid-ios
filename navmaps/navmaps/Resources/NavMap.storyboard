@@ -97,12 +97,12 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssp-Sr-fTb">
-                                                        <rect key="frame" x="548" y="7" width="40" height="40"/>
+                                                        <rect key="frame" x="556" y="7" width="32" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="46" id="3yU-dH-azO"/>
                                                             <constraint firstAttribute="height" constant="26" id="PwZ-FH-hdi"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="17"/>
                                                         <state key="normal" title="Edit"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
@@ -128,6 +128,11 @@
                                                     <constraint firstItem="fVc-1P-Bgj" firstAttribute="top" secondItem="RNX-Ky-EdS" secondAttribute="bottom" id="qXR-Le-zlR"/>
                                                     <constraint firstAttribute="trailing" secondItem="Ssp-Sr-fTb" secondAttribute="trailing" constant="12" id="xiO-oq-NAq"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="d0l-er-E7r"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.69411766529999996" blue="0.27843138579999999" alpha="0.45000000000000001" colorSpace="deviceRGB"/>
