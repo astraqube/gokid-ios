@@ -55,6 +55,10 @@
 	<string>454999084656306</string>
 	<key>FacebookDisplayName</key>
 	<string>gokid-dev</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbauth2</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
