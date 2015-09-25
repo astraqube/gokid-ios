@@ -85,13 +85,13 @@ class CarpoolEditVC: BaseFormVC {
         row.disabled = !self.isCurrentUserAuthorized
         section.addFormRow(row)
 
-        row = XLFormRowDescriptor(tag: Tags.ChangeTimes.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.ChangeTimes.rawValue)
+/*        row = XLFormRowDescriptor(tag: Tags.ChangeTimes.rawValue, rowType: XLFormRowDescriptorTypeSelectorPush, title: Tags.ChangeTimes.rawValue)
         row.cellConfig["textLabel.font"] = labelFont
         row.cellConfig["textLabel.color"] = labelColor
         row.cellConfig["detailTextLabel.font"] = valueFont
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.disabled = !self.isCurrentUserAuthorized
-        section.addFormRow(row)
+        section.addFormRow(row)*/
         
         row = XLFormRowDescriptor(tag: Tags.InvitePanel.rawValue, rowType: XLFormRowDescriptorTypeButton, title: Tags.InvitePanel.rawValue)
         row.cellConfig["textLabel.font"] = labelFont
@@ -184,7 +184,7 @@ class CarpoolEditVC: BaseFormVC {
 
         if formRow!.tag == Tags.CarpoolName.rawValue {
             self.editCarpoolName(formRow)
-        } else if formRow!.tag == Tags.ChangeTimes.rawValue {
+/*        } else if formRow!.tag == Tags.ChangeTimes.rawValue {
             // Fetch carpool again to get times
             dataManager.getCarpool(self.occurrence.carpoolID, comp: { (success, errorString, model) -> () in
                 if success {
@@ -204,7 +204,7 @@ class CarpoolEditVC: BaseFormVC {
                     
                     
                 }
-            })
+            })*/
         }
     }
     
