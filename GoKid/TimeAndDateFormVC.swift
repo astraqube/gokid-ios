@@ -351,10 +351,17 @@ extension TimeAndDateFormVC {
         let formData = self.form.formValues()
         let startDate = formData[Tags.StartDate.rawValue] as? NSDate
         let endDate = formData[Tags.EndDate.rawValue] as? NSDate
+        let frequency = formData[Tags.Frequency.rawValue] as! [Int]?
 
         if startDate != nil && endDate != nil {
             if startDate!.isGreaterThanDate(endDate!) {
                 return "These dates are out of order!"
+            }
+
+            if frequency != nil || frequency!.isEmpty {
+                if startDate == endDate {
+                    return "Repeating schedules can't have the same Start Date and End Date"
+                }
             }
         }
 
