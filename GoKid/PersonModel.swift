@@ -108,7 +108,7 @@ class Person: NSObject {
                 return false
 
             } else {
-                return contact.phones.count > 0 || contact.emails.count > 0
+                return contact.phones?.count > 0 || contact.emails?.count > 0
             }
         }
 
