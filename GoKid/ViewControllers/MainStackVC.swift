@@ -19,6 +19,7 @@ class MainStackVC: IIViewDeckController {
         self.registerForNotification("gotInvitedNotify", action: "notifyInvitationView")
         self.registerForNotification("gotInvited", action: "presentInvitationView")
         self.registerForNotification("requestForPhoneNumber", action: "popUpPhoneNumberView")
+        self.registerForNotification("gotInviteeAcceptance", action: "notifyInviteeAcceptance")
 
         self.determineStateForViews()
     }
@@ -28,8 +29,13 @@ class MainStackVC: IIViewDeckController {
 
         // pickup a dropoff
         let prefs = NSUserDefaults.standardUserDefaults()
+
         if prefs.valueForKey("gotInvited") != nil {
             self.presentInvitationView()
+        }
+
+        if prefs.valueForKey("viewInvitees") != nil {
+            self.notifyInviteeAcceptance()
         }
     }
 
@@ -162,6 +168,30 @@ class MainStackVC: IIViewDeckController {
                 }
             }
         }
+    }
+
+    func notifyInviteeAcceptance() {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let carpoolID = prefs.valueForKey("viewInvitees") as! Int
+        prefs.setValue(nil, forKey: "viewInvitees") // clear the dropoff
+
+        let alertView = UIAlertController(title: "Incoming", message: "Someone accepted your Carpool Invitation.", preferredStyle: .Alert)
+
+        alertView.addAction(UIAlertAction(title: "View", style: .Default, handler: { (action: UIAlertAction!) in
+            let carpool = CarpoolModel()
+            carpool.id = carpoolID
+            self.presentInviteeAcceptanceView(carpool)
+        }))
+
+        alertView.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
+
+        self.presentViewController(alertView, animated: true, completion: nil)
+    }
+
+    func presentInviteeAcceptanceView(carpool: CarpoolModel!) {
+        var vc = vcWithID("InviteesVC") as! InviteesVC
+        vc.carpool = carpool
+        (self.centerController as! UINavigationController).pushViewController(vc, animated: true)
     }
 
     func refreshCurrentVC(animated: Bool) {

@@ -140,6 +140,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     prefs.postNotification("gotInvited")
                 }
             }
+
+            if let carpoolID = userInfo["carpool"] as? Int {
+                // dropoff for when `gotInvited`
+                let prefs = NSUserDefaults.standardUserDefaults()
+                prefs.setValue(carpoolID, forKey: "viewInvitees")
+                prefs.postNotification("gotInviteeAcceptance")
+            }
+
         }
     }
 }
