@@ -62,8 +62,6 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         super.viewDidLoad()
         self.tableView.separatorStyle = .None
         self.title = "Select Frequency"
-
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: "savePressed:")
     }
 
     func savePressed(button: UIBarButtonItem) {
@@ -74,6 +72,8 @@ class FrequencyPickerFormVC: BaseFormVC, XLFormRowDescriptorViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
 
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: "savePressed:")
+        
         if let current = self.rowDescriptor.value as? [AnyObject] {
             self.currentValues.addObjectsFromArray(self.convertValuesToForm(current))
         }
