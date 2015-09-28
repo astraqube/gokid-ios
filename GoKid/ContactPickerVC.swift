@@ -46,7 +46,12 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UICol
     
     override func rightNavButtonTapped() {
         var phoneNumbers = getCurrentSelectedPhoneNumber()
-        
+
+        if phoneNumbers.isEmpty {
+            self.showAlert("Error", messege: "You have not selected any recipients", cancleTitle: "Cancel")
+            return
+        }
+
         LoadingView.showWithMaskType(.Black)
         dataManager.invite(phoneNumbers, carpoolID: carpool.id) { (success, errorStr) in
             LoadingView.dismiss()
