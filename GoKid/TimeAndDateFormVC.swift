@@ -20,8 +20,8 @@ class TimeAndDateFormVC: BaseFormVC {
         case EndDate = "End Date"
         case Frequency = "Frequency"
         case Repeat = "Repeat"
-        case StartTime = "Drive to Event"
-        case EndTime = "Return from Event"
+        case StartTime = "Event Start Time"
+        case EndTime = "Event End Time"
         case OneWay = "oneWay"
         case OneWayStr = "Carpool Trip"
     }
@@ -215,6 +215,8 @@ extension TimeAndDateFormVC {
         row.value = CarpoolMode.None.rawValue
         section.addFormRow(row)
 
+        let now = NSDate()
+
         row = XLFormRowDescriptor(tag: startTag, rowType: XLFormRowDescriptorTypeTime, title: startTag)
         section.addFormRow(row)
         row.cellConfig["textLabel.font"] = labelFont
@@ -223,6 +225,7 @@ extension TimeAndDateFormVC {
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.cellConfig["minuteInterval"] = 5
         row.hidden = "$\(onewayTag).value=='\(CarpoolMode.DropoffOnly.rawValue)'"
+        row.value = now
 
         row = XLFormRowDescriptor(tag: endTag, rowType: XLFormRowDescriptorTypeTime, title: endTag)
         section.addFormRow(row)
@@ -232,6 +235,7 @@ extension TimeAndDateFormVC {
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.cellConfig["minuteInterval"] = 5
         row.hidden = "$\(onewayTag).value=='\(CarpoolMode.PickupOnly.rawValue)'"
+        row.value = now
 
         if occurrenceDay == nil {
             section.footerTitle = "E.g. When kids are walking to soccer practice from school and only need a ride home."
