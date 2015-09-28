@@ -204,11 +204,7 @@ extension DataManager {
         manager.GET(url, parameters: nil, success: { (op, obj) in
             println("getOccurenceOfCarpool success")
             var json = JSON(obj)["occurrences"]
-            var events = OccurenceModel.arrayOfEventsFromOccurrences(json)
-            self.userManager.volunteerEvents = events.sorted { (left : OccurenceModel, right : OccurenceModel) -> Bool in
-                if left.occursAt == nil || right.occursAt == nil { return false}
-                return left.occursAt!.isLessThanDate(right.occursAt!)
-            }
+            self.userManager.volunteerEvents = OccurenceModel.arrayOfEventsFromOccurrences(json)
             comp(true, "")
         }) { (op, error) in
             println("getOccurenceOfCarpool failed")
