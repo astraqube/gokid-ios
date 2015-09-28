@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     var carpool: CarpoolModel!
 
@@ -51,19 +51,18 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAle
         dataManager.invite(phoneNumbers, carpoolID: carpool.id) { (success, errorStr) in
             LoadingView.dismiss()
             if success {
-                self.showAlert("Success", messege: "Message Sent", cancleTitle: "OK")
+                var successAlert = UIAlertController(title: "Success", message: "Invitations Sent", preferredStyle: .Alert)
+
+                successAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (alert: UIAlertAction!) in
+                    let vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
+                    vc.carpool = self.carpool
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }))
+
+                self.presentViewController(successAlert, animated: true, completion: nil)
             } else {
-                self.showAlert("Fail to sent messege", messege: errorStr, cancleTitle: "Cancel")
+                self.showAlert("Failed to send Invitations", messege: errorStr, cancleTitle: "Cancel")
             }
-        }
-    }
-    
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        var title = alertView.buttonTitleAtIndex(buttonIndex)
-        if title == "OK" {
-            var vc = vcWithID("CarpoolSucceedVC") as! CarpoolSucceedVC
-            vc.carpool = self.carpool
-            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
