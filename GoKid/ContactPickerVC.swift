@@ -103,10 +103,10 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UICol
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.cellWithID("ContactCell", indexPath) as! ContactCell
         let letter = tableHeaderSource.objectAtIndex(indexPath.section) as! String
-        var person = tableDataSource[letter]?.objectAtIndex(indexPath.row) as! Person
-
-        person.selected = self.collectionDataSource.containsObject(person)
-        cell.loadPerson(person)
+        if let person = tableDataSource[letter]?.objectAtIndex(indexPath.row) as? Person {
+            person.selected = self.collectionDataSource.containsObject(person)
+            cell.loadPerson(person)
+        }
 
         return cell
     }
@@ -116,21 +116,21 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UICol
         let letter = tableHeaderSource.objectAtIndex(indexPath.section) as! String
         var person = tableDataSource[letter]?.objectAtIndex(indexPath.row) as! Person
 
-        person.selected = self.collectionDataSource.containsObject(person)
-        cell.loadPerson(person)
+        let isSelected = self.collectionDataSource.containsObject(person)
 
-        if person.selected {
+        if isSelected {
             person.selected = false
             collectionDataSource.removeObject(person)
         } else {
             person.selected = true
             collectionDataSource.addObject(person)
-            searchBarInput.text = ""
-            searchContact(searchBarInput.text)
         }
+
+        cell.loadPerson(person)
 
         self.collectionView.reloadData()
         self.tableView.reloadData()
+        self.view.endEditing(true)
     }
 
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
@@ -245,6 +245,13 @@ class ContactPickerVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UICol
         
         return contacts
     }
+
+    func resetSearch() {
+        if searchBarInput.text != "" {
+            searchBarInput.text = ""
+            searchContact(searchBarInput.text)
+        }
+    }
 }
 
 extension ContactPickerVC: UISearchBarDelegate {
@@ -271,4 +278,7 @@ extension ContactPickerVC: UISearchBarDelegate {
         searchContact(searchText)
     }
 
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        self.resetSearch()
+    }
 }
