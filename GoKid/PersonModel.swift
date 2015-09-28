@@ -72,6 +72,8 @@ class Person: NSObject {
     }
 
     class func searchForContact(query: String, comp: (contacts: [AnyObject]!, error: NSError!) -> ()) {
+        if APAddressBook.access() != .Granted { return }
+        
         var data = [Person]()
         let addressBook = APAddressBook()
 
