@@ -71,11 +71,18 @@ class Person: NSObject {
         }
     }
 
+    // MARK: Singleton
+    class var addressBook : APAddressBook {
+        struct Static {
+            static let instance : APAddressBook = APAddressBook()
+        }
+        return Static.instance
+    }
+
     class func searchForContact(query: String, comp: (contacts: [AnyObject]!, error: NSError!) -> ()) {
         if APAddressBook.access() != .Granted { return }
         
         var data = [Person]()
-        let addressBook = APAddressBook()
 
         addressBook.fieldsMask = .Default | .PhonesWithLabels | .Emails
         addressBook.sortDescriptors = [
@@ -86,29 +93,35 @@ class Person: NSObject {
         addressBook.filterBlock = { (contact: APContact!) -> Bool in
             if query != "" {
                 let name = "\(contact.firstName) \(contact.lastName)"
-                let number = " ".join((contact.phones as! [String]).map {
-                        return $0.extractNumbers()!
-                    })
-                let email = " ".join(contact.emails as! [String])
 
                 if name.lowercaseString.rangeOfString(query.lowercaseString) != nil {
                     return true
                 }
 
-                if let numQuery = query.extractNumbers() as String? {
-                    if number.rangeOfString(numQuery) != nil {
-                        return true
+                if contact.phones != nil {
+                    let number = " ".join((contact.phones as! [String]).map {
+                            return $0.extractNumbers()!
+                        })
+
+                    if let numQuery = query.extractNumbers() as String? {
+                        if number.rangeOfString(numQuery) != nil {
+                            return true
+                        }
                     }
                 }
 
-                if email.lowercaseString.rangeOfString(query.lowercaseString) != nil {
-                    return true
+                if contact.emails != nil {
+                    let email = " ".join(contact.emails as! [String])
+
+                    if email.lowercaseString.rangeOfString(query.lowercaseString) != nil {
+                        return true
+                    }
                 }
 
                 return false
 
             } else {
-                return contact.phones?.count > 0 || contact.emails?.count > 0
+                return (contact.phones != nil && !contact.phones.isEmpty) || (contact.emails != nil && !contact.emails.isEmpty)
             }
         }
 
@@ -121,27 +134,31 @@ class Person: NSObject {
                 if !contacts.isEmpty {
                     for addressBookPerson in contacts {
                         if let c = addressBookPerson as? APContact {
-                            for phone in c.phonesWithLabels {
-                                var person = Person(
-                                    firstName: c.firstName,
-                                    lastName: c.lastName,
-                                    phoneNum: phone as? APPhoneWithLabel,
-                                    email: nil)
+                            if c.phonesWithLabels != nil {
+                                for phone in c.phonesWithLabels {
+                                    var person = Person(
+                                        firstName: c.firstName,
+                                        lastName: c.lastName,
+                                        phoneNum: phone as? APPhoneWithLabel,
+                                        email: nil)
 
-                                if person.matches(query) {
-                                    data.append(person)
+                                    if person.matches(query) {
+                                        data.append(person)
+                                    }
                                 }
                             }
 
-                            for email in c.emails {
-                                var person = Person(
-                                    firstName: c.firstName,
-                                    lastName: c.lastName,
-                                    phoneNum: nil,
-                                    email: email as? String)
+                            if c.emails != nil {
+                                for email in c.emails {
+                                    var person = Person(
+                                        firstName: c.firstName,
+                                        lastName: c.lastName,
+                                        phoneNum: nil,
+                                        email: email as? String)
 
-                                if person.matches(query) {
-                                    data.append(person)
+                                    if person.matches(query) {
+                                        data.append(person)
+                                    }
                                 }
                             }
                         }
@@ -150,10 +167,15 @@ class Person: NSObject {
                     if query != "" {
                         if let phoneNumber = query.extractNumbers() {
                             if count(phoneNumber) >= 10 {
-                                var person = Person(
+                                let phoneNum = APPhoneWithLabel()
+                                phoneNum.phone = query
+                                phoneNum.originalLabel = "Number"
+                                phoneNum.localizedLabel = "Number"
+                                
+                                let person = Person(
                                     firstName: nil,
                                     lastName: nil,
-                                    phoneNum: APPhoneWithLabel(phone: query, originalLabel: "Number", localizedLabel: "Number"),
+                                    phoneNum: phoneNum,
                                     email: nil)
                                 data.append(person)
                             }

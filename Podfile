@@ -11,7 +11,7 @@ pod 'PureLayout'
 pod 'AFNetworking'
 pod 'Reachability'
 pod 'SVProgressHUD'
-pod 'APAddressBook/Swift', '0.1.11'
+pod 'APAddressBook/Swift'
 pod 'JSBadgeView'
 pod 'ViewDeck', '2.2.11'
 
