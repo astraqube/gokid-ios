@@ -64,8 +64,8 @@ class Person: NSObject {
     func matches(keywords: String) -> Bool {
         if keywords == "" { return true }
         let stack = "\(fullName) \(contactDisplay)"
-        if keywords.extractNumbers() != nil {
-            return stack.extractNumbers()?.rangeOfString(keywords.extractNumbers()!) != nil
+        if keywords.extractNumbers() != "" {
+            return stack.extractNumbers().rangeOfString(keywords.extractNumbers()) != nil
         } else {
             return stack.lowercaseString.rangeOfString(keywords.lowercaseString) != nil
         }
@@ -100,13 +100,12 @@ class Person: NSObject {
 
                 if contact.phones != nil {
                     let number = " ".join((contact.phones as! [String]).map {
-                            return $0.extractNumbers()!
+                            return $0.extractNumbers()
                         })
 
-                    if let numQuery = query.extractNumbers() as String? {
-                        if number.rangeOfString(numQuery) != nil {
-                            return true
-                        }
+                    let numQuery = query.extractNumbers()
+                    if numQuery != "" && number.rangeOfString(numQuery) != nil {
+                        return true
                     }
                 }
 
@@ -165,7 +164,8 @@ class Person: NSObject {
                     }
                 } else {
                     if query != "" {
-                        if let phoneNumber = query.extractNumbers() {
+                        let phoneNumber = query.extractNumbers()
+                        if phoneNumber != "" {
                             if count(phoneNumber) >= 10 {
                                 let phoneNum = APPhoneWithLabel()
                                 phoneNum.phone = query

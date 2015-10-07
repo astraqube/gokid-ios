@@ -225,10 +225,9 @@ extension String {
         return NSString(data: data, encoding: NSUTF8StringEncoding) as! String
     }
 
-    func extractNumbers() -> String? {
+    func extractNumbers() -> String {
         let strArr = self.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
-        let numbers = "".join(strArr)
-        return numbers != "" ? numbers : nil
+        return "".join(strArr)
     }
 
     func isValidEmail() -> Bool {
