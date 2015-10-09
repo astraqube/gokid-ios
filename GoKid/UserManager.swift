@@ -8,7 +8,7 @@
 
 import UIKit
 
-let RoleTypeCareTaker = "caretaker"
+let RoleTypeCareTaker = "caregiver"
 let RoleTypeChild = "child"
 let RoleTypeMommy = "mommy"
 let RoleTypeDaddy = "daddy"
