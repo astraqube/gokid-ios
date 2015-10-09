@@ -157,7 +157,9 @@ class CarpoolModel: NSObject {
             }
             json["schedules"] = scheduleDict
         } else {
-            json["schedule"] = toSchedule()
+            if startDate != nil && endDate != nil {
+                json["schedule"] = toSchedule()
+            }
         }
 
         return ["carpool": json]
