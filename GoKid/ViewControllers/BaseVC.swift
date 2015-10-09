@@ -14,7 +14,8 @@ class BaseVC: UIViewController {
     var userManager = UserManager.sharedInstance
     var colorManager = ColorManager.sharedInstance
     var imageManager = ImageManager.sharedInstance
-    
+    var isKeyboardRaised = false
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var leftButton: UIButton!
@@ -57,14 +58,18 @@ class BaseVC: UIViewController {
     }
     
     func keyboardWillShow(sender: NSNotification) {
+        if self.isKeyboardRaised { return }
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             self.view.frame.origin.y -= keyboardSize.height
+            self.isKeyboardRaised = true
         }
     }
     
     func keyboardWillHide(sender: NSNotification) {
+        if !self.isKeyboardRaised { return }
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             self.view.frame.origin.y += keyboardSize.height
+            self.isKeyboardRaised = false
         }
     }
     
