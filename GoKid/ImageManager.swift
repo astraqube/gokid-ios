@@ -248,11 +248,11 @@ class ImageManager: NSObject {
         } else if findDiskCachedImageByURL(urlStr, { (img: UIImage?) in
             if let image = img {
                 self.memCached[urlStr] = image
-            }else {
+            } else {
                 self.removeDiskCacheForURL(urlStr) //bad cache, but can still recurse
             }
-            self.getImageAtURL(urlStr, callback: callback)
-        }){
+            callback(image: img, error: nil)
+        }) {
             return
         } else if let url = NSURL(string: urlStr){
             var session = NSURLSession.sharedSession()
@@ -260,7 +260,7 @@ class ImageManager: NSObject {
                 if let image = UIImage(data: data) {
                     self.memCached[urlStr] = image
                     self.diskCacheImageWithURLStr(image, urlStr)
-                    self.getImageAtURL(urlStr, callback: callback)
+                    callback(image: image, error: nil)
                 } else {
                     callback(image: nil, error: "couldn't download image")
                 }}.resume()
