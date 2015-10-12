@@ -92,13 +92,14 @@ class TimeAndDateFormVC: BaseFormVC {
     override func formRowDescriptorValueHasChanged(formRow: XLFormRowDescriptor!, oldValue: AnyObject!, newValue: AnyObject!) {
         super.formRowDescriptorValueHasChanged(formRow, oldValue: oldValue, newValue: newValue)
 
-        let startDateCell = self.form.formRowWithTag(Tags.StartDate.rawValue)
-        let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
         let frequencyCell = self.form.formRowWithTag(Tags.Frequency.rawValue)
+        let repeatCell = self.form.formRowWithTag(Tags.Repeat.rawValue)
 
         if formRow.tag == Tags.Repeat.rawValue {
             let isOn = newValue as! Bool
-            
+            let startDateCell = self.form.formRowWithTag(Tags.StartDate.rawValue)
+            let endDateCell = self.form.formRowWithTag(Tags.EndDate.rawValue)
+
             endDateCell!.required = isOn
             endDateCell!.value = isOn ? startDateCell!.value : nil
             self.updateFormRow(endDateCell)
@@ -106,10 +107,12 @@ class TimeAndDateFormVC: BaseFormVC {
             frequencyCell!.value = isOn ? GKDays.asKeys.values.array : []
             self.showTimeSectionsForFrequency(frequencyCell!.value as! [Int]?)
             self.updateFormRow(frequencyCell)
-        }
 
-        if formRow.tag == Tags.Frequency.rawValue {
+        } else if formRow.tag == Tags.Frequency.rawValue {
             self.showTimeSectionsForFrequency(newValue as! [Int]?)
+
+        } else if (repeatCell!.value as! Bool) && oldValue != nil {
+            self.tryAutoPopulatingTimeField(formRow, value: newValue)
         }
 
         self.toggleRightNavButtonState()
@@ -120,7 +123,7 @@ class TimeAndDateFormVC: BaseFormVC {
 
         var formRow = self.form.formRowAtIndex(indexPath)
 
-        if contains([XLFormRowDescriptorTypeDate, XLFormRowDescriptorTypeTime], formRow!.rowType) {
+        if formRow!.rowType == XLFormRowDescriptorTypeDate {
             if formRow!.value == nil {
                 formRow!.value = NSDate()
                 self.updateFormRow(formRow)
@@ -215,8 +218,6 @@ extension TimeAndDateFormVC {
         row.value = CarpoolMode.None.rawValue
         section.addFormRow(row)
 
-        let now = NSDate()
-
         row = XLFormRowDescriptor(tag: startTag, rowType: XLFormRowDescriptorTypeTime, title: startTag)
         section.addFormRow(row)
         row.cellConfig["textLabel.font"] = labelFont
@@ -225,7 +226,6 @@ extension TimeAndDateFormVC {
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.cellConfig["minuteInterval"] = 5
         row.hidden = "$\(onewayTag).value=='\(CarpoolMode.DropoffOnly.rawValue)'"
-        row.value = now
 
         row = XLFormRowDescriptor(tag: endTag, rowType: XLFormRowDescriptorTypeTime, title: endTag)
         section.addFormRow(row)
@@ -235,13 +235,42 @@ extension TimeAndDateFormVC {
         row.cellConfig["detailTextLabel.color"] = labelColor
         row.cellConfig["minuteInterval"] = 5
         row.hidden = "$\(onewayTag).value=='\(CarpoolMode.PickupOnly.rawValue)'"
-        row.value = now
 
         if occurrenceDay == nil {
             section.footerTitle = "E.g. When kids are walking to soccer practice from school and only need a ride home."
         }
 
         return section
+    }
+
+    private func tryAutoPopulatingTimeField(formRow: XLFormRowDescriptor!, value: AnyObject!) {
+        let fieldType = ([Tags.StartTime.rawValue, Tags.EndTime.rawValue].filter { (T: String) -> Bool in
+                return formRow.tag!.rangeOfString(T) != nil
+            }).first
+
+        if fieldType != nil {
+            let days = self.form.formRowWithTag(Tags.Frequency.rawValue)!.value as! [Int]
+
+            let currentDay = (days.filter { (D: Int) -> Bool in
+                let _day = GKDays.dayFromInt(D).truncateToCharacters(3)
+                return formRow.tag!.rangeOfString(_day) != nil
+                }).first
+
+            let otherDays = days.filter { (D: Int) -> Bool in
+                return D != currentDay
+            }
+
+            for day in otherDays {
+                let targetDay = GKDays.dayFromInt(day).truncateToCharacters(3)
+                let targetTag = "\(fieldType!) on \(targetDay)"
+                if let targetCell = self.form.formRowWithTag(targetTag) {
+                    if !targetCell.isHidden() && targetCell.value == nil {
+                        targetCell.value = value
+                        self.updateFormRow(targetCell)
+                    }
+                }
+            }
+        }
     }
 
 }
