@@ -38,6 +38,11 @@ class CarpoolListCell: UITableViewCell {
         }
 
         nameLabel.text = model.name
+
+        let CM = ColorManager.sharedInstance
+        let theme = model.isOwner ? CM.color456462 : CM.color456462.colorWithAlphaComponent(0.6)
+        nameLabel.textColor = theme
+        timeLabel.textColor = theme
     }
 
 }
