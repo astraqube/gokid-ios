@@ -100,6 +100,7 @@ class CalendarUserImageView: UIView {
         } else {
             nameString = fullName
             nameLabel.hidden = false
+            imageView.image = nil
         }
     }
 }
