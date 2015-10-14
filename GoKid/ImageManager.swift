@@ -254,19 +254,16 @@ class ImageManager: NSObject {
             callback(image: img, error: nil)
         }) {
             return
-        } else if let url = NSURL(string: urlStr){
-            var session = NSURLSession.sharedSession()
-            session.dataTaskWithURL(url) { (data, response, error) in
-                onMainThread() {
-                    if let image = UIImage(data: data) {
-                        self.memCached[urlStr] = image
-                        self.diskCacheImageWithURLStr(image, urlStr)
-                        callback(image: image, error: nil)
-                    } else {
-                        callback(image: nil, error: "couldn't download image")
-                    }
+        } else if let url = NSURL(string: urlStr) {
+            downloadImageByURLStr(urlStr) { (image: UIImage?) in
+                if image != nil {
+                    self.memCached[urlStr] = image!
+                    self.diskCacheImageWithURLStr(image!, urlStr)
+                    callback(image: image!, error: nil)
+                } else {
+                    callback(image: nil, error: "couldn't download image")
                 }
-            }.resume()
+            }
         } else {
             callback(image: nil, error: "malformed image url")
         }
@@ -306,9 +303,9 @@ class ImageManager: NSObject {
     func downloadImageByURLStr(urlStr: String, _ completion: IMCompletion) {
         // check the url is valid
         var url = NSURL(string: urlStr)
-        if url == nil {
+        if url == nil || url == "" || urlStr == "" {
             println(__FUNCTION__ + " url not valid: " + urlStr)
-            return
+            completion(nil)
         }
         // download
         var session = NSURLSession.sharedSession()
@@ -319,7 +316,7 @@ class ImageManager: NSObject {
                 completion(image)
             } else {
                 println("Invalid image url \(urlStr)")
-                return
+                completion(nil)
             }
             }.resume()
     }
