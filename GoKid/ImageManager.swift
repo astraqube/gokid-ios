@@ -257,13 +257,16 @@ class ImageManager: NSObject {
         } else if let url = NSURL(string: urlStr){
             var session = NSURLSession.sharedSession()
             session.dataTaskWithURL(url) { (data, response, error) in
-                if let image = UIImage(data: data) {
-                    self.memCached[urlStr] = image
-                    self.diskCacheImageWithURLStr(image, urlStr)
-                    callback(image: image, error: nil)
-                } else {
-                    callback(image: nil, error: "couldn't download image")
-                }}.resume()
+                onMainThread() {
+                    if let image = UIImage(data: data) {
+                        self.memCached[urlStr] = image
+                        self.diskCacheImageWithURLStr(image, urlStr)
+                        callback(image: image, error: nil)
+                    } else {
+                        callback(image: nil, error: "couldn't download image")
+                    }
+                }
+            }.resume()
         } else {
             callback(image: nil, error: "malformed image url")
         }
